@@ -1,0 +1,30 @@
+@import '~src/assets/scss/abstracts/variables';
+
+.p-other-sellers {
+
+  &__table {
+    table-layout: fixed;
+    border-collapse: separate;
+    border-spacing: 1.2rem 0;
+  }
+
+  &__table td {
+    width : 119px;
+    margin-right : 100px;
+    font-size: 1.6rem;
+    line-height: 1.75;
+    letter-spacing: 0.44px;
+    font-weight: 400;
+    font-style: normal;
+    font-stretch : normal;
+  }
+
+  &__table th {
+    font-size: 1.6rem;
+    text-align:left;
+    color : $color-grey;
+    letter-spacing: 0.04rem;
+    font-weight: 500;
+    word-wrap: break-word;
+  }
+}

@@ -1,3 +1,20 @@
-<p>
-  carousel works!
-</p>
+
+
+<div class="carousel">
+  <img class="carousel__image" #carouselImages *ngFor="let img of imgSrcList; let i = index" src="{{img}}" attr.data-carousel-index="{{i}}" alt="img">
+
+</div>
+<div #carouselCircles class="carousel__circle" *ngFor="let img of imgSrcList; let i = index" attr.data-carousel-index="{{i}}" [ngClass]="{ 'carousel__circle--active' : i === 0}"></div>
+
+<button (click)="leftCarousel()">
+  left carousel
+</button>
+
+
+<button (click)="rightCarousel()">
+  right carousel
+</button>
+
+
+80 1288 80
+

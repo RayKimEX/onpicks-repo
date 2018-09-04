@@ -1,0 +1,70 @@
+$carousel-width : 920px;
+$carousel-height: 587px;
+
+
+img {
+
+}
+
+@keyframes carousel-left {
+  0% {
+    transform : translateX(0);
+  }
+
+  100% {
+    transform : translateX(-$carousel-width) ;
+  }
+}
+
+
+@keyframes carousel-right {
+
+}
+
+
+.carousel {
+  width : $carousel-width;
+  height : $carousel-height;
+  overflow: hidden;
+  position: relative;
+
+  &__image{
+    height: $carousel-height;
+    background-size:cover;
+    width : $carousel-width;
+    left :  $carousel-width;
+    display : none;
+    position: absolute;
+
+
+    &--left-slide {
+      transform : translateX(-$carousel-width);
+      transition : transform 0.5s linear;
+    }
+
+    &--right-slide {
+      //animation-duration: .5s;
+      //animation-name : carousel-left;
+      //animation-fill-mode: forwards;
+    }
+  }
+
+  &__circle {
+    margin-right : 5px;
+    margin-top : 5px;
+    display : inline-block;
+    border-radius : 50%;
+    background-color : #e5e5e5;
+    height : 20px;
+    width : 20px;
+    cursor : pointer;
+    &--active {
+      background-color : grey;
+    }
+  }
+}
+
+
+
+
+
