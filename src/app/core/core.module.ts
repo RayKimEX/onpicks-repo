@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {HeaderComponent} from './header/header.component';
-import {FooterComponent} from './footer/footer.component';
+import { LazyLoadDirective } from './lazy-load/lazy-load.directive';
+import { CleanLoadDirective } from './clean-load/clean-load.directive';
+
 
 @NgModule({
   imports: [
     CommonModule
   ],
-  declarations: [HeaderComponent, FooterComponent],
+  declarations: [LazyLoadDirective, CleanLoadDirective],
   exports: [
-    HeaderComponent,
-    FooterComponent
+    LazyLoadDirective, CleanLoadDirective
   ]
 })
 export class CoreModule { }

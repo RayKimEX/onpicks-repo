@@ -1,7 +1,15 @@
 $red : #FF0000;
 $color-grey: #b3b3b3;
+$color-light-grey: #e5e5e5;
+$color-dark-grey: #767676;
+
+
 $color-black: #3a3a3a;
 $color-dark-black : #000000;
+
+$color-white :#FFFFFF;
+$color-orange : #F68B1A;
+$color-green : #008489;
 
 
 // FONT
@@ -13,3 +21,59 @@ $grid-width: 112.8rem;
 $gutter-vertical: 4rem;
 $gutter-vertical-small: 2.4rem;
 $gutter-horizontal: 2.4rem;
+
+
+
+/********** mixins ***********/
+
+
+@mixin clearfix {
+  &::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+@mixin absCenter {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@mixin verticalCenter {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+@mixin sortDropbox {
+  appearance : none;
+  border : 0;
+  font-size : 1.6rem;
+  font-weight : 500;
+  letter-spacing: 0.04rem;
+  background-color : transparent;
+  color : $color-green;
+  cursor: pointer;
+
+  &::-ms-expand {
+    display: none;
+  }
+}
+
+@mixin respond($breakpoint) {
+  @if $breakpoint == phone {
+    @media only screen and (max-width: 37.5em) { @content };    //600px
+  }
+  @if $breakpoint == tab-port {
+    @media only screen and (max-width: 56.25em) { @content };     //900px
+  }
+  @if $breakpoint == tab-land {
+    @media only screen and (max-width: 75em) { @content };    //1200px
+  }
+  @if $breakpoint == big-desktop {
+    @media only screen and (min-width: 112.5em) { @content };    //1800
+  }
+}

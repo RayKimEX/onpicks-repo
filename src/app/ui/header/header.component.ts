@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'onpicks-header',
+  selector: 'ui-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })

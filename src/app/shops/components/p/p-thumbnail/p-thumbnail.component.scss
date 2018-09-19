@@ -2,22 +2,46 @@
 
 .p-thumbnail {
 
-  &__images--large {
-    margin : auto;
-    width: 56.5rem;
-    height:64.6rem;
-    background-color : $color-black;
+  &__large-outer {
+    position:relative;
+
+    a {
+      & svg {
+        top:50%;
+        display : inline-block;
+        position : absolute;
+        transform : translateY(-50%);
+        right : 2.4rem;
+      }
+
+      &:first-of-type svg {
+        left : 2.4rem;
+        transform : translateY(-50%) rotate(180deg);
+      }
+    }
+  }
+
+  img:not(:first-child){
+    margin-right:0.8rem;
   }
 
 
-  &__images--small {
-    display:inline-block;
-    margin-top : 1.6rem;
-    margin-right: 0.8rem;
-    width:6.4rem;
-    height:6.4rem;
-    background-color:$color-grey;
-  }
+  //&__images--large {
+  //  margin : auto;
+  //  width: 56.5rem;
+  //  height:64.6rem;
+  //  background-color : $color-black;
+  //}
+  //
+  //
+  //&__images--small {
+  //  display:inline-block;
+  //  margin-top : 1.6rem;
+  //  margin-right: 0.8rem;
+  //  width:6.4rem;
+  //  height:6.4rem;
+  //  background-color:$color-grey;
+  //}
 }
 
 

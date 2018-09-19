@@ -1,0 +1,235 @@
+@import '~src/assets/scss/abstracts/variables';
+
+
+
+
+.p-reviews {
+
+  &__image {
+    width : 10.4rem;
+    height : 10.4rem;
+    float:right;
+  }
+  hr {
+    margin : 2.6rem 0;
+  }
+  position : relative;
+
+  & > h4 {
+    display: inline-block;
+    margin-right: 1.6rem;
+    margin-bottom:2.4rem;
+  }
+
+  & > h5 {
+    margin-bottom: 1.6rem;
+  }
+
+  &__search-reviews {
+    position:relative;
+    top: -1rem;
+    width : 20rem;
+    height: 4rem;
+    float:right;
+    display:inline-block;
+    border-radius : 2px;
+    border : solid 1px #dddddd;
+    line-height: 4rem;
+    &--input {
+      margin-left: 5.6rem;
+      border : 0;
+      width : 10.6rem;
+      height : 1.6rem;
+      font-size:1.4rem;
+      font-weight : 500;
+      letter-spacing : 0.03rem;
+      &::placeholder {
+        color : $color-dark-grey;
+      }
+    }
+
+    &--search-icon {
+      @include verticalCenter;
+      left : 1.6rem;
+    }
+  }
+
+  &__table {
+    & td {
+
+      //margin-right : 2.2rem;
+      font-size : 1.6rem;
+      line-height : 1.75;
+      letter-spacing : 0.04rem;
+
+
+      &:last-child{
+        text-align : right;
+      }
+
+      &:not(:last-child){
+        border-right : 2rem solid transparent;;
+      }
+    }
+
+    &--line {
+      position:relative;
+      width : 51.6rem;
+      height : 2.4rem;
+      background-color : #e5e5e5;
+
+      &-current {
+        transition-property: width;
+        transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+        position: absolute;
+        width : 0rem;
+        height : 2.4rem;
+        border-radius : 2px;
+        background-color : $color-black;
+      }
+    }
+  }
+
+  .helpful-left {
+    display:inline-block;
+    margin-bottom: 2.4rem;
+  }
+
+  select {
+    float : right;
+    @include sortDropbox;
+  }
+
+  &__figure {
+    position:relative;
+
+    &--outer {
+      position:relative;
+      display:inline-block;
+      width:4rem;
+      height:4.2rem;
+      margin-right:1.6rem;
+      border-radius : 50%;
+
+      overflow:hidden;
+    }
+    //& > img {
+    //  width:4rem;
+    //  height:4rem;
+    //  margin-right: 1.6rem;
+    //}
+    &--caption {
+
+      position:absolute;
+      top: -0.3rem;
+      display: inline-block;
+
+      & > figcaption {
+        width : 10rem;
+        margin-bottom: 1px;
+      }
+
+      & > span {
+        font-size : 1.4rem;
+        font-weight : 500;
+        letter-spacing : 0.03rem;
+        color: #8d8d8d;
+      }
+    }
+  }
+
+
+  p {
+
+    min-height: 10.4rem;
+    display:inline-block;
+    font-size : 1.6rem;
+    line-height:1.75;
+    letter-spacing: 0.4px;
+  }
+
+  &__option {
+    margin-top:2.4rem;
+    &--feature {
+      position:relative;
+      margin-left: 0.8rem;
+      margin-right: 3.2rem;
+      font-size:1.6rem;
+      font-weight : 500;
+      line-height : 1.5;
+      letter-spacing: 0.04rem;
+      color: $color-dark-grey;
+      top:-0.5rem;
+    }
+
+    &--report {
+      float : right;
+      font-size:1.6rem;
+      font-weight:500;
+      line-height: 1.5;
+      letter-spacing : 0.04rem;
+      color:$color-grey;
+    }
+  }
+
+
+  &__pagination {
+    margin-left : -1.2rem;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    li {
+      position:relative;
+      font-size:1.6rem;
+      display : inline-block;
+      list-style : none;
+      margin-right : 2.6rem;
+
+      div {
+        text-align:center;
+        display : inline-block;
+        width : 3.2rem;
+
+        cursor:pointer;
+
+        svg {
+          position:absolute;
+          top : 1px;
+        }
+      }
+    }
+
+    &--number-bold {
+      color : black;
+      font-weight : 700;
+    }
+
+    &--finite-num {
+      position:relative;
+      top : -0.5rem;
+    }
+  }
+  //input[type='text'] {
+  //  float: right;
+  //  width: 20rem;
+  //  height: 4rem;
+  //}
+
+  //::-webkit-input-placeholder{
+  //    text-align:center;
+  //    font-size: 1.4rem;
+  //    color:#767676;
+  //    font-weight: 500;
+  //}
+  //::-webkit-input-placeholder,
+  //::-ms-input-placeholder,
+  //::-moz-placeholder,
+  //:-moz-placeholder {
+  //  text-align:center;
+  //  font-size: 1.6rem;
+  //}
+
+}
+
+

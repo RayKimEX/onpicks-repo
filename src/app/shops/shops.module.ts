@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {InjectionToken, NgModule} from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { ShopsRoutingModule } from './shops-routing.module';
@@ -11,14 +11,31 @@ import { PReviewsComponent } from './components/p/p-reviews/p-reviews.component'
 import { PThumbnailComponent } from './components/p/p-thumbnail/p-thumbnail.component';
 import { PCustomerComponent } from './components/p/p-customer/p-customer.component';
 import { CComponent } from './pages/c/c.component';
+import { UiModule } from '../ui/ui.module';
+import { CoreModule } from '../core/core.module';
+import { ActionReducerMap, StoreModule } from '@ngrx/store';
+import { PReducer } from './pages/p/store/p.reducer';
 
 
 
 @NgModule({
   imports: [
     CommonModule,
-    ShopsRoutingModule
+    ShopsRoutingModule,
+    StoreModule.forFeature('Product', PReducer),
+    UiModule,
+    CoreModule
   ],
-  declarations: [PComponent, PCustomerComponent, PDescriptionComponent, PItemDetailComponent, PMenuComponent, POtherSellersComponent, PReviewsComponent, PThumbnailComponent, CComponent]
+  declarations: [
+    PComponent,
+    PCustomerComponent,
+    PDescriptionComponent,
+    PItemDetailComponent,
+    PMenuComponent,
+    POtherSellersComponent,
+    PReviewsComponent,
+    PThumbnailComponent,
+    CComponent
+  ]
 })
 export class ShopsModule { }

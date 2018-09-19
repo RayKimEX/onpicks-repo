@@ -10,6 +10,8 @@ import { CoreModule } from './core/core.module';
 import {HomeModule} from './home/home.module';
 import {UiModule} from './ui/ui.module';
 import {ShopsModule} from './shops/shops.module';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {StoreModule} from '@ngrx/store';
 
 
 @NgModule({
@@ -24,7 +26,9 @@ import {ShopsModule} from './shops/shops.module';
     ShopsModule,
     RouterModule,
     AppRoutingModule,
+    BrowserAnimationsModule,
     // Common Module
+    StoreModule.forRoot({}),
     CoreModule,
     UiModule,
     ///

@@ -4,13 +4,13 @@
         "directive-selector": [
             true,
             "attribute",
-            "onpicks",
+            "dr",
             "camelCase"
         ],
         "component-selector": [
             true,
             "element",
-            ["onpicks", "ui"],
+            ["onpicks", "ui", ""],
             "kebab-case"
         ]
     }

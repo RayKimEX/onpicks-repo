@@ -1,0 +1,145 @@
+@import '~src/assets/scss/abstracts/variables';
+
+.ui-mini-list {
+  display:inline-block;
+
+  //&__item {
+  //  width :26.4rem;
+  //  margin-right : 2.4rem;
+  //  &:last-child{
+  //    margin-right : 0;
+  //  }
+  //}
+
+  &__item {
+
+    &--name-outer {
+      margin-bottom : 0.8rem;
+
+
+      &-brand {
+        font-size : 1.2rem;
+        font-weight: 700;
+        line-height: 1.33;
+        letter-spacing : 0.04rem;
+        margin-bottom: 0.4rem;
+      }
+      &-name {
+        width : 26.4rem;
+        font-size : 1.2rem;
+        font-weight : 500;
+        line-height : 1.33;
+        letter-spacing : 0.04rem;
+      }
+    }
+
+    &--reviews-count {
+
+    }
+
+    &--MSRP {
+      margin-right : 0.2rem;
+      font-size: 1.2rem;
+      color:#a0a0a0;
+      font-weight : 500;
+
+      &-discount {
+        font-size: 1.2rem;
+        color:#a0a0a0;
+        font-weight : 500;
+        text-decoration: line-through;
+      }
+    }
+
+    &--price {
+      margin-right : 0.4rem;
+      font-size: 1.4rem;
+      color:#000000;
+      font-weight : 500;
+      letter-spacing : 0.03rem;
+    }
+
+    &--discount {
+      margin-right : 0.4rem;
+      font-size: 1.4rem;
+      color: $color-orange;
+      font-weight : 500;
+      letter-spacing : 0.03rem;
+    }
+
+    &--image-outer {
+      position:relative;
+      svg {
+        position:absolute;
+        top : 1.6rem;
+        right : 1.6rem;
+
+        path {
+          fill : $color-grey;
+        }
+      }
+    }
+  }
+
+  &__content {
+
+
+    li {
+      vertical-align : top;
+      display: inline-block;
+      list-style: none;
+
+
+      & > div {
+        width :26.4rem;
+      }
+      &:not(:last-child) > div {
+        margin-right : 2.4rem;
+      }
+
+    }
+
+
+    //ul {
+    //  margin-top : 3.2rem;
+    //  height:37.4rem;
+    //}
+    //li {
+    //  position:relative;
+    //  top:0;
+    //  display:inline-block;;
+    //  list-style: none;
+    //
+    //  & > div {
+    //    position: relative;
+    //
+    //    img {
+    //
+    //      margin-bottom: 1.6rem;
+    //    }
+    //  }
+    //}
+    //
+
+  }
+
+  //&__content--image-outer{
+  //  display : inline-block;
+  //  margin-bottom: 1.6rem;
+  //}
+  //
+  //&__content--name-outer{
+  //  position: relative;
+  //}
+  //p{
+  //  top : 0;
+  //  display:inline-block;
+  //  width : 26.4rem;
+  //  font-size : 1.2rem;
+  //  font-weight : 500;
+  //  line-height : 1.33;
+  //  letter-spacing : 0.04rem;
+  //}
+
+}
+
