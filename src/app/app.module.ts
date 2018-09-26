@@ -6,18 +6,24 @@ import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { CoreModule } from './core/core.module';
-import {HomeModule} from './home/home.module';
-import {UiModule} from './ui/ui.module';
-import {ShopsModule} from './shops/shops.module';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {StoreModule} from '@ngrx/store';
+import { HomeModule } from './home/home.module';
+import { UiModule } from './ui/ui.module';
+import { ShopsModule } from './shops/shops.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { StoreModule } from '@ngrx/store';
+import { reducers } from './core/store/app.reducer';
+import { DirectivesModule } from './core/directives/directives.module';
+import { FooterComponent } from './ui/onpicks/footer/footer.component';
+import { HeaderComponent } from './ui/onpicks/header/header.component';
+import { ShowcasesComponent } from './showcases/pages/showcases/showcases.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-
+    FooterComponent,
+    HeaderComponent,
+    ShowcasesComponent,
   ],
   imports: [
     BrowserModule,
@@ -27,16 +33,17 @@ import {StoreModule} from '@ngrx/store';
     RouterModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+
     // Common Module
-    StoreModule.forRoot({}),
-    CoreModule,
+    StoreModule.forRoot(reducers),
+    DirectivesModule,
     UiModule,
     ///
 
-    HomeModule
+    HomeModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [ AppComponent ]
 })
 export class AppModule { }
 // import { AuthEffects } from './auth/store/auth.effects';

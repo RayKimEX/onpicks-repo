@@ -12,9 +12,10 @@ import { PThumbnailComponent } from './components/p/p-thumbnail/p-thumbnail.comp
 import { PCustomerComponent } from './components/p/p-customer/p-customer.component';
 import { CComponent } from './pages/c/c.component';
 import { UiModule } from '../ui/ui.module';
-import { CoreModule } from '../core/core.module';
-import { ActionReducerMap, StoreModule } from '@ngrx/store';
+import {  StoreModule } from '@ngrx/store';
 import { PReducer } from './pages/p/store/p.reducer';
+import { DirectivesModule } from '../core/directives/directives.module';
+import { PipeModule } from '../core/pipe/pipe.module';
 
 
 
@@ -22,9 +23,10 @@ import { PReducer } from './pages/p/store/p.reducer';
   imports: [
     CommonModule,
     ShopsRoutingModule,
-    StoreModule.forFeature('Product', PReducer),
+    StoreModule.forFeature('p', PReducer),
     UiModule,
-    CoreModule
+    DirectivesModule,
+    PipeModule
   ],
   declarations: [
     PComponent,

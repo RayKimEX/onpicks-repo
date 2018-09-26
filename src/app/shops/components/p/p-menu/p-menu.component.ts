@@ -1,9 +1,9 @@
 import {Component, ElementRef, OnDestroy, OnInit, Renderer2, ViewChild} from '@angular/core';
-import {fromEvent, Observable} from 'rxjs';
+import {fromEvent, interval, Observable} from 'rxjs';
 import Chart from 'chart.js';
 import {map, switchMap, take} from 'rxjs/operators';
 import {select, Store} from '@ngrx/store';
-import {State} from '../../../pages/p/store/p.reducer';
+import * as fromP from '../../../pages/p/store/p.reducer';
 
 @Component({
   selector: 'onpicks-p-menu',
@@ -20,39 +20,56 @@ export class PMenuComponent implements OnInit, OnDestroy {
   dataOuter;
   hrLiner;
   initialDatesTitle;
-
   scrollEvent
+  PStore;
 
-  hello: Observable<any>;
 
-  constructor(private renderer: Renderer2, private store: Store<any>) {
+  chartSortList = [
+    {
+      title : '30 days',
+      value : 0
+    },
+    {
+      title : '90 days',
+      value : 1
+    },
+  ]
+
+  constructor(private renderer: Renderer2, private store: Store<fromP.FeatureState>) {
     this.initialDatesTitle = ['Date1', 'Date2', 'Date3'];
   }
 
   ngOnDestroy() {
     this.scrollEvent.unsubscribe();
+    this.PStore.unsubscribe();
   }
 
   ngOnInit() {
     const weatherDates = []
 
     this.scrollEvent = fromEvent(window, 'scroll');
-    this.hello = this.store.pipe( select('Product'));
+    this.PStore = this.store.pipe( select('p'));
     let setStatus = '';
-    let menuTopValue: State;
-    this.hello.subscribe( (val)  => { menuTopValue = val; });
-    this.scrollEvent.subscribe(val => {
+    let menuTopValue: fromP.FeatureState;
+    this.PStore = this.PStore.subscribe( (val: fromP.FeatureState)  => {
+      menuTopValue = val;
+      // absolute
+      if (window.pageYOffset >= menuTopValue.menuPosition - 32 &&  setStatus === 'absolute') {
+        this.renderer.setStyle(this.pMenu.nativeElement, 'position', 'absolute');
+        this.renderer.setStyle(this.pMenu.nativeElement, 'top', menuTopValue.menuPosition * 0.1 + 'rem');
+      }
+
+    });
+    this.scrollEvent = this.scrollEvent.subscribe(val => {
         if (window.pageYOffset >= 232) {
             if (window.pageYOffset >= menuTopValue.menuPosition - 32) {
               if ( setStatus === 'absolute') { return; }
-              console.log(setStatus);
               setStatus = 'absolute';
               this.renderer.setStyle(this.pMenu.nativeElement, 'position', 'absolute');
               this.renderer.setStyle(this.pMenu.nativeElement, 'top', menuTopValue.menuPosition * 0.1 + 'rem');
             } else {
 
               if ( setStatus === 'fixed' ) { return; }
-              console.log(setStatus);
               setStatus = 'fixed';
               this.renderer.setStyle(this.pMenu.nativeElement, 'position', 'fixed');
               this.renderer.setStyle(this.pMenu.nativeElement, 'top', '32px');
@@ -61,11 +78,9 @@ export class PMenuComponent implements OnInit, OnDestroy {
         } else {
           if ( setStatus === '' ) return;
           setStatus = '';
-          console.log(setStatus);
           this.renderer.setStyle(this.pMenu.nativeElement, 'position', 'static');
           this.renderer.setStyle(this.pMenu.nativeElement, 'top', '0');
         }
-
     });
 
     let that = this;
@@ -99,6 +114,7 @@ export class PMenuComponent implements OnInit, OnDestroy {
         labels: this.initialDatesTitle,
         datasets: [{
 
+          // onpicks price
           data: [10, 0, 10],
           backgroundColor: [
             'rgba(0, 132, 137, 0.2)',
@@ -114,6 +130,7 @@ export class PMenuComponent implements OnInit, OnDestroy {
           pointBackgroundColor: 'rgba(0,0,0,0)',
           pointHitRadius: 100,
         }, {
+          // amazon price
           data: [18, 20, 18],
           backgroundColor: [
             'rgba(0,0,0,0)',
@@ -196,38 +213,38 @@ export class PMenuComponent implements OnInit, OnDestroy {
               this.savingPrice = that.renderer.createElement('span');
               this.hrLiner = that.renderer.createElement('hr');
 
-              that.renderer.setStyle(this.dataOuter,'padding','1.6rem');
+              that.renderer.setStyle(this.dataOuter, 'padding', '1.6rem');
 
-              that.renderer.setStyle(this.dateTitle,'color','#b3b3b3');
-              that.renderer.setStyle(this.dateTitle,'fontSize','1.6rem');
-              that.renderer.setStyle(this.dateTitle,'fontWeight','500');
-              that.renderer.setStyle(this.dateTitle,'lineHeight','1.5');
-              that.renderer.setStyle(this.dateTitle,'letterSpacing','0.04rem');
-              that.renderer.setStyle(this.dateTitle,'display','block');
+              that.renderer.setStyle(this.dateTitle, 'color', '#b3b3b3');
+              that.renderer.setStyle(this.dateTitle, 'fontSize', '1.6rem');
+              that.renderer.setStyle(this.dateTitle, 'fontWeight', '500');
+              that.renderer.setStyle(this.dateTitle, 'lineHeight', '1.5');
+              that.renderer.setStyle(this.dateTitle, 'letterSpacing', '0.04rem');
+              that.renderer.setStyle(this.dateTitle, 'display', 'block');
 
-              that.renderer.setStyle(this.amazonPrice, 'color','#b3b3b3');
-              that.renderer.setStyle(this.amazonPrice, 'fontSize','1.6rem');
-              that.renderer.setStyle(this.amazonPrice, 'fontWeight','500');
-              that.renderer.setStyle(this.amazonPrice, 'lineHeight','1.5');
-              that.renderer.setStyle(this.amazonPrice, 'letterSpacing','0.04rem');
-              that.renderer.setStyle(this.amazonPrice, 'display','block');
+              that.renderer.setStyle(this.amazonPrice, 'color', '#b3b3b3');
+              that.renderer.setStyle(this.amazonPrice, 'fontSize', '1.6rem');
+              that.renderer.setStyle(this.amazonPrice, 'fontWeight', '500');
+              that.renderer.setStyle(this.amazonPrice, 'lineHeight', '1.5');
+              that.renderer.setStyle(this.amazonPrice, 'letterSpacing', '0.04rem');
+              that.renderer.setStyle(this.amazonPrice, 'display', 'block');
 
-              that.renderer.setStyle(this.onpicksPrice, 'color','#008489');
-              that.renderer.setStyle(this.onpicksPrice, 'fontSize','1.6rem');
-              that.renderer.setStyle(this.onpicksPrice, 'fontWeight','500');
-              that.renderer.setStyle(this.onpicksPrice, 'lineHeight','1.5');
-              that.renderer.setStyle(this.onpicksPrice, 'letterSpacing','0.04rem');
-              that.renderer.setStyle(this.onpicksPrice, 'display','block');
+              that.renderer.setStyle(this.onpicksPrice, 'color', '#008489');
+              that.renderer.setStyle(this.onpicksPrice, 'fontSize', '1.6rem');
+              that.renderer.setStyle(this.onpicksPrice, 'fontWeight', '500');
+              that.renderer.setStyle(this.onpicksPrice, 'lineHeight', '1.5');
+              that.renderer.setStyle(this.onpicksPrice, 'letterSpacing', '0.04rem');
+              that.renderer.setStyle(this.onpicksPrice, 'display', 'block');
 
-              that.renderer.setStyle(this.savingPrice, 'color','#008489');
-              that.renderer.setStyle(this.savingPrice, 'fontSize','1.6rem');
-              that.renderer.setStyle(this.savingPrice, 'fontWeight','500');
-              that.renderer.setStyle(this.savingPrice, 'lineHeight','1.5');
-              that.renderer.setStyle(this.savingPrice, 'letterSpacing','0.04rem');
-              that.renderer.setStyle(this.savingPrice, 'display','block');
+              that.renderer.setStyle(this.savingPrice, 'color', '#008489');
+              that.renderer.setStyle(this.savingPrice, 'fontSize', '1.6rem');
+              that.renderer.setStyle(this.savingPrice, 'fontWeight', '500');
+              that.renderer.setStyle(this.savingPrice, 'lineHeight', '1.5');
+              that.renderer.setStyle(this.savingPrice, 'letterSpacing', '0.04rem');
+              that.renderer.setStyle(this.savingPrice, 'display', 'block');
 
-              that.renderer.setStyle(this.hrLiner, 'margin','0.8rem 0 ');
-              that.renderer.setStyle(this.hrLiner, 'marginRight','0.8rem');
+              that.renderer.setStyle(this.hrLiner, 'margin', '0.8rem 0 ');
+              that.renderer.setStyle(this.hrLiner, 'marginRight', '0.8rem');
 
               that.renderer.appendChild(this.dataOuter, this.dateTitle);
               that.renderer.appendChild(this.dataOuter, this.amazonPrice);
@@ -239,10 +256,10 @@ export class PMenuComponent implements OnInit, OnDestroy {
               that.renderer.appendChild(tooltipEl, this.dataOuter);
             }
             that.renderer.setProperty(this.dateTitle, 'innerText', tooltip.title);
-            that.renderer.setProperty(this.amazonPrice, 'innerText', 'Amazon: $'+_amazonPrice);
+            that.renderer.setProperty(this.amazonPrice, 'innerText', 'Amazon: $' + _amazonPrice);
 
-            that.renderer.setProperty(this.onpicksPrice, 'innerText', 'Onpicks: $'+_onpicksPrice);
-            that.renderer.setProperty(this.savingPrice, 'innerText', 'Savings: $'+ (_amazonPrice - _onpicksPrice));
+            that.renderer.setProperty(this.onpicksPrice, 'innerText', 'Onpicks: $' + _onpicksPrice);
+            that.renderer.setProperty(this.savingPrice, 'innerText', 'Savings: $' + (_amazonPrice - _onpicksPrice));
 
             that.renderer.setStyle(tooltipEl, 'transform', xAlign !== 'right' ? 'translate(' + (x + 10) + 'px, 15px)' : 'translate(' + (x - (141 + 18) ) + 'px, 15px)'  );
 
@@ -292,8 +309,9 @@ export class PMenuComponent implements OnInit, OnDestroy {
               drawBorder: false,
               tickMarkLength: 0,
             },
+
             ticks: {
-              display:false,
+              display: false,
             }
           }]
         }

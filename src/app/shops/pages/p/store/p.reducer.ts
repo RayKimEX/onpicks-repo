@@ -1,11 +1,15 @@
 import { Action } from '@ngrx/store';
 import * as MenuActions from './p.actions';
+import * as fromApp from '../../../../core/store/app.reducer';
 
 export const UPDATE_MENUPOSITION = 'UPDATE_MENUPOSITION';
 
 export const ADD_HELPFULFLAG = 'ADD_HELPFULFLAG';
 
-
+export interface FeatureState extends fromApp.AppState {
+  helpfulFlag: boolean[];
+  menuPosition: number;
+}
 
 export interface State {
   helpfulFlag: boolean[];
@@ -18,6 +22,7 @@ const initialState: State = {
 };
 
 export function PReducer (state = initialState, action: MenuActions.MenuActions) {
+  console.log(action);
   switch ( action.type ) {
     case MenuActions.UPDATE_MENUPOSITION:
       return {
@@ -27,6 +32,8 @@ export function PReducer (state = initialState, action: MenuActions.MenuActions)
 
     case MenuActions.ADD_HELPFULFLAG:
       return action.payload;
+    default:
+      return state;
   }
 }
 

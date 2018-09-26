@@ -2,14 +2,39 @@
 
 
 
+onpicks-circle-n-button {
+  right : -9rem;
+  position: absolute;
+  width:10rem;
+  height:10rem;
+  background-color: black;
+  border : 1px solid red;
+}
+
+
 
 .p-reviews {
+
+  &__small-header {
+    margin-bottom: 2.4rem;
+
+    onpicks-sort-box {
+      float:right;
+
+      margin-top : -5px;
+    }
+  }
 
   &__image {
     width : 10.4rem;
     height : 10.4rem;
     float:right;
   }
+
+  &__content{
+    margin-top : 0.8rem;
+  }
+
   hr {
     margin : 2.6rem 0;
   }
@@ -18,41 +43,8 @@
   & > h4 {
     display: inline-block;
     margin-right: 1.6rem;
-    margin-bottom:2.4rem;
   }
 
-  & > h5 {
-    margin-bottom: 1.6rem;
-  }
-
-  &__search-reviews {
-    position:relative;
-    top: -1rem;
-    width : 20rem;
-    height: 4rem;
-    float:right;
-    display:inline-block;
-    border-radius : 2px;
-    border : solid 1px #dddddd;
-    line-height: 4rem;
-    &--input {
-      margin-left: 5.6rem;
-      border : 0;
-      width : 10.6rem;
-      height : 1.6rem;
-      font-size:1.4rem;
-      font-weight : 500;
-      letter-spacing : 0.03rem;
-      &::placeholder {
-        color : $color-dark-grey;
-      }
-    }
-
-    &--search-icon {
-      @include verticalCenter;
-      left : 1.6rem;
-    }
-  }
 
   &__table {
     & td {
@@ -90,11 +82,6 @@
     }
   }
 
-  .helpful-left {
-    display:inline-block;
-    margin-bottom: 2.4rem;
-  }
-
   select {
     float : right;
     @include sortDropbox;
@@ -110,14 +97,12 @@
       height:4.2rem;
       margin-right:1.6rem;
       border-radius : 50%;
-
       overflow:hidden;
+
+
     }
-    //& > img {
-    //  width:4rem;
-    //  height:4rem;
-    //  margin-right: 1.6rem;
-    //}
+
+
     &--caption {
 
       position:absolute;
@@ -129,12 +114,13 @@
         margin-bottom: 1px;
       }
 
-      & > span {
+      &-date {
+        margin-left : 0.8rem;
         font-size : 1.4rem;
         font-weight : 500;
         letter-spacing : 0.03rem;
-        color: #8d8d8d;
       }
+
     }
   }
 
@@ -175,9 +161,6 @@
 
   &__pagination {
     margin-left : -1.2rem;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
     user-select: none;
     li {
       position:relative;
@@ -210,25 +193,6 @@
       top : -0.5rem;
     }
   }
-  //input[type='text'] {
-  //  float: right;
-  //  width: 20rem;
-  //  height: 4rem;
-  //}
-
-  //::-webkit-input-placeholder{
-  //    text-align:center;
-  //    font-size: 1.4rem;
-  //    color:#767676;
-  //    font-weight: 500;
-  //}
-  //::-webkit-input-placeholder,
-  //::-ms-input-placeholder,
-  //::-moz-placeholder,
-  //:-moz-placeholder {
-  //  text-align:center;
-  //  font-size: 1.6rem;
-  //}
 
 }
 

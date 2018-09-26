@@ -5,23 +5,6 @@
 
   <div class="p-customer__images">
     <div class="p-customer__images--large">
-      <!--<div #imagesLargePrev class="p-customer__images&#45;&#45;large-prev">-->
-        <!--<img src="https://s3.amazonaws.com/img.onpicks.com/p-customer__image&#45;&#45;large-2.png" alt="">-->
-        <!--<div class="p-customer__images&#45;&#45;profile">-->
-          <!--<div class="p-customer__images&#45;&#45;profile-opacity-box"></div>-->
-          <!--<div class="p-customer__images&#45;&#45;profile-box">-->
-            <!--<div class="p-customer__images&#45;&#45;profile-box-inner">-->
-              <!--<figure>-->
-                <!--<img src="https://s3.amazonaws.com/img.onpicks.com/profile-john.png" alt="Person on a tour" class="story__img">-->
-                <!--<figcaption class="p-reviews__figure heading-quinary">John</figcaption>-->
-                <!--&lt;!&ndash;&lt;!&ndash;[@divState] (load) &#45;&#45;&ndash;&gt;-->
-                <!--<ui-star-rating></ui-star-rating>-->
-                <!--<span>Aug 13, 2018</span>-->
-              <!--</figure>-->
-            <!--</div>-->
-          <!--</div>-->
-        <!--</div>-->
-      <!--</div>-->
       <div *ngFor="let item of imagesLargeList; index as i;" #imageLargeOuter [ngClass]="{'u-opacity-half' : i !== this.imageIndex + 1 }" class="p-customer__images--large-cur">
         <span>
           <img drLazyLoad [src]="item" alt="">
@@ -45,22 +28,8 @@
           </div>
         </div>
       </div>
-      <div *ngIf="this.imageIndex !== 0" class="p-customer__images--large-prev-button" (click)="prevButton()">
-        <svg width="9" height="14" viewBox="0 0 9 14">
-          <defs>
-            <path id="a" d="M24 14l-6 6.05L24 26"/>
-          </defs>
-          <use fill="none" fill-rule="evenodd" stroke="#000" stroke-width="2" transform="translate(-16 -13)" xlink:href="#a"/>
-        </svg>
-      </div>
-      <div *ngIf=" this.imageIndex !== this.imageLargeOuterArray.length - 3 " class="p-customer__images--large-next-button" (click)="nextButton()">
-        <svg width="9" height="14" viewBox="0 0 9 14">
-          <defs>
-            <path id="a" d="M24 14l-6 6.05L24 26"/>
-          </defs>
-          <use fill="none" fill-rule="evenodd" stroke="#000" stroke-width="2" transform="rotate(-180 12.5 13.5)" xlink:href="#a"/>
-        </svg>
-      </div>
+      <onpicks-circle-p-button  [left]="'1.8rem'" *ngIf="this.imageIndex !== 0" (click)="prevButton()" ></onpicks-circle-p-button>
+      <onpicks-circle-n-button [right]="'1.8rem'" *ngIf=" this.imageIndex !== this.imageLargeOuterArray.length - 3 " (click)="nextButton()" ></onpicks-circle-n-button>
     </div>
     <div #imagesSmallOuter class="p-customer__images--small">
       <div #imageSmallOuter (click)="clickImageSmall(imageSmallOuter)" *ngFor="let item of imagesSmallList; let i = index" [attr.data-index]="i" [ngClass]="{'p-customer__images--small-border' : i == this.imageIndex }" >

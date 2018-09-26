@@ -37,9 +37,10 @@
         <span class="p-menu__product-info--price-discount">50%&nbsp;</span>
         <span class="p-menu__product-info--price-realprice">$20.39&nbsp;</span>
         <span class="p-menu__product-info--price-perprice">($0.93 / Ounce)</span>
-        <select class="p-menu__product-info--price-comparison-option">
-          <option value="" selected>30days</option>
-        </select>
+        <!--<select class="p-menu__product-info&#45;&#45;price-comparison-option">-->
+          <!--<option value="" selected>30 days</option>-->
+        <!--</select>-->
+        <onpicks-sort-box [sortList]="chartSortList" ></onpicks-sort-box>
       </div>
     </div>
 
@@ -55,17 +56,20 @@
         Options
       </h5>
 
-      <select class="p-menu__options--option" name="" id="" >
-        <option value="">Select a Flavor</option>
-      </select>
-      <br>
-      <select class="p-menu__options--option" name="" id="" >
-        <option value="">Select a Size</option>
-      </select>
-      <br>
-      <select class="p-menu__options--option" name="" id="" >
-        <option value="">1</option>
-      </select>
+      <onpicks-select-box [sortList]="chartSortList"></onpicks-select-box>
+      <!--<select class="p-menu__options&#45;&#45;option" name="" id="" >-->
+        <!--<option value="">Select a Flavor</option>-->
+      <!--</select>-->
+      <onpicks-select-box [sortList]="chartSortList"></onpicks-select-box>
+
+      <onpicks-select-box [sortList]="chartSortList"></onpicks-select-box>
+      <!--<select class="p-menu__options&#45;&#45;option" name="" id="" >-->
+        <!--<option value="">Select a Size</option>-->
+      <!--</select>-->
+      <!--<br>-->
+      <!--<select class="p-menu__options&#45;&#45;option" name="" id="" >-->
+        <!--<option value="">1</option>-->
+      <!--</select>-->
       <button class="btn btn--black"> Add to Cart</button>
     </div>
   </div>

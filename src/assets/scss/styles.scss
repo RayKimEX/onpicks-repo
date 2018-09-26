@@ -138,6 +138,10 @@ hr{
   margin-bottom: 4rem !important;
 }
 
+.u-margin-bottom--middle {
+  margin-bottom: 2.4rem !important;
+}
+
 .u-margin-bottom--small {
   margin-bottom: 1.6rem !important;
 }
@@ -156,15 +160,15 @@ hr{
 }
 
 .u-img-load-transition {
-  transition : opacity 1s !important;;
+  transition : opacity .5s !important;;
 }
 
 .u-visible-none {
-  visibility: hidden;
+  visibility: hidden !important;
 }
 
 .u-visible-visible {
-  visibility: visible;
+  visibility: visible !important;
 }
 
 .u-opacity-zero {
@@ -181,15 +185,19 @@ hr{
 
 
 .u-color-grey {
-  color : $color-grey;
+  color : $color-grey !important;
 }
 
-.u-color-grey {
-  color : $color-grey;
+.u-color-dark-grey {
+  color : $color-dark-grey !important;
 }
 
 .u-color-dark-black {
-  color : $color-dark-black;
+  color : $color-dark-black !important;
+}
+
+.u-inline-block {
+  display : inline-block !important;
 }
 
 .u-animation-stop {

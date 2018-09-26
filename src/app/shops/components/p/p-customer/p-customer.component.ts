@@ -1,12 +1,13 @@
 import {
   AfterViewInit,
-  Component, ElementRef,
+  Component, ElementRef, OnDestroy,
   OnInit,
   Renderer2, ViewChild,
   ViewChildren
 } from '@angular/core';
 import {fromEvent, pipe} from 'rxjs';
 import {debounceTime, first, last, map, skip, take} from 'rxjs/operators';
+import {Animation} from '@angular/animations/browser/src/dsl/animation';
 
 
 @Component({
@@ -21,7 +22,7 @@ import {debounceTime, first, last, map, skip, take} from 'rxjs/operators';
 
 
 
-export class PCustomerComponent implements OnInit, AfterViewInit {
+export class PCustomerComponent implements OnInit, AfterViewInit, OnDestroy {
 
   @ViewChildren('imageLargeOuter') imageLargeOuter;
   @ViewChild('imagesSmallOuter') imagesSmallOuter;
@@ -73,11 +74,18 @@ export class PCustomerComponent implements OnInit, AfterViewInit {
   imageLargeOuterArray = [];
   imageSmallOuterArray = [];
 
+  animationEndEvent;
+
   constructor(private renderer: Renderer2) {
+
   }
 
   ngOnInit() {
 
+  }
+
+  ngOnDestroy() {
+    this.animationEndEvent.unsubscribe();
   }
 
   ngAfterViewInit() {
@@ -90,6 +98,8 @@ export class PCustomerComponent implements OnInit, AfterViewInit {
 
     this.imageLargeOuter.forEach(
       (outer, index) => {
+
+        this.animationEndEvent = fromEvent(outer.nativeElement.parentNode, 'animationend' );
 
         if ( index === 0 ) {
           this.renderer.setStyle(outer.nativeElement,
@@ -109,9 +119,9 @@ export class PCustomerComponent implements OnInit, AfterViewInit {
     );
 
     let animationCount = 0;
-    const source = fromEvent(document, 'animationend' );
-    const example = source.pipe(map(val => val.target));
-    example.subscribe(val => {
+
+    this.animationEndEvent = this.animationEndEvent.pipe(map((val: AnimationEvent) => val.target));
+    this.animationEndEvent = this.animationEndEvent.subscribe(val => {
 
       // @ts-ignore
       const temp = getComputedStyle(( val ), null);

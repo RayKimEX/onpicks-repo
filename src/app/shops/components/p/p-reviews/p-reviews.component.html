@@ -1,16 +1,11 @@
 <div class="p-reviews u-margin-bottom">
-  <h4 class="heading-quaternary">
+  <h4 class="heading-quaternary u-margin-bottom--middle ">
     30 Reviews
   </h4>
   <ui-star-rating></ui-star-rating>
-  <div class="p-reviews__search-reviews">
-    <svg class="p-reviews__search-reviews--search-icon" width="18.5" height="18.5" viewBox="0 0 18.5 18.5">
-      <path d="M9.75,4.5A5.25,5.25,0,1,1,4.5,9.75,5.26,5.26,0,0,1,9.75,4.5m0-2A7.25,7.25,0,1,0,17,9.75,7.26,7.26,0,0,0,9.75,2.5Z" transform="translate(-2.5 -2.5)" fill="#161616"/><line x1="12" y1="12" x2="17.5" y2="17.5" fill="none" stroke="#161616" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"/>
-    </svg>
-    <input class="p-reviews__search-reviews--input" type="text" placeholder="Search Reviews">
-  </div>
+  <onpicks-search-box [width]="20" [placeholder]="'Search Reviews'"></onpicks-search-box>
 
-  <h5 class="heading-quinary u-color-grey">
+  <h5 class="heading-quinary u-color-grey u-margin-bottom--small">
     Rating Distribution
   </h5>
 
@@ -29,15 +24,10 @@
   <hr>
 
 
-  <h5 class="heading-quinary helpful-left">Reviewed by 999 customers</h5>
-  <select>
-    <option value="Most Helpful" selected>Most Helpful</option>
-    <option value="1"></option>
-    <option value="1"></option>
-    <option value="1"></option>
-
-  </select>
-
+  <div class="p-reviews__small-header">
+    <h5 class="heading-quinary u-inline-block">Reviewed by 999 customers</h5>
+    <onpicks-sort-box [sortList]="reviewSortList"></onpicks-sort-box>
+  </div>
 
   <div *ngFor="let item of currentList">
     <figure class="p-reviews__figure u-margin-bottom--small">
@@ -47,13 +37,13 @@
       <div class="p-reviews__figure--caption">
         <figcaption class="p-reviews__figure heading-quinary">{{item.name}}</figcaption>
         <ui-star-rating></ui-star-rating>
-        <span>1 hour ago</span>
+        <span class="p-reviews__figure--caption-date u-color-grey">{{item.regitDate | timeAgo}}</span>
       </div>
     </figure>
-    <h5 class="heading-quinary u-color-grey">Size: X-Large / Color: Aqua / 3 people found this helpful </h5>
-    <p>
-      <span class="p-reviews__image" *ngIf="item.reviewImg !== ''">
-          <img [drLazyLoad]="{method:'animation'}" src="{{item.reviewImg}}" alt="">
+    <h5 class="heading-quinary u-color-dark-grey">Size: X-Large / Color: Aqua / {{item.helpfulCount}} people found this helpful </h5>
+    <p class="p-reviews__content">
+      <span class="p-reviews__image" *ngIf="item.reviewThumbImg !== ''">
+          <img [drLazyLoad]="{method:'animation'}" src="{{item.reviewThumbImg}}" alt="">
       </span>
       {{item.review}}
     </p>
@@ -103,23 +93,23 @@
         </span>
         <!--currentPage가 5이상이고 totalPage가 8이상일 경우엔 가변처리를 뿌려줌-->
         <span *ngIf="totalPageArray.length >= 8">
-          <li >
+          <li>
             <div (click)="paginate( 1 )" >1</div>
           </li>
-          <li >
+          <li>
             <div class="p-reviews__pagination--finite-num">...</div>
           </li>
 
           <!--currentPage가 5이상이고 totalPage - currentPage가 4보다 크면 가변 처리 되는 조건 ( 거의 대부분의 조건에 해당 )-->
           <span *ngIf="(totalPageArray.length - currentPage) >= 4">
-            <li >
-             <div (click)="paginate(currentPage - 1)">{{currentPage - 1}}</div>
+            <li>
+             <div (click)="paginate( currentPage - 1 )">{{currentPage - 1}}</div>
             </li>
-            <li >
-             <div (click)="paginate(currentPage)" class="p-reviews__pagination--number-bold">{{currentPage}}</div>
+            <li>
+             <div (click)="paginate( currentPage )" class="p-reviews__pagination--number-bold">{{currentPage}}</div>
             </li>
-            <li >
-             <div (click)="paginate(currentPage + 1)">{{currentPage + 1}}</div>
+            <li>
+             <div (click)="paginate( currentPage + 1)">{{currentPage + 1}}</div>
             </li>
             <li>
               <div class="p-reviews__pagination--finite-num">...</div>
