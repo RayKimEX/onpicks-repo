@@ -6,7 +6,6 @@ import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { HomeModule } from './home/home.module';
 import { UiModule } from './ui/ui.module';
 import { ShopsModule } from './shops/shops.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -16,6 +15,7 @@ import { DirectivesModule } from './core/directives/directives.module';
 import { FooterComponent } from './ui/onpicks/footer/footer.component';
 import { HeaderComponent } from './ui/onpicks/header/header.component';
 import { ShowcasesComponent } from './showcases/pages/showcases/showcases.component';
+import {ShowcasesModule} from './showcases/showcases.module';
 
 
 @NgModule({
@@ -29,7 +29,7 @@ import { ShowcasesComponent } from './showcases/pages/showcases/showcases.compon
     BrowserModule,
     HttpClientModule,
 
-    ShopsModule,
+
     RouterModule,
     AppRoutingModule,
     BrowserAnimationsModule,
@@ -40,7 +40,8 @@ import { ShowcasesComponent } from './showcases/pages/showcases/showcases.compon
     UiModule,
     ///
 
-    HomeModule,
+    ShopsModule,
+    ShowcasesModule,
   ],
   providers: [],
   bootstrap: [ AppComponent ]

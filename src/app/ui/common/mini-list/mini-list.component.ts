@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, OnDestroy, OnInit, Renderer2, ViewChild, ViewChildren} from '@angular/core';
+import {AfterViewInit, Component, Input, OnDestroy, OnInit, Renderer2, ViewChild, ViewChildren} from '@angular/core';
 import {fromEvent} from 'rxjs';
 import {map} from 'rxjs/operators';
 
@@ -9,8 +9,11 @@ import {map} from 'rxjs/operators';
 })
 export class MiniListComponent implements OnInit, AfterViewInit, OnDestroy {
 
-  @ViewChildren('itemList') itemList;
+  @ViewChild('insertTitle') insertTitle;
   @ViewChild('container') container;
+  @ViewChildren('itemList') itemList;
+
+  @Input('setTitle') setTitle;
 
   infoList = [
     {
@@ -280,56 +283,9 @@ export class MiniListComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit() {
+    console.log(this.setTitle);
     this.itemListArray = this.itemList.toArray();
-
-    const offsetLeft = 26.4 + 2.4;
-
-    // this.itemList.forEach( (el, index) => {
-    //
-    //   this.animationEndEvent = fromEvent(el.nativeElement.parentNode, 'animationend');
-    //
-    //   if ( index >= 4 ) {
-    //     this.renderer.setStyle(el.nativeElement, 'left', (offsetLeft * 4) + 'rem');
-    //   } else {
-    //     this.renderer.setStyle(el.nativeElement, 'left', (offsetLeft * index) + 'rem');
-    //   }
-    //
-    // });
-
-
-    let getStyle;
-    let getEl;
-    let getAnimationName;
-    // this.animationEndEvent.subscribe(val => {
-    //
-    //   getEl = val.target;
-    //   getStyle = getComputedStyle(( getEl ), null);
-    //   getAnimationName = val.animationName;
-    //
-    //
-    //   if( getAnimationName === 'mini-animate-left') {
-    //     this.renderer.removeClass(getEl, getAnimationName);
-    //     this.renderer.setStyle(
-    //       getEl, 'left', (parseInt(getStyle.left, 10) - (parseInt(getStyle.width, 10))) + 'px');
-    //
-    //   } else {
-    //     this.renderer.removeClass(getEl, getAnimationName);
-    //     this.renderer.setStyle(
-    //       getEl, 'left', (parseInt(getStyle.left, 10) + (parseInt(getStyle.width, 10))) + 'px');
-    //   }
-    //
-    // });
-
-    // this.animationEndEvent = this.animationEndEvent.pipe(map(val => val.target));
-    // this.animationEndEvent.subscribe( val => {
-    //
-    //   console.log(val);
-    //   const temp = getComputedStyle(( val ), null);
-    //   this.renderer.removeClass(val, 'animate-left');
-    //   this.renderer.setStyle(
-    //     val, 'left', (parseInt(temp.left, 10) - (parseInt(temp.width, 10))) + 'px');
-    //
-    // });
+    this.renderer.setProperty( this.insertTitle.nativeElement, 'innerHTML', this.setTitle);
 
   }
 

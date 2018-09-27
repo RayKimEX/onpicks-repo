@@ -1,10 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {RouterModule, Routes} from '@angular/router';
-import {HomeComponent} from './home/pages/home.component';
+import {ShopsModule} from './shops/shops.module';
 
 
 const appRoutes: Routes = [
+  {
+    path: '',
+    redirectTo: 'shops',
+    pathMatch: 'full'
+  }
+
   // { path: 'recipes', loadChildren: './recipes/recipes.module#RecipesModule'},
   // { path: 'shopping-list', component: ShoppingListComponent }
 ];

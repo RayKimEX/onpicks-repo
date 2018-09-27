@@ -18,7 +18,7 @@
 }
 
 
-*:focus {outline: none;}
+*:focus { outline: none; }
 
 
 html {
@@ -309,6 +309,10 @@ h1 {
 
   .col-1-of-12 {
     width: calc((100% - 11 * #{$gutter-horizontal}) / 12);
+  }
+
+  .col-4-of-12 {
+    width: calc(4 * ((100% - 11 * #{$gutter-horizontal}) / 12) + 3 * #{$gutter-horizontal});
   }
 
   .col-5-of-12 {

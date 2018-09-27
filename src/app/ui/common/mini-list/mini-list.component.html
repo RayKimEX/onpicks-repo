@@ -2,12 +2,11 @@
 
 <div class="ui-mini-list u-margin-bottom">
 
-  <h4 class="heading-quaternary">Similar Items</h4>
+  <h4 #insertTitle class="heading-quaternary"></h4>
   <div class="ui-mini-list__content--outer">
     <onpicks-circle-n-button *ngIf="-imageIndex !== (infoList.length - 4) "[right]="'-2rem'" (click)="nextButton()" ></onpicks-circle-n-button>
     <onpicks-circle-p-button *ngIf="imageIndex !== 0" [left]="'-2rem'" (click)="prevButton()" ></onpicks-circle-p-button>
     <div class="ui-mini-list__content">
-
       <ul #container>
         <li #itemList *ngFor="let item of infoList; index as i">
           <div class="ui-mini-list__item">
@@ -20,8 +19,8 @@
             <div class="ui-mini-list__item--name-outer">
               <p class="ui-mini-list__item--name-outer-brand">{{item.brand}}</p>
               <span class="ui-mini-list__item--name-outer-name">
-              {{item.productName}}
-            </span>
+                {{item.productName}}
+              </span>
             </div>
             <ui-star-rating [star-point]="item.rating" [size]="10"></ui-star-rating><span class="ui-mini-list__item--reviews-count">{{item.reviewCount}}</span>
             <br>
