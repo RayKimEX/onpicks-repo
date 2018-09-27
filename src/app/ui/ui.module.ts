@@ -11,6 +11,7 @@ import { PipeModule } from '../core/pipe/pipe.module';
 import {FormsModule} from '@angular/forms';
 import {SelectBoxComponent} from './onpicks/select-box/select-box.component';
 import { SortBoxComponent } from './onpicks/sort-box/sort-box.component';
+import { BannerCarouselComponent } from './common/banner-carousel/banner-carousel.component';
 
 @NgModule({
 
@@ -28,7 +29,8 @@ import { SortBoxComponent } from './onpicks/sort-box/sort-box.component';
     CirclePButtonComponent,
     SearchBoxComponent,
     SelectBoxComponent,
-    SortBoxComponent
+    SortBoxComponent,
+    BannerCarouselComponent
   ],
   exports: [
     SimpleCarouselComponent,
@@ -38,7 +40,8 @@ import { SortBoxComponent } from './onpicks/sort-box/sort-box.component';
     CirclePButtonComponent,
     SearchBoxComponent,
     SelectBoxComponent,
-    SortBoxComponent
+    SortBoxComponent,
+    BannerCarouselComponent
   ]
 })
 export class UiModule { }

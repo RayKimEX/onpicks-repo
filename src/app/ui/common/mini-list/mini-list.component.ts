@@ -15,6 +15,8 @@ export class MiniListComponent implements OnInit, AfterViewInit, OnDestroy {
 
   @Input('setTitle') setTitle;
 
+  // TODO : 보이지 않는 부분에 대해서 img display : none 하는식으로, 메모리 최적화
+
   infoList = [
     {
       brand: 'Larabar',
@@ -25,8 +27,7 @@ export class MiniListComponent implements OnInit, AfterViewInit, OnDestroy {
       discountPercent: 50,
       currentPrice: 25,
       imgSrc: 'https://s3.amazonaws.com/img.onpicks.com/p-similar-1.jpg'
-    },
-    {
+    },{
       brand: 'Endangered Species Chocolate',
       productName: 'ONE Protein Bar, Birthday Cake, 2.12 oz. (12 Pack), Gluten-Free Protein Bar with High Protein (20g) and Low Sugar (1g), Guilt Free…',
       rating: 3.9,
@@ -276,6 +277,7 @@ export class MiniListComponent implements OnInit, AfterViewInit, OnDestroy {
 
 
   ngOnInit() {
+
   }
 
   ngOnDestroy() {
