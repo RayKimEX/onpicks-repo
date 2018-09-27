@@ -1,0 +1,42 @@
+<div class="p-customer" style="margin-bottom: 5.7rem;">
+  <h4 class="heading-quaternary">
+    Customer Images<span class="heading-quinary"><a href="#">See All</a></span>
+  </h4>
+
+  <div class="p-customer__images">
+    <div class="p-customer__images--large">
+      <div *ngFor="let item of imagesLargeList; index as i;" #imageLargeOuter [ngClass]="{'u-opacity-half' : i !== this.imageIndex + 1 }" class="p-customer__images--large-cur">
+        <span>
+          <img drLazyLoad [src]="item" alt="">
+        </span>
+
+        <div *ngIf="i === this.imageIndex + 1" class="p-customer__images--profile">
+          <div class="p-customer__images--profile-opacity-box"></div>
+          <div class="p-customer__images--profile-box">
+            <div class="p-customer__images--profile-box-inner">
+              <figure>
+                <span class="p-customer__images--profile-image-outer">
+                  <img drLazyLoad src="https://s3.amazonaws.com/img.onpicks.com/profile-john.png" alt="Person on a tour" class="story__img">
+                </span>
+
+                <figcaption class="p-reviews__figure heading-quinary">John</figcaption>
+                <!--<!--[@divState] (load) ---->
+                <ui-star-rating></ui-star-rating>
+                <span>Aug 13, 2018</span>
+              </figure>
+            </div>
+          </div>
+        </div>
+      </div>
+      <onpicks-circle-p-button  [left]="'1.8rem'" *ngIf="this.imageIndex !== 0" (click)="prevButton()" ></onpicks-circle-p-button>
+      <onpicks-circle-n-button [right]="'1.8rem'" *ngIf=" this.imageIndex !== this.imageLargeOuterArray.length - 3 " (click)="nextButton()" ></onpicks-circle-n-button>
+    </div>
+    <div #imagesSmallOuter class="p-customer__images--small">
+      <div #imageSmallOuter (click)="clickImageSmall(imageSmallOuter)" *ngFor="let item of imagesSmallList; let i = index" [attr.data-index]="i" [ngClass]="{'p-customer__images--small-border' : i == this.imageIndex }" >
+        <img drLazyLoad [src]="item">
+      </div>
+    </div>
+  </div>
+</div>
+
+

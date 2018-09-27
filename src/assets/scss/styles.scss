@@ -1,0 +1,331 @@
+@import 'abstracts/variables';
+
+
+/**************************/
+
+
+
+/********** Base **********/
+
+
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+
+*:focus {outline: none;}
+
+
+html {
+  //height: 100%;
+  //overflow:hidden;
+  // This defines what 1rem is
+  font-size: 62.5%; //1 rem = 10px; 10px/16px = 62.5%
+}
+
+body {
+  //height:100%;
+  //overflow:auto;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+}
+
+main {
+  position:relative;
+}
+
+a {
+  text-decoration-line: none;
+  color : #AAAAAA;
+  font-weight:500;
+}
+
+hr{
+  border: 1px solid $color-light-grey;
+}
+
+.btn {
+  user-select: none;
+  width : 10.6rem;
+  height : 4rem;
+  border-radius : 2px;
+  font-size : 1.4rem;
+  font-weight : 500;
+  letter-spacing : 0.08rem;
+  cursor:pointer;
+  &--white {
+    &:active,
+    &:hover{
+
+      background-color:$color-dark-black;
+      color:$color-white;
+
+      transition : background-color 0.5s, color 0.5s;
+    }
+    &,
+    &:link,
+    &:visited {
+
+      border : solid 1px $color-dark-black;
+
+    }
+  }
+
+  &--black {
+    //&:active,
+    //&:hover{
+    //
+    //  background-color:$color-white;
+    //  color:$color-dark-black;
+    //
+    //  transition : background-color 0.5s, color 0.5s;
+    //}
+    &,
+    &:link,
+    &:visited {
+      float:right;
+      background-color:$color-dark-black;
+      color:$color-white;
+    }
+  }
+}
+
+/**************************/
+
+::selection {
+  background-color : $color-black;
+  color : #FFFFFF;
+}
+
+/******** Utility ********/
+
+@keyframes fade-in {
+  0% {
+    opacity : 0;
+  }
+
+  100% {
+    opacity : 1;
+  }
+}
+
+
+.u-fade-in {
+  animation-name : fade-in;
+  animation-duration: .5s;
+}
+
+.u-float-right {
+  display:inline-block;
+  float : right;
+}
+
+.u-float-left {
+  display:inline-block;
+  float : left;
+}
+
+.u-default-site-padding {
+  padding : 0 8rem !important;
+}
+
+.u-margin-bottom {
+  margin-bottom: 4rem !important;
+}
+
+.u-margin-bottom--middle {
+  margin-bottom: 2.4rem !important;
+}
+
+.u-margin-bottom--small {
+  margin-bottom: 1.6rem !important;
+}
+
+.u-margin-bottom--tiny {
+  margin-bottom: 0.8rem !important;
+}
+
+.u-img-background {
+
+  position: absolute;
+  top : 0;
+  width: 100%;
+  height: 100%;
+  background-color : #f5f5f5;
+}
+
+.u-img-load-transition {
+  transition : opacity .5s !important;;
+}
+
+.u-visible-none {
+  visibility: hidden !important;
+}
+
+.u-visible-visible {
+  visibility: visible !important;
+}
+
+.u-opacity-zero {
+  opacity : 0 !important;;
+}
+
+.u-opacity-half {
+  opacity : 0.7 !important;;
+}
+
+.u-opacity-full {
+  opacity : 1 !important;;
+}
+
+
+.u-color-grey {
+  color : $color-grey !important;
+}
+
+.u-color-dark-grey {
+  color : $color-dark-grey !important;
+}
+
+.u-color-dark-black {
+  color : $color-dark-black !important;
+}
+
+.u-inline-block {
+  display : inline-block !important;
+}
+
+.u-animation-stop {
+  -webkit-animation-duration: 0s !important;
+  -moz-animation-duration: 0s !important;
+  -o-animation-duration: 0s !important;
+  animation-duration: 0s !important;
+}
+/**************************/
+
+
+
+/******* Typography *******/
+@font-face {
+  font-family: Roboto;
+  src : url(../../assets/fonts/Roboto-Bold.ttf);
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: Roboto;
+  src : url(../../assets/fonts/Roboto-Medium.ttf);
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: Roboto;
+  src : url(../../assets/fonts/Roboto-Regular.ttf);
+  font-weight: 400;
+}
+
+
+
+body {
+  font-family: "Roboto", sans-serif ;
+}
+
+h1 {
+  font-size:6.4rem;
+}
+
+.heading-tertiary {
+  font-size:2rem;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 0.02rem;
+  color: $color-dark-black;
+}
+
+.heading-quaternary {
+  font-size : 1.8rem;
+  line-height: 1.39;
+  letter-spacing: 0.03rem;//0.3px;
+  font-weight: 500;
+  color : $color-dark-black;
+  margin-bottom : 2.4rem;
+}
+
+.heading-quinary {
+  font-size : 1.6rem;
+  font-weight: 500;
+  line-height : 1.5;
+  letter-spacing : 0.04rem;
+}
+
+.heading-senary {
+
+}
+/**************************/
+
+
+
+/********** Grid **********/
+.row {
+  max-width : $grid-width;
+  margin: 0 auto;
+
+  // &:last-child {
+  //     margin-bottom: $row-margin-bottom;
+  // }
+
+  &:not(:last-child) {
+    margin-bottom: $gutter-vertical;
+  }
+
+  @include clearfix;
+
+  /* class이름이 col로 시작한다는 말임 */
+  [class ^= "col-"]{
+    float: left;
+
+    &:not(:last-child) {
+      margin-right: $gutter-horizontal;
+
+    }
+
+    @include respond(tp) {
+      width: 100% !important;
+    }
+  }
+
+  @include respond(tl) {
+    padding : 0 2rem;
+  }
+
+  .col-1-of-2 {
+    width: calc((100% - #{$gutter-horizontal}) / 2);
+  }
+
+  .col-1-of-12 {
+    width: calc((100% - 11 * #{$gutter-horizontal}) / 12);
+  }
+
+  .col-5-of-12 {
+    width: calc(5 * ((100% - 11 * #{$gutter-horizontal}) / 12) + 4 * #{$gutter-horizontal});
+  }
+
+  //     .col-3-of-4 {
+  //         width: calc(3 * ((100% - 3 * #{$gutter-horizontal}) / 4) + 2 * #{$gutter-horizontal});
+  //     }
+
+  .col-6-of-12 {
+    width: calc(6 * ((100% - 11 * #{$gutter-horizontal}) / 12) + 5 * #{$gutter-horizontal});
+  }
+
+
+  .col-7-of-12 {
+    width: calc(7 * ((100% - 11 * #{$gutter-horizontal}) / 12) + 6 * #{$gutter-horizontal});
+  }
+}
+

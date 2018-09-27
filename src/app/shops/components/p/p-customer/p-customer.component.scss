@@ -1,0 +1,251 @@
+@import '~src/assets/scss/abstracts/variables';
+
+$customer-margin: 16px;
+$customer-width : 456+$customer-margin;
+$customer-height: 587px;
+
+
+
+@keyframes animate-left {
+  0% {
+    transform : translateX(0);
+  }
+
+  100% {
+    transform : translateX(-$customer-width) ;
+  }
+}
+
+@keyframes animate-right {
+  0% {
+    transform : translateX(0);
+  }
+
+  100% {
+    transform : translateX($customer-width) ;
+  }
+}
+
+.animate-left {
+  animation-name: animate-left;
+  animation-duration: .2s;
+  animation-fill-mode: both;
+}
+
+.animate-right {
+  animation-name: animate-right;
+  animation-duration: .2s;
+  animation-fill-mode: both;
+}
+
+.p-customer {
+  & > h4 > span {
+    float:right;
+  }
+
+
+
+  &__images {
+    height:53.6rem;
+
+    &--profile-image-outer{
+      width:4rem;
+      height:4rem;
+      border-radius : 50%;
+      overflow:hidden;
+    }
+    &--profile-opacity-box {
+      position:absolute;
+      width:45.6rem;
+      height : 7.4rem;
+      opacity: 0.5;
+      background-color:$color-white;
+      bottom:0;
+    }
+
+    &--profile-box {
+      position:absolute;
+      width:45.6rem;
+      height : 7.4rem;
+      background-color: transparent;
+      bottom:0;
+
+      &-inner {
+        position:relative;
+        //top right bottom left;
+        margin: 1.6rem 1.6rem 1.6rem 2.4rem;
+
+
+
+        figure {
+          img {
+          }
+
+          ui-star-rating {
+            margin-left :1.6rem;
+          }
+          figcaption {
+            position:absolute;
+            margin-left: 1.6rem;
+            top : 0;
+            display:inline-block;
+            color:white;
+          }
+
+          span {
+            position:absolute;
+            bottom: 0.1rem;
+            color : $color-white;
+            font-size: 1.4rem;
+            font-weight : 500;
+          }
+        }
+      }
+    }
+
+    &--large {
+      overflow: hidden;
+      width:64.8rem;
+      height: 45.6rem;
+
+      position:relative;
+
+      &-next-button {
+        @include verticalCenter;
+        right : 1.8rem;
+        cursor : pointer;
+        width: 40px;
+        height: 40px;
+        background-color: #ffffff;
+        box-shadow: 0 2px 4px 0 rgba(220, 220, 220, 0.5);
+        border-radius : 50%;
+        border-width:0;
+
+        svg{
+          @include absCenter;
+          left:55%;
+        }
+      }
+
+      &-prev-button {
+        @include verticalCenter;
+        left : 1.8rem;
+        cursor : pointer;
+        width: 40px;
+        height: 40px;
+        border-width:0;
+        background-color: #ffffff;
+        box-shadow: 0 2px 4px 0 rgba(220, 220, 220, 0.5);
+        border-radius : 50%;
+        svg{
+          @include absCenter;
+          left : 47.5%;
+        }
+      }
+
+
+      //button {
+      //  position:absolute;
+      //  color : black;
+      //  opacity :1;
+      //  z-index:5;
+      //}
+      //&-prev {
+      //  left : -37.6rem;
+      //  position:absolute;
+      //  display:inline-block;
+      //  width:45.6rem;
+      //  height: 45.6rem;
+      //  opacity:0.52;
+      //}
+
+      &-cur {
+        left : 9.6rem;
+        position:absolute;
+        display:inline-block;
+        width:45.6rem;
+        height: 45.6rem;
+
+
+
+        & > span {
+          width:45.6rem;
+          height: 45.6rem;
+          //여기서 img에다가 굳이 width,height를 주는 이유는 lazy loading때문임
+          img {
+            width:45.6rem;
+            height: 45.6rem;
+          }
+        }
+      }
+
+      //&-next {
+      //  left : 56.8rem;
+      //  position:absolute;
+      //  display:inline-block;
+      //  width : 45.6rem;
+      //  height: 45.6rem;
+      //  opacity:0.52;
+      //}
+    }
+
+    &--small {
+      user-select: none;
+      white-space:nowrap;
+      overflow-x: scroll;;
+      margin-top : 1.6rem;
+      width:64.8rem;
+      height:8.1rem;
+
+
+      &-border {
+
+        img {
+          opacity :0.5;
+        }
+        &::after {
+          content : '';
+          position:absolute;
+          top : 0;
+          left : 0;
+
+          width : 6.4rem;
+          height: 6.4rem;
+          border: 2px solid $color-dark-black;
+        }
+      }
+
+      & > div {
+        position:relative;
+        display:inline-block;
+        margin-right : 0.8rem;
+        padding : 0;
+        width : 6.4rem;
+        height : 6.4rem;
+        img{
+          width:100%;
+          height:100%;
+        }
+      }
+    }
+  }
+}
+
+
+
+// <div class="p-customer__images">
+// <div class="p-customer__images--large">
+//   <div class="p-customer__images--large-prev"></div>
+//   <div class="p-customer__images--large-cur"></div>
+//   <div class="p-customer__images--large-next"></div>
+// </div>
+// <div class="p-customer__images--small">
+//   <div class="p-customer__images--small-1"></div>
+//   <div class="p-customer__images--small-2"></div>
+//   <div class="p-customer__images--small-3"></div>
+//   <div class="p-customer__images--small-4"></div>
+//   <div class="p-customer__images--small-5"></div>
+//   <div class="p-customer__images--small-6"></div>
+//   <div class="p-customer__images--small-7"></div>
+//   <div class="p-customer__images--small-8"></div>
+// </div>
