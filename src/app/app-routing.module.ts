@@ -9,6 +9,10 @@ const appRoutes: Routes = [
     path: '',
     redirectTo: 'shops',
     pathMatch: 'full'
+  },
+  {
+    path: '**',
+    redirectTo: 'shops',
   }
 
   // { path: 'recipes', loadChildren: './recipes/recipes.module#RecipesModule'},

@@ -49,6 +49,14 @@
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true
+            },
+            "kr": {
+              "aot": true,
+              "outputPath": "dist/kr/",
+              "i18nFile": "src/locale/messages.kr.xlf",
+              "i18nFormat": "xlf",
+              "i18nLocale": "kr",
+              "i18nMissingTranslation": "error"
             }
           }
         },
@@ -60,8 +68,19 @@
           "configurations": {
             "production": {
               "browserTarget": "onpicks:build:production"
+            },
+            "kr": {
+              "browserTarget": "onpicks:build:kr"
             }
-          }
+          },
+//          "configurations": {
+//            "production": {
+//              "browserTarget": "angular.io-example:build:production"
+//            },
+//            "fr": {
+//              "browserTarget": "angular.io-example:build:fr"
+//            }
+//          }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",

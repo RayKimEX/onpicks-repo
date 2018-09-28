@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Inject, LOCALE_ID, OnInit} from '@angular/core';
 
 @Component({
   selector: 'onpicks-c',
@@ -7,9 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CComponent implements OnInit {
 
-  constructor() { }
+  constructor(@Inject(LOCALE_ID) protected localeId: string) { }
 
   ngOnInit() {
+
+    console.log(this.localeId);
   }
 
 }

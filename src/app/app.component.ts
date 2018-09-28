@@ -9,7 +9,6 @@ export class AppComponent {
   title = 'onpicks';
 }
 
-ga
 // TODO :
 /*
 *
