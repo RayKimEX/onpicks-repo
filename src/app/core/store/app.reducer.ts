@@ -2,17 +2,28 @@ import {ActionReducerMap} from '@ngrx/store';
 import * as MenuActions from '../../shops/pages/p/store/p.actions';
 
 export interface AppState {
-  region: string;
+  // region: from
+  // auth: fromAuth.State
 }
 
 
 
+
+// export interface AppState {
+//   shoppingList: fromShoppingList.State,
+//   auth: fromAuth.State
+// }
+//
+// export const reducers: ActionReducerMap<AppState> = {
+//   shoppingList: fromShoppingList.shoppingListReducer,
+//   auth: fromAuth.authReducer
+// };
 // export interface State {
 //   helpfulFlag: boolean[];
 //   menuPosition: number;
 // }
 
-export function AppReducers: ActionReducerMap<AppState> = {
+export const reducers: ActionReducerMap<AppState> = {
 };
 
 //

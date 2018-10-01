@@ -4,14 +4,14 @@
     <body>
       <trans-unit id="2ae22a07877e5f55b63ba79bf9346cf0c4de719a" datatype="html">
         <source>Grocery</source>
+        <target>식품</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/ui/onpicks/header/header.component.html</context>
           <context context-type="linenumber">51</context>
         </context-group>
       </trans-unit>
       <trans-unit id="HeaderHouseHold" datatype="html">
-        <source></source>
-        <target>House</target>
+        <target>HouseHold</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/ui/onpicks/header/header.component.html</context>
           <context context-type="linenumber">52</context>
@@ -19,6 +19,7 @@
       </trans-unit>
       <trans-unit id="3003e2e413890160fb92745e9dd8a4fdd48e7878" datatype="html">
         <source>Personal Care</source>
+        <target>개인 케어</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/ui/onpicks/header/header.component.html</context>
           <context context-type="linenumber">53</context>
@@ -26,6 +27,7 @@
       </trans-unit>
       <trans-unit id="d2bcd3296d2850de762fb943060b7e086a893181" datatype="html">
         <source>Health</source>
+        <target>건강</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/ui/onpicks/header/header.component.html</context>
           <context context-type="linenumber">54</context>
@@ -33,6 +35,7 @@
       </trans-unit>
       <trans-unit id="acb92fd9031543d9b8ff174d45ed723be39cb01e" datatype="html">
         <source>Baby</source>
+        <target>육아</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/ui/onpicks/header/header.component.html</context>
           <context context-type="linenumber">55</context>
@@ -40,6 +43,7 @@
       </trans-unit>
       <trans-unit id="23438b575e4824dd55fbc9cda1561a667cfde118" datatype="html">
         <source>Pet Supplies</source>
+        <target>펫</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/ui/onpicks/header/header.component.html</context>
           <context context-type="linenumber">56</context>
@@ -47,6 +51,7 @@
       </trans-unit>
       <trans-unit id="3a1a1e50ae12859a09cd49bc7a5d022957113f21" datatype="html">
         <source>Office Supplies</source>
+        <target>사무용품</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/ui/onpicks/header/header.component.html</context>
           <context context-type="linenumber">57</context>

@@ -12,12 +12,13 @@ import {APP_BASE_HREF} from '@angular/common';
 
 export class HeaderComponent implements OnInit {
 
+  // TODO: 이부분에 대해서 이방식이 맞는지? ngrx로 하려면, 한번더 update를 쳐야 되서 이방식이 아닌거같음 ->
+  // ㅁㄴㅇㄹㄴㅁㅇㄹ
   constructor() {
   }
 
   ngOnInit() {
   }
-
 }
 
 

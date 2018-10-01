@@ -10,10 +10,6 @@ const appRoutes: Routes = [
     redirectTo: 'shops',
     pathMatch: 'full'
   },
-  {
-    path: '**',
-    redirectTo: 'shops',
-  }
 
   // { path: 'recipes', loadChildren: './recipes/recipes.module#RecipesModule'},
   // { path: 'shopping-list', component: ShoppingListComponent }

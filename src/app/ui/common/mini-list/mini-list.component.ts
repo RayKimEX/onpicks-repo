@@ -12,7 +12,6 @@ export class MiniListComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('insertTitle') insertTitle;
   @ViewChild('container') container;
   @ViewChildren('itemList') itemList;
-
   @Input('setTitle') setTitle;
 
   // TODO : 보이지 않는 부분에 대해서 img display : none 하는식으로, 메모리 최적화
@@ -266,8 +265,6 @@ export class MiniListComponent implements OnInit, AfterViewInit, OnDestroy {
 
   imageIndex = 0;
 
-  animationEndEvent;
-
   itemListArray;
 
   constructor(private renderer: Renderer2) {
@@ -285,7 +282,7 @@ export class MiniListComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit() {
-    console.log(this.setTitle);
+
     this.itemListArray = this.itemList.toArray();
     this.renderer.setProperty( this.insertTitle.nativeElement, 'innerHTML', this.setTitle);
 
@@ -293,16 +290,15 @@ export class MiniListComponent implements OnInit, AfterViewInit, OnDestroy {
 
   nextButton() {
 
-
     this.imageIndex--;
     this.renderer.setStyle(this.container.nativeElement, 'transform', 'translateX(' + this.imageIndex * 288 + 'px)');
-    console.log(this.imageIndex);
+
   }
 
   prevButton() {
 
     this.imageIndex++;
     this.renderer.setStyle(this.container.nativeElement, 'transform', 'translateX(' + this.imageIndex * 288 + 'px)');
-    console.log(this.imageIndex);
+
   }
 }

@@ -15,8 +15,8 @@ import { DirectivesModule } from './core/directives/directives.module';
 import { FooterComponent } from './ui/onpicks/footer/footer.component';
 import { HeaderComponent } from './ui/onpicks/header/header.component';
 import { ShowcasesComponent } from './showcases/pages/showcases/showcases.component';
-import {ShowcasesModule} from './showcases/showcases.module';
-import {APP_BASE_HREF} from '@angular/common';
+import { ShowcasesModule } from './showcases/showcases.module';
+import { APP_BASE_HREF } from '@angular/common';
 
 
 // export function getBaseHref(platformLocation: PlatformLocation): string {
