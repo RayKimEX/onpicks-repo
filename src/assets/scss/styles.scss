@@ -49,10 +49,9 @@ hr{
   border: 1px solid $color-light-grey;
 }
 
+//TODO : btn 모듈화
 .btn {
   user-select: none;
-  width : 10.6rem;
-  height : 4rem;
   border-radius : 2px;
   font-size : 1.4rem;
   font-weight : 500;
@@ -61,7 +60,6 @@ hr{
   &--white {
     &:active,
     &:hover{
-
       background-color:$color-dark-black;
       color:$color-white;
 
@@ -70,9 +68,7 @@ hr{
     &,
     &:link,
     &:visited {
-
       border : solid 1px $color-dark-black;
-
     }
   }
 
@@ -88,7 +84,6 @@ hr{
     &,
     &:link,
     &:visited {
-      float:right;
       background-color:$color-dark-black;
       color:$color-white;
     }
@@ -151,7 +146,6 @@ hr{
 }
 
 .u-img-background {
-
   position: absolute;
   top : 0;
   width: 100%;
@@ -210,30 +204,6 @@ hr{
 
 
 
-/******* Typography *******/
-@font-face {
-  font-family: Roboto;
-  src : url(../../assets/fonts/Roboto-Bold.ttf);
-  font-weight: 700;
-}
-
-@font-face {
-  font-family: Roboto;
-  src : url(../../assets/fonts/Roboto-Medium.ttf);
-  font-weight: 500;
-}
-
-@font-face {
-  font-family: Roboto;
-  src : url(../../assets/fonts/Roboto-Regular.ttf);
-  font-weight: 400;
-}
-
-
-
-body {
-  font-family: "Roboto", sans-serif ;
-}
 
 h1 {
   font-size:6.4rem;
@@ -303,12 +273,17 @@ h1 {
     padding : 0 2rem;
   }
 
-  .col-1-of-2 {
-    width: calc((100% - #{$gutter-horizontal}) / 2);
-  }
 
   .col-1-of-12 {
     width: calc((100% - 11 * #{$gutter-horizontal}) / 12);
+  }
+
+  .col-2-of-12 {
+    width: calc(2 * ((100% - 11 * #{$gutter-horizontal}) / 12) + 1 * #{$gutter-horizontal});
+  }
+
+  .col-3-of-12 {
+    width: calc(3 * ((100% - 11 * #{$gutter-horizontal}) / 12) + 2 * #{$gutter-horizontal});
   }
 
   .col-4-of-12 {
@@ -330,6 +305,11 @@ h1 {
 
   .col-7-of-12 {
     width: calc(7 * ((100% - 11 * #{$gutter-horizontal}) / 12) + 6 * #{$gutter-horizontal});
+  }
+
+
+  .col-9-of-12 {
+    width: calc(9 * ((100% - 11 * #{$gutter-horizontal}) / 12) + 8 * #{$gutter-horizontal});
   }
 }
 

@@ -1,0 +1,11 @@
+<div class="row popular-category">
+  <div class="popular-category__title">인기 카테고리</div>
+  <div *ngFor="let item of popularCategory" class="col-2-of-12 popular-category__item">
+    <div class="popular-category__image--outer">
+      <img src="{{item.imgSrc}}" alt="">
+    </div>
+    <div class="popular-category__item--name">
+      {{item.name}}
+    </div>
+  </div>
+</div>

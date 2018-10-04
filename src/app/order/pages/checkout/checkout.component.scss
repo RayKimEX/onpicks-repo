@@ -1,0 +1,112 @@
+.checkout {
+
+  &-right {
+
+    &__menu {
+
+
+      border : 1px solid #e5e5e5;
+      padding : 2.4rem;
+      &--title {
+        font-size : 1.6rem;
+        line-height : 1.5;
+        letter-spacing : 0.4px;
+        font-weight : 700;
+        margin-bottom : 18px;
+      }
+      &--checkout {
+        border-top : 1px solid #e5e5e5;
+        padding-top : 2.4rem;
+        &-button {
+          width: 50.4rem;
+          height : 4.6rem;
+        }
+      }
+
+      &--price {
+        padding-top : 2.2rem;
+        border-top : 1px solid #e5e5e5;
+        border-bottom : 1px solid #e5e5e5;
+        &-productall {
+          font-size : 1.6rem;
+          line-height : 1.75;
+          color : #292929;
+          margin-bottom : 4px;
+          &-tag {
+
+          }
+          &-value {
+            float : right;
+          }
+        }
+
+        &-delivery {
+          font-size : 1.6rem;
+          line-height : 1.75;
+          color : #292929;
+          margin-bottom : 16px;
+          &-tag {
+
+          }
+          &-value {
+            float : right;
+          }
+        }
+
+        &-all {
+          font-size : 1.6rem;
+          font-weight : 700;
+          margin-bottom : 25px;
+          &-value {
+            float : right;
+          }
+        }
+      }
+
+      &--item {
+
+        border-top : 1px solid #e5e5e5;
+        position : relative;
+        padding : 2.4rem 0;
+
+        &-image {
+          width: 11.2rem;
+          height: 11.2rem;
+          display: inline-block;
+        }
+
+        &-info {
+          &-brand {
+            font-size : 1.2rem;
+            font-weight : 700;
+            line-height : 1.33;
+            margin-bottom : 4px;
+          }
+
+          &-name {
+            font-size : 1.2rem;
+            line-height : 1.33;
+            letter-spacing : 0.04rem;
+            color : #292929;
+            margin-bottom : 4px;
+          }
+          &-option {
+            font-size : 1.2rem;
+            color : #a0a0a0;
+            margin-bottom : 4px;
+          }
+
+          &-price {
+            font-size : 1.4rem;
+            font-weight : 700;
+          }
+          position : absolute;
+
+          margin-left : 2.4rem;
+          display : inline-block;
+          width: 33.8rem;
+        }
+      }
+    }
+  }
+}

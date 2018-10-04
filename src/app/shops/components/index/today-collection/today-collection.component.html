@@ -1,0 +1,17 @@
+<div class="row today-collection">
+  <div class="today-collection__title">오늘의 컬렉션</div>
+  <div *ngFor="let item of todayCollection" class="col-3-of-12 today-collection__item">
+    <div  class="today-collection__image--outer">
+      <img src="{{item.imgSrc}}" alt="">
+    </div>
+    <div class="today-collection__item--category-name">
+      {{item.todayCategoryName}}
+    </div>
+    <div class="today-collection__item--title">
+      {{item.todayTitle}}
+    </div>
+    <div class="today-collection__item--discription">
+      {{item.todayDiscription}}
+    </div>
+  </div>
+</div>

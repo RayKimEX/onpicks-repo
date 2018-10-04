@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component, Inject, LOCALE_ID} from '@angular/core';
+import { APP_BASE_HREF } from '@angular/common';
 
 @Component({
   selector: 'onpicks-root',
@@ -8,6 +9,9 @@ import { Component } from '@angular/core';
 
 export class AppComponent {
   title = 'onpicks';
+  constructor(@Inject(LOCALE_ID) public locale: string) {
+    console.log(this.locale);
+  }
 }
 
 // TODO :

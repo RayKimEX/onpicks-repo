@@ -1,0 +1,42 @@
+@import '~src/assets/scss/abstracts/variables';
+
+.terms-navigator {
+  .active {
+    font-weight:700;
+  }
+  &--item {
+    list-style : none;
+    font-size : 1.4rem;
+    line-height : 1.71;
+    letter-spacing : 0.03rem;
+    margin-bottom: 1.6rem;
+    a {
+      font-weight : 400;
+      color: $color-dark-black;
+    }
+    &:last-child {
+      margin-bottom: 5.6rem;
+    }
+  }
+
+  &--help-tel {
+    font-size : 1.4rem;
+    line-height: 1.64;
+    letter-spacing : 0.03rem;
+    margin-bottom : 0.4rem;
+  }
+
+  &--help-mail {
+    color: $color-green;
+    font-size : 1.4rem;
+    line-height : 1.64;
+    letter-spacing : 0.03rem;
+    margin-bottom : 0.8rem;
+  }
+
+  &--operate-time {
+    font-size : 1.4rem;
+    line-height : 1.64;
+    letter-spacing : 0.03rem;
+  }
+}

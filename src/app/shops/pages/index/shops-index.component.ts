@@ -5,13 +5,14 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './shops-index.component.html',
   styleUrls: ['./shops-index.component.scss']
 })
+
 export class ShopsIndexComponent implements OnInit {
 
   constructor() { }
 
   ngOnInit() {
-  }
 
+  }
 }
 
 

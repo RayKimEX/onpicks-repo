@@ -1,0 +1,45 @@
+@import "~src/assets/scss/abstracts/variables";
+
+
+.today-collection{
+  margin-bottom : 5.6rem;
+
+  &__title {
+    font-size : 1.8rem;
+    font-weight : 700;
+    line-height : 1.39;
+    margin-bottom: 2.4rem;
+  }
+
+  &__image--outer {
+    display:inline-block;
+    width:26.4rem;
+    height : 17.6rem;
+    margin-bottom: 1.6rem;
+  }
+
+  &__item {
+
+    &--category-name {
+      color : $color-green;
+      font-size : 1.2rem;
+      font-weight : 700;
+      line-height: 1.33;
+      margin-bottom : 0.4rem;
+    }
+
+    &--title {
+      font-size: 1.4rem;
+      font-weight : 700;
+      line-height : 1.71;
+      margin-bottom : 0.4rem;
+    }
+
+    &--discription {
+      line-height: 1.33;
+      letter-spacing : 0.04rem;
+      font-size: 1.2rem;
+
+    }
+  }
+}

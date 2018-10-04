@@ -1,6 +1,5 @@
-import {InjectionToken, NgModule} from '@angular/core';
+import { InjectionToken, NgModule} from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { ShopsRoutingModule } from './shops-routing.module';
 import { PComponent } from './pages/p/p.component';
 import { PDescriptionComponent } from './components/p/p-description/p-description.component';
@@ -12,11 +11,14 @@ import { PThumbnailComponent } from './components/p/p-thumbnail/p-thumbnail.comp
 import { PCustomerComponent } from './components/p/p-customer/p-customer.component';
 import { CComponent } from './pages/c/c.component';
 import { UiModule } from '../ui/ui.module';
-import {  StoreModule } from '@ngrx/store';
+import { StoreModule } from '@ngrx/store';
 import { PReducer } from './pages/p/store/p.reducer';
 import { DirectivesModule } from '../core/directives/directives.module';
 import { PipeModule } from '../core/pipe/pipe.module';
-import { ShopsIndexComponent } from './pages/index/shops-index.component';
+import { ShopsIndexComponent } from './pages/index/shops-index.component';;
+import { TodayCollectionComponent } from './components/index/today-collection/today-collection.component';
+import { PopularBrandComponent } from './components/index/popular-brand/popular-brand.component';
+import { PopularCategoryComponent } from './components/index/popular-category/popular-category.component';
 
 // TODO : Shops에만 너무 많은 기능들이 몰려있는데. Shops만 lazyLoading하는게 의미 있는지 모르겠음.
 // TODO : Depth를 더 여러개로 쪼개서 Module Refactoring 해야할것 같다. URL기준으로 파일 구성하는게 맞아보이는데,
@@ -37,11 +39,15 @@ import { ShopsIndexComponent } from './pages/index/shops-index.component';
     PCustomerComponent,
     PDescriptionComponent,
     PMenuComponent,
-    POtherSellersComponent,
+
+    TodayCollectionComponent,
+    PopularCategoryComponent,
+    PopularBrandComponent,
     PReviewsComponent,
     PThumbnailComponent,
     PItemDetailComponent,
 
+    POtherSellersComponent,
     //
     ShopsIndexComponent
 

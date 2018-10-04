@@ -10,6 +10,8 @@ import * as fromP from '../../../pages/p/store/p.reducer';
   templateUrl: './p-menu.component.html',
   styleUrls: ['./p-menu.component.scss']
 })
+
+// TODO : 스크롤 메뉴 관련 // https://www.29cm.co.kr/order/checkout?pay_code=10 참고해서, fix메뉴가 충분히 아래로 내려가면, 그때 내려갈 수 있도록 변경
 export class PMenuComponent implements OnInit, OnDestroy {
   @ViewChild('pMenu') pMenu: ElementRef;
   chart;

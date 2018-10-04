@@ -2,14 +2,62 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
   <file source-language="en" datatype="plaintext" original="ng2.template">
     <body>
-      <trans-unit id="2ae22a07877e5f55b63ba79bf9346cf0c4de719a" datatype="html">
-        <source>Grocery</source>
-        <target>식품</target>
+
+      <!--Header Section-->
+      <trans-unit id="header__shops" datatype="html">
+        <target>쇼핑</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/ui/onpicks/header/header.component.html</context>
-          <context context-type="linenumber">51</context>
+          <context context-type="linenumber">52</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="header__showcases" datatype="html">
+        <target>쇼케이스</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/header/header.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="header__events" datatype="html">
+        <target>이벤트</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/header/header.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="header__reviews" datatype="html">
+        <target>리뷰</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/header/header.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="header__login" datatype="html">
+        <target>로그인</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/header/header.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="header__signup" datatype="html">
+        <target>회원가입</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/header/header.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="header__placeholder" datatype="html">
+        <target>2018 추석선물 대전</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/header/header.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+
+      <!--UI Section-->
+
       <trans-unit id="HeaderHouseHold" datatype="html">
         <target>생활용품</target>
         <context-group purpose="location">

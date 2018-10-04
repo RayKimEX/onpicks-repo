@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
@@ -17,7 +17,9 @@ import { HeaderComponent } from './ui/onpicks/header/header.component';
 import { ShowcasesComponent } from './showcases/pages/showcases/showcases.component';
 import { ShowcasesModule } from './showcases/showcases.module';
 import { APP_BASE_HREF } from '@angular/common';
-
+import { TermsModule } from './terms/terms.module';
+import { HelpModule } from './help/help.module';
+import {OrderModule} from './order/order.module';
 
 // export function getBaseHref(platformLocation: PlatformLocation): string {
 //   return platformLocation.getBaseHrefFromDOM();
@@ -47,11 +49,18 @@ import { APP_BASE_HREF } from '@angular/common';
 
     ShopsModule,
     ShowcasesModule,
+    TermsModule,
+    HelpModule,
+    OrderModule
   ],
   providers: [
     {
       provide: APP_BASE_HREF,
       useValue: '/' + (window.location.pathname.split('/')[1] || '')
+    },
+    {
+      provide: LOCALE_ID,
+      useValue : 'kr'
     }
   ],
   bootstrap: [ AppComponent ]

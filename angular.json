@@ -55,7 +55,7 @@
               "i18nFile": "src/locale/messages.kr.xlf",
               "i18nFormat": "xlf",
               "i18nLocale": "kr",
-              "i18nMissingTranslation": "error"
+              "i18nMissingTranslation": "error",
             },
             "en": {
               "outputPath": "dist/en/",

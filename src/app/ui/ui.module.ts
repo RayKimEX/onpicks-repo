@@ -12,6 +12,8 @@ import {FormsModule} from '@angular/forms';
 import {SelectBoxComponent} from './onpicks/select-box/select-box.component';
 import { SortBoxComponent } from './onpicks/sort-box/sort-box.component';
 import { BannerCarouselComponent } from './common/banner-carousel/banner-carousel.component';
+import { FontRobotoComponent } from './onpicks/font-roboto/font-roboto.component';
+import { FontSpoqaComponent } from './onpicks/font-spoqa/font-spoqa.component';
 
 @NgModule({
 
@@ -30,7 +32,9 @@ import { BannerCarouselComponent } from './common/banner-carousel/banner-carouse
     SearchBoxComponent,
     SelectBoxComponent,
     SortBoxComponent,
-    BannerCarouselComponent
+    BannerCarouselComponent,
+    FontRobotoComponent,
+    FontSpoqaComponent
   ],
   exports: [
     SimpleCarouselComponent,
@@ -41,7 +45,9 @@ import { BannerCarouselComponent } from './common/banner-carousel/banner-carouse
     SearchBoxComponent,
     SelectBoxComponent,
     SortBoxComponent,
-    BannerCarouselComponent
+    BannerCarouselComponent,
+    FontRobotoComponent,
+    FontSpoqaComponent
   ]
 })
 export class UiModule { }

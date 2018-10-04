@@ -2,6 +2,9 @@
 
 .header {
 
+  position:relative;
+  z-index :100;
+  background-color : $color-white;
   .active {
     color: $color-dark-black;
   }
@@ -16,6 +19,7 @@
 
   &__miscell {
     height : 3.8rem;
+    border-bottom: 1px solid #e5e5e5;
 
     & span {
       position:relative;
@@ -24,12 +28,6 @@
     & div {
       position:relative;
       top:25%;
-    }
-    &--zip-code {
-      margin-right: 1.6rem;
-      font-size : 1.4rem;
-      letter-spacing: 0.03rem;
-      color: $color-dark-grey;
     }
 
     &--nation {
@@ -99,6 +97,7 @@
   &__main-nav {
     height : 7rem;
     position: relative;
+    border-bottom: 1px solid #e5e5e5;
 
     &--outer {
       position:relative;
@@ -106,71 +105,19 @@
       display:table;
     }
 
-    &--search {
-      right : 8rem;
-      @include verticalCenter;
-      border-radius : 2px;
-      border : solid 1px #dddddd;
-      width : 46.4rem;
-      height: 4rem;
-
-      &-input {
-        border : 0;
-        width:15.4rem;
-        @include verticalCenter;
-        left:5.4rem;
-        font-size:1.4rem;
-        font-weight: 500;
-        letter-spacing: 0.03rem;
-        color: $color-dark-black;
-
-        &::placeholder {
-          color:$color-dark-grey;
-        }
-      }
-
-      svg {
-        @include verticalCenter;
-        left : 1.4rem;
-
-      }
+    onpicks-search-box {
+      display:block;
+      position:relative;
+      top : -7px;
     }
 
-
-    //&__search-reviews {
-    //  position:relative;
-    //  top: -1rem;
-    //  width : 20rem;
-    //  height: 4rem;
-    //  float:right;
-    //  display:inline-block;
-    //  border-radius : 2px;
-    //  border : solid 1px #dddddd;
-    //  line-height: 4rem;
-    //  &--input {
-    //    margin-left: 5.6rem;
-    //    border : 0;
-    //    width : 10.6rem;
-    //    height : 1.6rem;
-    //    font-size:1.4rem;
-    //    font-weight : 500;
-    //    letter-spacing : 0.03rem;
-    //    &::placeholder {
-    //      color : #767676;
-    //    }
-    //  }
-    //
-    //  &--search-icon {
-    //    @include verticalCenter;
-    //    left : 1.6rem;
-    //  }
-    //}
 
     svg {
       margin-right : 6.4rem;
     }
 
     nav {
+
       display : table-cell;
       vertical-align:middle;
       li {
@@ -180,12 +127,14 @@
         list-style : none;
         font-size : 1.8rem;
         font-weight : 700;
-
         margin-right : 4rem;
+
+        transition : opacity 0.5s;
 
         &:first-child {
           color : $color-dark-black;
         }
+
         &:not(:first-child){
           color : $color-grey;
         }
@@ -193,28 +142,162 @@
     }
   }
 
-  &__category-nav {
-    background-color : $color-dark-black;
-    height : 6rem;
-    position: relative;
-    nav{
-      @include verticalCenter;
-      top: 49%;
-      ul {
-        li {
-          font-size:1.4rem;
-          font-weight:700;
-          letter-spacing : 0.03rem;
-          color : $color-white;
-          list-style : none;
-          display:inline-block;
 
-          &:not(:last-child) {
-            margin-right: 4rem;
+  &-menu {
+
+    &__recommend{
+      max-width : $grid-width;
+      margin: 0 auto;
+      height: 7.2rem;
+      position:relative;
+      &--ul {
+        @include verticalCenter;
+        list-style: none;
+        &-item {
+
+
+          a{
+            color : $color-dark-black;
           }
+
+          float:left;
+          display : inline-block;
+          width:20rem;
+          font-size : 1.4rem;
+          line-height : 1.71;
+          vertical-align:middle;
+
+          &:first-child {
+            font-size : 1.6rem;
+            font-weight : 700;
+            line-height : 1.5;
+            letter-spacing : 0.04rem;
+          }
+          &:not(:last-child){
+            margin-right : 3.2rem;
+          }
+        }
+
+      }
+    }
+
+    &__outer {
+      display:none;
+
+      background-color : $color-white;
+      z-index : 500;
+      position:absolute;
+      padding-top : 2rem;
+      width:100%;
+      nav {
+        border-bottom: 1px solid #d8d8d8;
+        max-width : $grid-width;
+        margin: 0 auto;
+        @include clearfix;
+      }
+    }
+
+    &__item {
+      float:left;
+      //position:relative;
+      display: inline-block;
+      width : 20rem;
+      &--category {
+
+      }
+
+      list-style : none;
+      &:not(:last-child){
+        margin-right : 3.2rem;
+      }
+      &--title{
+
+        height : 12rem;
+        background-size : 5.875rem 5.875rem;
+        background: url('https://picsum.photos/96/96?image=125') no-repeat right bottom;
+        display:block;
+
+        span {
+          margin-bottom: 3rem;
+          display:block;
+          font-size: 1.8rem;
+          font-weight : 700;
+          line-height : 1.33;
+          letter-spacing : 0.03rem;
+        }
+
+        &-grocery{
+          border-bottom: 2px solid $color-green;
+        }
+
+        &-beauty {
+          border-bottom: 2px solid #f2cacc;
+        }
+
+        &-fashion {
+          border-bottom: 2px solid #000000;
+        }
+
+        &-home {
+          border-bottom: 2px solid #417505;
+        }
+
+        &-digital {
+          border-bottom: 2px solid #4a90e2;
+        }
+      }
+
+      // TODO : CSS ORDER 정리 ( 가독성이 현재 떨어짐 )
+      li {
+        font-size:1.4rem;
+        line-height: 1.71;
+
+        a{
+          font-weight: 400;
+          color: $color-dark-black;
+        }
+
+        &:last-child {
+          a{
+            color: $color-green;
+            font-weight : 700;
+          }
+          margin-top : 0.6rem;
+          margin-bottom: 2.4rem;
+        }
+
+        &:not(:last-child){
+          margin-bottom : 0.8rem;
+        }
+        &:first-child {
+          margin-bottom: 1.6rem;
         }
       }
     }
   }
+
+  //&__category-nav {
+  //  background-color : $color-dark-black;
+  //  height : 6rem;
+  //  position: relative;
+  //  nav{
+  //    @include verticalCenter;
+  //    top: 49%;
+  //    ul {
+  //      li {
+  //        font-size:1.4rem;
+  //        font-weight:700;
+  //        letter-spacing : 0.03rem;
+  //        color : $color-white;
+  //        list-style : none;
+  //        display:inline-block;
+  //
+  //        &:not(:last-child) {
+  //          margin-right: 4rem;
+  //        }
+  //      }
+  //    }
+  //  }
+  //}
 
 }

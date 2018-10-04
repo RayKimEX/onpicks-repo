@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="header__shops" datatype="html">
+        <source>shops</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/header/header.component.html</context>
+          <context context-type="linenumber">38</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="header__showcases" datatype="html">
+        <source>showcases</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/header/header.component.html</context>
+          <context context-type="linenumber">39</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="header__events" datatype="html">
+        <source>events</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/header/header.component.html</context>
+          <context context-type="linenumber">40</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="header__reviews" datatype="html">
+        <source>reviews</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/header/header.component.html</context>
+          <context context-type="linenumber">41</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="header__placeholder" datatype="html">
+        <source>shops</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/header/header.component.html</context>
+          <context context-type="linenumber">38</context>
+        </context-group>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

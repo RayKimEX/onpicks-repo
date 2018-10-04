@@ -16,6 +16,7 @@ import {
 export class BannerCarouselComponent implements OnInit, AfterViewInit {
   @ViewChild('container') container;
   @ViewChildren('itemList') itemList;
+  @ViewChild('circleNavigate') circleNavigate;
 
   imagesLargeList = [
     'https://picsum.photos/1920/440?image=120',
@@ -32,19 +33,7 @@ export class BannerCarouselComponent implements OnInit, AfterViewInit {
   capturedBrowserWidth;
   capturedTranslateX;
 
-  @HostListener('window:resize', ['$event'])
-  hello(event) {
 
-    // console.log(this.capturedTranslateX);
-    // console.log(((this.capturedBrowserWidth - window.innerWidth ) * ( this.imageIndex ));
-    const temp = this.capturedTranslateX - ((this.capturedBrowserWidth - window.innerWidth ) * ( this.imageIndex ))
-    console.log(this.capturedTranslateX - ((this.capturedBrowserWidth - window.innerWidth ) * ( this.imageIndex )));
-    console.log(temp);
-
-    this.renderer.setStyle(this.container.nativeElement, 'transition', 'x');
-    this.renderer.setStyle(this.container.nativeElement, 'transform', 'translateX(-' + temp  + 'px)');
-    console.log(this.container.nativeElement);
-  }
 
   // backLoad() {
   //   this.itemList.forEach( (item, index ) => {
@@ -52,22 +41,39 @@ export class BannerCarouselComponent implements OnInit, AfterViewInit {
   //   });
   // }
 
+  // TODO : 화면이 넘어갔을때, 이미지를 안나오게 해서, resource 최적화
+
   constructor(private renderer: Renderer2) {
 
   }
 
   ngOnInit() {
-     console.log(this.imagesLargeList.slice(this.imagesLargeList.length - 1, this.imagesLargeList.length)[0])
+    this.imageIndex = 1;
+    this.capturedBrowserWidth = window.innerWidth;
+    this.capturedTranslateX = window.innerWidth;
     this.imagesLargeList.splice(0, 0, this.imagesLargeList.slice(this.imagesLargeList.length - 1, this.imagesLargeList.length)[0]);
     this.imagesLargeList.push(this.imagesLargeList.slice(1, 2)[0]);
-    console.log(this.imagesLargeList);
+  }
+
+  @HostListener('window:resize', ['$event'])
+  hello(event) {
+
+    // console.log(this.capturedTranslateX);
+    // console.log(((this.capturedBrowserWidth - window.innerWidth ) * ( this.imageIndex ));
+    const temp = this.capturedTranslateX - ((this.capturedBrowserWidth - window.innerWidth ) * ( this.imageIndex ))
+    console.log(this.capturedTranslateX);
+    console.log(this.capturedBrowserWidth);
+
+    this.renderer.setStyle(this.container.nativeElement, 'transition', 'x');
+    this.renderer.setStyle(this.container.nativeElement, 'transform', 'translateX(-' + temp  + 'px)');
   }
 
   ngAfterViewInit() {
-    this.itemList.forEach( (item, index ) => {
-      console.log(item.nativeElement.style.transition);
-    });
+    const style = getComputedStyle( this.circleNavigate.nativeElement, null)
+    const offsetX = parseInt(style.left, 10) - parseInt(style.width, 10) / 2;
 
+    this.renderer.setStyle(this.circleNavigate.nativeElement, 'left', offsetX + 'px');
+    this.renderer.setStyle(this.container.nativeElement, 'transition', 'x');
     this.renderer.setStyle(this.container.nativeElement, 'transform', 'translateX(-' + ( window.innerWidth * this.imageIndex ) + 'px)');
   }
 

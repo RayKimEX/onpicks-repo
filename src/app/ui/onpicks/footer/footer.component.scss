@@ -42,6 +42,9 @@
     ul {
 
       li {
+        a{
+          color : $color-white;
+        }
         list-style: none;
         display:inline-block;
         font-size: 1.4rem;

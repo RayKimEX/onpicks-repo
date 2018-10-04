@@ -18,6 +18,10 @@
       letter-spacing: 0.04rem;
       color:$color-dark-black;
 
+      button {
+        width:10.6rem;
+        height: 4rem;
+      }
       &:first-child{
         color:$color-grey;
         padding-bottom: 1.6rem;

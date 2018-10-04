@@ -39,10 +39,9 @@ $mini-width : 264+24px;
 
 .ui-mini-list {
 
-
-
   &__bottom {
     margin-top : 0.8rem;
+
     &--MSRP {
       margin-right : 0.2rem;
       font-size: 1.2rem;
@@ -79,7 +78,7 @@ $mini-width : 264+24px;
 
     &--name-outer {
       margin-bottom : 0.8rem;
-
+      color : $color-dark-black;
 
       &-brand {
         font-size : 1.2rem;
@@ -135,7 +134,7 @@ $mini-width : 264+24px;
     &--outer {
       position:relative;
     }
-    ul{
+    ul {
 
       transition: transform .5s ease 0s;
       li {
@@ -152,8 +151,6 @@ $mini-width : 264+24px;
         }
       }
     }
-
-
   }
 }
 

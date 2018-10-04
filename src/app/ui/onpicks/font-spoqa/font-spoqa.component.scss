@@ -1,0 +1,25 @@
+
+/******* Typography *******/
+@font-face {
+  font-family: Spoqa;
+  src : url(/assets/fonts/Spoqa-Bold.woff);
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: Spoqa;
+  src : url(/assets/fonts/Spoqa-Bold.woff);
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: Spoqa;
+  src : url(/assets/fonts/Spoqa-Regular.woff);
+  font-weight: 400;
+}
+
+
+
+body {
+  font-family: "Spoqa", sans-serif ;
+}

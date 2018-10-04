@@ -1,81 +1,13 @@
 @import '../../../../assets/scss/abstracts/variables';
 
 
-$mini-width : 264+24px;
+.banner-carousel {
 
-//@keyframes mini-animate-left {
-//  0% {
-//    transform : translateX(0);
-//  }
-//
-//  100% {
-//    transform : translateX(-$mini-width) ;
-//  }
-//}
-//
-//@keyframes mini-animate-right {
-//  0% {
-//    transform : translateX(0);
-//  }
-//
-//  100% {
-//    transform : translateX($mini-width) ;
-//  }
-//}
-//
-//.mini-animate-left {
-//  animation-name: mini-animate-left ;
-//  animation-duration: .2s;
-//  animation-fill-mode: both;
-//}
-//
-//.mini-animate-right {
-//  animation-name: mini-animate-right ;
-//  animation-duration: .2s;
-//  animation-fill-mode: both;
-//}
-
-
-
-.ui-mini-list {
-
-  &__bottom {
-    margin-top : 0.8rem;
-    &--MSRP {
-      margin-right : 0.2rem;
-      font-size: 1.2rem;
-      color:#a0a0a0;
-      font-weight : 500;
-
-      &-discount {
-        font-size: 1.2rem;
-        color:#a0a0a0;
-        font-weight : 500;
-        text-decoration: line-through;
-      }
-    }
-
-    &--price {
-      margin-right : 0.4rem;
-      font-size: 1.4rem;
-      color:#000000;
-      font-weight : 500;
-      letter-spacing : 0.03rem;
-    }
-
-    &--discount {
-      margin-right : 0.4rem;
-      font-size: 1.4rem;
-      color: $color-orange;
-      font-weight : 500;
-      letter-spacing : 0.03rem;
-    }
-  }
-
+  top: 0;
+  margin-top:0;
+  padding-top:0;
 
   &__item {
-
-
 
     &--image-outer {
       margin-bottom: 1.6rem;
@@ -93,15 +25,7 @@ $mini-width : 264+24px;
         //background: url("https://picsum.photos/1920/440?image=96") center;
       }
 
-      span {
-        left : 50%;
-        width : 20px;
-        height : 20px;
-        border-radius : 50%;
-        position : absolute;
-        background-color : grey;
-        display : inline-block;
-      }
+
 
       svg {
         position:absolute;
@@ -117,10 +41,39 @@ $mini-width : 264+24px;
 
   &__content {
     position:relative;
-    overflow:hidden;
     width:inherit;;
     white-space: nowrap;
 
+
+    .circle-navigate{
+
+      &__active {
+        background-color : white !important;
+      }
+
+      position : relative;
+      bottom : 50px;
+
+      &__outer {
+        left : 50%;
+        display:inline-block;
+        position : relative;
+
+        span{
+          width : 20px;
+          height : 20px;
+          border-radius : 50%;
+          position : relative;
+          background-color : grey;
+          display : inline-block;
+
+          &:not(:last-child){
+
+            margin-right: 5px;
+          }
+        }
+      }
+    }
 
     &--outer {
       position:relative;
