@@ -1,0 +1,4 @@
+<button>
+  <span [ngClass]="{ 'active ' : active === true}" class="horizontal-line"></span>
+  <span [ngClass]="{ 'active ' : active === true}" *ngIf="type === 'plus'" class="vertical-line"></span>
+</button>

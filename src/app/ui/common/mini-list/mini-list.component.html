@@ -10,7 +10,7 @@
       <ul #container>
         <li #itemList *ngFor="let item of infoList; index as i">
           <div class="col-3-of-12 ui-mini-list__item">
-            <a href="">
+            <a href="" routerLink="/shops/p/1">
               <div class="ui-mini-list__item--image-outer">
                 <img drCleanLoad src="{{item.imgSrc}}" alt="">
                 <svg width="24" height="24" viewBox="0 0 24 24">
@@ -18,7 +18,7 @@
                 </svg>
               </div>
             </a>
-            <a href="">
+            <a href="" routerLink="/shops/p/1">
               <div class="ui-mini-list__item--name-outer">
                 <p class="ui-mini-list__item--name-outer-brand">{{item.brand}}</p>
                 <span class="ui-mini-list__item--name-outer-name">

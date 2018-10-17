@@ -63,7 +63,7 @@ export class PMenuComponent implements OnInit, OnDestroy {
 
     });
     this.scrollEvent = this.scrollEvent.subscribe(val => {
-        if (window.pageYOffset >= 232) {
+        if (window.pageYOffset >= 172) {
             if (window.pageYOffset >= menuTopValue.menuPosition - 32) {
               if ( setStatus === 'absolute') { return; }
               setStatus = 'absolute';

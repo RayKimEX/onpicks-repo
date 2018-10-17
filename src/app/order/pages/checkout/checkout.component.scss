@@ -1,12 +1,282 @@
 .checkout {
 
+  &-left {
+    &__info{
+
+      onpicks-select-box {
+        display:block;
+        width: 40.8rem;
+        margin-bottom : 8px;
+      }
+
+      &--checkout {
+        margin-top : 2.4rem;
+        margin-bottom : 4rem;
+
+        onpicks-check-box:not(:last-child) {
+          display:block;
+          margin-bottom : 1.6rem;
+
+        }
+
+        &-btn {
+          font-weight: 400;
+          width : 8.7rem;
+          height : 4rem;
+          margin-left : 1.6rem;
+        }
+
+        &-title{
+          font-size : 1.8rem;
+          line-height : 1.39;
+          letter-spacing : 0.3px;
+          font-weight : 700;
+          margin-bottom : 2.4rem;
+        }
+        &-tag {
+          font-size : 1.4rem;
+          line-height : 1.71;
+          letter-spacing : 0.3px;
+          margin-bottom : 8px;
+
+          &:last-of-type {
+            margin-bottom : 2.4rem;
+          }
+        }
+
+        &-input {
+          display: inline-block;
+          height: 4rem;
+          width: 40.8rem;
+          font-size: 1.4rem;
+          line-height: 1.43;
+          letter-spacing: 0.3px;
+          padding: 1rem 1.6rem;
+          margin-bottom: 2.4rem;
+
+          //TODO : 이부분은 크롬에서만 적용됨.
+          &::placeholder {
+            color: #b3b3b3;
+          }
+        }
+      }
+
+      &--delivery{
+        padding-bottom : 3rem;
+        border-bottom: 1px solid #e5e5e5;
+
+        &-title{
+          font-size : 1.8rem;
+          line-height : 1.39;
+          letter-spacing : 0.3px;
+          font-weight : 700;
+          margin-bottom : 2.4rem;
+        }
+
+
+
+        &-search-btn {
+          font-weight : 400;
+          margin-left : 1.6rem;
+          width:11.8rem;
+          height : 4rem;
+        }
+
+        &-save-btn {
+          font-weight : 400;
+          width:10.5rem;
+          height : 4rem;
+          margin-bottom : 2.4rem;
+        }
+
+        &-tag {
+          font-size : 1.4rem;
+          line-height : 1.71;
+          letter-spacing : 0.3px;
+          margin-bottom : 8px;
+        }
+
+        &-description {
+          font-size : 1.4rem;
+          color : #8d8d8d;
+        }
+
+        &-searchBox {
+          height : 4rem;
+          display:block;
+          padding : 0;
+          width: 55.2rem;
+          border : 0;
+          &-outer {
+            display:none;
+
+          }
+
+
+          //TODO : 스크롤 내릴때 스크롤쪽이 ui상 살짝 불편한 부분이 있음 ( 조금도 오른쪽으로 밀착되게 ) search scroll
+
+          &-option {
+
+            padding : 1.6rem 2.4rem;
+            border : 1px solid #e5e5e5;
+            border-top : 0;
+            margin-bottom : 1.6rem;
+            font-size : 1.4rem;
+            line-height : 1.43;
+            &-list {
+              max-height : 44rem;
+              overflow-y: auto;
+
+
+              &-outer {
+                padding : 2.4rem;
+                border : 1px solid #e5e5e5;
+                margin-bottom: 1.6rem;
+              }
+              & > div{
+
+                //div:not(:first-child) {
+                //  div{
+                //    margin-top : 2.4rem;
+                //  }
+                //}
+                table {
+
+                  //font-size : 1.4rem;
+                  //line-height : 1.43;
+                  tr:nth-of-type(1) {
+                    td:nth-of-type(1) { padding-bottom: 8px;}
+                    td:nth-of-type(2) { padding-bottom: 8px;}
+                  }
+
+                  td:nth-of-type(1) { color : #8d8d8d; width : 55px}
+                  td:nth-of-type(2) {
+                    color : #292929;
+                    button:hover {
+                      text-decoration-line: underline;
+                    }
+                    //a{
+                    //
+                    //  font-weight:400;
+                    //}
+                  }
+
+
+
+                  //table.fixed {table-layout:fixed; width:90px;}/*Setting the table width is important!*/
+                  //table.fixed td {overflow:hidden;}/*Hide text outside the cell.*/
+                  //table.fixed td:nth-of-type(1) {width:20px;}/*Setting the width of column 1.*/
+                  //table.fixed td:nth-of-type(2) {width:30px;}/*Setting the width of column 2.*/
+                  //table.fixed td:nth-of-type(3) {width:40px;}/*Setting the width of column 3.*/
+                }
+              }
+
+              &-1{
+                font-size : 1.6rem;
+                line-height : 1.25;
+                font-weight : 700;
+                color : #292929;
+                margin-bottom : 1.6rem;
+
+              }
+
+              //&-2{
+              //  display: table;
+              //  font-size : 1.4rem;
+              //  line-height : 1.43;
+              //  color : #292929;
+              //  margin-bottom : 0.8rem;
+              //  span {
+              //    display:table-cell;
+              //    color : #8d8d8d;
+              //  }
+              //}
+              //
+              //&-3{
+              //  display: table;
+              //  font-size : 1.4rem;
+              //  line-height : 1.43;
+              //  color : #292929;
+              //  margin-bottom : 2.4rem;
+              //  span {
+              //    display:table-cell;
+              //    color : #8d8d8d;
+              //  }
+              //}
+            }
+
+            &-no-result {
+              color : #292929;
+            }
+
+            &-init {
+
+              &-main {
+                color : #292929;
+                padding-bottom : 10px;
+                border-bottom : 1px solid #e5e5e5;
+              }
+
+              &-title{
+                margin-top : 10px;
+                color : #292929;
+                margin-bottom : 8px;
+              }
+
+              &-sub{
+                color : #8d8d8d;
+              }
+            }
+
+          }
+        }
+
+        &-input {
+          display:block;
+          height : 4rem;
+          width: 40.8rem;
+          font-size : 1.4rem;
+          line-height: 1.43;
+          letter-spacing : 0.3px;
+          padding : 1rem 1.6rem;
+          margin-bottom : 1.6rem;
+
+
+          //TODO : 이부분은 크롬에서만 적용됨.
+          &::placeholder{
+            color : #b3b3b3;
+          }
+
+          &-address {
+            display:inline-block;
+            height : 4rem;
+
+            font-size : 1.4rem;
+            line-height: 1.43;
+            letter-spacing : 0.3px;
+            padding : 1rem 1.6rem;
+            width : 26.9rem;
+            margin-bottom : 1.6rem;
+
+            //TODO : 이부분은 크롬에서만 적용됨.
+            &::placeholder{
+              color : #b3b3b3;
+            }
+          }
+
+
+        }
+      }
+    }
+  }
+
   &-right {
 
     &__menu {
 
-
       border : 1px solid #e5e5e5;
       padding : 2.4rem;
+
       &--title {
         font-size : 1.6rem;
         line-height : 1.5;
@@ -14,6 +284,7 @@
         font-weight : 700;
         margin-bottom : 18px;
       }
+
       &--checkout {
         border-top : 1px solid #e5e5e5;
         padding-top : 2.4rem;
@@ -90,6 +361,7 @@
             color : #292929;
             margin-bottom : 4px;
           }
+
           &-option {
             font-size : 1.2rem;
             color : #a0a0a0;
@@ -100,8 +372,8 @@
             font-size : 1.4rem;
             font-weight : 700;
           }
-          position : absolute;
 
+          position : absolute;
           margin-left : 2.4rem;
           display : inline-block;
           width: 33.8rem;

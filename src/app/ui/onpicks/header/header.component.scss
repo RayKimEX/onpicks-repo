@@ -5,6 +5,7 @@
   position:relative;
   z-index :100;
   background-color : $color-white;
+
   .active {
     color: $color-dark-black;
   }
@@ -20,6 +21,10 @@
   &__miscell {
     height : 3.8rem;
     border-bottom: 1px solid #e5e5e5;
+
+    svg{
+      margin-left : 0.9rem;
+    }
 
     & span {
       position:relative;

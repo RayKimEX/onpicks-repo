@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {ActivatedRoute, ActivatedRouteSnapshot} from '@angular/router';
 
 @Component({
   selector: 'onpicks-order-navigator',
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OrderNavigatorComponent implements OnInit {
 
-  constructor() { }
+  constructor(private routeSnapshot: ActivatedRoute) { }
 
   ngOnInit() {
+    console.log(this.routeSnapshot.snapshot.url[0].path);
   }
 
 }

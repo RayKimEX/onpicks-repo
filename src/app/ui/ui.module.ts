@@ -8,12 +8,15 @@ import { CirclePButtonComponent } from './onpicks/circle-p-button/circle-p-butto
 import { SearchBoxComponent } from './onpicks/search-box/search-box.component';
 import { DirectivesModule } from '../core/directives/directives.module';
 import { PipeModule } from '../core/pipe/pipe.module';
-import {FormsModule} from '@angular/forms';
-import {SelectBoxComponent} from './onpicks/select-box/select-box.component';
+import { FormsModule } from '@angular/forms';
+import { SelectBoxComponent } from './onpicks/select-box/select-box.component';
 import { SortBoxComponent } from './onpicks/sort-box/sort-box.component';
 import { BannerCarouselComponent } from './common/banner-carousel/banner-carousel.component';
 import { FontRobotoComponent } from './onpicks/font-roboto/font-roboto.component';
 import { FontSpoqaComponent } from './onpicks/font-spoqa/font-spoqa.component';
+import { CheckBoxComponent } from './onpicks/check-box/check-box.component';
+import {RouterModule} from '@angular/router';
+import { NumericButtonComponent } from './onpicks/numeric-button/numeric-button.component';
 
 @NgModule({
 
@@ -21,7 +24,8 @@ import { FontSpoqaComponent } from './onpicks/font-spoqa/font-spoqa.component';
     CommonModule,
     FormsModule,
     DirectivesModule,
-    PipeModule
+    PipeModule,
+    RouterModule,
   ],
   declarations: [
     SimpleCarouselComponent,
@@ -34,7 +38,9 @@ import { FontSpoqaComponent } from './onpicks/font-spoqa/font-spoqa.component';
     SortBoxComponent,
     BannerCarouselComponent,
     FontRobotoComponent,
-    FontSpoqaComponent
+    FontSpoqaComponent,
+    CheckBoxComponent,
+    NumericButtonComponent,
   ],
   exports: [
     SimpleCarouselComponent,
@@ -47,7 +53,13 @@ import { FontSpoqaComponent } from './onpicks/font-spoqa/font-spoqa.component';
     SortBoxComponent,
     BannerCarouselComponent,
     FontRobotoComponent,
-    FontSpoqaComponent
+    FontSpoqaComponent,
+    CheckBoxComponent,
+
+    // plus minus를 나눈 이유는, 나누지 않으려면 typescript 코드가 들어가야되는데,
+    // 성능이점상 typescript코드는 최대한 적게 들어가고, css로 적용하는게 나을것 같아서, 이렇게 적용함
+    NumericButtonComponent,
   ]
 })
+
 export class UiModule { }

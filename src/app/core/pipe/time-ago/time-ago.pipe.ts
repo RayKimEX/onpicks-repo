@@ -6,6 +6,7 @@ import {
   OnDestroy
 } from '@angular/core';
 
+// MUST TODO : 크리스가 말한. 한국 날짜는 어떻게 잡히는지 피드백 필요
 @Pipe({
   name: 'timeAgo',
   pure: true

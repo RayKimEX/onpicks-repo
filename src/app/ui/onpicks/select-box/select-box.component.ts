@@ -56,5 +56,6 @@ export class SelectBoxComponent implements OnInit {
     this.isOpen = false;
     this.renderer.setStyle( this.HTMLdropDown.nativeElement, 'display', 'none');
   }
-
 }
+
+

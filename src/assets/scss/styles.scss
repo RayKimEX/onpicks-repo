@@ -49,6 +49,11 @@ hr{
   border: 1px solid $color-light-grey;
 }
 
+button {
+  border : 0;
+  cursor: pointer;
+}
+
 //TODO : btn 모듈화
 .btn {
   user-select: none;
@@ -194,6 +199,10 @@ hr{
   display : inline-block !important;
 }
 
+.u-bold {
+  font-weight : 700;
+}
+
 .u-animation-stop {
   -webkit-animation-duration: 0s !important;
   -moz-animation-duration: 0s !important;
@@ -305,6 +314,10 @@ h1 {
 
   .col-7-of-12 {
     width: calc(7 * ((100% - 11 * #{$gutter-horizontal}) / 12) + 6 * #{$gutter-horizontal});
+  }
+
+  .col-8-of-12 {
+    width: calc(8 * ((100% - 11 * #{$gutter-horizontal}) / 12) + 7 * #{$gutter-horizontal});
   }
 
 

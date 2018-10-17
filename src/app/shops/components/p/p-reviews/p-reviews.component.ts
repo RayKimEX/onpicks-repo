@@ -1524,13 +1524,13 @@ export class PReviewsComponent implements OnInit, AfterViewInit, OnDestroy {
   ngAfterViewInit() {
 
     // TODO: 이 부분이 현재, 맨처음 로딩시 계산으로 하는형식이 생각처럼 잘 되지 않음. 그래서 좀 강제적으로 정해진 값 입력
-    this.store.dispatch( new MenuActions.UpdateMenuPosition(4500) );
+    this.store.dispatch( new MenuActions.UpdateMenuPosition(4538) );
     // hrListList가 변화가 있을때 체크함
     this.hrLineList$ = this.hrLineList.changes.subscribe( t => {
       const bodyRect = document.body.getBoundingClientRect();
       const elemRect = this.hrLineList.last.nativeElement.getBoundingClientRect();
       let offset   = elemRect.top - bodyRect.top;
-      offset -= 680;
+      offset -= 703;
       this.store.dispatch( new MenuActions.UpdateMenuPosition(offset) );
     });
 
