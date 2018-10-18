@@ -40,117 +40,113 @@ $mini-width : 264+24px;
 .ui-mini-list {
 
   &__bottom {
-    margin-top : 0.8rem;
+    margin-top: 0.8rem;
 
     &--MSRP {
-      margin-right : 0.2rem;
+      margin-right: 0.2rem;
       font-size: 1.2rem;
-      color:#a0a0a0;
-      font-weight : 500;
+      color: #a0a0a0;
+      font-weight: 500;
 
       &-discount {
         font-size: 1.2rem;
-        color:#a0a0a0;
-        font-weight : 500;
+        color: #a0a0a0;
+        font-weight: 500;
         text-decoration: line-through;
       }
     }
 
     &--price {
-      margin-right : 0.4rem;
+      margin-right: 0.4rem;
       font-size: 1.4rem;
-      color:#000000;
-      font-weight : 500;
-      letter-spacing : 0.03rem;
+      color: #000000;
+      font-weight: 500;
+      letter-spacing: 0.03rem;
     }
 
     &--discount {
-      margin-right : 0.4rem;
+      margin-right: 0.4rem;
       font-size: 1.4rem;
       color: $color-orange;
-      font-weight : 500;
-      letter-spacing : 0.03rem;
+      font-weight: 500;
+      letter-spacing: 0.03rem;
     }
   }
-
 
   &__item {
 
     &--name-outer {
-      margin-bottom : 0.8rem;
-      color : $color-dark-black;
+      margin-bottom: 0.8rem;
+      color: $color-dark-black;
 
       &-brand {
-        font-size : 1.2rem;
+        font-size: 1.2rem;
         font-weight: 700;
         line-height: 1.33;
-        letter-spacing : 0.04rem;
+        letter-spacing: 0.04rem;
         margin-bottom: 0.4rem;
       }
 
       &-name {
         white-space: normal;
-        width : 26.4rem;
-        font-size : 1.2rem;
-        font-weight : 400;
-        line-height : 1.33;
-        letter-spacing : 0.04rem;
+        width: 26.4rem;
+        font-size: 1.2rem;
+        font-weight: 400;
+        line-height: 1.33;
+        letter-spacing: 0.04rem;
       }
     }
 
     &--reviews-count {
-      font-size : 1.2rem;
+      font-size: 1.2rem;
       font-weight: 500;
       color: #767676;
-      margin-left : 0.4rem;
+      margin-left: 0.4rem;
     }
-
-
 
     &--image-outer {
       margin-bottom: 1.6rem;
-      position:relative;
-      width:26.4rem;
-      height:26.4rem;
+      position: relative;
+      width: 26.4rem;
+      height: 26.4rem;
       svg {
-        position:absolute;
-        top : 1.6rem;
-        right : 1.6rem;
+        position: absolute;
+        top: 1.6rem;
+        right: 1.6rem;
 
         path {
-          fill : $color-grey;
+          fill: $color-grey;
         }
       }
     }
   }
 
   &__content {
-    position:relative;
-    overflow:hidden;
-    width:inherit;;
+    position: relative;
+    overflow: hidden;
+    width: inherit;;
     white-space: nowrap;
 
-
     &--outer {
-      position:relative;
+      position: relative;
     }
     ul {
 
       transition: transform .5s ease 0s;
       li {
-        width:28.8rem;
-        vertical-align : top;
+        width: 28.8rem;
+        vertical-align: top;
         display: inline-block;
         list-style: none;
         & > div {
-          width :26.4rem;
+          width: 26.4rem;
         }
 
         &:not(:last-child) > div {
-          margin-right : 2.4rem;
+          margin-right: 2.4rem;
         }
       }
     }
   }
 
-
+}
