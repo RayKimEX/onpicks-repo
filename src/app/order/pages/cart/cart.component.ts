@@ -52,8 +52,16 @@ export class CartComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
-
+  ngOnInit(  ) {
+    // this.cartList = this.utilService.getBuyList();
   }
+
+  // minusAmount(index) {
+  //   if ( this.cartList[index].amount !== 1) {
+  //     this.cartList[index].amount--;
+  //   }
+  // }
+
+  //}
 
 }

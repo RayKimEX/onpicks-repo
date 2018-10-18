@@ -3,7 +3,9 @@
 
 .p-menu{
   width:38.4rem;
+  background-color : $color-white;
   border : 1px solid $color-light-grey;
+  z-index:100;
   margin-left: 7.3rem;
   will-change: transform;
 
@@ -119,7 +121,7 @@
     color : $color-grey;
 
     &:not(:last-of-type) {
-      margin-right: 10.4rem;
+      margin-right: 10rem;
     }
   }
 

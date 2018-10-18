@@ -80,7 +80,13 @@ export class CheckoutComponent implements OnInit, AfterViewInit {
   ) { }
 
   ngOnInit() {
-    this.params = new HttpParams();
+    // this.params = new HttpParams();
+    // this.buyList = this.utilService.getBuyList();
+    // this.buyList.forEach((item, index) => {
+    //   this.totalProductPrice += (item.currentPrice * item.amount);
+    //   this.deliveryPrice += ( item.deliveryPrice );
+    // });
+    // this.totalPrice = this.totalProductPrice + this.deliveryPrice;
   }
 
   showSearchBox() {

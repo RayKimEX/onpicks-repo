@@ -57,7 +57,7 @@
     </div>
   </div>
   <div class="p-reviews__pagination">
-    <ul>
+    <ul *ngIf="currentPage !== 1">
       <li *ngIf="currentPage !== 1">
         <div (click)="paginate(currentPage - 1)">
           <svg width="9" height="14" viewBox="0 0 9 14">

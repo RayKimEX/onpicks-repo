@@ -341,9 +341,12 @@
         padding : 2.4rem 0;
 
         &-image {
-          width: 11.2rem;
-          height: 11.2rem;
+
           display: inline-block;
+          img{
+            width: 11.2rem;
+            height: 11.2rem;
+          }
         }
 
         &-info {

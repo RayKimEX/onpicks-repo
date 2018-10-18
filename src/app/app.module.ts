@@ -60,7 +60,7 @@ import {OrderModule} from './order/order.module';
     },
     {
       provide: LOCALE_ID,
-      useValue : 'kr'
+      useValue : 'ko'
     }
   ],
   bootstrap: [ AppComponent ]

@@ -40,6 +40,7 @@
     // header에 넣기만 하면 되는데 어떻게 하지?
 
     svg {
+      pointer-events: none;
       float : right;
       margin-top : 3px;
       // ray.kim
@@ -60,7 +61,7 @@
     &--shape {
       position:relative;
       background-color:white;
-      z-index:1;
+      z-index: 500;
       border-radius: 2px;
       border : solid 1px #e5e5e5;
       box-shadow: 0 6px 12px 0 rgba(227, 227, 227, 0.5);
@@ -68,7 +69,7 @@
 
     &--element {
       position:relative;
-      z-index : 3;
+      z-index : 550;
       transition: background-color .2s;
       &:not(:last-child) {
         border-bottom:  solid 1px $color-light-grey;

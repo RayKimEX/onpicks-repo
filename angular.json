@@ -50,20 +50,37 @@
               "vendorChunk": false,
               "buildOptimizer": true
             },
-            "kr": {
-              "outputPath": "dist/kr/",
-              "i18nFile": "src/locale/messages.kr.xlf",
+            "ko": {
+              "outputPath": "dist/ko/",
+              "i18nFile": "src/locale/messages.ko.xlf",
+              "aot": true,
               "i18nFormat": "xlf",
-              "i18nLocale": "kr",
-              "i18nMissingTranslation": "error",
+              "i18nLocale": "ko",
+              "i18nMissingTranslation": "error"
             },
             "en": {
               "outputPath": "dist/en/",
               "i18nFile": "src/locale/messages.en.xlf",
+              "aot": true,
               "i18nFormat": "xlf",
               "i18nLocale": "en",
               "i18nMissingTranslation": "error"
-            }
+            },
+
+            "serveKo": {
+              "outputPath": "dist/ko/",
+              "i18nFile": "src/locale/messages.ko.xlf",
+              "i18nFormat": "xlf",
+              "i18nLocale": "ko",
+              "i18nMissingTranslation": "error",
+            },
+            "serveEn": {
+              "outputPath": "dist/en/",
+              "i18nFile": "src/locale/messages.en.xlf",
+              "i18nFormat": "xlf",
+              "i18nLocale": "en",
+              "i18nMissingTranslation": "error",
+            },
           }
         },
         "serve": {
@@ -75,11 +92,11 @@
             "production": {
               "browserTarget": "onpicks:build:production"
             },
-            "kr": {
-              "browserTarget": "onpicks:build:kr"
+            "ko": {
+              "browserTarget": "onpicks:build:serveKo"
             },
             "en": {
-              "browserTarget": "onpicks:build:en"
+              "browserTarget": "onpicks:build:serveEn"
             }
           },
 //          "configurations": {
