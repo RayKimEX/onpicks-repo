@@ -17,6 +17,7 @@ import { FontSpoqaComponent } from './onpicks/font-spoqa/font-spoqa.component';
 import { CheckBoxComponent } from './onpicks/check-box/check-box.component';
 import {RouterModule} from '@angular/router';
 import { NumericButtonComponent } from './onpicks/numeric-button/numeric-button.component';
+import { ProgressiveBarComponent } from './common/progressive-bar/progressive-bar.component';
 
 @NgModule({
 
@@ -41,6 +42,7 @@ import { NumericButtonComponent } from './onpicks/numeric-button/numeric-button.
     FontSpoqaComponent,
     CheckBoxComponent,
     NumericButtonComponent,
+    ProgressiveBarComponent,
   ],
   exports: [
     SimpleCarouselComponent,
@@ -59,6 +61,7 @@ import { NumericButtonComponent } from './onpicks/numeric-button/numeric-button.
     // plus minus를 나눈 이유는, 나누지 않으려면 typescript 코드가 들어가야되는데,
     // 성능이점상 typescript코드는 최대한 적게 들어가고, css로 적용하는게 나을것 같아서, 이렇게 적용함
     NumericButtonComponent,
+    ProgressiveBarComponent,
   ]
 })
 
