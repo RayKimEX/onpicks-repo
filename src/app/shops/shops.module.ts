@@ -9,16 +9,19 @@ import { POtherSellersComponent } from './components/p/p-other-sellers/p-other-s
 import { PReviewsComponent } from './components/p/p-reviews/p-reviews.component';
 import { PThumbnailComponent } from './components/p/p-thumbnail/p-thumbnail.component';
 import { PCustomerComponent } from './components/p/p-customer/p-customer.component';
-import { CComponent } from './pages/c/c.component';
 import { UiModule } from '../ui/ui.module';
 import { StoreModule } from '@ngrx/store';
 import { PReducer } from './pages/p/store/p.reducer';
 import { DirectivesModule } from '../core/directives/directives.module';
 import { PipeModule } from '../core/pipe/pipe.module';
 import { ShopsIndexComponent } from './pages/index/shops-index.component';;
-import { TodayCollectionComponent } from './components/index/today-collection/today-collection.component';
-import { PopularBrandComponent } from './components/index/popular-brand/popular-brand.component';
-import { PopularCategoryComponent } from './components/index/popular-category/popular-category.component';
+import { BeautyComponent } from './pages/c/beauty/beauty.component';
+import { HomeComponent } from './pages/c/home/home.component';
+import { ElectronicsComponent } from './pages/c/electronics/electronics.component';
+import {PantryAndHouseholdComponent} from './pages/c/pantry-and-household/pantry-and-household.component';
+import {FashionComponent} from './pages/c/fashion/fashion.component';
+import {CIndexComponent} from './pages/c/index/c-index.component';
+
 
 // TODO : Shops에만 너무 많은 기능들이 몰려있는데. Shops만 lazyLoading하는게 의미 있는지 모르겠음.
 // TODO : Depth를 더 여러개로 쪼개서 Module Refactoring 해야할것 같다. URL기준으로 파일 구성하는게 맞아보이는데,
@@ -34,22 +37,24 @@ import { PopularCategoryComponent } from './components/index/popular-category/po
   ],
   declarations: [
     PComponent,
-    CComponent,
 
     PCustomerComponent,
     PDescriptionComponent,
     PMenuComponent,
 
-    TodayCollectionComponent,
-    PopularCategoryComponent,
-    PopularBrandComponent,
     PReviewsComponent,
     PThumbnailComponent,
     PItemDetailComponent,
 
     POtherSellersComponent,
     //
-    ShopsIndexComponent
+    ShopsIndexComponent,
+    PantryAndHouseholdComponent,
+    BeautyComponent,
+    HomeComponent,
+    ElectronicsComponent,
+    FashionComponent,
+    CIndexComponent
 
   ]
 })

@@ -2,16 +2,10 @@ import {AfterViewInit, Component, ElementRef, OnInit, Renderer2, ViewChild} from
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {fromEvent, Observable, of, pipe} from 'rxjs';
 import {
-  catchError,
-  debounce,
   debounceTime,
   distinctUntilChanged,
   flatMap,
-  map, mapTo,
-  mergeMap,
-  mergeMapTo,
-  skip,
-  switchMap, tap
+  map
 } from 'rxjs/operators';
 
 @Component({
@@ -46,7 +40,7 @@ export class CheckoutComponent implements OnInit, AfterViewInit {
       infoBrand : '알엑스바',
       infoName : '알엑스바 리얼 푸드 프로틴 에너지바 믹스드 베리 52G / RxBar Real Food Protein Bars Mixed Berry 1.83OZ',
       infoOption : '',
-      // MUST TODO : 가격에 대한 데이터 형식이 어떻게 들어가고 있는지 여쭤 보기
+      // 가격은 순수 integer로 들어가 있음
       infoPrice : '40,900원'
     },
     {

@@ -1,11 +1,11 @@
-<div class="banner-carousel u-margin-bottom">
+<div class="banner-carousel">
   <div class="banner-carousel__content--outer">
 
     <div class="banner-carousel__content">
       <ul #container>
         <li #itemList *ngFor="let item of imagesLargeList; index as i">
           <div class="banner-carousel__item">
-            <div class="banner-carousel__item--image-outer">
+            <div #imageOuter class="banner-carousel__item--image-outer">
               <img drLazyLoad src="{{item}}" alt="">
             </div>
           </div>

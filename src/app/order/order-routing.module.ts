@@ -5,6 +5,8 @@ import {PrivacyComponent} from '../terms/pages/privacy/privacy.component';
 import {PComponent} from '../shops/pages/p/p.component';
 import {CartComponent} from './pages/cart/cart.component';
 import {CheckoutComponent} from './pages/checkout/checkout.component';
+import {CheckoutSuccessNoBankComponent} from './pages/checkout-success-no-bank/checkout-success-no-bank.component';
+import {CheckoutSuccessComponent} from './pages/checkout-success/checkout-success.component';
 
 const routes: Routes = [
   {
@@ -22,6 +24,14 @@ const routes: Routes = [
       {
         path: 'checkout',
         component: CheckoutComponent,
+      },
+      {
+        path: 'checkout-success',
+        component : CheckoutSuccessComponent,
+      },
+      {
+        path: 'checkout-success-no-bank',
+        component : CheckoutSuccessNoBankComponent
       }
     ]
   },

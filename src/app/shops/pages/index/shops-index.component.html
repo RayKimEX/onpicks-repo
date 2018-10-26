@@ -1,15 +1,15 @@
-<ui-banner-carousel></ui-banner-carousel>
+<ui-banner-carousel [height]="44"></ui-banner-carousel>
 
 
 
 
-<onpicks-popular-category></onpicks-popular-category>
+<onpicks-category-list></onpicks-category-list>
 
 <onpicks-today-collection></onpicks-today-collection>
 
 <onpicks-popular-brand></onpicks-popular-brand>
 
 
-<ui-mini-list [setTitle]="'이번주 인기 상품'"></ui-mini-list>
-<ui-mini-list [setTitle]="'최근에 본 상품'"></ui-mini-list>
-<ui-mini-list [setTitle]="'당신을 위한 추천 상품'"></ui-mini-list>
+<ui-mini-list i18n-setTitle="@@shops__popular-goods" setTitle="''"></ui-mini-list>
+<ui-mini-list i18n-setTitle="@@shops__recently-viewed" setTitle="''"></ui-mini-list>
+<ui-mini-list i18n-setTitle="@@shops__suggestion-goods" setTitle="''"></ui-mini-list>

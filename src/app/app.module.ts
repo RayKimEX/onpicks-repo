@@ -12,14 +12,19 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StoreModule } from '@ngrx/store';
 import { reducers } from './core/store/app.reducer';
 import { DirectivesModule } from './core/directives/directives.module';
-import { FooterComponent } from './ui/onpicks/footer/footer.component';
-import { HeaderComponent } from './ui/onpicks/header/header.component';
+import { FooterComponent } from './ui/onpicks/ui/footer/footer.component';
+import { HeaderComponent } from './ui/onpicks/ui/header/header.component';
 import { ShowcasesComponent } from './showcases/pages/showcases/showcases.component';
 import { ShowcasesModule } from './showcases/showcases.module';
 import { APP_BASE_HREF } from '@angular/common';
 import { TermsModule } from './terms/terms.module';
 import { HelpModule } from './help/help.module';
 import {OrderModule} from './order/order.module';
+import {MemberModule} from './member/member.module';
+import {AccountModule} from './account/account.module';
+import {StoreDevtoolsModule} from '@ngrx/store-devtools';
+import {environment} from '../environments/environment';
+import {ReactiveFormsModule} from '@angular/forms';
 
 // export function getBaseHref(platformLocation: PlatformLocation): string {
 //   return platformLocation.getBaseHrefFromDOM();
@@ -35,6 +40,7 @@ import {OrderModule} from './order/order.module';
   imports: [
     BrowserModule,
     HttpClientModule,
+    ReactiveFormsModule,
 
 
     RouterModule,
@@ -43,6 +49,9 @@ import {OrderModule} from './order/order.module';
 
     // Common Module
     StoreModule.forRoot(reducers),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25, // Retains last 25 states
+    }),
     DirectivesModule,
     UiModule,
     ///
@@ -51,7 +60,9 @@ import {OrderModule} from './order/order.module';
     ShowcasesModule,
     TermsModule,
     HelpModule,
-    OrderModule
+    OrderModule,
+    MemberModule,
+    AccountModule
   ],
   providers: [
     {

@@ -8,7 +8,7 @@ import {ActivatedRoute, ActivatedRouteSnapshot} from '@angular/router';
 })
 export class OrderNavigatorComponent implements OnInit {
 
-  constructor(private routeSnapshot: ActivatedRoute) { }
+  constructor(public routeSnapshot: ActivatedRoute) { }
 
   ngOnInit() {
     console.log(this.routeSnapshot.snapshot.url[0].path);

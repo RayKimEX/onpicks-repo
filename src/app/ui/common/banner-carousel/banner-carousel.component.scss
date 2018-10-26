@@ -8,10 +8,10 @@
   padding-top:0;
 
   &__item {
+    height:inherit;
 
     &--image-outer {
-      margin-bottom: 1.6rem;
-      height:44rem;
+      height: inherit;
       width:100%;
       overflow:hidden;
       float:left;
@@ -56,9 +56,9 @@
       bottom : 50px;
 
       &__outer {
-        left : 50%;
+        @include horizontalCenter;
         display:inline-block;
-        position : relative;
+
 
         span{
           width : 20px;
@@ -84,6 +84,7 @@
       transition: transform .5s ease 0s;
       li {
         width:100%;
+        height:inherit;
         vertical-align : top;
         display: inline-block;
         list-style: none;
@@ -96,8 +97,6 @@
         }
       }
     }
-
-
   }
 }
 

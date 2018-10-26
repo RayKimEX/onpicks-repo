@@ -1,15 +1,22 @@
 import {Component, Inject, LOCALE_ID} from '@angular/core';
 import { APP_BASE_HREF } from '@angular/common';
+import {PComponent} from './shops/pages/p/p.component';
+import {HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'onpicks-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
+
 
 export class AppComponent {
   title = 'onpicks';
-  constructor(@Inject(LOCALE_ID) public locale: string) {
+  constructor(
+    @Inject(LOCALE_ID) public locale: string,
+    httpClient: HttpClient
+  ) {
+    // this.httpClient.post()
     console.log(this.locale);
   }
 }

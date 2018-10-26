@@ -1,0 +1,129 @@
+@import '~src/assets/scss/abstracts/variables';
+
+.signup {
+  width: 45.6rem;
+  height: 68.7rem;
+  margin: 3.2rem auto 4rem auto ;
+  padding: 2.4rem;
+  border : solid 1px #e5e5e5;
+
+  input {
+    width : 100%;
+    border-raidus : 2px;
+    border : solid 1px #e5e5e5;
+    margin-bottom : 1.6rem;
+    padding: 1rem  1.6rem;
+    line-height : 1.43;
+    font-size : 1.4rem;
+    &::placeholder {
+      line-height : 1.43;
+      font-size : 1.4rem;
+      color : #b3b3b3;
+    }
+  }
+
+  &__or-line {
+    overflow : hidden;
+    text-align : center;
+    margin-bottom :1.6rem;
+    &--active {
+      padding : 1rem;
+      position : relative;
+
+      &::before {
+        content : '';
+        position : absolute;
+        top : 50%;
+        width : 700px;
+        right : 100%;
+        border-bottom : 1px solid #e5e5e5;
+      }
+
+      &::after {
+        content : '';
+        position : absolute;
+        top : 50%;
+        left : 100%;
+        width : 700px;
+        border-bottom : 1px solid #e5e5e5;
+      }
+    }
+
+    &--text {
+      font-size : 1.4rem;
+      line-height : 1.71;
+      color : #8d8d8d;
+    }
+  }
+
+  &__social {
+
+    &--btn {
+      font-size : 1.4rem;
+      width : 40.8rem;
+      height : 4.6rem;
+      border-radius : 4px;
+      margin-bottom : 1.6rem;
+      span {
+        @include absCenter;
+      }
+    }
+    &--naver {
+      position:relative;
+      color : $color-white;
+
+      background-color : #03c63b;
+
+    }
+
+    &--kakao {
+      position:relative;
+      color : #3c2929;
+      background-color : #ffeb01;
+    }
+
+    &--facebook {
+      position:relative;
+      color : $color-white;
+      background-color : #385084;
+    }
+
+    &--google {
+      position:relative;
+      background-color : $color-white;
+      border: solid 1px #e5e5e5;
+    }
+  }
+
+  &__description {
+    font-size : 1.4rem;
+    line-height : 1.71;
+    color : #8d8d8d;
+    margin-bottom : 1.6rem ;
+  }
+
+  &__already-account {
+    text-align : center;
+    &--text {
+      font-size :1.4rem;
+      line-height : 1.71;
+    }
+
+  }
+
+  &__line {
+    border-bottom : solid 1px #e5e5e5;
+    margin-bottom : 2.4rem;
+  }
+
+  &__btn {
+    font-size : 1.4rem;
+    width : 40.8rem;
+    height : 4.6rem;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    border-radius : 4px;
+    margin-bottom : 2.4rem;
+  }
+
+}

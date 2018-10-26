@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, Renderer2} from '@angular/core';
 
 @Component({
   selector: 'onpicks-cart',
@@ -50,10 +50,23 @@ export class CartComponent implements OnInit {
     }
   ]
 
-  constructor() { }
+  constructor(
+    private renderer: Renderer2
+  ) { }
 
   ngOnInit(  ) {
     // this.cartList = this.utilService.getBuyList();
+  }
+
+  toggleWishList(item) {
+
+    if ( item.style.display === 'block') {
+      this.renderer.setStyle(item, 'display', 'none');
+    } else {
+      this.renderer.setStyle(item, 'display', 'block');
+    }
+
+
   }
 
   // minusAmount(index) {

@@ -77,6 +77,14 @@ button {
     }
   }
 
+  &--small {
+
+    border-radius : 2px;
+    font-size : 1.4rem;
+    font-weight : 400;
+    height : 4rem;
+  }
+
   &--black {
     //&:active,
     //&:hover{
@@ -182,6 +190,10 @@ button {
   opacity : 1 !important;;
 }
 
+.u-color-green {
+  color : $color-green !important;
+}
+
 
 .u-color-grey {
   color : $color-grey !important;
@@ -200,7 +212,11 @@ button {
 }
 
 .u-bold {
-  font-weight : 700;
+  font-weight : 700 !important;
+}
+
+.u-regular {
+  font-weight : 400 !important;
 }
 
 .u-animation-stop {
@@ -253,14 +269,6 @@ h1 {
 .row {
   max-width : $grid-width;
   margin: 0 auto;
-
-  // &:last-child {
-  //     margin-bottom: $row-margin-bottom;
-  // }
-
-  &:not(:last-child) {
-    margin-bottom: $gutter-vertical;
-  }
 
   @include clearfix;
 

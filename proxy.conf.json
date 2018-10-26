@@ -1,0 +1,7 @@
+{
+  "/abc/api/*" : {
+    "target" : "http://localhost/api",
+    "secure" : false,
+    "pathRewrite" : {"^/abc/api" : ""}
+  }
+}

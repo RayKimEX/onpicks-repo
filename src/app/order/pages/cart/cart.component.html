@@ -121,7 +121,42 @@
       </tr>
     </table>
 
-    <onpicks-sort-box class="cart__load-purchase-thing" [sortList]="[{ title : '다음에 구매할 물건 불러오기', value : 0 }]"></onpicks-sort-box>
+    <onpicks-sort-box (click)="toggleWishList(f)" class="cart__load-purchase-thing" [fontSize]="'1.4rem'" [showBox]="false" [sortList]="[{ title : '다음에 구매할 물건 불러오기', value : 0 }]"></onpicks-sort-box>
+    <div #f class="cart__wishlist">
+      <div class="cart__wishlist--title">다음에 구매하기</div>
+      <table class="cart__wishlist-table">
+        <tr>
+          <td>
+            <div class="cart__wishlist-table--image">
+              <img src="https://picsum.photos/112/112?image=180" alt="">
+            </div>
+
+            <div class="cart__wishlist-table--info">
+              <div class="cart__wishlist-table--info-title u-bold">알엑스바</div>
+              <div class="cart__wishlist-table--info-name">알엑스바 리얼 푸드 프로틴 에너지바 믹스드 베리 52G / RxBar Real Food Protein Bars Mixed Berry 1.83OZ</div>
+              <div class="cart__wishlist-table--info-price u-bold">40,900원</div>
+            </div>
+          </td>
+          <td>무료배송</td>
+          <td>
+            <div class="cart__wishlist-table--delivery-info">
+              <div class="cart__wishlist-table--delivery-info-image">
+                <img src="https://s3.amazonaws.com/img.onpicks.com/cart__table--info-N.png" alt="">
+              </div>
+
+              <div class="cart__wishlist-table--delivery-info-where"><span class="u-bold">뉴저지</span> 출고</div>
+              <div class="cart__wishlist-table--delivery-info-price">무료</div>
+              <div class="cart__wishlist-table--delivery-info-description">뉴저지 단독 배송 상품으로 개별 배송료가 발생합니다.</div>
+            </div>
+          </td>
+          <td>
+            <button class="btn btn--white btn--small cart__wishlist-table--btn">옵션 선택하기</button>
+            <button class="btn btn--white btn--small cart__wishlist-table--btn">삭제하기</button>
+          </td>
+        </tr>
+      </table>
+    </div>
+
 
     <div class="cart__payment">
       <div class="cart__section--title">결제금액</div>

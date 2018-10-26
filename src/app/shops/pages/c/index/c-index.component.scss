@@ -1,0 +1,28 @@
+@import '~src/assets/scss/abstracts/variables';
+
+.c-header{
+
+  width:100%;
+  height : 6rem;
+  background-color : $color-green;
+
+  &__category {
+    position: relative;
+    width:inherit;
+    height:inherit;
+    &--ul {
+      @include verticalCenter;
+    }
+    &--li{
+      list-style : none;
+      display:inline-block;
+      font-size: 1.4rem;
+      font-weight : 700;
+      color : $color-white;
+      &:not(:last-child){
+        margin-right : 7.2rem;
+
+      }
+    }
+  }
+}

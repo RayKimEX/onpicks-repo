@@ -1,7 +1,7 @@
 import {
   AfterViewInit,
   Component,
-  HostListener,
+  HostListener, Input,
   OnInit,
   Renderer2,
   ViewChild,
@@ -14,9 +14,10 @@ import {
   styleUrls: ['./banner-carousel.component.scss']
 })
 export class BannerCarouselComponent implements OnInit, AfterViewInit {
+  @Input('height') height;
+
   @ViewChild('container') container;
   @ViewChildren('itemList') itemList;
-  @ViewChild('circleNavigate') circleNavigate;
 
   imagesLargeList = [
     'https://picsum.photos/1920/440?image=120',
@@ -61,18 +62,19 @@ export class BannerCarouselComponent implements OnInit, AfterViewInit {
     // console.log(this.capturedTranslateX);
     // console.log(((this.capturedBrowserWidth - window.innerWidth ) * ( this.imageIndex ));
     const temp = this.capturedTranslateX - ((this.capturedBrowserWidth - window.innerWidth ) * ( this.imageIndex ))
-    console.log(this.capturedTranslateX);
-    console.log(this.capturedBrowserWidth);
 
     this.renderer.setStyle(this.container.nativeElement, 'transition', 'x');
     this.renderer.setStyle(this.container.nativeElement, 'transform', 'translateX(-' + temp  + 'px)');
   }
 
   ngAfterViewInit() {
-    const style = getComputedStyle( this.circleNavigate.nativeElement, null)
-    const offsetX = parseInt(style.left, 10) - parseInt(style.width, 10) / 2;
+    this.renderer.setStyle(this.container.nativeElement, 'height', this.height + 'rem' );
+    // this.imageOuter.forEach( (item, index) => {
+    //   console.log(item)
+    //   this.renderer.setStyle(item.nativeElement, 'height', this.height + 'rem' );
+    // });
+    // this.renderer.setStyle(this.imageOuter.nativeElement, 'height', this.height + 'rem' );
 
-    this.renderer.setStyle(this.circleNavigate.nativeElement, 'left', offsetX + 'px');
     this.renderer.setStyle(this.container.nativeElement, 'transition', 'x');
     this.renderer.setStyle(this.container.nativeElement, 'transform', 'translateX(-' + ( window.innerWidth * this.imageIndex ) + 'px)');
   }
