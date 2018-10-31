@@ -24,7 +24,9 @@ import {MemberModule} from './member/member.module';
 import {AccountModule} from './account/account.module';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {environment} from '../environments/environment';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {EffectsModule} from '@ngrx/effects';
+import {AuthEffects} from './core/store/auth/auth.effects';
 
 // export function getBaseHref(platformLocation: PlatformLocation): string {
 //   return platformLocation.getBaseHrefFromDOM();
@@ -40,6 +42,7 @@ import {ReactiveFormsModule} from '@angular/forms';
   imports: [
     BrowserModule,
     HttpClientModule,
+    FormsModule,
     ReactiveFormsModule,
 
 
@@ -49,6 +52,7 @@ import {ReactiveFormsModule} from '@angular/forms';
 
     // Common Module
     StoreModule.forRoot(reducers),
+    EffectsModule.forRoot([AuthEffects]),
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states
     }),

@@ -22,7 +22,7 @@ export class TestService {
           'Content-Type': 'application/json',
         }),
         // withCredentials: true
-      }
+  }
     ).subscribe((response) => {
       console.log(response);
     });

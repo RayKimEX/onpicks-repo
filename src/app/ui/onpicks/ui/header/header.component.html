@@ -17,11 +17,8 @@
       </svg>
     </span>
     <div class="u-float-right">
-      <span class="header__miscell--login"(click)="requestPayment()">결제요청</span>
-      <form #form [formGroup]="signupForm">
 
-      </form>
-      <span class="header__miscell--login" i18n="@@header__login" (click)="login()"> </span>
+      <span class="header__miscell--login" i18n="@@header__login" routerLink="/member/login"> </span>
       <span class="header__miscell--slash">&nbsp;|&nbsp;</span>
       <span class="header__miscell--signup" i18n="@@header__signup"> </span>
       <span class="header__miscell--favorites">

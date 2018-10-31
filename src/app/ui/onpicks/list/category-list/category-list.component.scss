@@ -2,13 +2,15 @@
 
   margin-bottom:5.6rem;
 
+  &__content {
+  }
+
   &__ul {
-    display: block;
-    width: inherit;
-    height: inherit;
+
   }
 
   &__title {
+    clear:both;
     font-size : 1.8rem;
     font-weight : 700;
     line-height : 1.39;

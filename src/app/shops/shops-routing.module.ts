@@ -42,12 +42,11 @@ const routes: Routes = [
             path: 'beauty',
             component: BeautyComponent,
           },
-
         ]
       },
       {
-        path: 'p/:id',
-        component: PComponent,
+        path : 'p/:id',
+        component : PComponent,
       }
 
     ]

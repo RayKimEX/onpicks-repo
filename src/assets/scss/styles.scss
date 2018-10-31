@@ -278,12 +278,16 @@ h1 {
 
     &:not(:last-child) {
       margin-right: $gutter-horizontal;
-
     }
 
     @include respond(tp) {
       width: 100% !important;
     }
+  }
+
+
+  [class ~= "-nf"]{
+    float: none !important;
   }
 
   @include respond(tl) {

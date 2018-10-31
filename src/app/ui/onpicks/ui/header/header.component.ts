@@ -7,6 +7,7 @@ import {
 } from '@angular/core';
 import {TestService} from '../../../../core/service/test/test.service';
 import {FormControl, FormGroup} from '@angular/forms';
+import {AuthService} from '../../../../core/service/auth/auth.service';
 
 @Component({
   selector: 'ui-header',
@@ -28,15 +29,13 @@ export class HeaderComponent implements OnInit, AfterViewInit {
 
   constructor(
     private renderer: Renderer2,
-    private testService: TestService
+    private testService: TestService,
+    private authService: AuthService
   ) {
   }
 
   ngOnInit() {
     this.tempDiv = this.renderer.createElement('div');
-    this.signupForm = new FormGroup({
-
-    });
   };
 
 
@@ -68,9 +67,9 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     this.testService.login();
   }
 
-  requestPayment() {
-    console.log(this.signupForm);
-    this.testService.requestPayment(this.signupForm, this.form.nativeElement);
+
+  getProfile() {
+    this.authService.getProfile();
   }
 
 

@@ -1,14 +1,18 @@
 <div class="row category-list">
   <div class="category-list__title">인기 카테고리</div>
-  <ul class="category-list__ul">
-    <li *ngFor="let item of popularCategory" class="col-2-of-12 category-list__item">
-      <div class="category-list__image--outer">
-        <img src="{{item.imgSrc}}" alt="">
-      </div>
-      <div class="category-list__item--name">
-        {{item.name}}
-      </div>
-    </li>
-  </ul>
+  <div class="category-list__content">
+
+    <ul class="category-list__ul">
+      <li *ngFor="let item of popularCategory" class="col-2-of-12-nf category-list__item">
+        <div class="category-list__image--outer">
+          <img src="{{item.imgSrc}}" alt="">
+        </div>
+        <div class="category-list__item--name">
+          {{item.name}}
+        </div>
+      </li>
+    </ul>
+
+  </div>
 
 </div>
