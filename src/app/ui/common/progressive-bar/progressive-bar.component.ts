@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'ui-progressive-bar',
@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./progressive-bar.component.scss']
 })
 export class ProgressiveBarComponent implements OnInit {
+  @Input('outerWidth') outerWidth;
+  @Input('progressWidth') progressWidth;
 
   constructor() { }
 

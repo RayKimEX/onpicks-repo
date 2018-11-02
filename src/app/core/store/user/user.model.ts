@@ -12,3 +12,15 @@ export interface UserState {
   // notificationList: [];
   // gradeInfo: string;
 }
+
+
+export interface UserSignUpAPI {
+  email: string;
+  nickname: string;
+  password: string;
+
+  // account: string;
+  // savedShippingAddress: ShippingAddress[];
+  // notificationList: [];
+  // gradeInfo: string;
+}

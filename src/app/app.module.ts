@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 
 import { LOCALE_ID, NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
@@ -28,6 +28,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {EffectsModule} from '@ngrx/effects';
 import {AuthEffects} from './core/store/auth/auth.effects';
 import {DOMAIN_HOST} from './app.config';
+import {AuthInterceptorService} from './core/service/auth/auth-interceptor.service';
 
 // export function getBaseHref(platformLocation: PlatformLocation): string {
 //   return platformLocation.getBaseHrefFromDOM();
@@ -70,6 +71,9 @@ import {DOMAIN_HOST} from './app.config';
     AccountModule
   ],
   providers: [
+    AuthInterceptorService,
+    { provide: HTTP_INTERCEPTORS, useExisting: AuthInterceptorService, multi: true },
+
     {
       provide: APP_BASE_HREF,
       useValue: '/' + (window.location.pathname.split('/')[1] || '')

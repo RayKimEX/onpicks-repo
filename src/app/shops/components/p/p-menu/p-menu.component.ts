@@ -169,7 +169,7 @@ export class PMenuComponent implements OnInit, OnDestroy {
           custom: function(tooltip) {
             // get the tooltip element
             let tooltipEl = document.getElementById('chartjs-tooltip');
-            console.log(tooltip);
+
             if(tooltip.dataPoints === undefined) return;
 
 

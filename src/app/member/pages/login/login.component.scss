@@ -55,6 +55,7 @@
     }
   }
 
+  // TODO : application/json형식으로 로그인 요청하면, request method에 다 보이는데, applicatoin/from-encoded ㅗ 보내면 어떻게 되는 지 확인 ?
   &__social {
 
     &--btn {

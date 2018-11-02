@@ -22,9 +22,8 @@ import {PopularBrandComponent} from './onpicks/list/popular-brand/popular-brand.
 import {CategoryListComponent} from './onpicks/list/category-list/category-list.component';
 import {TodayCollectionComponent} from './onpicks/list/today-collection/today-collection.component';
 import { ListActiveButtonComponent } from './onpicks/button/list-active-button/list-active-button.component';
-import { PlusIconComponent } from './common/plus-icon/plus-icon.component';
-import { MinusIconComponent } from './common/minus-icon/minus-icon.component';
 import { PlusMinusIconComponent } from './common/plus-minus-icon/plus-minus-icon.component';
+import { FreeDeliveryNotiboxComponent } from './onpicks/ui/free-delivery-notibox/free-delivery-notibox.component';
 
 @NgModule({
 
@@ -55,6 +54,7 @@ import { PlusMinusIconComponent } from './common/plus-minus-icon/plus-minus-icon
     TodayCollectionComponent,
     ListActiveButtonComponent,
     PlusMinusIconComponent,
+    FreeDeliveryNotiboxComponent,
   ],
   exports: [
     SimpleCarouselComponent,
@@ -78,6 +78,7 @@ import { PlusMinusIconComponent } from './common/plus-minus-icon/plus-minus-icon
 
     NumericButtonComponent,
     ProgressiveBarComponent,
+    FreeDeliveryNotiboxComponent,
   ]
 })
 

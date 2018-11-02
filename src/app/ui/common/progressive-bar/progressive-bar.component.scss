@@ -1,13 +1,19 @@
 @import '~src/assets/scss/abstracts/variables';
 
 .progressive-bar {
-  width : 69.4rem;
-  height : 1.2rem;
-  background-color : #e5e5e5;
-  border-radius : 6px;
+  display: inherit;
+  width: 100%;
+  height: 1.2rem;
+  background-color: #e5e5e5;
+  border-radius: 6px;
+
+
 
   &__rate {
-    width : 23.2rem;
+    display: inherit;
+    transition-duration: .25s;
+    transition-property: width;
+    //
     height : 1.2rem;
     background-color : $color-green;
     border-radius: 6px;

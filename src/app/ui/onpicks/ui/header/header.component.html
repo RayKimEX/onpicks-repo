@@ -21,7 +21,7 @@
       <ng-container *ngIf=" (user$ | async ).isAuthenticated === false">
         <span class="header__miscell--login" ><button i18n="@@header__login" routerLink="/member/login" >로그인/login</button></span>
         <span class="header__miscell--slash">&nbsp;|&nbsp;</span>
-        <span class="header__miscell--signup" i18n="@@header__signup"> </span>
+        <span class="header__miscell--signup"><button i18n="@@header__signup" routerLink="/member/signup">회원가입|signup</button></span>
       </ng-container>
 
       <ng-container  *ngIf=" (user$ | async ).isAuthenticated === true">
@@ -69,15 +69,8 @@
     </div>
     <onpicks-search-box [width]="46.4" [top]="-1" i18n-placeholder="@@header__placeholder" placeholder="search"></onpicks-search-box>
   </div>
-  <div class="header-free-delivery u-default-site-padding">
-    <ul>
-      <li>엘에이 무료배송까지 125,000원 남았습니다.</li>
-      <li>뉴저지 무료배송까지 125,000원 남았습니다.</li>
-      <li>달라스 무료배송 조건이 충족되었습니다.</li>
-      <li>총 상품금액 : 9999,000원 무료배송</li>
-      <li>홍콩 무료배송까지 125,000원 남았습니다.</li>
-    </ul>
-  </div>
+
+  <onpicks-free-delivery-notibox></onpicks-free-delivery-notibox>
   <div #menu class="header-menu__outer">
     <nav>
       <ul class="header-menu__item">

@@ -41,12 +41,13 @@
       </div>
     </figure>
     <h5 class="heading-quinary u-color-dark-grey">Size: X-Large / Color: Aqua / {{item.helpfulCount}} people found this helpful </h5>
-    <p class="p-reviews__content">
-      <span class="p-reviews__image" *ngIf="item.reviewThumbImg !== ''">
-          <img [drLazyLoad]="{method:'animation'}" src="{{item.reviewThumbImg}}" alt="">
-      </span>
+    <p class="p-reviews__content" [ngStyle]="{'width' : item.reviewThumbImg === '' ? 'auto' : '52.8rem'}">
+
       {{item.review}}
     </p>
+    <span class="p-reviews__image" *ngIf="item.reviewThumbImg !== ''">
+      <img [drLazyLoad]="{method:'animation'}" src="{{item.reviewThumbImg}}" alt="">
+    </span>
 
     <div class="p-reviews__option">
       <a href="#"><img src="https://s3.amazonaws.com/img.onpicks.com/thumbs-up-icon.jpg" alt=""><span class="p-reviews__option--feature">Helpful</span></a>
@@ -56,8 +57,13 @@
       <hr #hrLineList>
     </div>
   </div>
+
+
+
+
+
   <div class="p-reviews__pagination">
-    <ul *ngIf="currentPage !== 1">
+    <ul *ngIf="currentPage >= 1">
       <li *ngIf="currentPage !== 1">
         <div (click)="paginate(currentPage - 1)">
           <svg width="9" height="14" viewBox="0 0 9 14">
@@ -127,7 +133,11 @@
             <span *ngFor="let item of numberArray(totalPageArray.length - currentPage + 2 + (  currentPage === totalPageArray.length ? 1 : 0));  index as i;">
               <li>
                 <!-- +1의 의미는 현재 페이지에서 앞에 li를 하나 더 나오게 한다는 의미-->
-                <div (click)="paginate( totalPageArray.length - ( (totalPageArray.length - currentPage + 1 + ( currentPage === totalPageArray.length ? 1 : 0)) - i ) )" [ngClass]="{'p-reviews__pagination--number-bold' : currentPage === (totalPageArray.length - ( (totalPageArray.length - currentPage + 1 + ( currentPage === totalPageArray.length ? 1 : 0))- i)) }">{{totalPageArray.length - ( (totalPageArray.length - currentPage + 1 + ( currentPage === totalPageArray.length ? 1 : 0))- i) }}</div>
+                <div
+                  (click)="paginate( totalPageArray.length - ( (totalPageArray.length - currentPage + 1 + ( currentPage === totalPageArray.length ? 1 : 0)) - i ) )"
+                  [ngClass]="{'p-reviews__pagination--number-bold' : currentPage === (totalPageArray.length - ( (totalPageArray.length - currentPage + 1 + ( currentPage === totalPageArray.length ? 1 : 0))- i)) }">
+                  {{totalPageArray.length - ( (totalPageArray.length - currentPage + 1 + ( currentPage === totalPageArray.length ? 1 : 0))- i) }}
+                </div>
               </li>
             </span>
           </span>

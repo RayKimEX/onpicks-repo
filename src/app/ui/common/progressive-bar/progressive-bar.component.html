@@ -1,3 +1,5 @@
-<div class="progressive-bar">
-  <div class="progressive-bar__rate"></div>
+<div [ngStyle]="{ 'width' : outerWidth }" class="progressive-bar">
+  <div [ngStyle]="{ 'width' : progressWidth }" class="progressive-bar__rate"></div>
 </div>
+
+

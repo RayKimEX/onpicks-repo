@@ -1,10 +1,12 @@
 // Section 2
 
 import {Action} from '@ngrx/store';
-import {UserState} from '../user/user.model';
+import {UserSignUpAPI, UserState} from '../user/user.model';
 
 
 export const SIGNUP    = '[AUTH] SIGNUP';
+export const SIGNUP_SUCCESS    = '[AUTH] SIGNUP_SUCCESS';
+export const SIGNUP_FAILURE    = '[AUTH] SIGNUP_FAILURE';
 
 export const LOGIN    = '[AUTH] LOGIN';
 export const LOGIN_SUCCESS = '[AUTH] LOGIN_SUCCESS';
@@ -24,8 +26,7 @@ export const LOGOUT_FAILURE    = '[AUTH] LOGOUT_FAILURE';
 
 export class Signup implements Action {
   readonly type = SIGNUP;
-  constructor(public payload: any) {}
-
+  constructor(public payload: UserSignUpAPI) {}
 }
 
 

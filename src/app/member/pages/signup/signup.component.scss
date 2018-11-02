@@ -64,6 +64,10 @@
       height : 4.6rem;
       border-radius : 4px;
       margin-bottom : 1.6rem;
+      svg {
+        float : left;
+        margin-left :1.6rem;
+      }
       span {
         @include absCenter;
       }

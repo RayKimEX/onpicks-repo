@@ -15,6 +15,7 @@ import {
 import {AuthService} from '../../service/auth/auth.service';
 import {Router} from '@angular/router';
 import {of} from 'rxjs';
+import {UserSignUpAPI} from '../user/user.model';
 
 @Injectable()
 export class AuthEffects {
@@ -27,6 +28,27 @@ export class AuthEffects {
 
   }
 
+
+  @Effect()
+  authSignUp = this.actions$.pipe(
+    ofType( AuthActions.SIGNUP ),
+    map( (action: Signup) => action.payload ),
+    switchMap( (payload: UserSignUpAPI) => {
+      return this.authService.signup(payload)
+        .pipe(
+          map( (user) => {
+            this.router.navigate(['/']);
+            console.log(user);
+            return new LoginSuccess({nickName : 'hong', email : 'jesus_join@naver.com', thumbnailSmallImgSrc : 'https://s3.amazonaws.com/img.onpicks.com/cart__table--info-N.png'});
+          }),
+          catchError( (error) => {
+            console.log(error);
+            return of(new LoginFailure({ error : error }));
+          })
+        );
+    })
+  );
+
   @Effect()
   authLogin = this.actions$.pipe(
     ofType( AuthActions.LOGIN ),
@@ -35,7 +57,7 @@ export class AuthEffects {
       return this.authService.login( payload.email, payload.password )
         .pipe(
           map( (user) => {
-            console.log(user);
+            this.router.navigate(['/']);
             return new LoginSuccess({nickName : 'hong', email : 'jesus_join@naver.com', thumbnailSmallImgSrc : 'https://s3.amazonaws.com/img.onpicks.com/cart__table--info-N.png'});
           }),
           catchError( (error) => {

@@ -29,10 +29,13 @@ export class PReviewsComponent implements OnInit, AfterViewInit, OnDestroy {
   currentPage = 1;
   totalPageArray = [];
 
-
   currentList = [];
 
 
+
+  currentMenuPositionOffset = 0;
+  previousMenuPositionOffset = 0;
+  menuPositionInterval;
   totalList = [
     {
       name: 'Chris',
@@ -1519,12 +1522,35 @@ export class PReviewsComponent implements OnInit, AfterViewInit, OnDestroy {
   ngOnDestroy() {
     console.log('this is dstroyed');
     this.hrLineList$.unsubscribe();
+    clearInterval(this.menuPositionInterval);
+
   }
+
+
+
+
 
   ngAfterViewInit() {
 
     // TODO: 이 부분이 현재, 맨처음 로딩시 계산으로 하는형식이 생각처럼 잘 되지 않음. 그래서 좀 강제적으로 정해진 값 입력
-    this.store.dispatch( new MenuActions.UpdateMenuPosition(4538) );
+
+
+    this.menuPositionInterval = setInterval( () => {
+      const bodyRect = document.body.getBoundingClientRect();
+      const elemRect = this.hrLineList.last.nativeElement.getBoundingClientRect();
+
+      const temp   = elemRect.top - bodyRect.top;
+      this.currentMenuPositionOffset = temp - 703;
+
+      console.log(this.currentMenuPositionOffset);
+      if ( this.previousMenuPositionOffset === this.currentMenuPositionOffset ) {
+        return ;
+      }
+
+      this.store.dispatch( new MenuActions.UpdateMenuPosition(this.currentMenuPositionOffset) );
+      this.previousMenuPositionOffset = this.currentMenuPositionOffset;
+    }, 500);
+
     // hrListList가 변화가 있을때 체크함
     this.hrLineList$ = this.hrLineList.changes.subscribe( t => {
       const bodyRect = document.body.getBoundingClientRect();
@@ -1545,6 +1571,7 @@ export class PReviewsComponent implements OnInit, AfterViewInit, OnDestroy {
       this.renderer.setStyle(val.nativeElement, 'transition-duration', (basisValue * 5) + 's' );
       this.renderer.setStyle(val.nativeElement, 'width', 51.6 * basisValue + 'rem' );
     });
+    console.log(this.currentPage);
   }
 
   numberArray(n: number): any[] {
