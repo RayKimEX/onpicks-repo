@@ -109,6 +109,11 @@ $mini-width : 264+24px;
       position: relative;
       width: 26.4rem;
       height: 26.4rem;
+      onpicks-list-active-button {
+        position: absolute;
+        right : 0;
+        bottom : 0;
+      }
       svg {
         position: absolute;
         top: 1.6rem;

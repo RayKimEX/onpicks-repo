@@ -1,0 +1,27 @@
+@import '~src/assets/scss/abstracts/variables';
+
+
+.plus-minus-icon {
+  position:relative;
+  &__horizontal-line {
+    transition-duration: .25s;
+    transition-property: color;
+    transition-timing-function: ease-in-out;
+    @include absCenter;
+    display:inline-block;
+    border: 1px solid;
+    height : 2px;
+  }
+
+  &__vertical-line {
+
+    transition-duration: .25s;
+    transition-property: color;
+    transition-timing-function: ease-in-out;
+    @include absCenter;
+    display:inline-block;
+    border : solid 1px;
+    width : 2px;
+  }
+
+}

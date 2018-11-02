@@ -4,6 +4,18 @@
 .today-collection{
   margin-bottom : 5.6rem;
 
+  &__content {
+    white-space: nowrap;
+    overflow: hidden;
+    &--outer {
+      position:relative;
+    }
+  }
+  &__ul {
+
+    transition: transform .5s ease 0s;
+  }
+
   &__title {
     font-size : 1.8rem;
     font-weight : 700;
@@ -19,7 +31,9 @@
   }
 
   &__item {
-
+    vertical-align: top;
+    display:inline-block;
+    width : 26.4rem;
     &--category-name {
       color : $color-green;
       font-size : 1.2rem;
@@ -39,7 +53,7 @@
       line-height: 1.33;
       letter-spacing : 0.04rem;
       font-size: 1.2rem;
-
+      white-space:pre-line;
     }
   }
 }

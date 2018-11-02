@@ -1,0 +1,72 @@
+@import '~src/assets/scss/abstracts/variables';
+
+div {
+
+  display:table;
+  text-align:center;
+  transition-duration: .25s;
+  transition-property: all;
+  transition-timing-function: ease-in-out;
+  width : 4rem;
+  height : 4rem;
+  opacity : 0.9;
+  border : solid 1px #292929;
+  border-radius : 2rem;
+  position:relative;
+
+
+  .touch__amount-down {
+    cursor : pointer;
+    border-radius: 50%;
+    width: 35px;
+    height: 38px;
+    position: absolute;
+    left:0
+  }
+
+  .touch__amount-up {
+    cursor : pointer;
+    border-radius: 50%;
+    width: 35px;
+    height: 38px;
+    position: absolute;
+    right:0
+  }
+
+
+  ui-plus-minus-icon:nth-child(2) {
+    display:inline-block;
+    @include absCenter;
+    &::after {
+      content :'';
+      width:20px;
+      height : 40px;
+    }
+  }
+
+  .extendUI{
+    display:none;
+
+    vertical-align: middle;
+    ui-plus-minus-icon:nth-child(1) {
+      display:inline-block;
+      position: absolute;
+
+      border-radius : 50%;
+      left: 1.9rem;
+      top : 50%;
+      transform: translateY(-50%);
+    }
+
+    &__number {
+
+      display:inline-block;
+      margin-bottom: 2px;
+      font-size : 1.4rem;
+      line-height : 1.43;
+      letter-spacing: 0.2px;
+      font-weight :700;
+      color : #292929;
+    }
+  }
+}

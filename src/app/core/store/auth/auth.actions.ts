@@ -1,6 +1,7 @@
 // Section 2
 
 import {Action} from '@ngrx/store';
+import {UserState} from '../user/user.model';
 
 
 export const SIGNUP    = '[AUTH] SIGNUP';
@@ -10,8 +11,14 @@ export const LOGIN_SUCCESS = '[AUTH] LOGIN_SUCCESS';
 export const LOGIN_FAILURE = '[AUTH] LOGIN_FAILURE';
 
 
+export const GET_AUTHUSER_INFO    = '[AUTH] GET_AUTHUSER_INFO';
+export const GET_AUTHUSER_INFO_SUCCESS = '[AUTH] GET_AUTHUSER_INFO_SUCCESS';
+export const GET_AUTHUSER_INFO_FAILURE = '[AUTH] GET_AUTHUSER_INFO_FAILURE';
+
 // export const LOGOUT    = '[AUTH] LOGOUT';
 export const LOGOUT    = '[AUTH] LOGOUT';
+export const LOGOUT_SUCCESS    = '[AUTH] LOGOUT_SUCCESS';
+export const LOGOUT_FAILURE    = '[AUTH] LOGOUT_FAILURE';
 
 
 
@@ -33,7 +40,7 @@ export class Login implements Action {
 export class LoginSuccess implements Action {
   readonly type = LOGIN_SUCCESS;
 
-  constructor(public payload: any) {}
+  constructor(public payload: UserState) {}
 
 }
 
@@ -46,9 +53,40 @@ export class LoginFailure implements Action {
 
 
 
+export class GetAuthUser implements Action {
+  readonly type = GET_AUTHUSER_INFO;
+
+}
+
+export class GetAuthUserInfoSuccess implements Action {
+  readonly type = GET_AUTHUSER_INFO_SUCCESS;
+
+  constructor(public payload: UserState) {}
+
+}
+
+export class GetAuthUserInfoFailure implements Action {
+  readonly type = GET_AUTHUSER_INFO_FAILURE;
+
+  constructor(public payload: any) {}
+
+}
+
+
+
 
 export class Logout implements Action {
   readonly type = LOGOUT;
+}
+
+export class LogoutSuccess implements Action {
+  readonly type = LOGOUT_SUCCESS;
+}
+
+export class LogoutFailure implements Action {
+  readonly type = LOGOUT_FAILURE;
+
+  constructor(public payload: any) {}
 }
 
 export type AuthActions =
@@ -58,4 +96,11 @@ export type AuthActions =
   | LoginSuccess
   | LoginFailure
 
-  | Logout;
+  | GetAuthUser
+  | GetAuthUserInfoFailure
+  | GetAuthUserInfoSuccess
+
+  | Logout
+  | LogoutSuccess
+  | LogoutFailure;
+

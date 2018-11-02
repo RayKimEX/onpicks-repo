@@ -21,6 +21,10 @@ import { ProgressiveBarComponent } from './common/progressive-bar/progressive-ba
 import {PopularBrandComponent} from './onpicks/list/popular-brand/popular-brand.component';
 import {CategoryListComponent} from './onpicks/list/category-list/category-list.component';
 import {TodayCollectionComponent} from './onpicks/list/today-collection/today-collection.component';
+import { ListActiveButtonComponent } from './onpicks/button/list-active-button/list-active-button.component';
+import { PlusIconComponent } from './common/plus-icon/plus-icon.component';
+import { MinusIconComponent } from './common/minus-icon/minus-icon.component';
+import { PlusMinusIconComponent } from './common/plus-minus-icon/plus-minus-icon.component';
 
 @NgModule({
 
@@ -49,6 +53,8 @@ import {TodayCollectionComponent} from './onpicks/list/today-collection/today-co
     PopularBrandComponent,
     CategoryListComponent,
     TodayCollectionComponent,
+    ListActiveButtonComponent,
+    PlusMinusIconComponent,
   ],
   exports: [
     SimpleCarouselComponent,
@@ -67,6 +73,8 @@ import {TodayCollectionComponent} from './onpicks/list/today-collection/today-co
     PopularBrandComponent,
     CategoryListComponent,
     TodayCollectionComponent,
+    ListActiveButtonComponent,
+    PlusMinusIconComponent,
 
     NumericButtonComponent,
     ProgressiveBarComponent,

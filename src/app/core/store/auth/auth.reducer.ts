@@ -4,17 +4,29 @@ import {AuthState} from './auth.model';
 
 
 const initialState: AuthState = {
-  authenticated : false,
+  user: null,
+  isAuthenticated : false,
 };
 
-export function AuthReducer ( state = initialState, action : AuthActions.AuthActions ) {
+export function AuthReducer ( state = initialState, action: AuthActions.AuthActions ) {
 
   switch ( action.type ) {
-    case AuthActions.LOGIN :
+    case AuthActions.GET_AUTHUSER_INFO_SUCCESS :
+    case AuthActions.LOGIN_SUCCESS :
+      return {
+        ...state,
+        user : action.payload,
+        isAuthenticated : true,
+      }
+    case AuthActions.LOGOUT_SUCCESS :
+      return {
+        ...state,
+        isAuthenticated : false,
+      }
     case AuthActions.SIGNUP :
       return {
         ...state,
-        authenticated: true,
+        isAuthenticated: true,
       };
     default:
       return state;

@@ -27,6 +27,7 @@ import {environment} from '../environments/environment';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {EffectsModule} from '@ngrx/effects';
 import {AuthEffects} from './core/store/auth/auth.effects';
+import {DOMAIN_HOST} from './app.config';
 
 // export function getBaseHref(platformLocation: PlatformLocation): string {
 //   return platformLocation.getBaseHrefFromDOM();
@@ -76,6 +77,10 @@ import {AuthEffects} from './core/store/auth/auth.effects';
     {
       provide: LOCALE_ID,
       useValue : 'ko'
+    },
+    {
+      provide: DOMAIN_HOST,
+      useValue : window.location.origin
     }
   ],
   bootstrap: [ AppComponent ]

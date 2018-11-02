@@ -1,5 +1,9 @@
 import {Component, Inject, LOCALE_ID} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import {DOMAIN_HOST} from './app.config';
+import {Store} from '@ngrx/store';
+import {AppState} from './core/store/app.reducer';
+import {GetAuthUser} from './core/store/auth/auth.actions';
 
 @Component({
   selector: 'onpicks-root',
@@ -12,10 +16,10 @@ export class AppComponent {
   title = 'onpicks';
   constructor(
     @Inject(LOCALE_ID) public locale: string,
+    private store: Store<AppState>,
     httpClient: HttpClient
   ) {
-    // this.httpClient.post()
-    console.log(this.locale);
+    this.store.dispatch(new GetAuthUser());
   }
 }
 

@@ -8,6 +8,12 @@ import {
 import {TestService} from '../../../../core/service/test/test.service';
 import {FormControl, FormGroup} from '@angular/forms';
 import {AuthService} from '../../../../core/service/auth/auth.service';
+import {AppState} from '../../../../core/store/app.reducer';
+import {select, Store} from '@ngrx/store';
+
+import {Observable} from 'rxjs';
+import {AuthState} from '../../../../core/store/auth/auth.model';
+import {Logout} from '../../../../core/store/auth/auth.actions';
 
 @Component({
   selector: 'ui-header',
@@ -21,20 +27,30 @@ export class HeaderComponent implements OnInit, AfterViewInit {
 
   @ViewChild('menu') menuRef;
   @ViewChild('shops') shopsRef;
-  signupForm: FormGroup;
   @ViewChild('form') form;
 
+  signupForm: FormGroup;
   tempDiv;
+  user$: Observable<AuthState>;
+
+
+
   // TODO: 이부분에 대해서 이방식이 맞는지? ngrx로 하려면, 한번더 update를 쳐야 되서 이방식이 아닌거같음 ->
 
   constructor(
     private renderer: Renderer2,
     private testService: TestService,
-    private authService: AuthService
+    private authService: AuthService,
+    private store: Store<AppState>
   ) {
+    this.user$ = this.store.pipe(
+      select('auth')
+    );
   }
 
   ngOnInit() {
+
+    console.log(this.user$);
     this.tempDiv = this.renderer.createElement('div');
   };
 
@@ -62,15 +78,11 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     this.renderer.setStyle(this.menuRef.nativeElement, 'display', 'block');
   }
 
-  login() {
-    // console.log('나는 로그인이다');
-    this.testService.login();
+
+  logout() {
+    this.store.dispatch(new Logout());
   }
 
-
-  getProfile() {
-    this.authService.getProfile();
-  }
 
 
 }

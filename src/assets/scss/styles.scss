@@ -272,6 +272,11 @@ h1 {
 
   @include clearfix;
 
+  [class *= "-nf"]{
+    float: none !important;
+
+  }
+
   /* class이름이 col로 시작한다는 말임 */
   [class ^= "col-"]{
     float: left;
@@ -285,10 +290,6 @@ h1 {
     }
   }
 
-
-  [class ~= "-nf"]{
-    float: none !important;
-  }
 
   @include respond(tl) {
     padding : 0 2rem;

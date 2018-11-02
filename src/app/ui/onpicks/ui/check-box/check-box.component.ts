@@ -33,7 +33,6 @@ export class CheckBoxComponent implements OnInit, AfterViewInit {
   @HostListener('mouseover')
   onMouseOver() {
     this.isChecked = this.f.nativeElement.checked;
-    console.log(this.isChecked);
   }
 
   deselectRadio(f) {

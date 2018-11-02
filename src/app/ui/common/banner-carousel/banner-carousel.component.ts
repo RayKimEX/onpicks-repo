@@ -1,6 +1,6 @@
 import {
   AfterViewInit,
-  Component,
+  Component, ElementRef,
   HostListener, Input,
   OnInit,
   Renderer2,
@@ -18,6 +18,9 @@ export class BannerCarouselComponent implements OnInit, AfterViewInit {
 
   @ViewChild('container') container;
   @ViewChildren('itemList') itemList;
+  @ViewChild('buttonNext', {read : ElementRef}) buttonNext;
+  @ViewChild('buttonPrev', {read : ElementRef}) buttonPrev;
+  @ViewChild('circleNavigate') circleNavigate;
 
   imagesLargeList = [
     'https://picsum.photos/1920/440?image=120',
@@ -33,6 +36,7 @@ export class BannerCarouselComponent implements OnInit, AfterViewInit {
   imageIndex = 1;
   capturedBrowserWidth;
   capturedTranslateX;
+  myInterval;
 
 
 
@@ -47,6 +51,21 @@ export class BannerCarouselComponent implements OnInit, AfterViewInit {
   constructor(private renderer: Renderer2) {
 
   }
+
+  @HostListener('mouseover')
+  onMouseOver() {
+    this.renderer.setStyle( this.buttonNext.nativeElement, 'opacity', '1');
+    this.renderer.setStyle( this.buttonPrev.nativeElement, 'opacity', '1');
+    this.renderer.setStyle( this.circleNavigate.nativeElement, 'opacity', '1' );
+  }
+
+  @HostListener('mouseleave')
+  onMouseLeave() {
+    this.renderer.setStyle( this.buttonNext.nativeElement, 'opacity', '0');
+    this.renderer.setStyle( this.buttonPrev.nativeElement, 'opacity', '0');
+    this.renderer.setStyle( this.circleNavigate.nativeElement, 'opacity', '0' );
+  }
+
 
   ngOnInit() {
     this.imageIndex = 1;
@@ -77,10 +96,14 @@ export class BannerCarouselComponent implements OnInit, AfterViewInit {
 
     this.renderer.setStyle(this.container.nativeElement, 'transition', 'x');
     this.renderer.setStyle(this.container.nativeElement, 'transform', 'translateX(-' + ( window.innerWidth * this.imageIndex ) + 'px)');
+
+    this.myInterval = setInterval(() => this.moveNext(), 4000);
   }
 
   nextButton() {
 
+    clearInterval( this.myInterval );
+    this.myInterval = setInterval( () => this.moveNext(), 4000);
     if ( this.imageIndex === this.imagesLargeList.length - 2) {
       this.renderer.setStyle(this.container.nativeElement, 'transition', 'x');
       this.renderer.setStyle(this.container.nativeElement, 'transform', 'translateX(0px)');
@@ -88,7 +111,7 @@ export class BannerCarouselComponent implements OnInit, AfterViewInit {
       setTimeout(() => {
         this.capturedBrowserWidth = window.innerWidth;
         this.imageIndex++;
-        this.renderer.setStyle(this.container.nativeElement, 'transition', 'transform .2s ease 0s');
+        this.renderer.setStyle(this.container.nativeElement, 'transition', 'transform .5s ease 0s');
         this.renderer.setStyle(this.container.nativeElement, 'transform', 'translateX(-' + ( window.innerWidth * this.imageIndex ) + 'px)');
         this.capturedTranslateX  = window.innerWidth * this.imageIndex;
       }, 20);
@@ -96,7 +119,7 @@ export class BannerCarouselComponent implements OnInit, AfterViewInit {
     } else {
       this.capturedBrowserWidth = window.innerWidth;
       this.imageIndex++;
-      this.renderer.setStyle(this.container.nativeElement, 'transition', 'transform .2s ease 0s');
+      this.renderer.setStyle(this.container.nativeElement, 'transition', 'transform .5s ease 0s');
       this.renderer.setStyle(this.container.nativeElement, 'transform', 'translateX(-' + ( window.innerWidth * this.imageIndex ) + 'px)');
       this.capturedTranslateX  = window.innerWidth * this.imageIndex;
     }
@@ -104,7 +127,8 @@ export class BannerCarouselComponent implements OnInit, AfterViewInit {
 
   prevButton() {
 
-    console.log(this.imageIndex);
+    clearInterval( this.myInterval );
+    this.myInterval = setInterval( () => this.moveNext(), 4000);
     if ( this.imageIndex === 1 ) {
       this.imageIndex = this.imagesLargeList.length - 1;
       this.renderer.setStyle(this.container.nativeElement, 'transition', 'x');
@@ -114,7 +138,7 @@ export class BannerCarouselComponent implements OnInit, AfterViewInit {
       setTimeout(() => {
         this.capturedBrowserWidth = window.innerWidth;
         this.imageIndex--;
-        this.renderer.setStyle(this.container.nativeElement, 'transition', 'transform .2s ease 0s');
+        this.renderer.setStyle(this.container.nativeElement, 'transition', 'transform .5s ease 0s');
         this.renderer.setStyle(this.container.nativeElement, 'transform', 'translateX(-' + ( window.innerWidth * this.imageIndex ) + 'px)');
         this.capturedTranslateX  = window.innerWidth * this.imageIndex;
       }, 20);
@@ -122,7 +146,30 @@ export class BannerCarouselComponent implements OnInit, AfterViewInit {
       this.capturedBrowserWidth = window.innerWidth;
 
       this.imageIndex--;
-      this.renderer.setStyle(this.container.nativeElement, 'transition', 'transform .2s ease 0s');
+      this.renderer.setStyle(this.container.nativeElement, 'transition', 'transform .5s ease 0s');
+      this.renderer.setStyle(this.container.nativeElement, 'transform', 'translateX(-' + ( window.innerWidth * this.imageIndex ) + 'px)');
+      this.capturedTranslateX  = window.innerWidth * this.imageIndex;
+    }
+  }
+
+
+  private moveNext() {
+    if ( this.imageIndex === this.imagesLargeList.length - 2) {
+      this.renderer.setStyle(this.container.nativeElement, 'transition', 'x');
+      this.renderer.setStyle(this.container.nativeElement, 'transform', 'translateX(0px)');
+      this.imageIndex = 0;
+      setTimeout(() => {
+        this.capturedBrowserWidth = window.innerWidth;
+        this.imageIndex++;
+        this.renderer.setStyle(this.container.nativeElement, 'transition', 'transform 1.3s ease 0s');
+        this.renderer.setStyle(this.container.nativeElement, 'transform', 'translateX(-' + ( window.innerWidth * this.imageIndex ) + 'px)');
+        this.capturedTranslateX  = window.innerWidth * this.imageIndex;
+      }, 20);
+
+    } else {
+      this.capturedBrowserWidth = window.innerWidth;
+      this.imageIndex++;
+      this.renderer.setStyle(this.container.nativeElement, 'transition', 'transform 1.3s ease 0s');
       this.renderer.setStyle(this.container.nativeElement, 'transform', 'translateX(-' + ( window.innerWidth * this.imageIndex ) + 'px)');
       this.capturedTranslateX  = window.innerWidth * this.imageIndex;
     }

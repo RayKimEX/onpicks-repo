@@ -1,11 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import {AfterViewInit, Component, OnInit, Renderer2, ViewChild, ViewChildren} from '@angular/core';
 
 @Component({
   selector: 'onpicks-category-list',
   templateUrl: './category-list.component.html',
   styleUrls: ['./category-list.component.scss']
 })
-export class CategoryListComponent implements OnInit {
+export class CategoryListComponent implements OnInit, AfterViewInit {
+  @ViewChildren('itemList') itemList;
+  @ViewChild('container') container;
 
   popularCategory = [
     {
@@ -46,9 +48,28 @@ export class CategoryListComponent implements OnInit {
     },
   ]
 
-  constructor() { }
+  imageIndex = 0;
+  itemListArray;
+
+  constructor(
+    private renderer: Renderer2,
+  ) { }
 
   ngOnInit() {
   }
 
+  ngAfterViewInit() {
+    this.itemListArray = this.itemList.toArray();
+  }
+
+  nextButton() {
+    this.imageIndex--;
+    this.renderer.setStyle(this.container.nativeElement, 'transform', 'translateX(' + this.imageIndex * 192 + 'px)');
+  }
+
+  prevButton() {
+    this.imageIndex++;
+    this.renderer.setStyle(this.container.nativeElement, 'transform', 'translateX(' + this.imageIndex * 192 + 'px)');
+
+  }
 }

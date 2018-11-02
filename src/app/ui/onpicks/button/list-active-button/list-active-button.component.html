@@ -1,0 +1,35 @@
+<div #outer>
+
+
+  <span #extendUI class="extendUI">
+    <ui-plus-minus-icon
+      [opacity]="minusOpacity"
+      [color]="'#292929'"
+      [size]="'14px'"
+      #minusIcon
+      [type]="'minus'"></ui-plus-minus-icon>
+    <span class="extendUI__number">{{amount}}</span>
+  </span>
+
+
+  <ui-plus-minus-icon
+    [opacity]="plusOpactiy"
+    [color]="plusColor"
+    [size]="plusMinusIconSize"
+    #plusIcon
+    [type]="'plus'" ></ui-plus-minus-icon>
+
+  <span class="touch__amount-up"
+        (mousedown)="downOpacity('plus')"
+        (mouseup)="upOpacity('plus')"
+        (mouseleave)="upOpacity('plus')"
+        (click)="extendWidth()"
+  ></span>
+  <span *ngIf="isExtend" class="touch__amount-down"
+        (mousedown)="downOpacity('minus')"
+        (mouseup)="upOpacity('minus')"
+        (mouseleave)="upOpacity('minus')"
+        (click)="amountDown()"
+  ></span>
+</div>
+

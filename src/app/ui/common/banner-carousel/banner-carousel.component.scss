@@ -7,6 +7,15 @@
   margin-top:0;
   padding-top:0;
 
+  onpicks-circle-n-button {
+    transition : opacity .3s ease 0s;
+    opacity : 0;
+  }
+
+  onpicks-circle-p-button {
+    transition : opacity .3s ease 0s;
+    opacity : 0;
+  }
 
   &__item {
     height:inherit;
@@ -49,14 +58,19 @@
 
     .circle-navigate{
 
-      &__active {
-        background-color : white !important;
-      }
 
       position : relative;
       bottom : 50px;
 
+
+      &__active {
+        background-color : white !important;
+      }
+
+
       &__outer {
+        transition : opacity .3s ease 0s;
+        opacity : 0;
         @include horizontalCenter;
         display:inline-block;
 
