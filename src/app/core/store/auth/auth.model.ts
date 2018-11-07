@@ -48,27 +48,27 @@ export interface AuthState {
 
 
 
-export interface CartState {
-  // account: string;
-  // savedShippingAddress: ShippingAddress[];
-  // notificationList: [];
-  // gradeInfo: string;
-}
+// export interface CartState {
+//   account: string;
+//   savedShippingAddress: ShippingAddress[];
+//   notificationList: [];
+//   gradeInfo: string;
+// }
 
-export interface ShippingAddress {
-  receiverName: string;
-  phoneNumber: string;
-  address: string;
-  detailAddress: string;
-  isDefault: boolean;
-
-  zipCode: string;
-
-  // 외국 사이트
-  city: string;
-  state: string;
-  country: string;
-}
+// export interface ShippingAddress {
+//   receiverName: string;
+//   phoneNumber: string;
+//   address: string;
+//   detailAddress: string;
+//   isDefault: boolean;
+//
+//   zipCode: string;
+//
+//   // 외국 사이트
+//   city: string;
+//   state: string;
+//   country: string;
+// }
 // date_joined: "2018-10-25T06:23:51.494429Z"
 // email: "dev@mojostudio.io"
 // id: 1

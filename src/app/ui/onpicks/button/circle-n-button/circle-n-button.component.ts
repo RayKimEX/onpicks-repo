@@ -5,20 +5,15 @@ import {AfterViewInit, Component, Input, OnInit, Renderer2, ViewChild, ViewChild
   templateUrl: './circle-n-button.component.html',
   styleUrls: ['./circle-n-button.component.scss']
 })
-export class CircleNButtonComponent implements OnInit, AfterViewInit{
-  @ViewChild('nextButton') nextButton;
+export class CircleNButtonComponent implements OnInit{
   @Input('right') right;
   @Input('top') top;
+  // @Input('')
 
   constructor(private renderer: Renderer2) { }
 
   ngOnInit() {
 
-  }
-
-  ngAfterViewInit() {
-    this.renderer.setStyle(this.nextButton.nativeElement, 'right', this.right);
-    this.renderer.setStyle(this.nextButton.nativeElement, 'top', this.top);
   }
 
 }

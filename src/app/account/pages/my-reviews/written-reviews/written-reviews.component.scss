@@ -1,0 +1,81 @@
+@import '~src/assets/scss/abstracts/variables';
+
+.written-reviews {
+
+
+  &__title {
+    margin-bottom : 2.4rem;
+  }
+  &__item {
+
+
+    &--star-rating {
+      margin-right : 8px;
+    }
+    &--figcaption {
+      margin-bottom : 3px;
+    }
+    &--content {
+      margin-top : 8px;
+      min-height: 11.2rem;
+      display:inline-block;
+    }
+    &__option {
+      margin-top:2.4rem;
+      &-feature {
+        position:relative;
+        margin-left: 0.8rem;
+        margin-right: 3.2rem;
+        font-size:1.6rem;
+        font-weight : 500;
+        line-height : 1.5;
+        letter-spacing: 0.04rem;
+        color: $color-dark-grey;
+        top:-0.5rem;
+      }
+
+      &-report {
+        float : right;
+        font-size:1.6rem;
+        font-weight:500;
+        line-height: 1.5;
+        letter-spacing : 0.04rem;
+        color:$color-grey;
+      }
+    }
+
+    &--figure {
+      position:relative;
+
+      &-image {
+        position:relative;
+        display:inline-block;
+        width:4rem;
+        height:4.2rem;
+        margin-right:1.6rem;
+        border-radius : 50%;
+        overflow:hidden;
+      }
+
+
+      &-caption {
+
+        position:absolute;
+        top: -0.3rem;
+        display: inline-block;
+
+        & > figcaption {
+          width : 10rem;
+          margin-bottom: 1px;
+        }
+
+        &-date {
+          margin-left : 0.8rem;
+          font-size : 1.4rem;
+          font-weight : 500;
+          letter-spacing : 0.03rem;
+        }
+      }
+    }
+  }
+}

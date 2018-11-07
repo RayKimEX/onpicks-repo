@@ -1,5 +1,11 @@
-import {AfterViewInit, Component, Input, OnInit, Renderer2, ViewChild} from '@angular/core';
-import {fromEvent} from 'rxjs';
+import {
+  AfterViewInit,
+  Component,
+  Input,
+  OnInit,
+  Renderer2,
+  ViewChild
+} from '@angular/core';
 
 @Component({
   selector: 'onpicks-search-box',

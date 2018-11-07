@@ -24,6 +24,8 @@ import {TodayCollectionComponent} from './onpicks/list/today-collection/today-co
 import { ListActiveButtonComponent } from './onpicks/button/list-active-button/list-active-button.component';
 import { PlusMinusIconComponent } from './common/plus-minus-icon/plus-minus-icon.component';
 import { FreeDeliveryNotiboxComponent } from './onpicks/ui/free-delivery-notibox/free-delivery-notibox.component';
+import { InputBoxComponent } from './onpicks/ui/input-box/input-box.component';
+import { ButtonComponent } from './onpicks/button/button/button.component';
 
 @NgModule({
 
@@ -55,6 +57,8 @@ import { FreeDeliveryNotiboxComponent } from './onpicks/ui/free-delivery-notibox
     ListActiveButtonComponent,
     PlusMinusIconComponent,
     FreeDeliveryNotiboxComponent,
+    InputBoxComponent,
+    ButtonComponent,
   ],
   exports: [
     SimpleCarouselComponent,
@@ -79,6 +83,9 @@ import { FreeDeliveryNotiboxComponent } from './onpicks/ui/free-delivery-notibox
     NumericButtonComponent,
     ProgressiveBarComponent,
     FreeDeliveryNotiboxComponent,
+    InputBoxComponent,
+    ButtonComponent
+
   ]
 })
 

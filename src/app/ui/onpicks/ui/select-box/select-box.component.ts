@@ -7,7 +7,6 @@ import {Component, ElementRef, HostListener, Input, OnInit, Renderer2, ViewChild
 })
 export class SelectBoxComponent implements OnInit {
   @ViewChild('HTMLdropDown') HTMLdropDown;
-
   @Input('sortList') sortList
 
   selectedElement;

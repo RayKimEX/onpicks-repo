@@ -1,6 +1,8 @@
-import {AfterViewInit, Component, Input, OnDestroy, OnInit, Renderer2, ViewChild, ViewChildren} from '@angular/core';
+import {AfterViewInit, Component, Inject, Input, LOCALE_ID, OnDestroy, OnInit, Renderer2, ViewChild, ViewChildren} from '@angular/core';
 import {fromEvent} from 'rxjs';
 import {map} from 'rxjs/operators';
+import {ActivatedRoute} from '@angular/router';
+import {APP_BASE_HREF} from '@angular/common';
 
 @Component({
   selector: 'ui-mini-list',
@@ -18,32 +20,67 @@ export class MiniListComponent implements OnInit, AfterViewInit, OnDestroy {
 
   infoList = [
     {
-      brand: 'Larabar',
-      productName: 'Larabar Fruit and Nut Bar - Cashew Cookie 16ct, 1.7oz',
+      brand: '라라바',
+      productName: '라라바 글루텐프리 레몬 바 1.6oz 5개입 박스',
       rating: 4.4,
       reviewCount: 15,
-      msrpDiscountPrice: 50,
+      msrpDiscountPrice: 57200,
       discountPercent: 50,
-      currentPrice: 25,
-      imgSrc: 'https://s3.amazonaws.com/img.onpicks.com/p-similar-1.jpg'
-    },{
+      currentPrice: 28600,
+      imgSrc: 'https://s3.amazonaws.com/img.onpicks.com/p-similar-2.jpg',
+      deliveryPoint : 1,
+    } , {
+      brand: '오예',
+      productName: '오예바 원 바 벌쓰데이 케이크 프로틴바 12개',
+      rating: 3.9,
+      reviewCount: 99,
+      msrpDiscountPrice: 57200,
+      discountPercent: 50,
+      currentPrice: 28600,
+      imgSrc: 'https://s3.amazonaws.com/img.onpicks.com/p-similar-5.jpg',
+      deliveryPoint : 2,
+    },
+    {
+      brand: '알엑스바',
+      productName: '알엑스바 리얼 푸드 프로틴 에너지바 믹스드 베리 52G / 1.83OZ',
+      rating: 1.5,
+      reviewCount: 15,
+      msrpDiscountPrice: 57200,
+      discountPercent: 50,
+      currentPrice: 28600,
+      imgSrc: 'https://s3.amazonaws.com/img.onpicks.com/p-similar-3.jpg',
+      deliveryPoint : 3,
+    },
+    {
+      brand: '샨티바',
+      productName: '샨티바 리얼 푸드 프로틴 에너지바 코코넛 52G/ 1.83OZ',
+      rating: 2.3,
+      reviewCount: 15,
+      msrpDiscountPrice: 57200,
+      discountPercent: 50,
+      currentPrice: 28600,
+      imgSrc: 'https://s3.amazonaws.com/img.onpicks.com/p-similar-4.jpg',
+      deliveryPoint : 4,
+    },
+    {
       brand: 'Endangered Species Chocolate',
       productName: 'ONE Protein Bar, Birthday Cake, 2.12 oz. (12 Pack), Gluten-Free Protein Bar with High Protein (20g) and Low Sugar (1g), Guilt Free…',
       rating: 3.9,
       reviewCount: 99,
-      msrpDiscountPrice: 30,
-      discountPercent: 25,
-      currentPrice: 10,
-      imgSrc: 'https://s3.amazonaws.com/img.onpicks.com/p-similar-2.jpg'
+      msrpDiscountPrice: 57200,
+      discountPercent: 50,
+      currentPrice: 28600,
+      imgSrc: 'https://s3.amazonaws.com/img.onpicks.com/p-similar-2.jpg',
+      deliveryPoint : 5,
     },
     {
       brand: 'Rxbar',
       productName: 'RXBAR Whole Food Protein Bar, Chocolate Sea Salt, 1.83 Ounce (Pack of 12)',
       rating: 1.5,
       reviewCount: 15,
-      msrpDiscountPrice: 50,
+      msrpDiscountPrice: 57200,
       discountPercent: 50,
-      currentPrice: 25,
+      currentPrice: 28600,
       imgSrc: 'https://s3.amazonaws.com/img.onpicks.com/p-similar-3.jpg'
     },
     {
@@ -51,48 +88,18 @@ export class MiniListComponent implements OnInit, AfterViewInit, OnDestroy {
       productName: 'Shanti Stainless Steel Flat Speed Bar Bottle Openet',
       rating: 2.3,
       reviewCount: 15,
-      msrpDiscountPrice: 50,
+      msrpDiscountPrice: 57200,
       discountPercent: 50,
-      currentPrice: 25,
-      imgSrc: 'https://s3.amazonaws.com/img.onpicks.com/p-similar-4.jpg'
-    },
-    {
-      brand: 'Endangered Species Chocolate',
-      productName: 'ONE Protein Bar, Birthday Cake, 2.12 oz. (12 Pack), Gluten-Free Protein Bar with High Protein (20g) and Low Sugar (1g), Guilt Free…',
-      rating: 3.9,
-      reviewCount: 99,
-      msrpDiscountPrice: 30,
-      discountPercent: 25,
-      currentPrice: 10,
-      imgSrc: 'https://s3.amazonaws.com/img.onpicks.com/p-similar-2.jpg'
-    },
-    {
-      brand: 'Rxbar',
-      productName: 'RXBAR Whole Food Protein Bar, Chocolate Sea Salt, 1.83 Ounce (Pack of 12)',
-      rating: 1.5,
-      reviewCount: 15,
-      msrpDiscountPrice: 50,
-      discountPercent: 50,
-      currentPrice: 25,
-      imgSrc: 'https://s3.amazonaws.com/img.onpicks.com/p-similar-3.jpg'
-    },
-    {
-      brand: 'Shanti Bar',
-      productName: 'Shanti Stainless Steel Flat Speed Bar Bottle Openet',
-      rating: 2.3,
-      reviewCount: 15,
-      msrpDiscountPrice: 50,
-      discountPercent: 50,
-      currentPrice: 25,
+      currentPrice: 28600,
       imgSrc: 'https://s3.amazonaws.com/img.onpicks.com/p-similar-4.jpg'
     },   {
       brand: 'Endangered Species Chocolate',
       productName: 'ONE Protein Bar, Birthday Cake, 2.12 oz. (12 Pack), Gluten-Free Protein Bar with High Protein (20g) and Low Sugar (1g), Guilt Free…',
       rating: 3.9,
       reviewCount: 99,
-      msrpDiscountPrice: 30,
-      discountPercent: 25,
-      currentPrice: 10,
+      msrpDiscountPrice: 57200,
+      discountPercent: 50,
+      currentPrice: 28600,
       imgSrc: 'https://s3.amazonaws.com/img.onpicks.com/p-similar-2.jpg'
     },
     {
@@ -100,9 +107,9 @@ export class MiniListComponent implements OnInit, AfterViewInit, OnDestroy {
       productName: 'RXBAR Whole Food Protein Bar, Chocolate Sea Salt, 1.83 Ounce (Pack of 12)',
       rating: 1.5,
       reviewCount: 15,
-      msrpDiscountPrice: 50,
+      msrpDiscountPrice: 57200,
       discountPercent: 50,
-      currentPrice: 25,
+      currentPrice: 28600,
       imgSrc: 'https://s3.amazonaws.com/img.onpicks.com/p-similar-3.jpg'
     },
     {
@@ -267,7 +274,11 @@ export class MiniListComponent implements OnInit, AfterViewInit, OnDestroy {
 
   itemListArray;
 
-  constructor(private renderer: Renderer2) {
+  constructor(
+    private renderer: Renderer2,
+    @Inject(LOCALE_ID) private locale: string,
+    @Inject(APP_BASE_HREF) private region: string,
+  ) {
 
   }
 
@@ -284,8 +295,7 @@ export class MiniListComponent implements OnInit, AfterViewInit, OnDestroy {
   ngAfterViewInit() {
 
     this.itemListArray = this.itemList.toArray();
-    this.renderer.setProperty( this.insertTitle.nativeElement, 'innerHTML', this.setTitle);
-
+    this.renderer.setProperty( this.insertTitle.nativeElement, 'innerHTML', this.setTitle)
   }
 
   nextButton() {

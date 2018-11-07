@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {FaqComponent} from './pages/faq/faq.component';
-import {RefundComponent} from './pages/refund/refund.component';
 import {ImportComponent} from './pages/import/import.component';
 import {ReturnComponent} from './pages/return/return.component';
 import {AboutProductComponent} from './pages/about-product/about-product.component';
+import {RefundPolicyComponent} from './pages/refund/refund-policy.component';
 
 const routes: Routes = [
   {
@@ -21,7 +21,7 @@ const routes: Routes = [
       },
       {
         path: 'refund',
-        component : RefundComponent,
+        component : RefundPolicyComponent,
       },
       {
         path : 'import',

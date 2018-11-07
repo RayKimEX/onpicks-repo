@@ -7,8 +7,8 @@ import { FaqComponent } from './pages/faq/faq.component';
 import { HelpIndexComponent } from './pages/help-index/help-index.component';
 import { AboutProductComponent } from './pages/about-product/about-product.component';
 import { ReturnComponent } from './pages/return/return.component';
-import { RefundComponent } from './pages/refund/refund.component';
 import { ImportComponent } from './pages/import/import.component';
+import { RefundPolicyComponent } from './pages/refund/refund-policy.component';
 
 @NgModule({
   imports: [
@@ -21,8 +21,8 @@ import { ImportComponent } from './pages/import/import.component';
     HelpIndexComponent,
     AboutProductComponent,
     ReturnComponent,
-    RefundComponent,
-    ImportComponent
+    RefundPolicyComponent,
+    ImportComponent,
   ]
 })
 export class HelpModule { }

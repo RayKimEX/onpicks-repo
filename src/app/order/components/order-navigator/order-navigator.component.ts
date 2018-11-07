@@ -11,7 +11,7 @@ export class OrderNavigatorComponent implements OnInit {
   constructor(public routeSnapshot: ActivatedRoute) { }
 
   ngOnInit() {
-    console.log(this.routeSnapshot.snapshot.url[0].path);
+
   }
 
 }

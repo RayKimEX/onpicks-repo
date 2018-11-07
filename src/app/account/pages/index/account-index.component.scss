@@ -1,0 +1,46 @@
+.account-profile {
+  &__info {
+    display:table;
+    margin-bottom : 4rem;
+    &--image {
+      display:inline-block;
+      width: 100px;
+      height: 100px;
+      margin-right : 2.4rem;
+
+    }
+
+    &-description {
+
+      display:table-cell;
+      vertical-align: middle;
+      & > div:not(:last-child) {
+        margin-bottom: 4px;
+      }
+    }
+
+  }
+}
+
+.account-navigator {
+
+  nav{
+    margin-bottom: 2.4rem;
+    ul {
+
+      li {
+        list-style: none;
+        display:inline-block;
+
+        &:not(:last-child){
+          margin-right : 12.5rem;
+        }
+      }
+    }
+  }
+
+
+  hr {
+    margin-bottom: 3.2rem;
+  }
+}

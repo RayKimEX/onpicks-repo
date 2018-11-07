@@ -58,9 +58,6 @@ button {
 .btn {
   user-select: none;
   border-radius : 4px;
-  font-size : 1.4rem;
-  font-weight : 500;
-  letter-spacing : 0.08rem;
   cursor:pointer;
   &--white {
     &:active,
@@ -139,7 +136,7 @@ button {
 }
 
 .u-default-site-padding {
-  padding : 0 8rem !important;
+  padding : 0 $default-padding !important;
 }
 
 .u-margin-bottom {
@@ -194,6 +191,9 @@ button {
   color : $color-green !important;
 }
 
+.u-color-orange {
+  color : $color-orange !important;
+}
 
 .u-color-grey {
   color : $color-grey !important;
@@ -205,6 +205,10 @@ button {
 
 .u-color-dark-black {
   color : $color-dark-black !important;
+}
+
+.u-color-black {
+  color : $color-black !important;
 }
 
 .u-inline-block {
@@ -228,17 +232,99 @@ button {
 
 
 /*************icon*********/
+.icon-small-la {
+  background-size: 200px 56px;
+  background-image: url(https://s3.amazonaws.com/img.onpicks.com/icon-etc.png);
+  background-position : -16px -40px;
+}
+
+.icon-small-new {
+  background-size: 200px 56px;
+  background-image: url(https://s3.amazonaws.com/img.onpicks.com/icon-etc.png);
+  background-position : 0px -40px;
+}
+
+.icon-small-osaka {
+  background-size: 200px 56px;
+  background-image: url(https://s3.amazonaws.com/img.onpicks.com/icon-etc.png);
+  background-position : -48px -40px;
+}
+
+.icon-small-gorge {
+  background-size: 200px 56px;
+  background-image: url(https://s3.amazonaws.com/img.onpicks.com/icon-etc.png);
+  background-position : -32px -40px;
+}
+
+.icon-small-hong {
+  background-size: 200px 56px;
+  background-image: url(https://s3.amazonaws.com/img.onpicks.com/icon-etc.png);
+  background-position: -60px -40px;
+}
+
 .icon-la {
   background-size: 200px 56px;
   background-image: url(https://s3.amazonaws.com/img.onpicks.com/icon-etc.png);
+  background-position : -40px 0px;
+}
+
+.icon-new {
+  background-size: 200px 56px;
+  background-image: url(https://s3.amazonaws.com/img.onpicks.com/icon-etc.png);
+}
+
+.icon-osaka {
+  background-size: 200px 56px;
+  background-image: url(https://s3.amazonaws.com/img.onpicks.com/icon-etc.png);
+  background-position : -120px 0px;
+}
+
+.icon-gorge {
+  background-size: 200px 56px;
+  background-image: url(https://s3.amazonaws.com/img.onpicks.com/icon-etc.png);
+  background-position : -80px 0px;
+}
+
+.icon-hong {
+  background-size: 200px 56px;
+  background-image: url(https://s3.amazonaws.com/img.onpicks.com/icon-etc.png);
+  background-position : -160px 0px;
 }
 /**************************/
 
+.heading {
+
+  // h1
+  &__first--bold {
+    line-height : 1.33;
+    color : $color-dark-black;
+  }
+
+  &__first--medium {
+    line-height : 1.33;
+    color : $color-dark-black;
+  }
+
+  &__first--regular {
+    line-height : 1.33;
+    color : $color-dark-black;
+  }
 
 
+  // h2
+  &__second--medium {
 
-h1 {
-  font-size:6.4rem;
+  }
+
+  &__second--regular {
+
+  }
+
+
+}
+
+.heading-first-bold {
+
 }
 
 .heading-tertiary {

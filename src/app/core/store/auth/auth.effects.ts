@@ -1,14 +1,19 @@
 import {Injectable} from '@angular/core';
 import {Actions, Effect, ofType} from '@ngrx/effects';
 import * as AuthActions from './auth.actions';
-import {catchError, map, switchMap, tap} from 'rxjs/operators';
+import {
+  catchError,
+  map,
+  switchMap
+} from 'rxjs/operators';
+
 import {
   GetAuthUserInfoFailure,
   GetAuthUserInfoSuccess,
   Login,
   LoginFailure,
   LoginSuccess,
-  Logout, LogoutFailure,
+  LogoutFailure,
   LogoutSuccess,
   Signup
 } from './auth.actions';
@@ -38,11 +43,11 @@ export class AuthEffects {
         .pipe(
           map( (user) => {
             this.router.navigate(['/']);
-            console.log(user);
+
             return new LoginSuccess({nickName : 'hong', email : 'jesus_join@naver.com', thumbnailSmallImgSrc : 'https://s3.amazonaws.com/img.onpicks.com/cart__table--info-N.png'});
           }),
           catchError( (error) => {
-            console.log(error);
+
             return of(new LoginFailure({ error : error }));
           })
         );

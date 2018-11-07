@@ -1,0 +1,29 @@
+<div class="row account-settings-navigator">
+  <div class="col-3-of-12">
+    <div class="account-settings-navigator__item">
+      <button class="subtitle-2-bold u-color-grey" routerLinkActive="u-color-black" routerLink="profile">
+        프로필
+      </button>
+    </div>
+    <div class="account-settings-navigator__item">
+      <button class="subtitle-2-bold u-color-grey" routerLinkActive="u-color-black" routerLink="delivery-address">
+        배송지
+      </button>
+
+    </div>
+    <div class="account-settings-navigator__item">
+      <button class="subtitle-2-bold u-color-grey" routerLinkActive="u-color-black" routerLink="refund">
+        환불정보
+      </button>
+    </div>
+  </div>
+
+
+  <!--이렇게 한 이유 : 공통적으로 적용할 수 있는 부분은 최대한 적용하자는 의미에서 적용-->
+  <div class="col-9-of-12">
+    <router-outlet></router-outlet>
+  </div>
+
+</div>
+
+

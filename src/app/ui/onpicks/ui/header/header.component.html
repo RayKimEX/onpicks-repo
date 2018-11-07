@@ -1,17 +1,17 @@
 
 <header class="header" (mouseleave)="outMenu()">
   <div class="header__miscell u-default-site-padding">
-    <span class="header__miscell--nation">usa
+    <span class="header__miscell--nation">{{ region === '/kr' ? 'KOR' : 'USA' }}
       <svg width="10" height="8" viewBox="0 0 10 8">
         <polyline points="1 2 5 6 9 2" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
       </svg>
     </span>
-    <span class="header__miscell--currency">usd&nbsp;$
+    <span class="header__miscell--currency">{{currency === 'KRW' ? 'KRW ₩' : 'USD $'}}
       <svg width="10" height="8" viewBox="0 0 10 8">
         <polyline points="1 2 5 6 9 2" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
       </svg>
     </span>
-    <span class="header__miscell--language">eng
+    <span class="header__miscell--language">{{ locale === 'ko' ? '한글' : 'ENG' }}
       <svg width="10" height="8" viewBox="0 0 10 8">
         <polyline points="1 2 5 6 9 2" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
       </svg>
@@ -25,7 +25,7 @@
       </ng-container>
 
       <ng-container  *ngIf=" (user$ | async ).isAuthenticated === true">
-        <img src="{{(user$ | async ).user.thumbnailSmallImgSrc}}" alt="">
+        <img src="{{(user$ | async ).user.thumbnailSmallImgSrc}}" routerLink="/account" alt="">
         <span><button (click)="logout()">로그아웃</button></span>
       </ng-container>
 
@@ -60,16 +60,48 @@
       </a>
       <nav class="header__main-nav--router">
         <ul>
-          <li><a href="" #shops (mouseenter)="hoverMenu()" routerLink="shops" routerLinkActive="active" [routerLinkActiveOptions]="{exact: false}" i18n="@@header__shops">shops</a></li>
-          <li><a href="" routerLink="showcases" routerLinkActive="active" i18n="@@header__showcases">showcases</a></li>
-          <li><a href="" routerLink="events" i18n="@@header__events">events</a></li>
-          <li><a href="" routerLink="events" i18n="@@header__reviews">reviews</a></li>
+          <li>
+            <a href="" #shops
+               (mouseenter)="hoverMenu()"
+               routerLink="shops"
+               routerLinkActive="active"
+               [routerLinkActiveOptions]="{exact: false}"
+               i18n="@@header__shops">
+               쇼핑|shops
+            </a>
+          </li>
+          <li>
+            <a href=""
+               routerLink="showcases"
+               routerLinkActive="active"
+               i18n="@@header__showcases">
+               쇼케이스|showcases
+            </a>
+          </li>
+          <li>
+            <a href=""
+               routerLink="events"
+               i18n="@@header__events">
+               이벤트|events
+            </a>
+          </li>
+          <li>
+            <a href=""
+               routerLink="events"
+               i18n="@@header__reviews">
+               리뷰|reviews
+            </a>
+          </li>
         </ul>
       </nav>
     </div>
-    <onpicks-search-box [width]="46.4" [top]="-1" i18n-placeholder="@@header__placeholder" placeholder="search"></onpicks-search-box>
+    <onpicks-search-box
+      [width]="46.4"
+      [top]="-1"
+      i18n-placeholder="@@header__placeholder"
+      placeholder="2018 추석선물 대전">
+    </onpicks-search-box>
   </div>
-
   <onpicks-free-delivery-notibox></onpicks-free-delivery-notibox>
   <div #menu class="header-menu__outer">
     <nav>

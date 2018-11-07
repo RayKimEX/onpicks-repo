@@ -1,4 +1,13 @@
-import {AfterViewInit, Component, OnInit, Renderer2, ViewChild, ViewChildren} from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  OnInit,
+  Renderer2,
+  ViewChild,
+  ViewChildren
+} from '@angular/core';
+
+import shave from 'shave';
 
 @Component({
   selector: 'onpicks-today-collection',
@@ -8,6 +17,7 @@ import {AfterViewInit, Component, OnInit, Renderer2, ViewChild, ViewChildren} fr
 export class TodayCollectionComponent implements OnInit, AfterViewInit {
   @ViewChild('container') container;
   @ViewChildren('itemList') itemList;
+  @ViewChild('shaveDiscription') shaveDiscription;
 
   todayCollection = [
     {
@@ -67,10 +77,14 @@ export class TodayCollectionComponent implements OnInit, AfterViewInit {
     private renderer: Renderer2,
   ) { }
 
+  // shave는 나중에 하자
+  // https://github.com/NetanelBasal/angular2-shave
+  //
   ngOnInit() {
 
   }
 
+  // TODO: 제대로 먹지 않음. dependency shave.2.5.2지우기 , 가변 처리 작업 진행하기
   ngAfterViewInit() {
     this.itemListArray = this.itemList.toArray();
   }

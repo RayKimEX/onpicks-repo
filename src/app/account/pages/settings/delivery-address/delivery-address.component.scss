@@ -1,0 +1,79 @@
+@import '~src/assets/scss/abstracts/variables';
+
+
+.delivery-address {
+
+  margin-bottom : 4rem;
+  &__insert-box {
+    margin-bottom : 2.4rem;
+    &--row{
+
+      & > div {
+        margin-bottom : 8px;
+      }
+      &:not(:last-child) {
+        margin-bottom : 1.6rem;
+      }
+    }
+  }
+
+  h1 {
+    margin-bottom : 2.4rem;
+  }
+
+  &__btn {
+    width : 11.3rem;
+    margin-bottom : 4rem;
+  }
+
+  hr {
+    margin-bottom : 2.4rem;
+  }
+
+  &__col {
+    border-radius : 4px;
+    height : 26.4rem;
+    padding:2.4rem;
+    &--padding {
+      position:relative;
+      height : 100%;
+      width : 100%;
+    }
+
+    &--name {
+      margin-bottom : 8px;
+    }
+
+    &--address {
+      margin-bottom : 8px;
+    }
+
+
+    &-bottom {
+      position: absolute;
+      bottom : 0;
+      &--isDefault {
+        margin-bottom : 8px;
+      }
+
+      &--modify {
+
+      }
+    }
+
+  }
+
+  &__row {
+
+    @include clearfix;
+    margin-bottom: 2.4rem;
+  }
+
+  .isActive {
+    border : 1px solid $color-green;
+  }
+
+  .isNotActive {
+    border : 1px solid $color-light-grey;
+  }
+}

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {select, Store} from '@ngrx/store';
+import {AppState} from '../../../core/store/app.reducer';
 
 @Component({
   selector: 'onpicks-account-index',
@@ -7,7 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AccountIndexComponent implements OnInit {
 
-  constructor() { }
+  user$;
+
+  constructor(
+    private store: Store<AppState>
+  ) {
+    this.user$ = this.store.pipe(
+      select(state => state.auth.user),
+    );
+  }
 
   ngOnInit() {
   }

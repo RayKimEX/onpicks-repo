@@ -1,0 +1,74 @@
+<div class="settings-profile">
+  <div class="settings-profile__normal-info">
+    <div class="settings-profile__row">
+      <div class="settings-profile__row--title subtitle-2-regular">닉네임</div>
+      <onpicks-input-box
+        [width]="'64.5rem'"></onpicks-input-box>
+      <div class="settings-profile__row--description subtitle-2-regular u-color-dark-grey">다른 사용자들에겐 사용자가 설정한 닉네임으로 보여집니다.</div>
+    </div>
+    <div class="settings-profile__row">
+      <div class="settings-profile__row--title subtitle-2-regular">이메일</div>
+      <onpicks-input-box [width]="'64.5rem'"></onpicks-input-box>
+      <div class="settings-profile__row--description subtitle-2-regular u-color-dark-grey">이메일 주소는 다른 회원에게 공개되지 않습니다.</div>
+    </div>
+    <div class="settings-profile__row">
+      <div class="settings-profile__row--title subtitle-2-regular">비밀번호</div>
+      <onpicks-input-box
+        [marginRight]="'1.6rem'"
+        [password]="true"
+        [width]="'31.2rem'">
+      </onpicks-input-box>
+      <onpicks-button
+        [type]="'white'"
+        [width]="'8.5rem'"
+      >수정하기</onpicks-button>
+    </div>
+    <div class="settings-profile__row">
+      <div class="settings-profile__row--title subtitle-2-regular">연락처</div>
+      <onpicks-input-box
+        [marginRight]="'1.6rem'"
+        [password]="true"
+        [width]="'31.2rem'">
+      </onpicks-input-box>
+      <onpicks-button
+        [type]="'white'"
+        [width]="'8.5rem'"
+      >수정하기</onpicks-button>
+    </div>
+    <div class="settings-profile__row">
+      <div class="settings-profile__row--title subtitle-2-regular">성별</div>
+      <onpicks-check-box [marginRight]="'3.2rem'" [labelName]="'남자'"></onpicks-check-box>
+      <onpicks-check-box [labelName]="'여자'" ></onpicks-check-box>
+      <div class="settings-profile__row--description subtitle-2-regular u-color-dark-grey">이 정보는 통계 목적으로 사용되며 다른 회원들에게 절대 공개되지 않습니다.</div>
+    </div>
+  </div>
+  <div class="settings-profile__private-info">
+    <div class="settings-profile__row">
+      <div class="settings-profile__row--title subtitle-2-regular">생년월일</div>
+      <onpicks-select-box
+        class="settings-profile__row--select-box"
+        [sortList]="monthList"
+      ></onpicks-select-box>
+      <onpicks-select-box
+        class="settings-profile__row--select-box"
+        [sortList]="monthList"
+      ></onpicks-select-box>
+      <onpicks-select-box
+        class="settings-profile__row--select-box"
+        [sortList]="monthList"
+      ></onpicks-select-box>
+      <div class="settings-profile__row--description subtitle-2-regular u-color-dark-grey">이 정보는 통계 목적으로 사용되며 다른 회원들에게 절대 공개되지 않습니다.</div>
+    </div>
+    <div class="settings-profile__row">
+      <div class="settings-profile__row--title subtitle-2-regular">키</div>
+      <onpicks-input-box [width]="'31.2rem'" [placeholder]="'cm'"></onpicks-input-box>
+      <div class="settings-profile__row--description subtitle-2-regular u-color-dark-grey">이 정보는 통계 목적으로 사용되며 다른 회원들에게 절대 공개되지 않습니다.</div>
+    </div>
+    <div class="settings-profile__row">
+      <div class="settings-profile__row--title subtitle-2-regular">몸무게</div>
+      <onpicks-input-box [width]="'31.2rem'" [placeholder]="'kg'"></onpicks-input-box>
+      <div class="settings-profile__row--description subtitle-2-regular u-color-dark-grey">이 정보는 통계 목적으로 사용되며 다른 회원들에게 절대 공개되지 않습니다.</div>
+    </div>
+  </div>
+
+</div>

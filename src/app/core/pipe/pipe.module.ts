@@ -1,16 +1,25 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {CommonModule, CurrencyPipe} from '@angular/common';
 import { TimeAgoPipe } from './time-ago/time-ago.pipe';
+import { OnpicksCurrencyPipe } from './onpicks-currency/onpicks-currency.pipe';
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
   ],
   declarations: [
-    TimeAgoPipe
+    TimeAgoPipe,
+
+    OnpicksCurrencyPipe,
   ],
   exports: [
-    TimeAgoPipe
+    TimeAgoPipe,
+    CurrencyPipe,
+    OnpicksCurrencyPipe,
+  ],
+  providers: [
+    CurrencyPipe,
+    OnpicksCurrencyPipe,
   ]
 })
 export class PipeModule { }

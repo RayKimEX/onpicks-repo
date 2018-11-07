@@ -1,4 +1,4 @@
-import {Component, Inject, LOCALE_ID} from '@angular/core';
+import {Component, Inject, isDevMode, LOCALE_ID, OnInit} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {DOMAIN_HOST} from './app.config';
 import {Store} from '@ngrx/store';
@@ -12,14 +12,22 @@ import {GetAuthUser} from './core/store/auth/auth.actions';
 })
 
 
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'onpicks';
   constructor(
-    @Inject(LOCALE_ID) public locale: string,
+    @Inject(LOCALE_ID) private locale: string,
     private store: Store<AppState>,
-    httpClient: HttpClient
   ) {
     this.store.dispatch(new GetAuthUser());
+  }
+
+  ngOnInit() {
+    // TODO : 해당 아래코드를 AppComponent OnInit에 하지 말고, App.Module의 FactoryProvider를 통해 가능한지 ?
+    if ( this.locale === 'ko' ) {
+      require( 'style-loader!./../assets/scss/typography/typography.ko.scss');
+    } else {
+      require( 'style-loader!./../assets/scss/typography/typography.en.scss');
+    }
   }
 }
 

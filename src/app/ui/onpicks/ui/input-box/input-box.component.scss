@@ -1,0 +1,8 @@
+@import '~src/assets/scss/abstracts/variables';
+input {
+  padding: 1rem 1.6rem;
+  height : 4rem;
+  &::placeholder {
+    color: $color-grey;
+  }
+}

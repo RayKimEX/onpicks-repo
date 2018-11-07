@@ -2,7 +2,7 @@ import {ActionReducerMap} from '@ngrx/store';
 
 import * as MenuActions from '../../shops/pages/p/store/p.actions';
 import {AuthReducer} from './auth/auth.reducer';
-import {AuthState, UserState} from './auth/auth.model';
+import {AuthState} from './auth/auth.model';
 
 
 

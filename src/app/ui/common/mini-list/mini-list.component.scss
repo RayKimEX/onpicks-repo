@@ -39,7 +39,25 @@ $mini-width : 264+24px;
 
 .ui-mini-list {
 
-  &__bottom {
+  &__delivery-point {
+    margin-top : 0.8rem;
+    position:relative;
+
+    &--icon {
+      margin-right : 0.8rem;
+      display:inline-block;
+      width : 1.6rem;
+      height : 1.6rem;
+    }
+
+    &--text {
+      position:absolute;
+      top: -2px;
+
+    }
+  }
+
+  &__price-info {
     margin-top: 0.8rem;
 
     &--MSRP {
@@ -49,59 +67,37 @@ $mini-width : 264+24px;
       font-weight: 500;
 
       &-discount {
-        font-size: 1.2rem;
-        color: #a0a0a0;
-        font-weight: 500;
+        vertical-align: text-top;;
         text-decoration: line-through;
       }
     }
 
     &--price {
-      margin-right: 0.4rem;
-      font-size: 1.4rem;
-      color: #000000;
-      font-weight: 500;
-      letter-spacing: 0.03rem;
+      margin-right: 0.6rem;
     }
 
     &--discount {
       margin-right: 0.4rem;
-      font-size: 1.4rem;
-      color: $color-orange;
-      font-weight: 500;
-      letter-spacing: 0.03rem;
     }
   }
 
   &__item {
 
+    ui-star-rating {
+      margin-right : 0.4rem;
+    }
+
     &--name-outer {
       margin-bottom: 0.8rem;
-      color: $color-dark-black;
 
       &-brand {
-        font-size: 1.2rem;
-        font-weight: 700;
-        line-height: 1.33;
-        letter-spacing: 0.04rem;
         margin-bottom: 0.4rem;
       }
 
       &-name {
         white-space: normal;
         width: 26.4rem;
-        font-size: 1.2rem;
-        font-weight: 400;
-        line-height: 1.33;
-        letter-spacing: 0.04rem;
       }
-    }
-
-    &--reviews-count {
-      font-size: 1.2rem;
-      font-weight: 500;
-      color: #767676;
-      margin-left: 0.4rem;
     }
 
     &--image-outer {

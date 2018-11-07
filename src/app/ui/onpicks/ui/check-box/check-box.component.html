@@ -1,4 +1,4 @@
-<label class="container">
+<label class="container" [ngStyle]="{ 'margin-right' : marginRight }">
   <input type="radio" name="radio" #f (click)="deselectRadio(f)">
   <span class="checkmark"></span>
   <span #labelNameView></span>

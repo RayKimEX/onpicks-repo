@@ -1,6 +1,6 @@
 import {
   AfterViewInit,
-  Component,
+  Component, Inject, LOCALE_ID,
   OnInit,
   Renderer2,
   ViewChild
@@ -14,6 +14,8 @@ import {select, Store} from '@ngrx/store';
 import {Observable} from 'rxjs';
 import {AuthState} from '../../../../core/store/auth/auth.model';
 import {Logout} from '../../../../core/store/auth/auth.actions';
+import {APP_BASE_HREF} from '@angular/common';
+import {CURRENCY} from '../../../../app.config';
 
 @Component({
   selector: 'ui-header',
@@ -39,9 +41,11 @@ export class HeaderComponent implements OnInit, AfterViewInit {
 
   constructor(
     private renderer: Renderer2,
-    private testService: TestService,
     private authService: AuthService,
-    private store: Store<AppState>
+    private store: Store<AppState>,
+    @Inject(LOCALE_ID) private locale: string,
+    @Inject(APP_BASE_HREF) private region: string,
+    @Inject(CURRENCY) private currency: string,
   ) {
     this.user$ = this.store.pipe(
       select('auth')
@@ -52,7 +56,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
 
     console.log(this.user$);
     this.tempDiv = this.renderer.createElement('div');
-  };
+  }
 
 
   ngAfterViewInit() {

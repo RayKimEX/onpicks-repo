@@ -1,21 +1,29 @@
 @import '~src/assets/scss/abstracts/variables';
 
 .free-delivery-notibox {
+  background-color : $color-white;
   width : 42rem;
   padding : 2.4rem;
-  border-radius:2px;
   border : solid 1px $color-light-grey;
+
+  border-radius: 4px;
+  box-shadow: 0 6px 12px 0 rgba(227, 227, 227, 0.5);
   &__innerBox {
     list-style: none;
   }
 
   &__item {
+
+    &:not(:last-child){
+      margin-bottom: 2.4rem;
+    }
     &--info {
       position:relative;
       display:inline-block;
       // height :
-      width:31.6rem;
-
+      width:31.2rem;
+      height : 4rem;
+      vertical-align: top;
       span {
         position: absolute;
         top : 0;
@@ -26,12 +34,15 @@
       display:inline-block;
       width : 4rem;
       height : 4rem;
+      margin-right : 1.6rem;
     }
   }
 
   ui-progressive-bar {
     display : inline-block;
     width:100%;
+    position:absolute;
+    bottom : 0;
   }
 
 }

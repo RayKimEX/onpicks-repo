@@ -9,6 +9,7 @@ export class CheckBoxComponent implements OnInit, AfterViewInit {
   @Input('labelName') labelName;
   @Input('value') value;
   @Input('fontSize') fontSize;
+  @Input('marginRight') marginRight;
 
   // TODO : CheckBox에 Input font-size를 추가해서, manipulate할 수 있게 수정
 

@@ -1,0 +1,8 @@
+
+<button class="subtitle-2-regular"
+        [ngClass]="[type == 'white' ? 'btn--white' : 'btn--black', size == 'big' ? 'btn' : 'btn--small']"
+        [ngStyle]="{ 'width' : width }"
+>
+  <ng-content></ng-content>
+</button>
+

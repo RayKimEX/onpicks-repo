@@ -1532,7 +1532,7 @@ export class PReviewsComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngAfterViewInit() {
 
-    // TODO: 이 부분이 현재, 맨처음 로딩시 계산으로 하는형식이 생각처럼 잘 되지 않음. 그래서 좀 강제적으로 정해진 값 입력
+    // TODO: 이 부분이 현재, 맨처음 로딩시 계산으로 하는형식이 생각처럼 잘 되지 않음. 그래서 interval 형식으로 dynamic하게 계산
 
 
     this.menuPositionInterval = setInterval( () => {

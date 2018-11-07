@@ -1,0 +1,25 @@
+.settings-profile {
+  margin-bottom : 4rem;
+
+  &__normal-info {
+    margin-bottom : 2.8rem;
+  }
+  &__row {
+
+    &--title {
+      margin-bottom : 1.2rem;
+    }
+
+    &--description {
+      margin-top : 8px;
+    }
+
+    &--select-box {
+      display:inline-block;
+      width : 13.5rem;
+    }
+    &:not(:last-child) {
+      margin-bottom : 1.6rem;
+    }
+  }
+}

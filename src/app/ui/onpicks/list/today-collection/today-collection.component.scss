@@ -42,6 +42,7 @@
       margin-bottom : 0.4rem;
     }
 
+    // TODO: CSS ELIPSIS ( ... ) Text 가변 처리 or javascript 가변처리 해결책 살펴보기
     &--title {
       font-size: 1.4rem;
       font-weight : 700;
@@ -50,10 +51,7 @@
     }
 
     &--discription {
-      line-height: 1.33;
-      letter-spacing : 0.04rem;
-      font-size: 1.2rem;
-      white-space:pre-line;
+      white-space: initial;
     }
   }
 }

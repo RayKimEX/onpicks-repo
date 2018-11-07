@@ -1,0 +1,22 @@
+.settings-refund {
+  margin-bottom: 4rem;
+
+  h1 {
+    margin-bottom: 2.4rem;
+  }
+  &__row {
+
+    &--title {
+      margin-bottom: 8px;
+    }
+
+    &--desciription {
+      margin-top : 8px;
+    }
+
+    &:not(:last-child){
+      margin-bottom : 1.6rem;
+    }
+
+  }
+}

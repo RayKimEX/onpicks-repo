@@ -2,7 +2,6 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {AppState} from '../../../core/store/app.reducer';
 import {Store} from '@ngrx/store';
 import { normalize, schema } from 'normalizr';
-import {ShippingAddress} from '../../../core/store/auth/auth.model';
 import {Login} from '../../../core/store/auth/auth.actions';
 
 
