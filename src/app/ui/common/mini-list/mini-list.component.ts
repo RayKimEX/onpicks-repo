@@ -278,8 +278,8 @@ export class MiniListComponent implements OnInit, AfterViewInit, OnDestroy {
 
   constructor(
     private renderer: Renderer2,
-    @Inject(LOCALE_ID) private locale: string,
-    @Inject(APP_BASE_HREF) private region: string,
+    @Inject(LOCALE_ID) public locale: string,
+    @Inject(APP_BASE_HREF) public region: string,
     private store: Store<AppState>,
   ) {
 

@@ -43,9 +43,9 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     private renderer: Renderer2,
     private authService: AuthService,
     private store: Store<AppState>,
-    @Inject(LOCALE_ID) private locale: string,
-    @Inject(APP_BASE_HREF) private region: string,
-    @Inject(CURRENCY) private currency: string,
+    @Inject(LOCALE_ID) public locale: string,
+    @Inject(APP_BASE_HREF) public region: string,
+    @Inject(CURRENCY) public currency: string,
   ) {
     this.user$ = this.store.pipe(
       select('auth')
