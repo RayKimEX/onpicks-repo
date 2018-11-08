@@ -5,7 +5,7 @@
   <h1 #insertTitle class="h1-bold"></h1>
   <div class="ui-mini-list__content--outer">
       <onpicks-circle-n-button *ngIf="-imageIndex !== (infoList.length - 4) " [top]="'12.6rem'" [right]="'-2.2rem'" (click)="nextButton()" ></onpicks-circle-n-button>
-      <onpicks-circle-p-button *ngIf="imageIndex !== 0" [left]="'-2rem'" (click)="prevButton()" ></onpicks-circle-p-button>
+      <onpicks-circle-p-button *ngIf="imageIndex !== 0" [top]="'12.6rem'" [left]="'-2rem'" (click)="prevButton()" ></onpicks-circle-p-button>
     <div class="ui-mini-list__content">
       <ul #container>
         <li #itemList *ngFor="let item of infoList; index as i">
@@ -15,17 +15,26 @@
               <a href="" routerLink="/shops/p/1">
                 <img drCleanLoad src="{{item.imgSrc}}" alt="">
               </a>
-              <onpicks-list-active-button></onpicks-list-active-button>
+              <onpicks-list-active-button (amountEvent)="addCart($event, i)"></onpicks-list-active-button>
             </div>
 
-            <a href="" routerLink="/shops/p/1">
-              <div class="ui-mini-list__item--name-outer">
-                <p class="ui-mini-list__item--name-outer-brand subtitle-2-bold">{{item.brand}}</p>
-                <span class="ui-mini-list__item--name-outer-name body-2-regular">
-                {{item.productName}}
-              </span>
+
+            <div class="ui-mini-list__item--name-outer">
+
+
+              <div class="ui-mini-list__item--name-outer-brand subtitle-2-bold">
+                <a routerLink="/shops/p/1">
+                  {{item.brand}}
+                </a>
               </div>
-            </a>
+
+              <a routerLink="/shops/p/1">
+                <span class="ui-mini-list__item--name-outer-name body-2-regular">
+                  {{item.productName}}
+                </span>
+              </a>
+            </div>
+
             <ui-star-rating
               [star-point]="item.rating"
               [size]="10"></ui-star-rating>

@@ -7,7 +7,6 @@
     font-weight : 700;
     line-height : 1.56;
     letter-spacing : 0.8px;
-    color : $color-dark-black;
     margin : 0;
   }
 
@@ -16,7 +15,6 @@
     font-weight : 700;
     line-height : 1.75;
     letter-spacing : 0.5px;
-    color : $color-dark-black;
     margin : 0;
   }
 
@@ -24,7 +22,6 @@
     font-size : 1.8rem;
     line-height : 1.56;
     letter-spacing : 0.8px;
-    color : $color-dark-black;
     margin : 0;
   }
 
@@ -36,7 +33,6 @@
     font-weight: 700;
     line-height: 1.5;
     letter-spacing: 0.1px;
-    color: $color-black;
   }
 
   &-regular {
@@ -44,7 +40,6 @@
     font-weight: 400;
     line-height: 1.5;
     letter-spacing: 0.1px;
-    color: $color-black;
   }
 }
 
@@ -53,7 +48,6 @@
   font-size: 2rem;
   font-weight: 700;
   line-height: 1.2;
-  color: $color-black;
 }
 
 
@@ -63,7 +57,6 @@
     font-weight: 700;
     line-height: 1.38;
     letter-spacing: 0.5px;
-    color: $color-black;
   }
 
   &-medium {
@@ -71,7 +64,6 @@
     font-weight: 700;
     line-height: 1.38;
     letter-spacing: 0.5px;
-    color: $color-black;
   }
 
   &-regular {
@@ -79,7 +71,6 @@
     font-weight: 400;
     line-height: 1.38;
     letter-spacing: 0.5px;
-    color: $color-dark-black;
   }
 }
 
@@ -89,7 +80,6 @@
     font-weight: 700;
     line-height: 1.43;
     letter-spacing: 0.2px;
-    color: $color-black;
   }
 
   &-medium {
@@ -97,7 +87,6 @@
     font-weight: 700;
     line-height: 1.43;
     letter-spacing: 0.2px;
-    color: $color-black;
   }
 
   &-regular {
@@ -105,7 +94,6 @@
     font-weight: 400;
     line-height: 1.43;
     letter-spacing: 0.2px;
-    color: $color-dark-black;
   }
 }
 
@@ -117,7 +105,6 @@
     font-weight: 700;
     line-height: 1.33;
     letter-spacing: 0.1px;
-    color: $color-black;
   }
 
   &-medium {
@@ -125,7 +112,6 @@
     font-weight: 700;
     line-height: 1.33;
     letter-spacing: 0.1px;
-    color: $color-black;
   }
 
   &-regular {
@@ -133,7 +119,6 @@
     font-weight: 400;
     line-height: 1.33;
     letter-spacing: 0.1px;
-    color: $color-dark-black;
   }
 }
 
@@ -144,7 +129,6 @@
     font-weight: 700;
     line-height: 1.75;
     letter-spacing: 0.5px;
-    color: $color-light-black;
   }
 
   &-medium {
@@ -152,7 +136,6 @@
     font-weight: 700;
     line-height: 1.75;
     letter-spacing: 0.5px;
-    color: $color-light-black;
   }
 
   &-regular {
@@ -160,7 +143,6 @@
     font-weight: 400;
     line-height: 1.75;
     letter-spacing: 0.5px;
-    color: $color-light-black;
   }
 }
 
@@ -171,7 +153,6 @@
     font-weight: 700;
     line-height: 1.71;
     letter-spacing: 0.2px;
-    color: $color-light-black;
   }
 
   &-medium {
@@ -179,7 +160,6 @@
     font-weight: 700;
     line-height: 1.71;
     letter-spacing: 0.2px;
-    color: $color-light-black;
   }
 
   &-regular {
@@ -187,32 +167,28 @@
     font-weight: 400;
     line-height: 1.71;
     letter-spacing: 0.2px;
-    color: $color-light-black;
   }
 }
 
 
 
-body-3 {
+.body-3 {
   &-bold {
     font-size: 1.2rem;
     font-weight: 700;
     line-height: 1.67;
-    color: $color-light-black;
   }
 
   &-medium {
     font-size: 1.2rem;
     font-weight: 700;
     line-height: 1.67;
-    color: $color-light-black;
   }
 
   &-regular {
     font-size: 1.2rem;
     font-weight: 400;
     line-height: 1.67;
-    color: $color-light-black;
   }
 }
 
@@ -221,7 +197,6 @@ body-3 {
   font-weight: 700;
   line-height: 1.29;
   letter-spacing: 0.7px;
-  color: $color-dark-black;
 }
 
 .action-1 {

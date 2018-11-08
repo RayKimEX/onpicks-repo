@@ -598,27 +598,20 @@
       display:inline-block;
 
       &-title {
-        line-height :1.33;
-        font-size : 1.2rem;
         margin-bottom :4px;
       }
 
       &-name {
-        line-height :1.33;
-        font-size : 1.2rem;
         margin-bottom :4px;
-        letter-spacing : 0.4px;
       }
 
       &-price {
-        font-size : 1.4rem;
       }
     }
 
 
     &--delivery-info {
 
-      font-size : 1.4rem;
       &-image {
         display: inline-block;
         margin-right: 8px;
@@ -629,19 +622,16 @@
       }
 
       &-where {
+        margin-top : -2px;
         display: inline-block;
         vertical-align: top;
 
       }
 
       &-price {
-        margin-top : 4px;
-        margin-bottom : 4px;
-        line-heihgt: 1.43;
-        font-size : 1.4rem;
-        line-height : 1.43;
-        color : $color-green;
-        font-weight: 700;
+        margin-top : -2px;
+        display:inline-block;
+        vertical-align: top;
       }
 
       &-description {

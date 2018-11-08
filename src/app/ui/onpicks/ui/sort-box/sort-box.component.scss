@@ -19,29 +19,20 @@
 .onpicks-sort-box{
   position:relative;
   display:inline-block;
-  height : 3.5rem;
   background-color: $color-white !important;
 
   &__fore-button {
     cursor : pointer;
-    padding: 0.7rem;
     border:0;
     display:inline-block;
-    color:$color-green;
-    font-size:1.6rem;
-    letter-spacing:0.04rem;
-    font-weight:500;
     background-color: transparent;
 
     svg {
-
-
-      // ray.kim
-      // top right bottom left
-      // svg 중앙 맞추기 위한 처리
-      padding: 5px 10px 8px 3px;
-
+      display:inline-block;
+      margin-bottom: 3px;
+      margin-left:3px;
     }
+
   }
 
   &__dropdown {
@@ -70,7 +61,7 @@
         box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 8px;
         position: absolute;
         top : -6px;
-        right: 25%;
+        right: 15%;
         background-color:white;
         z-index : 0;
       }
@@ -82,7 +73,7 @@
         position: absolute;
         background-color:white;
         top : 0px;
-        right: 20%;
+        right: 10%;
       }
     }
 

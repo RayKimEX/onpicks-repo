@@ -17,7 +17,8 @@
       </div>
     </div>
 
-    <button class="btn btn--white cart__delivery-free-purchase">무료배송 구매하기</button>
+    <onpicks-button class="cart__delivery-free-purchase" [type]="'white'" [size]="'big'" [width]="'16.1rem'">무료배송 구매하기</onpicks-button>
+    <!--<button class="btn btn&#45;&#45;white cart__delivery-free-purchase">무료배송 구매하기</button>-->
 
     <table class="cart__free-table">
       <tr *ngFor="let item of cartList">
@@ -27,9 +28,9 @@
           </div>
 
           <div class="cart__free-table--info">
-            <div class="cart__free-table--info-title u-bold">{{item.title}}</div>
-            <div class="cart__free-table--info-name">알엑스바 리얼 푸드 프로틴 에너지바 믹스드 베리 52G / RxBar Real Food Protein Bars Mixed Berry 1.83OZ</div>
-            <div class="cart__free-table--info-price u-bold">40,900원</div>
+            <div class="cart__free-table--info-title subtitle-3-bold">{{item.title}}</div>
+            <div class="cart__free-table--info-name body-3-regular">알엑스바 리얼 푸드 프로틴 에너지바 믹스드 베리 52G / RxBar Real Food Protein Bars Mixed Berry 1.83OZ</div>
+            <div class="cart__free-table--info-price subtitle-2-bold">40,900원</div>
           </div>
 
         </td>
@@ -49,9 +50,9 @@
               <img src="https://s3.amazonaws.com/img.onpicks.com/cart__table--info-N.png" alt="">
             </div>
 
-            <div class="cart__free-table--delivery-info-where"><span class="u-bold">뉴저지</span> 출고</div>
-            <div class="cart__free-table--delivery-info-price">무료</div>
-            <div class="cart__free-table--delivery-info-description">뉴저지 단독 배송 상품으로 개별 배송료가 발생합니다.</div>
+            <div class="cart__free-table--delivery-info-where subtitle-2-regular"><span class="u-bold">뉴저지</span>출고&nbsp;·&nbsp;</div>
+            <div class="cart__free-table--delivery-info-price subtitle-2-bold">무료배송</div>
+            <div class="cart__free-table--delivery-info-description subtitle-2-regular u-color-dark-grey">뉴저지 단독 배송 상품으로 개별 배송료가 발생합니다.</div>
           </div>
         </td>
       </tr>

@@ -26,6 +26,8 @@ import { PlusMinusIconComponent } from './common/plus-minus-icon/plus-minus-icon
 import { FreeDeliveryNotiboxComponent } from './onpicks/ui/free-delivery-notibox/free-delivery-notibox.component';
 import { InputBoxComponent } from './onpicks/ui/input-box/input-box.component';
 import { ButtonComponent } from './onpicks/button/button/button.component';
+import { AdhereTableComponent } from './onpicks/table/adhere-table/adhere-table.component';
+import { IndentTableComponent } from './onpicks/table/indent-table/indent-table.component';
 
 @NgModule({
 
@@ -59,6 +61,8 @@ import { ButtonComponent } from './onpicks/button/button/button.component';
     FreeDeliveryNotiboxComponent,
     InputBoxComponent,
     ButtonComponent,
+    AdhereTableComponent,
+    IndentTableComponent,
   ],
   exports: [
     SimpleCarouselComponent,
@@ -84,7 +88,8 @@ import { ButtonComponent } from './onpicks/button/button/button.component';
     ProgressiveBarComponent,
     FreeDeliveryNotiboxComponent,
     InputBoxComponent,
-    ButtonComponent
+    ButtonComponent,
+    AdhereTableComponent,
 
   ]
 })

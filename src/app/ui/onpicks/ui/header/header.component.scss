@@ -131,7 +131,7 @@
       margin-right : 6.4rem;
     }
 
-    nav {
+    &--router {
 
       display : table-cell;
       vertical-align:middle;
@@ -140,8 +140,6 @@
         display : inline-block;
         text-transform : uppercase;
         list-style : none;
-        font-size : 1.8rem;
-        font-weight : 700;
         margin-right : 4.8rem;
 
         transition : opacity 0.5s;

@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ElementRef, HostListener, OnInit, Renderer2, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, EventEmitter, HostListener, OnInit, Output, Renderer2, ViewChild} from '@angular/core';
 import {fromEvent, merge} from 'rxjs';
 
 @Component({
@@ -10,6 +10,8 @@ export class ListActiveButtonComponent implements OnInit, AfterViewInit {
   @ViewChild('outer') outer;
   @ViewChild('plusIcon', {read : ElementRef}) plusIcon;
   @ViewChild('extendUI' ) extendUI;
+  @Output('amountEvent') amountEvent = new EventEmitter<string>();
+
   isExtend = false;
   amount = 1;
   plusColor = '#292929';
@@ -96,12 +98,11 @@ export class ListActiveButtonComponent implements OnInit, AfterViewInit {
       // 이미 확장 되었을때,
     } else {
 
-      if( this.amount < 10) {
-
-
+      if ( this.amount < 10) {
         if( this.amount === 9 ){
           this.plusColor = '#e5e5e5';
         }
+        this.amountEvent.emit('increase');
         this.amount++;
       }
 
@@ -112,12 +113,13 @@ export class ListActiveButtonComponent implements OnInit, AfterViewInit {
 
   amountDown() {
     if( this.amount > 1) {
+      this.amountEvent.emit('decrease');
       this.amount--;
-      if ( this.plusColor !== '#292929'){
+      if ( this.plusColor !== '#292929') {
         this.plusColor = '#292929';
       }
 
-    }else {
+    } else {
 
       this.renderer.setStyle(this.extendUI.nativeElement, 'display', 'none');
       this.renderer.setStyle(this.outer.nativeElement, 'width', '4rem');
@@ -130,9 +132,6 @@ export class ListActiveButtonComponent implements OnInit, AfterViewInit {
         this.tempEvent.unsubscribe();
       });
     }
-
-
-
   }
 
 }

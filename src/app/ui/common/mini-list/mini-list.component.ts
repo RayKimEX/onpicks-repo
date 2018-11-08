@@ -3,6 +3,8 @@ import {fromEvent} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {ActivatedRoute} from '@angular/router';
 import {APP_BASE_HREF} from '@angular/common';
+import {AppState} from '../../../core/store/app.reducer';
+import {Store} from '@ngrx/store';
 
 @Component({
   selector: 'ui-mini-list',
@@ -278,6 +280,7 @@ export class MiniListComponent implements OnInit, AfterViewInit, OnDestroy {
     private renderer: Renderer2,
     @Inject(LOCALE_ID) private locale: string,
     @Inject(APP_BASE_HREF) private region: string,
+    private store: Store<AppState>;
   ) {
 
   }
@@ -309,6 +312,9 @@ export class MiniListComponent implements OnInit, AfterViewInit, OnDestroy {
 
     this.imageIndex++;
     this.renderer.setStyle(this.container.nativeElement, 'transform', 'translateX(' + this.imageIndex * 288 + 'px)');
+  }
 
+  addCart(amountType, index){
+    // this.store.dispatch(new )
   }
 }

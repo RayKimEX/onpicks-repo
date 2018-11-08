@@ -59,11 +59,11 @@
   &__social {
 
     &--btn {
-      font-size : 1.4rem;
       width : 40.8rem;
       height : 4.6rem;
       border-radius : 4px;
       margin-bottom : 1.6rem;
+
       svg {
         float : left;
         margin-left :1.6rem;
@@ -74,21 +74,17 @@
     }
     &--naver {
       position:relative;
-      color : $color-white;
-
       background-color : #03c63b;
 
     }
 
     &--kakao {
       position:relative;
-      color : #3c2929;
       background-color : #ffeb01;
     }
 
     &--facebook {
       position:relative;
-      color : $color-white;
       background-color : #385084;
     }
 
@@ -108,8 +104,10 @@
   &__no-account {
     text-align : center;
     &--text {
-      font-size :1.4rem;
-      line-height : 1.71;
+
+      span:nth-of-type(1){
+        margin-right : 2.4rem;
+      }
     }
 
   }

@@ -13,6 +13,7 @@ import {AvailableReviewsComponent} from './pages/my-reviews/available-reviews/av
 import {MyShoppingIndexComponent} from './pages/my-shopping/index/my-shopping-index.component';
 import {OrdersComponent} from './pages/my-shopping/orders/orders.component';
 import {CreditsComponent} from './pages/my-shopping/credits/credits.component';
+import {OrdersDetailComponent} from './pages/my-shopping/orders-detail/orders-detail.component';
 // import {SettingsComponent} from './pages/settings/settings.component';
 
 const routes: Routes = [
@@ -45,6 +46,10 @@ const routes: Routes = [
           {
             path : 'credits',
             component : CreditsComponent
+          },
+          {
+            path : 'orders-detail',
+            component : OrdersDetailComponent
           }
         ]
       },
@@ -58,11 +63,11 @@ const routes: Routes = [
             pathMatch : 'full'
           },
           {
-            path : 'written-reviews',
+            path : 'written',
             component : WrittenReviewsComponent
           },
           {
-            path : 'available-reviews',
+            path : 'available',
             component : AvailableReviewsComponent
           }
 

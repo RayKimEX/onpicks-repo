@@ -19,9 +19,9 @@
     <div class="u-float-right">
 
       <ng-container *ngIf=" (user$ | async ).isAuthenticated === false">
-        <span class="header__miscell--login" ><button i18n="@@header__login" routerLink="/member/login" >로그인/login</button></span>
+        <span class="header__miscell--login" ><a i18n="@@header__login" routerLink="/member/login" >로그인/login</a></span>
         <span class="header__miscell--slash">&nbsp;|&nbsp;</span>
-        <span class="header__miscell--signup"><button i18n="@@header__signup" routerLink="/member/signup">회원가입|signup</button></span>
+        <span class="header__miscell--signup"><a i18n="@@header__signup" routerLink="/member/signup">회원가입|signup</a></span>
       </ng-container>
 
       <ng-container  *ngIf=" (user$ | async ).isAuthenticated === true">
@@ -61,10 +61,12 @@
       <nav class="header__main-nav--router">
         <ul>
           <li>
-            <a href="" #shops
+            <a href=""
+               class="h1-bold u-color-grey"
+               #shops
                (mouseenter)="hoverMenu()"
                routerLink="shops"
-               routerLinkActive="active"
+               [routerLinkActive]="['u-color-black', 'u-active']"
                [routerLinkActiveOptions]="{exact: false}"
                i18n="@@header__shops">
                쇼핑|shops
@@ -72,22 +74,27 @@
           </li>
           <li>
             <a href=""
+               class="h1-bold u-color-grey"
                routerLink="showcases"
-               routerLinkActive="active"
+               [routerLinkActive]="['u-color-black', 'u-active']"
                i18n="@@header__showcases">
                쇼케이스|showcases
             </a>
           </li>
           <li>
             <a href=""
+               class="h1-bold u-color-grey"
                routerLink="events"
+               [routerLinkActive]="['u-color-black', 'u-active']"
                i18n="@@header__events">
                이벤트|events
             </a>
           </li>
           <li>
             <a href=""
+               class="h1-bold u-color-grey"
                routerLink="events"
+               [routerLinkActive]="['u-color-black', 'u-active']"
                i18n="@@header__reviews">
                리뷰|reviews
             </a>
@@ -102,7 +109,7 @@
       placeholder="2018 추석선물 대전">
     </onpicks-search-box>
   </div>
-  <onpicks-free-delivery-notibox></onpicks-free-delivery-notibox>
+  <onpicks-free-delivery-notibox style="display:none;"></onpicks-free-delivery-notibox>
   <div #menu class="header-menu__outer">
     <nav>
       <ul class="header-menu__item">

@@ -19,6 +19,7 @@ import {PipeModule} from '../core/pipe/pipe.module';
 import { OrdersComponent } from './pages/my-shopping/orders/orders.component';
 import { CreditsComponent } from './pages/my-shopping/credits/credits.component';
 import {MyShoppingIndexComponent} from './pages/my-shopping/index/my-shopping-index.component';
+import { OrdersDetailComponent } from './pages/my-shopping/orders-detail/orders-detail.component';
 
 @NgModule({
   imports: [
@@ -42,7 +43,8 @@ import {MyShoppingIndexComponent} from './pages/my-shopping/index/my-shopping-in
     MyReviewsIndexComponent,
     MyShoppingIndexComponent,
     OrdersComponent,
-    CreditsComponent
+    CreditsComponent,
+    OrdersDetailComponent
   ]
 })
 export class AccountModule { }
