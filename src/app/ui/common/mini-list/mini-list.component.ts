@@ -280,7 +280,7 @@ export class MiniListComponent implements OnInit, AfterViewInit, OnDestroy {
     private renderer: Renderer2,
     @Inject(LOCALE_ID) private locale: string,
     @Inject(APP_BASE_HREF) private region: string,
-    private store: Store<AppState>;
+    private store: Store<AppState>,
   ) {
 
   }
@@ -316,5 +316,5 @@ export class MiniListComponent implements OnInit, AfterViewInit, OnDestroy {
 
   addCart(amountType, index){
     // this.store.dispatch(new )
-  }
+  };
 }
