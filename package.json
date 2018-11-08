@@ -27,7 +27,6 @@
     "@ngrx/store-devtools": "^6.1.0",
     "chart.js": "^2.7.2",
     "core-js": "^2.5.4",
-    "fsevents": "^1.2.4",
     "node-sass": "^4.9.4",
     "normalize.css": "^8.0.0",
     "normalizr": "^3.3.0",
