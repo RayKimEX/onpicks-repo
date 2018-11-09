@@ -7,7 +7,7 @@ import {CheckoutSuccessComponent} from './pages/checkout-success/checkout-succes
 
 const routes: Routes = [
   {
-    path: 'order',
+    path: '',
     children : [
       {
         path : '',

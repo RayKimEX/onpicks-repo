@@ -201,11 +201,19 @@
 
 .action-1 {
   &-medium {
-    -webkit-text-stroke: 1px $color-dark-black;;
+    -webkit-text-stroke: 0.4px $color-dark-grey;;
     font-size: 1.6rem;
     line-height: 1.38;
     letter-spacing: 0.5px;
-    color: $color-dark-black;
+    color: $color-dark-grey;
+  }
+
+  &-medium-grey {
+    -webkit-text-stroke: 0.4px $color-grey;;
+    font-size: 1.6rem;
+    line-height: 1.38;
+    letter-spacing: 0.5px;
+    color: $color-grey;
   }
 }
 
@@ -213,10 +221,18 @@
 
 .action-2 {
   &-medium {
-    -webkit-text-stroke: 1px $color-dark-black;;
-    font-size: 14px;
+    -webkit-text-stroke: 0.4px $color-dark-grey;
+    font-size: 1.6rem;
     line-height: 1.43;
     letter-spacing: 0.2px;
-    color: $color-dark-black;
+    color: $color-dark-grey;
+  }
+
+  &-medium-grey {
+    -webkit-text-stroke: 0.4px $color-grey;
+    font-size: 1.6rem;
+    line-height: 1.43;
+    letter-spacing: 0.2px;
+    color: $color-grey;
   }
 }

@@ -35,6 +35,10 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   tempDiv;
   user$: Observable<AuthState>;
 
+  // 왜 도인들이 잘 되냐느니 하는거를, 사회랑 연결짓고 그런 위험한 말을 왜하는건가요?
+  //
+  // 마치 꿩먹고 알먹고 같은 느낌으로 말하셨고
+  // 근데 지금 와서는 후천에 마음 없으면 오는게 잘 못된다라고 말씀하잖아요?
 
 
   // TODO: 이부분에 대해서 이방식이 맞는지? ngrx로 하려면, 한번더 update를 쳐야 되서 이방식이 아닌거같음 ->
@@ -54,13 +58,12 @@ export class HeaderComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
 
-    console.log(this.user$);
     this.tempDiv = this.renderer.createElement('div');
   }
 
 
   ngAfterViewInit() {
-    console.log(this.signupForm);
+
   }
 
   outMenu() {
@@ -86,8 +89,6 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   logout() {
     this.store.dispatch(new Logout());
   }
-
-
 
 }
 

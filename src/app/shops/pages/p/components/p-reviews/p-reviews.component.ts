@@ -10,7 +10,7 @@ import {
 } from '@angular/core';
 import {interval} from 'rxjs';
 import {Store} from '@ngrx/store';
-import * as MenuActions from '../../../pages/p/store/p.actions';
+import * as MenuActions from '../../pages/store/p.actions';
 
 
 @Component({

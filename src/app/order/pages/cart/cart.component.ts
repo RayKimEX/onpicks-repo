@@ -65,16 +65,6 @@ export class CartComponent implements OnInit {
     } else {
       this.renderer.setStyle(item, 'display', 'block');
     }
-
-
   }
-
-  // minusAmount(index) {
-  //   if ( this.cartList[index].amount !== 1) {
-  //     this.cartList[index].amount--;
-  //   }
-  // }
-
-  //}
 
 }

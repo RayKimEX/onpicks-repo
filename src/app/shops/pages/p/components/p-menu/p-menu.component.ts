@@ -3,7 +3,7 @@ import {fromEvent, interval, Observable} from 'rxjs';
 import Chart from 'chart.js';
 import {map, switchMap, take} from 'rxjs/operators';
 import {select, Store} from '@ngrx/store';
-import * as fromP from '../../../pages/p/store/p.reducer';
+import * as fromP from '../../pages/store/p.reducer';
 
 @Component({
   selector: 'onpicks-p-menu',
@@ -11,6 +11,8 @@ import * as fromP from '../../../pages/p/store/p.reducer';
   styleUrls: ['./p-menu.component.scss']
 })
 
+
+// MUST TODO: p.component.ts에서 store async를 받아서 pmenu에는 단순히 처리만
 // TODO : 스크롤 메뉴 관련 // https://www.29cm.co.kr/order/checkout?pay_code=10 참고해서, fix메뉴가 충분히 아래로 내려가면, 그때 내려갈 수 있도록 변경
 export class PMenuComponent implements OnInit, OnDestroy {
   @ViewChild('pMenu') pMenu: ElementRef;
@@ -23,7 +25,7 @@ export class PMenuComponent implements OnInit, OnDestroy {
   hrLiner;
   initialDatesTitle;
   scrollEvent
-  PStore;
+  PStore$;
 
 
   chartSortList = [
@@ -37,23 +39,26 @@ export class PMenuComponent implements OnInit, OnDestroy {
     },
   ]
 
-  constructor(private renderer: Renderer2, private store: Store<fromP.FeatureState>) {
+  constructor(
+    private renderer: Renderer2,
+    private store: Store<fromP.State>
+  ) {
     this.initialDatesTitle = ['Date1', 'Date2', 'Date3'];
   }
 
   ngOnDestroy() {
     this.scrollEvent.unsubscribe();
-    this.PStore.unsubscribe();
+    this.PStore$.unsubscribe();
   }
 
   ngOnInit() {
     const weatherDates = []
 
     this.scrollEvent = fromEvent(window, 'scroll');
-    this.PStore = this.store.pipe( select('p'));
+    this.PStore$ = this.store.pipe( select('p'));
     let setStatus = '';
-    let menuTopValue: fromP.FeatureState;
-    this.PStore = this.PStore.subscribe( (val: fromP.FeatureState)  => {
+    let menuTopValue: fromP.State;
+    this.PStore$ = this.PStore$.subscribe( (val: fromP.State)  => {
       menuTopValue = val;
       // absolute
       if (window.pageYOffset >= menuTopValue.menuPosition - 32 &&  setStatus === 'absolute') {

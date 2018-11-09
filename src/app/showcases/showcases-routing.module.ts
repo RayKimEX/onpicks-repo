@@ -4,9 +4,10 @@ import {ShowcasesComponent} from './pages/showcases/showcases.component';
 
 const routes: Routes = [
   {
-    path: 'showcases',
+    path: '',
     component: ShowcasesComponent
-  }
+  },
+
 ];
 // const routes: Routes = [
 //   {

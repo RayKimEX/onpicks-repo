@@ -21,17 +21,16 @@
     <onpicks-p-item-detail></onpicks-p-item-detail>
     <onpicks-p-description></onpicks-p-description>
     <onpicks-p-reviews #onpicksReview></onpicks-p-reviews>
-
   </div>
 
+  <onpicks-communicate-box *ngIf="(popupReviewsUI$ | async) == true"></onpicks-communicate-box>
   <div class="col-5-of-12">
     <div>
       <onpicks-p-menu></onpicks-p-menu>
     </div>
-
   </div>
 </div>
-{{0.59 | onpicksCurrency:'USD'}}
+
 <div class="row">
   <ui-mini-list [setTitle]="'Similar Items'"></ui-mini-list>
 </div>

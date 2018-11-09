@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ElementRef, OnInit, Renderer2, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, OnDestroy, OnInit, Renderer2, ViewChild} from '@angular/core';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {fromEvent, Observable, of, pipe} from 'rxjs';
 import {
@@ -13,7 +13,7 @@ import {
   templateUrl: './checkout.component.html',
   styleUrls: ['./checkout.component.scss']
 })
-export class CheckoutComponent implements OnInit, AfterViewInit {
+export class CheckoutComponent implements OnInit, AfterViewInit, OnDestroy {
 
   @ViewChild('inputSearchBoxOuter') inputSearchBoxOuter;
   @ViewChild('inputSearchBox', {read: ElementRef}) inputSearchBoxEL;
@@ -67,6 +67,7 @@ export class CheckoutComponent implements OnInit, AfterViewInit {
   // 1 : result
   // 2 : not searched
   searchState = 0;
+  search$;
 
   constructor(
     private renderer: Renderer2,
@@ -94,12 +95,16 @@ export class CheckoutComponent implements OnInit, AfterViewInit {
     }
   }
 
+  ngOnDestroy() {
+    this.search$.unsubscribe();
+  }
+
   ngAfterViewInit() {
 
     const event$ = fromEvent(this.inputSearchBox.searchInputBox.nativeElement, 'input');
 
     // TODO : 20정도가 딱 적당하게 바로바로 반응함.
-    event$.pipe(
+    this.search$ = event$.pipe(
       debounceTime(80),
       distinctUntilChanged(),
       map( (val: KeyboardEvent) => val.target),

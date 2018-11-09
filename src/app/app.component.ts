@@ -21,49 +21,49 @@ export class AppComponent implements OnInit {
     private router: Router,
   ) {
     this.store.dispatch(new GetAuthUser());
-    router.events.subscribe((event: RouterEvent) => {
-      this._navigationInterceptor(event);
-    });
+    // router.events.subscribe((event: RouterEvent) => {
+    //   this._navigationInterceptor(event);
+    // });
   }
 
 
   // Shows and hides the loading spinner during RouterEvent changes
-  private _navigationInterceptor(event: RouterEvent): void {
-/*    if (event instanceof NavigationStart) {
-      // We wanna run this function outside of Angular's zone to
-      // bypass change detection
-      this.ngZone.runOutsideAngular(() => {
-        // For simplicity we are going to turn opacity on / off
-        // you could add/remove a class for more advanced styling
-        // and enter/leave animation of the spinner
-        this.renderer.setElementStyle(
-          this.spinnerElement.nativeElement,
-          'opacity',
-          '1'
-        )
-      })
-    }*/
-    if (event instanceof NavigationEnd) {
-      console.log('NavigationENd');
-      // this._hideSpinner()
-    }
-    // Set loading state to false in both of the below events to
-    // hide the spinner in case a request fails
-    if (event instanceof NavigationCancel) {
-      // this._hideSpinner()
-    }
-    if (event instanceof NavigationError) {
-      // this._hideSpinner()
-    }
-  }
+//   private _navigationInterceptor(event: RouterEvent): void {
+// /*    if (event instanceof NavigationStart) {
+//       // We wanna run this function outside of Angular's zone to
+//       // bypass change detection
+//       this.ngZone.runOutsideAngular(() => {
+//         // For simplicity we are going to turn opacity on / off
+//         // you could add/remove a class for more advanced styling
+//         // and enter/leave animation of the spinner
+//         this.renderer.setElementStyle(
+//           this.spinnerElement.nativeElement,
+//           'opacity',
+//           '1'
+//         )
+//       })
+//     }*/
+//     if (event instanceof NavigationEnd) {
+//       console.log('NavigationENd');
+//       // this._hideSpinner()
+//     }
+//     // Set loading state to false in both of the below events to
+//     // hide the spinner in case a request fails
+//     if (event instanceof NavigationCancel) {
+//       // this._hideSpinner()
+//     }
+//     if (event instanceof NavigationError) {
+//       // this._hideSpinner()
+//     }
+//   }
 
   ngOnInit() {
     // TODO : 해당 아래코드를 AppComponent OnInit에 하지 말고, App.Module의 FactoryProvider를 통해 가능한지 ?
-    if ( this.locale === 'ko' ) {
-      require( 'style-loader!./../assets/scss/typography/typography.ko.scss');
-    } else {
-      require( 'style-loader!./../assets/scss/typography/typography.en.scss');
-    }
+    // if ( this.locale === 'ko' ) {
+    //   require( 'style-loader!./../assets/scss/typography/typography.ko.scss');
+    // } else {
+    //   require( 'style-loader!./../assets/scss/typography/typography.en.scss');
+    // }
   }
 }
 

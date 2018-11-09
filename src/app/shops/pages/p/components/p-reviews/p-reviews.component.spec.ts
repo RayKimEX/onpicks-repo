@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PReviewsComponent } from './p-reviews.component';
 import {StoreModule} from '@ngrx/store';
-import {PReducer} from '../../../pages/p/store/p.reducer';
+import {PReducer} from '../../pages/store/p.reducer';
 
 describe('PReviewsComponent', () => {
   let component: PReviewsComponent;

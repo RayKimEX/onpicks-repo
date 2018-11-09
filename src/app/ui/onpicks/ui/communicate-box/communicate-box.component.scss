@@ -1,0 +1,145 @@
+@import '~src/assets/scss/abstracts/variables';
+
+.communicate-box__outer {
+  position: fixed;
+  width: 100%;
+  height : 100vh;
+  will-change: transform ;
+  background-color : black;
+  opacity : 0.5;
+  z-index :9998;
+  top : 0;
+  left : 0;
+}
+.communicate-box-only {
+  transform: translate(-50%, -50%);
+  position: fixed;
+  top : 50%;
+  left : 50%;
+  z-index : 9999;
+  width : 66rem;
+  height : 64.8rem;
+  background-color : $color-white;
+
+  &__reviews {
+    height : 38rem;
+    padding-right :1.6rem;
+    overflow-y: scroll;
+
+    &--my-reviews {
+      margin : 2.4rem 0;
+    }
+
+    &--other-reviews {
+      &-item {
+        margin-bottom: 8px;
+
+        span:nth-of-type(1){
+          margin-right : 8px;
+        }
+      }
+    }
+  }
+
+  &__input-reviews {
+    input {
+      margin-top : 1.6rem;
+      font-size : 1.6rem;
+      line-height: 1.75;
+      letter-spacing: 0.5px;
+      width : 100%;
+
+
+      border : 0;
+
+      &::placeholder{
+
+        color:$color-grey
+      }
+    }
+  }
+
+  &__feature {
+    margin-right :1.6rem;
+    padding-top:1.6rem;
+    padding-bottom : 1.6rem;
+    border-top : 1px solid $color-light-grey;
+    border-bottom : 1px solid $color-light-grey;
+
+    a {
+      img {
+        vertical-align: top;
+      }
+    }
+    &--item {
+      position:relative;
+      margin-left: 0.8rem;
+      margin-right: 3.2rem;
+
+
+    }
+
+    &--report {
+      float : right;
+    }
+  }
+
+  &__inner {
+    padding : 3.2rem 1.6rem 3.2rem 3.2rem;
+  }
+
+  &__figure {
+
+
+    margin-right :1.6rem;
+    position: relative;
+    border-bottom : 1px solid $color-light-grey;
+
+    &--option {
+      margin-bottom : 2.4rem;
+    }
+    figure {
+
+      position:relative;
+
+      margin-bottom: 1.6rem;
+      img {
+      }
+
+      ui-star-rating {
+        margin-left: 1.6rem;
+      }
+      figcaption {
+        position: absolute;
+        margin-left: 1.6rem;
+        top: 0;
+        display: inline-block;
+      }
+
+      span {
+        position: absolute;
+        bottom: 0.1rem;
+        color: $color-dark-grey;
+      }
+    }
+
+    &--image-outer {
+      width: 4rem;
+      height: 4rem;
+      border-radius: 50%;
+      overflow: hidden;
+    }
+
+    &--profile-box {
+      position: absolute;
+      width: 45.6rem;
+      height: 7.4rem;
+      background-color: transparent;
+      bottom: 0;
+
+      &-inner {
+
+      }
+    }
+  }
+}

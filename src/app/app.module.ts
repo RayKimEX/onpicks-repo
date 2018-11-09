@@ -53,7 +53,6 @@ function getCookie(cname) {
     AppComponent,
     FooterComponent,
     HeaderComponent,
-    ShowcasesComponent,
   ],
   imports: [
     BrowserModule,
@@ -77,12 +76,12 @@ function getCookie(cname) {
     ///
 
     ShopsModule,
-    ShowcasesModule,
-    TermsModule,
-    HelpModule,
-    OrderModule,
-    MemberModule,
-    AccountModule
+    // ShowcasesModule,
+    // TermsModule,
+    // HelpModule,
+    // OrderModule,
+    // MemberModule,
+    // AccountModule
   ],
   providers: [
     AuthInterceptorService,

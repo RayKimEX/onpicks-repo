@@ -28,6 +28,7 @@ import { InputBoxComponent } from './onpicks/ui/input-box/input-box.component';
 import { ButtonComponent } from './onpicks/button/button/button.component';
 import { AdhereTableComponent } from './onpicks/table/adhere-table/adhere-table.component';
 import { IndentTableComponent } from './onpicks/table/indent-table/indent-table.component';
+import { CommunicateBoxComponent } from './onpicks/ui/communicate-box/communicate-box.component';
 
 @NgModule({
 
@@ -63,6 +64,7 @@ import { IndentTableComponent } from './onpicks/table/indent-table/indent-table.
     ButtonComponent,
     AdhereTableComponent,
     IndentTableComponent,
+    CommunicateBoxComponent,
   ],
   exports: [
     SimpleCarouselComponent,
@@ -90,6 +92,7 @@ import { IndentTableComponent } from './onpicks/table/indent-table/indent-table.
     InputBoxComponent,
     ButtonComponent,
     AdhereTableComponent,
+    CommunicateBoxComponent
 
   ]
 })

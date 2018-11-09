@@ -1,25 +1,25 @@
 import { InjectionToken, NgModule} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ShopsRoutingModule } from './shops-routing.module';
-import { PComponent } from './pages/p/p.component';
-import { PDescriptionComponent } from './components/p/p-description/p-description.component';
-import { PItemDetailComponent } from './components/p/p-item-detail/p-item-detail.component';
-import { PMenuComponent } from './components/p/p-menu/p-menu.component';
-import { POtherSellersComponent } from './components/p/p-other-sellers/p-other-sellers.component';
-import { PReviewsComponent } from './components/p/p-reviews/p-reviews.component';
-import { PThumbnailComponent } from './components/p/p-thumbnail/p-thumbnail.component';
-import { PCustomerComponent } from './components/p/p-customer/p-customer.component';
+import { PComponent } from './pages/p/pages/p.component';
+import { PDescriptionComponent } from './pages/p/components/p-description/p-description.component';
+import { PItemDetailComponent } from './pages/p/components/p-item-detail/p-item-detail.component';
+import { PMenuComponent } from './pages/p/components/p-menu/p-menu.component';
+import { POtherSellersComponent } from './pages/p/components/p-other-sellers/p-other-sellers.component';
+import { PReviewsComponent } from './pages/p/components/p-reviews/p-reviews.component';
+import { PThumbnailComponent } from './pages/p/components/p-thumbnail/p-thumbnail.component';
+import { PCustomerComponent } from './pages/p/components/p-customer/p-customer.component';
 import { UiModule } from '../ui/ui.module';
 import { StoreModule } from '@ngrx/store';
-import { PReducer } from './pages/p/store/p.reducer';
+import { PReducer } from './pages/p/pages/store/p.reducer';
 import { DirectivesModule } from '../core/directives/directives.module';
 import { PipeModule } from '../core/pipe/pipe.module';
-import { ShopsIndexComponent } from './pages/index/shops-index.component';;
-import { BeautyComponent } from './pages/c/beauty/beauty.component';
-import { HomeComponent } from './pages/c/home/home.component';
-import { ElectronicsComponent } from './pages/c/electronics/electronics.component';
-import {PantryAndHouseholdComponent} from './pages/c/pantry-and-household/pantry-and-household.component';
-import {FashionComponent} from './pages/c/fashion/fashion.component';
+import { ShopsIndexComponent } from './pages/shops-index.component';;
+import { BeautyComponent } from './pages/c/index/beauty/beauty.component';
+import { HomeComponent } from './pages/c/index/home/home.component';
+import { ElectronicsComponent } from './pages/c/index/electronics/electronics.component';
+import {PantryAndHouseholdComponent} from './pages/c/index/pantry-and-household/pantry-and-household.component';
+import {FashionComponent} from './pages/c/index/fashion/fashion.component';
 import {CIndexComponent} from './pages/c/index/c-index.component';
 
 
@@ -30,23 +30,13 @@ import {CIndexComponent} from './pages/c/index/c-index.component';
   imports: [
     CommonModule,
     ShopsRoutingModule,
-    StoreModule.forFeature('p', PReducer),
+
     UiModule,
     DirectivesModule,
     PipeModule
   ],
   declarations: [
-    PComponent,
 
-    PCustomerComponent,
-    PDescriptionComponent,
-    PMenuComponent,
-
-    PReviewsComponent,
-    PThumbnailComponent,
-    PItemDetailComponent,
-
-    POtherSellersComponent,
     //
     ShopsIndexComponent,
     PantryAndHouseholdComponent,

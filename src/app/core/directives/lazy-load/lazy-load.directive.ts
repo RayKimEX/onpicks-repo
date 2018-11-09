@@ -1,4 +1,4 @@
-import {AfterViewInit, Directive, ElementRef, EventEmitter, HostBinding, Input, Output, Renderer2} from '@angular/core';
+import {AfterViewInit, Directive, ElementRef, EventEmitter, HostBinding, Input, OnDestroy, Output, Renderer2} from '@angular/core';
 import {fromEvent, Observable} from 'rxjs';
 
 @Directive({
@@ -9,7 +9,9 @@ export class LazyLoadDirective implements AfterViewInit {
   @HostBinding('attr.src') srcAttr = null;
   @Input() src: string;
   @Input() drLazyLoad: { method: string };
-
+  imgLoad$;
+  imgAnimation$;
+  obs;
 
   constructor(private el: ElementRef, private renderer: Renderer2) {
 
@@ -32,11 +34,10 @@ export class LazyLoadDirective implements AfterViewInit {
       this.renderer.addClass(this.el.nativeElement, 'u-opacity-zero');
 
       this.canLazyLoad() ? this.lazyLoadImage() : this.loadImage();
-      const imgLoad$ = fromEvent(this.el.nativeElement, 'load');
-      const loadSub = imgLoad$.subscribe( val => {
+      this.imgLoad$ = fromEvent(this.el.nativeElement, 'load').subscribe( val => {
         this.renderer.removeChild(this.el.nativeElement.parentNode, backgroundColor);
         this.renderer.removeClass(this.el.nativeElement, 'u-opacity-zero');
-        loadSub.unsubscribe();
+        this.imgLoad$.unsubscribe();
       });
 
       return;
@@ -56,18 +57,16 @@ export class LazyLoadDirective implements AfterViewInit {
       // this.renderer.addClass(this.el.nativeElement, 'u-opacity-zero');
 
       this.canLazyLoad() ? this.lazyLoadImage() : this.loadImage();
-      const imgLoad$ = fromEvent(this.el.nativeElement, 'load');
-      const imgAnimation$ = fromEvent(this.el.nativeElement, 'animationend');
-      const loadSub = imgLoad$.subscribe( val => {
+      this.imgLoad$ = fromEvent(this.el.nativeElement, 'load').subscribe( val => {
         this.renderer.removeChild(this.el.nativeElement.parentNode, backgroundColor);
         this.renderer.addClass(this.el.nativeElement, 'u-fade-in');
-        loadSub.unsubscribe();
-    });
-
-      const animationSub = imgAnimation$.subscribe( val => {
-        this.renderer.removeClass(this.el.nativeElement, 'u-fade-in');
-        animationSub.unsubscribe();
+        this.imgLoad$.unsubscribe();
       });
+      this.imgAnimation$ = fromEvent(this.el.nativeElement, 'animationend').subscribe( val => {
+        this.renderer.removeClass(this.el.nativeElement, 'u-fade-in');
+        this.imgAnimation$.unsubscribe();
+      });;
+
       return;
     }
 
@@ -78,18 +77,18 @@ export class LazyLoadDirective implements AfterViewInit {
   }
 
   private lazyLoadImage() {
-    const obs = new IntersectionObserver(entries => {
+    this.obs = new IntersectionObserver(entries => {
 
       entries.forEach((entry: IntersectionObserverEntry) => {
 
 
         if (this.checkIfIntersecting(entry)) {
           this.loadImage();
-          obs.unobserve(this.el.nativeElement);
+          this.obs.unobserve(this.el.nativeElement);
         }
       });
     }, {});
-    obs.observe(this.el.nativeElement);
+    this.obs.observe(this.el.nativeElement);
   }
 
   private checkIfIntersecting (entry: IntersectionObserverEntry) {

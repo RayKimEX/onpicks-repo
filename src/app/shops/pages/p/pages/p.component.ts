@@ -2,7 +2,7 @@ import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {fromEvent} from 'rxjs';
 import {map} from 'rxjs/operators';
 import * as MenuActions from './store/p.actions';
-import {Store} from '@ngrx/store';
+import {select, Store} from '@ngrx/store';
 import * as fromP from './store/p.reducer';
 
 
@@ -13,11 +13,15 @@ import * as fromP from './store/p.reducer';
 })
 export class PComponent implements OnInit, AfterViewInit {
 
-  constructor(private store: Store<fromP.FeatureState>) { }
+  popupReviewsUI$;
+
+  constructor(
+    private store: Store<fromP.State>
+  ) {
+    this.popupReviewsUI$ = this.store.pipe( select( (state: fromP.State) => state.popupReviews ));
+  }
 
   ngOnInit() {
-
-
   }
 
   ngAfterViewInit() {

@@ -1,7 +1,7 @@
 import {
   AfterViewInit,
   Component, ElementRef,
-  HostListener, Input,
+  HostListener, Input, OnDestroy,
   OnInit,
   Renderer2,
   ViewChild,
@@ -13,7 +13,7 @@ import {
   templateUrl: './banner-carousel.component.html',
   styleUrls: ['./banner-carousel.component.scss']
 })
-export class BannerCarouselComponent implements OnInit, AfterViewInit {
+export class BannerCarouselComponent implements OnInit, AfterViewInit, OnDestroy {
   @Input('height') height;
 
   @ViewChild('container') container;
@@ -50,6 +50,10 @@ export class BannerCarouselComponent implements OnInit, AfterViewInit {
 
   constructor(private renderer: Renderer2) {
 
+  }
+
+  ngOnDestroy() {
+    clearInterval( this.myInterval );
   }
 
   @HostListener('mouseover')
