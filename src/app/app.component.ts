@@ -4,7 +4,9 @@ import {DOMAIN_HOST} from './app.config';
 import {Store} from '@ngrx/store';
 import {AppState} from './core/store/app.reducer';
 import {GetAuthUser} from './core/store/auth/auth.actions';
-import {NavigationCancel, NavigationEnd, NavigationError, Router, RouterEvent} from '@angular/router';
+import {
+  Router
+} from '@angular/router';
 
 @Component({
   selector: 'onpicks-root',
