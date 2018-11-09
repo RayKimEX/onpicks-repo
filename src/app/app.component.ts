@@ -16,7 +16,7 @@ import {NavigationCancel, NavigationEnd, NavigationError, Router, RouterEvent} f
 export class AppComponent implements OnInit {
   title = 'onpicks';
   constructor(
-    @Inject(LOCALE_ID) private locale: string,
+    @Inject(LOCALE_ID) public locale: string,
     private store: Store<AppState>,
     private router: Router,
   ) {
