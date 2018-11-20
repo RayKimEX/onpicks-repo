@@ -1,0 +1,92 @@
+<div class="row">
+  <div class="col-3-of-12">
+    <div class="c-category-navigator">
+      <!--해당을 누르면 식품 생홀용품 카테고리 메인페이지로 가게-->
+      <div class="c-category-navigator__title subtitle-1-bold">식품 생활용품</div>
+      <hr>
+      <div class="c-category-navigator__content">
+        <nav class="subtitle-3-bold u-color-dark-grey">
+
+          <ul #depthOuter>
+            <li #oneDepth *ngFor="let firstCategoryId of result">
+              <!--twoDepth-->
+              <div class="c-category-navigator__item">
+                <a (click)="updateSecondCategory(firstCategoryId, categoryList.secondCategory[firstCategoryId].slug)"
+                   [ngClass]="categoryList.secondCategory[firstCategoryId].active ? 'main-active' : 'main-deactive'" >
+                   {{categoryList.secondCategory[firstCategoryId].name}}
+                </a>
+                <label for="" (click)="onedepthFold(f1, label1)" >
+                  <svg #label1 width="10" height="8" viewBox="0 0 10 8"
+                       [ngStyle]="{'transform': categoryList.secondCategory[firstCategoryId].active ? 'rotate(-180deg)' : 'rotate(0deg)' }"
+                  >
+                    <polyline
+                      points="1 2 5 6 9 2"
+                      [ngClass]="categoryList.secondCategory[firstCategoryId].active ? 'u-color-stroke-black' : 'u-color-stroke-dark-grey'"
+                      fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+                  </svg>
+                </label>
+              </div>
+              <!--threeDepth-->
+              <ul #f1
+                  [ngStyle]="{'maxHeight': categoryList.secondCategory[firstCategoryId].active ? '3500px' : '0px' }">
+                <li #twoDepth *ngFor="let secondCategoryId of categoryList.secondCategory[firstCategoryId].children">
+                  <div class="c-category-navigator__item">
+                    <!--첫번째 category가 active되있는ㄴ지 아닌지 판단해서 색감넣음-->
+                    <a (click)="updateThirdCategory(
+                                secondCategoryId,
+                                categoryList.secondCategory[firstCategoryId].slug,
+                                categoryList.thirdCategory[secondCategoryId].slug)"
+                       [ngClass]="categoryList.secondCategory[firstCategoryId].active && !categoryList.thirdCategory[secondCategoryId].active
+                                  ? previous.thirdPrevious !== undefined ? 'main-deactive' : 'sub-active' : categoryList.thirdCategory[secondCategoryId].active ?  'main-active' : 'main-deactive' "
+
+                        >
+                      {{categoryList.thirdCategory[secondCategoryId].name}}
+
+                    </a>
+                    <!--3dpeth-->
+                    <label for="" (click)="twodepthFold(f2, label2)"  >
+                      <svg #label2
+                           width="10" height="8" viewBox="0 0 10 8" xmlns="http://www.w3.org/2000/svg"
+                            [ngStyle]="{ 'transform' : categoryList.thirdCategory[secondCategoryId].active ? 'rotate(-180deg)' : 'rotate(0deg)' }"
+                           >
+                        <polyline points="1 2 5 6 9 2"
+                        [ngClass]="categoryList.thirdCategory[secondCategoryId].active ? 'u-color-stroke-black' : 'u-color-stroke-dark-grey'"
+                        fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+                      </svg>
+                    </label>
+                  </div>
+
+                  <ul #f2
+                      [ngStyle]="{ 'maxHeight' : categoryList.thirdCategory[secondCategoryId].active ? '700px' : '0px' }"
+                    >
+                    <li #threeDepth *ngFor="let thirdCategoryId of categoryList.thirdCategory[secondCategoryId].children">
+                      <div class="c-category-navigator__item">
+                        <a
+                          [ngClass]="categoryList.thirdCategory[secondCategoryId].active ? categoryList.fourthCategory[thirdCategoryId].active ? 'main-active' : 'sub-active' : 'main-deactive'"
+                        >{{categoryList.fourthCategory[thirdCategoryId].name}}</a>
+                      </div>
+
+                      <!--<ul>-->
+                        <!--<li #FourDepth *ngFor="let firthDepth of secondDepth.value[thirdDepth.key] | keyvalue: nonCompareFunction">-->
+                          <!--<a class="u-color-dark-grey">{{firthDepth.key}}</a>-->
+                        <!--</li>-->
+                      <!--</ul>-->
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </nav>
+
+        <div class="subtitle-3-bold u-color-green">숨기기</div>
+      </div>
+    </div>
+
+  </div>
+  <div class="col-9-of-12">
+    <div class="c-category-content">
+      <h1 class="c-category-content__title">{{getCategoryOneDepth}}</h1>
+    </div>
+  </div>
+</div>

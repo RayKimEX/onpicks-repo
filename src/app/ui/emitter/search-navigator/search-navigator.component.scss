@@ -1,0 +1,92 @@
+@import '~src/assets/scss/abstracts/variables';
+
+
+
+
+@mixin transitionSettings {
+  transition-property : height;
+  transition-duration : .5s;
+}
+
+.main-active {
+  @include subtitle-3-bold;
+  color : $color-black !important;
+}
+
+.main-deactive {
+  @include subtitle-3-regular;
+  color : $color-dark-grey !important;
+}
+
+.sub-active {
+  @include subtitle-3-regular;
+  color : $color-black !important;
+}
+
+
+.c-category-navigator {
+  padding: 2.4rem;
+
+  &__title {
+    margin-bottom :1.6rem;
+  }
+
+  &__item {
+    padding-top : 8px;
+  }
+
+  label {
+
+    display:inline-block;
+    cursor : pointer;
+    float:right;
+    width:15px;
+    height: 15px;
+    svg{
+      display:inline-block;
+      margin-top : 2px;
+      transition : transform .1s .1s ease;
+      float:right;
+      transform : rotate(0deg);
+    }
+  }
+
+  a {
+    display:inline-block;
+    width : 90%;
+  }
+
+
+  nav {
+    margin-top : 1.6rem;
+    ul {
+      display:block;
+      overflow:hidden;
+      list-style: none;
+
+      transform-origin:top;
+      li {
+
+        ul{
+          display:block;
+          overflow:hidden;
+          transition: all .3s ease;
+
+          margin-left:8px;
+          max-height: 0px;
+          transform-origin:top;
+          li {
+            ul {
+              display:block;
+              overflow:hidden;
+              transition:all .3s ease;
+              max-height: 0px;
+              transform-origin:top;
+            }
+          }
+        }
+
+      }
+    }
+  }
+}

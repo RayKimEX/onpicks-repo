@@ -1,0 +1,42 @@
+import { Injectable } from '@angular/core';
+import {Actions, Effect, ofType} from '@ngrx/effects';
+import * as UiActions from './ui.actions';
+import {catchError, map, switchMap} from 'rxjs/operators';
+import {of} from 'rxjs';
+import {UiService} from '../../service/ui/ui.service';
+import {GetCategoryAll, GetCategoryFailure, GetCategorySuccess} from './ui.actions';
+
+
+@Injectable()
+export class UiEffects {
+
+  constructor(
+    private actions$: Actions,
+    private uiService: UiService,
+  ) {}
+
+  @Effect()
+  getCategory = this.actions$.pipe(
+    ofType( UiActions.GET_CATEGORY_ALL ),
+    map( payload => payload['payload']),
+    switchMap( payload => {
+      console.log(payload);
+      console.log(payload['secondSortKey']);
+      return this.uiService.getCategoryAll(1000000)
+        .pipe(
+          map( (categoryInfo) => {
+            return new GetCategorySuccess( {
+              data : categoryInfo.children,
+              secondSortKey : payload['secondSortKey'],
+              thirdSortKey : payload['thirdSortKey'],
+              fourthSortKey : payload['fourthSortKey'],
+            });
+          }),
+          catchError( (error) => {
+            console.log(error);
+            return of(new GetCategoryFailure({ error : error }));
+          })
+        );
+    })
+  );
+}
