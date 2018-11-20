@@ -4,7 +4,7 @@ import * as AuthActions from './auth.actions';
 import {
   catchError,
   map,
-  switchMap
+  switchMap, tap
 } from 'rxjs/operators';
 
 import {
@@ -21,6 +21,7 @@ import {AuthService} from '../../service/auth/auth.service';
 import {Router} from '@angular/router';
 import {of} from 'rxjs';
 import {UserSignUpAPI} from '../user/user.model';
+import {UiService} from '../../service/ui/ui.service';
 
 @Injectable()
 export class AuthEffects {
@@ -28,7 +29,8 @@ export class AuthEffects {
   constructor(
     private authService: AuthService,
     private router: Router,
-    private actions$: Actions
+    private actions$: Actions,
+    private uiService: UiService,
   ) {
 
   }
@@ -42,9 +44,9 @@ export class AuthEffects {
       return this.authService.signup(payload)
         .pipe(
           map( (user) => {
-            this.router.navigate(['/']);
+            this.router.navigate(['/shops']);
 
-            return new LoginSuccess({nickName : 'hong', email : 'jesus_join@naver.com', thumbnailSmallImgSrc : 'https://s3.amazonaws.com/img.onpicks.com/cart__table--info-N.png'});
+            return new LoginSuccess({nickname : 'hong', email : 'jesus_join@naver.com', thumbnailSmallImgSrc : 'https://s3.amazonaws.com/img.onpicks.com/cart__table--info-N.png'});
           }),
           catchError( (error) => {
 
@@ -62,8 +64,8 @@ export class AuthEffects {
       return this.authService.login( payload.email, payload.password )
         .pipe(
           map( (user) => {
-            this.router.navigate(['/']);
-            return new LoginSuccess({nickName : 'hong', email : 'jesus_join@naver.com', thumbnailSmallImgSrc : 'https://s3.amazonaws.com/img.onpicks.com/cart__table--info-N.png'});
+            this.router.navigate(['/shops']);
+            return new LoginSuccess({nickname : 'hong', email : 'jesus_join@naver.com', thumbnailSmallImgSrc : 'https://s3.amazonaws.com/img.onpicks.com/cart__table--info-N.png'});
           }),
           catchError( (error) => {
             console.log(error);
@@ -101,7 +103,7 @@ export class AuthEffects {
         .pipe(
           map( (user) => {
             console.log(user);
-            return new GetAuthUserInfoSuccess({nickName : 'hong', email : 'jesus_join@naver.com', thumbnailSmallImgSrc : 'https://s3.amazonaws.com/img.onpicks.com/cart__table--info-N.png'});
+            return new GetAuthUserInfoSuccess({nickname : 'hong', email : 'jesus_join@naver.com', thumbnailSmallImgSrc : 'https://s3.amazonaws.com/img.onpicks.com/cart__table--info-N.png'});
           }),
           catchError( (error) => {
             console.log(error);

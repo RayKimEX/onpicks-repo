@@ -66,21 +66,20 @@
               "i18nLocale": "en",
               "i18nMissingTranslation": "error"
             },
-
             "serveKo": {
               "outputPath": "dist/ko/",
               "i18nFile": "src/locale/messages.ko.xlf",
               "i18nFormat": "xlf",
               "i18nLocale": "ko",
-              "i18nMissingTranslation": "error",
+              "i18nMissingTranslation": "error"
             },
             "serveEn": {
               "outputPath": "dist/en/",
               "i18nFile": "src/locale/messages.en.xlf",
               "i18nFormat": "xlf",
               "i18nLocale": "en",
-              "i18nMissingTranslation": "error",
-            },
+              "i18nMissingTranslation": "error"
+            }
           }
         },
         "serve": {
@@ -98,15 +97,7 @@
             "en": {
               "browserTarget": "onpicks:build:serveEn"
             }
-          },
-//          "configurations": {
-//            "production": {
-//              "browserTarget": "angular.io-example:build:production"
-//            },
-//            "fr": {
-//              "browserTarget": "angular.io-example:build:fr"
-//            }
-//          }
+          }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
@@ -173,5 +164,8 @@
       }
     }
   },
-  "defaultProject": "onpicks"
+  "defaultProject": "onpicks",
+  "cli": {
+    "defaultCollection": "@ngrx/schematics"
+  }
 }

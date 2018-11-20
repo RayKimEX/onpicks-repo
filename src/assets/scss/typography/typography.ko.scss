@@ -1,5 +1,52 @@
-@import '~src/assets/scss/abstracts/variables';
+$color-grey: #b3b3b3;
+$color-light-grey: #e5e5e5;
+$color-dark-grey: #8d8d8d;
 
+
+$color-black: #292929;
+$color-light-black : #4a4a4a;
+$color-dark-black : #000000;
+
+$color-white :#FFFFFF;
+$color-orange : #F68B1A;
+$color-green : #008489;
+
+
+
+// FONT
+$default-font-size: 1.6rem;
+
+
+// GRID
+$grid-width: 112.8rem;
+$gutter-vertical: 4rem;
+$gutter-vertical-small: 2.4rem;
+$gutter-horizontal: 2.4rem;
+
+// Default-padding
+$default-padding : 8rem;
+
+
+// font에는 dark-black없습니다.
+
+/********** mixins ***********/
+
+
+/********* subtitle-3 **********/
+@mixin subtitle-3-bold {
+  font-size: 1.2rem;
+  font-weight: 700;
+  line-height: 1.33;
+  letter-spacing: 0.1px;
+}
+
+@mixin subtitle-3-regular {
+  font-size: 1.2rem;
+  font-weight: 400;
+  line-height: 1.33;
+  letter-spacing: 0.1px;
+}
+/*******************************/
 
 .h1{
   &-bold {
@@ -90,10 +137,10 @@
   }
 
   &-regular {
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     font-weight: 400;
-    line-height: 1.43;
-    letter-spacing: 0.2px;
+    line-height: 1.33;
+    letter-spacing: 0.1px;
   }
 }
 
@@ -101,10 +148,7 @@
 .subtitle-3 {
 
   &-bold {
-    font-size: 1.2rem;
-    font-weight: 700;
-    line-height: 1.33;
-    letter-spacing: 0.1px;
+    @include subtitle-3-bold;
   }
 
   &-medium {
@@ -115,10 +159,7 @@
   }
 
   &-regular {
-    font-size: 1.2rem;
-    font-weight: 400;
-    line-height: 1.33;
-    letter-spacing: 0.1px;
+    @include subtitle-3-regular;
   }
 }
 

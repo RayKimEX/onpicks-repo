@@ -1,0 +1,46 @@
+<div class="current-nav">
+  <div class="row">
+    Health & Beauty
+    <span>/</span>
+    Health Care
+    <span>/</span>
+    Fitness & Nutrition
+    <span>/</span>
+    Nutrition Bars
+    <span>/</span>
+    Nutrition Bars
+    <hr>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-7-of-12">
+    <onpicks-p-thumbnail></onpicks-p-thumbnail>
+    <onpicks-p-other-sellers></onpicks-p-other-sellers>
+    <onpicks-p-customer></onpicks-p-customer>
+    <onpicks-p-item-detail></onpicks-p-item-detail>
+    <onpicks-p-description></onpicks-p-description>
+    <onpicks-p-reviews [totalList]="totalList" #onpicksReview></onpicks-p-reviews>
+  </div>
+
+
+  <router-outlet></router-outlet>
+  <!--<onpicks-communicate-box-->
+    <!--#communicateBox-->
+    <!--[comment]="totalList[(popupReviewsUI$ | async).reviewIndex]"-->
+    <!--[commentIndex]="(popupReviewsUI$ | async).reviewIndex"-->
+    <!--[ngStyle]="{ 'display' : (popupReviewsUI$ | async).popupReviews == true ? 'block' : 'none' }"-->
+    <!--(willChangeCommentIndex)="changeCommentIndex($event)"-->
+    <!--(willAddComment)="addComment($event)">-->
+
+  <!--</onpicks-communicate-box>-->
+  <div class="col-5-of-12">
+    <div>
+      <onpicks-p-menu></onpicks-p-menu>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <ui-mini-list [setTitle]="'Similar Items'"></ui-mini-list>
+</div>

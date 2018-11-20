@@ -2,7 +2,7 @@
 // Acount -> customer, seller
 export interface UserState {
   email: string;
-  nickName: string;
+  nickname: string;
 
   // thumbnailLargeImgSrc: string;
   thumbnailSmallImgSrc: string;

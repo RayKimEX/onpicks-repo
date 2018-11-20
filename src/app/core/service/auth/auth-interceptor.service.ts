@@ -12,8 +12,6 @@ export class AuthInterceptorService implements HttpInterceptor {
 
     const csrfToken = this.getCookie('csrftoken');
 
-    console.log(csrfToken);
-    console.log(request.url);
     if ( request.url.endsWith('/login/')) {
       return next.handle(request);
     }

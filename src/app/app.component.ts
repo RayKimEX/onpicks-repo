@@ -1,12 +1,16 @@
-import {Component, Inject, isDevMode, LOCALE_ID, OnInit} from '@angular/core';
+import {Component, Inject, isDevMode, LOCALE_ID, OnDestroy, OnInit} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {DOMAIN_HOST} from './app.config';
-import {Store} from '@ngrx/store';
+import {select, Store} from '@ngrx/store';
 import {AppState} from './core/store/app.reducer';
 import {GetAuthUser} from './core/store/auth/auth.actions';
 import {
-  Router
+  NavigationCancel,
+  NavigationEnd, NavigationError,
+  Router, RouterEvent
 } from '@angular/router';
+import {GetCategoryAll} from './core/store/ui/ui.actions';
+import {UiService} from './core/service/ui/ui.service';
 
 @Component({
   selector: 'onpicks-root',
@@ -15,54 +19,101 @@ import {
 })
 
 
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
   title = 'onpicks';
+  isCategoryLoaded = false;
+  uiState$;
   constructor(
     @Inject(LOCALE_ID) public locale: string,
     private store: Store<AppState>,
     private router: Router,
+    private uiService: UiService,
   ) {
+
+    this.uiService.postLanguageSetting();
+
     this.store.dispatch(new GetAuthUser());
-    // router.events.subscribe((event: RouterEvent) => {
-    //   this._navigationInterceptor(event);
-    // });
+
+    this.uiState$ = this.store.pipe(select( 'ui')).subscribe( val => this.isCategoryLoaded = val.currentCategoryList.isLoaded )
+    // this.store.pipe(select( 'ui')).subscribe( val => console.log(val) )
+    router.events.subscribe((event: RouterEvent) => {
+      this._navigationInterceptor(event);
+    });
   }
 
-
   // Shows and hides the loading spinner during RouterEvent changes
-//   private _navigationInterceptor(event: RouterEvent): void {
-// /*    if (event instanceof NavigationStart) {
-//       // We wanna run this function outside of Angular's zone to
-//       // bypass change detection
-//       this.ngZone.runOutsideAngular(() => {
-//         // For simplicity we are going to turn opacity on / off
-//         // you could add/remove a class for more advanced styling
-//         // and enter/leave animation of the spinner
-//         this.renderer.setElementStyle(
-//           this.spinnerElement.nativeElement,
-//           'opacity',
-//           '1'
-//         )
-//       })
-//     }*/
-//     if (event instanceof NavigationEnd) {
-//       console.log('NavigationENd');
-//       // this._hideSpinner()
-//     }
-//     // Set loading state to false in both of the below events to
-//     // hide the spinner in case a request fails
-//     if (event instanceof NavigationCancel) {
-//       // this._hideSpinner()
-//     }
-//     if (event instanceof NavigationError) {
-//       // this._hideSpinner()
-//     }
-//   }
+  private _navigationInterceptor(event: RouterEvent): void {
+/*    if (event instanceof NavigationStart) {
+      // We wanna run this function outside of Angular's zone to
+      // bypass change detection
+      this.ngZone.runOutsideAngular(() => {
+        // For simplicity we are going to turn opacity on / off
+        // you could add/remove a class for more advanced styling
+        // and enter/leave animation of the spinner
+        this.renderer.setElementStyle(
+          this.spinnerElement.nativeElement,
+          'opacity',
+          '1'
+        )
+      })
+    }*/
+
+    if (event instanceof NavigationEnd) {
+      const url = this.router.url.split('/');
+      const slug =  url[url.length - 1];
+
+      if ( url[2] !== 'c' || this.isCategoryLoaded  ) { return; };
+      // category가 /c/안에 url일경우
+
+      // onedepth
+      console.log(url[3]);
+      if ( url.length === 4 ) {
+        this.store.dispatch(new GetCategoryAll(
+          { firstSortKey: url[3] }
+          )
+        );
+        return ;
+      }
+
+      // twoDepth
+      if ( url.length === 5 ) {
+        this.store.dispatch(new GetCategoryAll(
+          { firstSortKey: url[3], secondSortKey: url[4] }
+          )
+        );
+        return ;
+      }
+
+      // threeDepth
+      if ( url.length === 6 ) {
+        this.store.dispatch(new GetCategoryAll(
+          { firstSortKey: url[3], secondSortKey: url[4], thirdSortKey: url[5] }
+          )
+        );
+        return;
+      }
+
+    }
+
+    // Set loading state to false in both of the below events to
+    // hide the spinner in case a request fails
+    if (event instanceof NavigationCancel) {
+      // this._hideSpinner()
+    }
+
+    if (event instanceof NavigationError) {
+      // this._hideSpinner()
+    }
+  }
+
+  ngOnDestroy() {
+    this.uiState$.unsubscribe();
+  }
 
   ngOnInit() {
     // TODO : 해당 아래코드를 AppComponent OnInit에 하지 말고, App.Module의 FactoryProvider를 통해 가능한지 ?
     console.log(this.locale);
-    if ( this.locale === 'ko' ) {
+    if ( this.locale !== 'ko' ) {
       require( 'style-loader!./../assets/scss/typography/typography.ko.scss');
     } else {
       require( 'style-loader!./../assets/scss/typography/typography.en.scss');

@@ -4,7 +4,7 @@ import * as UserActions from './user.actions';
 
 const initialState: UserState = {
   email: null,
-  nickName : null,
+  nickname : null,
   thumbnailSmallImgSrc : null
 };
 
@@ -15,7 +15,7 @@ export function AuthReducer ( state = initialState, action: UserActions.UserActi
       return {
         ...state,
         email : action.payload.email,
-        nickName : action.payload.nickName,
+        nickname : action.payload.nickname,
         thumbnailSmallImgSrc : action.payload.thumbnailSmallImgSrc
       };
     default:

@@ -1,10 +1,21 @@
-import {AfterViewInit, Directive, ElementRef, EventEmitter, HostBinding, Input, OnDestroy, Output, Renderer2} from '@angular/core';
+import {
+  AfterViewInit,
+  Directive,
+  ElementRef,
+  EventEmitter,
+  HostBinding,
+  Input,
+  OnChanges,
+  OnDestroy,
+  Output,
+  Renderer2, SimpleChanges
+} from '@angular/core';
 import {fromEvent, Observable} from 'rxjs';
 
 @Directive({
   selector: '[drLazyLoad]'
 })
-export class LazyLoadDirective implements AfterViewInit {
+export class LazyLoadDirective implements AfterViewInit, OnChanges {
 
   @HostBinding('attr.src') srcAttr = null;
   @Input() src: string;
@@ -17,9 +28,13 @@ export class LazyLoadDirective implements AfterViewInit {
 
   }
 
+  ngOnChanges( changes: SimpleChanges){
+    this.srcAttr = this.src;
+  }
+
   ngAfterViewInit() {
 
-    if( this.drLazyLoad.method === '' || this.drLazyLoad.method === undefined || this.drLazyLoad.method === 'transition'){
+    if ( this.drLazyLoad.method === '' || this.drLazyLoad.method === undefined || this.drLazyLoad.method === 'transition'){
       const backgroundColor = this.renderer.createElement('div');
 
       this.renderer.addClass(backgroundColor, 'u-img-background');

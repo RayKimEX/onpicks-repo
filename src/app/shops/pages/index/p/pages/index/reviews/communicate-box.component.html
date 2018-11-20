@@ -1,0 +1,93 @@
+
+<div
+  #communicateBox
+  class="communicate-box">
+
+  <div *ngIf="isViewImage" class="communicate-box__image">
+    <img drLazyLoad src="{{comment.reviewImg}}" alt="">
+  </div>
+  <div
+    #communicateBoxOnly
+    class="communicate-box-only">
+    <div class="communicate-box-only__inner">
+
+      <div class="communicate-box-only__figure">
+        <figure>
+        <span class="communicate-box-only__figure--image-outer">
+          <img drLazyLoad src="{{comment.profileImg}}" alt="Person on a tour" class="story__img">
+        </span>
+
+          <figcaption class="communicate-box-only__caption subtitle-1-bold">{{comment.name}}</figcaption>
+
+          <ui-star-rating></ui-star-rating>
+          <span>Aug 13, 2018</span>
+        </figure>
+        <div class="communicate-box-only__figure--option subtitle-1-regular u-color-grey">맛: 믹스베이 세트 : 1번세츠 ( 12팩 )</div>
+      </div>
+      <div #scrollOuter class="communicate-box-only__reviews">
+        <div class="communicate-box-only__reviews--my-reviews body-1-regular">
+          {{comment.review}}
+        </div>
+        <div class="communicate-box-only__reviews--other-reviews">
+
+          <div *ngFor="let item of comment.comments" class="communicate-box-only__reviews--other-reviews-item">
+            <span class="subtitle-1-bold">{{item.author}}</span>
+            <span class="body-1-regular">{{item.content}}</span>
+          </div>
+
+        </div>
+      </div>
+      <div class="communicate-box-only__feature">
+        <a>
+          <img src="https://s3.amazonaws.com/img.onpicks.com/thumbs-up-icon.jpg" alt="">
+          <span class="communicate-box-only__feature--item action-1-medium"
+                (click)="prevButton()">추천하기</span>
+        </a>
+        <a>
+          <img src="https://s3.amazonaws.com/img.onpicks.com/share-icon.jpg" alt="">
+          <span class="communicate-box-only__feature--item action-1-medium"
+                (click)="nextButton()">공유하기</span>
+        </a>
+        <a>
+          <span class="communicate-box-only__feature--report action-1-medium-grey">신고하기</span>
+        </a>
+      </div>
+      <div class="communicate-box-only__input-reviews">
+        <input type="text" (keypress)="commentTyping($event, f)" #f placeholder="댓글 달기">
+
+      </div>
+    </div>
+
+  </div>
+
+
+  <button class="communicate-box__prev-button" (click)="prevButton()">
+    <svg width="15" height="26" viewBox="0 0 15 26">
+      <path fill="none" fill-rule="evenodd" stroke="#E5E5E5" stroke-width="2" d="M14 1L2 13.098 14 25"/>
+    </svg>
+
+
+    <!--<svg width="9" height="14" viewBox="0 0 9 14">-->
+    <!--<defs>-->
+    <!--<path id="a" d="M24 14l-6 6.05L24 26"/>-->
+    <!--</defs>-->
+    <!--<use fill="none" fill-rule="evenodd" stroke="#000" stroke-width="2" transform="translate(-16 -13)" xlink:href="#a"/>-->
+    <!--</svg>-->
+  </button>
+  <button class="communicate-box__next-button" (click)="nextButton()">
+    <svg width="15" height="26" viewBox="0 0 15 26">
+      <path fill="none" fill-rule="evenodd" stroke="#E5E5E5" stroke-width="2" d="M1 25l12-12.098L1 1"/>
+    </svg>
+    <!--<svg width="9" height="14" viewBox="0 0 9 14">-->
+    <!--<defs>-->
+    <!--<path id="a" d="M24 14l-6 6.05L24 26"/>-->
+    <!--</defs>-->
+    <!--<use fill="none" fill-rule="evenodd" stroke="#000" stroke-width="2" transform="rotate(-180 12.5 13.5)" xlink:href="#a"/>-->
+    <!--</svg>-->
+  </button>
+</div>
+
+<div class="communicate-box__outer">
+
+</div>
+

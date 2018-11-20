@@ -12,12 +12,25 @@ import {ShopsModule} from './shops/shops.module';
 // import {AccountModule} from './account/account.module';
 const appRoutes: Routes = [
   {
+    path : '',
+    pathMatch : 'full',
+    redirectTo : 'shops',
+  },
+  {
     path: 'showcases',
     loadChildren : './showcases/showcases.module#ShowcasesModule'
   },
   {
     path : 'order',
     loadChildren : './order/order.module#OrderModule'
+  },
+  {
+    path: 'member',
+    loadChildren : './member/member.module#MemberModule',
+  },
+  {
+    path: 'account',
+    loadChildren : './account/account.module#AccountModule',
   }
 
   // { path: 'recipes', loadChildren: './recipes/recipes.module#RecipesModule'},

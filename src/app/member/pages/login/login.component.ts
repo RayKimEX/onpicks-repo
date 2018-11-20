@@ -22,6 +22,16 @@ export class LoginComponent implements OnInit {
 
   }
 
+  loginClick() {
+    const info = {
+      email : this.inputEmail.nativeElement.value,
+      password : this.inputPassword.nativeElement.value,
+      isPersistent : false
+    };
+
+    this.store.dispatch( new Login(info));
+  }
+
   login (event: KeyboardEvent) {
 
 
@@ -70,6 +80,7 @@ export class LoginComponent implements OnInit {
       password : this.inputPassword.nativeElement.value,
       isPersistent : false
     };
+
     if (event === undefined) {
 
       this.store.dispatch( new Login(info));

@@ -6,7 +6,7 @@ import {ForgotPasswordComponent} from './pages/forgot-password/forgot-password.c
 
 const routes: Routes = [
   {
-    path : 'member',
+    path : '',
     children : [
       {
         path : 'signup',

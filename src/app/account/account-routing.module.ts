@@ -18,7 +18,7 @@ import {OrdersDetailComponent} from './pages/index/my-shopping/index/orders-deta
 
 const routes: Routes = [
   {
-    path : 'account',
+    path : '',
     component : AccountIndexComponent,
     children : [
       {
@@ -70,7 +70,6 @@ const routes: Routes = [
             path : 'available',
             component : AvailableReviewsComponent
           }
-
         ]
       },
       {
