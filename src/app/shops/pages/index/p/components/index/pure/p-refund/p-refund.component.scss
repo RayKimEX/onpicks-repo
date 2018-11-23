@@ -1,0 +1,24 @@
+@import '~src/assets/scss/abstracts/variables';
+
+
+.p-refund {
+  h1 {
+    margin-bottom : 2.4rem;
+  }
+
+  &__title {
+    margin-bottom : 1.6rem;
+  }
+
+  &__section {
+    padding-bottom : 2.4rem;
+    margin-bottom : 2.4rem;
+    border-bottom : 1px solid $color-light-grey;
+  }
+
+  ul {
+    li {
+      margin-left : 2rem;
+    }
+  }
+}

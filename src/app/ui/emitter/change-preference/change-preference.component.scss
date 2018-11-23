@@ -1,0 +1,80 @@
+@import '~src/assets/scss/abstracts/variables';
+
+.preference {
+
+  position:relative;
+  &-item {
+
+    padding : 0 2px;
+    span {
+      vertical-align: top;
+    }
+    svg {
+      vertical-align: top;
+      margin-top : 5px;
+      margin-left: 0.9rem;
+    }
+
+
+  }
+
+  &-modal {
+    margin-top : 1rem;
+    width:32rem;
+    border-radius: 2px;
+    box-shadow: 0 6px 12px 0 rgba(227, 227, 227, 0.5);
+    border: solid 1px $color-light-grey;
+    position:absolute;
+    z-index : 105;
+    background-color  : white;
+
+    //&__inner {
+    //  padding : 0 2.4rem;
+    //}
+
+
+    &__title {
+      // margin-left : 2.4rem;
+      margin : 0 2.4rem;
+      // padding-left : 2.4rem;
+      @include subtitle-2-bold;
+      height : 4.8rem;
+      span {
+        display:inline-block;
+        margin-top : 1.6rem;
+        margin-bottom : 1rem;
+      }
+    }
+    &__item {
+
+      cursor:pointer;
+      &:nth-of-type(2) > div{
+        border-top : 1px solid $color-light-grey;
+      }
+
+      height : 4rem;
+      width: 100%;
+      span {
+        @include verticalCenter;
+
+      }
+
+
+      &--inner {
+
+
+        position:relative;
+        margin : 0 2.4rem;
+
+        height : inherit;
+
+      }
+
+      &:hover {
+        background-color : $color-light-grey;
+      }
+    }
+  }
+}
+
+
