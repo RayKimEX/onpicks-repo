@@ -102,7 +102,7 @@ export class PReviewsComponent implements OnInit, AfterViewInit, OnDestroy {
       const elemRect = this.hrLineList.last.nativeElement.getBoundingClientRect();
 
       const temp   = elemRect.top - bodyRect.top;
-      this.currentMenuPositionOffset = temp - 703;
+      this.currentMenuPositionOffset = temp - 780;
 
       console.log(this.currentMenuPositionOffset);
       if ( this.previousMenuPositionOffset === this.currentMenuPositionOffset ) {
@@ -120,7 +120,7 @@ export class PReviewsComponent implements OnInit, AfterViewInit, OnDestroy {
       const bodyRect = document.body.getBoundingClientRect();
       const elemRect = this.hrLineList.last.nativeElement.getBoundingClientRect();
       let offset   = elemRect.top - bodyRect.top;
-      offset -= 703;
+      offset -= 780;
       this.store.dispatch( new MenuActions.UpdateMenuPosition(offset) );
     });
 

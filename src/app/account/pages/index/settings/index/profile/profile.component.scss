@@ -11,10 +11,20 @@
     }
 
     &--description {
-      margin-top : 8px;
+      margin-top : 1.6rem;
     }
 
-    &--select-box {
+    &--select-box-month {
+      display:inline-block;
+      width : 13.5rem;
+    }
+    &--select-box-day {
+      margin-left: 1.6rem;
+      margin-right: 1.6rem;
+      display:inline-block;
+      width : 10.1rem;
+    }
+    &--select-box-year {
       display:inline-block;
       width : 13.5rem;
     }

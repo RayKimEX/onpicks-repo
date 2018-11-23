@@ -16,37 +16,37 @@
 
   &__title {
     display:inline-block;
+    margin-bottom : 0.8rem;
   }
 
 
   &__product-info {
 
+    &--title {
+      margin-bottom : 0.4rem;
+    }
     &--read-reviews {
+      display:inline-block;
       margin-left : 0.8rem;
-      font-size:1.4rem;
-      font-weight:500;
-      line-height:1.5;
-      color: $color-grey;
     }
 
     &--MSRP {
-      margin-top : -0.3rem;
-      font-size:1.6rem;
-      font-weight:500;
-      line-height:1.5;
-      letter-spacing:0.04rem;
-      color: $color-grey;
+      margin-top : 0.2rem;
       &-name {
 
       }
       &-discount {
         text-decoration: line-through;
       }
+      &-description {
+        margin-left : 0.8rem;
+      }
     }
 
 
     &--price {
       position:relative;
+      margin-top : 0.4rem;
       margin-bottom: 2.4rem;
 
       onpicks-sort-box {
@@ -55,19 +55,11 @@
       }
 
       &-discount {
-        font-size:2rem;
-        font-weight:700;
-        line-height:1.2;
-        letter-spacing : 0.02rem;
-        color: $color-orange;
+        margin-left: 4px;
       }
 
       &-realprice {
-        font-size:2rem;
-        font-weight: 700;
-        line-height: 1.2;
-        letter-spacing: 0.02rem;
-        color: $color-dark-black;
+        // margin-left: 4px;
       }
 
       &-perprice {
@@ -77,7 +69,7 @@
         font-size: 1.4rem;
         line-height:1.71;
         letter-spacing: 0.03rem;
-        color: $color-dark-black;
+        color: $color-black;
       }
 
       &-comparison-option {
@@ -126,6 +118,43 @@
     }
   }
 
+  &__delivery {
+    margin-top : 2.4rem;
+    margin-bottom : 2.4rem;
+    border-top :1px solid $color-light-grey;
+    border-bottom: 1px solid $color-light-grey;
+    height : 9.4rem;
+
+    &--first {
+      margin-bottom :  0.8rem;
+      & > span{
+        display:inline-block;
+        vertical-align:top;
+        &:nth-of-type(2){
+          margin-left: 0.8rem;
+          margin-top : -3px;
+        }
+        &:nth-of-type(3){
+          margin-top : -2px;
+          margin-left: 2px;
+        }
+      }
+      &-spot {
+        // vertical-align: top;
+      }
+      &-info {
+        // vertical-align: top;
+      }
+    }
+
+    &--second {
+
+    }
+
+    &--inner {
+      padding: 2.4rem 0;
+    }
+  }
 
   &__options {
 

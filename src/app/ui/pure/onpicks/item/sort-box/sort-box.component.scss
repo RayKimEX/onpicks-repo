@@ -46,7 +46,7 @@
       margin-top: -10px;
       padding: 8px 0px;
       background-color:white;
-      z-index:1;
+      z-index:5;
       border-radius: 2px;
       box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 8px;
       border-width:0;
@@ -80,7 +80,7 @@
     &--element {
       position:relative;
       height: 4rem;
-      z-index : 3;
+      z-index : 10;
       transition : background-color .3s;
 
       &:hover {

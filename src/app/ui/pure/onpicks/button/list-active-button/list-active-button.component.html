@@ -1,14 +1,23 @@
-<div #outer>
+<div #outer
+     [ngStyle]="
+     {
+        width : isFixExtend ? '12.8rem' : '4rem',
+        borderColor : isFixExtend ? '#e5e5e5' : '#292929'
+     }
+">
 
 
-  <span #extendUI class="extendUI">
+  <span #extendUI
+        [ngStyle]="{ display : isFixExtend ? 'table-cell' : ''}"
+        class="extendUI">
     <ui-plus-minus-icon
       [opacity]="minusOpacity"
-      [color]="'#292929'"
+      [color]=" isFixExtend && (amount == 1) ? '#b3b3b3' : '#292929'"
       [size]="'14px'"
       #minusIcon
       [type]="'minus'"></ui-plus-minus-icon>
-    <span class="extendUI__number">{{amount}}</span>
+    <span class="extendUI__number"
+    >{{amount}}</span>
   </span>
 
 
@@ -17,6 +26,11 @@
     [color]="plusColor"
     [size]="plusMinusIconSize"
     #plusIcon
+    [ngStyle]="
+     {
+        left : isFixExtend ? 'auto' : '',
+        right : isFixExtend ? '1.9rem' : ''
+     }"
     [type]="'plus'" ></ui-plus-minus-icon>
 
   <span class="touch__amount-up"

@@ -16,6 +16,8 @@ import {AuthState} from '../../../../../core/store/auth/auth.model';
 import {Logout} from '../../../../../core/store/auth/auth.actions';
 import {APP_BASE_HREF} from '@angular/common';
 import {CURRENCY} from '../../../../../app.config';
+import {Router} from '@angular/router';
+import {UiState} from '../../../../../core/store/ui/ui.reducer';
 
 @Component({
   selector: 'ui-header',
@@ -33,12 +35,10 @@ export class HeaderComponent implements OnInit, AfterViewInit {
 
   signupForm: FormGroup;
   tempDiv;
-  user$: Observable<AuthState>;
+  auth$: Observable<AuthState>;
+  url$: Observable<any>;
+  shopsRouterActive;
 
-  // 왜 도인들이 잘 되냐느니 하는거를, 사회랑 연결짓고 그런 위험한 말을 왜하는건가요?
-  //
-  // 마치 꿩먹고 알먹고 같은 느낌으로 말하셨고
-  // 근데 지금 와서는 후천에 마음 없으면 오는게 잘 못된다라고 말씀하잖아요?
 
 
   // TODO: 이부분에 대해서 이방식이 맞는지? ngrx로 하려면, 한번더 update를 쳐야 되서 이방식이 아닌거같음 ->
@@ -47,12 +47,16 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     private renderer: Renderer2,
     private authService: AuthService,
     private store: Store<AppState>,
+    private router: Router,
     @Inject(LOCALE_ID) public locale: string,
     @Inject(APP_BASE_HREF) public region: string,
     @Inject(CURRENCY) public currency: string,
   ) {
-    this.user$ = this.store.pipe(
+    this.auth$ = this.store.pipe(
       select('auth')
+    );
+    this.url$ = this.store.pipe(
+      select(state => state.ui.activeUrl)
     );
   }
 

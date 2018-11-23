@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ElementRef, EventEmitter, HostListener, OnInit, Output, Renderer2, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, EventEmitter, HostListener, Input, OnInit, Output, Renderer2, ViewChild} from '@angular/core';
 import {fromEvent, merge} from 'rxjs';
 
 @Component({
@@ -11,6 +11,7 @@ export class ListActiveButtonComponent implements OnInit, AfterViewInit {
   @ViewChild('plusIcon', {read : ElementRef}) plusIcon;
   @ViewChild('extendUI' ) extendUI;
   @Output('amountEvent') amountEvent = new EventEmitter<string>();
+  @Input('isFixExtend') isFixExtend;
 
   isExtend = false;
   amount = 1;
@@ -24,10 +25,12 @@ export class ListActiveButtonComponent implements OnInit, AfterViewInit {
   // TODO : span 2개를 따로만들어서, 버튼 처리 했는데, 그것을, position absolute말고, padding을 추가해서 가운대로 맞춘후, parentWidth, Height로 button처리 하기
   constructor(
     private renderer: Renderer2
-  ) {  }
+  ) {
+
+  }
 
   ngOnInit() {
-
+    this.isExtend = this.isFixExtend;
   }
 
   ngAfterViewInit() {
@@ -36,6 +39,8 @@ export class ListActiveButtonComponent implements OnInit, AfterViewInit {
 
   @HostListener('mouseover')
   onMouseOver() {
+
+    if( this.isFixExtend ) { return;}
     // 이미 확장되었을때,
     if (this.isExtend) {
 
@@ -120,6 +125,8 @@ export class ListActiveButtonComponent implements OnInit, AfterViewInit {
       }
 
     } else {
+
+      if( this.isFixExtend ) { return;}
 
       this.renderer.setStyle(this.extendUI.nativeElement, 'display', 'none');
       this.renderer.setStyle(this.outer.nativeElement, 'width', '4rem');

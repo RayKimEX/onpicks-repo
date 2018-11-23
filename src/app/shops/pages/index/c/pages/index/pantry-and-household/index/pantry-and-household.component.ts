@@ -18,27 +18,27 @@ export class PantryAndHouseholdComponent implements OnInit {
 
   popularPantryCategory = [
     {
-      imgSrc : 'https://s3.amazonaws.com/img.onpicks.com/pantry-category1.jpg',
+      imgSrc : 'http://img.onpicks.com/pantry-category1.jpg',
       name : '식품',
     },
     {
-      imgSrc : 'https://s3.amazonaws.com/img.onpicks.com/pantry-category2.jpg',
+      imgSrc : 'http://img.onpicks.com/pantry-category2.jpg',
       name : '생활용품',
     },
     {
-      imgSrc : 'https://s3.amazonaws.com/img.onpicks.com/pantry-category3.jpg',
+      imgSrc : 'http://img.onpicks.com/pantry-category3.jpg',
       name : '퍼스널케어',
     },
     {
-      imgSrc : 'https://s3.amazonaws.com/img.onpicks.com/pantry-category4.jpg',
+      imgSrc : 'http://img.onpicks.com/pantry-category4.jpg',
       name : '건강',
     },
     {
-      imgSrc : 'https://s3.amazonaws.com/img.onpicks.com/pantry-category5.jpg',
+      imgSrc : 'http://img.onpicks.com/pantry-category5.jpg',
       name : '유아동',
     },
     {
-      imgSrc : 'https://s3.amazonaws.com/img.onpicks.com/pantry-category6.jpg',
+      imgSrc : 'http://img.onpicks.com/pantry-category6.jpg',
       name : '반려용품',
     },
     {

@@ -7,9 +7,7 @@ export const GET_CATEGORY_ALL_FAILURE = '[UI Search] GET_CATEGORY_ALL_FAILURE';
 
 export const UPDATE_CATEGORY = '[UI Search] UPDATE_CATEGORY';
 
-export const UPDATE_THIRD_CATEGORY = '[UI Search] UPDATE_THIRD_CATEGORY';
-
-export const UPDATE_FOURTH_CATEGORY = '[UI Search] UPDATE_FOURTH_CATEGORY';
+export const UPDATE_URL_ACTIVE = '[URL Active] UPDATE_URL_ACTIVE'
 
 
 
@@ -49,15 +47,14 @@ export class UpdateCategory implements Action {
   }
 }
 
-export class UpdateThirdCategory implements Action {
-  readonly type = UPDATE_THIRD_CATEGORY;
+export class UpdateUrlActive implements Action {
+  readonly type = UPDATE_URL_ACTIVE;
 
+  constructor(public payload: any) {
+
+  }
 }
 
-export class UpdateFourthCategory implements Action {
-  readonly type = UPDATE_FOURTH_CATEGORY;
-
-}
 
 
 export type UiActions =
@@ -65,5 +62,4 @@ export type UiActions =
   GetCategorySuccess |
   GetCategoryFailure |
   UpdateCategory |
-  UpdateThirdCategory |
-  UpdateFourthCategory;
+  UpdateUrlActive;

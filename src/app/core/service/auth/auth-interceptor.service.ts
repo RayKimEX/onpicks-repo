@@ -16,6 +16,10 @@ export class AuthInterceptorService implements HttpInterceptor {
       return next.handle(request);
     }
 
+    if ( request.url.startsWith('http://www.juso')) {
+      return next.handle(request);
+    }
+
 
     request = request.clone(
       { headers: new HttpHeaders({

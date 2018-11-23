@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'onpicks-adhere-table',
@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./adhere-table.component.scss']
 })
 export class AdhereTableComponent implements OnInit {
+  @Input('type') type;
 
   constructor() { }
 

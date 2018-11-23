@@ -75,7 +75,7 @@ button {
   &--white {
     &:active,
     &:hover{
-      background-color:$color-dark-black;
+      background-color:$color-black;
       color:$color-white;
 
       transition : background-color 0.5s, color 0.5s;
@@ -83,8 +83,8 @@ button {
     &,
     &:link,
     &:visited {
-      border : solid 1px $color-dark-black;
-      color: $color-dark-black;
+      border : solid 1px $color-black;
+      color: $color-black;
     }
   }
 
@@ -131,7 +131,7 @@ button {
     &,
     &:link,
     &:visited {
-      background-color:$color-dark-black;
+      background-color:$color-black;
       color:$color-white;
     }
 
@@ -295,127 +295,80 @@ button {
 
 /*************icon*********/
 .icon-small-la {
+  display:inline-block;
+  width:16px;
+  height:16px;
   background-size: 200px 56px;
-  background-image: url(https://s3.amazonaws.com/img.onpicks.com/icon-etc.png);
+  background-image: url(http://img.onpicks.com/icon-etc.png);
   background-position : -16px -40px;
 }
 
 .icon-small-new {
+  display:inline-block;
+  width:16px;
+  height:16px;
   background-size: 200px 56px;
-  background-image: url(https://s3.amazonaws.com/img.onpicks.com/icon-etc.png);
+  background-image: url(http://img.onpicks.com/icon-etc.png);
   background-position : 0px -40px;
 }
 
 .icon-small-osaka {
+  display:inline-block;
+  width:16px;
+  height:16px;
   background-size: 200px 56px;
-  background-image: url(https://s3.amazonaws.com/img.onpicks.com/icon-etc.png);
+  background-image: url(http://img.onpicks.com/icon-etc.png);
   background-position : -48px -40px;
 }
 
 .icon-small-gorge {
+  display:inline-block;
+  width:16px;
+  height:16px;
   background-size: 200px 56px;
-  background-image: url(https://s3.amazonaws.com/img.onpicks.com/icon-etc.png);
+  background-image: url(http://img.onpicks.com/icon-etc.png);
   background-position : -32px -40px;
 }
 
 .icon-small-hong {
+  display:inline-block;
+  width:16px;
+  height:16px;
   background-size: 200px 56px;
-  background-image: url(https://s3.amazonaws.com/img.onpicks.com/icon-etc.png);
+  background-image: url(http://img.onpicks.com/icon-etc.png);
   background-position: -60px -40px;
 }
 
 .icon-la {
   background-size: 200px 56px;
-  background-image: url(https://s3.amazonaws.com/img.onpicks.com/icon-etc.png);
+  background-image: url(http://img.onpicks.com/icon-etc.png);
   background-position : -40px 0px;
 }
 
 .icon-new {
   background-size: 200px 56px;
-  background-image: url(https://s3.amazonaws.com/img.onpicks.com/icon-etc.png);
+  background-image: url(http://img.onpicks.com/icon-etc.png);
 }
 
 .icon-osaka {
   background-size: 200px 56px;
-  background-image: url(https://s3.amazonaws.com/img.onpicks.com/icon-etc.png);
+  background-image: url(http://img.onpicks.com/icon-etc.png);
   background-position : -120px 0px;
 }
 
 .icon-gorge {
   background-size: 200px 56px;
-  background-image: url(https://s3.amazonaws.com/img.onpicks.com/icon-etc.png);
+  background-image: url(http://img.onpicks.com/icon-etc.png);
   background-position : -80px 0px;
 }
 
 .icon-hong {
   background-size: 200px 56px;
-  background-image: url(https://s3.amazonaws.com/img.onpicks.com/icon-etc.png);
+  background-image: url(http://img.onpicks.com/icon-etc.png);
   background-position : -160px 0px;
 }
 /**************************/
 
-.heading {
-
-  // h1
-  &__first--bold {
-    line-height : 1.33;
-    color : $color-dark-black;
-  }
-
-  &__first--medium {
-    line-height : 1.33;
-    color : $color-dark-black;
-  }
-
-  &__first--regular {
-    line-height : 1.33;
-    color : $color-dark-black;
-  }
-
-
-  // h2
-  &__second--medium {
-
-  }
-
-  &__second--regular {
-
-  }
-
-
-}
-
-.heading-first-bold {
-
-}
-
-.heading-tertiary {
-  font-size:2rem;
-  font-weight: 700;
-  line-height: 1.2;
-  letter-spacing: 0.02rem;
-  color: $color-dark-black;
-}
-
-.heading-quaternary {
-  font-size : 1.8rem;
-  line-height: 1.39;
-  letter-spacing: 0.03rem;//0.3px;
-  font-weight: 500;
-  color : $color-dark-black;
-  margin-bottom : 2.4rem;
-}
-
-.heading-quinary {
-  font-size : 1.6rem;
-  font-weight: 500;
-  line-height : 1.5;
-  letter-spacing : 0.04rem;
-}
-
-.heading-senary {
-
-}
 /**************************/
 
 
@@ -462,6 +415,12 @@ button {
   .col-3-of-12 {
     width: calc(3 * ((100% - 11 * #{$gutter-horizontal}) / 12) + 2 * #{$gutter-horizontal});
   }
+
+  //@media only screen and (max-width: 1127px) {
+  //  &:not(:nth-child(3n)){
+  //    margin-right : 2.4rem;
+  //  }
+  //};
 
   .col-4-of-12 {
     width: calc(4 * ((100% - 11 * #{$gutter-horizontal}) / 12) + 3 * #{$gutter-horizontal});

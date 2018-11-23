@@ -1,4 +1,57 @@
+@import '~src/assets/scss/abstracts/variables';
+
 .checkout {
+  margin-top : 3.2rem;
+
+  &-order-info {
+
+    padding-bottom : 8px;
+    border-bottom : 1px solid $color-light-grey;
+    &__title {
+      margin-bottom : 2.4rem;
+    }
+    &__sub-title {
+      margin-bottom : 0.8rem;
+    }
+
+    &__input {
+      display:inline-block;
+      margin-bottom : 1.6rem;
+    }
+
+  }
+
+  &-addition-info {
+
+    border-bottom : 1px solid $color-light-grey;
+    padding-bottom : 2.4rem;
+    &__title {
+      margin-top : 2.4rem;
+      margin-bottom : 2.4rem;
+    }
+
+    &__sub-title {
+      margin-bottom : 0.8rem;
+    }
+
+    &__input {
+      display:inline-block;
+      margin-bottom : 0.8rem;
+    }
+
+    &__description {
+      margin-bottom : 1.6rem;
+    }
+
+    &__checkbox {
+      display:inline-block;
+      margin-bottom : 1.2rem;
+    }
+
+    &__question {
+      margin-bottom : 1.6rem;
+    }
+  }
 
   &-left {
     &__info{
@@ -20,9 +73,6 @@
         }
 
         &-btn {
-          font-weight: 400;
-          width : 8.7rem;
-          height : 4rem;
           margin-left : 1.6rem;
         }
 
@@ -66,33 +116,20 @@
         border-bottom: 1px solid #e5e5e5;
 
         &-title{
-          font-size : 1.8rem;
-          line-height : 1.39;
-          letter-spacing : 0.3px;
-          font-weight : 700;
+          margin-top: 2.4rem;
           margin-bottom : 2.4rem;
         }
 
-
-
         &-search-btn {
-          font-weight : 400;
           margin-left : 1.6rem;
-          width:11.8rem;
-          height : 4rem;
         }
 
         &-save-btn {
-          font-weight : 400;
-          width:10.5rem;
-          height : 4rem;
           margin-bottom : 2.4rem;
         }
 
         &-tag {
-          font-size : 1.4rem;
-          line-height : 1.71;
-          letter-spacing : 0.3px;
+          margin-top : 2.4rem;
           margin-bottom : 8px;
         }
 
@@ -235,9 +272,6 @@
           display:block;
           height : 4rem;
           width: 40.8rem;
-          font-size : 1.4rem;
-          line-height: 1.43;
-          letter-spacing : 0.3px;
           padding : 1rem 1.6rem;
           margin-bottom : 1.6rem;
 
@@ -251,11 +285,8 @@
             display:inline-block;
             height : 4rem;
 
-            font-size : 1.4rem;
-            line-height: 1.43;
-            letter-spacing : 0.3px;
             padding : 1rem 1.6rem;
-            width : 26.9rem;
+            width : 27.8rem;
             margin-bottom : 1.6rem;
 
             //TODO : 이부분은 크롬에서만 적용됨.
@@ -278,10 +309,6 @@
       padding : 2.4rem;
 
       &--title {
-        font-size : 1.6rem;
-        line-height : 1.5;
-        letter-spacing : 0.4px;
-        font-weight : 700;
         margin-bottom : 18px;
       }
 
@@ -299,9 +326,6 @@
         border-top : 1px solid #e5e5e5;
         border-bottom : 1px solid #e5e5e5;
         &-productall {
-          font-size : 1.6rem;
-          line-height : 1.75;
-          color : #292929;
           margin-bottom : 4px;
           &-tag {
 
@@ -312,9 +336,6 @@
         }
 
         &-delivery {
-          font-size : 1.6rem;
-          line-height : 1.75;
-          color : #292929;
           margin-bottom : 16px;
           &-tag {
 
@@ -325,8 +346,6 @@
         }
 
         &-all {
-          font-size : 1.6rem;
-          font-weight : 700;
           margin-bottom : 25px;
           &-value {
             float : right;
@@ -351,29 +370,18 @@
 
         &-info {
           &-brand {
-            font-size : 1.2rem;
-            font-weight : 700;
-            line-height : 1.33;
             margin-bottom : 4px;
           }
 
           &-name {
-            font-size : 1.2rem;
-            line-height : 1.33;
-            letter-spacing : 0.04rem;
-            color : #292929;
             margin-bottom : 4px;
           }
 
           &-option {
-            font-size : 1.2rem;
-            color : #a0a0a0;
             margin-bottom : 4px;
           }
 
           &-price {
-            font-size : 1.4rem;
-            font-weight : 700;
           }
 
           position : absolute;

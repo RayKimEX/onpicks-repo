@@ -9,7 +9,7 @@ import {
   NavigationEnd, NavigationError,
   Router, RouterEvent
 } from '@angular/router';
-import {GetCategoryAll} from './core/store/ui/ui.actions';
+import {GetCategoryAll, UpdateUrlActive} from './core/store/ui/ui.actions';
 import {UiService} from './core/service/ui/ui.service';
 
 @Component({
@@ -61,6 +61,8 @@ export class AppComponent implements OnInit, OnDestroy {
     if (event instanceof NavigationEnd) {
       const url = this.router.url.split('/');
       const slug =  url[url.length - 1];
+
+      this.store.dispatch(new UpdateUrlActive(url));
 
       if ( url[2] !== 'c' || this.isCategoryLoaded  ) { return; };
       // category가 /c/안에 url일경우

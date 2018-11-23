@@ -27,7 +27,7 @@ export class PComponent implements OnInit {
     {
       name: 'Chris',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-chris.jpg',
+      profileImg : 'http://img.onpicks.com/profile-chris.jpg',
       reviewThumbImg : '',
       reviewImg : '',
       review: 'I read quite a lot of reviews before purchasing and funny thing...' +
@@ -56,7 +56,7 @@ export class PComponent implements OnInit {
     {
       name: 'John',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-john.jpg',
+      profileImg : 'http://img.onpicks.com/profile-john.jpg',
       reviewThumbImg : '',
       reviewImg : '',
       review: 'Maecenas accumsan fringilla ligula, sit amet ultrices dui malesuada sit amet. Vivamus et suscipit quam. Praesent interdum sed arcu vitae bibendum. Pellentesque tempus pharetra mi, at rhoncus leo euismod et. ',
@@ -80,7 +80,7 @@ export class PComponent implements OnInit {
     {
       name: 'Rose',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-rose.jpg',
+      profileImg : 'http://img.onpicks.com/profile-rose.jpg',
       reviewThumbImg : '',
       reviewImg : '',
       review: 'Vestibulum placerat non eros nec congue. Fusce convallis turpis sed risus laoreet efficitur. Etiam at malesuada mi, ut sodales urna. Aenean accumsan ante sed nisl sodales facilisis. Maecenas at vehicula lorem. ',
@@ -104,7 +104,7 @@ export class PComponent implements OnInit {
     {
       name: 'Emiliy',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-emiliy.jpg',
+      profileImg : 'http://img.onpicks.com/profile-emiliy.jpg',
       reviewThumbImg : '',
       reviewImg : '',
       review: 'Suspendisse ultricies eget erat id imperdiet. Integer efficitur a erat vitae dignissim.',
@@ -128,7 +128,7 @@ export class PComponent implements OnInit {
     {
       name: 'Jessica',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-jessica.jpg',
+      profileImg : 'http://img.onpicks.com/profile-jessica.jpg',
       reviewThumbImg : '',
       reviewImg : '',
       review: 'Aenean sodales finibus nibh at aliquam. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Maecenas dignissim orci semper, posuere nisi sed, iaculis elit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Suspendisse posuere pharetra justo sed tempus. Ut commodo bibendum nisl, et convallis dolor. ',
@@ -152,9 +152,9 @@ export class PComponent implements OnInit {
     {
       name: 'Stephanie',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-stephanie.jpg',
-      reviewThumbImg : 'https://s3.amazonaws.com/img.onpicks.com/p-review__image-1.jpg',
-      reviewImg : 'https://s3.amazonaws.com/img.onpicks.com/p-customer__image--large-3.png',
+      profileImg : 'http://img.onpicks.com/profile-stephanie.jpg',
+      reviewThumbImg : 'http://img.onpicks.com/p-review__image-1.jpg',
+      reviewImg : 'http://img.onpicks.com/p-customer__image--large-3.png',
       review: 'Vivamus non lacus nibh. Nulla mattis dignissim augue, eget semper leo aliquet in.',
       helpfulCount : 2,
       regitDate : '2018-09-19T09:02:10.391695Z',
@@ -177,9 +177,9 @@ export class PComponent implements OnInit {
     {
       name: 'Jessica',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-jessica.jpg',
-      reviewThumbImg : 'https://s3.amazonaws.com/img.onpicks.com/p-review__image-2.jpg',
-      reviewImg : 'https://s3.amazonaws.com/img.onpicks.com/p-customer__image--large-3.png',
+      profileImg : 'http://img.onpicks.com/profile-jessica.jpg',
+      reviewThumbImg : 'http://img.onpicks.com/p-review__image-2.jpg',
+      reviewImg : 'http://img.onpicks.com/p-customer__image--large-3.png',
       review: 'Duis sed justo vel lacus lacinia iaculis vel non mi. Donec risus nibh, consectetur nec finibus eget, posuere a sem. Sed in suscipit ante. Vivamus leo dolor, cursus quis porttitor non, laoreet quis purus. Phasellus feugiat sed odio in placerat. Integer tellus magna, tempor non gravida facilisis, ullamcorper ac odio. Sed tincidunt lacus ut commodo imperdiet.',
       helpfulCount : 9,
       regitDate : '2018-09-19T09:02:10.391695Z',
@@ -201,8 +201,8 @@ export class PComponent implements OnInit {
     {
       name: 'Chris',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-chris.jpg',
-      reviewThumbImg : 'https://s3.amazonaws.com/img.onpicks.com/p-review__image-1.jpg',
+      profileImg : 'http://img.onpicks.com/profile-chris.jpg',
+      reviewThumbImg : 'http://img.onpicks.com/p-review__image-1.jpg',
       reviewImg : '',
       review: 'Integer nec sapien nec justo auctor sagittis finibus nec ante. Curabitur in neque cursus, porta tortor sit amet, fermentum lorem.',
       helpfulCount : 2,
@@ -225,7 +225,7 @@ export class PComponent implements OnInit {
     {
       name: 'Jessica',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-jessica.jpg',
+      profileImg : 'http://img.onpicks.com/profile-jessica.jpg',
       reviewThumbImg : '',
       reviewImg : '',
       review: 'Nulla volutpat vitae risus sed vestibulum. Curabitur at sapien hendrerit, bibendum tortor quis, lacinia felis. Mauris leo metus, scelerisque id odio ac, congue laoreet enim. Integer pulvinar nec augue non vulputate. Curabitur ac orci libero. Cras condimentum ipsum sapien. Phasellus vitae sem sem. Cras in pulvinar ante. Donec id aliquet risus.',
@@ -235,8 +235,8 @@ export class PComponent implements OnInit {
     {
       name: 'Stephanie',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-stephanie.jpg',
-      reviewThumbImg : 'https://s3.amazonaws.com/img.onpicks.com/p-review__image-1.jpg',
+      profileImg : 'http://img.onpicks.com/profile-stephanie.jpg',
+      reviewThumbImg : 'http://img.onpicks.com/p-review__image-1.jpg',
       reviewImg : '',
       review: 'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Vestibulum eget ante eu diam cursus lobortis vitae eget turpis.',
       helpfulCount : 2,
@@ -245,7 +245,7 @@ export class PComponent implements OnInit {
     {
       name: 'Emiliy',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-emiliy.jpg',
+      profileImg : 'http://img.onpicks.com/profile-emiliy.jpg',
       reviewThumbImg : '',
       reviewImg : '',
       review: 'Proin quis quam feugiat, venenatis arcu id, pulvinar tellus. ',
@@ -255,7 +255,7 @@ export class PComponent implements OnInit {
     {
       name: 'Chris',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-chris.jpg',
+      profileImg : 'http://img.onpicks.com/profile-chris.jpg',
       reviewThumbImg : '',
       reviewImg : '',
       review: 'Suspendisse quis velit pellentesque, iaculis lectus et, viverra orci. Suspendisse pretium sem vel elementum cursus. ',
@@ -265,8 +265,8 @@ export class PComponent implements OnInit {
     {
       name: 'John',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-john.jpg',
-      reviewThumbImg : 'https://s3.amazonaws.com/img.onpicks.com/p-review__image-1.jpg',
+      profileImg : 'http://img.onpicks.com/profile-john.jpg',
+      reviewThumbImg : 'http://img.onpicks.com/p-review__image-1.jpg',
       reviewImg : '',
       review: 'Vestibulum consectetur mollis ipsum quis vestibulum. Vestibulum vitae est maximus, molestie tortor non, tincidunt orci. Mauris ut molestie nunc. Suspendisse sit amet commodo mauris.',
       helpfulCount : 2,
@@ -275,7 +275,7 @@ export class PComponent implements OnInit {
     {
       name: 'Rose',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-rose.jpg',
+      profileImg : 'http://img.onpicks.com/profile-rose.jpg',
       reviewThumbImg : '',
       reviewImg : '',
       review: 'Etiam sed purus pharetra, placerat elit eu, bibendum ligula. Nullam in felis elementum justo placerat hendrerit vitae id diam. Donec odio tortor, efficitur et orci sit amet, ornare efficitur leo. Duis tincidunt porttitor odio eu finibus.',
@@ -285,7 +285,7 @@ export class PComponent implements OnInit {
     {
       name: 'Chris',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-chris.jpg',
+      profileImg : 'http://img.onpicks.com/profile-chris.jpg',
       reviewThumbImg : '',
       reviewImg : '',
       review: 'Mauris in placerat quam. Duis elementum porta nisi vitae auctor. Donec viverra non est eget placerat. Mauris fringilla purus sapien, sed porta sem faucibus id. Maecenas eu quam iaculis, sodales turpis in, posuere nisi. Donec sed ante interdum, sollicitudin magna non, lacinia est. Proin condimentum turpis ut blandit blandit.',
@@ -295,7 +295,7 @@ export class PComponent implements OnInit {
     {
       name: 'Rose',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-rose.jpg',
+      profileImg : 'http://img.onpicks.com/profile-rose.jpg',
       reviewThumbImg : '',
       reviewImg : '',
       review: ' Suspendisse eu blandit neque, eget aliquam metus. Nulla at libero tincidunt, finibus eros et, luctus dolor. Cras ut mattis mi. Morbi dapibus varius est nec varius. Fusce egestas luctus enim at imperdiet. Aliquam vel elementum nunc. Aliquam non erat luctus, cursus quam vel, venenatis odio. In hac habitasse platea dictumst. Morbi tempus sem vel vulputate porttitor.',
@@ -305,7 +305,7 @@ export class PComponent implements OnInit {
     {
       name: 'Stephanie',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-stephanie.jpg',
+      profileImg : 'http://img.onpicks.com/profile-stephanie.jpg',
       reviewThumbImg : '',
       reviewImg : '',
       review: 'Mauris tincidunt diam et nibh tincidunt, sit amet rhoncus risus laoreet. Phasellus in scelerisque augue. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Phasellus at est commodo, lobortis mi sed, sollicitudin risus. Phasellus non diam risus.',
@@ -315,8 +315,8 @@ export class PComponent implements OnInit {
     {
       name: 'Jessica',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-jessica.jpg',
-      reviewThumbImg : 'https://s3.amazonaws.com/img.onpicks.com/p-review__image-2.jpg',
+      profileImg : 'http://img.onpicks.com/profile-jessica.jpg',
+      reviewThumbImg : 'http://img.onpicks.com/p-review__image-2.jpg',
       reviewImg : '',
       review: 'Pellentesque tempus placerat nisl a tempor. Sed sit amet ultricies purus. In in ornare ante. Nulla erat diam, suscipit nec dictum vitae, molestie id felis. Etiam egestas sem at risus pellentesque vehicula. In nec enim id tortor iaculis luctus. ',
       helpfulCount : 2,
@@ -325,7 +325,7 @@ export class PComponent implements OnInit {
     {
       name: 'Chris',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-chris.jpg',
+      profileImg : 'http://img.onpicks.com/profile-chris.jpg',
       reviewThumbImg : '',
       reviewImg : '',
       review: 'Cras sit amet nisl vel nisl gravida faucibus at in libero. Phasellus at elit quis felis auctor sodales. Suspendisse nec condimentum mi. Nullam enim ipsum, suscipit at libero vel, ultricies blandit ipsum. ',
@@ -335,7 +335,7 @@ export class PComponent implements OnInit {
     {
       name: 'John',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-john.jpg',
+      profileImg : 'http://img.onpicks.com/profile-john.jpg',
       reviewThumbImg : '',
       reviewImg : '',
       review: 'Proin dignissim mauris rutrum, pharetra urna in, sodales velit. Fusce ultricies enim non aliquet iaculis. Morbi at massa in orci rutrum vulputate. Proin eu rutrum nisi. Mauris nisi nulla, ultricies nec justo eget, scelerisque facilisis magna.',
@@ -345,7 +345,7 @@ export class PComponent implements OnInit {
     {
       name: 'Rose',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-rose.jpg',
+      profileImg : 'http://img.onpicks.com/profile-rose.jpg',
       reviewThumbImg : '',
       reviewImg : '',
       review: 'pretium ullamcorper lacus felis in ligula. Curabitur tincidunt auctor consectetur. Proin rutrum a dolor sed bibendum. Praesent et leo sollicitudin metus placerat rutrum id sit amet lacus. Fusce malesuada eu ligula quis porta. ',
@@ -355,7 +355,7 @@ export class PComponent implements OnInit {
     {
       name: 'Stephanie',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-stephanie.jpg',
+      profileImg : 'http://img.onpicks.com/profile-stephanie.jpg',
       reviewThumbImg : '',
       reviewImg : '',
       review: 'Sed vitae metus maximus, placerat odio eu, finibus odio. Praesent mollis auctor velit, id congue neque. Quisque maximus arcu et velit porta, ut congue ante faucibus.',
@@ -365,7 +365,7 @@ export class PComponent implements OnInit {
     {
       name: 'John',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-john.jpg',
+      profileImg : 'http://img.onpicks.com/profile-john.jpg',
       reviewThumbImg : '',
       reviewImg : '',
       review: 'Nullam condimentum neque augue, non placerat augue tempor id. Vestibulum a ultrices justo. Ut rhoncus leo ac neque vestibulum molestie. In eget purus at ligula volutpat ultrices eget non magna. ',
@@ -375,8 +375,8 @@ export class PComponent implements OnInit {
     {
       name: 'Rose',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-rose.jpg',
-      reviewThumbImg : 'https://s3.amazonaws.com/img.onpicks.com/p-review__image-1.jpg',
+      profileImg : 'http://img.onpicks.com/profile-rose.jpg',
+      reviewThumbImg : 'http://img.onpicks.com/p-review__image-1.jpg',
       reviewImg : '',
       review: 'Donec varius viverra nisl, nec mollis metus efficitur non. Nunc id nulla hendrerit, sodales urna sed, varius ante. Phasellus nec eleifend odio, non iaculis est. Integer gravida enim ut orci vestibulum, vel pulvinar massa accumsan. ',
       helpfulCount : 2,
@@ -385,7 +385,7 @@ export class PComponent implements OnInit {
     {
       name: 'Emiliy',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-emiliy.jpg',
+      profileImg : 'http://img.onpicks.com/profile-emiliy.jpg',
       reviewThumbImg : '',
       reviewImg : '',
       review: 'Cras volutpat, lorem ac blandit aliquam, nulla mi rhoncus nibh, a consequat felis nisl vel augue. Sed est est, maximus in risus sed, suscipit venenatis risus. Aliquam pulvinar metus nunc, ut faucibus nisl scelerisque imperdiet.',
@@ -395,7 +395,7 @@ export class PComponent implements OnInit {
     {
       name: 'Stephanie',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-stephanie.jpg',
+      profileImg : 'http://img.onpicks.com/profile-stephanie.jpg',
       reviewThumbImg : '',
       reviewImg : '',
       review: 'In sit amet leo urna. Sed ut nisl et leo sodales lobortis at sed dolor. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Mauris in vulputate tortor.',
@@ -405,7 +405,7 @@ export class PComponent implements OnInit {
     {
       name: 'John',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-john.jpg',
+      profileImg : 'http://img.onpicks.com/profile-john.jpg',
       reviewThumbImg : '',
       reviewImg : '',
       review: 'Curabitur ultricies mi purus, vel vestibulum eros vehicula a. Nulla facilisi. Duis venenatis euismod augue nec convallis. Quisque vulputate vestibulum ante non cursus. Phasellus tincidunt mollis massa. Praesent ultrices lorem eu massa porttitor, eu malesuada turpis tempor. Integer id nulla neque.',
@@ -415,7 +415,7 @@ export class PComponent implements OnInit {
     {
       name: 'John',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-john.jpg',
+      profileImg : 'http://img.onpicks.com/profile-john.jpg',
       reviewThumbImg : '',
       reviewImg : '',
       review: 'Quisque a orci convallis leo posuere lacinia in et ipsum. Curabitur ultricies, ex et venenatis vehicula, magna nulla molestie est, volutpat tincidunt odio nisl a nulla.',
@@ -425,8 +425,8 @@ export class PComponent implements OnInit {
     {
       name: 'Stephanie',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-stephanie.jpg',
-      reviewThumbImg : 'https://s3.amazonaws.com/img.onpicks.com/p-review__image-1.jpg',
+      profileImg : 'http://img.onpicks.com/profile-stephanie.jpg',
+      reviewThumbImg : 'http://img.onpicks.com/p-review__image-1.jpg',
       reviewImg : '',
       review: 'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Vestibulum eget ante eu diam cursus lobortis vitae eget turpis.',
       helpfulCount : 2,
@@ -435,7 +435,7 @@ export class PComponent implements OnInit {
     {
       name: 'Emiliy',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-emiliy.jpg',
+      profileImg : 'http://img.onpicks.com/profile-emiliy.jpg',
       reviewThumbImg : '',
       reviewImg : '',
       review: 'Proin quis quam feugiat, venenatis arcu id, pulvinar tellus. ',
@@ -445,7 +445,7 @@ export class PComponent implements OnInit {
     {
       name: 'Chris',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-chris.jpg',
+      profileImg : 'http://img.onpicks.com/profile-chris.jpg',
       reviewThumbImg : '',
       reviewImg : '',
       review: 'Suspendisse quis velit pellentesque, iaculis lectus et, viverra orci. Suspendisse pretium sem vel elementum cursus. ',
@@ -455,8 +455,8 @@ export class PComponent implements OnInit {
     {
       name: 'John',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-john.jpg',
-      reviewThumbImg : 'https://s3.amazonaws.com/img.onpicks.com/p-review__image-1.jpg',
+      profileImg : 'http://img.onpicks.com/profile-john.jpg',
+      reviewThumbImg : 'http://img.onpicks.com/p-review__image-1.jpg',
       reviewImg : '',
       review: 'Vestibulum consectetur mollis ipsum quis vestibulum. Vestibulum vitae est maximus, molestie tortor non, tincidunt orci. Mauris ut molestie nunc. Suspendisse sit amet commodo mauris.',
       helpfulCount : 2,
@@ -465,7 +465,7 @@ export class PComponent implements OnInit {
     {
       name: 'Rose',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-rose.jpg',
+      profileImg : 'http://img.onpicks.com/profile-rose.jpg',
       reviewThumbImg : '',
       reviewImg : '',
       review: 'Etiam sed purus pharetra, placerat elit eu, bibendum ligula. Nullam in felis elementum justo placerat hendrerit vitae id diam. Donec odio tortor, efficitur et orci sit amet, ornare efficitur leo. Duis tincidunt porttitor odio eu finibus.',
@@ -475,7 +475,7 @@ export class PComponent implements OnInit {
     {
       name: 'Chris',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-chris.jpg',
+      profileImg : 'http://img.onpicks.com/profile-chris.jpg',
       reviewThumbImg : '',
       reviewImg : '',
       review: 'Mauris in placerat quam. Duis elementum porta nisi vitae auctor. Donec viverra non est eget placerat. Mauris fringilla purus sapien, sed porta sem faucibus id. Maecenas eu quam iaculis, sodales turpis in, posuere nisi. Donec sed ante interdum, sollicitudin magna non, lacinia est. Proin condimentum turpis ut blandit blandit.',
@@ -485,7 +485,7 @@ export class PComponent implements OnInit {
     {
       name: 'Rose',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-rose.jpg',
+      profileImg : 'http://img.onpicks.com/profile-rose.jpg',
       reviewThumbImg : '',
       reviewImg : '',
       review: ' Suspendisse eu blandit neque, eget aliquam metus. Nulla at libero tincidunt, finibus eros et, luctus dolor. Cras ut mattis mi. Morbi dapibus varius est nec varius. Fusce egestas luctus enim at imperdiet. Aliquam vel elementum nunc. Aliquam non erat luctus, cursus quam vel, venenatis odio. In hac habitasse platea dictumst. Morbi tempus sem vel vulputate porttitor.',
@@ -496,7 +496,7 @@ export class PComponent implements OnInit {
       name: 'Stephanie',
       starRating: '4.5',
       regitDate : '',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-stephanie.jpg',
+      profileImg : 'http://img.onpicks.com/profile-stephanie.jpg',
       reviewThumbImg : '',
       reviewImg : '',
       review: 'Mauris tincidunt diam et nibh tincidunt, sit amet rhoncus risus laoreet. Phasellus in scelerisque augue. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Phasellus at est commodo, lobortis mi sed, sollicitudin risus. Phasellus non diam risus.',
@@ -505,8 +505,8 @@ export class PComponent implements OnInit {
     {
       name: 'Jessica',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-jessica.jpg',
-      reviewThumbImg : 'https://s3.amazonaws.com/img.onpicks.com/p-review__image-2.jpg',
+      profileImg : 'http://img.onpicks.com/profile-jessica.jpg',
+      reviewThumbImg : 'http://img.onpicks.com/p-review__image-2.jpg',
       reviewImg : '',
       review: 'Pellentesque tempus placerat nisl a tempor. Sed sit amet ultricies purus. In in ornare ante. Nulla erat diam, suscipit nec dictum vitae, molestie id felis. Etiam egestas sem at risus pellentesque vehicula. In nec enim id tortor iaculis luctus. ',
       helpfulCount : 2,
@@ -515,7 +515,7 @@ export class PComponent implements OnInit {
     {
       name: 'Chris',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-chris.jpg',
+      profileImg : 'http://img.onpicks.com/profile-chris.jpg',
       reviewThumbImg : '',
       reviewImg : '',
       review: 'Cras sit amet nisl vel nisl gravida faucibus at in libero. Phasellus at elit quis felis auctor sodales. Suspendisse nec condimentum mi. Nullam enim ipsum, suscipit at libero vel, ultricies blandit ipsum. ',
@@ -525,7 +525,7 @@ export class PComponent implements OnInit {
     {
       name: 'John',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-john.jpg',
+      profileImg : 'http://img.onpicks.com/profile-john.jpg',
       reviewThumbImg : '',
       reviewImg : '',
       review: 'Proin dignissim mauris rutrum, pharetra urna in, sodales velit. Fusce ultricies enim non aliquet iaculis. Morbi at massa in orci rutrum vulputate. Proin eu rutrum nisi. Mauris nisi nulla, ultricies nec justo eget, scelerisque facilisis magna.',
@@ -535,7 +535,7 @@ export class PComponent implements OnInit {
     {
       name: 'Rose',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-rose.jpg',
+      profileImg : 'http://img.onpicks.com/profile-rose.jpg',
       reviewThumbImg : '',
       reviewImg : '',
       review: 'pretium ullamcorper lacus felis in ligula. Curabitur tincidunt auctor consectetur. Proin rutrum a dolor sed bibendum. Praesent et leo sollicitudin metus placerat rutrum id sit amet lacus. Fusce malesuada eu ligula quis porta. ',
@@ -545,7 +545,7 @@ export class PComponent implements OnInit {
     {
       name: 'Stephanie',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-stephanie.jpg',
+      profileImg : 'http://img.onpicks.com/profile-stephanie.jpg',
       reviewThumbImg : '',
       reviewImg : '',
       review: 'Sed vitae metus maximus, placerat odio eu, finibus odio. Praesent mollis auctor velit, id congue neque. Quisque maximus arcu et velit porta, ut congue ante faucibus.',
@@ -555,7 +555,7 @@ export class PComponent implements OnInit {
     {
       name: 'John',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-john.jpg',
+      profileImg : 'http://img.onpicks.com/profile-john.jpg',
       reviewThumbImg : '',
       reviewImg : '',
       review: 'Nullam condimentum neque augue, non placerat augue tempor id. Vestibulum a ultrices justo. Ut rhoncus leo ac neque vestibulum molestie. In eget purus at ligula volutpat ultrices eget non magna. ',
@@ -565,8 +565,8 @@ export class PComponent implements OnInit {
     {
       name: 'Rose',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-rose.jpg',
-      reviewThumbImg : 'https://s3.amazonaws.com/img.onpicks.com/p-review__image-1.jpg',
+      profileImg : 'http://img.onpicks.com/profile-rose.jpg',
+      reviewThumbImg : 'http://img.onpicks.com/p-review__image-1.jpg',
       reviewImg : '',
       review: 'Donec varius viverra nisl, nec mollis metus efficitur non. Nunc id nulla hendrerit, sodales urna sed, varius ante. Phasellus nec eleifend odio, non iaculis est. Integer gravida enim ut orci vestibulum, vel pulvinar massa accumsan. ',
       helpfulCount : 2,
@@ -575,7 +575,7 @@ export class PComponent implements OnInit {
     {
       name: 'Emiliy',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-emiliy.jpg',
+      profileImg : 'http://img.onpicks.com/profile-emiliy.jpg',
       reviewThumbImg : '',
       reviewImg : '',
       review: 'Cras volutpat, lorem ac blandit aliquam, nulla mi rhoncus nibh, a consequat felis nisl vel augue. Sed est est, maximus in risus sed, suscipit venenatis risus. Aliquam pulvinar metus nunc, ut faucibus nisl scelerisque imperdiet.',
@@ -585,7 +585,7 @@ export class PComponent implements OnInit {
     {
       name: 'Stephanie',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-stephanie.jpg',
+      profileImg : 'http://img.onpicks.com/profile-stephanie.jpg',
       reviewThumbImg : '',
       reviewImg : '',
       review: 'In sit amet leo urna. Sed ut nisl et leo sodales lobortis at sed dolor. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Mauris in vulputate tortor.',
@@ -595,7 +595,7 @@ export class PComponent implements OnInit {
     {
       name: 'John',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-john.jpg',
+      profileImg : 'http://img.onpicks.com/profile-john.jpg',
       reviewThumbImg : '',
       reviewImg : '',
       review: 'Curabitur ultricies mi purus, vel vestibulum eros vehicula a. Nulla facilisi. Duis venenatis euismod augue nec convallis. Quisque vulputate vestibulum ante non cursus. Phasellus tincidunt mollis massa. Praesent ultrices lorem eu massa porttitor, eu malesuada turpis tempor. Integer id nulla neque.',
@@ -605,7 +605,7 @@ export class PComponent implements OnInit {
     {
       name: 'John',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-john.jpg',
+      profileImg : 'http://img.onpicks.com/profile-john.jpg',
       reviewThumbImg : '',
       reviewImg : '',
       review: 'Quisque a orci convallis leo posuere lacinia in et ipsum. Curabitur ultricies, ex et venenatis vehicula, magna nulla molestie est, volutpat tincidunt odio nisl a nulla.',
@@ -615,8 +615,8 @@ export class PComponent implements OnInit {
     {
       name: 'Stephanie',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-stephanie.jpg',
-      reviewThumbImg : 'https://s3.amazonaws.com/img.onpicks.com/p-review__image-1.jpg',
+      profileImg : 'http://img.onpicks.com/profile-stephanie.jpg',
+      reviewThumbImg : 'http://img.onpicks.com/p-review__image-1.jpg',
       reviewImg : '',
       review: 'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Vestibulum eget ante eu diam cursus lobortis vitae eget turpis.',
       helpfulCount : 2,
@@ -625,7 +625,7 @@ export class PComponent implements OnInit {
     {
       name: 'Emiliy',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-emiliy.jpg',
+      profileImg : 'http://img.onpicks.com/profile-emiliy.jpg',
       reviewThumbImg : '',
       reviewImg : '',
       review: 'Proin quis quam feugiat, venenatis arcu id, pulvinar tellus. ',
@@ -635,7 +635,7 @@ export class PComponent implements OnInit {
     {
       name: 'Chris',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-chris.jpg',
+      profileImg : 'http://img.onpicks.com/profile-chris.jpg',
       reviewThumbImg : '',
       reviewImg : '',
       review: 'Suspendisse quis velit pellentesque, iaculis lectus et, viverra orci. Suspendisse pretium sem vel elementum cursus. ',
@@ -645,8 +645,8 @@ export class PComponent implements OnInit {
     {
       name: 'John',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-john.jpg',
-      reviewThumbImg : 'https://s3.amazonaws.com/img.onpicks.com/p-review__image-1.jpg',
+      profileImg : 'http://img.onpicks.com/profile-john.jpg',
+      reviewThumbImg : 'http://img.onpicks.com/p-review__image-1.jpg',
       reviewImg : '',
       review: 'Vestibulum consectetur mollis ipsum quis vestibulum. Vestibulum vitae est maximus, molestie tortor non, tincidunt orci. Mauris ut molestie nunc. Suspendisse sit amet commodo mauris.',
       helpfulCount : 2,
@@ -655,7 +655,7 @@ export class PComponent implements OnInit {
     {
       name: 'Rose',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-rose.jpg',
+      profileImg : 'http://img.onpicks.com/profile-rose.jpg',
       reviewThumbImg : '',
       reviewImg : '',
       review: 'Etiam sed purus pharetra, placerat elit eu, bibendum ligula. Nullam in felis elementum justo placerat hendrerit vitae id diam. Donec odio tortor, efficitur et orci sit amet, ornare efficitur leo. Duis tincidunt porttitor odio eu finibus.',
@@ -665,7 +665,7 @@ export class PComponent implements OnInit {
     {
       name: 'Chris',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-chris.jpg',
+      profileImg : 'http://img.onpicks.com/profile-chris.jpg',
       reviewThumbImg : '',
       reviewImg : '',
       review: 'Mauris in placerat quam. Duis elementum porta nisi vitae auctor. Donec viverra non est eget placerat. Mauris fringilla purus sapien, sed porta sem faucibus id. Maecenas eu quam iaculis, sodales turpis in, posuere nisi. Donec sed ante interdum, sollicitudin magna non, lacinia est. Proin condimentum turpis ut blandit blandit.',
@@ -675,7 +675,7 @@ export class PComponent implements OnInit {
     {
       name: 'Rose',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-rose.jpg',
+      profileImg : 'http://img.onpicks.com/profile-rose.jpg',
       reviewThumbImg : '',
       reviewImg : '',
       review: 'Suspendisse eu blandit neque, eget aliquam metus. Nulla at libero tincidunt, finibus eros et, luctus dolor. Cras ut mattis mi. Morbi dapibus varius est nec varius. Fusce egestas luctus enim at imperdiet. Aliquam vel elementum nunc. Aliquam non erat luctus, cursus quam vel, venenatis odio. In hac habitasse platea dictumst. Morbi tempus sem vel vulputate porttitor.',
@@ -685,7 +685,7 @@ export class PComponent implements OnInit {
     {
       name: 'Stephanie',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-stephanie.jpg',
+      profileImg : 'http://img.onpicks.com/profile-stephanie.jpg',
       reviewThumbImg : '',
       reviewImg : '',
       review: 'Mauris tincidunt diam et nibh tincidunt, sit amet rhoncus risus laoreet. Phasellus in scelerisque augue. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Phasellus at est commodo, lobortis mi sed, sollicitudin risus. Phasellus non diam risus.',
@@ -695,8 +695,8 @@ export class PComponent implements OnInit {
     {
       name: 'Jessica',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-jessica.jpg',
-      reviewThumbImg : 'https://s3.amazonaws.com/img.onpicks.com/p-review__image-2.jpg',
+      profileImg : 'http://img.onpicks.com/profile-jessica.jpg',
+      reviewThumbImg : 'http://img.onpicks.com/p-review__image-2.jpg',
       reviewImg : '',
       review: 'Pellentesque tempus placerat nisl a tempor. Sed sit amet ultricies purus. In in ornare ante. Nulla erat diam, suscipit nec dictum vitae, molestie id felis. Etiam egestas sem at risus pellentesque vehicula. In nec enim id tortor iaculis luctus. ',
       helpfulCount : 2,
@@ -705,7 +705,7 @@ export class PComponent implements OnInit {
     {
       name: 'Chris',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-chris.jpg',
+      profileImg : 'http://img.onpicks.com/profile-chris.jpg',
       reviewThumbImg : '',
       reviewImg : '',
       review: 'Cras sit amet nisl vel nisl gravida faucibus at in libero. Phasellus at elit quis felis auctor sodales. Suspendisse nec condimentum mi. Nullam enim ipsum, suscipit at libero vel, ultricies blandit ipsum. ',
@@ -715,7 +715,7 @@ export class PComponent implements OnInit {
     {
       name: 'John',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-john.jpg',
+      profileImg : 'http://img.onpicks.com/profile-john.jpg',
       reviewThumbImg : '',
       reviewImg : '',
       review: 'Proin dignissim mauris rutrum, pharetra urna in, sodales velit. Fusce ultricies enim non aliquet iaculis. Morbi at massa in orci rutrum vulputate. Proin eu rutrum nisi. Mauris nisi nulla, ultricies nec justo eget, scelerisque facilisis magna.',
@@ -725,7 +725,7 @@ export class PComponent implements OnInit {
     {
       name: 'Rose',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-rose.jpg',
+      profileImg : 'http://img.onpicks.com/profile-rose.jpg',
       reviewThumbImg : '',
       reviewImg : '',
       review: 'pretium ullamcorper lacus felis in ligula. Curabitur tincidunt auctor consectetur. Proin rutrum a dolor sed bibendum. Praesent et leo sollicitudin metus placerat rutrum id sit amet lacus. Fusce malesuada eu ligula quis porta. ',
@@ -735,7 +735,7 @@ export class PComponent implements OnInit {
     {
       name: 'Stephanie',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-stephanie.jpg',
+      profileImg : 'http://img.onpicks.com/profile-stephanie.jpg',
       reviewThumbImg : '',
       reviewImg : '',
       review: 'Sed vitae metus maximus, placerat odio eu, finibus odio. Praesent mollis auctor velit, id congue neque. Quisque maximus arcu et velit porta, ut congue ante faucibus.',
@@ -745,7 +745,7 @@ export class PComponent implements OnInit {
     {
       name: 'John',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-john.jpg',
+      profileImg : 'http://img.onpicks.com/profile-john.jpg',
       reviewThumbImg : '',
       reviewImg : '',
       review: 'Nullam condimentum neque augue, non placerat augue tempor id. Vestibulum a ultrices justo. Ut rhoncus leo ac neque vestibulum molestie. In eget purus at ligula volutpat ultrices eget non magna. ',
@@ -755,8 +755,8 @@ export class PComponent implements OnInit {
     {
       name: 'Rose',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-rose.jpg',
-      reviewThumbImg : 'https://s3.amazonaws.com/img.onpicks.com/p-review__image-1.jpg',
+      profileImg : 'http://img.onpicks.com/profile-rose.jpg',
+      reviewThumbImg : 'http://img.onpicks.com/p-review__image-1.jpg',
       reviewImg : '',
       review: 'Donec varius viverra nisl, nec mollis metus efficitur non. Nunc id nulla hendrerit, sodales urna sed, varius ante. Phasellus nec eleifend odio, non iaculis est. Integer gravida enim ut orci vestibulum, vel pulvinar massa accumsan. ',
       helpfulCount : 2,
@@ -765,7 +765,7 @@ export class PComponent implements OnInit {
     {
       name: 'Emiliy',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-emiliy.jpg',
+      profileImg : 'http://img.onpicks.com/profile-emiliy.jpg',
       reviewThumbImg : '',
       reviewImg : '',
       review: 'Cras volutpat, lorem ac blandit aliquam, nulla mi rhoncus nibh, a consequat felis nisl vel augue. Sed est est, maximus in risus sed, suscipit venenatis risus. Aliquam pulvinar metus nunc, ut faucibus nisl scelerisque imperdiet.',
@@ -775,7 +775,7 @@ export class PComponent implements OnInit {
     {
       name: 'Stephanie',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-stephanie.jpg',
+      profileImg : 'http://img.onpicks.com/profile-stephanie.jpg',
       reviewThumbImg : '',
       reviewImg : '',
       review: 'In sit amet leo urna. Sed ut nisl et leo sodales lobortis at sed dolor. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Mauris in vulputate tortor.',
@@ -785,7 +785,7 @@ export class PComponent implements OnInit {
     {
       name: 'John',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-john.jpg',
+      profileImg : 'http://img.onpicks.com/profile-john.jpg',
       reviewThumbImg : '',
       reviewImg : '',
       review: 'Curabitur ultricies mi purus, vel vestibulum eros vehicula a. Nulla facilisi. Duis venenatis euismod augue nec convallis. Quisque vulputate vestibulum ante non cursus. Phasellus tincidunt mollis massa. Praesent ultrices lorem eu massa porttitor, eu malesuada turpis tempor. Integer id nulla neque.',
@@ -795,7 +795,7 @@ export class PComponent implements OnInit {
     {
       name: 'John',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-john.jpg',
+      profileImg : 'http://img.onpicks.com/profile-john.jpg',
       reviewThumbImg : '',
       reviewImg : '',
       review: 'Quisque a orci convallis leo posuere lacinia in et ipsum. Curabitur ultricies, ex et venenatis vehicula, magna nulla molestie est, volutpat tincidunt odio nisl a nulla.',
@@ -805,8 +805,8 @@ export class PComponent implements OnInit {
     {
       name: 'Stephanie',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-stephanie.jpg',
-      reviewThumbImg : 'https://s3.amazonaws.com/img.onpicks.com/p-review__image-1.jpg',
+      profileImg : 'http://img.onpicks.com/profile-stephanie.jpg',
+      reviewThumbImg : 'http://img.onpicks.com/p-review__image-1.jpg',
       reviewImg : '',
       review: 'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Vestibulum eget ante eu diam cursus lobortis vitae eget turpis.',
       helpfulCount : 2,
@@ -815,7 +815,7 @@ export class PComponent implements OnInit {
     {
       name: 'Emiliy',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-emiliy.jpg',
+      profileImg : 'http://img.onpicks.com/profile-emiliy.jpg',
       reviewThumbImg : '',
       reviewImg : '',
       review: 'Proin quis quam feugiat, venenatis arcu id, pulvinar tellus. ',
@@ -825,7 +825,7 @@ export class PComponent implements OnInit {
     {
       name: 'Chris',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-chris.jpg',
+      profileImg : 'http://img.onpicks.com/profile-chris.jpg',
       reviewThumbImg : '',
       reviewImg : '',
       review: 'Suspendisse quis velit pellentesque, iaculis lectus et, viverra orci. Suspendisse pretium sem vel elementum cursus. ',
@@ -835,8 +835,8 @@ export class PComponent implements OnInit {
     {
       name: 'John',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-john.jpg',
-      reviewThumbImg : 'https://s3.amazonaws.com/img.onpicks.com/p-review__image-1.jpg',
+      profileImg : 'http://img.onpicks.com/profile-john.jpg',
+      reviewThumbImg : 'http://img.onpicks.com/p-review__image-1.jpg',
       reviewImg : '',
       review: 'Vestibulum consectetur mollis ipsum quis vestibulum. Vestibulum vitae est maximus, molestie tortor non, tincidunt orci. Mauris ut molestie nunc. Suspendisse sit amet commodo mauris.',
       helpfulCount : 2,
@@ -845,7 +845,7 @@ export class PComponent implements OnInit {
     {
       name: 'Rose',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-rose.jpg',
+      profileImg : 'http://img.onpicks.com/profile-rose.jpg',
       reviewThumbImg : '',
       reviewImg : '',
       review: 'Etiam sed purus pharetra, placerat elit eu, bibendum ligula. Nullam in felis elementum justo placerat hendrerit vitae id diam. Donec odio tortor, efficitur et orci sit amet, ornare efficitur leo. Duis tincidunt porttitor odio eu finibus.',
@@ -855,7 +855,7 @@ export class PComponent implements OnInit {
     {
       name: 'Chris',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-chris.jpg',
+      profileImg : 'http://img.onpicks.com/profile-chris.jpg',
       reviewThumbImg : '',
       reviewImg : '',
       review: 'Mauris in placerat quam. Duis elementum porta nisi vitae auctor. Donec viverra non est eget placerat. Mauris fringilla purus sapien, sed porta sem faucibus id. Maecenas eu quam iaculis, sodales turpis in, posuere nisi. Donec sed ante interdum, sollicitudin magna non, lacinia est. Proin condimentum turpis ut blandit blandit.',
@@ -865,7 +865,7 @@ export class PComponent implements OnInit {
     {
       name: 'Rose',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-rose.jpg',
+      profileImg : 'http://img.onpicks.com/profile-rose.jpg',
       reviewThumbImg : '',
       reviewImg : '',
       review: ' Suspendisse eu blandit neque, eget aliquam metus. Nulla at libero tincidunt, finibus eros et, luctus dolor. Cras ut mattis mi. Morbi dapibus varius est nec varius. Fusce egestas luctus enim at imperdiet. Aliquam vel elementum nunc. Aliquam non erat luctus, cursus quam vel, venenatis odio. In hac habitasse platea dictumst. Morbi tempus sem vel vulputate porttitor.',
@@ -875,7 +875,7 @@ export class PComponent implements OnInit {
     {
       name: 'Stephanie',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-stephanie.jpg',
+      profileImg : 'http://img.onpicks.com/profile-stephanie.jpg',
       reviewThumbImg : '',
       reviewImg : '',
       review: 'Mauris tincidunt diam et nibh tincidunt, sit amet rhoncus risus laoreet. Phasellus in scelerisque augue. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Phasellus at est commodo, lobortis mi sed, sollicitudin risus. Phasellus non diam risus.',
@@ -885,8 +885,8 @@ export class PComponent implements OnInit {
     {
       name: 'Jessica',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-jessica.jpg',
-      reviewThumbImg : 'https://s3.amazonaws.com/img.onpicks.com/p-review__image-2.jpg',
+      profileImg : 'http://img.onpicks.com/profile-jessica.jpg',
+      reviewThumbImg : 'http://img.onpicks.com/p-review__image-2.jpg',
       reviewImg : '',
       review: 'Pellentesque tempus placerat nisl a tempor. Sed sit amet ultricies purus. In in ornare ante. Nulla erat diam, suscipit nec dictum vitae, molestie id felis. Etiam egestas sem at risus pellentesque vehicula. In nec enim id tortor iaculis luctus. ',
       helpfulCount : 2,
@@ -895,7 +895,7 @@ export class PComponent implements OnInit {
     {
       name: 'Chris',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-chris.jpg',
+      profileImg : 'http://img.onpicks.com/profile-chris.jpg',
       reviewThumbImg : '',
       reviewImg : '',
       review: 'Cras sit amet nisl vel nisl gravida faucibus at in libero. Phasellus at elit quis felis auctor sodales. Suspendisse nec condimentum mi. Nullam enim ipsum, suscipit at libero vel, ultricies blandit ipsum. ',
@@ -905,7 +905,7 @@ export class PComponent implements OnInit {
     {
       name: 'John',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-john.jpg',
+      profileImg : 'http://img.onpicks.com/profile-john.jpg',
       reviewThumbImg : '',
       reviewImg : '',
       review: 'Proin dignissim mauris rutrum, pharetra urna in, sodales velit. Fusce ultricies enim non aliquet iaculis. Morbi at massa in orci rutrum vulputate. Proin eu rutrum nisi. Mauris nisi nulla, ultricies nec justo eget, scelerisque facilisis magna.',
@@ -915,7 +915,7 @@ export class PComponent implements OnInit {
     {
       name: 'Rose',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-rose.jpg',
+      profileImg : 'http://img.onpicks.com/profile-rose.jpg',
       reviewThumbImg : '',
       reviewImg : '',
       review: 'pretium ullamcorper lacus felis in ligula. Curabitur tincidunt auctor consectetur. Proin rutrum a dolor sed bibendum. Praesent et leo sollicitudin metus placerat rutrum id sit amet lacus. Fusce malesuada eu ligula quis porta. ',
@@ -925,7 +925,7 @@ export class PComponent implements OnInit {
     {
       name: 'Stephanie',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-stephanie.jpg',
+      profileImg : 'http://img.onpicks.com/profile-stephanie.jpg',
       reviewThumbImg : '',
       reviewImg : '',
       review: 'Sed vitae metus maximus, placerat odio eu, finibus odio. Praesent mollis auctor velit, id congue neque. Quisque maximus arcu et velit porta, ut congue ante faucibus.',
@@ -935,7 +935,7 @@ export class PComponent implements OnInit {
     {
       name: 'John',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-john.jpg',
+      profileImg : 'http://img.onpicks.com/profile-john.jpg',
       reviewThumbImg : '',
       reviewImg : '',
       review: 'Nullam condimentum neque augue, non placerat augue tempor id. Vestibulum a ultrices justo. Ut rhoncus leo ac neque vestibulum molestie. In eget purus at ligula volutpat ultrices eget non magna. ',
@@ -945,8 +945,8 @@ export class PComponent implements OnInit {
     {
       name: 'Rose',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-rose.jpg',
-      reviewThumbImg : 'https://s3.amazonaws.com/img.onpicks.com/p-review__image-1.jpg',
+      profileImg : 'http://img.onpicks.com/profile-rose.jpg',
+      reviewThumbImg : 'http://img.onpicks.com/p-review__image-1.jpg',
       reviewImg : '',
       review: 'Donec varius viverra nisl, nec mollis metus efficitur non. Nunc id nulla hendrerit, sodales urna sed, varius ante. Phasellus nec eleifend odio, non iaculis est. Integer gravida enim ut orci vestibulum, vel pulvinar massa accumsan. ',
       helpfulCount : 2,
@@ -955,7 +955,7 @@ export class PComponent implements OnInit {
     {
       name: 'Emiliy',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-emiliy.jpg',
+      profileImg : 'http://img.onpicks.com/profile-emiliy.jpg',
       reviewThumbImg : '',
       reviewImg : '',
       review: 'Cras volutpat, lorem ac blandit aliquam, nulla mi rhoncus nibh, a consequat felis nisl vel augue. Sed est est, maximus in risus sed, suscipit venenatis risus. Aliquam pulvinar metus nunc, ut faucibus nisl scelerisque imperdiet.',
@@ -965,7 +965,7 @@ export class PComponent implements OnInit {
     {
       name: 'Stephanie',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-stephanie.jpg',
+      profileImg : 'http://img.onpicks.com/profile-stephanie.jpg',
       reviewThumbImg : '',
       reviewImg : '',
       review: 'In sit amet leo urna. Sed ut nisl et leo sodales lobortis at sed dolor. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Mauris in vulputate tortor.',
@@ -975,7 +975,7 @@ export class PComponent implements OnInit {
     {
       name: 'John',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-john.jpg',
+      profileImg : 'http://img.onpicks.com/profile-john.jpg',
       reviewThumbImg : '',
       reviewImg : '',
       review: 'Curabitur ultricies mi purus, vel vestibulum eros vehicula a. Nulla facilisi. Duis venenatis euismod augue nec convallis. Quisque vulputate vestibulum ante non cursus. Phasellus tincidunt mollis massa. Praesent ultrices lorem eu massa porttitor, eu malesuada turpis tempor. Integer id nulla neque.',
@@ -985,7 +985,7 @@ export class PComponent implements OnInit {
     {
       name: 'John',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-john.jpg',
+      profileImg : 'http://img.onpicks.com/profile-john.jpg',
       reviewThumbImg : '',
       reviewImg : '',
       review: 'Quisque a orci convallis leo posuere lacinia in et ipsum. Curabitur ultricies, ex et venenatis vehicula, magna nulla molestie est, volutpat tincidunt odio nisl a nulla.',
@@ -995,8 +995,8 @@ export class PComponent implements OnInit {
     {
       name: 'Stephanie',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-stephanie.jpg',
-      reviewThumbImg : 'https://s3.amazonaws.com/img.onpicks.com/p-review__image-1.jpg',
+      profileImg : 'http://img.onpicks.com/profile-stephanie.jpg',
+      reviewThumbImg : 'http://img.onpicks.com/p-review__image-1.jpg',
       reviewImg : '',
       review: 'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Vestibulum eget ante eu diam cursus lobortis vitae eget turpis.',
       helpfulCount : 2,
@@ -1006,7 +1006,7 @@ export class PComponent implements OnInit {
       name: 'Emiliy',
       starRating: '4.5',
       regitDate : '',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-emiliy.jpg',
+      profileImg : 'http://img.onpicks.com/profile-emiliy.jpg',
       reviewThumbImg : '',
       reviewImg : '',
       review: 'Proin quis quam feugiat, venenatis arcu id, pulvinar tellus. ',
@@ -1015,7 +1015,7 @@ export class PComponent implements OnInit {
     {
       name: 'Chris',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-chris.jpg',
+      profileImg : 'http://img.onpicks.com/profile-chris.jpg',
       reviewThumbImg : '',
       reviewImg : '',
       review: 'Suspendisse quis velit pellentesque, iaculis lectus et, viverra orci. Suspendisse pretium sem vel elementum cursus. ',
@@ -1025,8 +1025,8 @@ export class PComponent implements OnInit {
     {
       name: 'John',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-john.jpg',
-      reviewThumbImg : 'https://s3.amazonaws.com/img.onpicks.com/p-review__image-1.jpg',
+      profileImg : 'http://img.onpicks.com/profile-john.jpg',
+      reviewThumbImg : 'http://img.onpicks.com/p-review__image-1.jpg',
       reviewImg : '',
       review: 'Vestibulum consectetur mollis ipsum quis vestibulum. Vestibulum vitae est maximus, molestie tortor non, tincidunt orci. Mauris ut molestie nunc. Suspendisse sit amet commodo mauris.',
       helpfulCount : 2,
@@ -1035,7 +1035,7 @@ export class PComponent implements OnInit {
     {
       name: 'Rose',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-rose.jpg',
+      profileImg : 'http://img.onpicks.com/profile-rose.jpg',
       reviewThumbImg : '',
       reviewImg : '',
       review: 'Etiam sed purus pharetra, placerat elit eu, bibendum ligula. Nullam in felis elementum justo placerat hendrerit vitae id diam. Donec odio tortor, efficitur et orci sit amet, ornare efficitur leo. Duis tincidunt porttitor odio eu finibus.',
@@ -1045,7 +1045,7 @@ export class PComponent implements OnInit {
     {
       name: 'Chris',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-chris.jpg',
+      profileImg : 'http://img.onpicks.com/profile-chris.jpg',
       reviewThumbImg : '',
       reviewImg : '',
       review: 'Mauris in placerat quam. Duis elementum porta nisi vitae auctor. Donec viverra non est eget placerat. Mauris fringilla purus sapien, sed porta sem faucibus id. Maecenas eu quam iaculis, sodales turpis in, posuere nisi. Donec sed ante interdum, sollicitudin magna non, lacinia est. Proin condimentum turpis ut blandit blandit.',
@@ -1055,7 +1055,7 @@ export class PComponent implements OnInit {
     {
       name: 'Rose',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-rose.jpg',
+      profileImg : 'http://img.onpicks.com/profile-rose.jpg',
       reviewThumbImg : '',
       reviewImg : '',
       review: ' Suspendisse eu blandit neque, eget aliquam metus. Nulla at libero tincidunt, finibus eros et, luctus dolor. Cras ut mattis mi. Morbi dapibus varius est nec varius. Fusce egestas luctus enim at imperdiet. Aliquam vel elementum nunc. Aliquam non erat luctus, cursus quam vel, venenatis odio. In hac habitasse platea dictumst. Morbi tempus sem vel vulputate porttitor.',
@@ -1065,7 +1065,7 @@ export class PComponent implements OnInit {
     {
       name: 'Stephanie',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-stephanie.jpg',
+      profileImg : 'http://img.onpicks.com/profile-stephanie.jpg',
       reviewThumbImg : '',
       reviewImg : '',
       review: 'Mauris tincidunt diam et nibh tincidunt, sit amet rhoncus risus laoreet. Phasellus in scelerisque augue. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Phasellus at est commodo, lobortis mi sed, sollicitudin risus. Phasellus non diam risus.',
@@ -1075,8 +1075,8 @@ export class PComponent implements OnInit {
     {
       name: 'Jessica',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-jessica.jpg',
-      reviewThumbImg : 'https://s3.amazonaws.com/img.onpicks.com/p-review__image-2.jpg',
+      profileImg : 'http://img.onpicks.com/profile-jessica.jpg',
+      reviewThumbImg : 'http://img.onpicks.com/p-review__image-2.jpg',
       reviewImg : '',
       review: 'Pellentesque tempus placerat nisl a tempor. Sed sit amet ultricies purus. In in ornare ante. Nulla erat diam, suscipit nec dictum vitae, molestie id felis. Etiam egestas sem at risus pellentesque vehicula. In nec enim id tortor iaculis luctus. ',
       helpfulCount : 7,
@@ -1085,7 +1085,7 @@ export class PComponent implements OnInit {
     {
       name: 'Chris',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-chris.jpg',
+      profileImg : 'http://img.onpicks.com/profile-chris.jpg',
       reviewThumbImg : '',
       reviewImg : '',
       review: 'Cras sit amet nisl vel nisl gravida faucibus at in libero. Phasellus at elit quis felis auctor sodales. Suspendisse nec condimentum mi. Nullam enim ipsum, suscipit at libero vel, ultricies blandit ipsum. ',
@@ -1095,7 +1095,7 @@ export class PComponent implements OnInit {
     {
       name: 'John',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-john.jpg',
+      profileImg : 'http://img.onpicks.com/profile-john.jpg',
       reviewThumbImg : '',
       reviewImg : '',
       review: 'Proin dignissim mauris rutrum, pharetra urna in, sodales velit. Fusce ultricies enim non aliquet iaculis. Morbi at massa in orci rutrum vulputate. Proin eu rutrum nisi. Mauris nisi nulla, ultricies nec justo eget, scelerisque facilisis magna.',
@@ -1105,7 +1105,7 @@ export class PComponent implements OnInit {
     {
       name: 'Rose',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-rose.jpg',
+      profileImg : 'http://img.onpicks.com/profile-rose.jpg',
       reviewThumbImg : '',
       reviewImg : '',
       review: 'pretium ullamcorper lacus felis in ligula. Curabitur tincidunt auctor consectetur. Proin rutrum a dolor sed bibendum. Praesent et leo sollicitudin metus placerat rutrum id sit amet lacus. Fusce malesuada eu ligula quis porta. ',
@@ -1115,7 +1115,7 @@ export class PComponent implements OnInit {
     {
       name: 'Stephanie',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-stephanie.jpg',
+      profileImg : 'http://img.onpicks.com/profile-stephanie.jpg',
       reviewThumbImg : '',
       reviewImg : '',
       review: 'Sed vitae metus maximus, placerat odio eu, finibus odio. Praesent mollis auctor velit, id congue neque. Quisque maximus arcu et velit porta, ut congue ante faucibus.',
@@ -1125,7 +1125,7 @@ export class PComponent implements OnInit {
     {
       name: 'John',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-john.jpg',
+      profileImg : 'http://img.onpicks.com/profile-john.jpg',
       reviewThumbImg : '',
       reviewImg : '',
       review: 'Nullam condimentum neque augue, non placerat augue tempor id. Vestibulum a ultrices justo. Ut rhoncus leo ac neque vestibulum molestie. In eget purus at ligula volutpat ultrices eget non magna. ',
@@ -1135,8 +1135,8 @@ export class PComponent implements OnInit {
     {
       name: 'Rose',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-rose.jpg',
-      reviewThumbImg : 'https://s3.amazonaws.com/img.onpicks.com/p-review__image-1.jpg',
+      profileImg : 'http://img.onpicks.com/profile-rose.jpg',
+      reviewThumbImg : 'http://img.onpicks.com/p-review__image-1.jpg',
       reviewImg : '',
       review: 'Donec varius viverra nisl, nec mollis metus efficitur non. Nunc id nulla hendrerit, sodales urna sed, varius ante. Phasellus nec eleifend odio, non iaculis est. Integer gravida enim ut orci vestibulum, vel pulvinar massa accumsan. ',
       helpfulCount : 2,
@@ -1145,7 +1145,7 @@ export class PComponent implements OnInit {
     {
       name: 'Emiliy',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-emiliy.jpg',
+      profileImg : 'http://img.onpicks.com/profile-emiliy.jpg',
       reviewThumbImg : '',
       reviewImg : '',
       review: 'Cras volutpat, lorem ac blandit aliquam, nulla mi rhoncus nibh, a consequat felis nisl vel augue. Sed est est, maximus in risus sed, suscipit venenatis risus. Aliquam pulvinar metus nunc, ut faucibus nisl scelerisque imperdiet.',
@@ -1155,7 +1155,7 @@ export class PComponent implements OnInit {
     {
       name: 'Stephanie',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-stephanie.jpg',
+      profileImg : 'http://img.onpicks.com/profile-stephanie.jpg',
       reviewThumbImg : '',
       reviewImg : '',
       review: 'In sit amet leo urna. Sed ut nisl et leo sodales lobortis at sed dolor. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Mauris in vulputate tortor.',
@@ -1165,7 +1165,7 @@ export class PComponent implements OnInit {
     {
       name: 'John',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-john.jpg',
+      profileImg : 'http://img.onpicks.com/profile-john.jpg',
       reviewThumbImg : '',
       reviewImg : '',
       review: 'Curabitur ultricies mi purus, vel vestibulum eros vehicula a. Nulla facilisi. Duis venenatis euismod augue nec convallis. Quisque vulputate vestibulum ante non cursus. Phasellus tincidunt mollis massa. Praesent ultrices lorem eu massa porttitor, eu malesuada turpis tempor. Integer id nulla neque.',
@@ -1175,7 +1175,7 @@ export class PComponent implements OnInit {
     {
       name: 'John',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-john.jpg',
+      profileImg : 'http://img.onpicks.com/profile-john.jpg',
       reviewThumbImg : '',
       reviewImg : '',
       review: 'Quisque a orci convallis leo posuere lacinia in et ipsum. Curabitur ultricies, ex et venenatis vehicula, magna nulla molestie est, volutpat tincidunt odio nisl a nulla.',
@@ -1185,8 +1185,8 @@ export class PComponent implements OnInit {
     {
       name: 'Stephanie',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-stephanie.jpg',
-      reviewThumbImg : 'https://s3.amazonaws.com/img.onpicks.com/p-review__image-1.jpg',
+      profileImg : 'http://img.onpicks.com/profile-stephanie.jpg',
+      reviewThumbImg : 'http://img.onpicks.com/p-review__image-1.jpg',
       reviewImg : '',
       review: 'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Vestibulum eget ante eu diam cursus lobortis vitae eget turpis.',
       helpfulCount : 2,
@@ -1195,7 +1195,7 @@ export class PComponent implements OnInit {
     {
       name: 'Emiliy',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-emiliy.jpg',
+      profileImg : 'http://img.onpicks.com/profile-emiliy.jpg',
       reviewThumbImg : '',
       reviewImg : '',
       review: 'Proin quis quam feugiat, venenatis arcu id, pulvinar tellus. ',
@@ -1205,7 +1205,7 @@ export class PComponent implements OnInit {
     {
       name: 'Chris',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-chris.jpg',
+      profileImg : 'http://img.onpicks.com/profile-chris.jpg',
       reviewThumbImg : '',
       reviewImg : '',
       review: 'Suspendisse quis velit pellentesque, iaculis lectus et, viverra orci. Suspendisse pretium sem vel elementum cursus. ',
@@ -1215,8 +1215,8 @@ export class PComponent implements OnInit {
     {
       name: 'John',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-john.jpg',
-      reviewThumbImg : 'https://s3.amazonaws.com/img.onpicks.com/p-review__image-1.jpg',
+      profileImg : 'http://img.onpicks.com/profile-john.jpg',
+      reviewThumbImg : 'http://img.onpicks.com/p-review__image-1.jpg',
       reviewImg : '',
       review: 'Vestibulum consectetur mollis ipsum quis vestibulum. Vestibulum vitae est maximus, molestie tortor non, tincidunt orci. Mauris ut molestie nunc. Suspendisse sit amet commodo mauris.',
       helpfulCount : 2,
@@ -1225,7 +1225,7 @@ export class PComponent implements OnInit {
     {
       name: 'Rose',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-rose.jpg',
+      profileImg : 'http://img.onpicks.com/profile-rose.jpg',
       reviewThumbImg : '',
       reviewImg : '',
       review: 'Etiam sed purus pharetra, placerat elit eu, bibendum ligula. Nullam in felis elementum justo placerat hendrerit vitae id diam. Donec odio tortor, efficitur et orci sit amet, ornare efficitur leo. Duis tincidunt porttitor odio eu finibus.',
@@ -1235,7 +1235,7 @@ export class PComponent implements OnInit {
     {
       name: 'Chris',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-chris.jpg',
+      profileImg : 'http://img.onpicks.com/profile-chris.jpg',
       reviewThumbImg : '',
       reviewImg : '',
       review: 'Mauris in placerat quam. Duis elementum porta nisi vitae auctor. Donec viverra non est eget placerat. Mauris fringilla purus sapien, sed porta sem faucibus id. Maecenas eu quam iaculis, sodales turpis in, posuere nisi. Donec sed ante interdum, sollicitudin magna non, lacinia est. Proin condimentum turpis ut blandit blandit.',
@@ -1245,7 +1245,7 @@ export class PComponent implements OnInit {
     {
       name: 'Rose',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-rose.jpg',
+      profileImg : 'http://img.onpicks.com/profile-rose.jpg',
       reviewThumbImg : '',
       reviewImg : '',
       review: ' Suspendisse eu blandit neque, eget aliquam metus. Nulla at libero tincidunt, finibus eros et, luctus dolor. Cras ut mattis mi. Morbi dapibus varius est nec varius. Fusce egestas luctus enim at imperdiet. Aliquam vel elementum nunc. Aliquam non erat luctus, cursus quam vel, venenatis odio. In hac habitasse platea dictumst. Morbi tempus sem vel vulputate porttitor.',
@@ -1255,7 +1255,7 @@ export class PComponent implements OnInit {
     {
       name: 'Stephanie',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-stephanie.jpg',
+      profileImg : 'http://img.onpicks.com/profile-stephanie.jpg',
       reviewThumbImg : '',
       reviewImg : '',
       review: 'Mauris tincidunt diam et nibh tincidunt, sit amet rhoncus risus laoreet. Phasellus in scelerisque augue. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Phasellus at est commodo, lobortis mi sed, sollicitudin risus. Phasellus non diam risus.',
@@ -1265,8 +1265,8 @@ export class PComponent implements OnInit {
     {
       name: 'Jessica',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-jessica.jpg',
-      reviewThumbImg : 'https://s3.amazonaws.com/img.onpicks.com/p-review__image-2.jpg',
+      profileImg : 'http://img.onpicks.com/profile-jessica.jpg',
+      reviewThumbImg : 'http://img.onpicks.com/p-review__image-2.jpg',
       reviewImg : '',
       review: 'Pellentesque tempus placerat nisl a tempor. Sed sit amet ultricies purus. In in ornare ante. Nulla erat diam, suscipit nec dictum vitae, molestie id felis. Etiam egestas sem at risus pellentesque vehicula. In nec enim id tortor iaculis luctus. ',
       helpfulCount : 2,
@@ -1275,7 +1275,7 @@ export class PComponent implements OnInit {
     {
       name: 'Chris',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-chris.jpg',
+      profileImg : 'http://img.onpicks.com/profile-chris.jpg',
       reviewThumbImg : '',
       reviewImg : '',
       review: 'Cras sit amet nisl vel nisl gravida faucibus at in libero. Phasellus at elit quis felis auctor sodales. Suspendisse nec condimentum mi. Nullam enim ipsum, suscipit at libero vel, ultricies blandit ipsum. ',
@@ -1285,7 +1285,7 @@ export class PComponent implements OnInit {
     {
       name: 'John',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-john.jpg',
+      profileImg : 'http://img.onpicks.com/profile-john.jpg',
       reviewThumbImg : '',
       reviewImg : '',
       review: 'Proin dignissim mauris rutrum, pharetra urna in, sodales velit. Fusce ultricies enim non aliquet iaculis. Morbi at massa in orci rutrum vulputate. Proin eu rutrum nisi. Mauris nisi nulla, ultricies nec justo eget, scelerisque facilisis magna.',
@@ -1295,7 +1295,7 @@ export class PComponent implements OnInit {
     {
       name: 'Rose',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-rose.jpg',
+      profileImg : 'http://img.onpicks.com/profile-rose.jpg',
       reviewThumbImg : '',
       reviewImg : '',
       review: 'pretium ullamcorper lacus felis in ligula. Curabitur tincidunt auctor consectetur. Proin rutrum a dolor sed bibendum. Praesent et leo sollicitudin metus placerat rutrum id sit amet lacus. Fusce malesuada eu ligula quis porta. ',
@@ -1305,7 +1305,7 @@ export class PComponent implements OnInit {
     {
       name: 'Stephanie',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-stephanie.jpg',
+      profileImg : 'http://img.onpicks.com/profile-stephanie.jpg',
       reviewThumbImg : '',
       reviewImg : '',
       review: 'Sed vitae metus maximus, placerat odio eu, finibus odio. Praesent mollis auctor velit, id congue neque. Quisque maximus arcu et velit porta, ut congue ante faucibus.',
@@ -1315,7 +1315,7 @@ export class PComponent implements OnInit {
     {
       name: 'John',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-john.jpg',
+      profileImg : 'http://img.onpicks.com/profile-john.jpg',
       reviewThumbImg : '',
       reviewImg : '',
       review: 'Nullam condimentum neque augue, non placerat augue tempor id. Vestibulum a ultrices justo. Ut rhoncus leo ac neque vestibulum molestie. In eget purus at ligula volutpat ultrices eget non magna. ',
@@ -1325,8 +1325,8 @@ export class PComponent implements OnInit {
     {
       name: 'Rose',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-rose.jpg',
-      reviewThumbImg : 'https://s3.amazonaws.com/img.onpicks.com/p-review__image-1.jpg',
+      profileImg : 'http://img.onpicks.com/profile-rose.jpg',
+      reviewThumbImg : 'http://img.onpicks.com/p-review__image-1.jpg',
       reviewImg : '',
       review: 'Donec varius viverra nisl, nec mollis metus efficitur non. Nunc id nulla hendrerit, sodales urna sed, varius ante. Phasellus nec eleifend odio, non iaculis est. Integer gravida enim ut orci vestibulum, vel pulvinar massa accumsan. ',
       helpfulCount : 24,
@@ -1335,7 +1335,7 @@ export class PComponent implements OnInit {
     {
       name: 'Emiliy',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-emiliy.jpg',
+      profileImg : 'http://img.onpicks.com/profile-emiliy.jpg',
       reviewThumbImg : '',
       reviewImg : '',
       review: 'Cras volutpat, lorem ac blandit aliquam, nulla mi rhoncus nibh, a consequat felis nisl vel augue. Sed est est, maximus in risus sed, suscipit venenatis risus. Aliquam pulvinar metus nunc, ut faucibus nisl scelerisque imperdiet.',
@@ -1345,7 +1345,7 @@ export class PComponent implements OnInit {
     {
       name: 'Stephanie',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-stephanie.jpg',
+      profileImg : 'http://img.onpicks.com/profile-stephanie.jpg',
       reviewThumbImg : '',
       reviewImg : '',
       review: 'In sit amet leo urna. Sed ut nisl et leo sodales lobortis at sed dolor. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Mauris in vulputate tortor.',
@@ -1355,7 +1355,7 @@ export class PComponent implements OnInit {
     {
       name: 'John',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-john.jpg',
+      profileImg : 'http://img.onpicks.com/profile-john.jpg',
       reviewThumbImg : '',
       reviewImg : '',
       review: 'Curabitur ultricies mi purus, vel vestibulum eros vehicula a. Nulla facilisi. Duis venenatis euismod augue nec convallis. Quisque vulputate vestibulum ante non cursus. Phasellus tincidunt mollis massa. Praesent ultrices lorem eu massa porttitor, eu malesuada turpis tempor. Integer id nulla neque.',
@@ -1365,7 +1365,7 @@ export class PComponent implements OnInit {
     {
       name: 'John',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-john.jpg',
+      profileImg : 'http://img.onpicks.com/profile-john.jpg',
       reviewThumbImg : '',
       reviewImg : '',
       review: 'Quisque a orci convallis leo posuere lacinia in et ipsum. Curabitur ultricies, ex et venenatis vehicula, magna nulla molestie est, volutpat tincidunt odio nisl a nulla.',
@@ -1375,8 +1375,8 @@ export class PComponent implements OnInit {
     {
       name: 'Stephanie',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-stephanie.jpg',
-      reviewThumbImg : 'https://s3.amazonaws.com/img.onpicks.com/p-review__image-1.jpg',
+      profileImg : 'http://img.onpicks.com/profile-stephanie.jpg',
+      reviewThumbImg : 'http://img.onpicks.com/p-review__image-1.jpg',
       reviewImg : '',
       review: 'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Vestibulum eget ante eu diam cursus lobortis vitae eget turpis.',
       helpfulCount : 2,
@@ -1385,7 +1385,7 @@ export class PComponent implements OnInit {
     {
       name: 'Emiliy',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-emiliy.jpg',
+      profileImg : 'http://img.onpicks.com/profile-emiliy.jpg',
       reviewThumbImg : '',
       reviewImg : '',
       review: 'Proin quis quam feugiat, venenatis arcu id, pulvinar tellus. ',
@@ -1395,7 +1395,7 @@ export class PComponent implements OnInit {
     {
       name: 'Chris',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-chris.jpg',
+      profileImg : 'http://img.onpicks.com/profile-chris.jpg',
       reviewThumbImg : '',
       reviewImg : '',
       review: 'Suspendisse quis velit pellentesque, iaculis lectus et, viverra orci. Suspendisse pretium sem vel elementum cursus. ',
@@ -1405,8 +1405,8 @@ export class PComponent implements OnInit {
     {
       name: 'John',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-john.jpg',
-      reviewThumbImg : 'https://s3.amazonaws.com/img.onpicks.com/p-review__image-1.jpg',
+      profileImg : 'http://img.onpicks.com/profile-john.jpg',
+      reviewThumbImg : 'http://img.onpicks.com/p-review__image-1.jpg',
       reviewImg : '',
       review: 'Vestibulum consectetur mollis ipsum quis vestibulum. Vestibulum vitae est maximus, molestie tortor non, tincidunt orci. Mauris ut molestie nunc. Suspendisse sit amet commodo mauris.',
       helpfulCount : 2,
@@ -1415,7 +1415,7 @@ export class PComponent implements OnInit {
     {
       name: 'Rose',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-rose.jpg',
+      profileImg : 'http://img.onpicks.com/profile-rose.jpg',
       reviewThumbImg : '',
       reviewImg : '',
       review: 'Etiam sed purus pharetra, placerat elit eu, bibendum ligula. Nullam in felis elementum justo placerat hendrerit vitae id diam. Donec odio tortor, efficitur et orci sit amet, ornare efficitur leo. Duis tincidunt porttitor odio eu finibus.',
@@ -1425,7 +1425,7 @@ export class PComponent implements OnInit {
     {
       name: 'Chris',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-chris.jpg',
+      profileImg : 'http://img.onpicks.com/profile-chris.jpg',
       reviewThumbImg : '',
       reviewImg : '',
       review: 'Mauris in placerat quam. Duis elementum porta nisi vitae auctor. Donec viverra non est eget placerat. Mauris fringilla purus sapien, sed porta sem faucibus id. Maecenas eu quam iaculis, sodales turpis in, posuere nisi. Donec sed ante interdum, sollicitudin magna non, lacinia est. Proin condimentum turpis ut blandit blandit.',
@@ -1435,7 +1435,7 @@ export class PComponent implements OnInit {
     {
       name: 'Rose',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-rose.jpg',
+      profileImg : 'http://img.onpicks.com/profile-rose.jpg',
       reviewThumbImg : '',
       reviewImg : '',
       review: ' Suspendisse eu blandit neque, eget aliquam metus. Nulla at libero tincidunt, finibus eros et, luctus dolor. Cras ut mattis mi. Morbi dapibus varius est nec varius. Fusce egestas luctus enim at imperdiet. Aliquam vel elementum nunc. Aliquam non erat luctus, cursus quam vel, venenatis odio. In hac habitasse platea dictumst. Morbi tempus sem vel vulputate porttitor.',
@@ -1445,7 +1445,7 @@ export class PComponent implements OnInit {
     {
       name: 'Stephanie',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-stephanie.jpg',
+      profileImg : 'http://img.onpicks.com/profile-stephanie.jpg',
       reviewThumbImg : '',
       reviewImg : '',
       review: 'Mauris tincidunt diam et nibh tincidunt, sit amet rhoncus risus laoreet. Phasellus in scelerisque augue. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Phasellus at est commodo, lobortis mi sed, sollicitudin risus. Phasellus non diam risus.',
@@ -1455,8 +1455,8 @@ export class PComponent implements OnInit {
     {
       name: 'Jessica',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-jessica.jpg',
-      reviewThumbImg : 'https://s3.amazonaws.com/img.onpicks.com/p-review__image-2.jpg',
+      profileImg : 'http://img.onpicks.com/profile-jessica.jpg',
+      reviewThumbImg : 'http://img.onpicks.com/p-review__image-2.jpg',
       reviewImg : '',
       review: 'Pellentesque tempus placerat nisl a tempor. Sed sit amet ultricies purus. In in ornare ante. Nulla erat diam, suscipit nec dictum vitae, molestie id felis. Etiam egestas sem at risus pellentesque vehicula. In nec enim id tortor iaculis luctus. ',
       helpfulCount : 9,
@@ -1465,7 +1465,7 @@ export class PComponent implements OnInit {
     {
       name: 'Chris',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-chris.jpg',
+      profileImg : 'http://img.onpicks.com/profile-chris.jpg',
       reviewThumbImg : '',
       reviewImg : '',
       review: 'Cras sit amet nisl vel nisl gravida faucibus at in libero. Phasellus at elit quis felis auctor sodales. Suspendisse nec condimentum mi. Nullam enim ipsum, suscipit at libero vel, ultricies blandit ipsum. ',
@@ -1476,7 +1476,7 @@ export class PComponent implements OnInit {
       name: 'John',
       starRating: '4.5',
       regitDate : '',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-john.jpg',
+      profileImg : 'http://img.onpicks.com/profile-john.jpg',
       reviewThumbImg : '',
       reviewImg : '',
       review: 'Proin dignissim mauris rutrum, pharetra urna in, sodales velit. Fusce ultricies enim non aliquet iaculis. Morbi at massa in orci rutrum vulputate. Proin eu rutrum nisi. Mauris nisi nulla, ultricies nec justo eget, scelerisque facilisis magna.'
@@ -1484,7 +1484,7 @@ export class PComponent implements OnInit {
     {
       name: 'Rose',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-rose.jpg',
+      profileImg : 'http://img.onpicks.com/profile-rose.jpg',
       reviewThumbImg : '',
       reviewImg : '',
       review: 'pretium ullamcorper lacus felis in ligula. Curabitur tincidunt auctor consectetur. Proin rutrum a dolor sed bibendum. Praesent et leo sollicitudin metus placerat rutrum id sit amet lacus. Fusce malesuada eu ligula quis porta. ',
@@ -1494,7 +1494,7 @@ export class PComponent implements OnInit {
     {
       name: 'Stephanie',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-stephanie.jpg',
+      profileImg : 'http://img.onpicks.com/profile-stephanie.jpg',
       reviewThumbImg : '',
       reviewImg : '',
       review: 'Sed vitae metus maximus, placerat odio eu, finibus odio. Praesent mollis auctor velit, id congue neque. Quisque maximus arcu et velit porta, ut congue ante faucibus.',
@@ -1504,7 +1504,7 @@ export class PComponent implements OnInit {
     {
       name: 'John',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-john.jpg',
+      profileImg : 'http://img.onpicks.com/profile-john.jpg',
       reviewThumbImg : '',
       reviewImg : '',
       review: 'Nullam condimentum neque augue, non placerat augue tempor id. Vestibulum a ultrices justo. Ut rhoncus leo ac neque vestibulum molestie. In eget purus at ligula volutpat ultrices eget non magna. ',
@@ -1514,8 +1514,8 @@ export class PComponent implements OnInit {
     {
       name: 'Rose',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-rose.jpg',
-      reviewThumbImg : 'https://s3.amazonaws.com/img.onpicks.com/p-review__image-1.jpg',
+      profileImg : 'http://img.onpicks.com/profile-rose.jpg',
+      reviewThumbImg : 'http://img.onpicks.com/p-review__image-1.jpg',
       reviewImg : '',
       review: 'Donec varius viverra nisl, nec mollis metus efficitur non. Nunc id nulla hendrerit, sodales urna sed, varius ante. Phasellus nec eleifend odio, non iaculis est. Integer gravida enim ut orci vestibulum, vel pulvinar massa accumsan. ',
       helpfulCount : 2,
@@ -1524,7 +1524,7 @@ export class PComponent implements OnInit {
     {
       name: 'Emiliy',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-emiliy.jpg',
+      profileImg : 'http://img.onpicks.com/profile-emiliy.jpg',
       reviewThumbImg : '',
       reviewImg : '',
       review: 'Cras volutpat, lorem ac blandit aliquam, nulla mi rhoncus nibh, a consequat felis nisl vel augue. Sed est est, maximus in risus sed, suscipit venenatis risus. Aliquam pulvinar metus nunc, ut faucibus nisl scelerisque imperdiet.',
@@ -1534,7 +1534,7 @@ export class PComponent implements OnInit {
     {
       name: 'Stephanie',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-stephanie.jpg',
+      profileImg : 'http://img.onpicks.com/profile-stephanie.jpg',
       reviewThumbImg : '',
       reviewImg : '',
       review: 'In sit amet leo urna. Sed ut nisl et leo sodales lobortis at sed dolor. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Mauris in vulputate tortor.',
@@ -1544,7 +1544,7 @@ export class PComponent implements OnInit {
     {
       name: 'John',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-john.jpg',
+      profileImg : 'http://img.onpicks.com/profile-john.jpg',
       reviewThumbImg : '',
       reviewImg : '',
       review: 'Curabitur ultricies mi purus, vel vestibulum eros vehicula a. Nulla facilisi. Duis venenatis euismod augue nec convallis. Quisque vulputate vestibulum ante non cursus. Phasellus tincidunt mollis massa. Praesent ultrices lorem eu massa porttitor, eu malesuada turpis tempor. Integer id nulla neque.',
@@ -1554,7 +1554,7 @@ export class PComponent implements OnInit {
     {
       name: 'John',
       starRating: '4.5',
-      profileImg : 'https://s3.amazonaws.com/img.onpicks.com/profile-john.jpg',
+      profileImg : 'http://img.onpicks.com/profile-john.jpg',
       reviewThumbImg : '',
       reviewImg : '',
       review: 'Quisque a orci convallis leo posuere lacinia in et ipsum. Curabitur ultricies, ex et venenatis vehicula, magna nulla molestie est, volutpat tincidunt odio nisl a nulla.',

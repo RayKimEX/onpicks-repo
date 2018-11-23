@@ -2,6 +2,9 @@
 
 .p-other-sellers {
 
+  &__title {
+    margin-bottom : 2.4rem;
+  }
 
   &__table{
     width : 64.8rem;
@@ -13,17 +16,8 @@
 
     &--row{
 
-      font-size:1.6rem;
-      line-height:1.75;
-      letter-spacing: 0.04rem;
-      color:$color-dark-black;
-
-      button {
-        width:10.6rem;
-        height: 4rem;
-      }
+      border-bottom : 1px solid $color-light-grey;
       &:first-child{
-        color:$color-grey;
         padding-bottom: 1.6rem;
       }
       &:not(:first-child) {

@@ -7,6 +7,7 @@
   h1 {
     margin-bottom: 2.4rem;
   }
+
   &__row {
     @include clearfix;
     &:not(:last-child) {
@@ -14,8 +15,22 @@
     }
   }
 
+  &__grid {
+    line-height: 0;
+  }
+
   &__col {
+    vertical-align : top;
+
+    display:inline-block;
     width : 26.4rem;
     height: 26.4rem;
+    margin-bottom : 2.4rem;
+
+    // custom grid
+    &:not(:nth-child(4n)){
+      margin-right : 2.4rem;
+    }
+
   }
 }

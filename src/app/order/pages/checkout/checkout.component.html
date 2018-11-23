@@ -3,24 +3,34 @@
 </div>
 
 <div class="row checkout">
-
-
   <div class="col-6-of-12 checkout-left">
     <div class="checkout-left__info">
+      <div class="checkout-order-info">
+        <h1 class="checkout-order-info__title h1-bold">주문자 정보</h1>
+
+        <div class="checkout-order-info__sub-title subtitle-2-regular">주문자</div>
+        <onpicks-input-box class="checkout-order-info__input" [width]="'40.8rem'" [placeholder]="'주문자 성함'"></onpicks-input-box>
+
+        <div class="checkout-order-info__sub-title subtitle-2-regular">주문자 연락</div>
+        <onpicks-input-box class="checkout-order-info__input" [width]="'40.8rem'" [placeholder]="'주문자 연락처'"></onpicks-input-box>
+      </div>
+
       <div class="checkout-left__info--delivery">
-        <h3 class="checkout-left__info--delivery-title">배송지 정보</h3>
+        <h1 class="checkout-left__info--delivery-title h1-bold">배송지 정보</h1>
 
-        <div class="checkout-left__info--delivery-tag">받는분</div>
-        <input class="checkout-left__info--delivery-input" type="text" placeholder="받는분 성함">
-        <div class="checkout-left__info--delivery-tag">받는분 연락처</div>
-        <input class="checkout-left__info--delivery-input" type="text" placeholder="받는분 연락처">
-        <div class="checkout-left__info--delivery-tag">주소</div>
-        <input #inputZipnumber class="checkout-left__info--delivery-input-address" type="text" placeholder="우편번호">
+        <div class="checkout-left__info--delivery-tag subtitle-2-regular">받는분</div>
+        <input class="checkout-left__info--delivery-input body-2-regular" type="text" placeholder="받는분 성함">
+        <div class="checkout-left__info--delivery-tag subtitle-2-regular">받는분 연락처</div>
+        <input class="checkout-left__info--delivery-input body-2-regular" type="text" placeholder="받는분 연락처">
+        <div class="checkout-left__info--delivery-tag subtitle-2-regular">주소</div>
+        <input #inputZipnumber class="checkout-left__info--delivery-input-address body-2-regular" type="text" placeholder="우편번호">
 
-        <button class="checkout-left__info--delivery-search-btn btn btn--white" (click)="showSearchBox()">우편번호 찾기</button>
-        <div>
+        <onpicks-button
+          [type]="'white'"
+          [width]="'11.4rem'"
+          class="checkout-left__info--delivery-search-btn"
+          (click)="showSearchBox()">우편번호 찾기</onpicks-button>
 
-        </div>
         <div #inputSearchBoxOuter class="checkout-left__info--delivery-searchBox-outer">
           <onpicks-search-box #inputSearchBox class="checkout-left__info--delivery-searchBox"  [width]="55.2" [placeholder]="'검색할 주소를 입력해주세요'" ></onpicks-search-box>
           <div class="checkout-left__info--delivery-searchBox-option">
@@ -75,39 +85,53 @@
             </div>
           </div>
         </div>
+        <input #inputJuso class="checkout-left__info--delivery-input body-2-regular" type="text">
+        <input class="checkout-left__info--delivery-input body-2-regular" type="text" placeholder="상세주소를 입력하세요">
 
-
-        <input #inputJuso class="checkout-left__info--delivery-input" type="text">
-        <input class="checkout-left__info--delivery-input" type="text" placeholder="상세주소를 입력하세요">
-        <button class="checkout-left__info--delivery-save-btn btn btn--white">배송지 저장</button>
-
-        <div class="checkout-left__info--delivery-tag">배송요청사항</div>
+        <onpicks-button
+          [type]="'white'"
+          [width]="'11.4rem'"
+          class="checkout-left__info--delivery-save-btn"
+          >배송지 저장</onpicks-button>
+        <div class="checkout-left__info--delivery-tag subtitle-2-regular">배송요청사항</div>
         <onpicks-select-box [sortList]="deliveryOption"></onpicks-select-box>
         <div class="checkout-left__info--delivery-description">도서산간 지역의 경우 추후 수령시 추가 배송비가 발생할 수 있으며, 해외 배송은 불가합니다.</div>
       </div>
 
 
-<!--  <h3>해외직구상품 추가정보 (필수)</h3>
-      <div>개인통관고유부호 소유자 성함</div>
-      <input type="text" placeholder="주문자 성함">
-      <div>반드시 주민등록상의 성함을 기재해 주셔야 하며, 잘못 기재 했을 시 통관지연등의 불이익을 받으실 수 있으니, 주의 바랍니다.</div>
+      <div class="checkout-addition-info">
+        <h1 class="h1-bold checkout-addition-info__title">해외직구상품 추가정보 (필수)</h1>
+        <div class="subtitle-2-regular checkout-addition-info__sub-title">개인통관고유부호 소유자 성함</div>
+        <onpicks-input-box class="checkout-addition-info__input" [width]="'40.8rem'" [placeholder]="'주문자 성함'"></onpicks-input-box>
+        <div class="subtitle-2-regular u-color-dark-grey checkout-addition-info__description">반드시 주민등록상의 성함을 기재해 주셔야 하며, 잘못 기재 했을 시 통관지연등의 불이익을 받으실 수 있습니다.</div>
 
-      <div>개인통관고유부호</div>
-      <input type="" placeholder="P로 시작하는 13자리를 입력하세요">
-      <div>상품을 받는 분의 개인통관고유부호를 입력해주세요</div>
+        <div class="subtitle-2-regular checkout-addition-info__sub-title">개인통관고유부호</div>
+        <onpicks-input-box class="checkout-addition-info__input" [width]="'40.8rem'" [placeholder]="'P로 시작하는 13자리를 입력하세요'"></onpicks-input-box>
 
-      <input type="checkbox"><span>통관정보 수집, 제공에 동의 (필수)</span>
+        <div class="subtitle-2-regular u-color-dark-grey checkout-addition-info__description">상품을 받는 분의 개인통관고유부호를 입력해주세요</div>
 
-      <div>개인통관고유부호란?</div>
+        <onpicks-check-box class="checkout-addition-info__checkbox" [labelName]="'통관정보 수집, 제공에 동의 (필수)'"></onpicks-check-box>
 
-      <button class="btn btn&#45;&#45;white">개인통관고유부호 저장</button>-->
+        <div class="subtitle-2-regular u-color-green checkout-addition-info__question">개인통관고유부호란?</div>
+
+        <onpicks-button
+          [type]="'white'"
+          [width]="'16.7rem'"
+          class="checkout-left__info--delivery-save-btn"
+          >개인통관고유부호 저장</onpicks-button>
+
+      </div>
 
       <div class="checkout-left__info--checkout">
         <h3 class="checkout-left__info--checkout-title">결제정보</h3>
 
         <div class="checkout-left__info--checkout-tag">쿠폰</div>
         <input class="checkout-left__info--checkout-input" type="text" placeholder="쿠폰 번호를 입력하세요">
-        <button class="checkout-left__info--checkout-btn btn btn--white">사용하기</button>
+        <onpicks-button
+          [type]="'white'"
+          [width]="'8.5rem'"
+          class="checkout-left__info--checkout-btn"
+          >사용하기</onpicks-button>
 
         <div class="checkout-left__info--checkout-tag">결제방법 선택</div>
         <onpicks-check-box [labelName]="'신용/체크카드'"></onpicks-check-box>
@@ -123,37 +147,41 @@
   </div>
   <div class="col-6-of-12 checkout-right">
     <div class="checkout-right__menu">
-      <h3 class="checkout-right__menu--title">최종결제금액</h3>
+      <h3 class="checkout-right__menu--title subtitle-1-bold">최종결제금액</h3>
       <div class="checkout-right__menu--item" *ngFor="let item of shoppingbagList">
         <div class="checkout-right__menu--item-image">
           <img drLazyLoad src="{{item.infoImgSrc}}" alt="">
         </div>
         <div class="checkout-right__menu--item-info">
-          <div class="checkout-right__menu--item-info-brand">{{item.infoBrand}}</div>
-          <div class="checkout-right__menu--item-info-name">{{item.infoName}}</div>
-          <div *ngIf="item.infoOption !== ''" class="checkout-right__menu--item-info-option">{{item.infoOption}}</div>
+          <div class="checkout-right__menu--item-info-brand subtitle-3-bold">{{item.infoBrand}}</div>
+          <div class="checkout-right__menu--item-info-name body-3-regular">{{item.infoName}}</div>
+          <div *ngIf="item.infoOption !== ''" class="checkout-right__menu--item-info-option subtitle-3-regular u-color-grey">{{item.infoOption}}</div>
 
-          <div class="checkout-right__menu--item-info-price">{{item.infoPrice}}</div>
+          <div class="checkout-right__menu--item-info-price subtitle-2-bold">{{item.infoPrice}}</div>
         </div>
       </div>
 
       <div class="checkout-right__menu--price">
         <div class="checkout-right__menu--price-productall">
-          <span class="checkout-right__menu--price-productall-tag">총 상품금액</span>
-          <span class="checkout-right__menu--price-productall-value">12,500원</span>
+          <span class="checkout-right__menu--price-productall-tag subtitle-1-regular">총 상품금액</span>
+          <span class="checkout-right__menu--price-productall-value subtitle-1-regular">12,500원</span>
         </div>
         <div class="checkout-right__menu--price-delivery">
-          <span class="checkout-right__menu--price-delivery-tag">배송비</span>
-          <span class="checkout-right__menu--price-delivery-value">2,500원</span>
+          <span class="checkout-right__menu--price-delivery-tag subtitle-1-regular">배송비</span>
+          <span class="checkout-right__menu--price-delivery-value subtitle-1-regular">2,500원</span>
         </div>
         <div class="checkout-right__menu--price-all">
-          <span class="checkout-right__menu--price-all-tag">총 결제금액</span>
-          <span class="checkout-right__menu--price-all-value">15,000원</span>
+          <span class="checkout-right__menu--price-all-tag h1-bold">총 결제금액</span>
+          <span class="checkout-right__menu--price-all-value h1-bold">15,000원</span>
         </div>
       </div>
 
       <div class="checkout-right__menu--checkout">
-        <button class="btn btn--black checkout-right__menu--checkout-button">결제하기</button>
+        <onpicks-button
+          [type]="'black'"
+          [width]="'100%'"
+          [size]="'big'"
+        >결제하기</onpicks-button>
       </div>
     </div>
   </div>

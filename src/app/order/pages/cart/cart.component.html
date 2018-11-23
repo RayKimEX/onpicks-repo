@@ -24,7 +24,7 @@
       <tr *ngFor="let item of cartList">
         <td>
           <div class="cart__free-table--image">
-            <img src="{{item.imgSrc}}" alt="">
+            <img drLazyLoad src="{{item.imgSrc}}" alt="">
           </div>
 
           <div class="cart__free-table--info">
@@ -36,9 +36,10 @@
         </td>
         <td>
           <div class="cart__free-table--amount">
-            <onpicks-numeric-button [active]="item.amount !== 0" [type]="'minus'"></onpicks-numeric-button>
-            <span class="cart__free-table--amount-content">10</span>
-            <onpicks-numeric-button [active]="item.amount !== 10" [type]="'plus'"></onpicks-numeric-button>
+            <onpicks-list-active-button [isFixExtend]="true"></onpicks-list-active-button>
+            <!--<onpicks-numeric-button [active]="item.amount !== 0" [type]="'minus'"></onpicks-numeric-button>-->
+            <!--<span class="cart__free-table&#45;&#45;amount-content">10</span>-->
+            <!--<onpicks-numeric-button [active]="item.amount !== 10" [type]="'plus'"></onpicks-numeric-button>-->
           </div>
 
           <div class="cart__free-table--add-to-wish">다음에 구매하기</div>
@@ -47,7 +48,7 @@
         <td>
           <div class="cart__free-table--delivery-info">
             <div class="cart__free-table--delivery-info-image">
-              <img src="https://s3.amazonaws.com/img.onpicks.com/cart__table--info-N.png" alt="">
+              <img src="http://img.onpicks.com/cart__table--info-N.png" alt="">
             </div>
 
             <div class="cart__free-table--delivery-info-where subtitle-2-regular"><span class="u-bold">뉴저지</span>출고&nbsp;·&nbsp;</div>
@@ -76,10 +77,17 @@
 
       <div class="cart__delivery-multi-purchase--remain">
         <div class="cart__delivery-multi-purchase--remain-description">엘에이 무료배송까지 125,000원 남았습니다</div>
-        <ui-progressive-bar></ui-progressive-bar>
+        <ui-progressive-bar [progressWidth]="'100%'"></ui-progressive-bar>
       </div>
 
-      <button class="btn btn--white cart__delivery-multi-purchase--btn">묶음배송 구매하기</button>
+      <onpicks-button
+        class="cart__delivery-multi-purchase--btn"
+        [type]="'white'"
+        [size]="'big'"
+        [width]="'16.1rem'"
+      >묶음배송 구매하기</onpicks-button>
+
+      <!--<button class="btn btn&#45;&#45;white cart__delivery-multi-purchase&#45;&#45;btn">묶음배송 구매하기</button>-->
     </div>
 
 
@@ -100,9 +108,10 @@
         </td>
         <td>
           <div class="cart__multi-table--amount">
-            <onpicks-numeric-button [active]="item.amount !== 0" [type]="'minus'"></onpicks-numeric-button>
-            <span class="cart__multi-table--amount-content">10</span>
-            <onpicks-numeric-button [active]="item.amount !== 10" [type]="'plus'"></onpicks-numeric-button>
+            <onpicks-list-active-button [isFixExtend]="true"></onpicks-list-active-button>
+            <!--<onpicks-numeric-button [active]="item.amount !== 0" [type]="'minus'"></onpicks-numeric-button>-->
+            <!--<span class="cart__multi-table&#45;&#45;amount-content">10</span>-->
+            <!--<onpicks-numeric-button [active]="item.amount !== 10" [type]="'plus'"></onpicks-numeric-button>-->
           </div>
 
           <div class="cart__multi-table--add-to-wish">다음에 구매하기</div>
@@ -110,11 +119,11 @@
         </td>
         <td *ngIf="i === 0" [attr.rowspan]="cartList.length">
           <div class="cart__multi-table--delivery-info">
-            <div class="cart__multi-table--delivery-info-image">
-              <img src="https://s3.amazonaws.com/img.onpicks.com/cart__table--info-N.png" alt="">
-            </div>
+            <!--<div class="cart__multi-table&#45;&#45;delivery-info-image">-->
+              <!--<img src="http://img.onpicks.com/cart__table&#45;&#45;info-N.png" alt="">-->
+            <!--</div>-->
 
-            <div class="cart__multi-table--delivery-info-where"><span class="u-bold">뉴저지</span> 출고</div>
+            <!--<div class="cart__multi-table&#45;&#45;delivery-info-where"><span class="u-bold">뉴저지</span> 출고</div>-->
             <div class="cart__multi-table--delivery-info-price">무료</div>
             <div class="cart__multi-table--delivery-info-description">뉴저지 단독 배송 상품으로 개별 배송료가 발생합니다.</div>
           </div>
@@ -142,7 +151,7 @@
           <td>
             <div class="cart__wishlist-table--delivery-info">
               <div class="cart__wishlist-table--delivery-info-image">
-                <img src="https://s3.amazonaws.com/img.onpicks.com/cart__table--info-N.png" alt="">
+                <img src="http://img.onpicks.com/cart__table--info-N.png" alt="">
               </div>
 
               <div class="cart__wishlist-table--delivery-info-where"><span class="u-bold">뉴저지</span> 출고</div>
@@ -182,9 +191,9 @@
         </tr>
       </table>
     </div>
-
-    <button class="btn btn--white cart__btn--shopping">계속 쇼핑하기</button>
-    <button routerLink="/order/checkout" class="btn btn--black cart__btn--checkout">전체 구매하기</button>
+    <onpicks-button class="cart__btn--shopping" [type]="'white'" [size]="'big'" [width]="'13.4rem'">계속 쇼핑하기</onpicks-button>
+    <onpicks-button routerLink="/order/checkout"  class="cart__btn--shopping" [type]="'black'" [size]="'big'" [width]="'13.4rem'">전체 구매하기</onpicks-button>
+    <!--<button routerLink="/order/checkout" class="btn btn&#45;&#45;black cart__btn&#45;&#45;checkout">전체 구매하기</button>-->
   </div>
 
 

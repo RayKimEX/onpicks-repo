@@ -20,6 +20,7 @@ import { OrdersComponent } from './pages/index/my-shopping/index/orders/orders.c
 import { CreditsComponent } from './pages/index/my-shopping/index/credits/credits.component';
 import { MyShoppingIndexComponent } from './pages/index/my-shopping/index/my-shopping-index.component';
 import { OrdersDetailComponent } from './pages/index/my-shopping/index/orders-detail/orders-detail.component';
+import {InfiniteScrollModule} from 'ngx-infinite-scroll';
 
 @NgModule({
   imports: [
@@ -27,7 +28,8 @@ import { OrdersDetailComponent } from './pages/index/my-shopping/index/orders-de
     AccountRoutingModule,
     UiModule,
     DirectivesModule,
-    PipeModule
+    PipeModule,
+    InfiniteScrollModule,
   ],
   declarations: [
     FeedComponent,

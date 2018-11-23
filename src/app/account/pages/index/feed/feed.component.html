@@ -2,10 +2,14 @@
 
   <h1 class="h1-bold">내가그린기린그림은잘그린기린그림이고네가그린기린그림은잘못그을 위한 추천 리뷰</h1>
   <div class="feed-section__grid">
-    <div *ngFor="let list of numbers" class="feed-section__row">
-      <div *ngFor="let item of feedList.slice( 4*(list - 1), 4 * list ) index as i" class="col-3-of-12 feed-section__col">
-        <img src="{{item.imgSrc}}" alt="">
-      </div>
+    <!--<div *ngFor="let list of numbers" class="feed-section__row">-->
+      <!--<div *ngFor="let item of feedList.slice( 4*(list - 1), 4 * list ) index as i" class="col-3-of-12 feed-section__col">-->
+        <!--<img src="{{item.imgSrc}}" alt="">-->
+      <!--</div>-->
+    <!--</div>-->
+
+    <div *ngFor="let item of feedList;  index as i" class="feed-section__col">
+      <img drLazyLoad src="{{item.imgSrc}}" alt="">
     </div>
 
     <!--<div class="feed-section__row">-->

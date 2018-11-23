@@ -3,6 +3,9 @@
 div {
 
   display:table;
+  // 이것을 준 이유는 parent에서 border-collapse : collapse를 주면 border-radius가 먹히지 않기 때문에 주었음
+  // https://stackoverflow.com/questions/10666573/border-radius-of-table-is-not-working
+  border-collapse: separate;
   text-align:center;
   transition-duration: .25s;
   transition-property: all;

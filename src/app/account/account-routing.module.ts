@@ -59,7 +59,7 @@ const routes: Routes = [
         children : [
           {
             path : '',
-            redirectTo : 'written-reviews',
+            redirectTo : 'written',
             pathMatch : 'full'
           },
           {

@@ -1,3 +1,5 @@
+@import "~src/assets/scss/abstracts/variables";
+
 .account-profile {
   &__info {
     display:table;
@@ -25,6 +27,8 @@
 .account-navigator {
 
   nav{
+    padding-bottom : 2.4rem;
+    border-bottom : 1px solid $color-light-grey;
     margin-bottom: 2.4rem;
     ul {
 

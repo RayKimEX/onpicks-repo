@@ -10,8 +10,11 @@ export class InputBoxComponent implements OnInit {
   @Input('width') width;
   @Input('marginRight') marginRight;
   @Input('password') password;
+  @Input('value') value;
 
-  constructor() { }
+  constructor() {
+    this.value = '';
+  }
 
   ngOnInit() {
   }

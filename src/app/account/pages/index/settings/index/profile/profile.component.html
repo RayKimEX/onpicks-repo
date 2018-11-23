@@ -3,12 +3,15 @@
     <div class="settings-profile__row">
       <div class="settings-profile__row--title subtitle-2-regular">닉네임</div>
       <onpicks-input-box
+        [placeholder]="'닉네임을 입력해주세요'"
         [width]="'64.5rem'"></onpicks-input-box>
       <div class="settings-profile__row--description subtitle-2-regular u-color-dark-grey">다른 사용자들에겐 사용자가 설정한 닉네임으로 보여집니다.</div>
     </div>
     <div class="settings-profile__row">
       <div class="settings-profile__row--title subtitle-2-regular">이메일</div>
-      <onpicks-input-box [width]="'64.5rem'"></onpicks-input-box>
+      <onpicks-input-box
+        [placeholder]="'이메일을 입력해주세요'"
+        [width]="'64.5rem'"></onpicks-input-box>
       <div class="settings-profile__row--description subtitle-2-regular u-color-dark-grey">이메일 주소는 다른 회원에게 공개되지 않습니다.</div>
     </div>
     <div class="settings-profile__row">
@@ -16,6 +19,7 @@
       <onpicks-input-box
         [marginRight]="'1.6rem'"
         [password]="true"
+        [placeholder]="'비밀번호를 입력해주세요'"
         [width]="'31.2rem'">
       </onpicks-input-box>
       <onpicks-button
@@ -27,7 +31,7 @@
       <div class="settings-profile__row--title subtitle-2-regular">연락처</div>
       <onpicks-input-box
         [marginRight]="'1.6rem'"
-        [password]="true"
+        [placeholder]="'전화번호를 입력해주세요'"
         [width]="'31.2rem'">
       </onpicks-input-box>
       <onpicks-button
@@ -46,16 +50,16 @@
     <div class="settings-profile__row">
       <div class="settings-profile__row--title subtitle-2-regular">생년월일</div>
       <onpicks-select-box
-        class="settings-profile__row--select-box"
+        class="settings-profile__row--select-box-month"
         [sortList]="monthList"
       ></onpicks-select-box>
       <onpicks-select-box
-        class="settings-profile__row--select-box"
-        [sortList]="monthList"
+        class="settings-profile__row--select-box-day"
+        [sortList]="dayList"
       ></onpicks-select-box>
       <onpicks-select-box
-        class="settings-profile__row--select-box"
-        [sortList]="monthList"
+        class="settings-profile__row--select-box-year"
+        [sortList]="yearList"
       ></onpicks-select-box>
       <div class="settings-profile__row--description subtitle-2-regular u-color-dark-grey">이 정보는 통계 목적으로 사용되며 다른 회원들에게 절대 공개되지 않습니다.</div>
     </div>

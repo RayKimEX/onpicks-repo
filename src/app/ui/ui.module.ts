@@ -30,6 +30,7 @@ import { AdhereTableComponent } from './pure/onpicks/table/adhere-table/adhere-t
 import { IndentTableComponent } from './pure/onpicks/table/indent-table/indent-table.component';
 import { CommunicateBoxComponent } from '../shops/pages/index/p/pages/index/reviews/communicate-box.component';
 import { SearchNavigatorComponent } from './emitter/search-navigator/search-navigator.component';
+import { ChangePreferenceComponent } from './emitter/change-preference/change-preference.component';
 
 @NgModule({
 
@@ -67,6 +68,7 @@ import { SearchNavigatorComponent } from './emitter/search-navigator/search-navi
     IndentTableComponent,
     CommunicateBoxComponent,
     SearchNavigatorComponent,
+    ChangePreferenceComponent,
   ],
   exports: [
     SimpleCarouselComponent,
@@ -95,7 +97,7 @@ import { SearchNavigatorComponent } from './emitter/search-navigator/search-navi
     AdhereTableComponent,
     CommunicateBoxComponent,
     SearchNavigatorComponent,
-
+    ChangePreferenceComponent,
   ]
 })
 

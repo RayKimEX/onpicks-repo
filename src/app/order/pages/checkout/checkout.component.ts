@@ -22,16 +22,21 @@ export class CheckoutComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('inputJuso') inputJuso;
 
 
-  deliveryOption = [
-    {
-      title : '배송시 요청 사항 (선택사항)',
-      value : 0
-    },
-    {
-      title : '90 days',
-      value : 1
-    },
-  ]
+  deliveryOption = {
+    title : '배송시 요청 사항 (선택사항)',
+    list : [
+      {
+        title : '택배기사 아저씨한테 부탁해주세요',
+        value : 0
+      },
+      {
+        title : '문 앞에 냅둬주세요!',
+        value : 1
+      },
+    ]
+  }
+
+
 
   // MUST TODO : 이미지 안보인는건 src를 초기화 해서 memory낭비 적게 하기
   shoppingbagList = [

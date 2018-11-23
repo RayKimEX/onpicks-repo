@@ -29,7 +29,7 @@ export class MiniListComponent implements OnInit, AfterViewInit, OnDestroy {
       msrpDiscountPrice: 57200,
       discountPercent: 50,
       currentPrice: 28600,
-      imgSrc: 'https://s3.amazonaws.com/img.onpicks.com/p-similar-2.jpg',
+      imgSrc: 'http://img.onpicks.com/p-similar-2.jpg',
       deliveryPoint : 1,
     } , {
       brand: '오예',
@@ -39,7 +39,7 @@ export class MiniListComponent implements OnInit, AfterViewInit, OnDestroy {
       msrpDiscountPrice: 57200,
       discountPercent: 50,
       currentPrice: 28600,
-      imgSrc: 'https://s3.amazonaws.com/img.onpicks.com/p-similar-5.jpg',
+      imgSrc: 'http://img.onpicks.com/p-similar-5.jpg',
       deliveryPoint : 2,
     },
     {
@@ -50,7 +50,7 @@ export class MiniListComponent implements OnInit, AfterViewInit, OnDestroy {
       msrpDiscountPrice: 57200,
       discountPercent: 50,
       currentPrice: 28600,
-      imgSrc: 'https://s3.amazonaws.com/img.onpicks.com/p-similar-3.jpg',
+      imgSrc: 'http://img.onpicks.com/p-similar-3.jpg',
       deliveryPoint : 3,
     },
     {
@@ -61,7 +61,7 @@ export class MiniListComponent implements OnInit, AfterViewInit, OnDestroy {
       msrpDiscountPrice: 57200,
       discountPercent: 50,
       currentPrice: 28600,
-      imgSrc: 'https://s3.amazonaws.com/img.onpicks.com/p-similar-4.jpg',
+      imgSrc: 'http://img.onpicks.com/p-similar-4.jpg',
       deliveryPoint : 4,
     },
     {
@@ -72,7 +72,7 @@ export class MiniListComponent implements OnInit, AfterViewInit, OnDestroy {
       msrpDiscountPrice: 57200,
       discountPercent: 50,
       currentPrice: 28600,
-      imgSrc: 'https://s3.amazonaws.com/img.onpicks.com/p-similar-2.jpg',
+      imgSrc: 'http://img.onpicks.com/p-similar-2.jpg',
       deliveryPoint : 5,
     },
     {
@@ -83,7 +83,7 @@ export class MiniListComponent implements OnInit, AfterViewInit, OnDestroy {
       msrpDiscountPrice: 57200,
       discountPercent: 50,
       currentPrice: 28600,
-      imgSrc: 'https://s3.amazonaws.com/img.onpicks.com/p-similar-3.jpg'
+      imgSrc: 'http://img.onpicks.com/p-similar-3.jpg'
     },
     {
       brand: 'Shanti Bar',
@@ -93,7 +93,7 @@ export class MiniListComponent implements OnInit, AfterViewInit, OnDestroy {
       msrpDiscountPrice: 57200,
       discountPercent: 50,
       currentPrice: 28600,
-      imgSrc: 'https://s3.amazonaws.com/img.onpicks.com/p-similar-4.jpg'
+      imgSrc: 'http://img.onpicks.com/p-similar-4.jpg'
     },   {
       brand: 'Endangered Species Chocolate',
       productName: 'ONE Protein Bar, Birthday Cake, 2.12 oz. (12 Pack), Gluten-Free Protein Bar with High Protein (20g) and Low Sugar (1g), Guilt Free…',
@@ -102,7 +102,7 @@ export class MiniListComponent implements OnInit, AfterViewInit, OnDestroy {
       msrpDiscountPrice: 57200,
       discountPercent: 50,
       currentPrice: 28600,
-      imgSrc: 'https://s3.amazonaws.com/img.onpicks.com/p-similar-2.jpg'
+      imgSrc: 'http://img.onpicks.com/p-similar-2.jpg'
     },
     {
       brand: 'Rxbar',
@@ -112,7 +112,7 @@ export class MiniListComponent implements OnInit, AfterViewInit, OnDestroy {
       msrpDiscountPrice: 57200,
       discountPercent: 50,
       currentPrice: 28600,
-      imgSrc: 'https://s3.amazonaws.com/img.onpicks.com/p-similar-3.jpg'
+      imgSrc: 'http://img.onpicks.com/p-similar-3.jpg'
     },
     {
       brand: 'Shanti Bar',
@@ -122,7 +122,7 @@ export class MiniListComponent implements OnInit, AfterViewInit, OnDestroy {
       msrpDiscountPrice: 50,
       discountPercent: 50,
       currentPrice: 25,
-      imgSrc: 'https://s3.amazonaws.com/img.onpicks.com/p-similar-4.jpg'
+      imgSrc: 'http://img.onpicks.com/p-similar-4.jpg'
     },
     {
       brand: 'Endangered Species Chocolate',
@@ -132,7 +132,7 @@ export class MiniListComponent implements OnInit, AfterViewInit, OnDestroy {
       msrpDiscountPrice: 30,
       discountPercent: 25,
       currentPrice: 10,
-      imgSrc: 'https://s3.amazonaws.com/img.onpicks.com/p-similar-2.jpg'
+      imgSrc: 'http://img.onpicks.com/p-similar-2.jpg'
     },
     {
       brand: 'Rxbar',
@@ -142,7 +142,7 @@ export class MiniListComponent implements OnInit, AfterViewInit, OnDestroy {
       msrpDiscountPrice: 50,
       discountPercent: 50,
       currentPrice: 25,
-      imgSrc: 'https://s3.amazonaws.com/img.onpicks.com/p-similar-3.jpg'
+      imgSrc: 'http://img.onpicks.com/p-similar-3.jpg'
     },
     {
       brand: 'Shanti Bar',
@@ -152,7 +152,7 @@ export class MiniListComponent implements OnInit, AfterViewInit, OnDestroy {
       msrpDiscountPrice: 50,
       discountPercent: 50,
       currentPrice: 25,
-      imgSrc: 'https://s3.amazonaws.com/img.onpicks.com/p-similar-4.jpg'
+      imgSrc: 'http://img.onpicks.com/p-similar-4.jpg'
     },   {
       brand: 'Endangered Species Chocolate',
       productName: 'ONE Protein Bar, Birthday Cake, 2.12 oz. (12 Pack), Gluten-Free Protein Bar with High Protein (20g) and Low Sugar (1g), Guilt Free…',
@@ -161,7 +161,7 @@ export class MiniListComponent implements OnInit, AfterViewInit, OnDestroy {
       msrpDiscountPrice: 30,
       discountPercent: 25,
       currentPrice: 10,
-      imgSrc: 'https://s3.amazonaws.com/img.onpicks.com/p-similar-2.jpg'
+      imgSrc: 'http://img.onpicks.com/p-similar-2.jpg'
     },
     {
       brand: 'Rxbar',
@@ -171,7 +171,7 @@ export class MiniListComponent implements OnInit, AfterViewInit, OnDestroy {
       msrpDiscountPrice: 50,
       discountPercent: 50,
       currentPrice: 25,
-      imgSrc: 'https://s3.amazonaws.com/img.onpicks.com/p-similar-3.jpg'
+      imgSrc: 'http://img.onpicks.com/p-similar-3.jpg'
     },
     {
       brand: 'Shanti Bar',
@@ -181,7 +181,7 @@ export class MiniListComponent implements OnInit, AfterViewInit, OnDestroy {
       msrpDiscountPrice: 50,
       discountPercent: 50,
       currentPrice: 25,
-      imgSrc: 'https://s3.amazonaws.com/img.onpicks.com/p-similar-4.jpg'
+      imgSrc: 'http://img.onpicks.com/p-similar-4.jpg'
     },   {
       brand: 'Endangered Species Chocolate',
       productName: 'ONE Protein Bar, Birthday Cake, 2.12 oz. (12 Pack), Gluten-Free Protein Bar with High Protein (20g) and Low Sugar (1g), Guilt Free…',
@@ -190,7 +190,7 @@ export class MiniListComponent implements OnInit, AfterViewInit, OnDestroy {
       msrpDiscountPrice: 30,
       discountPercent: 25,
       currentPrice: 10,
-      imgSrc: 'https://s3.amazonaws.com/img.onpicks.com/p-similar-2.jpg'
+      imgSrc: 'http://img.onpicks.com/p-similar-2.jpg'
     },
     {
       brand: 'Rxbar',
@@ -200,7 +200,7 @@ export class MiniListComponent implements OnInit, AfterViewInit, OnDestroy {
       msrpDiscountPrice: 50,
       discountPercent: 50,
       currentPrice: 25,
-      imgSrc: 'https://s3.amazonaws.com/img.onpicks.com/p-similar-3.jpg'
+      imgSrc: 'http://img.onpicks.com/p-similar-3.jpg'
     },
     {
       brand: 'Shanti Bar',
@@ -210,7 +210,7 @@ export class MiniListComponent implements OnInit, AfterViewInit, OnDestroy {
       msrpDiscountPrice: 50,
       discountPercent: 50,
       currentPrice: 25,
-      imgSrc: 'https://s3.amazonaws.com/img.onpicks.com/p-similar-4.jpg'
+      imgSrc: 'http://img.onpicks.com/p-similar-4.jpg'
     },   {
       brand: 'Endangered Species Chocolate',
       productName: 'ONE Protein Bar, Birthday Cake, 2.12 oz. (12 Pack), Gluten-Free Protein Bar with High Protein (20g) and Low Sugar (1g), Guilt Free…',
@@ -219,7 +219,7 @@ export class MiniListComponent implements OnInit, AfterViewInit, OnDestroy {
       msrpDiscountPrice: 30,
       discountPercent: 25,
       currentPrice: 10,
-      imgSrc: 'https://s3.amazonaws.com/img.onpicks.com/p-similar-2.jpg'
+      imgSrc: 'http://img.onpicks.com/p-similar-2.jpg'
     },
     {
       brand: 'Rxbar',
@@ -229,7 +229,7 @@ export class MiniListComponent implements OnInit, AfterViewInit, OnDestroy {
       msrpDiscountPrice: 50,
       discountPercent: 50,
       currentPrice: 25,
-      imgSrc: 'https://s3.amazonaws.com/img.onpicks.com/p-similar-3.jpg'
+      imgSrc: 'http://img.onpicks.com/p-similar-3.jpg'
     },
     {
       brand: 'Shanti Bar',
@@ -239,7 +239,7 @@ export class MiniListComponent implements OnInit, AfterViewInit, OnDestroy {
       msrpDiscountPrice: 50,
       discountPercent: 50,
       currentPrice: 25,
-      imgSrc: 'https://s3.amazonaws.com/img.onpicks.com/p-similar-4.jpg'
+      imgSrc: 'http://img.onpicks.com/p-similar-4.jpg'
     },   {
       brand: 'Endangered Species Chocolate',
       productName: 'ONE Protein Bar, Birthday Cake, 2.12 oz. (12 Pack), Gluten-Free Protein Bar with High Protein (20g) and Low Sugar (1g), Guilt Free…',
@@ -248,7 +248,7 @@ export class MiniListComponent implements OnInit, AfterViewInit, OnDestroy {
       msrpDiscountPrice: 30,
       discountPercent: 25,
       currentPrice: 10,
-      imgSrc: 'https://s3.amazonaws.com/img.onpicks.com/p-similar-2.jpg'
+      imgSrc: 'http://img.onpicks.com/p-similar-2.jpg'
     },
     {
       brand: 'Rxbar',
@@ -258,7 +258,7 @@ export class MiniListComponent implements OnInit, AfterViewInit, OnDestroy {
       msrpDiscountPrice: 50,
       discountPercent: 50,
       currentPrice: 25,
-      imgSrc: 'https://s3.amazonaws.com/img.onpicks.com/p-similar-3.jpg'
+      imgSrc: 'http://img.onpicks.com/p-similar-3.jpg'
     },
     {
       brand: 'Shanti Bar',
@@ -268,7 +268,7 @@ export class MiniListComponent implements OnInit, AfterViewInit, OnDestroy {
       msrpDiscountPrice: 50,
       discountPercent: 50,
       currentPrice: 25,
-      imgSrc: 'https://s3.amazonaws.com/img.onpicks.com/p-similar-4.jpg'
+      imgSrc: 'http://img.onpicks.com/p-similar-4.jpg'
     }
   ];
 

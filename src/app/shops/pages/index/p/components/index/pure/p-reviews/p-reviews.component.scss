@@ -15,6 +15,12 @@ onpicks-circle-n-button {
 
 .p-reviews {
 
+  &__title {
+    margin-right : 1.2rem;
+    display :inline-block;
+    margin-bottom : 2.4rem;
+  }
+
   &__small-header {
     margin-bottom: 2.4rem;
 
@@ -33,6 +39,8 @@ onpicks-circle-n-button {
 
   &__content{
     margin-top : 0.8rem;
+    min-height: 10.4rem;
+    display:inline-block;
   }
 
   hr {
@@ -47,6 +55,10 @@ onpicks-circle-n-button {
 
 
   &__table {
+
+    &--point {
+      margin-left : 0.4rem;
+    }
     & td {
 
       //margin-right : 2.2rem;
@@ -106,7 +118,6 @@ onpicks-circle-n-button {
     &--caption {
 
       position:absolute;
-      top: -0.3rem;
       display: inline-block;
 
       & > figcaption {
@@ -116,23 +127,12 @@ onpicks-circle-n-button {
 
       &-date {
         margin-left : 0.8rem;
-        font-size : 1.4rem;
-        font-weight : 500;
-        letter-spacing : 0.03rem;
       }
 
     }
   }
 
 
-  p {
-
-    min-height: 10.4rem;
-    display:inline-block;
-    font-size : 1.6rem;
-    line-height:1.75;
-    letter-spacing: 0.4px;
-  }
 
   &__option {
     margin-top:2.4rem;
@@ -140,21 +140,11 @@ onpicks-circle-n-button {
       position:relative;
       margin-left: 0.8rem;
       margin-right: 3.2rem;
-      font-size:1.6rem;
-      font-weight : 500;
-      line-height : 1.5;
-      letter-spacing: 0.04rem;
-      color: $color-dark-grey;
       top:-0.5rem;
     }
 
     &--report {
       float : right;
-      font-size:1.6rem;
-      font-weight:500;
-      line-height: 1.5;
-      letter-spacing : 0.04rem;
-      color:$color-grey;
     }
   }
 

@@ -8,7 +8,7 @@ import {RefundPolicyComponent} from './pages/index/refund/refund-policy.componen
 
 const routes: Routes = [
   {
-    path: 'help',
+    path: '',
     children : [
       {
         path : '',

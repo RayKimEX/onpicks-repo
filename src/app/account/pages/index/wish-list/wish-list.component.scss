@@ -3,9 +3,6 @@
 
 .wish-list {
   &__title {
-    font-size : 1.8rem;
-    font-weight : 700;
-    line-height : 1.33;
     margin-bottom: 2.4rem;
   }
 
@@ -31,20 +28,15 @@
 
 
     td:nth-of-type(1){
-      width: 56.5rem;
+      width: 67.3rem;
       //647 180 299
     }
     td:nth-of-type(2){
-      width: 10.3rem;
-      font-size:1.4rem;
-      //647 180 299
-    }
-    td:nth-of-type(3){
       width: 29.1rem;
       //647 180 299
     }
-    td:nth-of-type(4){
-      width: 16.6rem;
+    td:nth-of-type(3){
+      width: 16.2rem;
       //647 180 299
     }
 
@@ -67,27 +59,19 @@
       display:inline-block;
 
       &-title {
-        line-height :1.33;
-        font-size : 1.2rem;
         margin-bottom :4px;
       }
 
       &-name {
-        line-height :1.33;
-        font-size : 1.2rem;
         margin-bottom :4px;
-        letter-spacing : 0.4px;
       }
 
       &-price {
-        font-size : 1.4rem;
       }
     }
 
 
     &--delivery-info {
-
-      font-size : 1.4rem;
       &-image {
         display: inline-block;
         margin-right: 8px;
@@ -103,19 +87,8 @@
 
       }
 
-      &-price {
-        margin-top : 4px;
-        margin-bottom : 4px;
-        line-heihgt: 1.43;
-        font-size : 1.4rem;
-        line-height : 1.43;
-        color : $color-green;
-        font-weight: 700;
-      }
-
       &-description {
-        line-heihgt: 1.43;
-        color: #8d8d8d;
+        margin-top : 8px;
       }
 
     }
@@ -132,10 +105,6 @@
         display:inline-block;
         vertical-align : top;
         margin-top: 0.6rem;
-        font-size : 1.6rem;
-        line-height : 1.75;
-        color : #292929;
-        font-weight : 400;
       }
     }
   }

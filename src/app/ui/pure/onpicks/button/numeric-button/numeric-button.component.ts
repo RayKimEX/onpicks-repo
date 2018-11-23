@@ -12,6 +12,7 @@ export class NumericButtonComponent implements OnInit, AfterViewInit {
   constructor() { }
 
   ngOnInit() {
+
   }
 
   ngAfterViewInit() {

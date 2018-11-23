@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --configuration=ko --public-host http://localhost:4200    ",
+    "start": "ng serve --configuration=ko --public-host http://localhost:4200",
     "proxystart": "ng serve --configuration=ko --proxy-config proxy.conf.json --public-host http://localhost:4200    ",
     "build": "ng build",
     "test": "ng test",
@@ -28,6 +28,7 @@
     "@ngrx/store-devtools": "^6.1.2",
     "chart.js": "^2.7.2",
     "core-js": "^2.5.4",
+    "ngx-infinite-scroll": "^6.0.1",
     "normalize.css": "^8.0.0",
     "normalizr": "^3.3.0",
     "rxjs": "^6.3.3",

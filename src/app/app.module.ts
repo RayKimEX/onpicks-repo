@@ -23,6 +23,7 @@ import {CURRENCY, DOMAIN_HOST} from './app.config';
 import {AuthInterceptorService} from './core/service/auth/auth-interceptor.service';
 import { environment } from '../environments/environment';
 import {UiEffects} from './core/store/ui/ui.effects';
+import {InfiniteScrollModule} from 'ngx-infinite-scroll';
 
 // export function getBaseHref(platformLocation: PlatformLocation): string {
 //   return platformLocation.getBaseHrefFromDOM();
@@ -58,6 +59,7 @@ function getCookie(cname) {
     RouterModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+
 
     // Common Module
     StoreModule.forRoot(reducers),

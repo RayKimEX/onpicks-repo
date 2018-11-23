@@ -30,10 +30,7 @@
     color: #292929;
     width : inherit;
     height:100%;
-    font-size:1.4rem;
     padding: 10px 16px 10px 16px;
-    line-height:1.43;
-    letter-spacing: 0.03rem;
     text-align: left;
     background-color: transparent;
     // MUST TODO : 언어에 따라서, layout이 조금씩 유동적으로 늘어나거나 줄어들 수 있게
@@ -65,7 +62,7 @@
     &--shape {
       position:relative;
       background-color:white;
-      z-index: 500;
+      z-index: 5;
       border-radius: 2px;
       border : solid 1px #e5e5e5;
       box-shadow: 0 6px 12px 0 rgba(227, 227, 227, 0.5);
@@ -73,7 +70,7 @@
 
     &--element {
       position:relative;
-      z-index : 550;
+      z-index : 10;
       transition: background-color .2s;
       &:not(:last-child) {
         border-bottom:  solid 1px $color-light-grey;
@@ -100,11 +97,6 @@
       }
 
       &-text {
-        font-size : 1.4rem;
-        font-weight : 500;
-        line-height:1.43;
-        letter-spacing : 0.03rem;
-        color : #767676;
         white-space : nowrap;
 
       }

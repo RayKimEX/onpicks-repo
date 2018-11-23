@@ -33,11 +33,69 @@
       </div>
       <div class="delivery-address__insert-box--row">
         <div class="subtitle-2-regular">주소</div>
-        <onpicks-input-box [marginRight]="'1.6rem'" [placeholder]="'우편번호'" [width]="'27.8rem'"></onpicks-input-box>
-        <onpicks-button [type]="'white'" [width]="'11.4rem'">우편번호 찾기</onpicks-button>
+        <onpicks-input-box #inputZipnumber  [marginRight]="'1.6rem'" [placeholder]="'우편번호'" [width]="'27.8rem'"></onpicks-input-box>
+        <onpicks-button (click)="showSearchBox()" [type]="'white'" [width]="'11.4rem'">우편번호 찾기</onpicks-button>
       </div>
+
+      <div
+        #inputSearchBoxOuter [ngStyle]="{ display : isShowSearchBox ? 'block' : 'none' }" class="delivery-address__info--delivery-searchBox-outer">
+        <onpicks-search-box
+          #inputSearchBox class="delivery-address__info--delivery-searchBox"  [width]="55.2" [placeholder]="'검색할 주소를 입력해주세요'" ></onpicks-search-box>
+        <div class="delivery-address__info--delivery-searchBox-option">
+          <!-- TODO : list형식 관련 스타일 가이드 의견 교류 필요, 1. padding을 일괄적으로 주면서, 이쁘게 디자인 안나오는지,  -->
+          <div *ngIf="searchState === 1" class="delivery-address__info--delivery-searchBox-option-list" >
+            <div class="delivery-address__info--delivery-searchBox-option-list-outer" *ngFor="let item of jusoList ">
+              <div class="delivery-address__info--delivery-searchBox-option-list-1">{{item.zipNo}}</div>
+              <table>
+                <tr>
+                  <td>도로명</td>
+                  <td><button (click)="getCurrentText($event)" [attr.data-zipnumber]="item.zipNo">{{item.jibunAddr}}</button></td>
+                </tr>
+                <tr>
+                  <td>지번</td>
+                  <td><button (click)="getCurrentText($event)" [attr.data-zipnumber]="item.zipNo">{{item.roadAddrPart1}}</button></td>
+                </tr>
+              </table>
+            </div>
+          </div>
+          <div *ngIf="searchState === 2" class="delivery-address__info--delivery-searchBox-option-no-result">
+            <div>검색결과가 없습니다. 검색어에 잘못된 철자가 없는지,</div>
+            <div>정확한 주소인지 확인 후 검색해 주세요.</div>
+          </div>
+          <div *ngIf="searchState === 0"  class="delivery-address__info--delivery-searchBox-option-init">
+            <div class="delivery-address__info--delivery-searchBox-option-init-main">
+              다음과 같이 검색을 하시면 정확한 결과를 얻을 수 있습니다.
+            </div>
+            <div class="delivery-address__info--delivery-searchBox-option-init-title">
+              도로명 + 건물번호
+            </div>
+            <div class="delivery-address__info--delivery-searchBox-option-init-sub">
+              예) 판교역로 235, 제주 첨단로 242
+            </div>
+            <div class="delivery-address__info--delivery-searchBox-option-init-title">
+              지역명 + 번지
+            </div>
+            <div class="delivery-address__info--delivery-searchBox-option-init-sub">
+              예) 판교역로 235, 제주 첨단로 242
+            </div>
+            <div class="delivery-address__info--delivery-searchBox-option-init-title">
+              지역명 + 건물명
+            </div>
+            <div class="delivery-address__info--delivery-searchBox-option-init-sub">
+              예) 판교역로 235, 제주 첨단로 242
+            </div>
+            <div class="delivery-address__info--delivery-searchBox-option-init-title">
+              사서함명 + 번호
+            </div>
+            <div class="delivery-address__info--delivery-searchBox-option-init-sub">
+              예) 판교역로 235, 제주 첨단로 242
+            </div>
+          </div>
+        </div>
+      </div>
+      
       <div class="delivery-address__insert-box--row">
-        <onpicks-input-box [placeholder]="''" [width]="'40.8rem'"></onpicks-input-box>
+        <onpicks-input-box #inputJuso  [placeholder]="''" [width]="'40.8rem'"></onpicks-input-box>
       </div>
       <div class="delivery-address__insert-box--row">
         <onpicks-input-box [placeholder]="'상세주소를 입력하세요'" [width]="'40.8rem'"></onpicks-input-box>

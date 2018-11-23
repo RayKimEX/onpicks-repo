@@ -5,7 +5,7 @@ import {CleanLoadDirective} from './clean-load/clean-load.directive';
 import {BackLoadDirective} from './back-load/back-load.directive';
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
   ],
   declarations: [
     LazyLoadDirective,
@@ -15,7 +15,7 @@ import {BackLoadDirective} from './back-load/back-load.directive';
   exports: [
     LazyLoadDirective,
     CleanLoadDirective,
-    BackLoadDirective
+    BackLoadDirective,
   ]
 })
 

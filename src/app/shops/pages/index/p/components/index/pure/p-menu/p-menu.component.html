@@ -1,8 +1,8 @@
 <div #pMenu class="p-menu">
   <div class="p-menu__inner-margin">
-    <h5 class="p-menu__title heading-quinary">
-      Rxbar
-    </h5>
+    <div class="p-menu__title subtitle-1-bold">
+      알엑스바
+    </div>
     <div class="p-menu__icon-list">
       <span>
         <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="-2 -2 24 24">
@@ -15,28 +15,31 @@
           <line x1="13.57" y1="14.81" x2="7.31" y2="11.66" fill="none" stroke="#000" stroke-miterlimit="10" stroke-width="2"/>
         </svg>
       </span>
-      <span>
-        <svg width="24" height="24" viewBox="0 0 24 24">
-          <path d="M16.26,6a2.67,2.67,0,0,1,1.42.42,2.88,2.88,0,0,1,.49.41,3,3,0,0,1,0,4.16l-.91.95L16.21,13l0,.05,0,0,0,0L12,17.39,7.89,13.14l0,0,0,0,0-.05-1-1.08L5.83,11a3,3,0,0,1,0-4.16,2.88,2.88,0,0,1,.49-.41A2.67,2.67,0,0,1,7.74,6a2.62,2.62,0,0,1,1.91.83l.3.31.52.54a2.16,2.16,0,0,0,3.09,0l.49-.5.3-.31A2.62,2.62,0,0,1,16.26,6m0-2a4.65,4.65,0,0,0-3.35,1.44l-.3.31-.49.5a.15.15,0,0,1-.24,0l-.49-.5-.3-.31a4.63,4.63,0,0,0-6.7,0,5,5,0,0,0,0,6.94l.91.94,1,1.09,0,0,5.19,5.37s0,0,0,0a.6.6,0,0,0,.84,0s0,0,0,0l5.19-5.37,0,0,1.05-1.09.91-.94a5,5,0,0,0,0-6.94A4.67,4.67,0,0,0,16.26,4Z"/>
-        </svg>
-      </span>
     </div>
 
 
     <div class="p-menu__product-info">
-      <h4 class="heading-quaternary">
-        RXBAR Whole Food Protein Bar, Chocolate Sea Salt, 1.83 Ounce (Pack of 12)
-      </h4>
+      <h1 class="h1-regular p-menu__product-info--title">
+        알엑스바 리얼 푸드 프로틴 에너지바 믹스드 베리 52G / RxBar Real Food Protein Bars Mixed BerryRxBar Re
+      </h1>
       <ui-star-rating></ui-star-rating>
-      <span class="p-menu__product-info--read-reviews">999</span>
-      <div class="p-menu__product-info--MSRP">
-        <span class="p-menu__product-info--MSRP-name">MSRP&nbsp;</span>
-        <span class="p-menu__product-info--MSRP-discount">$25</span>
+      <span class="p-menu__product-info--read-reviews subtitle-1-regular u-color-dark-grey">30개 리뷰 보기</span>
+      <div class="p-menu__product-info--MSRP subtitle-1-regular">
+        <!--TODO: MSRP는 지역에 따라 보이고 안보이고 설정-->
+        <!--<span class="p-menu__product-info&#45;&#45;MSRP-name">MSRP&nbsp;</span>-->
+        <span class="p-menu__product-info--MSRP-discount u-color-grey">{{57200 | onpicksCurrency:'KRW'}}</span>
+        <span class="p-menu__product-info--MSRP-description u-color-green">담을수록 추가 할인</span>
       </div>
       <div class="p-menu__product-info--price">
-        <span class="p-menu__product-info--price-discount">50%&nbsp;</span>
-        <span class="p-menu__product-info--price-realprice">$20.39&nbsp;</span>
-        <span class="p-menu__product-info--price-perprice">($0.93 / Ounce)</span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="16" viewBox="0 0 18 16">
+          <g fill="none" fill-rule="evenodd">
+            <path fill="#008488" d="M11.259 10H9.725l-.5-2-.227-.907L8.772 8l-.5 2H6.738l-.333-2-.084-.5H4.998V6H6.07l-.313-1.877c-.007-.042.004-.082.004-.123h1.497l.35 3 .037.319L7.7 7l.524-3h1.547l.523 3 .056.319.037-.319.35-3h1.497c0 .041.01.081.003.123L11.926 6h1.072v1.5h-1.322l-.084.5-.333 2zm6.223-3h-2.484V.5a.5.5 0 0 0-.5-.5h-11a.5.5 0 0 0-.5.5V7H.522c-.467 0-.698.549-.364.864l3.962 3.739 4.509 4.253a.544.544 0 0 0 .737 0l4.51-4.253 3.967-3.744c.332-.313.103-.859-.361-.859z" mask="url(#b)"/>
+          </g>
+        </svg>
+
+        <span class="p-menu__product-info--price-discount price-bold u-color-green">50%&nbsp;</span>
+        <span class="p-menu__product-info--price-realprice price-bold">{{28600 | onpicksCurrency:'KRW'}}</span>
+        <!--<span class="p-menu__product-info&#45;&#45;price-perprice">($0.93 / Ounce)</span>-->
         <!--<select class="p-menu__product-info&#45;&#45;price-comparison-option">-->
           <!--<option value="" selected>30 days</option>-->
         <!--</select>-->
@@ -49,20 +52,36 @@
       <span class="p-menu__initial-date-title" *ngFor="let date of initialDatesTitle">{{ date }}</span>
     </div>
 
-    <hr>
+    <div class="p-menu__delivery">
+      <div class="p-menu__delivery--inner">
+        <div class="p-menu__delivery--first">
+
+          <span class="icon-small-new">
+
+          </span>
+          <span class="p-menu__delivery--first-spot subtitle-2-bold">
+            뉴저지
+          </span>
+          <span class="p-menu__delivery--first-info subtitle-2-regular">출고, 묶음배송, {{9000| onpicksCurrency: 'KRW'}}</span>
+
+        </div>
+
+        <div class="p-menu__delivery--second subtitle-2-regular u-color-dark-grey">뉴저지 묶음배송 상품 {{80000| onpicksCurrency:'KRW'}} 이상 배송료 무료</div>
+      </div>
+    </div>
 
     <div class="p-menu__options">
-      <h5 class="p-menu__options--title heading-quinary">
-        Options
-      </h5>
+      <div class="p-menu__options--title subtitle-2-regular">
+        상세옵션을 선택해 주세요
+      </div>
 
-      <onpicks-select-box [sortList]="chartSortList"></onpicks-select-box>
+      <onpicks-select-box [sortList]="oneOptionList"></onpicks-select-box>
       <!--<select class="p-menu__options&#45;&#45;option" name="" id="" >-->
         <!--<option value="">Select a Flavor</option>-->
       <!--</select>-->
-      <onpicks-select-box [sortList]="chartSortList"></onpicks-select-box>
+      <onpicks-select-box [sortList]="twoOptionList"></onpicks-select-box>
 
-      <onpicks-select-box [sortList]="chartSortList"></onpicks-select-box>
+      <onpicks-select-box [sortList]="numberOptionList"></onpicks-select-box>
       <!--<select class="p-menu__options&#45;&#45;option" name="" id="" >-->
         <!--<option value="">Select a Size</option>-->
       <!--</select>-->

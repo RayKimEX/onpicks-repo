@@ -39,8 +39,13 @@ $customer-height: 587px;
 }
 
 .p-customer {
-  & > h4 > span {
-    float:right;
+
+
+  &__title {
+    margin-bottom : 2.4rem;
+    h1 {
+      display:inline-block;
+    }
   }
 
 
@@ -211,7 +216,7 @@ $customer-height: 587px;
 
           width : 6.4rem;
           height: 6.4rem;
-          border: 2px solid $color-dark-black;
+          border: 2px solid $color-black;
         }
       }
 

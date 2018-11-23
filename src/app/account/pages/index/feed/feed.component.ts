@@ -1,61 +1,91 @@
-import { Component, OnInit } from '@angular/core';
+import {ChangeDetectionStrategy, Component, ElementRef, HostListener, OnDestroy, OnInit} from '@angular/core';
+import {fromEvent} from 'rxjs';
+import {sampleTime} from 'rxjs/operators';
 
 @Component({
   selector: 'onpicks-feed',
   templateUrl: './feed.component.html',
-  styleUrls: ['./feed.component.scss']
+  styleUrls: ['./feed.component.scss'],
 })
-export class FeedComponent implements OnInit {
+export class FeedComponent implements OnInit, OnDestroy {
 
-  feedList = [
-    {
-      currentIndex : 1,
-      imgSrc : 'https://picsum.photos/264/264?image=1000',
-    },
-    {
-      currentIndex : 2,
-      imgSrc : 'https://picsum.photos/264/264?image=995',
-    },
-    {
-      currentIndex : 3,
-      imgSrc : 'https://picsum.photos/264/264?image=990',
-    },
-    {
-      currentIndex : 4,
-      imgSrc : 'https://picsum.photos/264/264?image=985',
-    },
-    {
-      currentIndex : 5,
-      imgSrc : 'https://picsum.photos/264/264?image=980',
-    },
-    {
-      currentIndex : 6,
-      imgSrc : 'https://picsum.photos/264/264?image=975',
-    },
-    {
-      currentIndex : 7,
-      imgSrc : 'https://picsum.photos/264/264?image=970',
-    },
-    {
-      currentIndex : 8,
-      imgSrc : 'https://picsum.photos/264/264?image=965',
-    },
-    {
-      currentIndex : 9,
-      imgSrc : 'https://picsum.photos/264/264?image=960',
-    },
-  ]
+
+  // TODO : ㄴㅇㄹ
+  feedList = []
   numbers;
-  constructor(
 
+  imageIndex = 1000;
+  body;
+
+  scroll$;
+  willLoadData = false;
+
+  constructor(
+    private eRef: ElementRef
   ) {
-    this.numbers = Array(Math.ceil( this.feedList.length / 4)).fill(4).map((x, i) => i + 1);
-    console.log(this.numbers);
+
+    for ( let i = 0 ; i < 20; i ++ ) {
+      if (this.exceptionDatabase[this.imageIndex]) {       this.imageIndex -= 5;  continue; }
+      this.feedList.push({ imgSrc : 'https://picsum.photos/264/264?image=' + this.imageIndex});
+      this.imageIndex -= 5;
+    }
+    this.body = document.body;
+    console.log(this.body);
+
+    this.scroll$ = fromEvent(window, 'scroll').pipe(sampleTime(50))
+      .subscribe( val => {
+        if (((( window.scrollY + window.innerHeight ) / document.body.scrollHeight) * 100) >= 90 && !this.willLoadData) {
+          console.log(this.willLoadData);
+          this.willLoadData = true;
+          console.log('hello');
+          this.willLoadDataFunction();
+        }
+      });
+    // this.numbers = Array(Math.ceil( this.feedList.length / 4)).fill(4).map((x, i) => i + 1);
+    // console.log(this.numbers);
   }
 
+  ngOnDestroy() {
+    this.scroll$.unsubscribe();
+  }
 
   ngOnInit() {
 
   }
 
+  exceptionDatabase = {
+    920 : true,
+    895 : true,
+    850 : true,
+  }
+
+  willLoadDataFunction() {
+    for ( let i = 0 ; i < 20; i ++ ) {
+      if (this.exceptionDatabase[this.imageIndex]) { this.imageIndex -= 5;  continue; }
+      this.feedList.push({ imgSrc : 'https://picsum.photos/264/264?image=' + this.imageIndex});
+      this.imageIndex -= 5;
+    }
+
+
+    this.willLoadData = false;
+  }
+
+
+
+
+  // @HostListener('window:scroll', ['$event'])
+  // onWindowScroll(e) {
+  //
+  //   // fromE
+  //   // (( window.scrollY + window.innerHeight ) / document.body.scrollHeight) * 100
+  //   // console.log( );
+  //   console.log(document.body.scrollHeight);
+  //   console.log(document.body.clientHeight);
+  //   console.log(document.body.scrollTop);
+  //   console.log( window.innerHeight);
+  // }
+
+  onScroll() {
+    console.log('onscroll');
+  }
 }

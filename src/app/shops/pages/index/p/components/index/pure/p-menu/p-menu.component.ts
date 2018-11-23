@@ -27,16 +27,123 @@ export class PMenuComponent implements OnInit, OnDestroy {
   PStore$;
 
 
+
   chartSortList = [
     {
-      title : '30 days',
-      value : 0
+      title : '30일',
+      value : 0,
     },
     {
-      title : '90 days',
-      value : 1
-    },
+      title : '90일',
+      value : 0,
+    }
   ]
+  // selectList = {
+  //   title : '옵션1',
+  //   list : [
+  //     {
+  //       title : '30days',
+  //       value : 0,
+  //     },
+  //     {
+  //       title : '90days',
+  //       value : 0,
+  //     }
+  //   ]
+  // }
+
+
+  oneOptionList = {
+    title : '옵션1',
+    list : [
+      {
+        title : '빨강',
+        value : 0,
+      },
+      {
+        title : '녹색',
+        value : 1,
+      },
+      {
+        title : '파랑',
+        value : 2,
+      }
+    ]
+  }
+
+
+  twoOptionList = {
+    title : '옵션2',
+    list : [
+      {
+        title : '2팩',
+        value : 0,
+      },
+      {
+        title : '4팩',
+        value : 1,
+      },
+      {
+        title : '파랑',
+        value : 2,
+      }
+    ]
+  }
+
+  numberOptionList = {
+    list : [
+      {
+        title : '1',
+        value : 1,
+      },
+      {
+        title : '2',
+        value : 2,
+      },
+      {
+        title : '3',
+        value : 3,
+      },
+      {
+        title : '4',
+        value : 4,
+      },
+      {
+        title : '5',
+        value : 5,
+      },
+      {
+        title : '6',
+        value : 6,
+      },
+      {
+        title : '7',
+        value : 7,
+      },
+      {
+        title : '8',
+        value : 8,
+      },
+      {
+        title : '9',
+        value : 9,
+      },
+      {
+        title : '10',
+        value : 10,
+      }
+    ]
+  }
+  //   title : '옵션1'
+  //   {
+  //     title : '30 days',
+  //     value : 0
+  //   },
+  //   {
+  //     title : '90 days',
+  //     value : 1
+  //   },
+  // }
 
   constructor(
     private renderer: Renderer2,

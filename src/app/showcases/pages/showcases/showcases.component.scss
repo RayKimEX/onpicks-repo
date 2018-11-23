@@ -4,7 +4,7 @@
   margin-top : 3.2rem;
   font-size : 1.4rem;
   font-weight: 500;
-  color : $color-dark-black;
+  color : $color-black;
 
   line-height:1.14;
   //0.1px;
@@ -49,11 +49,15 @@
     &--contents-title {
       font-size: 1.4rem;
       font-weight: 500;
-      color : $color-dark-black;
+      color : $color-black;
     }
 
     &--column {
-
+      display:inline-block;
+      margin-bottom: 3.2rem;
+      &:not(:nth-child(3n)){
+        margin-right :2.4rem;
+      }
     }
   }
 }

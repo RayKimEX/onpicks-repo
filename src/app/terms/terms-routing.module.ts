@@ -5,7 +5,7 @@ import {PrivacyComponent} from './pages/privacy/privacy.component';
 
 const routes: Routes = [
   {
-    path: 'terms',
+    path: '',
     children : [
       {
         path : '',

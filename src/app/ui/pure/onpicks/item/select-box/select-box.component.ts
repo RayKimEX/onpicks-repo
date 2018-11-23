@@ -7,10 +7,12 @@ import {Component, ElementRef, HostListener, Input, OnInit, Renderer2, ViewChild
 })
 export class SelectBoxComponent implements OnInit {
   @ViewChild('HTMLdropDown') HTMLdropDown;
-  @Input('sortList') sortList
+  @Input('sortList') sortList;
+  @Input('scrollMin') scrollMin;
 
   selectedElement;
   isOpen = false;
+  dropBoxItemHeight = 40;
 
   @HostListener('document:click', ['$event'])
   clickout(event) {
@@ -24,13 +26,22 @@ export class SelectBoxComponent implements OnInit {
 
   constructor(
     private eRef: ElementRef,
-    private renderer: Renderer2  ) { }
+    private renderer: Renderer2 ) {
+
+  }
 
   ngOnInit() {
     // const temp = [...this.sortList];
     // console.log(temp);
     // init시에 무조건 첫번째 Object를 가져옴
-    this.selectedElement = this.sortList[0];
+    console.log(this.sortList.title);
+    if ( this.sortList.title === undefined) {
+      this.selectedElement = this.sortList.list[0];
+    } else {
+      this.selectedElement = this.sortList;
+      console.log(this.selectedElement);
+    }
+
   }
 
   clickSortBox() {

@@ -31,6 +31,14 @@ const appRoutes: Routes = [
   {
     path: 'account',
     loadChildren : './account/account.module#AccountModule',
+  },
+  {
+    path: 'help',
+    loadChildren : './help/help.module#HelpModule',
+  },
+  {
+    path: 'terms',
+    loadChildren : './terms/terms.module#TermsModule',
   }
 
   // { path: 'recipes', loadChildren: './recipes/recipes.module#RecipesModule'},

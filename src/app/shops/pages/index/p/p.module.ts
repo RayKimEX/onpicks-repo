@@ -15,6 +15,7 @@ import {DirectivesModule} from '../../../../core/directives/directives.module';
 import {PipeModule} from '../../../../core/pipe/pipe.module';
 import {PReducer} from './store/p.reducer';
 import {StoreModule} from '@ngrx/store';
+import { PRefundComponent } from './components/index/pure/p-refund/p-refund.component';
 
 @NgModule({
   imports: [
@@ -38,6 +39,8 @@ import {StoreModule} from '@ngrx/store';
     PItemDetailComponent,
 
     POtherSellersComponent,
+
+    PRefundComponent,
   ]
 })
 export class PModule { }
