@@ -24,6 +24,17 @@
       </symbol>
     </svg>
   </span>
+  <span *ngSwitchCase="28">
+    <svg class="star--28">
+      <linearGradient id="grad" x1="0" x2="100%" y1="0" y2="0">
+        <stop offset="50%" stop-color="#292929"/>
+        <stop offset="50%" stop-color="#b3b3b3"/>
+      </linearGradient>
+      <symbol id="star28" width="28" height="28" viewBox="0 0 28 28">
+        <path d="M21.52 16.083l2.934-2.238 2.933-2.238c.958-.73.773-1.328-.411-1.328h-9.404l-.666-2.15v-.001l-1.12-3.62-1.12-3.622c-.367-1.182-.966-1.182-1.331 0l-2.24 7.242-.666 2.15H1.024c-1.184 0-1.369.598-.41 1.33l2.932 2.237 2.934 2.238 1.742 1.329-1.787 5.77-1.12 3.621c-.366 1.183.119 1.552 1.077.821L14 21.821l4.675 3.565 2.933 2.238c.958.731 1.443.362 1.077-.82l-1.12-3.621-1.787-5.771 1.742-1.33z"/>
+      </symbol>
+    </svg>
+  </span>
 
 
 </div>
@@ -43,4 +54,21 @@
     </svg>
   </span>
 
+  <span *ngSwitchCase="28">
+
+    <div class="star--28" *ngFor="let item of numberArray(5); index as i">
+      <input type="checkbox" value="{{i+0.5}}" name="input-star" (change)="updatedChecked($event)" id="star28-{{i+1}}--half">
+      <input type="checkbox" value="{{i+1}}" name="input-star" (change)="updatedChecked($event)" id="star28-{{i+1}}--full">
+
+
+      <!--i == 0, 1, 2, 3, 4-->
+      <svg>
+        <use #shapeStars [ngStyle]="{ fill : currentIndex > i   ? currentIndex == i + 0.5 ? 'url(#grad)' : '#292929' : '#b3b3b3' }" [attr.data-index]="i+1" xlink:href="#star28"/>
+      </svg>
+      <label (mouseover)="mouseOver(i+1)" for="star28-{{i+1}}--full">
+      </label>
+      <label (mouseover)="mouseOver( i+0.5 )" for="star28-{{i+1}}--half">
+      </label>
+    </div>
+  </span>
 </div>

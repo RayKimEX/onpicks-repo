@@ -1,5 +1,29 @@
-<label class="container" [ngStyle]="{ 'margin-right' : marginRight }">
-  <input type="radio" name="radio" #f (click)="deselectRadio(f)">
-  <span class="checkmark"></span>
-  <span #labelNameView></span>
-</label>
+
+<ng-container [ngSwitch]="type">
+  <label *ngSwitchDefault class="radio-checkbox" [ngStyle]="{ 'margin-right' : marginRight }">
+    <input class="radio-checkbox__input" type="radio" name="radio" #f (click)="deselectRadio(f)">
+    <span class="radio-checkbox__checkmark">
+    </span>
+    <span>
+      <ng-container *ngTemplateOutlet="tempOutlet" ></ng-container>
+    </span>
+  </label>
+
+  <label *ngSwitchCase="'checkbox'" class="normal-checkbox" [ngStyle]="{ 'margin-right' : marginRight }">
+    <input class="normal-checkbox__input" type="checkbox"  #g (click)="deselectRadio(g)">
+    <span class="normal-checkbox__checkmark">
+    </span>
+    <span>
+      <ng-container *ngTemplateOutlet="tempOutlet"></ng-container>
+    </span>
+  </label>
+</ng-container>
+
+<ng-template #tempOutlet>
+  <ng-content></ng-content>
+</ng-template>
+
+
+
+
+

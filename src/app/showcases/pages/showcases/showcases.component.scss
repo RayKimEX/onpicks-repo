@@ -1,5 +1,32 @@
 @import "~src/assets/scss/abstracts/variables";
 
+//.box{
+//
+//  &__input{
+//    height : 100px;
+//    width : 200px;
+//    background-color: rosybrown;;
+//
+//    label {
+//      display:block;
+//      height : 100%;
+//      width : 100%;
+//    }
+//  }
+//
+//
+//
+//  &__file {
+//    display:none;
+//  }
+//}
+
+.drag-and-drop {
+  height : 100px;
+  width : 200px;
+  background-color: rosybrown;;
+}
+
 .current-nav {
   margin-top : 3.2rem;
   font-size : 1.4rem;
@@ -14,6 +41,7 @@
     padding: 0 2.4rem;
     color: $color-grey;
   }
+
   & hr {
     margin-top : 1.6rem;
     margin-bottom : 3rem;

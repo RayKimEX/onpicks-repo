@@ -1,17 +1,34 @@
-import {AfterViewInit, Component, Input, OnInit, Renderer2, ViewChild, ViewChildren} from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  HostListener,
+  Input,
+  OnInit,
+  Renderer2,
+  ViewChildren
+} from '@angular/core';
 import {UtilService} from '../../../../core/service/util/util.service';
 
 @Component({
   selector: 'ui-star-rating',
   templateUrl: './star-rating.component.html',
-  styleUrls: ['./star-rating.component.scss']
+  styleUrls: ['./star-rating.component.scss'],
+  changeDetection : ChangeDetectionStrategy.OnPush,
 })
 export class StarRatingComponent implements OnInit, AfterViewInit {
   @Input('star-point') starPoint;
   @Input('size') sizePoint;
   @ViewChildren('shapeStars') shapeStars;
 
-  constructor(private renderer: Renderer2, private util: UtilService) { }
+  checkedIndex = 0;
+  currentIndex = 0;
+  isChecked = false;
+
+  constructor(private renderer: Renderer2,
+              private eRef: ElementRef,
+              private util: UtilService) { }
 
   ngOnInit() {
   }
@@ -29,16 +46,53 @@ export class StarRatingComponent implements OnInit, AfterViewInit {
     const halfStarCondition = (starFloat <= 0.5 && starFloat !== 0 ) ? true : false;
 
     for ( let i = 0; i < starInt; i ++) {
-      this.renderer.setAttribute(this.shapeStars.toArray()[i].nativeElement, 'fill', '#292929');
+      this.renderer.setStyle(this.shapeStars.toArray()[i].nativeElement, 'fill', '#292929');
     }
 
     if ( halfStarCondition ) {
-      this.renderer.setAttribute(this.shapeStars.toArray()[starInt].nativeElement, 'fill', 'url(#grad)');
+      this.renderer.setStyle(this.shapeStars.toArray()[starInt].nativeElement, 'fill', 'url(#grad)');
     }
+
+    /////////// For 28 px;
+    // this.currentOverIndex = this.shapeStars.nativeElement.getAttribute('data-index');
+    // console.log(this.currentOverIndex);
   }
 
   numberArray(n: number): any[] {
     return Array(n);
   }
+
+  mouseOver(value, type) {
+    // console.log(getList);
+   //  console.log('[MouseOver] currentIndex : ' + this.currentIndex);
+    if ( this.isChecked ) {
+      if ( this.checkedIndex <= value ) {
+        this.currentIndex = value;
+      } else {
+        this.currentIndex = this.checkedIndex;
+      }
+    } else {
+      this.currentIndex = value;
+    }
+  }
+  @HostListener('mouseleave', ['$event'])
+  mouseHandling(event) {
+    console.log('mouselaeve');
+    if (this.isChecked) {
+      this.currentIndex = this.checkedIndex;
+    }else {
+      this.currentIndex = 0;
+    }
+
+  }
+
+
+  updatedChecked($event) {
+    this.isChecked = true;
+    this.checkedIndex = parseFloat($event.target.value );
+    this.currentIndex = this.checkedIndex;
+    // console.log('[updatedChecked] currentIndex : ' + this.currentIndex);
+  }
+
 
 }

@@ -1,9 +1,10 @@
-import {AfterViewInit, Component, Input, OnInit, Renderer2, ViewChild, ViewChildren} from '@angular/core';
+import {AfterViewInit, ChangeDetectionStrategy, Component, Input, OnInit, Renderer2, ViewChild} from '@angular/core';
 
 @Component({
   selector: 'onpicks-circle-p-button',
   templateUrl: './circle-p-button.component.html',
-  styleUrls: ['./circle-p-button.component.scss']
+  styleUrls: ['./circle-p-button.component.scss'],
+  changeDetection : ChangeDetectionStrategy.OnPush,
 })
 export class CirclePButtonComponent implements OnInit, AfterViewInit {
   @ViewChild('prevButton') prevButton;

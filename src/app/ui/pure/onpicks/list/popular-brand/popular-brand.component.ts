@@ -1,9 +1,10 @@
-import {AfterViewInit, Component, OnInit, Renderer2, ViewChild, ViewChildren} from '@angular/core';
+import {AfterViewInit, ChangeDetectionStrategy, Component, OnInit, Renderer2, ViewChild, ViewChildren} from '@angular/core';
 
 @Component({
   selector: 'onpicks-popular-brand',
   templateUrl: './popular-brand.component.html',
-  styleUrls: ['./popular-brand.component.scss']
+  styleUrls: ['./popular-brand.component.scss'],
+  changeDetection : ChangeDetectionStrategy.OnPush
 })
 
 export class PopularBrandComponent implements OnInit, AfterViewInit {

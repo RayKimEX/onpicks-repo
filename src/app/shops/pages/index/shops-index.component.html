@@ -1,20 +1,36 @@
 <ui-banner-carousel
-  [imagesLargeList]="shopsBannerImages" [height]="44"></ui-banner-carousel>
+[imagesLargeList]="shopsBannerImages" [height]="44"></ui-banner-carousel>
 
 
-<ui-mini-list i18n-setTitle="@@shops__popular-goods" setTitle="''"></ui-mini-list>
+<!--<ui-mini-list i18n-setTitle="@@shops__popular-goods" setTitle="''"></ui-mini-list>-->
 
-<onpicks-category-list
-  [popularCategory]="popularCategory"
-></onpicks-category-list>
+<!--<onpicks-category-list-->
+<!--[popularCategory]="popularCategory"-->
+<!--&gt;</onpicks-category-list>-->
 
-<onpicks-today-collection></onpicks-today-collection>
+<!--<onpicks-today-collection></onpicks-today-collection>-->
 
-<onpicks-popular-brand></onpicks-popular-brand>
+<!--<onpicks-popular-brand></onpicks-popular-brand>-->
 
 
-<ui-mini-list i18n-setTitle="@@shops__popular-goods" setTitle="''"></ui-mini-list>
-<ui-mini-list i18n-setTitle="@@shops__recently-viewed" setTitle="''"></ui-mini-list>
-<ui-mini-list i18n-setTitle="@@shops__suggestion-goods" setTitle="''"></ui-mini-list>
+<ui-mini-list i18n-setTitle="@@shops__popular-goods" [infoList]="infoList" setTitle="''"></ui-mini-list>
+<ui-mini-list i18n-setTitle="@@shops__recently-viewed"  [infoList]="infoList"  setTitle="''"></ui-mini-list>
+<ui-mini-list i18n-setTitle="@@shops__suggestion-goods" [infoList]="infoList"  setTitle="''"></ui-mini-list>
+
+<ui-mini-list i18n-setTitle="@@shops__popular-goods" [infoList]="infoList" setTitle="''"></ui-mini-list>
+<ui-mini-list i18n-setTitle="@@shops__recently-viewed"  [infoList]="infoList"  setTitle="''"></ui-mini-list>
+<ui-mini-list i18n-setTitle="@@shops__suggestion-goods" [infoList]="infoList"  setTitle="''"></ui-mini-list>
+
+<!--<ui-mini-list i18n-setTitle="@@shops__popular-goods" [infoList]="infoList" setTitle="''"></ui-mini-list>-->
+<!--<ui-mini-list i18n-setTitle="@@shops__recently-viewed"  [infoList]="infoList"  setTitle="''"></ui-mini-list>-->
+<!--<ui-mini-list i18n-setTitle="@@shops__suggestion-goods" [infoList]="infoList"  setTitle="''"></ui-mini-list>-->
+
+<!--<ui-mini-list i18n-setTitle="@@shops__popular-goods" [infoList]="infoList" setTitle="''"></ui-mini-list>-->
+<!--<ui-mini-list i18n-setTitle="@@shops__recently-viewed"  [infoList]="infoList"  setTitle="''"></ui-mini-list>-->
+<!--<ui-mini-list i18n-setTitle="@@shops__suggestion-goods" [infoList]="infoList"  setTitle="''"></ui-mini-list>-->
+
+<!--<ui-mini-list i18n-setTitle="@@shops__popular-goods" [infoList]="infoList" setTitle="''"></ui-mini-list>-->
+<!--<ui-mini-list i18n-setTitle="@@shops__recently-viewed"  [infoList]="infoList"  setTitle="''"></ui-mini-list>-->
+<!--<ui-mini-list i18n-setTitle="@@shops__suggestion-goods" [infoList]="infoList"  setTitle="''"></ui-mini-list>-->
 
 

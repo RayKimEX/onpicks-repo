@@ -32,8 +32,9 @@ export class LazyLoadDirective implements AfterViewInit, OnChanges {
     this.srcAttr = this.src;
   }
 
+  // TODO  : minilist 에서 lazy loading이 안됨.
+  // 이유 : ngOnChagnes에서 다 로딩해버림.
   ngAfterViewInit() {
-
     if ( this.drLazyLoad.method === '' || this.drLazyLoad.method === undefined || this.drLazyLoad.method === 'transition'){
       const backgroundColor = this.renderer.createElement('div');
 
@@ -96,13 +97,13 @@ export class LazyLoadDirective implements AfterViewInit, OnChanges {
 
       entries.forEach((entry: IntersectionObserverEntry) => {
 
-
         if (this.checkIfIntersecting(entry)) {
           this.loadImage();
           this.obs.unobserve(this.el.nativeElement);
         }
       });
-    }, {});
+    // }, {root : this.dom === undefined ? null : this.dom });
+     }, {});
     this.obs.observe(this.el.nativeElement);
   }
 

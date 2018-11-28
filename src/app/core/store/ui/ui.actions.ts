@@ -24,7 +24,7 @@ export class GetCategorySuccess implements Action {
   readonly type = GET_CATEGORY_ALL_SUCCESS;
 
   constructor(public payload: {
-    data: string,
+    data: any,
     secondSortKey: number,
     thirdSortKey: number,
     fourthSortKey: number,

@@ -1,5 +1,5 @@
 import {
-  AfterViewInit,
+  AfterViewInit, ChangeDetectionStrategy,
   Component, Inject, LOCALE_ID,
   OnInit,
   Renderer2,
@@ -22,7 +22,8 @@ import {UiState} from '../../../../../core/store/ui/ui.reducer';
 @Component({
   selector: 'ui-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+  styleUrls: ['./header.component.scss'],
+  changeDetection : ChangeDetectionStrategy.OnPush
 })
 
 
@@ -82,7 +83,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     this.renderer.setStyle(this.tempDiv, 'position', 'absolute');
     this.renderer.setStyle(this.tempDiv, 'display', 'block');
     this.renderer.setStyle(this.tempDiv, 'width', '100%');
-    this.renderer.setStyle(this.tempDiv, 'height', document.body.clientHeight + 'px');
+    // this.renderer.setStyle(this.tempDiv, 'height', document.body.clientHeight + 'px');
     this.renderer.setStyle(this.tempDiv, 'z-index', '10');
     this.renderer.setStyle(this.tempDiv, 'background-color', '#000000');
     this.renderer.setStyle(this.tempDiv, 'opacity', '0.5');

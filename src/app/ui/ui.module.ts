@@ -26,7 +26,7 @@ import { PlusMinusIconComponent } from './pure/common/plus-minus-icon/plus-minus
 import { FreeDeliveryNotiboxComponent } from './pure/onpicks/item/free-delivery-notibox/free-delivery-notibox.component';
 import { InputBoxComponent } from './pure/onpicks/item/input-box/input-box.component';
 import { ButtonComponent } from './pure/onpicks/button/button/button.component';
-import { AdhereTableComponent } from './pure/onpicks/table/adhere-table/adhere-table.component';
+import { AdhereTableComponent } from './emitter/adhere-table/adhere-table.component';
 import { IndentTableComponent } from './pure/onpicks/table/indent-table/indent-table.component';
 import { CommunicateBoxComponent } from '../shops/pages/index/p/pages/index/reviews/communicate-box.component';
 import { SearchNavigatorComponent } from './emitter/search-navigator/search-navigator.component';

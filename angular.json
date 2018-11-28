@@ -13,7 +13,8 @@
           "styleext": "scss"
         },
         "@ngrx/schematics:component": {
-          "styleext": "scss"
+          "styleext": "scss",
+          "changeDetection" : "OnPush",
         }
       },
       "architect": {

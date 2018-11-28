@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, ElementRef, HostListener, OnDestroy, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, ElementRef, NgZone, OnDestroy, OnInit} from '@angular/core';
 import {fromEvent} from 'rxjs';
 import {sampleTime} from 'rxjs/operators';
 
@@ -8,7 +8,6 @@ import {sampleTime} from 'rxjs/operators';
   styleUrls: ['./feed.component.scss'],
 })
 export class FeedComponent implements OnInit, OnDestroy {
-
 
   // TODO : ㄴㅇㄹ
   feedList = []
@@ -21,14 +20,17 @@ export class FeedComponent implements OnInit, OnDestroy {
   willLoadData = false;
 
   constructor(
+    private _ngZone: NgZone,
     private eRef: ElementRef
   ) {
+
 
     for ( let i = 0 ; i < 20; i ++ ) {
       if (this.exceptionDatabase[this.imageIndex]) {       this.imageIndex -= 5;  continue; }
       this.feedList.push({ imgSrc : 'https://picsum.photos/264/264?image=' + this.imageIndex});
       this.imageIndex -= 5;
     }
+
     this.body = document.body;
     console.log(this.body);
 
@@ -66,8 +68,20 @@ export class FeedComponent implements OnInit, OnDestroy {
       this.imageIndex -= 5;
     }
 
-
     this.willLoadData = false;
+    // this._ngZone.runOutsideAngular(() => {
+    //
+    //   for ( let i = 0 ; i < 20; i ++ ) {
+    //     if (this.exceptionDatabase[this.imageIndex]) { this.imageIndex -= 5;  continue; }
+    //     this.feedList.push({ imgSrc : 'https://picsum.photos/264/264?image=' + this.imageIndex});
+    //     this.imageIndex -= 5;
+    //   }
+    //
+    //
+    //   this.willLoadData = false;
+    //   this._ngZone.run(() => { console.log('Outside Done!'); });
+    // });
+
   }
 
 

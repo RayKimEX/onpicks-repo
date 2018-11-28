@@ -39,7 +39,7 @@
       <div class="adhere-table__item-state--date subtitle-3-regular">입금기한 2018년 9월 14일</div>
       <div class="adhere-table__item-state--btn subtitle-2-regular">
 
-        <onpicks-button *ngIf="type === 'available'" [type]="'green'" [width]="'8.8rem'">리뷰 쓰기</onpicks-button>
+        <onpicks-button *ngIf="type === 'available'" [type]="'green'"  (click)="changeViewModal()" [width]="'8.8rem'">리뷰 쓰기</onpicks-button>
         <onpicks-button *ngIf="type !== 'available'" [type]="'white'" [width]="'8.8rem'">주문 취소</onpicks-button>
       </div>
     </div>

@@ -1,4 +1,4 @@
-import {Component, Inject, isDevMode, LOCALE_ID, OnDestroy, OnInit} from '@angular/core';
+import {AfterViewInit, ChangeDetectionStrategy, Component, Inject, isDevMode, LOCALE_ID, OnDestroy, OnInit} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {DOMAIN_HOST} from './app.config';
 import {select, Store} from '@ngrx/store';
@@ -6,8 +6,10 @@ import {AppState} from './core/store/app.reducer';
 import {GetAuthUser} from './core/store/auth/auth.actions';
 import {
   NavigationCancel,
-  NavigationEnd, NavigationError,
-  Router, RouterEvent
+  NavigationEnd,
+  NavigationError,
+  Router,
+  RouterEvent
 } from '@angular/router';
 import {GetCategoryAll, UpdateUrlActive} from './core/store/ui/ui.actions';
 import {UiService} from './core/service/ui/ui.service';
@@ -19,7 +21,7 @@ import {UiService} from './core/service/ui/ui.service';
 })
 
 
-export class AppComponent implements OnInit, OnDestroy {
+export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
   title = 'onpicks';
   isCategoryLoaded = false;
   uiState$;
@@ -31,7 +33,6 @@ export class AppComponent implements OnInit, OnDestroy {
   ) {
 
     this.uiService.postLanguageSetting();
-
     this.store.dispatch(new GetAuthUser());
 
     this.uiState$ = this.store.pipe(select( 'ui')).subscribe( val => this.isCategoryLoaded = val.currentCategoryList.isLoaded )
@@ -59,6 +60,8 @@ export class AppComponent implements OnInit, OnDestroy {
     }*/
 
     if (event instanceof NavigationEnd) {
+
+      console.log('NavigationEnd');
       const url = this.router.url.split('/');
       const slug =  url[url.length - 1];
 
@@ -94,7 +97,6 @@ export class AppComponent implements OnInit, OnDestroy {
         );
         return;
       }
-
     }
 
     // Set loading state to false in both of the below events to
@@ -120,6 +122,10 @@ export class AppComponent implements OnInit, OnDestroy {
     } else {
       require( 'style-loader!./../assets/scss/typography/typography.en.scss');
     }
+  }
+
+  ngAfterViewInit() {
+
   }
 }
 

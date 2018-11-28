@@ -16,8 +16,8 @@ export class AuthService {
 
   }
 
-  login(email: string, password: string): Observable<any> {
-    return this.httpClient.post<any>(this.BASE_URL + '/api/customers/login/', { email : email, password : password});
+  login(email: string, password: string, isPersistent: boolean): Observable<any> {
+    return this.httpClient.post<any>(this.BASE_URL + '/api/customers/login/', { email : email, password : password, is_persistent : isPersistent});
   }
 
   logout(): Observable<any> {

@@ -60,10 +60,10 @@ export function UiReducer(state = initialState, action: UiActions): UiState {
 
       const normalizeSearchData = normalizerSearch(searchConstList);
       console.log(normalizeSearchData);
-      const normalizedFirstData = normalizer(action.payload.data);
-      const secondCategoryData = normalizedFirstData.entities.secondCategory;
-      const thirdCategoryData = normalizedFirstData.entities.thirdCategory;
-      const fourthCategoryData = normalizedFirstData.entities.fourthCategory;
+      const normalizedCategoryData = normalizer(action.payload.data);
+      const secondCategoryData = normalizedCategoryData.entities.secondCategory;
+      const thirdCategoryData = normalizedCategoryData.entities.thirdCategory;
+      const fourthCategoryData = normalizedCategoryData.entities.fourthCategory;
 
       // second category info에 관한것을, 정리
       Object.keys(secondCategoryData).forEach(function (key) {
@@ -88,7 +88,7 @@ export function UiReducer(state = initialState, action: UiActions): UiState {
       });
 
       // 초기값을 새로운 전역 변수에 넣어준다.
-      secondResultList = normalizedFirstData.result;
+      secondResultList = normalizedCategoryData.result;
       getThirdSortValue = sortThirdInfo[action.payload.thirdSortKey];
       console.log(thirdResultList);
 
@@ -119,21 +119,21 @@ export function UiReducer(state = initialState, action: UiActions): UiState {
 
       // 초기값에, 식품을 검은색으로
       const normalizedData = {
-        ...normalizedFirstData,
+        ...normalizedCategoryData,
         entities : {
-          ...normalizedFirstData.entities,
+          ...normalizedCategoryData.entities,
           secondCategory : {
-            ...normalizedFirstData.entities.secondCategory,
+            ...normalizedCategoryData.entities.secondCategory,
             [getSecondSortValue] : {
-              ...normalizedFirstData.entities.secondCategory[getSecondSortValue],
+              ...normalizedCategoryData.entities.secondCategory[getSecondSortValue],
               children : sortedThirdList,
               active : true,
             }
           },
           thirdCategory : {
-            ...normalizedFirstData.entities.thirdCategory,
+            ...normalizedCategoryData.entities.thirdCategory,
             [getThirdSortValue] : {
-              ...normalizedFirstData.entities.thirdCategory[getThirdSortValue],
+              ...normalizedCategoryData.entities.thirdCategory[getThirdSortValue],
               active : true,
             }
           }
@@ -195,7 +195,6 @@ export function UiReducer(state = initialState, action: UiActions): UiState {
       console.log('@@@@@@@@@@@@@@@@@@@@');
       console.log(getSecondSortValue);
       console.log(getThirdSortValue);
-
       console.log('@@@@@@@@@@@@@@@@@@@@');
       // console.log(sortedSecondList);
 

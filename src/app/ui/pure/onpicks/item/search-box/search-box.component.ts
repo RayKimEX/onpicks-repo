@@ -1,16 +1,10 @@
-import {
-  AfterViewInit,
-  Component,
-  Input,
-  OnInit,
-  Renderer2,
-  ViewChild
-} from '@angular/core';
+import {AfterViewInit, ChangeDetectionStrategy, Component, Input, OnInit, Renderer2, ViewChild} from '@angular/core';
 
 @Component({
   selector: 'onpicks-search-box',
   templateUrl: './search-box.component.html',
-  styleUrls: ['./search-box.component.scss']
+  styleUrls: ['./search-box.component.scss'],
+  changeDetection : ChangeDetectionStrategy.OnPush,
 })
 export class SearchBoxComponent implements OnInit, AfterViewInit {
   @Input('placeholder') placeHolder;

@@ -45,6 +45,7 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
       this.result = val.currentCategoryList.result;
       this.previous = val.currentCategoryList.previous;
       this.currentSlug = val.currentCategoryList.currentSlug;
+      console.log(val);
       console.log(this.result);
       // console.log(val);
       // console.log(this.categoryList);
@@ -129,7 +130,130 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
   }
 
 
+  forwardingPlace = [
+    {
+      title : '뉴저지 출고',
+      checked : 'false',
+      count : 200,
+      value : '1',
+    },
+    {
+      title : '엘에이 출고',
+      checked : 'false',
+      count : 78,
+      value : '1',
+    },
+    {
+      title : '조지아 출고',
+      checked : 'false',
+      count : 59,
+      value : '1',
+    },
+    {
+      title : '오사카 출고',
+      checked : 'false',
+      count : 59,
+      value : '1',
+    },
+    {
+      title : '홍콩 출고',
+      checked : 'false',
+      count : 59,
+      value : '1',
+    }
+  ]
 
+  brandList = [
+    {
+      title : 'Blue Buddha',
+      checked : 'false',
+      count : 78,
+    },
+    {
+      title : 'Blue Diamond',
+      checked : 'false',
+      count : 59,
+    },
+    {
+      title : 'Blue Dragon',
+      checked : 'false',
+      count : 102,
+    },
+    {
+      title : 'Blue Farm',
+      checked : 'false',
+      count : 200,
+    },
+    {
+      title : 'Blue Lotus',
+      checked : 'false',
+      count : 59,
+    },
+    {
+      title : 'Blue Monkey',
+      checked : 'false',
+      count : 59,
+    },
+    {
+      title : 'Blue Monkey Coconut Collection',
+      checked : 'false',
+      count : 61,
+    },
+    {
+      title : 'Blue Sky',
+      checked : 'false',
+      count : 59,
+    },
+    {
+      title : 'Blue Star Farms',
+      checked : 'false',
+      count : 78,
+    },{
+      title : 'Blue Buddha',
+      checked : 'false',
+      count : 78,
+    },
+    {
+      title : 'Blue Diamond',
+      checked : 'false',
+      count : 59,
+    },
+    {
+      title : 'Blue Dragon',
+      checked : 'false',
+      count : 102,
+    },
+    {
+      title : 'Blue Farm',
+      checked : 'false',
+      count : 200,
+    },
+    {
+      title : 'Blue Lotus',
+      checked : 'false',
+      count : 59,
+    },
+    {
+      title : 'Blue Monkey',
+      checked : 'false',
+      count : 59,
+    },
+    {
+      title : 'Blue Monkey Coconut Collection',
+      checked : 'false',
+      count : 61,
+    },
+    {
+      title : 'Blue Sky',
+      checked : 'false',
+      count : 59,
+    },
+    {
+      title : 'Blue Star Farms',
+      checked : 'false',
+      count : 78,
+    }
+  ]
 
 
   infoList = [

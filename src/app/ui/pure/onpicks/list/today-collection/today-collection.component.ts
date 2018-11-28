@@ -1,5 +1,5 @@
 import {
-  AfterViewInit,
+  AfterViewInit, ChangeDetectionStrategy,
   Component,
   OnInit,
   Renderer2,
@@ -12,7 +12,8 @@ import shave from 'shave';
 @Component({
   selector: 'onpicks-today-collection',
   templateUrl: './today-collection.component.html',
-  styleUrls: ['./today-collection.component.scss']
+  styleUrls: ['./today-collection.component.scss'],
+  changeDetection : ChangeDetectionStrategy.OnPush
 })
 export class TodayCollectionComponent implements OnInit, AfterViewInit {
   @ViewChild('container') container;

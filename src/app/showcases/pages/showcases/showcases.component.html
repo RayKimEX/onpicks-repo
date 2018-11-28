@@ -13,6 +13,21 @@
   </div>
 </div>
 
+
+<div class="row">
+  <div (drop)="dropFiles($event)" (dragover)="onDragOver($event)" class="drag-and-drop">
+
+  </div>
+  <img [src]="imgSrc | safeHtml" alt="">
+  <!--<form action="" enctype="multipart/form-data">-->
+    <!--<div class="box__input">-->
+      <!--<input class="box__file" type="file" name="files[]" id="file" multiple />-->
+      <!--<label for="file"><strong>Choose a file</strong><span class="box__dragndrop"> or drag it here</span>.</label>-->
+      <!--&lt;!&ndash;<button class="box__button" type="submit">Upload</button>&ndash;&gt;-->
+    <!--</div>-->
+  <!--</form>-->
+</div>
+
 <!--각 줄마다 row로 하지 않은것은, 좀더 iterate을 쉽게 하기 위해서, row. col조합에 대한 딱히 이점을 느끼지 못해서-->
 <section class="showcases">
   <div class="row showcases__grid--row">

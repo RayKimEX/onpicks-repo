@@ -23,6 +23,222 @@
   color : $color-black !important;
 }
 
+onpicks-check-box {
+  span:first-child {
+    margin-right: 0.8rem;
+  }
+}
+
+.c-forwarding-place-navigator {
+  &__title {
+    margin-top : 1.6rem;
+    &--remove{
+      float : right;
+    }
+  }
+
+
+  &__content {
+    &-ul {
+      list-style: none;
+      &--item {
+        &:first-child {
+          padding-top : 1.6rem;
+        }
+
+        &:last-child {
+          padding-bottom : 1.6rem;
+        }
+        padding-top : 0.8rem;
+      }
+    }
+  }
+
+
+}
+
+.c-value-navigator {
+  padding-bottom : 1.6rem;
+  border-bottom : 1px solid $color-light-grey;
+  &__title {
+    margin-top : 1.6rem;
+    &--remove{
+      float:right;
+    }
+  }
+
+  &__content {
+    position:relative;
+    margin-bottom : 0.8rem;
+    &-ul {
+      list-style: none;
+      overflow-y: auto;
+      max-height : 23.2rem;
+      height : auto;
+      &:before {
+        background : linear-gradient(180deg,#fff,hsla(0,0%,100%,0));
+
+        content: "";
+        height: 2rem;
+        pointer-events: none;
+        position: absolute;
+        width: 100%;
+        z-index: 2;
+      }
+      &:after {
+        background : linear-gradient(0deg,#fff,hsla(0,0%,100%,0));
+
+        bottom : 0;
+        content: "";
+        height: 2rem;
+        pointer-events: none;
+        position: absolute;
+        width: 100%;
+        z-index: 2;
+      }
+      &--item {
+
+        &:first-child {
+          padding-top : 1.6rem;
+        }
+
+        &:last-child {
+          padding-bottom : 1.6rem;
+        }
+        padding-top : 0.8rem;
+
+
+      }
+    }
+  }
+}
+
+.c-navigator-padding {
+  padding : 2.4rem;
+}
+
+.c-filter-navigator {
+
+  &__title {
+    margin-top : 4rem;
+    padding-bottom : 1.6rem;
+    border-bottom : 1px solid $color-light-grey;
+    &--remove {
+      float : right;
+    }
+  }
+
+  &__content {
+    padding-bottom : 1.6rem;
+    border-bottom : 1px solid $color-light-grey;
+    margin-bottom : 1.6rem;
+    &-ul{
+      list-style: none;
+      &--item {
+        &-remove{
+          display:inline-block;
+          position:relative;
+          width :1.4rem;
+          height : 2px;
+          margin-right : 0.8rem;
+          &:before{
+            position:absolute;
+            top:-4px;
+            left:0;
+            background-color : $color-grey;
+            content :'';
+            width : 1.4rem;
+            height : 2px;
+            border-radius : 2px;
+            transform : rotate(135deg);
+          }
+          &:after {
+            position:absolute;
+            top:-4px;
+            left:0;
+            background-color : $color-grey;
+            border-radius : 2px;
+            content :'';
+            transform : rotate(-135deg);
+            width : 1.4rem;
+            height : 2px;
+          }
+        }
+
+        &:first-child {
+          margin-top : 1.6rem;
+        }
+        &:not(:last-child){
+          margin-bottom : 0.8rem;
+        }
+      }
+    }
+  }
+}
+
+//232, 168
+.c-brand-navigator {
+  padding-bottom : 1.6rem;
+  border-bottom : 1px solid $color-light-grey;
+  &__title {
+    margin-bottom :1.6rem;
+    &--name {
+      margin-right : 0.8rem;
+    }
+    &--remove {
+      float : right;
+    }
+  }
+  &__search-box {
+    display:inline-block;
+    height : 4rem;
+  }
+  &__content {
+    position:relative;
+    margin-bottom : 0.8rem;
+    &-ul {
+      list-style: none;
+      overflow-y: auto;
+      max-height : 23.2rem;
+      height : auto;
+      &:before {
+        background : linear-gradient(180deg,#fff,hsla(0,0%,100%,0));
+
+        content: "";
+        height: 2rem;
+        pointer-events: none;
+        position: absolute;
+        width: 100%;
+        z-index: 2;
+      }
+      &:after {
+        background : linear-gradient(0deg,#fff,hsla(0,0%,100%,0));
+
+        bottom : 0;
+        content: "";
+        height: 2rem;
+        pointer-events: none;
+        position: absolute;
+        width: 100%;
+        z-index: 2;
+      }
+      &--item {
+
+        &:first-child {
+          padding-top : 1.6rem;
+        }
+
+        &:last-child {
+          padding-bottom : 1.6rem;
+        }
+        padding-top : 0.8rem;
+
+
+      }
+    }
+  }
+}
+
 
 .c-category-content {
 
@@ -167,6 +383,7 @@
     }
 
     ul {
+
       //
       //transition: transform .5s ease 0s;
       li {
@@ -189,7 +406,7 @@
 }
 
 .c-category-navigator {
-  padding: 2.4rem;
+
 
 
 
@@ -226,7 +443,8 @@
 
   nav {
     margin-top : 1.6rem;
-    ul {
+    & > ul {
+      margin-bottom : 1.6rem;
       display:block;
       overflow:hidden;
       list-style: none;

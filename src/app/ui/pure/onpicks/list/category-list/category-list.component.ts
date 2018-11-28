@@ -1,9 +1,10 @@
-import {AfterViewInit, Component, Input, OnInit, Renderer2, ViewChild, ViewChildren} from '@angular/core';
+import {AfterViewInit, ChangeDetectionStrategy, Component, Input, OnInit, Renderer2, ViewChild, ViewChildren} from '@angular/core';
 
 @Component({
   selector: 'onpicks-category-list',
   templateUrl: './category-list.component.html',
-  styleUrls: ['./category-list.component.scss']
+  styleUrls: ['./category-list.component.scss'],
+  changeDetection : ChangeDetectionStrategy.OnPush
 })
 export class CategoryListComponent implements OnInit, AfterViewInit {
   @Input('popularCategory') popularCategory;

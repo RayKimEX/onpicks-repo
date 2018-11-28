@@ -1,5 +1,8 @@
 
 <header class="header" (mouseleave)="outMenu()">
+  <div class="header__progressive-bar">
+    <div class="header__progressive-bar--inner"></div>
+  </div>
   <div class="header__miscell u-default-site-padding">
     <div class="header__miscell--inner">
       <!--<emitter-change-preference class="header__miscell&#45;&#45;item">{{ region === '/kr' ? 'KOR' : 'USA' }}</emitter-change-preference>-->
@@ -78,7 +81,7 @@
                class="h1-bold u-color-grey"
                #shops
                (mouseenter)="hoverMenu()"
-               routerLink="shops"
+               routerLink="/shops"
                [ngClass]="{ 'u-color-black' : ((url$ | async)[1] !== 'showcases') && ((url$ | async)[1] !== 'events')  && ((url$ | async)[1] !== 'reviews')}"
                i18n="@@header__shops">
                쇼핑|shops

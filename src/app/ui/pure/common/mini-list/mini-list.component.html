@@ -4,75 +4,78 @@
 
   <h1 #insertTitle class="h1-bold"></h1>
   <div class="ui-mini-list__content--outer">
-      <onpicks-circle-n-button *ngIf="-imageIndex !== (infoList.length - 4) " [top]="'12.6rem'" [right]="'-2.2rem'" (click)="nextButton()" ></onpicks-circle-n-button>
+      <onpicks-circle-n-button *ngIf="imageIndex !== (infoList.length - 4) " [top]="'12.6rem'" [right]="'-2.2rem'" (click)="nextButton()" ></onpicks-circle-n-button>
       <onpicks-circle-p-button *ngIf="imageIndex !== 0" [top]="'12.6rem'" [left]="'-2rem'" (click)="prevButton()" ></onpicks-circle-p-button>
     <div class="ui-mini-list__content">
       <ul #container>
-        <li #itemList *ngFor="let item of infoList; index as i">
-          <div class="col-3-of-12 ui-mini-list__item">
+        <ng-container *ngFor="let item of infoList; index as i">
+          <li *ngIf="pressedPrev ? i < imageIndex + 7 :i < imageIndex + 4">
+            <div class="col-3-of-12 ui-mini-list__item">
 
-            <div class="ui-mini-list__item--image-outer">
-              <a href="" routerLink="/shops/p/1">
-                <img drCleanLoad src="{{item.imgSrc}}" alt="">
-              </a>
-              <onpicks-list-active-button (amountEvent)="addCart($event, i)"></onpicks-list-active-button>
-            </div>
-
-
-            <div class="ui-mini-list__item--name-outer">
-
-
-              <div class="ui-mini-list__item--name-outer-brand subtitle-2-bold">
-                <a routerLink="/shops/p/1">
-                  {{item.brand}}
+              <div class="ui-mini-list__item--image-outer">
+                <a href="" routerLink="/shops/p/1">
+                  <img drLazyLoad src="{{item.imgSrc}}" alt="">
                 </a>
+                <onpicks-list-active-button (amountEvent)="addCart($event, i)"></onpicks-list-active-button>
               </div>
 
-              <a routerLink="/shops/p/1">
+
+              <div class="ui-mini-list__item--name-outer">
+
+
+                <div class="ui-mini-list__item--name-outer-brand subtitle-2-bold">
+                  <a routerLink="/shops/p/1">
+                    {{item.brand}}
+                  </a>
+                </div>
+
+                <a routerLink="/shops/p/1">
                 <span class="ui-mini-list__item--name-outer-name body-2-regular">
                   {{item.productName}}
                 </span>
-              </a>
-            </div>
+                </a>
+              </div>
 
-            <ui-star-rating
-              [star-point]="item.rating"
-              [size]="10"></ui-star-rating>
-            <span class="subtitle-3-regular u-color-dark-grey">{{item.reviewCount}}</span>
-            <br>
-            <div class="ui-mini-list__price-info">
-              <span class="ui-mini-list__price-info--discount subtitle-1-bold u-color-orange">{{item.discountPercent}}%</span>
-              <span class="ui-mini-list__price-info--price subtitle-1-bold">{{item.currentPrice | onpicksCurrency:'KRW'}}</span>
-              <span class="ui-mini-list__price-info--MSRP" *ngIf="locale == 'en'">MSRP</span>
-              <span class="ui-mini-list__price-info--MSRP-discount subtitle-3-regular u-color-grey">{{item.msrpDiscountPrice | onpicksCurrency:'KRW'}}</span>
-            </div>
-            <div class="ui-mini-list__delivery-point">
-              <ng-container [ngSwitch]="item.deliveryPoint">
-                <ng-container *ngSwitchCase="1" >
-                  <span class="ui-mini-list__delivery-point--icon icon-small-la"></span>
-                  <span class="ui-mini-list__delivery-point--text subtitle-2-regular u-color-black"><strong>엘에이</strong> 출고</span>
+              <ui-star-rating
+                [star-point]="item.rating"
+                [size]="10"></ui-star-rating>
+              <span class="subtitle-3-regular u-color-dark-grey">{{item.reviewCount}}</span>
+              <br>
+              <div class="ui-mini-list__price-info">
+                <span class="ui-mini-list__price-info--discount subtitle-1-bold u-color-orange">{{item.discountPercent}}%</span>
+                <span class="ui-mini-list__price-info--price subtitle-1-bold">{{item.currentPrice | onpicksCurrency:'KRW'}}</span>
+                <span class="ui-mini-list__price-info--MSRP" *ngIf="locale == 'en'">MSRP</span>
+                <span class="ui-mini-list__price-info--MSRP-discount subtitle-3-regular u-color-grey">{{item.msrpDiscountPrice | onpicksCurrency:'KRW'}}</span>
+              </div>
+              <div class="ui-mini-list__delivery-point">
+                <ng-container [ngSwitch]="item.deliveryPoint">
+                  <ng-container *ngSwitchCase="1" >
+                    <span class="ui-mini-list__delivery-point--icon icon-small-la"></span>
+                    <span class="ui-mini-list__delivery-point--text subtitle-2-regular u-color-black"><strong>엘에이</strong> 출고</span>
+                  </ng-container>
+                  <ng-container *ngSwitchCase="2">
+                    <span class="ui-mini-list__delivery-point--icon icon-small-new"></span>
+                    <span class="ui-mini-list__delivery-point--text subtitle-2-regular u-color-black"><strong>뉴저지</strong> 출고</span>
+                  </ng-container>
+                  <ng-container *ngSwitchCase="3">
+                    <span class="ui-mini-list__delivery-point--icon icon-small-gorge"></span>
+                    <span class="ui-mini-list__delivery-point--text subtitle-2-regular u-color-black"><strong>죠지아</strong> 출고</span>
+                  </ng-container>
+                  <ng-container *ngSwitchCase="4">
+                    <span class="ui-mini-list__delivery-point--icon icon-small-osaka"></span>
+                    <span class="ui-mini-list__delivery-point--text subtitle-2-regular u-color-black"><strong>오사카</strong> 출고</span>
+                  </ng-container>
+                  <ng-container *ngSwitchCase="5">
+                    <span class="ui-mini-list__delivery-point--icon icon-small-hong"></span>
+                    <span class="ui-mini-list__delivery-point--text subtitle-2-regular u-color-black"><strong>홍콩</strong> 출고</span>
+                  </ng-container>
                 </ng-container>
-                <ng-container *ngSwitchCase="2">
-                  <span class="ui-mini-list__delivery-point--icon icon-small-new"></span>
-                  <span class="ui-mini-list__delivery-point--text subtitle-2-regular u-color-black"><strong>뉴저지</strong> 출고</span>
-                </ng-container>
-                <ng-container *ngSwitchCase="3">
-                  <span class="ui-mini-list__delivery-point--icon icon-small-gorge"></span>
-                  <span class="ui-mini-list__delivery-point--text subtitle-2-regular u-color-black"><strong>죠지아</strong> 출고</span>
-                </ng-container>
-                <ng-container *ngSwitchCase="4">
-                  <span class="ui-mini-list__delivery-point--icon icon-small-osaka"></span>
-                  <span class="ui-mini-list__delivery-point--text subtitle-2-regular u-color-black"><strong>오사카</strong> 출고</span>
-                </ng-container>
-                <ng-container *ngSwitchCase="5">
-                  <span class="ui-mini-list__delivery-point--icon icon-small-hong"></span>
-                  <span class="ui-mini-list__delivery-point--text subtitle-2-regular u-color-black"><strong>홍콩</strong> 출고</span>
-                </ng-container>
-              </ng-container>
 
+              </div>
             </div>
-          </div>
-        </li>
+          </li>
+        </ng-container>
+
       </ul>
     </div>
   </div>

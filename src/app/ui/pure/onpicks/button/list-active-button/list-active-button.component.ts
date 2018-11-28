@@ -1,10 +1,23 @@
-import {AfterViewInit, Component, ElementRef, EventEmitter, HostListener, Input, OnInit, Output, Renderer2, ViewChild} from '@angular/core';
-import {fromEvent, merge} from 'rxjs';
+import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  EventEmitter,
+  HostListener,
+  Input,
+  OnInit,
+  Output,
+  Renderer2,
+  ViewChild
+} from '@angular/core';
+import {fromEvent} from 'rxjs';
 
 @Component({
   selector: 'onpicks-list-active-button',
   templateUrl: './list-active-button.component.html',
-  styleUrls: ['./list-active-button.component.scss']
+  styleUrls: ['./list-active-button.component.scss'],
+  changeDetection : ChangeDetectionStrategy.OnPush,
 })
 export class ListActiveButtonComponent implements OnInit, AfterViewInit {
   @ViewChild('outer') outer;

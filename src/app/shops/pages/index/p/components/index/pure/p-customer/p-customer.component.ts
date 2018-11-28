@@ -85,7 +85,10 @@ export class PCustomerComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.animationEndEvent.unsubscribe();
+    if ( this.animationEndEvent !== undefined) {
+      this.animationEndEvent.unsubscribe();
+    }
+
   }
 
   ngAfterViewInit() {

@@ -12,9 +12,9 @@ export class AuthInterceptorService implements HttpInterceptor {
 
     const csrfToken = this.getCookie('csrftoken');
 
-    if ( request.url.endsWith('/login/')) {
-      return next.handle(request);
-    }
+    // if ( request.url.endsWith('/login/')) {
+    //   return next.handle(request);
+    // }
 
     if ( request.url.startsWith('http://www.juso')) {
       return next.handle(request);

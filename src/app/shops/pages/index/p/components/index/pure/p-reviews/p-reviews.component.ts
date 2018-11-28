@@ -83,7 +83,10 @@ export class PReviewsComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngOnDestroy() {
     console.log('this is dstroyed');
-    this.hrLineList$.unsubscribe();
+    if( this.hrLineList$ !== undefined ){
+      this.hrLineList$.unsubscribe();
+    }
+
     clearInterval(this.menuPositionInterval);
 
   }

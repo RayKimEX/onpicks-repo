@@ -1,9 +1,10 @@
-import {Component, ElementRef, HostListener, Input, OnInit, Renderer2, ViewChild} from '@angular/core';
+import {ChangeDetectionStrategy, Component, ElementRef, HostListener, Input, OnInit, Renderer2, ViewChild} from '@angular/core';
 
 @Component({
   selector: 'onpicks-select-box',
   templateUrl: './select-box.component.html',
-  styleUrls: ['./select-box.component.scss']
+  styleUrls: ['./select-box.component.scss'],
+  changeDetection : ChangeDetectionStrategy.OnPush,
 })
 export class SelectBoxComponent implements OnInit {
   @ViewChild('HTMLdropDown') HTMLdropDown;
