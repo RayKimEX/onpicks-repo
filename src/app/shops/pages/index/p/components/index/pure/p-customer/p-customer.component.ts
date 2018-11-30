@@ -7,16 +7,11 @@ import {
 } from '@angular/core';
 import {fromEvent, pipe} from 'rxjs';
 import {debounceTime, first, last, map, skip, take} from 'rxjs/operators';
-import {Animation} from '@angular/animations/browser/src/dsl/animation';
-
 
 @Component({
   selector: 'onpicks-p-customer',
   templateUrl: './p-customer.component.html',
   styleUrls: ['./p-customer.component.scss'],
-  animations: [
-
-  ]
 })
 
 

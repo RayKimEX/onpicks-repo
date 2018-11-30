@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { PRoutingModule } from './p-routing.module';
-import {PComponent} from './pages/index/p.component';
+import {PIndexComponent} from './pages/index/p-index.component';
 import {PCustomerComponent} from './components/index/pure/p-customer/p-customer.component';
 import {PDescriptionComponent} from './components/index/pure/p-description/p-description.component';
 import {PMenuComponent} from './components/index/pure/p-menu/p-menu.component';
@@ -16,6 +16,8 @@ import {PipeModule} from '../../../../core/pipe/pipe.module';
 import {PReducer} from './store/p.reducer';
 import {StoreModule} from '@ngrx/store';
 import { PRefundComponent } from './components/index/pure/p-refund/p-refund.component';
+import {EffectsModule} from '@ngrx/effects';
+import {PEffects} from './store/p.effects';
 
 @NgModule({
   imports: [
@@ -25,10 +27,11 @@ import { PRefundComponent } from './components/index/pure/p-refund/p-refund.comp
     PipeModule,
     PRoutingModule,
     StoreModule.forFeature('p', PReducer),
+    EffectsModule.forFeature([PEffects])
 
   ],
   declarations: [
-    PComponent,
+    PIndexComponent,
 
     PCustomerComponent,
     PDescriptionComponent,

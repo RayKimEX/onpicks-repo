@@ -1,7 +1,7 @@
 import {Inject, Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {DOMAIN_HOST} from '../../../app.config';
+import {API_URL, DOMAIN_HOST} from '../../../app.config';
 import {UserSignUpAPI} from '../../store/user/user.model';
 
 @Injectable({
@@ -13,7 +13,6 @@ export class AuthService {
     @Inject(DOMAIN_HOST) private BASE_URL: string,
     private httpClient: HttpClient
   ) {
-
   }
 
   login(email: string, password: string, isPersistent: boolean): Observable<any> {

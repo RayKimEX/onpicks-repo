@@ -1,41 +1,65 @@
-import {AfterViewInit, Component, HostListener, Input, OnInit, Renderer2, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, HostListener, Input, OnInit, Renderer2, ViewChild, ViewChildren} from '@angular/core';
 
 @Component({
   selector: 'onpicks-check-box',
   templateUrl: './check-box.component.html',
   styleUrls: ['./check-box.component.scss']
 })
-export class CheckBoxComponent implements OnInit {
+export class CheckBoxComponent implements OnInit, AfterViewInit {
   @Input('type') type;
   @Input('value') value;
   @Input('fontSize') fontSize;
   @Input('marginRight') marginRight;
 
   // TODO : CheckBox에 Input font-size를 추가해서, manipulate할 수 있게 수정
-  @ViewChild('f') fView;
-
-  isChecked = false;
+  @ViewChild('radioBoxView') radioBoxView;
+  @ViewChild('checkBoxView') checkBoxView;
+  view;
+  // isChecked = false;
 
   constructor() { }
 
   ngOnInit() {
-    console.log(this.type);
+
   }
 
-
-  @HostListener('mouseover')
-  onMouseOver() {
-    this.isChecked = this.fView.nativeElement.checked;
-  }
-
-  deselectRadio(fView) {
-
-    if ( this.isChecked === true ) {
-      fView.checked = false;
-      this.isChecked = false;
+  ngAfterViewInit() {
+    if ( this.type === 'checkbox') {
+      this.view = this.checkBoxView;
     } else {
-      this.isChecked = true;
+      this.view = this.radioBoxView;
     }
+
+    console.log(this.view);
+  }
+
+  //
+  // @HostListener('mouseover')
+  // onMouseOver() {
+  //   if (this.fView !== undefined) {
+  //     this.isChecked = this.fView.nativeElement.checked;
+  //   } else {
+  //     this.isChecked = this.gView.nativeElement.checked;
+  //   }
+  //
+  //   console.log('mouseover isChecked : ' + this.isChecked);
+  // }
+  //
+  // deselectBox(ref) {
+  //
+  //   if ( this.isChecked === true ) {
+  //     this.isChecked = false;
+  //   } else {
+  //     this.isChecked = true;
+  //   }
+  //
+  //   console.log('deselectBox isChecked : ' + this.isChecked);
+  // }
+
+  clickBox(ref) {
+
+    ref.checked = !ref.checked ;
+
   }
 
 }

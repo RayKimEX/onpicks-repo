@@ -1,7 +1,8 @@
 <div #pMenu class="p-menu">
   <div class="p-menu__inner-margin">
     <div class="p-menu__title subtitle-1-bold">
-      알엑스바
+      <!--[ngClass]="{ 'p-menu__title_empty' : data === null  }-->
+      <ng-container *ngIf="data !== null">{{data.product.brand.name}}</ng-container>
     </div>
     <div class="p-menu__icon-list">
       <span>
@@ -19,8 +20,9 @@
 
 
     <div class="p-menu__product-info">
-      <h1 class="h1-regular p-menu__product-info--title">
-        알엑스바 리얼 푸드 프로틴 에너지바 믹스드 베리 52G / RxBar Real Food Protein Bars Mixed BerryRxBar Re
+      <h1 class="h1-regular p-menu__product-info--title" #titleHeight>
+        <ng-container *ngIf="data !== null">{{data.product.title}}</ng-container>
+        <!--알엑스바 리얼 푸드 프로틴 에너지바 믹스드 베리 52G / RxBar Real Food Protein Bars Mixed BerryRxBar Re-->
       </h1>
       <ui-star-rating></ui-star-rating>
       <span class="p-menu__product-info--read-reviews subtitle-1-regular u-color-dark-grey">30개 리뷰 보기</span>

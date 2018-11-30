@@ -1,82 +1,91 @@
 <div class="p-reviews u-margin-bottom">
-  <h1 class="p-reviews__title h1-bold">
-    리뷰 99개
-  </h1>
-  <ui-star-rating></ui-star-rating>
-  <onpicks-search-box [width]="20" [top]="-1" [placeholder]="'리뷰 검색'"></onpicks-search-box>
+  <!--async에대한 처리로 추가로 감싸줌-->
+  <ng-container *ngIf="data !== null">
+    <h1 class="p-reviews__title h1-bold">
+      리뷰 {{data.results.length}}개
+    </h1>
+    <ui-star-rating></ui-star-rating>
+    <onpicks-search-box [width]="20" [top]="-1" [placeholder]="'리뷰 검색'"></onpicks-search-box>
 
-  <div class="subtitle-1-regular u-color-dark-grey u-margin-bottom--small">
-    별점 분포
-  </div>
-
-  <table class="p-reviews__table">
-    <tr  *ngFor="let key of objectKeys(starMaxList);  index as i ">
-      <!--<td>{{5-i}} <span>{{(i !== 4) ? 'stars' : 'star' }}</span></td>-->
-      <td class="p-reviews__table--col">
-        <svg  width="14" height="14"  class="star--14">
-          <path fill="#292929"  d="M10.76,8h0l1.47-1.12L13.69,5.8c.48-.36.39-.66-.2-.66H8.79L8.45,4.06h0L7.89,2.25,7.33.44c-.18-.59-.48-.59-.66,0L5.55,4.06h0L5.21,5.14H.51c-.59,0-.68.3-.2.66L1.77,6.92,3.24,8h0l.87.67-.89,2.88L2.66,13.4c-.19.59.06.78.54.41L7,10.91l2.34,1.78,1.46,1.12c.48.37.73.18.54-.41l-.56-1.81L9.89,8.71Z"/>
-        </svg>
-        <span class="p-reviews__table--point">{{5-i}} 점</span>
-      </td>
-      <td class="p-reviews__table--col">
-        <div class="p-reviews__table--line">
-          <div class="p-reviews__table--line-current"></div>
-        </div>
-      </td>
-      <td class="p-reviews__table--col">{{starMaxList[key]}}%</td>
-    </tr>
-  </table>
-
-  <hr>
-
-  <div class="p-reviews__small-header">
-    <div class="subtitle-1-bold u-inline-block">구매자들의 99개 리뷰</div>
-    <onpicks-sort-box [sortList]="reviewSortList"></onpicks-sort-box>
-  </div>
-
-  <div *ngFor="let item of currentList; index as i">
-    <figure class="p-reviews__figure u-margin-bottom--small">
-      <span class="p-reviews__figure--outer">
-        <img [drLazyLoad]="{method:'animation'}" src="{{item.profileImg}}" alt="Person on a tour" class="story__img">
-      </span>
-      <div class="p-reviews__figure--caption">
-        <figcaption class="p-reviews__figure subtitle-1-bold">{{item.name}}</figcaption>
-        <ui-star-rating></ui-star-rating>
-        <span class="p-reviews__figure--caption-date subtitle-2-regular u-color-dark-grey">{{item.regitDate | timeAgo}}</span>
-      </div>
-    </figure>
-    <div class="subtitle-1-regular u-color-grey">Size: X-Large / Color: Aqua / {{item.helpfulCount}} people found this helpful </div>
-    <p class="p-reviews__content body-1-regular" [ngStyle]="{'width' : item.reviewThumbImg === '' ? 'auto' : '52.8rem'}">
-
-      {{item.review}}
-    </p>
-    <span class="p-reviews__image" *ngIf="item.reviewThumbImg !== ''">
-      <img [drLazyLoad]="{method:'animation'}" src="{{item.reviewThumbImg}}" alt="">
-    </span>
-
-    <div class="p-reviews__option">
-      <a>
-        <img src="http://img.onpicks.com/thumbs-up-icon.jpg" alt="">
-        <span class="p-reviews__option--feature action-1-medium">추천하기</span>
-      </a>
-      <a>
-        <img src="http://img.onpicks.com/comments-icon.jpg" alt="">
-        <span class="p-reviews__option--feature action-1-medium"
-              (click)="popupCommunicateBox()"
-              [routerLink]="'reviews/' + i"
-        >댓글 달기</span>
-      </a>
-      <a>
-        <img src="http://img.onpicks.com/share-icon.jpg" alt="">
-        <span class="p-reviews__option--feature action-1-medium">공유 하기</span>
-      </a>
-      <a>
-        <span class="p-reviews__option--report subtitle-1-regular u-color-grey">신고하기</span>
-      </a>
-      <hr #hrLineList>
+    <div class="subtitle-1-regular u-color-dark-grey u-margin-bottom--small">
+      별점 분포
     </div>
-  </div>
+    <!--AnimateOnScrollDirective,-->
+    <table class="p-reviews__table">
+      <tr  *ngFor="let key of objectKeys(starMaxList);  index as i ">
+        <!--<td>{{5-i}} <span>{{(i !== 4) ? 'stars' : 'star' }}</span></td>-->
+        <td class="p-reviews__table--col">
+          <svg  width="14" height="14"  class="star--14">
+            <path class="u-color-fill-black"  d="M10.76,8h0l1.47-1.12L13.69,5.8c.48-.36.39-.66-.2-.66H8.79L8.45,4.06h0L7.89,2.25,7.33.44c-.18-.59-.48-.59-.66,0L5.55,4.06h0L5.21,5.14H.51c-.59,0-.68.3-.2.66L1.77,6.92,3.24,8h0l.87.67-.89,2.88L2.66,13.4c-.19.59.06.78.54.41L7,10.91l2.34,1.78,1.46,1.12c.48.37.73.18.54-.41l-.56-1.81L9.89,8.71Z"/>
+          </svg>
+          <span class="p-reviews__table--point">{{5-i}} 점</span>
+        </td>
+        <td class="p-reviews__table--col">
+          <div class="p-reviews__table--line">
+            <div class="p-reviews__table--line-current"
+                 drAnimateOnScroll
+                 [animateObject]="{ property: 'width', value: starMaxList[key] + '%' }"
+                 [timing-function]="'cubic-bezier(0.075, 0.82, 0.165, 1)'"
+                 [duration]="'1s'">
+            </div>
+          </div>
+        </td>
+        <td class="p-reviews__table--col">{{starMaxList[key]}}%</td>
+      </tr>
+    </table>
 
+    <hr #hrLineList>
+
+
+    <div class="p-reviews__small-header">
+      <div class="subtitle-1-bold u-inline-block">구매자들의 {{data.results.length}}개 리뷰</div>
+      <onpicks-sort-box [sortList]="reviewSortList"></onpicks-sort-box>
+    </div>
+
+
+    <div *ngFor="let item of data.results; index as i">
+      <figure class="p-reviews__figure u-margin-bottom--small">
+        <span class="p-reviews__figure--outer">
+          <img [drLazyLoad]="{method:'animation'}" src="{{item.author.avatar}}" alt="Person on a tour" class="story__img">
+        </span>
+        <div class="p-reviews__figure--caption">
+          <figcaption class="p-reviews__figure subtitle-1-bold">{{item.author.nickname}}</figcaption>
+          <ui-star-rating [star-point]="item.rating"></ui-star-rating>
+          <span class="p-reviews__figure--caption-date subtitle-2-regular u-color-dark-grey">{{item.modified | timeAgo}}</span>
+        </div>
+      </figure>
+      <div class="subtitle-1-regular u-color-grey">Size: X-Large / Color: Aqua / {{item.helpfulCount}} people found this helpful </div>
+      <p class="p-reviews__content body-1-regular" [ngStyle]="{'width' : item.reviewThumbImg === '' ? 'auto' : '52.8rem'}">
+
+        {{item.text}}
+      </p>
+      <span class="p-reviews__image" *ngIf="item.reviewThumbImg !== ''">
+        <img [drLazyLoad]="{method:'animation'}" src="{{item.pictures[0]}}" alt="">
+      </span>
+
+      <div class="p-reviews__option">
+        <a>
+          <img src="http://img.onpicks.com/thumbs-up-icon.jpg" alt="">
+          <span class="p-reviews__option--feature action-1-medium">추천하기</span>
+        </a>
+        <a>
+          <img src="http://img.onpicks.com/comments-icon.jpg" alt="">
+          <span class="p-reviews__option--feature action-1-medium"
+                (click)="popupCommunicateBox()"
+                [routerLink]="'reviews/' + i"
+          >댓글 달기</span>
+        </a>
+        <a>
+          <img src="http://img.onpicks.com/share-icon.jpg" alt="">
+          <span class="p-reviews__option--feature action-1-medium">공유 하기</span>
+        </a>
+        <a>
+          <span class="p-reviews__option--report subtitle-1-regular u-color-grey">신고하기</span>
+        </a>
+        <hr #hrLineList>
+      </div>
+    </div>
+  </ng-container>
   <div class="p-reviews__pagination">
     <ul *ngIf="currentPage >= 1">
       <li *ngIf="currentPage !== 1">

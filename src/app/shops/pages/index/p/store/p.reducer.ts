@@ -4,15 +4,20 @@ import * as PActions from './p.actions';
 export interface PState {
   helpfulFlag: boolean[];
   menuPosition: number;
-  popupReviews: boolean;
-  reviewIndex: number;
+  review: {
+    reviewIndex: number;
+    content: []
+  };
 }
 
 const initialState: PState = {
   helpfulFlag : [],
   menuPosition : 0,
-  popupReviews : false,
-  reviewIndex : 0,
+  review : {
+    reviewIndex : 0,
+    content : [],
+  },
+
 };
 
 export function PReducer (state = initialState, action: PActions.PActions) {
@@ -24,8 +29,19 @@ export function PReducer (state = initialState, action: PActions.PActions) {
         menuPosition : action.payload
       };
 
+    case PActions.GET_REVIEWS_PRODUCT_SUCCESS :
+      console.log('GET_REVIEW_PRODUCT_SUCCESS_REDUCER');
+      console.log(action.payload);
+      return {
+        ...state,
+        review : {
+          ...state.review,
+        }
+      }
+
+
     case PActions.UPDATE_COMMENT_INDEX :
-      let commentIndex = state.reviewIndex;
+      let commentIndex = state.review.reviewIndex;
       switch (action.payload) {
         case 'increase' :
           commentIndex++;
@@ -38,8 +54,12 @@ export function PReducer (state = initialState, action: PActions.PActions) {
       }
       return {
         ...state,
-        reviewIndex : commentIndex,
+        review : {
+          ...state.review,
+          reviewIndex : commentIndex,
+        }
       }
+
     case PActions.ADD_COMMENT :
       return {
         ...state,

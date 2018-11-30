@@ -18,6 +18,7 @@ import {PState} from '../../../../store/p.reducer';
 })
 export class PReviewsComponent implements OnInit, AfterViewInit, OnDestroy {
 
+  @Input('data') data;
   @ViewChildren('lineList') lineList;
   @ViewChildren('hrLineList') hrLineList;
   @Output('updateState') updateState = new EventEmitter<any>();
@@ -44,22 +45,41 @@ export class PReviewsComponent implements OnInit, AfterViewInit, OnDestroy {
   objectKeys = Object.keys;
   hrLineList$ ;
 
+  //
+  // reviewSortList = [
+  //   {
+  //     title : 'Most Helpful',
+  //     value : 0
+  //   },
+  //   {
+  //     title : 'Newest',
+  //     value : 1
+  //   },
+  //   {
+  //     title : 'Lowest to Highest',
+  //     value : 2
+  //   },
+  //   {
+  //     title : 'Highest to Lowest',
+  //     value : 3
+  //   }
+  // ];
 
   reviewSortList = [
     {
-      title : 'Most Helpful',
+      title : '추천순',
       value : 0
     },
     {
-      title : 'Newest',
+      title : '최신순',
       value : 1
     },
     {
-      title : 'Lowest to Highest',
+      title : '별점 낮은순',
       value : 2
     },
     {
-      title : 'Highest to Lowest',
+      title : '별점 높은순',
       value : 3
     }
   ]
@@ -100,32 +120,37 @@ export class PReviewsComponent implements OnInit, AfterViewInit, OnDestroy {
     // TODO: 이 부분이 현재, 맨처음 로딩시 계산으로 하는형식이 생각처럼 잘 되지 않음. 그래서 interval 형식으로 dynamic하게 계산
 
 
-    this.menuPositionInterval = setInterval( () => {
-      const bodyRect = document.body.getBoundingClientRect();
-      const elemRect = this.hrLineList.last.nativeElement.getBoundingClientRect();
+      this.menuPositionInterval = setInterval( () => {
+        const bodyRect = document.body.getBoundingClientRect();
+        const elemRect = this.hrLineList.last.nativeElement.getBoundingClientRect();
 
-      const temp   = elemRect.top - bodyRect.top;
-      this.currentMenuPositionOffset = temp - 780;
+        const temp = elemRect.top - bodyRect.top;
+        this.currentMenuPositionOffset = temp - (( 780 - 78) - 0);
 
-      console.log(this.currentMenuPositionOffset);
-      if ( this.previousMenuPositionOffset === this.currentMenuPositionOffset ) {
-        this.menuPositionCount ++;
-        if ( this.menuPositionCount >= 3) { clearInterval(this.menuPositionInterval); }
-        return ;
-      }
+        console.log(this.currentMenuPositionOffset);
+        if (this.previousMenuPositionOffset === this.currentMenuPositionOffset) {
+          this.menuPositionCount++;
+          if (this.menuPositionCount >= 3) {
+            clearInterval(this.menuPositionInterval);
+          }
+          return;
+        }
 
-      this.store.dispatch( new MenuActions.UpdateMenuPosition(this.currentMenuPositionOffset) );
-      this.previousMenuPositionOffset = this.currentMenuPositionOffset;
-    }, 500);
+        this.store.dispatch(new MenuActions.UpdateMenuPosition(this.currentMenuPositionOffset));
+        this.previousMenuPositionOffset = this.currentMenuPositionOffset;
+      }, 500);
 
-    // hrListList가 변화가 있을때 체크함
-    this.hrLineList$ = this.hrLineList.changes.subscribe( t => {
-      const bodyRect = document.body.getBoundingClientRect();
-      const elemRect = this.hrLineList.last.nativeElement.getBoundingClientRect();
-      let offset   = elemRect.top - bodyRect.top;
-      offset -= 780;
-      this.store.dispatch( new MenuActions.UpdateMenuPosition(offset) );
-    });
+      // hrListList가 변화가 있을때 체크함
+      this.hrLineList$ = this.hrLineList.changes.subscribe( t => {
+        const bodyRect = document.body.getBoundingClientRect();
+        const elemRect = this.hrLineList.last.nativeElement.getBoundingClientRect();
+        let offset   = elemRect.top - bodyRect.top;
+        offset -= (( 780 - 50) - 0);
+        this.store.dispatch( new MenuActions.UpdateMenuPosition(offset) );
+      });
+
+
+
 
     let maxValue = 0;
     let basisValue = 0;

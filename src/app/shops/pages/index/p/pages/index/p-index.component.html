@@ -20,7 +20,8 @@
     <onpicks-p-customer></onpicks-p-customer>
     <onpicks-p-item-detail></onpicks-p-item-detail>
     <onpicks-p-description></onpicks-p-description>
-    <onpicks-p-reviews [totalList]="totalList" #onpicksReview></onpicks-p-reviews>
+    <!--async를 붙여서 넘기는 이유는 받을때 좀더 편하게 받게 하기 위함-->
+    <onpicks-p-reviews [data]="(pReviewsData$ | async)" [totalList]="totalList" #onpicksReview></onpicks-p-reviews>
     <onpicks-p-refund></onpicks-p-refund>
   </div>
 
@@ -37,7 +38,7 @@
   <!--</onpicks-communicate-box>-->
   <div class="col-5-of-12">
     <div>
-      <onpicks-p-menu></onpicks-p-menu>
+      <onpicks-p-menu [data]="(pData$ | async)"></onpicks-p-menu>
     </div>
   </div>
 </div>

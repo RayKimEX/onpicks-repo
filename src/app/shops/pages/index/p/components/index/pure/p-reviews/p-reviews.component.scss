@@ -35,6 +35,10 @@ onpicks-circle-n-button {
     width : 10.4rem;
     height : 10.4rem;
     float:right;
+    & > img {
+      width :100%;
+      height : 100%;
+    }
   }
 
   &__content{
@@ -83,8 +87,6 @@ onpicks-circle-n-button {
       background-color : #e5e5e5;
 
       &-current {
-        transition-property: width;
-        transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
         position: absolute;
         width : 0rem;
         height : 2.4rem;

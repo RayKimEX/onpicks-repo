@@ -1,20 +1,25 @@
-import {Component, ElementRef, OnDestroy, OnInit, Renderer2, ViewChild} from '@angular/core';
+import {AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, Input, OnDestroy, OnInit, Renderer2, ViewChild} from '@angular/core';
 import {fromEvent} from 'rxjs';
 import Chart from 'chart.js';
 import {select, Store} from '@ngrx/store';
 import {PState} from '../../../../store/p.reducer';
+import ResizeSensor from 'css-element-queries/src/ResizeSensor';
 
 @Component({
   selector: 'onpicks-p-menu',
   templateUrl: './p-menu.component.html',
-  styleUrls: ['./p-menu.component.scss']
+  styleUrls: ['./p-menu.component.scss'],
+  changeDetection : ChangeDetectionStrategy.OnPush,
 })
 
 
 // MUST TODO: p.component.ts에서 store async를 받아서 pmenu에는 단순히 처리만
 // TODO : 스크롤 메뉴 관련 // https://www.29cm.co.kr/order/checkout?pay_code=10 참고해서, fix메뉴가 충분히 아래로 내려가면, 그때 내려갈 수 있도록 변경
-export class PMenuComponent implements OnInit, OnDestroy {
+export class PMenuComponent implements OnInit, OnDestroy, AfterViewInit {
+
+  @ViewChild('titleHeight') titleHeight;
   @ViewChild('pMenu') pMenu: ElementRef;
+  @Input('data') data;
   chart;
   dateTitle;
   amazonPrice;
@@ -35,7 +40,7 @@ export class PMenuComponent implements OnInit, OnDestroy {
     },
     {
       title : '90일',
-      value : 0,
+      value : 1,
     }
   ]
   // selectList = {
@@ -157,7 +162,21 @@ export class PMenuComponent implements OnInit, OnDestroy {
     this.PStore$.unsubscribe();
   }
 
+  ngAfterViewInit(){
+    const result = parseInt(getComputedStyle(this.titleHeight.nativeElement, null).height, 10);
+    this.titleHeight = result === 0  ? this.titleHeight : result;
+
+  }
+
   ngOnInit() {
+    // @ts-ignore
+    const that = this
+    const hello = new ResizeSensor(this.titleHeight.nativeElement, function() {
+      console.log('Changed to');
+      that.titleHeight = parseInt(getComputedStyle(that.titleHeight.nativeElement, null).height, 10);
+      console.log(that.titleHeight);
+
+    });
     const weatherDates = []
 
     this.scrollEvent = fromEvent(window, 'scroll');
@@ -167,19 +186,21 @@ export class PMenuComponent implements OnInit, OnDestroy {
     this.PStore$ = this.PStore$.subscribe( (val: PState)  => {
       menuTopValue = val;
       // absolute
-      if (window.pageYOffset >= menuTopValue.menuPosition - 32 &&  setStatus === 'absolute') {
+      if (window.pageYOffset >= (menuTopValue.menuPosition - this.titleHeight) - 32 &&  setStatus === 'absolute') {
         this.renderer.setStyle(this.pMenu.nativeElement, 'position', 'absolute');
-        this.renderer.setStyle(this.pMenu.nativeElement, 'top', menuTopValue.menuPosition * 0.1 + 'rem');
+        this.renderer.setStyle(this.pMenu.nativeElement, 'top', (menuTopValue.menuPosition - this.titleHeight) * 0.1 + 'rem');
       }
 
     });
     this.scrollEvent = this.scrollEvent.subscribe(val => {
+        // console.log(this.titleHeight);
         if (window.pageYOffset >= 172) {
-            if (window.pageYOffset >= menuTopValue.menuPosition - 32) {
+            if (window.pageYOffset >= (menuTopValue.menuPosition - this.titleHeight) - 32) {
+              // console.log('activated menuPosition : ' + window.pageYOffset);
               if ( setStatus === 'absolute') { return; }
               setStatus = 'absolute';
               this.renderer.setStyle(this.pMenu.nativeElement, 'position', 'absolute');
-              this.renderer.setStyle(this.pMenu.nativeElement, 'top', menuTopValue.menuPosition * 0.1 + 'rem');
+              this.renderer.setStyle(this.pMenu.nativeElement, 'top', (menuTopValue.menuPosition - this.titleHeight) * 0.1 + 'rem');
             } else {
 
               if ( setStatus === 'fixed' ) { return; }
@@ -195,8 +216,8 @@ export class PMenuComponent implements OnInit, OnDestroy {
           this.renderer.setStyle(this.pMenu.nativeElement, 'top', '0');
         }
     });
-
-    let that = this;
+    // @ts-ignore
+    const that = this;
 
 
     Chart.defaults.LineWithLine = Chart.defaults.line;

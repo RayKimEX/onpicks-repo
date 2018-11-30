@@ -35,12 +35,10 @@ export class SelectBoxComponent implements OnInit {
     // const temp = [...this.sortList];
     // console.log(temp);
     // init시에 무조건 첫번째 Object를 가져옴
-    console.log(this.sortList.title);
     if ( this.sortList.title === undefined) {
       this.selectedElement = this.sortList.list[0];
     } else {
       this.selectedElement = this.sortList;
-      console.log(this.selectedElement);
     }
 
   }

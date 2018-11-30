@@ -9,16 +9,19 @@ import {
 import {
   Store
 } from '@ngrx/store';
+import {PDataService} from '../../../../../../core/service/data-pages/p/p-data.service';
+import {ActivatedRoute, ActivatedRouteSnapshot} from '@angular/router';
+import {GetReviewProduct} from '../../store/p.actions';
 
 
 
 @Component({
   selector: 'onpicks-p',
-  templateUrl: './p.component.html',
-  styleUrls: ['./p.component.scss']
+  templateUrl: './p-index.component.html',
+  styleUrls: ['./p-index.component.scss']
 })
 
-export class PComponent implements OnInit {
+export class PIndexComponent implements OnInit {
 
   @ViewChild('communicateBox', { read : ElementRef}) communicateBox;
 
@@ -1563,12 +1566,21 @@ export class PComponent implements OnInit {
     }
   ];
 
+  pData$;
+  pReviewsData$;
 
   constructor(
     private store: Store<any>,
     private renderer: Renderer2,
+    private data: PDataService,
+    private route: ActivatedRoute,
   ) {
+    this.pData$ = this.data.getPageData(this.route.snapshot.params.id);
+    // 글로벌 하게 해야되서 reviews는 갖고옴, reviews component와, communicate-box
 
+    this.store.dispatch(new GetReviewProduct(this.route.snapshot.params.id));
+    // this.pReviewsData$ = this.data.getReviewsData(this.route.snapshot.params.id);
+    // this.data.getData(this.route.snapshot.params.id).subscribe( (val) => console.log(val));
     // const initialState: UserState = {
     //   email: null,
     //   nickName : null,

@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PComponent } from './p.component';
+import { PIndexComponent } from './p-index.component';
 
 describe('PComponent', () => {
-  let component: PComponent;
-  let fixture: ComponentFixture<PComponent>;
+  let component: PIndexComponent;
+  let fixture: ComponentFixture<PIndexComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PComponent ]
+      declarations: [ PIndexComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PComponent);
+    fixture = TestBed.createComponent(PIndexComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

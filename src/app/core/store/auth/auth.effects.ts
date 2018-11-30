@@ -61,11 +61,11 @@ export class AuthEffects {
     ofType( AuthActions.LOGIN ),
     map( (action: Login) => action.payload ),
     switchMap( payload => {
-      return this.authService.login( payload.email, payload.password )
+      return this.authService.login( payload.email, payload.password,  payload.isPersistent )
         .pipe(
           map( (user) => {
             this.router.navigate(['/shops']);
-            return new LoginSuccess({nickname : 'hong', email : 'jesus_join@naver.com', thumbnailSmallImgSrc : 'http://img.onpicks.com/cart__table--info-N.png'});
+            return new LoginSuccess(user);
           }),
           catchError( (error) => {
             console.log(error);

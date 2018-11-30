@@ -19,7 +19,7 @@ import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {EffectsModule} from '@ngrx/effects';
 import {AuthEffects} from './core/store/auth/auth.effects';
-import {CURRENCY, DOMAIN_HOST} from './app.config';
+import {API_URL, API_URL_CONST, CURRENCY, DOMAIN_HOST} from './app.config';
 import {AuthInterceptorService} from './core/service/auth/auth-interceptor.service';
 import { environment } from '../environments/environment';
 import {UiEffects} from './core/store/ui/ui.effects';
@@ -43,6 +43,8 @@ function getCookie(cname) {
   }
   return '';
 }
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -99,6 +101,10 @@ function getCookie(cname) {
     {
       provide: CURRENCY,
       useValue : getCookie('currency'),
+    },
+    {
+      provide: API_URL,
+      useValue : API_URL_CONST,
     }
   ],
   bootstrap: [ AppComponent ]
@@ -106,3 +112,6 @@ function getCookie(cname) {
 export class AppModule { }
 
 
+// const API_URL = {
+//
+// }

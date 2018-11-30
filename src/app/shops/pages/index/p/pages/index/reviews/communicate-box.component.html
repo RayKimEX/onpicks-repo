@@ -3,40 +3,40 @@
   #communicateBox
   class="communicate-box">
 
-  <div *ngIf="isViewImage" class="communicate-box__image">
-    <img drLazyLoad src="{{comment.reviewImg}}" alt="">
-  </div>
+  <!--<div *ngIf="isViewImage" class="communicate-box__image">-->
+    <!--<img drLazyLoad src="{{comment.reviewImg}}" alt="">-->
+  <!--</div>-->
   <div
     #communicateBoxOnly
     class="communicate-box-only">
     <div class="communicate-box-only__inner">
 
-      <div class="communicate-box-only__figure">
-        <figure>
-        <span class="communicate-box-only__figure--image-outer">
-          <img drLazyLoad src="{{comment.profileImg}}" alt="Person on a tour" class="story__img">
-        </span>
+      <!--<div class="communicate-box-only__figure">-->
+        <!--<figure>-->
+        <!--<span class="communicate-box-only__figure&#45;&#45;image-outer">-->
+          <!--<img drLazyLoad src="{{comment.profileImg}}" alt="Person on a tour" class="story__img">-->
+        <!--</span>-->
 
-          <figcaption class="communicate-box-only__caption subtitle-1-bold">{{comment.name}}</figcaption>
+          <!--<figcaption class="communicate-box-only__caption subtitle-1-bold">{{comment.name}}</figcaption>-->
 
-          <ui-star-rating></ui-star-rating>
-          <span>Aug 13, 2018</span>
-        </figure>
-        <div class="communicate-box-only__figure--option subtitle-1-regular u-color-grey">맛: 믹스베이 세트 : 1번세츠 ( 12팩 )</div>
-      </div>
-      <div #scrollOuter class="communicate-box-only__reviews">
-        <div class="communicate-box-only__reviews--my-reviews body-1-regular">
-          {{comment.review}}
-        </div>
-        <div class="communicate-box-only__reviews--other-reviews">
+          <!--<ui-star-rating></ui-star-rating>-->
+          <!--<span>Aug 13, 2018</span>-->
+        <!--</figure>-->
+        <!--<div class="communicate-box-only__figure&#45;&#45;option subtitle-1-regular u-color-grey">맛: 믹스베이 세트 : 1번세츠 ( 12팩 )</div>-->
+      <!--</div>-->
+      <!--<div #scrollOuter class="communicate-box-only__reviews">-->
+        <!--<div class="communicate-box-only__reviews&#45;&#45;my-reviews body-1-regular">-->
+          <!--{{comment.review}}-->
+        <!--</div>-->
+        <!--<div class="communicate-box-only__reviews&#45;&#45;other-reviews">-->
 
-          <div *ngFor="let item of comment.comments" class="communicate-box-only__reviews--other-reviews-item">
-            <span class="subtitle-1-bold">{{item.author}}</span>
-            <span class="body-1-regular">{{item.content}}</span>
-          </div>
+          <!--<div *ngFor="let item of comment.comments" class="communicate-box-only__reviews&#45;&#45;other-reviews-item">-->
+            <!--<span class="subtitle-1-bold">{{item.author}}</span>-->
+            <!--<span class="body-1-regular">{{item.content}}</span>-->
+          <!--</div>-->
 
-        </div>
-      </div>
+        <!--</div>-->
+      <!--</div>-->
       <div class="communicate-box-only__feature">
         <a>
           <img src="http://img.onpicks.com/thumbs-up-icon.jpg" alt="">

@@ -28,10 +28,14 @@
     "@ngrx/store-devtools": "^6.1.2",
     "chart.js": "^2.7.2",
     "core-js": "^2.5.4",
+    "css-element-queries": "^1.1.1",
+    "intersection-observer": "^0.5.1",
     "ngx-infinite-scroll": "^6.0.1",
     "normalize.css": "^8.0.0",
     "normalizr": "^3.3.0",
+    "odometer": "^0.4.8",
     "rxjs": "^6.3.3",
+    "web-animations-js": "^2.3.1",
     "zone.js": "~0.8.26"
   },
   "devDependencies": {

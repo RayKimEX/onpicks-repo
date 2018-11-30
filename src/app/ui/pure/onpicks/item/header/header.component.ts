@@ -83,7 +83,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     this.renderer.setStyle(this.tempDiv, 'position', 'absolute');
     this.renderer.setStyle(this.tempDiv, 'display', 'block');
     this.renderer.setStyle(this.tempDiv, 'width', '100%');
-    // this.renderer.setStyle(this.tempDiv, 'height', document.body.clientHeight + 'px');
+    this.renderer.setStyle(this.tempDiv, 'height', document.body.clientHeight + 'px');
     this.renderer.setStyle(this.tempDiv, 'z-index', '10');
     this.renderer.setStyle(this.tempDiv, 'background-color', '#000000');
     this.renderer.setStyle(this.tempDiv, 'opacity', '0.5');

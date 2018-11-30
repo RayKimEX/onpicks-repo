@@ -16,7 +16,7 @@
           <div class="onpicks-sort-box__dropdown--element-outer">
             <label  (click)="clickSortBoxElement(f)" for="" class="onpicks-sort-box__dropdown--element-label">
               <input #f type="radio" data-value="{{item.value}}" data-name="{{item.title}}">
-              <span [ngClass]="{ active : item.value === selectedElement.value }" class="onpicks-sort-box__dropdown--element-text">{{item.title}}</span>
+              <span [ngClass]="{ active : item.value === selectedElement.value }" class="onpicks-sort-box__dropdown--element-text subtitle-2-bold u-color-dark-grey">{{item.title}}</span>
             </label>
           </div>
         </div>

@@ -2,12 +2,9 @@ import {
   AfterViewInit,
   Directive,
   ElementRef,
-  EventEmitter,
   HostBinding,
   Input,
   OnChanges,
-  OnDestroy,
-  Output,
   Renderer2, SimpleChanges
 } from '@angular/core';
 import {fromEvent, Observable} from 'rxjs';

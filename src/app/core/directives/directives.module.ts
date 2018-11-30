@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import {LazyLoadDirective} from './lazy-load/lazy-load.directive';
 import {CleanLoadDirective} from './clean-load/clean-load.directive';
 import {BackLoadDirective} from './back-load/back-load.directive';
+import { AnimateOnScrollDirective } from './animate-on-scroll/animate-on-scroll.directive';
 @NgModule({
   imports: [
     CommonModule,
@@ -11,11 +12,13 @@ import {BackLoadDirective} from './back-load/back-load.directive';
     LazyLoadDirective,
     CleanLoadDirective,
     BackLoadDirective,
+    AnimateOnScrollDirective,
   ],
   exports: [
     LazyLoadDirective,
     CleanLoadDirective,
     BackLoadDirective,
+    AnimateOnScrollDirective,
   ]
 })
 

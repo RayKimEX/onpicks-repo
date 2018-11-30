@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {PComponent} from './pages/index/p.component';
+import {PIndexComponent} from './pages/index/p-index.component';
 import {CommunicateBoxComponent} from './pages/index/reviews/communicate-box.component';
 
 const routes: Routes = [
   {
     path : '',
-    component : PComponent,
+    component : PIndexComponent,
     children : [
       {
         path : 'reviews/:id',
