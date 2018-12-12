@@ -1,4 +1,4 @@
-import {AfterViewInit, ChangeDetectionStrategy, Component, Input, OnInit, Renderer2, ViewChild} from '@angular/core';
+import {AfterViewInit, ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output, Renderer2, ViewChild} from '@angular/core';
 
 @Component({
   selector: 'onpicks-search-box',
@@ -10,12 +10,18 @@ export class SearchBoxComponent implements OnInit, AfterViewInit {
   @Input('placeholder') placeHolder;
   @Input('width') width;
   @Input('top') top;
+  @Output('enter') enterEvent = new EventEmitter<any>();
+  @Output('keypress') keypress = new EventEmitter<any>();
   @ViewChild('searchInputBox') searchInputBox;
   @ViewChild('inputTag') inputTag;
 
   insertedValue;
 
-  constructor(private renderer: Renderer2 ) { }
+  constructor(
+    private renderer: Renderer2
+  ) {
+
+  }
 
   ngOnInit() {
     this.insertedValue = '';
@@ -37,6 +43,12 @@ export class SearchBoxComponent implements OnInit, AfterViewInit {
     // TODO : 이 부분을 NgRX를 사용하여 깔끔하게 바꿀 여지가 있는지? ( event dispatcher 사용하지 않고 )
     // TODO : Security Issue 체크 https://github.com/mgechev/angular-seed/issues/1881
     this.searchInputBox.nativeElement.dispatchEvent(new Event('input'));
+  }
+
+  keypressEvent(event) {
+    if ( event.code === 'Enter' ){
+      this.enterEvent.emit(this.inputTag.nativeElement.value);
+    }
   }
 
 }

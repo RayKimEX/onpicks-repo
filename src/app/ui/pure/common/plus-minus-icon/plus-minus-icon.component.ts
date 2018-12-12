@@ -8,7 +8,7 @@ import {Component, Input, OnInit} from '@angular/core';
 export class PlusMinusIconComponent implements OnInit {
   @Input('type') type;
   @Input('size') size;
-  @Input('color') color;
+  @Input('borderColor') borderColor;
   @Input('opacity') opacity;
 
   constructor() { }

@@ -41,6 +41,7 @@ main {
 }
 
 a {
+  line-height : 0;
   text-decoration-line: none;
   color : $color-black;
   cursor: pointer;
@@ -360,7 +361,7 @@ textarea {
   height:16px;
   background-size: 200px 56px;
   background-image: url(http://img.onpicks.com/icon-etc.png);
-  background-position: -60px -40px;
+  background-position: -64px -40px;
 }
 
 .icon-la {

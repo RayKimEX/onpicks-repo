@@ -1,135 +1,175 @@
 
 <div class="cart">
-  <div class="row">
+  <ng-container *ngIf="(cartStore$ | async) as syncedData">
+  <div class="row" >
+  <!--<div class="row"  *ngIf="{-->
+        <!--free: (cartStore$ | async) ? (cartStore$ | async)[0] : null,-->
+        <!--new: (cartStore$ | async) ? (cartStore$ | async)[1] : null,-->
+        <!--la : (cartStore$ | async) ? (cartStore$ | async)[2] : null,-->
+        <!--gorge : (cartStore$ | async) ? (cartStore$ | async)[3] : null,-->
+        <!--hong : (cartStore$ | async) ? (cartStore$ | async)[4] : null,-->
+        <!--osaka : (cartStore$ | async) ? (cartStore$ | async)[5] : null-->
+      <!--} as data;">-->
+
     <div class="cart__title">쇼핑백</div>
-    <div class="cart__section--title">무료배송 상품</div>
+      <div class="cart__section--title">무료배송 상품</div>
 
-    <div class="cart__delivery-free">
-      <div class="cart__delivery-free-middle">
-        <span class="cart__delivery-free-icon">
-          <span class="cart__delivery-free-font">F</span>
-        </span>
-        <span class="cart__delivery-free-spot-list">
-          뉴저지 <span>무료배송</span>
-        </span>
-        <span class="cart__delivery-free-total-count">총 결제금액 <span>150,000원</span></span>
+      <div class="cart__delivery-free">
+        <div class="cart__delivery-free-middle">
+          <span class="cart__delivery-free-icon">
+            <span class="cart__delivery-free-font">F</span>
+          </span>
+          <span class="cart__delivery-free-spot-list">
+            뉴저지 <span>무료배송</span>
+          </span>
+          <span class="cart__delivery-free-total-count">총 결제금액 <span>150000원</span></span>
+        </div>
       </div>
-    </div>
 
-    <onpicks-button class="cart__delivery-free-purchase" [type]="'white'" [size]="'big'" [width]="'16.1rem'">무료배송 구매하기</onpicks-button>
-    <!--<button class="btn btn&#45;&#45;white cart__delivery-free-purchase">무료배송 구매하기</button>-->
+      <onpicks-button class="cart__delivery-free-purchase" [type]="'white'" [size]="'big'" [width]="'16.1rem'">무료배송 구매하기</onpicks-button>
 
-    <table class="cart__free-table">
-      <tr *ngFor="let item of cartList">
-        <td>
-          <div class="cart__free-table--image">
-            <img drLazyLoad src="{{item.imgSrc}}" alt="">
-          </div>
-
-          <div class="cart__free-table--info">
-            <div class="cart__free-table--info-title subtitle-3-bold">{{item.title}}</div>
-            <div class="cart__free-table--info-name body-3-regular">알엑스바 리얼 푸드 프로틴 에너지바 믹스드 베리 52G / RxBar Real Food Protein Bars Mixed Berry 1.83OZ</div>
-            <div class="cart__free-table--info-price subtitle-2-bold">40,900원</div>
-          </div>
-
-        </td>
-        <td>
-          <div class="cart__free-table--amount">
-            <onpicks-list-active-button [isFixExtend]="true"></onpicks-list-active-button>
-            <!--<onpicks-numeric-button [active]="item.amount !== 0" [type]="'minus'"></onpicks-numeric-button>-->
-            <!--<span class="cart__free-table&#45;&#45;amount-content">10</span>-->
-            <!--<onpicks-numeric-button [active]="item.amount !== 10" [type]="'plus'"></onpicks-numeric-button>-->
-          </div>
-
-          <div class="cart__free-table--add-to-wish">다음에 구매하기</div>
-          <div class="cart__free-table--delete">삭제하기</div>
-        </td>
-        <td>
-          <div class="cart__free-table--delivery-info">
-            <div class="cart__free-table--delivery-info-image">
-              <img src="http://img.onpicks.com/cart__table--info-N.png" alt="">
+      <table class="cart__free-table">
+        <tr>
+          <td>
+            <div class="cart__free-table--image">
+              <img drLazyLoad src="" alt="">
             </div>
 
-            <div class="cart__free-table--delivery-info-where subtitle-2-regular"><span class="u-bold">뉴저지</span>출고&nbsp;·&nbsp;</div>
-            <div class="cart__free-table--delivery-info-price subtitle-2-bold">무료배송</div>
-            <div class="cart__free-table--delivery-info-description subtitle-2-regular u-color-dark-grey">뉴저지 단독 배송 상품으로 개별 배송료가 발생합니다.</div>
-          </div>
-        </td>
-      </tr>
-    </table>
+            <div class="cart__free-table--info">
+              <div class="cart__free-table--info-title subtitle-3-bold">title</div>
+              <div class="cart__free-table--info-name body-3-regular">알엑스바 리얼 푸드 프로틴 에너지바 믹스드 베리 52G / RxBar Real Food Protein Bars Mixed Berry 1.83OZ</div>
+              <div class="cart__free-table--info-price subtitle-2-bold">40,900원</div>
+            </div>
 
+          </td>
+          <td>
+            <div class="cart__free-table--amount">
+              <onpicks-list-active-button [isFixExtend]="true"></onpicks-list-active-button>
+            </div>
+
+            <div class="cart__free-table--add-to-wish">
+              <a class="subtitle-2-regular u-color-grey">
+                다음에 구매하기
+              </a>
+            </div>
+            <div class="cart__free-table--delete">
+              <a
+                (click)="deleteCart()"
+                class="subtitle-2-regular u-color-grey">
+                삭제하기
+              </a>
+            </div>
+          </td>
+          <td>
+            <div class="cart__free-table--delivery-info">
+              <div class="cart__free-table--delivery-info-image">
+                <img src="http://img.onpicks.com/cart__table--info-N.png" alt="">
+              </div>
+
+              <div class="cart__free-table--delivery-info-where subtitle-2-regular"><span class="u-bold">뉴저지</span>출고&nbsp;·&nbsp;</div>
+              <div class="cart__free-table--delivery-info-price subtitle-2-bold">무료배송</div>
+              <div class="cart__free-table--delivery-info-description subtitle-2-regular u-color-dark-grey">뉴저지 단독 배송 상품으로 개별 배송료가 발생합니다.</div>
+            </div>
+          </td>
+        </tr>
+      </table>
     <div class="cart__section--title">묶음 배송 상품</div>
+    <div *ngFor="let item of syncedData?.pack">
+      <ng-container *ngIf="item.items?.length !== 0">
 
-    <div class="cart__delivery-multi">
-      <div class="cart__delivery-multi-middle">
-        <span class="cart__delivery-multi-icon">
-        </span>
-        <span class="cart__delivery-multi-spot-list">
-          뉴저지 <span>무료배송</span>
-        </span>
-        <span class="cart__delivery-multi-total-count">총 결제금액 <span>150,000원</span></span>
+        <div class="cart__delivery-multi">
+          <div class="cart__delivery-multi-middle">
+            <span class="cart__delivery-multi-icon subtitle-1-bold"
+              [ngClass]=
+                "[
+                  (item.location.slug === locationMap['la'])  ? 'icon-la' : '',
+                  (item.location.slug === locationMap['new'])  ? 'icon-new' : '',
+                  (item.location.slug === locationMap['osaka'])  ? 'icon-osaka' : '',
+                  (item.location.slug === locationMap['gorge'])  ? 'icon-gorge' : '',
+                  (item.location.slug === locationMap['hong'])  ? 'icon-hong' : ''
+                ]"
+            >
+            </span>
+            <span class="cart__delivery-multi-spot-list">
+              <span class="subtitle-1-bold">{{item.location.name}} </span>
+              <span class="subtitle-1-regular">묶음배송</span>
+            </span>
+            <span class="cart__delivery-multi-total-count">
+              <span class="subtitle-2-regular u-color-dark-grey">총 결제금액</span>
+              <span class="subtitle-2-bold">{{item.subtotal | onpicksCurrency: 'KRW'}}</span>
+            </span>
 
-      </div>
+          </div>
+        </div>
+
+        <div class="cart__delivery-multi-purchase">
+
+          <div class="cart__delivery-multi-purchase--remain">
+            <div class="cart__delivery-multi-purchase--remain-description subtitle-2-regular">{{item.location.name}} 무료배송까지 {{item.free_shipping_threshold - (item.subtotal - item.shipping_fee) | onpicksCurrency:'KRW'}} 남았습니다</div>
+            <ui-progressive-bar [progressWidth]="'100%'"></ui-progressive-bar>
+          </div>
+
+          <onpicks-button
+            class="cart__delivery-multi-purchase--btn"
+            [type]="'white'"
+            [size]="'big'"
+            [width]="'16.1rem'"
+          >묶음배송 구매하기</onpicks-button>
+        </div>
+
+      </ng-container>
+      <table class="cart__multi-table">
+        <tr *ngFor="let itemChild of item.items; index as i">
+          <td>
+            <div class="cart__multi-table--image">
+              <img src="{{itemChild.thumbnail}}" alt="">
+            </div>
+            <div class="cart__multi-table--info">
+              <div class="cart__multi-table--info-title subtitle-3-bold">{{itemChild.brand}}</div>
+              <div class="cart__multi-table--info-name subtitle-3-regular">{{itemChild.title}}</div>
+              <div class="cart__multi-table--info-price subtitle-2-bold">{{itemChild.sale_price | onpicksCurrency: 'KRW'}}</div>
+            </div>
+          </td>
+          <td>
+            <div class="cart__multi-table--amount">
+              <onpicks-list-active-button
+                [isFixExtend]="true">
+              </onpicks-list-active-button>
+              <!--<onpicks-numeric-button [active]="item.amount !== 0" [type]="'minus'"></onpicks-numeric-button>-->
+              <!--<span class="cart__multi-table&#45;&#45;amount-content">10</span>-->
+              <!--<onpicks-numeric-button [active]="item.amount !== 10" [type]="'plus'"></onpicks-numeric-button>-->
+            </div>
+
+            <div class="cart__multi-table--add-to-wish">
+              <a class="subtitle-2-regular u-color-grey">
+                다음에 구매하기
+              </a>
+            </div>
+            <div class="cart__multi-table--delete subtitle-2-regular u-color-grey">
+              <a
+                (click)="deleteCart(itemChild.product)"
+                class="subtitle-2-regular u-color-grey">
+                삭제하기
+              </a>
+            </div>
+          </td>
+          <td *ngIf="i === 0" [attr.rowspan]="item?.items.length">
+            <div class="cart__multi-table--delivery-info">
+              <!--<div class="cart__multi-table--delivery-info-image">-->
+                <!--<img src="http://img.onpicks.com/cart__table--info-N.png" alt="">-->
+              <!--</div>-->
+
+              <!--<div class="cart__multi-table--delivery-info-where"><span class="u-bold">뉴저지</span> 출고</div>-->
+              <div class="cart__multi-table--delivery-info-price" [ngSwitch]="(item.subtotal - item.shipping_fee) < item.free_shipping_threshold">
+                <span class="subtitle-2-regular" *ngSwitchCase="true">{{item.shipping_fee | onpicksCurrency: 'KRW'}}</span>
+                <span class="subtitle-2-bold u-color-green" *ngSwitchDefault>무료</span>
+              </div>
+              <div class="cart__multi-table--delivery-info-description subtitle-2-regular u-color-dark-grey">뉴저지 단독 배송 상품 {{item.free_shipping_threshold | onpicksCurrency: 'KRW'}} 이상 주문시 무료 배송</div>
+            </div>
+          </td>
+        </tr>
+      </table>
     </div>
-
-    <div class="cart__delivery-multi-purchase">
-
-      <div class="cart__delivery-multi-purchase--remain">
-        <div class="cart__delivery-multi-purchase--remain-description">엘에이 무료배송까지 125,000원 남았습니다</div>
-        <ui-progressive-bar [progressWidth]="'100%'"></ui-progressive-bar>
-      </div>
-
-      <onpicks-button
-        class="cart__delivery-multi-purchase--btn"
-        [type]="'white'"
-        [size]="'big'"
-        [width]="'16.1rem'"
-      >묶음배송 구매하기</onpicks-button>
-
-      <!--<button class="btn btn&#45;&#45;white cart__delivery-multi-purchase&#45;&#45;btn">묶음배송 구매하기</button>-->
-    </div>
-
-
-
-    <table class="cart__multi-table">
-      <tr *ngFor="let item of cartList; index as i">
-        <td>
-          <div class="cart__multi-table--image">
-            <img src="{{item.imgSrc}}" alt="">
-          </div>
-
-          <div class="cart__multi-table--info">
-            <div class="cart__multi-table--info-title u-bold">{{item.title}}</div>
-            <div class="cart__multi-table--info-name">알엑스바 리얼 푸드 프로틴 에너지바 믹스드 베리 52G / RxBar Real Food Protein Bars Mixed Berry 1.83OZ</div>
-            <div class="cart__multi-table--info-price u-bold">40,900원</div>
-          </div>
-
-        </td>
-        <td>
-          <div class="cart__multi-table--amount">
-            <onpicks-list-active-button [isFixExtend]="true"></onpicks-list-active-button>
-            <!--<onpicks-numeric-button [active]="item.amount !== 0" [type]="'minus'"></onpicks-numeric-button>-->
-            <!--<span class="cart__multi-table&#45;&#45;amount-content">10</span>-->
-            <!--<onpicks-numeric-button [active]="item.amount !== 10" [type]="'plus'"></onpicks-numeric-button>-->
-          </div>
-
-          <div class="cart__multi-table--add-to-wish">다음에 구매하기</div>
-          <div class="cart__multi-table--delete">삭제하기</div>
-        </td>
-        <td *ngIf="i === 0" [attr.rowspan]="cartList.length">
-          <div class="cart__multi-table--delivery-info">
-            <!--<div class="cart__multi-table&#45;&#45;delivery-info-image">-->
-              <!--<img src="http://img.onpicks.com/cart__table&#45;&#45;info-N.png" alt="">-->
-            <!--</div>-->
-
-            <!--<div class="cart__multi-table&#45;&#45;delivery-info-where"><span class="u-bold">뉴저지</span> 출고</div>-->
-            <div class="cart__multi-table--delivery-info-price">무료</div>
-            <div class="cart__multi-table--delivery-info-description">뉴저지 단독 배송 상품으로 개별 배송료가 발생합니다.</div>
-          </div>
-        </td>
-      </tr>
-    </table>
-
     <onpicks-sort-box (click)="toggleWishList(f)" class="cart__load-purchase-thing" [fontSize]="'1.4rem'" [showBox]="false" [sortList]="[{ title : '다음에 구매할 물건 불러오기', value : 0 }]"></onpicks-sort-box>
     <div #f class="cart__wishlist">
       <div class="cart__wishlist--title">다음에 구매하기</div>
@@ -180,7 +220,7 @@
           <td>총 결제금액</td>
         </tr>
         <tr>
-          <td>999,999원</td>
+          <td>99999000</td>
           <td>+</td>
           <td>무료</td>
           <td>-</td>
@@ -192,10 +232,9 @@
     </div>
     <onpicks-button class="cart__btn--shopping" [type]="'white'" [size]="'big'" [width]="'13.4rem'">계속 쇼핑하기</onpicks-button>
     <onpicks-button routerLink="/order/checkout"  class="cart__btn--shopping" [type]="'black'" [size]="'big'" [width]="'13.4rem'">전체 구매하기</onpicks-button>
-    <!--<button routerLink="/order/checkout" class="btn btn&#45;&#45;black cart__btn&#45;&#45;checkout">전체 구매하기</button>-->
-  </div>
 
-
+    </div>
+  </ng-container>
 
   <ui-mini-list [setTitle]="'이 상품과 함께 구매한 상품'"></ui-mini-list>
 </div>

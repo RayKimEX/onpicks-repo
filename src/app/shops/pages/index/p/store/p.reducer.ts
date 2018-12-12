@@ -1,23 +1,26 @@
 import * as PActions from './p.actions';
+import {normalize, schema} from 'normalizr';
 
 
 export interface PState {
-  helpfulFlag: boolean[];
-  menuPosition: number;
-  review: {
-    reviewIndex: number;
-    content: []
+  ui: {
+    menuPosition: number;
+  };
+  reviews: {
+    list: {};
+    results: [];
   };
 }
 
 const initialState: PState = {
-  helpfulFlag : [],
-  menuPosition : 0,
-  review : {
-    reviewIndex : 0,
-    content : [],
+  ui: {
+    menuPosition : 0,
   },
-
+  reviews : {
+    list : {
+    },
+    results : [],
+  },
 };
 
 export function PReducer (state = initialState, action: PActions.PActions) {
@@ -26,43 +29,86 @@ export function PReducer (state = initialState, action: PActions.PActions) {
     case PActions.UPDATE_MENUPOSITION:
       return {
         ...state,
-        menuPosition : action.payload
+        ui: {
+          ...state.ui,
+          menuPosition : action.payload
+        }
+
       };
 
     case PActions.GET_REVIEWS_PRODUCT_SUCCESS :
-      console.log('GET_REVIEW_PRODUCT_SUCCESS_REDUCER');
+
       console.log(action.payload);
+      const data =  reviewNormalizer(action.payload.results);
       return {
         ...state,
-        review : {
-          ...state.review,
+        reviews : {
+          ...state.reviews,
+          list : {
+            ...state.reviews.list,
+            ...data.entities.reviews,
+          },
+          results :  data.result,
+        }
+      };
+
+
+    /* loading화면을 위해 일부러 undefined를 강제적으로 넣어줌*/
+    case PActions.GET_COMMENTS_PRODUCT :
+
+      return {
+        ...state,
+        reviews: {
+          ...state.reviews,
+          list : {
+            ...state.reviews.list,
+            [action.payload.reviewsId] : {
+              ...state.reviews.list[action.payload.reviewsId],
+              comments : undefined,
+              isCommentsLoaded : false,
+              tryToLoadComments : true,
+            }
+          }
         }
       }
 
+    case PActions.GET_COMMENTS_PRODUCT_SUCCESS :
 
-    case PActions.UPDATE_COMMENT_INDEX :
-      let commentIndex = state.review.reviewIndex;
-      switch (action.payload) {
-        case 'increase' :
-          commentIndex++;
-          break;
-
-        case 'decrease' :
-          commentIndex--;
-          break;
-
-      }
       return {
         ...state,
-        review : {
-          ...state.review,
-          reviewIndex : commentIndex,
+        reviews: {
+          ...state.reviews,
+          list : {
+            ...state.reviews.list,
+            [action.payload.reviewsId] : {
+              ...state.reviews.list[action.payload.reviewsId],
+              comments : action.payload.currentComments,
+              isCommentsLoaded : true,
+            }
+          }
         }
       }
 
-    case PActions.ADD_COMMENT :
+    case PActions.ADD_COMMENT_SUCCESS :
+      const addedCommentState = state.reviews.list[action.payload.reviewsId].comments.results
+      console.log(state.reviews.list[action.payload.reviewsId].comments);
+      addedCommentState.push(action.payload.respond);
       return {
         ...state,
+        reviews: {
+          ...state.reviews,
+          list : {
+            ...state.reviews.list,
+            [action.payload.reviewsId] : {
+              ...state.reviews.list[action.payload.reviewsId],
+              comments : {
+                ...state.reviews.list[action.payload.reviewsId].comments,
+                results : addedCommentState
+              },
+              isCommentsLoaded : true,
+            }
+          }
+        }
       }
     default:
       return state;
@@ -70,3 +116,27 @@ export function PReducer (state = initialState, action: PActions.PActions) {
 }
 
 
+
+function reviewNormalizer ( data ) {
+  // const slug = new schema.Entity('slug', {
+  //
+  // });
+  //
+  // const fourthCategory = new schema.Entity('fourthCategory', {
+  //
+  // });
+  //
+  // // // // Define your comments schema
+  // const thirdCategory = new schema.Entity('thirdCategory', {
+  //   name : name,
+  //   children : [fourthCategory]
+  // });
+  //
+  const secondCategory = new schema.Entity('reviews', {
+  });
+  //
+  const object = new schema.Array(secondCategory);
+
+
+  return normalize(data, object);
+}

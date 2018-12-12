@@ -1,6 +1,7 @@
 import {ChangeDetectionStrategy, Component, ElementRef, NgZone, OnDestroy, OnInit} from '@angular/core';
 import {fromEvent} from 'rxjs';
 import {sampleTime} from 'rxjs/operators';
+import {select, Store} from '@ngrx/store';
 
 @Component({
   selector: 'onpicks-feed',
@@ -9,7 +10,7 @@ import {sampleTime} from 'rxjs/operators';
 })
 export class FeedComponent implements OnInit, OnDestroy {
 
-  // TODO : ㄴㅇㄹ
+
   feedList = []
   numbers;
 
@@ -19,11 +20,12 @@ export class FeedComponent implements OnInit, OnDestroy {
   scroll$;
   willLoadData = false;
 
+  userState$;
   constructor(
-    private _ngZone: NgZone,
-    private eRef: ElementRef
+    private store: Store<any>,
   ) {
 
+    this.userState$ = this.store.pipe(select( state => state.auth.user));
 
     for ( let i = 0 ; i < 20; i ++ ) {
       if (this.exceptionDatabase[this.imageIndex]) {       this.imageIndex -= 5;  continue; }
@@ -43,8 +45,7 @@ export class FeedComponent implements OnInit, OnDestroy {
           this.willLoadDataFunction();
         }
       });
-    // this.numbers = Array(Math.ceil( this.feedList.length / 4)).fill(4).map((x, i) => i + 1);
-    // console.log(this.numbers);
+
   }
 
   ngOnDestroy() {
@@ -69,35 +70,9 @@ export class FeedComponent implements OnInit, OnDestroy {
     }
 
     this.willLoadData = false;
-    // this._ngZone.runOutsideAngular(() => {
-    //
-    //   for ( let i = 0 ; i < 20; i ++ ) {
-    //     if (this.exceptionDatabase[this.imageIndex]) { this.imageIndex -= 5;  continue; }
-    //     this.feedList.push({ imgSrc : 'https://picsum.photos/264/264?image=' + this.imageIndex});
-    //     this.imageIndex -= 5;
-    //   }
-    //
-    //
-    //   this.willLoadData = false;
-    //   this._ngZone.run(() => { console.log('Outside Done!'); });
-    // });
 
   }
 
-
-
-
-  // @HostListener('window:scroll', ['$event'])
-  // onWindowScroll(e) {
-  //
-  //   // fromE
-  //   // (( window.scrollY + window.innerHeight ) / document.body.scrollHeight) * 100
-  //   // console.log( );
-  //   console.log(document.body.scrollHeight);
-  //   console.log(document.body.clientHeight);
-  //   console.log(document.body.scrollTop);
-  //   console.log( window.innerHeight);
-  // }
 
   onScroll() {
     console.log('onscroll');

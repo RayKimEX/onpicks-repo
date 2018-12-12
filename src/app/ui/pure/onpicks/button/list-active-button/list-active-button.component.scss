@@ -1,6 +1,6 @@
 @import '~src/assets/scss/abstracts/variables';
 
-div {
+.button-outer {
 
   display:table;
   // 이것을 준 이유는 parent에서 border-collapse : collapse를 주면 border-radius가 먹히지 않기 때문에 주었음
@@ -10,13 +10,13 @@ div {
   transition-duration: .25s;
   transition-property: all;
   transition-timing-function: ease-in-out;
+  background-color:$color-white;
   width : 4rem;
   height : 4rem;
   opacity : 0.9;
   border : solid 1px #292929;
   border-radius : 2rem;
   position:relative;
-
 
   .touch__amount-down {
     cursor : pointer;

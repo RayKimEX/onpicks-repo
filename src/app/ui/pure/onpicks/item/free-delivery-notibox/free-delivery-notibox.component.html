@@ -1,41 +1,56 @@
 <div class="free-delivery-notibox">
   <ul class="free-delivery-notibox__innerBox">
-    <li class="free-delivery-notibox__item">
-      <span class="free-delivery-notibox__item--region-icon icon-la"></span>
-      <div class="free-delivery-notibox__item--info">
-        <span class="subtitle-2-regular">엘에이 무료배송까지 125,000원 남았습니다.</span>
-        <ui-progressive-bar ></ui-progressive-bar>
-      </div>
+    <ng-container *ngFor="let item of cartInfo">
+    <li class="free-delivery-notibox__item" *ngIf="item.subtotal !== 0">
+
+        <span
+          class="free-delivery-notibox__item--region-icon"
+          [ngClass]=
+          "[
+            (item.location.slug === locationMap['la'])  ? 'icon-la' : '',
+            (item.location.slug === locationMap['new'])  ? 'icon-new' : '',
+            (item.location.slug === locationMap['osaka'])  ? 'icon-osaka' : '',
+            (item.location.slug === locationMap['gorge'])  ? 'icon-gorge' : '',
+            (item.location.slug === locationMap['hong'])  ? 'icon-hong' : ''
+          ]"
+        >
+        </span>
+        <div class="free-delivery-notibox__item--info">
+          <ng-container [ngSwitch]="(item.free_shipping_threshold - (item.subtotal - item.shipping_fee)) < 0">
+            <!--계산 조건이 마이너스일때, 무료배송조건이 충족된 상태-->
+            <ng-container *ngSwitchCase="true">
+              <span class="subtitle-2-regular">무료배송 조건이 충족되었습니다.</span>
+              <ui-progressive-bar
+                [progressWidth]="'100%'">
+              </ui-progressive-bar>
+            </ng-container>
+            <!--계산 조건이 플러스일때, 무료배송조건이 미충족된 상태-->
+            <ng-container *ngSwitchDefault>
+              <span
+                class="subtitle-2-regular">
+                {{item.location.name}} 무료배송까지 {{item.free_shipping_threshold - (item.subtotal - item.shipping_fee) | onpicksCurrency: 'KRW'}} 남았습니다.
+              </span>
+              <ui-progressive-bar
+                [progressWidth]="(((item.subtotal - item.shipping_fee) / item.free_shipping_threshold) * 100) + '%'">
+              </ui-progressive-bar>
+            </ng-container>
+          </ng-container>
+        </div>
+
     </li>
-    <li class="free-delivery-notibox__item">
-      <span class="free-delivery-notibox__item--region-icon icon-new"></span>
-      <div class="free-delivery-notibox__item--info">
-        <span class="subtitle-2-regular">뉴저지 무료배송까지 125,000원 남았습니다.</span>
-        <ui-progressive-bar></ui-progressive-bar>
-      </div>
-    </li>
-    <li class="free-delivery-notibox__item">
-      <span class="free-delivery-notibox__item--region-icon icon-gorge"></span>
-      <div class="free-delivery-notibox__item--info">
-        <span class="subtitle-2-regular">달라스 무료배송 조건이 충족되었습니다.</span>
-        <ui-progressive-bar></ui-progressive-bar>
-      </div>
-    </li>
-    <li class="free-delivery-notibox__item">
-      <span class="free-delivery-notibox__item--region-icon icon-osaka"></span>
-      <div class="free-delivery-notibox__item--info">
-        <span>총 상품금액 : 9999,000원 무료배송</span>
-        <ui-progressive-bar></ui-progressive-bar>
-      </div>
-    </li>
-    <li class="free-delivery-notibox__item">
-      <span class="free-delivery-notibox__item--region-icon icon-hong"></span>
-      <div class="free-delivery-notibox__item--info">
-        <span>홍콩 무료배송까지 125,000원 남았습니다.</span>
-        <ui-progressive-bar></ui-progressive-bar>
-      </div>
-    </li>
+    </ng-container>
   </ul>
+  <div class="free-delivery-notibox__amount-box">
+    <span class="free-delivery-notibox__amount-box--title subtitle-2-regular u-color-grey">총 상품금액</span>
+    <span class="free-delivery-notibox__amount-box--price subtitle-2-bold">{{9999000 | onpicksCurrency: 'KRW'}}</span>
+    <onpicks-button
+      routerLink="/order/cart"
+      class="free-delivery-notibox__amount-box--button"
+      [width]="'10.4rem'"
+      [type]="'black'"
+      [size]="'small'"
+    >쇼핑백 보기</onpicks-button>
+  </div>
 </div>
 
 

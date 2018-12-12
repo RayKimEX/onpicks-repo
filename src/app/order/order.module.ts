@@ -9,12 +9,14 @@ import {DirectivesModule} from '../core/directives/directives.module';
 import {UiModule} from '../ui/ui.module';
 import { CheckoutSuccessComponent } from './pages/checkout-success/checkout-success.component';
 import { CheckoutSuccessNoBankComponent } from './pages/checkout-success-no-bank/checkout-success-no-bank.component';
+import {PipeModule} from '../core/pipe/pipe.module';
 
 @NgModule({
   imports: [
     CommonModule,
     OrderRoutingModule,
     DirectivesModule,
+    PipeModule,
     UiModule
   ],
   declarations: [

@@ -1,10 +1,10 @@
 import {
   AfterViewInit,
   Directive,
-  ElementRef,
+  ElementRef, EventEmitter,
   HostBinding,
   Input,
-  OnChanges,
+  OnChanges, Output,
   Renderer2, SimpleChanges
 } from '@angular/core';
 import {fromEvent, Observable} from 'rxjs';
@@ -56,6 +56,21 @@ export class LazyLoadDirective implements AfterViewInit, OnChanges {
       return;
     }
 
+    if ( this.drLazyLoad.method === 'pure-transition' ) {
+
+      this.renderer.addClass(this.el.nativeElement, 'u-img-load-transition');
+      this.renderer.addClass(this.el.nativeElement, 'u-opacity-zero');
+
+      this.canLazyLoad() ? this.lazyLoadImage() : this.loadImage();
+      this.imgLoad$ = fromEvent(this.el.nativeElement, 'load').subscribe( val => {
+        this.renderer.removeClass(this.el.nativeElement, 'u-opacity-zero');
+        this.imgLoad$.unsubscribe();
+      });
+
+      return;
+    }
+
+
     if( this.drLazyLoad.method === 'animation' ){
       const backgroundColor = this.renderer.createElement('div');
 
@@ -105,28 +120,12 @@ export class LazyLoadDirective implements AfterViewInit, OnChanges {
   }
 
   private checkIfIntersecting (entry: IntersectionObserverEntry) {
-    // console.log('===entry===')
-    // console.log(entry.target)
-    // console.log(this._elementRef.nativeElement)
+
     return (<any>entry).isIntersecting && entry.target === this.el.nativeElement;
   }
 
   private loadImage() {
     this.srcAttr = this.src;
-    // console.log(this.src);
-    // console.log(this.srcAttr);
-    // setInterval(() => {
-    //   this.srcAttr = this.src;
-    //   console.log(this.src);
-    //   console.log(this.srcAttr);
-    //   setInterval(() => {
-    //     this.srcAttr = '!!!!'
-    //     console.log(this.src);
-    //     console.log(this.srcAttr);
-    //   }, 2000);
-    // }, 2000);
-
-  //  console.log('interseting');
   }
 }
 

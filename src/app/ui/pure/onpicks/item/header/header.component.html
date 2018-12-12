@@ -9,26 +9,25 @@
       <emitter-change-preference [type]="'currency'" class="header__miscell--item">{{ currency === 'KRW' ? 'KRW ₩' : 'USD $' }}</emitter-change-preference>
       <emitter-change-preference [type]="'locale'" class="header__miscell--item">{{ locale === 'ko' ? '한글' : 'ENG' }}</emitter-change-preference>
 
-      <div class="header__miscell--profile u-float-right">
+      <div class="header__miscell--profile u-float-right" *ngIf="(auth$ | async) as auth;">
 
+        {{auth.avatar}}
+        <ng-container *ngIf=" auth.isAuthenticated === false">
+          <span class="header__miscell--profile--login" ><a i18n="@@header__login" routerLink="/member/login" >로그인/login</a></span>
+          <span class="header__miscell--profile--slash">&nbsp;|&nbsp;</span>
+          <span class="header__miscell--profile--signup"><a i18n="@@header__signup" routerLink="/member/signup">회원가입|signup</a></span>
+        </ng-container>
 
-      <ng-container *ngIf=" (auth$ | async ).isAuthenticated === false">
-        <span class="header__miscell--login" ><a i18n="@@header__login" routerLink="/member/login" >로그인/login</a></span>
-        <span class="header__miscell--slash">&nbsp;|&nbsp;</span>
-        <span class="header__miscell--signup"><a i18n="@@header__signup" routerLink="/member/signup">회원가입|signup</a></span>
-      </ng-container>
+        <ng-container *ngIf=" auth.isAuthenticated === true">
+          <span class="header__miscell--profile--image">
+            <a routerLink="/account">
+              <img src="{{auth.user.avatar}}"  alt="">
+            </a>
+          </span>
 
-      <ng-container  *ngIf=" (auth$ | async ).isAuthenticated === true && (auth$ | async ).user.thumbnailSmallImgSrc !== null">
-        <img src="{{(auth$ | async ).user.thumbnailSmallImgSrc}}" routerLink="/account" alt="">
-        <span><button (click)="logout()">로그아웃</button></span>
-      </ng-container>
+          <!--<span><button (click)="logout()">로그아웃</button></span>-->
+        </ng-container>
 
-
-      <!--<span class="header__miscell&#45;&#45;favorites">-->
-      <!--<svg width="24" height="24" viewBox="0 0 24 24">-->
-      <!--<path d="M16.26,6a2.67,2.67,0,0,1,1.42.42,2.88,2.88,0,0,1,.49.41,3,3,0,0,1,0,4.16l-.91.95L16.21,13l0,.05,0,0,0,0L12,17.39,7.89,13.14l0,0,0,0,0-.05-1-1.08L5.83,11a3,3,0,0,1,0-4.16,2.88,2.88,0,0,1,.49-.41A2.67,2.67,0,0,1,7.74,6a2.62,2.62,0,0,1,1.91.83l.3.31.52.54a2.16,2.16,0,0,0,3.09,0l.49-.5.3-.31A2.62,2.62,0,0,1,16.26,6m0-2a4.65,4.65,0,0,0-3.35,1.44l-.3.31-.49.5a.15.15,0,0,1-.24,0l-.49-.5-.3-.31a4.63,4.63,0,0,0-6.7,0,5,5,0,0,0,0,6.94l.91.94,1,1.09,0,0,5.19,5.37s0,0,0,0a.6.6,0,0,0,.84,0s0,0,0,0l5.19-5.37,0,0,1.05-1.09.91-.94a5,5,0,0,0,0-6.94A4.67,4.67,0,0,0,16.26,4Z"/>-->
-      <!--</svg>-->
-      <!--</span>-->
       <span class="header__miscell--shopping-bag">
         <a href="" routerLink="/order/cart">
           <svg width="24" height="24" viewBox="0 0 24 24">
@@ -41,29 +40,10 @@
       </div>
     </div>
 
-    <!--<span class="header__miscell&#45;&#45;nation">-->
-      <!--{{ region === '/kr' ? 'KOR' : 'USA' }}-->
-      <!--<svg width="10" height="8" viewBox="0 0 10 8">-->
-        <!--<polyline points="1 2 5 6 9 2" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>-->
-      <!--</svg>-->
-    <!--</span>-->
-    <!--<span class="header__miscell&#45;&#45;currency">-->
-      <!--{{ currency === 'KRW' ? 'KRW ₩' : 'USD $' }}-->
-      <!--<svg width="10" height="8" viewBox="0 0 10 8">-->
-        <!--<polyline points="1 2 5 6 9 2" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>-->
-      <!--</svg>-->
-    <!--</span>-->
-    <!--<span class="header__miscell&#45;&#45;language">-->
-      <!--{{ locale === 'ko' ? '한글' : 'ENG' }}-->
-      <!--<svg width="10" height="8" viewBox="0 0 10 8">-->
-        <!--<polyline points="1 2 5 6 9 2" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>-->
-      <!--</svg>-->
-    <!--</span>-->
-
   </div>
   <div class="header__main-nav u-default-site-padding">
     <div class="header__main-nav--outer">
-      <a class="header__main-nav--logo" href="" routerLink="shops">
+      <a class="header__main-nav--logo" href="" routerLink="/shops">
         <svg width="108.23" height="30" viewBox="0 0 108.23 30">
           <path d="M56.63,0a2.57,2.57,0,1,1-2.57,2.6A2.57,2.57,0,0,1,56.63,0Z"/>
           <path d="M45.18,6.73a5.92,5.92,0,0,0-4.94,2.18V7.07H35.8V30h4.45V22A5.78,5.78,0,0,0,45,24c4.66,0,7.79-3.69,7.79-8.7S50,6.73,45.18,6.73ZM44.37,20a4.08,4.08,0,0,1-4.07-3.79,6.48,6.48,0,0,1,0-1.76,4.06,4.06,0,0,1,4.07-3.76c2.29,0,4.1,1.72,4.1,4.64S46.66,20,44.37,20Z"/>
@@ -118,13 +98,19 @@
       </nav>
     </div>
     <onpicks-search-box
+      (enter)="search($event)"
       [width]="46.4"
       [top]="-1"
       i18n-placeholder="@@header__placeholder"
       placeholder="2018 추석선물 대전">
     </onpicks-search-box>
   </div>
-  <onpicks-free-delivery-notibox style="display:none;"></onpicks-free-delivery-notibox>
+  <onpicks-free-delivery-notibox
+    #deliveryBox
+    [setCartInfo]="cart$ | async"
+    [ngStyle]="{ display : 'none'}"
+  ></onpicks-free-delivery-notibox>
+
   <div #menu class="header-menu__outer">
     <nav>
       <ul class="header-menu__item">

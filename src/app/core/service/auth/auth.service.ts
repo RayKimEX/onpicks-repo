@@ -36,6 +36,6 @@ export class AuthService {
   }
 
   getAuthUser(): Observable<any> {
-    return this.httpClient.get<any>(this.BASE_URL + '/api/customers/');
+    return this.httpClient.get<any>(this.BASE_URL + '/api/customers/whoami/');
   }
 }

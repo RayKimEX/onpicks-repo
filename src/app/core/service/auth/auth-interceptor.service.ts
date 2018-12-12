@@ -28,12 +28,7 @@ export class AuthInterceptorService implements HttpInterceptor {
         }),
       });
 
-    console.log(request);
-    // const csrfTokenName = this.tokenExtractor.getToken() as string;
-    // console.log(csrfTokenName);
-    // if (csrfTokenName !== null && ! request.headers.has(csrfTokenHeaderName)) {
-    //     request = request.clone({ headers: request.headers.set(csrfTokenHeaderName, csrfTokenName) });
-    // }
+    console.log('%c' + request.url.substring(6, request.url.length - 1), 'color : #007755');;
     return next.handle(request);
   }
 

@@ -44,7 +44,7 @@ export class MiniListComponent implements OnInit, AfterViewInit, OnDestroy {
     @Inject(LOCALE_ID) public locale: string,
     @Inject(APP_BASE_HREF) public region: string,
   ) {
-    console.log('helllo');
+
   }
 
 
@@ -315,7 +315,6 @@ export class MiniListComponent implements OnInit, AfterViewInit, OnDestroy {
   nextButton() {
     this.pressedPrev = false;
     this.imageIndex++;
-    console.log(this.imageIndex);
     this.renderer.setStyle(this.container.nativeElement, 'transform', 'translateX(' + (-this.imageIndex) * 288 + 'px)');
 
   }
@@ -323,7 +322,6 @@ export class MiniListComponent implements OnInit, AfterViewInit, OnDestroy {
   prevButton() {
     this.pressedPrev = true;
     this.imageIndex--;
-    console.log(this.imageIndex);
     this.renderer.setStyle(this.container.nativeElement, 'transform', 'translateX(' + (-this.imageIndex) * 288 + 'px)');
   }
 

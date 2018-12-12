@@ -1,21 +1,27 @@
 import {
-  AfterViewChecked, AfterViewInit,
-  Component, DoCheck, EventEmitter, HostListener, Input, OnChanges, OnDestroy,
-  OnInit, Output,
-  Renderer2, SimpleChanges,
+  AfterViewChecked,
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  Component,
+  HostListener,
+  OnDestroy,
+  OnInit,
+  Renderer2,
   ViewChild
 } from '@angular/core';
-import {combineLatest, fromEvent, of, pipe} from 'rxjs';
+import {combineLatest, fromEvent} from 'rxjs';
 import {AppState} from '../../../../../../../core/store/app.reducer';
 import {select, Store} from '@ngrx/store';
 import {UserState} from '../../../../../../../core/store/user/user.model';
-import {ActivatedRoute, ActivatedRouteSnapshot, Params, Router} from '@angular/router';
-import {catchError, map, mergeMap, switchMap, tap} from 'rxjs/operators';
+import {ActivatedRoute, Router} from '@angular/router';
 import {PDataService} from '../../../../../../../core/service/data-pages/p/p-data.service';
+import {AddComment, GetCommentsProduct} from '../../../store/p.actions';
+import {map, share, shareReplay, startWith, tap, withLatestFrom} from 'rxjs/operators';
+
 @Component({
   selector: 'onpicks-communicate-box',
   templateUrl: './communicate-box.component.html',
-  styleUrls: ['./communicate-box.component.scss']
+  styleUrls: ['./communicate-box.component.scss'],
 })
 export class CommunicateBoxComponent implements OnInit,
   AfterViewChecked, AfterViewInit, OnDestroy {
@@ -31,116 +37,101 @@ export class CommunicateBoxComponent implements OnInit,
 
 
   comment;
-  currentCommentIndex;
-  addReviewState = false;
-  communicateBoxTransition$;
-  isViewImage = false;
-  // reviewsUIState$;
-  buttonState = false;
+  currentReviewIndex = 0;
   signInUserInfo: UserState;
+
+  isViewImage = false;
 
   // 검은색 부분을 눌러을 때, 꼬이는것을 방지하기 위해 추가
   popupState = false;
+  addReviewState = false;
+  buttonState = false;
+
 
   userState$;
+  currentData$;
+
+  communicateBoxTransition$;
+
+
+  reviewsId;
+  productId;
   combine$;
 
-  commentData$;
   constructor(
     private renderer: Renderer2,
     private store: Store<AppState>,
     private router: Router,
     private route: ActivatedRoute,
-    private pData: PDataService,
-    // private param: ActivatedRouteSnapshot,
+    private pData: PDataService
   ) {
+    const url = this.router.url.split('/');
+    this.reviewsId = parseInt(url[5], 10);
+    this.currentData$ = this.store.pipe(select((state: any) => state['p']['reviews']), shareReplay(1));
+    this.combine$ =
+      combineLatest(
+        this.currentData$,
+        this.route.params.pipe(
+          withLatestFrom(this.route.parent.params),
+          map(([child, parent]) => {
+            return { child, parent};
+          })),
+          // tap( v => console.log(v))
+      ).subscribe(
+        val => {
+          console.log('hello');
+          this.reviewsId = parseInt(val[1].child['id'], 10);
+
+          // @ts-ignore
+          this.currentReviewIndex = val[0].results.indexOf(this.reviewsId);
+          this.productId = val[1].parent['id'];
+          console.log(this.productId);
+          // this.store.dispatch( new GetCommentsProduct({ productId : v.parent['id'], reviewsId : v.child['id']}));
+          // buttonState가 false 일 때만, 이미지를 바로 표출할 수 있게
+          // 해당 State는 transition이 끝날때거나, 버튼 누르지 않고, 바로 화면에 뜰때만 false가 됨
+          // console.log('hello');
+          // console.log(val.state);
+          console.log(val);
+          console.log(this.currentData$);
+
+          /* undefined로 이외에 더 나은 조건으로 현재는 생각하기가 힘든 상태.
+          * 왜냐하면, Loading화면을 위해 Get_CooemtnsProduct에다가 undfeined를 넣었는데, 넣을때마다, subscribe가 동작함.*/
+          // TODO : 복잡하지 않은 더 나은조건으로 변경
+
+          // @ts-ignore
+          if ( val[0].list[this.reviewsId] && val[0].list[this.reviewsId].isCommentsLoaded === undefined) {
+            this.store.dispatch( new GetCommentsProduct({ productId : val[1].parent['id'], reviewsId : val[1].child['id']}));
+          }
+
+          if ( this.buttonState === false ) { this.isViewImage = true; }
+        }
+      )
+
+
+
     this.userState$ = this.store.pipe(
       select(
-        (state: any) => state.auth.user = {
-          email: 'example@mojostudio.io',
-          nickname: 'hello guys',
-          thumbnailSmallImgSrc: 'https://randomuser.me/api/portraits/women/21.jpg'
-        } ))
-      .subscribe( (val: UserState) => this.signInUserInfo = val);
+        (state: any) => state.auth.user
+      ),
+
+    ).subscribe(
+      (val: UserState) => {
+        this.signInUserInfo = val;
+    });
   }
 
+
   ngOnInit() {
-    //
-    // this.combine$ = combineLatest(
-    //   this.route.parent.params,
-    //   this.route.params,
-    // ).pipe(
-    //   map(([parent, child]) => {
-    //     return { parent, child };
-    //   }),
-    //   // mergeMap( val => this.pData.getCommentsData(val.parent['id'], val.child['id']))
-    // ).subscribe( val => {
-    //
-    //   console.log(val);
-    //   this.comment = this.totalList[val.child['id']];
-    //   this.currentCommentIndex = val.child['id'];
-    //   // console.log('childparams');
-    //   // console.log(params);
-    //   if ( this.comment.reviewImg !== '') {
-    //
-    //     // buttonState가 false 일 때만, 이미지를 바로 표출할 수 있게
-    //     // 해당 State는 transition이 끝날때거나, 버튼 누르지 않고, 바로 화면에 뜰때만 false가 됨
-    //     if ( this.buttonState === false ) { this.isViewImage = true; }
-    //
-    //     this.renderer.setStyle(this.communicateBox.nativeElement, 'width', '1056px');
-    //     this.renderer.setStyle(this.communicateBoxOnly.nativeElement, 'width' , '408px');
-    //   } else {
-    //     this.renderer.setStyle(this.communicateBox.nativeElement, 'width', '660px');
-    //     this.renderer.setStyle(this.communicateBoxOnly.nativeElement, 'width' , '660px');
-    //   }
-    //
-    //   this.commentData$ = this.pData.getCommentsData(val.parent['id'], val.child['id']).subscribe( comment => {
-    //     this.commentData = comment;
-    //     console.log(this.commentData);
-    //   });
-    // });
-    // ).subscribe( val => {
-    //
-    // });
-    // http://localhost/kr/shops/p/1/reviews/6 6부분의 값을 가져옴
-    // this.parentRouteParams$ = this.route.parent.params.subscribe(
-    //   (params) => {
-    //     console.log('parent params');
-    //     console.log(params);
-    //
-    //
-    //   });
-    //
-    //
-    // this.routeParams$ = this.route.params.subscribe(
-    //   (params) => {
-    //   this.comment = this.totalList[params['id']];
-    //   this.currentCommentIndex = params['id'];
-    //   console.log('childparams');
-    //     console.log(params);
-    //   if ( this.comment.reviewImg !== '') {
-    //
-    //     // buttonState가 false 일 때만, 이미지를 바로 표출할 수 있게
-    //     // 해당 State는 transition이 끝날때거나, 버튼 누르지 않고, 바로 화면에 뜰때만 false가 됨
-    //     if ( this.buttonState === false ) { this.isViewImage = true; }
-    //
-    //
-    //     this.renderer.setStyle(this.communicateBox.nativeElement, 'width', '1056px');
-    //     this.renderer.setStyle(this.communicateBoxOnly.nativeElement, 'width' , '408px');
-    //   } else {
-    //     this.renderer.setStyle(this.communicateBox.nativeElement, 'width', '660px');
-    //     this.renderer.setStyle(this.communicateBoxOnly.nativeElement, 'width' , '660px');
-    //   }
-    //
-    // });
+
   }
 
   ngOnDestroy() {
-    this.communicateBoxTransition$.unsubscribe();
-    this.userState$.unsubscribe();
+    this.renderer.setStyle( document.body, 'overflow', '' );
+    console.log('destrony')
+    console.log(this.userState$);
     this.combine$.unsubscribe();
-    this.commentData$.unsubscribe();
-
+    this.userState$.unsubscribe();
+    this.communicateBoxTransition$.unsubscribe();
 
     // route params는 unsubscribe할 필요 없음.
     // There are a few exceptional observables where this is not necessary. The ActivatedRoute observables are among the exceptions.
@@ -177,18 +168,16 @@ export class CommunicateBoxComponent implements OnInit,
   }
 
   ngAfterViewInit() {
-
+    this.renderer.setStyle( document.body, 'overflow', 'hidden' );
     this.communicateBoxTransition$ =
       fromEvent(this.communicateBox.nativeElement, 'transitionend').subscribe( val => {
-        // transition이 끝났을때 아래 2개의 변수 상태값 변경
+        this.isViewImage = true;
         this.popupState = true;
         this.buttonState = false;
-        if ( this.comment.reviewImg !== '') {
-          this.isViewImage = true;
-        } else {
-          this.isViewImage = false;
-        }
-      });
+
+        // transition이 끝났을때 아래 2개의 변수 상태값 변경
+
+    });
   }
 
 
@@ -198,44 +187,39 @@ export class CommunicateBoxComponent implements OnInit,
 
     if ( event.key === 'Enter' ) {
 
-      // this.totalList[this.currentCommentIndex].comments.push({
-      //   author : this.signInUserInfo.nickname,
-      //   content : f.value
-      // });
+      this.store.dispatch(new AddComment({ productId : this.productId, reviewsId : this.reviewsId, addedText : f.value }));
 
       this.renderer.setProperty(f, 'value', '');
 
       // ngAfterViewChecked가 매번 계속 발생하기 때문에,
       // 해당 State일때만, AfterViewChecked에서 코드 실행시키기 위해, 아래와같은 변수 추가
       this.addReviewState = true;
-
     }
   }
 
-  prevButton() {
-
-    if ( this.currentCommentIndex > 0 ) {
+  prevButton(navigateArray) {
+    // if ( this.currentReviewIndex > 0 ) {
       this.buttonState = true;
-      this.currentCommentIndex--;
-      // this.comment = this.totalList[this.currentCommentIndex];
-      this.router.navigate(['../' + this.currentCommentIndex], {relativeTo: this.route});
+      this.isViewImage = false;
+      this.currentReviewIndex--;
+      // this.comment = this.totalList[this.currentReviewIndex];
+      this.router.navigate(['../' + navigateArray], {relativeTo: this.route});
 
       // this.willChangeCommentIndex.emit('decrease');
-    }
+    // }
 
   }
 
 
-  nextButton() {
-
-
-    //if ( this.currentCommentIndex < this.totalList.length) {
+  nextButton(navigateArray) {
+    // if ( this.currentReviewIndex < this.totalList.length) {
       this.buttonState = true;
-      this.currentCommentIndex++;
-      // this.comment = this.totalList[this.currentCommentIndex];
-      this.router.navigate(['../' + this.currentCommentIndex], {relativeTo: this.route});
+      this.isViewImage = false;
+      this.currentReviewIndex++;
+      // this.comment = this.totalList[this.currentReviewIndex];
+      this.router.navigate(['../' + navigateArray], {relativeTo: this.route});
 
-    //}
+    // }
 
 
   }
@@ -248,8 +232,10 @@ export class CommunicateBoxComponent implements OnInit,
         // console.log('clicked inside');
 
       } else {
-
-        this.renderer.setStyle(document.body, 'overflow', '');
+        if ( this.buttonState ) {
+          this.buttonState = false;
+          return ;
+        };
         this.router.navigate(['../../'], {relativeTo: this.route});
       }
     }
@@ -261,7 +247,6 @@ export class CommunicateBoxComponent implements OnInit,
 
     // &&  this.communicateBox.nativeElement.style.display !== 'none'
     if ( event.key === 'Escape' ) {
-      this.renderer.setStyle(document.body, 'overflow', '');
       this.router.navigate( ['../../'], {relativeTo: this.route } );
     }
   }

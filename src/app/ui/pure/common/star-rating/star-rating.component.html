@@ -44,13 +44,15 @@
 
   <span *ngSwitchCase="10">
     <svg *ngFor="let item of numberArray(5); index as i" class="star--10">
-      <use #shapeStars fill="#b3b3b3" xlink:href="#star10"/>
+      <use #shapeStars [ngStyle]="{ fill : starInt > i ? '#292929' : starInt == i && halfStarCondition ?  'url(#grad)' : '#b3b3b3' }" xlink:href="#star10"/>
     </svg>
   </span>
 
   <span *ngSwitchDefault>
+
     <svg *ngFor="let item of numberArray(5); index as i" class="star--14">
-      <use #shapeStars fill="#b3b3b3" xlink:href="#star14"/>
+
+      <use #shapeStars [ngStyle]="{ fill : starInt > i ? '#292929' : starInt == i && halfStarCondition ?  'url(#grad)' : '#b3b3b3' }" xlink:href="#star14"/>
     </svg>
   </span>
 

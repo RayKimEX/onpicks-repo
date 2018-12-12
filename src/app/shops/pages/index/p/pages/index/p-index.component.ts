@@ -32,7 +32,7 @@ export class PIndexComponent implements OnInit {
       starRating: '4.5',
       profileImg : 'http://img.onpicks.com/profile-chris.jpg',
       reviewThumbImg : '',
-      reviewImg : '',
+      reviewImg : 'http://img.onpicks.com/p-customer__image--large-3.png',
       review: 'I read quite a lot of reviews before purchasing and funny thing...' +
         'many of the flavors ppl disliked turned out to be my most favorite. ' +
         'And the flavors they liked the most, were the ones I liked the least lol. ' +
@@ -1567,7 +1567,6 @@ export class PIndexComponent implements OnInit {
   ];
 
   pData$;
-  pReviewsData$;
 
   constructor(
     private store: Store<any>,
@@ -1575,10 +1574,11 @@ export class PIndexComponent implements OnInit {
     private data: PDataService,
     private route: ActivatedRoute,
   ) {
+    this.store.dispatch(new GetReviewProduct(this.route.snapshot.params.id));
+    console.log(this.route.snapshot.params.id);
     this.pData$ = this.data.getPageData(this.route.snapshot.params.id);
     // 글로벌 하게 해야되서 reviews는 갖고옴, reviews component와, communicate-box
 
-    this.store.dispatch(new GetReviewProduct(this.route.snapshot.params.id));
     // this.pReviewsData$ = this.data.getReviewsData(this.route.snapshot.params.id);
     // this.data.getData(this.route.snapshot.params.id).subscribe( (val) => console.log(val));
     // const initialState: UserState = {
@@ -1588,11 +1588,11 @@ export class PIndexComponent implements OnInit {
     // };
   }
 
-
-
   ngOnInit() {
 
   }
 
-
 }
+
+
+

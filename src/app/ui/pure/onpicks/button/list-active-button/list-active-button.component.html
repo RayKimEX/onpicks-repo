@@ -1,30 +1,31 @@
-<div #outer
+<div class="button-outer"
+     #outer
      [ngStyle]="
      {
-        width : isFixExtend ? '12.8rem' : '4rem',
-        borderColor : isFixExtend ? '#e5e5e5' : '#292929'
-     }
-">
+        width : isFixExtend || amount !== 0 ? '12.8rem' : '4rem',
+        borderColor : isFixExtend || amount !== 0 ? '#e5e5e5' : '#292929',
+        backgroundColor : mouseHover ? amount !== 0 ? '#FFFFFF' : '#292929' : '#FFFFFF'
+     }">
 
-
+<!--{{isExtend}}-->
+  <!--{{isFixExtend}}-->
   <span #extendUI
-        [ngStyle]="{ display : isFixExtend ? 'table-cell' : ''}"
+        [ngStyle]="{ display : isFixExtend || amount !== 0 ? 'table-cell' : 'none'}"
         class="extendUI">
     <ui-plus-minus-icon
       [opacity]="minusOpacity"
-      [color]=" isFixExtend && (amount == 1) ? '#b3b3b3' : '#292929'"
+      [borderColor]=" isFixExtend && (amount == 1) ? '#b3b3b3' : '#292929'"
       [size]="'14px'"
       #minusIcon
       [type]="'minus'"></ui-plus-minus-icon>
-    <span class="extendUI__number"
+    <span class="extendUI__number" *ngIf="amount !== 0"
     >{{amount}}</span>
   </span>
 
-
   <ui-plus-minus-icon
     [opacity]="plusOpactiy"
-    [color]="plusColor"
-    [size]="plusMinusIconSize"
+    [borderColor]="mouseHover && (amount === 0) ? '#FFFFFF' : amount === 10 ? '#e5e5e5' : '#292929'"
+    [size]="'12px'"
     #plusIcon
     [ngStyle]="
      {
@@ -39,7 +40,7 @@
         (mouseleave)="upOpacity('plus')"
         (click)="extendWidth()"
   ></span>
-  <span *ngIf="isExtend" class="touch__amount-down"
+  <span *ngIf="amount !== 0" class="touch__amount-down"
         (mousedown)="downOpacity('minus')"
         (mouseup)="upOpacity('minus')"
         (mouseleave)="upOpacity('minus')"

@@ -25,7 +25,6 @@ export class AnimateOnScrollDirective implements AfterViewInit {
   ngAfterViewInit() {
     this.timingFunction = this.timingFunction === undefined ? 'ease' : this.timingFunction;
     this.duration = this.duration === undefined ? '.5s' : this.duration;
-    console.log(this.timingFunction);
     this.renderer.setStyle(this.el.nativeElement, 'transition', 'all ' + this.duration + ' ' + this.timingFunction + ' 0s');
     this.canLazyLoad() ? this.lazyLoadImage() : this.animateOnScroll();
 

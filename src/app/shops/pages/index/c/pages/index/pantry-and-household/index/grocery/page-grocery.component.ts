@@ -21,8 +21,6 @@ export class PageGroceryComponent implements OnInit, OnDestroy {
 
   }
 
-  normalizedData;
-
   ngOnDestroy() {
   }
 

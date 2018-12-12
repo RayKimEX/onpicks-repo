@@ -89,7 +89,7 @@
       &--other-reviews {
         &-item {
           margin-bottom: 8px;
-
+          overflow-wrap : break-word;
           span:nth-of-type(1){
             margin-right : 8px;
           }

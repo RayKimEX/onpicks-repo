@@ -1,8 +1,14 @@
+<ng-template #loading>
+</ng-template>
+
 <div #pMenu class="p-menu">
+
   <div class="p-menu__inner-margin">
     <div class="p-menu__title subtitle-1-bold">
-      <!--[ngClass]="{ 'p-menu__title_empty' : data === null  }-->
-      <ng-container *ngIf="data !== null">{{data.product.brand.name}}</ng-container>
+      <!--이것은 전체를 기준으로 처리하려고 했으나, ViewChild를 가져오는 기준은, template이 시작될때 가져오는것 같음따라서,
+          중간에 데이터 들어오는것과 처리가 잘 안맞음. 그래서 각각 element에다가 ngIf를 따로 설정하여줌.-->
+      <ng-container *ngIf="data !== null;">{{data.brand.name}}</ng-container>
+
     </div>
     <div class="p-menu__icon-list">
       <span>
@@ -21,10 +27,11 @@
 
     <div class="p-menu__product-info">
       <h1 class="h1-regular p-menu__product-info--title" #titleHeight>
-        <ng-container *ngIf="data !== null">{{data.product.title}}</ng-container>
+        <ng-container *ngIf="data !== null;">{{data.title}}</ng-container>
+
         <!--알엑스바 리얼 푸드 프로틴 에너지바 믹스드 베리 52G / RxBar Real Food Protein Bars Mixed BerryRxBar Re-->
       </h1>
-      <ui-star-rating></ui-star-rating>
+      <ui-star-rating [star-point]="data ? data.review_avg_rating : 0"></ui-star-rating>
       <span class="p-menu__product-info--read-reviews subtitle-1-regular u-color-dark-grey">30개 리뷰 보기</span>
       <div class="p-menu__product-info--MSRP subtitle-1-regular">
         <!--TODO: MSRP는 지역에 따라 보이고 안보이고 설정-->
@@ -41,10 +48,6 @@
 
         <span class="p-menu__product-info--price-discount price-bold u-color-green">50%&nbsp;</span>
         <span class="p-menu__product-info--price-realprice price-bold">{{28600 | onpicksCurrency:'KRW'}}</span>
-        <!--<span class="p-menu__product-info&#45;&#45;price-perprice">($0.93 / Ounce)</span>-->
-        <!--<select class="p-menu__product-info&#45;&#45;price-comparison-option">-->
-          <!--<option value="" selected>30 days</option>-->
-        <!--</select>-->
         <onpicks-sort-box [sortList]="chartSortList" ></onpicks-sort-box>
       </div>
     </div>

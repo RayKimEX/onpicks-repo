@@ -1,7 +1,7 @@
 <div class="row account-profile">
   <div class="account-profile__info">
     <div class="account-profile__info--image">
-      <img *ngIf="(user$ | async) !== null" src="{{ (user$ | async).thumbnailSmallImgSrc }}" alt="">
+      <img *ngIf="(user$ | async) !== null" src="{{ (user$ | async).avatar }}" alt="">
     </div>
     <div class="account-profile__info-description">
       <div class="account-profile__info-description--name h1-bold" *ngIf="(user$ | async) !== null">{{ (user$ | async).nickname }}</div>
@@ -11,8 +11,6 @@
 
   </div>
 </div>
-
-
 
 <div class="row account-navigator">
   <nav>
@@ -43,7 +41,7 @@
         </button>
       </li>
       <li>
-        <button class="subtitle-2-bold u-color-grey">
+        <button (click)="logout()" class="subtitle-2-bold u-color-grey">
           로그아웃
         </button>
       </li>

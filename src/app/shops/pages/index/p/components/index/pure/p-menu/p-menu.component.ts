@@ -1,5 +1,16 @@
-import {AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, Input, OnDestroy, OnInit, Renderer2, ViewChild} from '@angular/core';
-import {fromEvent} from 'rxjs';
+import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  Input,
+  OnChanges,
+  OnDestroy,
+  OnInit,
+  Renderer2, SimpleChanges,
+  ViewChild
+} from '@angular/core';
+import {fromEvent, interval} from 'rxjs';
 import Chart from 'chart.js';
 import {select, Store} from '@ngrx/store';
 import {PState} from '../../../../store/p.reducer';
@@ -15,7 +26,7 @@ import ResizeSensor from 'css-element-queries/src/ResizeSensor';
 
 // MUST TODO: p.component.ts에서 store async를 받아서 pmenu에는 단순히 처리만
 // TODO : 스크롤 메뉴 관련 // https://www.29cm.co.kr/order/checkout?pay_code=10 참고해서, fix메뉴가 충분히 아래로 내려가면, 그때 내려갈 수 있도록 변경
-export class PMenuComponent implements OnInit, OnDestroy, AfterViewInit {
+export class PMenuComponent implements OnInit, OnDestroy, AfterViewInit, OnChanges {
 
   @ViewChild('titleHeight') titleHeight;
   @ViewChild('pMenu') pMenu: ElementRef;
@@ -157,33 +168,27 @@ export class PMenuComponent implements OnInit, OnDestroy, AfterViewInit {
     this.initialDatesTitle = ['Date1', 'Date2', 'Date3'];
   }
 
-  ngOnDestroy() {
-    this.scrollEvent.unsubscribe();
-    this.PStore$.unsubscribe();
-  }
+  ngOnChanges( changes: SimpleChanges ) {
 
-  ngAfterViewInit(){
+
+    /* async를 통해 데이터가 들어올때만 다음으로 넘어감*/
+    if ( changes.data.currentValue == null ) { return  ;}
     const result = parseInt(getComputedStyle(this.titleHeight.nativeElement, null).height, 10);
     this.titleHeight = result === 0  ? this.titleHeight : result;
 
-  }
-
-  ngOnInit() {
     // @ts-ignore
     const that = this
-    const hello = new ResizeSensor(this.titleHeight.nativeElement, function() {
-      console.log('Changed to');
+    new ResizeSensor(this.titleHeight.nativeElement, function() {
       that.titleHeight = parseInt(getComputedStyle(that.titleHeight.nativeElement, null).height, 10);
-      console.log(that.titleHeight);
 
     });
     const weatherDates = []
 
     this.scrollEvent = fromEvent(window, 'scroll');
-    this.PStore$ = this.store.pipe( select('p'));
+    this.PStore$ = this.store.pipe( select(state => state['p']['ui']));
     let setStatus = '';
-    let menuTopValue: PState;
-    this.PStore$ = this.PStore$.subscribe( (val: PState)  => {
+    let menuTopValue: { menuPosition};
+    this.PStore$ = this.PStore$.subscribe( (val: { menuPosition})  => {
       menuTopValue = val;
       // absolute
       if (window.pageYOffset >= (menuTopValue.menuPosition - this.titleHeight) - 32 &&  setStatus === 'absolute') {
@@ -193,28 +198,28 @@ export class PMenuComponent implements OnInit, OnDestroy, AfterViewInit {
 
     });
     this.scrollEvent = this.scrollEvent.subscribe(val => {
-        // console.log(this.titleHeight);
-        if (window.pageYOffset >= 172) {
-            if (window.pageYOffset >= (menuTopValue.menuPosition - this.titleHeight) - 32) {
-              // console.log('activated menuPosition : ' + window.pageYOffset);
-              if ( setStatus === 'absolute') { return; }
-              setStatus = 'absolute';
-              this.renderer.setStyle(this.pMenu.nativeElement, 'position', 'absolute');
-              this.renderer.setStyle(this.pMenu.nativeElement, 'top', (menuTopValue.menuPosition - this.titleHeight) * 0.1 + 'rem');
-            } else {
-
-              if ( setStatus === 'fixed' ) { return; }
-              setStatus = 'fixed';
-              this.renderer.setStyle(this.pMenu.nativeElement, 'position', 'fixed');
-              this.renderer.setStyle(this.pMenu.nativeElement, 'top', '32px');
-            }
-
+      // console.log(this.titleHeight);
+      if (window.pageYOffset >= 172) {
+        if (window.pageYOffset >= (menuTopValue.menuPosition - this.titleHeight) - 32) {
+          // console.log('activated menuPosition : ' + window.pageYOffset);
+          if ( setStatus === 'absolute') { return; }
+          setStatus = 'absolute';
+          this.renderer.setStyle(this.pMenu.nativeElement, 'position', 'absolute');
+          this.renderer.setStyle(this.pMenu.nativeElement, 'top', (menuTopValue.menuPosition - this.titleHeight) * 0.1 + 'rem');
         } else {
-          if ( setStatus === '' ) return;
-          setStatus = '';
-          this.renderer.setStyle(this.pMenu.nativeElement, 'position', 'static');
-          this.renderer.setStyle(this.pMenu.nativeElement, 'top', '0');
+
+          if ( setStatus === 'fixed' ) { return; }
+          setStatus = 'fixed';
+          this.renderer.setStyle(this.pMenu.nativeElement, 'position', 'fixed');
+          this.renderer.setStyle(this.pMenu.nativeElement, 'top', '32px');
         }
+
+      } else {
+        if ( setStatus === '' ) return;
+        setStatus = '';
+        this.renderer.setStyle(this.pMenu.nativeElement, 'position', 'static');
+        this.renderer.setStyle(this.pMenu.nativeElement, 'top', '0');
+      }
     });
     // @ts-ignore
     const that = this;
@@ -332,6 +337,8 @@ export class PMenuComponent implements OnInit, OnDestroy, AfterViewInit {
               that.renderer.setStyle(tooltipEl, 'pointerEvents', 'none');
               that.renderer.setStyle(tooltipEl, 'boxShadow', '0 6px 12px 0 #e3e3e3');
               that.renderer.setStyle(tooltipEl, 'transition', 'transform .5s, opacity .5s');
+              /* 가끔씩 에러가 있을때가 있는데 어떻게 해야할지 잘 모르겠음.
+              * `this._chart.canvas.$chartjs.resizer.parentNode` 가 undefined라고 뜸.*/
               that.renderer.setStyle(this._chart.canvas.$chartjs.resizer.parentNode, 'position', 'relative');
               that.renderer.appendChild(this._chart.canvas.$chartjs.resizer.parentNode, tooltipEl);
               that.renderer.listen(this._chart.canvas.$chartjs.resizer.parentNode, 'mouseout' , () => {
@@ -451,5 +458,24 @@ export class PMenuComponent implements OnInit, OnDestroy, AfterViewInit {
         }
       }
     });
+  }
+
+  ngOnDestroy() {
+    this.scrollEvent.unsubscribe();
+    this.PStore$.unsubscribe();
+  }
+
+  ngAfterViewInit() {
+    console.log('ngAfterViewInit!!!');
+    console.log(this.titleHeight);
+    // interval(1000).subscribe( val => console.log(this.data));
+  }
+
+  ngOnInit() {
+
+  }
+
+  typeof( hello ) {
+    return typeof(hello);
   }
 }

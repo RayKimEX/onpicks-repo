@@ -14,8 +14,6 @@ export class PageHouseholdSuppliesComponent implements OnInit, OnDestroy {
 
   }
 
-  normalizedData;
-
   ngOnDestroy() {
   }
 

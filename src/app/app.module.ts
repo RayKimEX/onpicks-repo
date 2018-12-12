@@ -19,11 +19,10 @@ import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {EffectsModule} from '@ngrx/effects';
 import {AuthEffects} from './core/store/auth/auth.effects';
-import {API_URL, API_URL_CONST, CURRENCY, DOMAIN_HOST} from './app.config';
+import {API_URL, API_URL_CONST, CURRENCY, DOMAIN_HOST, LOCATION_MAP, LOCATION_MAP_CONST} from './app.config';
 import {AuthInterceptorService} from './core/service/auth/auth-interceptor.service';
-import { environment } from '../environments/environment';
 import {UiEffects} from './core/store/ui/ui.effects';
-import {InfiniteScrollModule} from 'ngx-infinite-scroll';
+import {CartEffects} from './core/store/cart/cart.effects';
 
 // export function getBaseHref(platformLocation: PlatformLocation): string {
 //   return platformLocation.getBaseHrefFromDOM();
@@ -65,10 +64,13 @@ function getCookie(cname) {
 
     // Common Module
     StoreModule.forRoot(reducers),
-    EffectsModule.forRoot([AuthEffects, UiEffects]),
-    !environment.production ? StoreDevtoolsModule.instrument({
-      maxAge: 25, // Retains last 25 states
-    }) : [],
+    EffectsModule.forRoot([AuthEffects, UiEffects, CartEffects]),
+    StoreDevtoolsModule.instrument({
+      maxAge: 10
+    }),
+    // !environment.production ? StoreDevtoolsModule.instrument({
+    //   maxAge: 25, // Retains last 25 states
+    // }) : [],
     DirectivesModule,
     UiModule,
     ShopsModule,
@@ -103,8 +105,8 @@ function getCookie(cname) {
       useValue : getCookie('currency'),
     },
     {
-      provide: API_URL,
-      useValue : API_URL_CONST,
+      provide: LOCATION_MAP,
+      useValue : LOCATION_MAP_CONST,
     }
   ],
   bootstrap: [ AppComponent ]

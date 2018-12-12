@@ -1,7 +1,7 @@
 import {Inject, Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {FormControl, FormGroup} from '@angular/forms';
-import {DOMAIN_HOST} from '../../../app.config';
+import {DOMAIN_HOST} from '../../../../app.config';
 
 @Injectable({
   providedIn: 'root'

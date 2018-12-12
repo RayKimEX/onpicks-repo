@@ -31,6 +31,8 @@ import { IndentTableComponent } from './pure/onpicks/table/indent-table/indent-t
 import { CommunicateBoxComponent } from '../shops/pages/index/p/pages/index/reviews/communicate-box.component';
 import { SearchNavigatorComponent } from './emitter/search-navigator/search-navigator.component';
 import { ChangePreferenceComponent } from './emitter/change-preference/change-preference.component';
+import {LoadingIconComponent} from './pure/onpicks/item/loading-icon/loading-icon.component';
+
 
 @NgModule({
 
@@ -69,6 +71,7 @@ import { ChangePreferenceComponent } from './emitter/change-preference/change-pr
     CommunicateBoxComponent,
     SearchNavigatorComponent,
     ChangePreferenceComponent,
+    LoadingIconComponent,
   ],
   exports: [
     SimpleCarouselComponent,
@@ -98,6 +101,7 @@ import { ChangePreferenceComponent } from './emitter/change-preference/change-pr
     CommunicateBoxComponent,
     SearchNavigatorComponent,
     ChangePreferenceComponent,
+    LoadingIconComponent,
   ]
 })
 

@@ -1,5 +1,10 @@
 
-import {GET_CATEGORY_ALL, GET_CATEGORY_ALL_SUCCESS, UiActions, UPDATE_CATEGORY, UPDATE_URL_ACTIVE} from './ui.actions';
+import {
+  GET_CATEGORY_ALL_SUCCESS,
+  UiActions,
+  UPDATE_CATEGORY,
+  UPDATE_URL_ACTIVE
+} from './ui.actions';
 import {normalize, schema} from 'normalizr';
 //
 //
@@ -45,7 +50,10 @@ let currentSlug;
 export function UiReducer(state = initialState, action: UiActions): UiState {
 
   switch (action.type) {
+
+
     case UPDATE_URL_ACTIVE :
+
       return {
         ...state,
         activeUrl : action.payload,
@@ -360,8 +368,8 @@ export const initialState: UiState = {
   currentCategoryList : {
     isLoaded : false,
   },
+  activeUrl : [],
   searchList : {},
-  activeUrl : []
 };
 
 

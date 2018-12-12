@@ -53,8 +53,6 @@ onpicks-check-box {
       }
     }
   }
-
-
 }
 
 .c-value-navigator {
@@ -242,6 +240,22 @@ onpicks-check-box {
 
 .c-category-content {
 
+  &__empty {
+    padding-top : 3.2rem;
+    margin-bottom :5.6rem;
+    &--title {
+      margin-bottom: 2.4rem;
+    }
+
+    &--description:first-of-type {
+      margin-bottom : 0.8rem;
+    }
+
+  }
+
+  &__title {
+    margin-top : 3.2rem;
+  }
   &__pagination {
     &--outer {
       margin-top : 3.2rem;
@@ -328,6 +342,25 @@ onpicks-check-box {
 
   &__item {
 
+    &--option-product {
+      display:table;
+      position:absolute;
+      background-color: $color-white;
+      left:0;
+      bottom : 0;
+      width:9.2rem;
+      vertical-align: middle;
+      text-align : center;
+      height : 2.4rem;
+      border-radius : 12px;
+      border : solid 1px $color-light-grey;
+      span {
+        display:table-cell;
+        vertical-align : middle;
+      }
+    }
+
+    margin-top : 2.4rem;
     ui-star-rating {
       margin-right : 0.4rem;
     }
@@ -350,6 +383,11 @@ onpicks-check-box {
       position: relative;
       width: 26.4rem;
       height: 26.4rem;
+
+      img {
+        width : 26.4rem;
+        height : 26.4rem;
+      }
       onpicks-list-active-button {
         position: absolute;
         right : 0;

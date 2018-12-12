@@ -32,6 +32,8 @@ export class LoginComponent implements OnInit {
   }
 
   loginClick() {
+    console.log(this.inputEmail.nativeElement.value);
+    console.log(this.inputPassword.nativeElement.value);
     this.info.email = this.inputEmail.nativeElement.value;
     this.info.password = this.inputPassword.nativeElement.value;
 
@@ -43,56 +45,15 @@ export class LoginComponent implements OnInit {
   }
   login (event: KeyboardEvent) {
 
-
-//
-//     // Define a users schema
-//     const user = new schema.Entity('users');
-//
-// // Define your comments schema
-//     const comment = new schema.Entity('comments', {
-//       commenter: user
-//     });
-//
-// // Define your article
-//     const article = new schema.Entity('articles', {
-//       author: user,
-//       comments: [comment]
-//     });
-//
-//
-//     const hello = {
-//       'id': '123',
-//       'author': {
-//         'id': '1',
-//         'name': 'Paul'
-//       },
-//       'title': 'My awesome blog post',
-//       'comments': [
-//         {
-//           'id': '324',
-//           'commenter': {
-//             'id': '2',
-//             'name': 'Nicole'
-//           }
-//         }
-//       ]
-//     };
-//
-//     const normalizedData = normalize(hello, article);
-//
-//     console.log(normalizedData);
-
- // }
-
     if (event === undefined) {
 
       this.store.dispatch( new Login(this.info));
     } else {
       if ( event.key === 'Enter' ) {
+        this.info.email = this.inputEmail.nativeElement.value;
+        this.info.password = this.inputPassword.nativeElement.value;
         this.store.dispatch( new Login(this.info));
       }
     }
-
   }
-
 }

@@ -46,7 +46,7 @@ export class AuthEffects {
           map( (user) => {
             this.router.navigate(['/shops']);
 
-            return new LoginSuccess({nickname : 'hong', email : 'jesus_join@naver.com', thumbnailSmallImgSrc : 'http://img.onpicks.com/cart__table--info-N.png'});
+            return new LoginSuccess( payload);
           }),
           catchError( (error) => {
 
@@ -103,7 +103,7 @@ export class AuthEffects {
         .pipe(
           map( (user) => {
             console.log(user);
-            return new GetAuthUserInfoSuccess({nickname : 'hong', email : 'jesus_join@naver.com', thumbnailSmallImgSrc : 'http://img.onpicks.com/cart__table--info-N.png'});
+            return new GetAuthUserInfoSuccess(user);
           }),
           catchError( (error) => {
             console.log(error);

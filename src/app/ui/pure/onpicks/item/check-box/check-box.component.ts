@@ -29,8 +29,6 @@ export class CheckBoxComponent implements OnInit, AfterViewInit {
     } else {
       this.view = this.radioBoxView;
     }
-
-    console.log(this.view);
   }
 
   //

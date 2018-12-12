@@ -3,12 +3,7 @@
 @keyframes shine {
   to {
     background-position:
-      0 0,
-      100% 0, /* move highlight to right */
-      120px 0,
-      120px 40px,
-      120px 80px,
-      120px 120px;
+      450px 0px /* move highlight to right */
   }
 }
 .p-menu{
@@ -20,18 +15,15 @@
   margin-left: 7.3rem;
   will-change: transform;
 
+  &:empty{
+
+  }
+
   &__inner-margin {
     margin:2.4rem;
   }
 
   &__title {
-
-    //&_empty {
-    //  width: 100%;
-    //  height : 30px;
-    //  background-color : blue;
-    //}
-
     &:empty {
       width: 100%;
       height : 30px;

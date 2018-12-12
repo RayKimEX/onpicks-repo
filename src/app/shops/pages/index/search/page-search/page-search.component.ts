@@ -1,12 +1,32 @@
-import { Component, OnInit } from '@angular/core';
+import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {Store} from '@ngrx/store';
+import {ActivatedRoute} from '@angular/router';
+import {SearchService} from '../../../../../core/service/data-pages/search/search.service';
+import {switchMap} from 'rxjs/operators';
 
 @Component({
   selector: 'onpicks-page-search',
   templateUrl: './page-search.component.html',
-  styleUrls: ['./page-search.component.scss']
+  styleUrls: ['./page-search.component.scss'],
+  changeDetection : ChangeDetectionStrategy.OnPush,
 })
 export class PageSearchComponent implements OnInit {
+
+
+  constructor(
+    private store: Store<any>,
+    private route: ActivatedRoute,
+    private searchService: SearchService,
+  ) { }
+
+  searchData$;
+  ngOnInit() {
+    this.searchData$ = this.route.queryParams.pipe(
+      switchMap(  ( value ) => this.searchService.search(value))
+    );
+  }
+
+
 
   categoryList = {
     '식품' : {
@@ -284,12 +304,6 @@ export class PageSearchComponent implements OnInit {
         },
       }
     }
-  }
-
-
-  constructor( private store: Store<any>) { }
-
-  ngOnInit() {
   }
 
 }

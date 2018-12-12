@@ -1,6 +1,11 @@
-import {AfterViewInit, ChangeDetectionStrategy, Component, Inject, isDevMode, LOCALE_ID, OnDestroy, OnInit} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {DOMAIN_HOST} from './app.config';
+import {
+  AfterViewInit,
+  Component,
+  Inject,
+  LOCALE_ID,
+  OnDestroy,
+  OnInit
+} from '@angular/core';
 import {select, Store} from '@ngrx/store';
 import {AppState} from './core/store/app.reducer';
 import {GetAuthUser} from './core/store/auth/auth.actions';
@@ -13,6 +18,7 @@ import {
 } from '@angular/router';
 import {GetCategoryAll, UpdateUrlActive} from './core/store/ui/ui.actions';
 import {UiService} from './core/service/ui/ui.service';
+import {GetCartInfo} from './core/store/cart/cart.actions';
 
 @Component({
   selector: 'onpicks-root',
@@ -34,6 +40,7 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
 
     this.uiService.postLanguageSetting();
     this.store.dispatch(new GetAuthUser());
+    this.store.dispatch(new GetCartInfo());
 
     this.uiState$ = this.store.pipe(select( 'ui')).subscribe( val => this.isCategoryLoaded = val.currentCategoryList.isLoaded )
     // this.store.pipe(select( 'ui')).subscribe( val => console.log(val) )
@@ -61,7 +68,6 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
 
     if (event instanceof NavigationEnd) {
 
-      console.log('NavigationEnd');
       const url = this.router.url.split('/');
       const slug =  url[url.length - 1];
 

@@ -12,3 +12,12 @@ export const API_URL_CONST = {
     p : '/api/products/1/variants/1/',
   }
 }
+
+export const LOCATION_MAP = new InjectionToken<any>('app.config');
+export const LOCATION_MAP_CONST = {
+  'la' : 'lax',
+  'new' : 'jfk',
+  'osaka' : 'kix',
+  'gorge' : 'atl',
+  'hong' : 'hkg'
+}

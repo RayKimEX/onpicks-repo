@@ -1,347 +1,389 @@
-<div class="row">
-  <div class="col-3-of-12">
-    <div class="c-navigator-padding">
-      <div class="c-category-navigator">
-        <!--해당을 누르면 식품 생홀용품 카테고리 메인페이지로 가게-->
-        <div class="c-category-navigator__title subtitle-1-bold">식품 생활용품</div>
-        <hr>
-        <div class="c-category-navigator__content">
-          <nav class="subtitle-3-bold u-color-dark-grey">
+<ng-template #loading>
+  <div class="row">
+    <onpicks-loading-icon></onpicks-loading-icon>
+  </div>
+</ng-template>
 
-            <ul #depthOuter>
-              <li #oneDepth *ngFor="let firstCategoryId of result">
-                <!--twoDepth-->
-                <div class="c-category-navigator__item">
-                  <a (click)="updateSecondCategory(firstCategoryId, categoryList.secondCategory[firstCategoryId].slug)"
-                     [ngClass]="categoryList.secondCategory[firstCategoryId].active ? 'main-active' : 'main-deactive'" >
-                    {{categoryList.secondCategory[firstCategoryId].name}}
-                  </a>
-                  <label for="" (click)="onedepthFold(f1, label1)" >
-                    <svg #label1 width="10" height="8" viewBox="0 0 10 8"
-                         [ngStyle]="{'transform': categoryList.secondCategory[firstCategoryId].active ? 'rotate(-180deg)' : 'rotate(0deg)' }"
-                    >
-                      <polyline
-                        points="1 2 5 6 9 2"
-                        [ngClass]="categoryList.secondCategory[firstCategoryId].active ? 'u-color-stroke-black' : f1.style.maxHeight == '3500px' ? 'u-color-stroke-dark-grey' : 'u-color-stroke-grey'"
-                        fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
-                    </svg>
-                  </label>
-                </div>
-                <!--threeDepth-->
-                <ul #f1
-                    [ngStyle]="{'maxHeight': categoryList.secondCategory[firstCategoryId].active ? '3500px' : '0px' }">
-                  <li #twoDepth *ngFor="let secondCategoryId of categoryList.secondCategory[firstCategoryId].children">
+
+<div class="row" *ngIf="currentList !== null; else loading">
+  <ng-container [ngSwitch]="currentList.length">
+
+    <ng-container *ngSwitchCase="0">
+      <div class="c-category-content__empty" >
+        <h1 class="c-category-content__empty--title h1-bold">
+          <span class="u-color-green">{{queryParams.term}}</span>에 대한 검색 결과를 찾을 수 없습니다.
+        </h1>
+        <div class="c-category-content__empty--description subtitle-1-regular u-color-grey">다른검색어를 입력하시거나 철자와 띄어쓰기를 확인해보세요</div>
+        <div class="c-category-content__empty--description subtitle-1-regular u-color-grey">현재 판매종료 상품일 수 있으니 나중에 다시 검색해보세요</div>
+      </div>
+      <ui-mini-list [setTitle]="'추천 상품'"></ui-mini-list>
+    </ng-container>
+    <ng-container *ngSwitchDefault>
+
+      <div class="col-3-of-12">
+        <div class="c-navigator-padding">
+          <div class="c-category-navigator">
+            <!--해당을 누르면 식품품 생홀용품 카테고리 메인페이지로 가게-->
+            <div class="c-category-navigator__title subtitle-1-bold">식품 생활용품</div>
+            <hr>
+            <div class="c-category-navigator__content">
+              <nav class="subtitle-3-bold u-color-dark-grey">
+
+                <ul #depthOuter>
+                  <li #oneDepth *ngFor="let firstCategoryId of result">
+                    <!--twoDepth-->
                     <div class="c-category-navigator__item">
-                      <!--첫번째 category가 active되있는ㄴ지 아닌지 판단해서 색감넣음-->
-                      <a (click)="updateThirdCategory(
-                                secondCategoryId,
-                                categoryList.secondCategory[firstCategoryId].slug,
-                                categoryList.thirdCategory[secondCategoryId].slug)"
-                         [ngClass]="categoryList.secondCategory[firstCategoryId].active && !categoryList.thirdCategory[secondCategoryId].active
-                                  ? previous.thirdPrevious !== undefined ? 'main-deactive' : 'sub-active' : categoryList.thirdCategory[secondCategoryId].active ?  'main-active' : 'main-deactive' "
-                      >
-                        {{categoryList.thirdCategory[secondCategoryId].name}}
-
+                      <a (click)="updateSecondCategory(firstCategoryId, categoryList.secondCategory[firstCategoryId].slug)"
+                         [ngClass]="categoryList.secondCategory[firstCategoryId].active ? 'main-active' : 'main-deactive'" >
+                        {{categoryList.secondCategory[firstCategoryId].name}}
                       </a>
-                      <!--3dpeth-->
-                      <label *ngIf="categoryList.thirdCategory[secondCategoryId].children.length !== 0 " for="" (click)="twodepthFold(f2, label2)"  >
-                        <svg #label2
-                             width="10" height="8" viewBox="0 0 10 8" xmlns="http://www.w3.org/2000/svg"
-                             [ngStyle]="{ 'transform' : categoryList.thirdCategory[secondCategoryId].active ? 'rotate(-180deg)' : 'rotate(0deg)' }"
-                        >
-                          <polyline points="1 2 5 6 9 2"
-                                    [ngClass]="categoryList.thirdCategory[secondCategoryId].active ? 'u-color-stroke-black' : f2.style.maxHeight == '700px' ? 'u-color-stroke-grey' : 'u-color-stroke-light-grey'"
-                                    fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+                      <label for="" (click)="onedepthFold(f1, label1)" >
+                        <svg #label1 width="10" height="8" viewBox="0 0 10 8"
+                             [ngStyle]="{'transform': categoryList.secondCategory[firstCategoryId].active ? 'rotate(-180deg)' : 'rotate(0deg)' }">
+                          <polyline
+                            points="1 2 5 6 9 2"
+                            [ngClass]="categoryList.secondCategory[firstCategoryId].active ? 'u-color-stroke-black' : f1.style.maxHeight == '3500px' ? 'u-color-stroke-dark-grey' : 'u-color-stroke-grey'"
+                            fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
                         </svg>
                       </label>
                     </div>
-
-                    <ul #f2
-                        [ngStyle]="{ 'maxHeight' : categoryList.thirdCategory[secondCategoryId].active ? '700px' : '0px' }"
-                    >
-                      <li #threeDepth *ngFor="let thirdCategoryId of categoryList.thirdCategory[secondCategoryId].children">
+                    <!--threeDepth-->
+                    <ul #f1
+                        [ngStyle]="{'maxHeight': categoryList.secondCategory[firstCategoryId].active ? '3500px' : '0px' }">
+                      <li #twoDepth *ngFor="let secondCategoryId of categoryList.secondCategory[firstCategoryId].children">
                         <div class="c-category-navigator__item">
-                          <a
-                            [ngClass]="categoryList.thirdCategory[secondCategoryId].active ? categoryList.fourthCategory[thirdCategoryId].active ? 'main-active' : 'sub-active' : 'main-deactive'"
-                          >{{categoryList.fourthCategory[thirdCategoryId].name}}</a>
+                          <!--첫번째 category가 active되있는ㄴ지 아닌지 판단해서 색감넣음-->
+                          <a (click)="updateThirdCategory(
+                                    secondCategoryId,
+                                    categoryList.secondCategory[firstCategoryId].slug,
+                                    categoryList.thirdCategory[secondCategoryId].slug)"
+                             [ngClass]="categoryList.secondCategory[firstCategoryId].active && !categoryList.thirdCategory[secondCategoryId].active
+                                      ? previous.thirdPrevious !== undefined ? 'main-deactive' : 'sub-active' : categoryList.thirdCategory[secondCategoryId].active ?  'main-active' : 'main-deactive' ">
+                            {{categoryList.thirdCategory[secondCategoryId].name}}
+
+                          </a>
+                          <!--3dpeth-->
+                          <label *ngIf="categoryList.thirdCategory[secondCategoryId].children.length !== 0 " for="" (click)="twodepthFold(f2, label2)"  >
+                            <svg #label2
+                                 width="10" height="8" viewBox="0 0 10 8" xmlns="http://www.w3.org/2000/svg"
+                                 [ngStyle]="{ 'transform' : categoryList.thirdCategory[secondCategoryId].active ? 'rotate(-180deg)' : 'rotate(0deg)' }"
+                            >
+                              <polyline points="1 2 5 6 9 2"
+                                        [ngClass]="categoryList.thirdCategory[secondCategoryId].active ? 'u-color-stroke-black' : f2.style.maxHeight == '700px' ? 'u-color-stroke-grey' : 'u-color-stroke-light-grey'"
+                                        fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+                            </svg>
+                          </label>
                         </div>
 
-                        <!--<ul>-->
-                        <!--<li #FourDepth *ngFor="let firthDepth of secondDepth.value[thirdDepth.key] | keyvalue: nonCompareFunction">-->
-                        <!--<a class="u-color-dark-grey">{{firthDepth.key}}</a>-->
-                        <!--</li>-->
-                        <!--</ul>-->
+                        <ul #f2
+                            [ngStyle]="{ 'maxHeight' : categoryList.thirdCategory[secondCategoryId].active ? '700px' : '0px' }"
+                        >
+                          <li #threeDepth *ngFor="let thirdCategoryId of categoryList.thirdCategory[secondCategoryId].children">
+                            <div class="c-category-navigator__item">
+                              <a
+                                [ngClass]="categoryList.thirdCategory[secondCategoryId].active ? categoryList.fourthCategory[thirdCategoryId].active ? 'main-active' : 'sub-active' : 'main-deactive'"
+                              >{{categoryList.fourthCategory[thirdCategoryId].name}}</a>
+                            </div>
+
+                            <!--<ul>-->
+                            <!--<li #FourDepth *ngFor="let firthDepth of secondDepth.value[thirdDepth.key] | keyvalue: nonCompareFunction">-->
+                            <!--<a class="u-color-dark-grey">{{firthDepth.key}}</a>-->
+                            <!--</li>-->
+                            <!--</ul>-->
+                          </li>
+                        </ul>
                       </li>
                     </ul>
                   </li>
                 </ul>
-              </li>
-            </ul>
-          </nav>
+              </nav>
 
-          <div>
-            <a class="subtitle-3-bold u-color-green">숨기기</a>
+              <div>
+                <a class="subtitle-3-bold u-color-green">숨기기</a>
+              </div>
+            </div>
+          </div>
+          <div class="c-filter-navigator">
+            <div class="c-filter-navigator__title">
+              <span class="c-filter-navigator__title--name subtitle-1-bold">필터</span>
+              <span class="c-filter-navigator__title--remove subtitle-3-regular u-color-grey">모두제거</span>
+            </div>
+
+            <div class="c-filter-navigator__content">
+              <ul class="c-filter-navigator__content-ul">
+                <li class="c-filter-navigator__content-ul--item subtitle-3-regular">
+                  <span class="c-filter-navigator__content-ul--item-remove"></span>
+                  <span>Blue Buddha</span>
+                </li>
+                <li class="c-filter-navigator__content-ul--item subtitle-3-regular">
+                  <span class="c-filter-navigator__content-ul--item-remove"></span>
+                  <span>Kosher</span>
+                </li>
+                <li class="c-filter-navigator__content-ul--item subtitle-3-regular">
+                  <span class="c-filter-navigator__content-ul--item-remove"></span>
+                  <span>뉴저지 출고</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="c-brand-navigator">
+            <div class="c-brand-navigator__title">
+              <span class="c-brand-navigator__title--name subtitle-3-bold">브랜드</span>
+              <span class="c-brand-navigator__title--count subtitle-3-regular u-color-dark-grey">400</span>
+              <span class="c-brand-navigator__title--remove subtitle-3-regular u-color-grey">모두제거</span>
+            </div>
+            <onpicks-search-box
+              class="c-brand-navigator__search-box"
+              [placeholder]="'검색'"
+              [width]="22.6">
+            </onpicks-search-box>
+
+            <div class="c-brand-navigator__content">
+              <ul class="c-brand-navigator__content-ul">
+                <li
+                  class="c-brand-navigator__content-ul--item"
+                  *ngFor="let item of brandList">
+                  <onpicks-check-box [type]="'checkbox'">
+                    <span class="subtitle-3-regular">{{item.slug}}</span>
+                    <span class="subtitle-3-regular u-color-dark-grey">{{item.count}}</span>
+                  </onpicks-check-box>
+                </li>
+              </ul>
+            </div>
+            <div class="">
+              <a
+                class="subtitle-3-bold u-color-green">숨기기</a>
+            </div>
+          </div>
+          <div class="c-value-navigator">
+            <div class="c-value-navigator__title">
+              <span class="c-value-navigator__title--name subtitle-3-bold">식품인증</span>
+              <span class="c-value-navigator__title--remove subtitle-3-regular u-color-grey">모두제거</span>
+            </div>
+            <div class="c-value-navigator__content">
+              <ul class="c-value-navigator__content-ul">
+                <li
+                  class="c-value-navigator__content-ul--item"
+                  *ngFor="let item of wellBeingLabelList">
+                  <onpicks-check-box [type]="'checkbox'">
+                    <span class="subtitle-3-regular">{{item.name}}</span>
+                    <span class="subtitle-3-regular u-color-dark-grey">{{item.count}}</span>
+                  </onpicks-check-box>
+                </li>
+              </ul>
+            </div>
+            <div class="subtitle-3-bold u-color-green">숨기기</div>
+          </div>
+          <div class="c-forwarding-place-navigator">
+            <div class="c-forwarding-place-navigator__title">
+              <span class="c-forwarding-place-navigator__title--name subtitle-3-bold">출고지</span>
+              <span class="c-forwarding-place-navigator__title--remove subtitle-3-regular u-color-grey">모두제거</span>
+            </div>
+            <div class="c-forwarding-place-navigator__content">
+              <ul class="c-forwarding-place-navigator__content-ul">
+                <li
+                  class="c-forwarding-place-navigator__content-ul--item"
+                  *ngFor="let item of forwardingPlaceList">
+                  <onpicks-check-box [type]="'checkbox'">
+                    <span class="subtitle-3-regular">{{item.name}}</span>
+                    <span class="subtitle-3-regular u-color-dark-grey">{{item.count}}</span>
+                  </onpicks-check-box>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
-      <div class="c-filter-navigator">
-        <div class="c-filter-navigator__title">
-          <span class="c-filter-navigator__title--name subtitle-1-bold">필터</span>
-          <span class="c-filter-navigator__title--remove subtitle-3-regular u-color-grey">모두제거</span>
-        </div>
 
-        <div class="c-filter-navigator__content">
-          <ul class="c-filter-navigator__content-ul">
-            <li class="c-filter-navigator__content-ul--item subtitle-3-regular">
-              <span class="c-filter-navigator__content-ul--item-remove"></span>
-              <span>Blue Buddha</span>
-            </li>
-            <li class="c-filter-navigator__content-ul--item subtitle-3-regular">
-              <span class="c-filter-navigator__content-ul--item-remove"></span>
-              <span>Kosher</span>
-            </li>
-            <li class="c-filter-navigator__content-ul--item subtitle-3-regular">
-              <span class="c-filter-navigator__content-ul--item-remove"></span>
-              <span>뉴저지 출고</span>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <div class="c-brand-navigator">
-        <div class="c-brand-navigator__title">
-          <span class="c-brand-navigator__title--name subtitle-3-bold">브랜드</span>
-          <span class="c-brand-navigator__title--count subtitle-3-regular u-color-dark-grey">400</span>
-          <span class="c-brand-navigator__title--remove subtitle-3-regular u-color-grey">모두제거</span>
-        </div>
-        <onpicks-search-box
-          class="c-brand-navigator__search-box"
-          [placeholder]="'검색'"
-          [width]="22.6">
-        </onpicks-search-box>
+      <div class="col-9-of-12">
+        <div class="c-category-content">
+          <h1 class="c-category-content__title">{{currentSlug}}안녕하세요</h1>
+          <div class="c-category-content__content--outer">
+            <div class="c-category-content__content">
+              <ul #container>
+                <li #itemList *ngFor="let item of currentList; index as i">
+                  <div class="c-category-content__item">
 
-        <div class="c-brand-navigator__content">
-          <ul class="c-brand-navigator__content-ul">
-            <li
-              class="c-brand-navigator__content-ul--item"
-              *ngFor="let item of brandList">
-              <onpicks-check-box [type]="'checkbox'">
-                <span class="subtitle-3-regular">{{item.title}}</span>
-                <span class="subtitle-3-regular u-color-dark-grey">{{item.count}}</span>
-              </onpicks-check-box>
-            </li>
-          </ul>
-        </div>
-        <div class="">
-          <a
-            class="subtitle-3-bold u-color-green">숨기기</a>
-        </div>
-      </div>
-      <div class="c-value-navigator">
-        <div class="c-value-navigator__title">
-          <span class="c-value-navigator__title--name subtitle-3-bold">식품인증</span>
-          <span class="c-value-navigator__title--remove subtitle-3-regular u-color-grey">모두제거</span>
-        </div>
-        <div class="c-value-navigator__content">
-          <ul class="c-value-navigator__content-ul">
-            <li
-              class="c-value-navigator__content-ul--item"
-              *ngFor="let item of brandList">
-              <onpicks-check-box [type]="'checkbox'">
-                <span class="subtitle-3-regular">{{item.title}}</span>
-                <span class="subtitle-3-regular u-color-dark-grey">{{item.count}}</span>
-              </onpicks-check-box>
-            </li>
-          </ul>
-        </div>
-        <div class="subtitle-3-bold u-color-green">숨기기</div>
-      </div>
-      <div class="c-forwarding-place-navigator">
-        <div class="c-forwarding-place-navigator__title">
-          <span class="c-forwarding-place-navigator__title--name subtitle-3-bold">출고지</span>
-          <span class="c-forwarding-place-navigator__title--remove subtitle-3-regular u-color-grey">모두제거</span>
-        </div>
-        <div class="c-forwarding-place-navigator__content">
-          <ul class="c-forwarding-place-navigator__content-ul">
-            <li
-              class="c-forwarding-place-navigator__content-ul--item"
-              *ngFor="let item of forwardingPlace">
-              <onpicks-check-box [type]="'checkbox'">
-                <span class="subtitle-3-regular">{{item.title}}</span>
-                <span class="subtitle-3-regular u-color-dark-grey">{{item.count}}</span>
-              </onpicks-check-box>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="col-9-of-12">
-    <div class="c-category-content">
-      <h1 class="c-category-content__title">{{currentSlug}}안녕하세요</h1>
-      <div class="c-category-content__content--outer">
-        <div class="c-category-content__content">
-          <ul #container>
-            <li #itemList *ngFor="let item of currentList; index as i">
-              <div class="c-category-content__item">
-
-                <div class="c-category-content__item--image-outer">
-                  <a href="" routerLink="/shops/p/1">
-                    <img drCleanLoad src="{{item.imgSrc}}" alt="">
-                  </a>
-                  <onpicks-list-active-button (amountEvent)="addCart($event, i)"></onpicks-list-active-button>
-                </div>
+                    <div class="c-category-content__item--image-outer">
+                      <a href="" routerLink="/shops/p/{{item.slug}}">
+                        <img drCleanLoad src="{{item.thumbnail}}" alt="">
+                      </a>
 
 
-                <div class="c-category-content__item--name-outer">
-                  <div class="c-category-content__item--name-outer-brand subtitle-2-bold">
-                    <a routerLink="/shops/p/1">
-                      {{item.brand}}
-                    </a>
-                  </div>
+                      <!--카트정보가 어떤식으로 들어갈지 알아야, 대충이라도 작업할 수 있음.-->
+                      <ng-container
+                        [ngSwitch]="item.attributes.length">
+                        <onpicks-list-active-button
+                          [amount]="cartStore.cartList[item.slug] === undefined ? 0 : cartStore.cartList[item.slug]?.quantity"
+                          *ngSwitchCase="0"
+                          (addEvent)="addToCart($event, item.slug)"
+                          (subtractEvent)="subtractFromCart($event, item.slug)"
+                        ></onpicks-list-active-button>
 
-                  <a routerLink="/shops/p/1">
-                    <span class="c-category-content__item--name-outer-name body-2-regular">
-                      {{item.productName}}
-                    </span>
-                  </a>
-                </div>
+                        <div
+                          class="c-category-content__item--option-product"
+                          *ngSwitchDefault>
+                          <span class="subtitle-3-regular">옵션선택상품</span>
+                        </div>
 
-                <ui-star-rating
-                  [star-point]="item.rating"
-                  [size]="10">
-                </ui-star-rating>
-                <span class="subtitle-3-regular u-color-dark-grey">{{item.reviewCount}}</span>
-                <br>
-                <div class="c-category-content__price-info">
-                  <span class="c-category-content__price-info--discount subtitle-1-bold u-color-orange">{{item.discountPercent}}%</span>
-                  <span class="c-category-content__price-info--price subtitle-1-bold">{{item.currentPrice | onpicksCurrency:'KRW'}}</span>
-                  <span class="c-category-content__price-info--MSRP" *ngIf="locale == 'en'">MSRP</span>
-                  <span class="c-category-content__price-info--MSRP-discount subtitle-3-regular u-color-grey">{{item.msrpDiscountPrice | onpicksCurrency:'KRW'}}</span>
-                </div>
-                <div class="c-category-content__delivery-point">
-                  <ng-container [ngSwitch]="item.deliveryPoint">
-                    <ng-container *ngSwitchCase="1" >
-                      <span class="c-category-content__delivery-point--icon icon-small-la"></span>
-                      <span class="c-category-content__delivery-point--text subtitle-2-regular u-color-black"><strong>엘에이</strong> 출고</span>
-                    </ng-container>
-                    <ng-container *ngSwitchCase="2">
-                      <span class="c-category-content__delivery-point--icon icon-small-new"></span>
-                      <span class="c-category-content__delivery-point--text subtitle-2-regular u-color-black"><strong>뉴저지</strong> 출고</span>
-                    </ng-container>
-                    <ng-container *ngSwitchCase="3">
-                      <span class="c-category-content__delivery-point--icon icon-small-gorge"></span>
-                      <span class="c-category-content__delivery-point--text subtitle-2-regular u-color-black"><strong>죠지아</strong> 출고</span>
-                    </ng-container>
-                    <ng-container *ngSwitchCase="4">
-                      <span class="c-category-content__delivery-point--icon icon-small-osaka"></span>
-                      <span class="c-category-content__delivery-point--text subtitle-2-regular u-color-black"><strong>오사카</strong> 출고</span>
-                    </ng-container>
-                    <ng-container *ngSwitchCase="5">
-                      <span class="c-category-content__delivery-point--icon icon-small-hong"></span>
-                      <span class="c-category-content__delivery-point--text subtitle-2-regular u-color-black"><strong>홍콩</strong> 출고</span>
-                    </ng-container>
-                  </ng-container>
-                </div>
-              </div>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <div class="c-category-content__pagination--outer">
-      <div class="c-category-content__pagination">
-        <ul *ngIf="currentPage >= 1">
-          <li *ngIf="currentPage !== 1">
-            <div (click)="paginate(currentPage - 1)">
-              <svg width="9" height="14" viewBox="0 0 9 14">
-                <path fill="none" fill-rule="evenodd" stroke="#767676" stroke-width="2" d="M8 1L2 7.05 8 13"/>
-              </svg>
-            </div>
-          </li>
-
-          <span *ngIf="currentPage <= 4">
-        <!--5이하일 경우엔 가변 처리 없이, 무조건 5까지 다 보여줌-->
-            <span *ngIf="totalPageArray.length <= 7">
-              <li *ngFor="let number of totalPageArray;  index as i;" >
-                <div (click)="paginate(i + 1)" [ngClass]="{'c-category-content__pagination--number-bold' : currentPage === (1 + i)}">{{i + 1}}</div>
-              </li>
-            </span>
-            <span *ngIf="totalPageArray.length >= 8">
-              <li *ngFor="let number of numberArray(5)  index as i;" >
-                <div (click)="paginate(i+ 1)" [ngClass]="{'c-category-content__pagination--number-bold' : currentPage === (1 + i)}">{{i+ 1}}</div>
-              </li>
-              <li>
-                <div class="c-category-content__pagination--finite-num">...</div>
-              </li>
-              <li>
-                <div (click)="paginate( totalPageArray.length )" [ngClass]="{'c-category-content__pagination--number-bold' : currentPage === totalPageArray.length }">{{totalPageArray.length }}</div>
-              </li>
-            </span>
-          </span>
-
-          <span *ngIf="currentPage >= 5">
-            <!--currentPage가 5이상일 경우에도 가변 처리 없이, 무조건 7까지는 다 보여줌-->
-            <span *ngIf="totalPageArray.length <= 7">
-              <li *ngFor="let number of totalPageArray;  index as i;" >
-                <div (click)="paginate(i + 1)" [ngClass]="{'c-category-content__pagination--number-bold' : currentPage === (1 + i)}">{{i + 1}}</div>
-              </li>
-            </span>
-            <!--currentPage가 5이상이고 totalPage가 8이상일 경우엔 가변처리를 뿌려줌-->
-            <span *ngIf="totalPageArray.length >= 8">
-              <li>
-                <div (click)="paginate( 1 )" >1</div>
-              </li>
-              <li>
-                <div class="c-category-content__pagination--finite-num">...</div>
-              </li>
-
-              <!--currentPage가 5이상이고 totalPage - currentPage가 4보다 크면 가변 처리 되는 조건 ( 거의 대부분의 조건에 해당 )-->
-              <span *ngIf="(totalPageArray.length - currentPage) >= 4">
-                <li>
-                 <div (click)="paginate( currentPage - 1 )">{{currentPage - 1}}</div>
-                </li>
-                <li>
-                 <div (click)="paginate( currentPage )" class="c-category-content__pagination--number-bold">{{currentPage}}</div>
-                </li>
-                <li>
-                 <div (click)="paginate( currentPage + 1)">{{currentPage + 1}}</div>
-                </li>
-                <li>
-                  <div class="c-category-content__pagination--finite-num">...</div>
-                </li>
-                <li>
-                  <div (click)="paginate( totalPageArray.length )" [ngClass]="{'c-category-content__pagination--number-bold' : currentPage === totalPageArray.length }">{{totalPageArray.length }}</div>
-                </li>
-              </span>
-
-              <!--totalPage - currentPage가 3이하면 특수 조건 발동 -->
-              <span *ngIf="(totalPageArray.length - currentPage) <= 3">
-                <!-- 특수 조건에서 for 갯수는,totalPage - currentPage + 2가됨,
-                 마지막 page일 경우 ( currentPage === length )에는, 1을 더 추가해서, 앞에 하나 더 나오게 함  -->
-                <!-- TODO : 아래의 소스는 가독성이 떨어지므로 한번 수정 필요  -->
-                <span *ngFor="let item of numberArray(totalPageArray.length - currentPage + 2 + (  currentPage === totalPageArray.length ? 1 : 0));  index as i;">
-                  <li>
-                    <!-- +1의 의미는 현재 페이지에서 앞에 li를 하나 더 나오게 한다는 의미-->
-                    <div
-                      (click)="paginate( totalPageArray.length - ( (totalPageArray.length - currentPage + 1 + ( currentPage === totalPageArray.length ? 1 : 0)) - i ) )"
-                      [ngClass]="{'c-category-content__pagination--number-bold' : currentPage === (totalPageArray.length - ( (totalPageArray.length - currentPage + 1 + ( currentPage === totalPageArray.length ? 1 : 0))- i)) }">
-                      {{totalPageArray.length - ( (totalPageArray.length - currentPage + 1 + ( currentPage === totalPageArray.length ? 1 : 0))- i) }}
+                      </ng-container>
                     </div>
+
+
+                    <div class="c-category-content__item--name-outer">
+                      <div class="c-category-content__item--name-outer-brand subtitle-2-bold">
+                        <a routerLink="/shops/p/{{item.slug}}">
+                          {{item.brand}}
+                        </a>
+                      </div>
+
+                      <a routerLink="/shops/p/{{item.slug}}">
+                        <span class="c-category-content__item--name-outer-name body-2-regular">
+                          {{item.title}}
+                        </span>
+                      </a>
+                    </div>
+
+                    <ui-star-rating
+                      [star-point]="item.rating"
+                      [size]="10">
+                    </ui-star-rating>
+                    <span class="subtitle-3-regular u-color-dark-grey">{{item.reviewCount}}</span>
+                    <br>
+                    <div class="c-category-content__price-info">
+                      <span class="c-category-content__price-info--discount subtitle-1-bold u-color-orange">{{item.discount_rate | percentPipe}}%</span>
+                      <span class="c-category-content__price-info--price subtitle-1-bold">{{item.price | onpicksCurrency:'KRW'}}</span>
+                      <span class="c-category-content__price-info--MSRP" *ngIf="locale == 'en'">MSRP</span>
+                      <span class="c-category-content__price-info--MSRP-discount subtitle-3-regular u-color-grey">{{item.msrp | onpicksCurrency:'KRW'}}</span>
+                    </div>
+                    <div class="c-category-content__delivery-point">
+                      <ng-container [ngSwitch]="item.location?.slug">
+                        <ng-container *ngSwitchCase="'lax'" >
+                          <span class="c-category-content__delivery-point--icon icon-small-la"></span>
+                          <span class="c-category-content__delivery-point--text subtitle-2-regular u-color-black"><strong>엘에이</strong> 출고</span>
+                        </ng-container>
+                        <ng-container *ngSwitchCase="'jfk'">
+                          <span class="c-category-content__delivery-point--icon icon-small-new"></span>
+                          <span class="c-category-content__delivery-point--text subtitle-2-regular u-color-black"><strong>뉴저지</strong> 출고</span>
+                        </ng-container>
+                        <ng-container *ngSwitchCase="'atl'">
+                          <span class="c-category-content__delivery-point--icon icon-small-gorge"></span>
+                          <span class="c-category-content__delivery-point--text subtitle-2-regular u-color-black"><strong>죠지아</strong> 출고</span>
+                        </ng-container>
+                        <ng-container *ngSwitchCase="'kix'">
+                          <span class="c-category-content__delivery-point--icon icon-small-osaka"></span>
+                          <span class="c-category-content__delivery-point--text subtitle-2-regular u-color-black"><strong>오사카</strong> 출고</span>
+                        </ng-container>
+                        <ng-container *ngSwitchCase="'hkg'">
+                          <span class="c-category-content__delivery-point--icon icon-small-hong"></span>
+                          <span class="c-category-content__delivery-point--text subtitle-2-regular u-color-black"><strong>홍콩</strong> 출고</span>
+                        </ng-container>
+                      </ng-container>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="c-category-content__pagination--outer" *ngIf="currentList.length !== 0">
+          <div class="c-category-content__pagination">
+            <ul *ngIf="currentPage >= 1">
+              <li *ngIf="currentPage !== 1">
+                <div (click)="paginate(currentPage - 1)">
+                  <svg width="9" height="14" viewBox="0 0 9 14">
+                    <path fill="none" fill-rule="evenodd" stroke="#767676" stroke-width="2" d="M8 1L2 7.05 8 13"/>
+                  </svg>
+                </div>
+              </li>
+
+              <span *ngIf="currentPage <= 4">
+            <!--5이하일 경우엔 가변 처리 없이, 무조건 5까지 다 보여줌-->
+                <span *ngIf="totalPageArray.length <= 7">
+                  <li *ngFor="let number of totalPageArray;  index as i;" >
+                    <div (click)="paginate(i + 1)" [ngClass]="{'c-category-content__pagination--number-bold' : currentPage === (1 + i)}">{{i + 1}}</div>
+                  </li>
+                </span>
+                <span *ngIf="totalPageArray.length >= 8">
+                  <li *ngFor="let number of numberArray(5)  index as i;" >
+                    <div (click)="paginate(i+ 1)" [ngClass]="{'c-category-content__pagination--number-bold' : currentPage === (1 + i)}">{{i+ 1}}</div>
+                  </li>
+                  <li>
+                    <div class="c-category-content__pagination--finite-num">...</div>
+                  </li>
+                  <li>
+                    <div (click)="paginate( totalPageArray.length )" [ngClass]="{'c-category-content__pagination--number-bold' : currentPage === totalPageArray.length }">{{totalPageArray.length }}</div>
                   </li>
                 </span>
               </span>
-            </span>
-          </span>
-          <li *ngIf="currentPage !== totalPageArray.length">
-            <div (click)="paginate(currentPage + 1)">
-              <svg width="9" height="14" viewBox="0 0 9 14">
-                <path fill="none" fill-rule="evenodd" stroke="#767676" stroke-width="2" d="M1 13l6-6.05L1 1"/>
-              </svg>
-            </div>
-          </li>
-        </ul>
+
+              <span *ngIf="currentPage >= 5">
+                <!--currentPage가 5이상일 경우에도 가변 처리 없이, 무조건 7까지는 다 보여줌-->
+                <span *ngIf="totalPageArray.length <= 7">
+                  <li *ngFor="let number of totalPageArray;  index as i;" >
+                    <div (click)="paginate(i + 1)" [ngClass]="{'c-category-content__pagination--number-bold' : currentPage === (1 + i)}">{{i + 1}}</div>
+                  </li>
+                </span>
+                <!--currentPage가 5이상이고 totalPage가 8이상일 경우엔 가변처리를 뿌려줌-->
+                <span *ngIf="totalPageArray.length >= 8">
+                  <li>
+                    <div (click)="paginate( 1 )" >1</div>
+                  </li>
+                  <li>
+                    <div class="c-category-content__pagination--finite-num">...</div>
+                  </li>
+
+                  <!--currentPage가 5이상이고 totalPage - currentPage가 4보다 크면 가변 처리 되는 조건 ( 거의 대부분의 조건에 해당 )-->
+                  <span *ngIf="(totalPageArray.length - currentPage) >= 4">
+                    <li>
+                     <div (click)="paginate( currentPage - 1 )">{{currentPage - 1}}</div>
+                    </li>
+                    <li>
+                     <div (click)="paginate( currentPage )" class="c-category-content__pagination--number-bold">{{currentPage}}</div>
+                    </li>
+                    <li>
+                     <div (click)="paginate( currentPage + 1)">{{currentPage + 1}}</div>
+                    </li>
+                    <li>
+                      <div class="c-category-content__pagination--finite-num">...</div>
+                    </li>
+                    <li>
+                      <div (click)="paginate( totalPageArray.length )" [ngClass]="{'c-category-content__pagination--number-bold' : currentPage === totalPageArray.length }">{{totalPageArray.length }}</div>
+                    </li>
+                  </span>
+
+                  <!--totalPage - currentPage가 3이하면 특수 조건 발동 -->
+                  <span *ngIf="(totalPageArray.length - currentPage) <= 3">
+                    <!-- 특수 조건에서 for 갯수는,totalPage - currentPage + 2가됨,
+                     마지막 page일 경우 ( currentPage === length )에는, 1을 더 추가해서, 앞에 하나 더 나오게 함  -->
+                    <!-- TODO : 아래의 소스는 가독성이 떨어지므로 한번 수정 필요  -->
+                    <span *ngFor="let item of numberArray(totalPageArray.length - currentPage + 2 + (  currentPage === totalPageArray.length ? 1 : 0));  index as i;">
+                      <li>
+                        <!-- +1의 의미는 현재 페이지에서 앞에 li를 하나 더 나오게 한다는 의미-->
+                        <div
+                          (click)="paginate( totalPageArray.length - ( (totalPageArray.length - currentPage + 1 + ( currentPage === totalPageArray.length ? 1 : 0)) - i ) )"
+                          [ngClass]="{'c-category-content__pagination--number-bold' : currentPage === (totalPageArray.length - ( (totalPageArray.length - currentPage + 1 + ( currentPage === totalPageArray.length ? 1 : 0))- i)) }">
+                          {{totalPageArray.length - ( (totalPageArray.length - currentPage + 1 + ( currentPage === totalPageArray.length ? 1 : 0))- i) }}
+                        </div>
+                      </li>
+                    </span>
+                  </span>
+                </span>
+              </span>
+              <li *ngIf="currentPage !== totalPageArray.length && totalPageArray.length !== 0">
+                <div (click)="paginate(currentPage + 1)">
+                  <svg width="9" height="14" viewBox="0 0 9 14">
+                    <path fill="none" fill-rule="evenodd" stroke="#767676" stroke-width="2" d="M1 13l6-6.05L1 1"/>
+                  </svg>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
+
+    </ng-container>
+
+  </ng-container>
 </div>

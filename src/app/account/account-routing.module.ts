@@ -14,12 +14,14 @@ import {MyShoppingIndexComponent} from './pages/index/my-shopping/index/my-shopp
 import {OrdersComponent} from './pages/index/my-shopping/index/orders/orders.component';
 import {CreditsComponent} from './pages/index/my-shopping/index/credits/credits.component';
 import {OrdersDetailComponent} from './pages/index/my-shopping/index/orders-detail/orders-detail.component';
+import {AuthGuard} from '../core/service/auth/auth.guard';
 // import {SettingsComponent} from './pages/settings/settings.component';
 
 const routes: Routes = [
   {
     path : '',
     component : AccountIndexComponent,
+    canActivate : [AuthGuard],
     children : [
       {
         path : '',

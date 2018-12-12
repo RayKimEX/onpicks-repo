@@ -7,7 +7,10 @@ export const GET_CATEGORY_ALL_FAILURE = '[UI Search] GET_CATEGORY_ALL_FAILURE';
 
 export const UPDATE_CATEGORY = '[UI Search] UPDATE_CATEGORY';
 
-export const UPDATE_URL_ACTIVE = '[URL Active] UPDATE_URL_ACTIVE'
+export const UPDATE_URL_ACTIVE = '[URL Active] UPDATE_URL_ACTIVE';
+
+export const ADD_TO_CART = '[UI Cart] ADD_TO_CART';
+export const SUBTRACT_FROM_CART = '[UI Cart] SUBTRACT_FROM_CART';
 
 
 
@@ -55,11 +58,9 @@ export class UpdateUrlActive implements Action {
   }
 }
 
-
-
 export type UiActions =
   GetCategoryAll |
   GetCategorySuccess |
   GetCategoryFailure |
   UpdateCategory |
-  UpdateUrlActive;
+  UpdateUrlActive ;

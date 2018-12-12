@@ -47,7 +47,11 @@ const appRoutes: Routes = [
 
 @NgModule({
   imports: [
-    RouterModule.forRoot( appRoutes )
+
+    /* TODO : review에서 anchorScrolling 구현요망*/
+    RouterModule.forRoot( appRoutes , {
+      anchorScrolling : 'enabled',
+    })
   ],
   exports: [ RouterModule ]
 })

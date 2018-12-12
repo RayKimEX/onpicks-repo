@@ -19,20 +19,21 @@ import {fromEvent} from 'rxjs';
   styleUrls: ['./list-active-button.component.scss'],
   changeDetection : ChangeDetectionStrategy.OnPush,
 })
+
 export class ListActiveButtonComponent implements OnInit, AfterViewInit {
   @ViewChild('outer') outer;
   @ViewChild('plusIcon', {read : ElementRef}) plusIcon;
   @ViewChild('extendUI' ) extendUI;
-  @Output('amountEvent') amountEvent = new EventEmitter<string>();
-  @Input('isFixExtend') isFixExtend;
+  @Output('addEvent') addEvent = new EventEmitter<number>();
+  @Output('subtractEvent') subtractEvent = new EventEmitter<number>();
+  @Input('isFixExtend') isFixExtend = false;
+  @Input('amount') amount = 0;
 
-  isExtend = false;
-  amount = 1;
-  plusColor = '#292929';
   plusOpactiy = 1;
   minusOpacity = 1;
-  plusMinusIconSize = '12px';
+  mouseHover = false;
   tempEvent;
+  extendButtonPressed = false;
 
   // TODO : 해당 HTML파일에서, Border-radius에 대한, 부분에는, mouseover에 대한, css변경이 정확히 circle안에서만 이루어지게
   // TODO : span 2개를 따로만들어서, 버튼 처리 했는데, 그것을, position absolute말고, padding을 추가해서 가운대로 맞춘후, parentWidth, Height로 button처리 하기
@@ -43,23 +44,34 @@ export class ListActiveButtonComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    this.isExtend = this.isFixExtend;
+    if ( this.isFixExtend ) {
+      this.amount = 1;
+    }
   }
 
   ngAfterViewInit() {
 
+    if ( this.amount !== 0 ) {
+//      this.minusOpacity = 1;
+
+      // this.renderer.setStyle(this.outer.nativeElement, 'backgroundColor', '#FFFFFF');
+      this.renderer.setStyle(this.plusIcon.nativeElement, 'left', 'auto');
+      this.renderer.setStyle(this.plusIcon.nativeElement, 'right', '1.9rem');
+      // this.renderer.setStyle(this.outer.nativeElement, 'width', '12.8rem');
+      // this.renderer.setStyle(this.outer.nativeElement, 'border-color', '#e5e5e5');
+    }
   }
 
-  @HostListener('mouseover')
+  @HostListener('mousemove')
   onMouseOver() {
 
-    if( this.isFixExtend ) { return;}
+    if(this.extendButtonPressed) { return; }
+    if ( this.isFixExtend ) { return;}
     // 이미 확장되었을때,
-    if (this.isExtend) {
-
+    if (this.amount !== 0 ) {
     // 초기 상태일 때,
     } else {
-      this.plusColor = '#FFFFFF';
+      this.mouseHover = true;
       this.renderer.setStyle(this.outer.nativeElement, 'backgroundColor', '#292929');
     }
   }
@@ -67,31 +79,31 @@ export class ListActiveButtonComponent implements OnInit, AfterViewInit {
   @HostListener('mouseleave')
   onMouseLeave() {
     // 이미 확장되었을때,
-    if (this.isExtend) {
+    this.mouseHover = false;
+    if (this.amount !== 0 ) {
+
       this.renderer.setStyle(this.outer.nativeElement, 'backgroundColor', '#FFFFFF');
       // 초기 상태일 때,
     } else {
-      this.plusColor = '#292929';
       this.renderer.setStyle(this.outer.nativeElement, 'backgroundColor', '#FFFFFF');
     }
   }
 
-  downOpacity (direction){
-    if( direction === 'plus' && this.isExtend ) {
-      if(this.amount !== 10) {
+  downOpacity (direction) {
+    if ( direction === 'plus') {
+      if ( this.amount !== 10) {
         this.plusOpactiy = 0.3;
       }
     } else {
 
-      if( this.amount !== 1 ){
+      if ( this.amount !== 1 ) {
         this.minusOpacity = 0.3;
       }
-
     }
   }
 
   upOpacity(direction) {
-    if( direction === 'plus'){
+    if ( direction === 'plus'){
       this.plusOpactiy = 1;
     } else {
       this.minusOpacity = 1;
@@ -102,56 +114,60 @@ export class ListActiveButtonComponent implements OnInit, AfterViewInit {
 
   extendWidth() {
     // 초기상태일때
-    if (! this.isExtend) {
-      this.plusColor = '#292929';
-      this.plusMinusIconSize = '12px';
-      this.renderer.setStyle(this.extendUI.nativeElement, 'display', 'table-cell');
-      this.renderer.setStyle(this.outer.nativeElement, 'backgroundColor', '#FFFFFF');
+
+    if ( this.extendButtonPressed === false ) {
+      this.addEvent.emit(this.amount);
+    }
+    this.extendButtonPressed = true;
+    this.plusOpactiy = 1;
+    if (this.amount === 0 ) {
+      this.mouseHover = false;
+      this.minusOpacity = 1;
+
+      // this.renderer.setStyle(this.extendUI.nativeElement, 'display', 'table-cell');
+      // this.renderer.setStyle(this.outer.nativeElement, 'backgroundColor', '#FFFFFF');
       this.renderer.setStyle(this.plusIcon.nativeElement, 'left', 'auto');
       this.renderer.setStyle(this.plusIcon.nativeElement, 'right', '1.9rem');
-      this.isExtend = true;
-      this.renderer.setStyle(this.outer.nativeElement, 'width', '12.8rem');
+      // this.renderer.setStyle(this.outer.nativeElement, 'width', '12.8rem');
       this.renderer.setStyle(this.outer.nativeElement, 'border-color', '#e5e5e5');
+      this.tempEvent = fromEvent(this.outer.nativeElement, 'transitionend').subscribe( v => {
+        // @ts-ignore
+        if (v.propertyName === 'width' ) { this.extendButtonPressed = false };
+      });
+
 
       // 이미 확장 되었을때,
     } else {
 
       if ( this.amount < 10) {
-        if( this.amount === 9 ){
-          this.plusColor = '#e5e5e5';
-        }
-        this.amountEvent.emit('increase');
-        this.amount++;
-      }
+        // this.amount++;
+        this.addEvent.emit(this.amount);
 
+      }
     }
   }
 
 
 
   amountDown() {
-    if( this.amount > 1) {
-      this.amountEvent.emit('decrease');
-      this.amount--;
-      if ( this.plusColor !== '#292929') {
-        this.plusColor = '#292929';
-      }
+    if ( this.amount > 1) {
+
+      // this.amount--;
+      this.subtractEvent.emit(this.amount);
+
 
     } else {
 
-      if( this.isFixExtend ) { return;}
+      if( this.isFixExtend ) { return; }
 
       this.renderer.setStyle(this.extendUI.nativeElement, 'display', 'none');
       this.renderer.setStyle(this.outer.nativeElement, 'width', '4rem');
       this.renderer.setStyle(this.outer.nativeElement, 'border-color', '#292929');
-      this.tempEvent = fromEvent(this.outer.nativeElement, 'transitionend');
 
 
-      this.tempEvent = this.tempEvent.subscribe( val => {
-        this.isExtend = false;
-        this.tempEvent.unsubscribe();
-      });
+      // this.amount--;
+      this.subtractEvent.emit(this.amount);
+
     }
   }
-
 }
