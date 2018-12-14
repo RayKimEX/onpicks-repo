@@ -54,7 +54,7 @@ export function PReducer (state = initialState, action: PActions.PActions) {
 
 
     /* loading화면을 위해 일부러 undefined를 강제적으로 넣어줌*/
-    case PActions.GET_COMMENTS_PRODUCT :
+    case PActions.TRY_GET_COMMENTS_PRODUCT :
 
       return {
         ...state,

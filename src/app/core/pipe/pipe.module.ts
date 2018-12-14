@@ -3,7 +3,7 @@ import {CommonModule, CurrencyPipe} from '@angular/common';
 import { TimeAgoPipe } from './time-ago/time-ago.pipe';
 import { OnpicksCurrencyPipe } from './onpicks-currency/onpicks-currency.pipe';
 import { SafeHtmlPipe } from './safe-html/safe-html.pipe';
-import { PercentPipePipe } from './pipe/percent-pipe.pipe';
+import {PercentPipePipe} from './percent-pipe/percent-pipe.pipe';
 
 @NgModule({
   imports: [

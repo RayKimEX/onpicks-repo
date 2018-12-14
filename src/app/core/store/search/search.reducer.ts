@@ -25,17 +25,17 @@ export function SearchReducer(state = initialState, action: SearchActions): Sear
 
     case GET_FIRST_CATEGORY_SUCCESS :
     case GET_FIRST_CATEGORY :
-      const normalizedCategoryData = normalizer(action.payload.data);
+      // const normalizedCategoryData = normalizer(action.payload.data);
       console.log('getSecondCategorySuccess');
-      console.log(action.payload.data);
-      console.log(action.payload.type);
+      //console.log(action.payload.data);
+      // console.log(action.payload.type);
 
       return {
         ...state,
         categoryList : {
           ...state.categoryList,
-          firstCategory : action.payload.data,
-          type : action.payload.type,
+          //firstCategory : action.payload.data,
+          // type : action.payload.type,
         }
       }
       // break;

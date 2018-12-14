@@ -62,6 +62,7 @@ export class GetSecondCategoryFailure implements Action {
 
 export class GetSecondCategory implements Action {
   readonly type = GET_SECOND_CATEGORY;
+  constructor( public payload: any ) { }
 }
 
 
@@ -74,6 +75,8 @@ export class TryGetThirdCategory implements Action {
 
 export class GetThirdCategorySuccess implements Action {
   readonly type = GET_THIRD_CATEGORY_SUCCESS;
+
+  constructor( public payload: any ) { }
 }
 
 export class GetThirdCategoryFailure implements Action {
@@ -82,6 +85,7 @@ export class GetThirdCategoryFailure implements Action {
 
 export class GetThirdCategory implements Action {
   readonly type = GET_THIRD_CATEGORY;
+  constructor( public payload: any ) { }
 }
 
 
@@ -92,6 +96,8 @@ export class TryGetFourthCategory implements Action {
 
 export class GetFourthCategorySuccess implements Action {
   readonly type = GET_FOURTH_CATEGORY_SUCCESS;
+
+  constructor( public payload: any ) { }
 }
 
 export class GetFourthCategoryFailure implements Action {
@@ -100,6 +106,8 @@ export class GetFourthCategoryFailure implements Action {
 
 export class GetFourthCategory implements Action {
   readonly type = GET_FOURTH_CATEGORY;
+
+  constructor( public payload: any ) { }
 }
 
 
@@ -124,4 +132,4 @@ export type SearchActions =
   TryGetFourthCategory |
   GetFourthCategorySuccess |
   GetFourthCategoryFailure |
-  GetFourthCategory |;
+  GetFourthCategory;
