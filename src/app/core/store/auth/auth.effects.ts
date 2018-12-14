@@ -10,7 +10,7 @@ import {
 import {
   GetAuthUserInfoFailure,
   GetAuthUserInfoSuccess,
-  Login,
+  TryLogin,
   LoginFailure,
   LoginSuccess,
   LogoutFailure,
@@ -20,7 +20,7 @@ import {
 import {AuthService} from '../../service/auth/auth.service';
 import {Router} from '@angular/router';
 import {of} from 'rxjs';
-import {UserSignUpAPI} from '../user/user.model';
+import {UserSignUpAPI} from '../user.model';
 import {UiService} from '../../service/ui/ui.service';
 
 @Injectable()
@@ -58,8 +58,8 @@ export class AuthEffects {
 
   @Effect()
   authLogin = this.actions$.pipe(
-    ofType( AuthActions.LOGIN ),
-    map( (action: Login) => action.payload ),
+    ofType( AuthActions.TRY_LOGIN ),
+    map( (action: TryLogin) => action.payload ),
     switchMap( payload => {
       return this.authService.login( payload.email, payload.password,  payload.isPersistent )
         .pipe(
@@ -77,7 +77,7 @@ export class AuthEffects {
 
   @Effect()
   authLogout = this.actions$.pipe(
-    ofType( AuthActions.LOGOUT ),
+    ofType( AuthActions.TRY_LOGOUT ),
     switchMap( payload => {
       return this.authService.logout()
         .pipe(
@@ -97,7 +97,7 @@ export class AuthEffects {
 
   @Effect()
   getAuthUser = this.actions$.pipe(
-    ofType( AuthActions.GET_AUTHUSER_INFO ),
+    ofType( AuthActions.TRY_GET_AUTHUSER_INFO ),
     switchMap( payload => {
       return this.authService.getAuthUser()
         .pipe(

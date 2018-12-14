@@ -2,7 +2,7 @@ import {Inject, Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {API_URL, DOMAIN_HOST} from '../../../app.config';
-import {UserSignUpAPI} from '../../store/user/user.model';
+import {UserSignUpAPI} from '../../store/user.model';
 
 @Injectable({
   providedIn: 'root'

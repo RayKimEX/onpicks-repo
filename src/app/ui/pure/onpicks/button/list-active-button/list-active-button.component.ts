@@ -51,15 +51,6 @@ export class ListActiveButtonComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
 
-    if ( this.amount !== 0 ) {
-//      this.minusOpacity = 1;
-
-      // this.renderer.setStyle(this.outer.nativeElement, 'backgroundColor', '#FFFFFF');
-      this.renderer.setStyle(this.plusIcon.nativeElement, 'left', 'auto');
-      this.renderer.setStyle(this.plusIcon.nativeElement, 'right', '1.9rem');
-      // this.renderer.setStyle(this.outer.nativeElement, 'width', '12.8rem');
-      // this.renderer.setStyle(this.outer.nativeElement, 'border-color', '#e5e5e5');
-    }
   }
 
   @HostListener('mousemove')

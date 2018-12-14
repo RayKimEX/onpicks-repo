@@ -19,10 +19,20 @@ import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {EffectsModule} from '@ngrx/effects';
 import {AuthEffects} from './core/store/auth/auth.effects';
-import {API_URL, API_URL_CONST, CURRENCY, DOMAIN_HOST, LOCATION_MAP, LOCATION_MAP_CONST} from './app.config';
+import {
+  API_URL,
+  API_URL_CONST,
+  CATEGORY_MAP,
+  CATEGORY_MAP_CONST,
+  CURRENCY,
+  DOMAIN_HOST,
+  LOCATION_MAP,
+  LOCATION_MAP_CONST
+} from './app.config';
 import {AuthInterceptorService} from './core/service/auth/auth-interceptor.service';
 import {UiEffects} from './core/store/ui/ui.effects';
 import {CartEffects} from './core/store/cart/cart.effects';
+import {SearchEffects} from './core/store/search/search.effects';
 
 // export function getBaseHref(platformLocation: PlatformLocation): string {
 //   return platformLocation.getBaseHrefFromDOM();
@@ -61,10 +71,9 @@ function getCookie(cname) {
     AppRoutingModule,
     BrowserAnimationsModule,
 
-
     // Common Module
     StoreModule.forRoot(reducers),
-    EffectsModule.forRoot([AuthEffects, UiEffects, CartEffects]),
+    EffectsModule.forRoot([AuthEffects, UiEffects, CartEffects, SearchEffects]),
     StoreDevtoolsModule.instrument({
       maxAge: 10
     }),
@@ -107,6 +116,10 @@ function getCookie(cname) {
     {
       provide: LOCATION_MAP,
       useValue : LOCATION_MAP_CONST,
+    },
+    {
+      provide: CATEGORY_MAP,
+      useValue : CATEGORY_MAP_CONST,
     }
   ],
   bootstrap: [ AppComponent ]

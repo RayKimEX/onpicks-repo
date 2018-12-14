@@ -1,13 +1,14 @@
 import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {select, Store} from '@ngrx/store';
 import {AppState} from '../../../core/store/app.reducer';
-import {Logout} from '../../../core/store/auth/auth.actions';
+import {TryLogout} from '../../../core/store/auth/auth.actions';
 import {Router} from '@angular/router';
 
 @Component({
   selector: 'onpicks-account-index',
   templateUrl: './account-index.component.html',
   styleUrls: ['./account-index.component.scss'],
+  changeDetection : ChangeDetectionStrategy.OnPush,
 })
 export class AccountIndexComponent implements OnInit {
 
@@ -28,7 +29,7 @@ export class AccountIndexComponent implements OnInit {
 
 
   logout() {
-    this.store.dispatch(new Logout());
+    this.store.dispatch(new TryLogout());
     this.router.navigate( ['/']);
   }
 

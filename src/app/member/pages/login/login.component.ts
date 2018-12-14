@@ -1,7 +1,13 @@
-import {ChangeDetectionStrategy, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  OnInit,
+  ViewChild
+} from '@angular/core';
 import {AppState} from '../../../core/store/app.reducer';
 import {Store} from '@ngrx/store';
-import {Login} from '../../../core/store/auth/auth.actions';
+import {TryLogin} from '../../../core/store/auth/auth.actions';
 
 
 @Component({
@@ -32,12 +38,10 @@ export class LoginComponent implements OnInit {
   }
 
   loginClick() {
-    console.log(this.inputEmail.nativeElement.value);
-    console.log(this.inputPassword.nativeElement.value);
     this.info.email = this.inputEmail.nativeElement.value;
     this.info.password = this.inputPassword.nativeElement.value;
 
-    this.store.dispatch( new Login(this.info));
+    this.store.dispatch( new TryLogin(this.info));
   }
 
   checkBox(persistent) {
@@ -47,12 +51,12 @@ export class LoginComponent implements OnInit {
 
     if (event === undefined) {
 
-      this.store.dispatch( new Login(this.info));
+      this.store.dispatch( new TryLogin(this.info));
     } else {
       if ( event.key === 'Enter' ) {
         this.info.email = this.inputEmail.nativeElement.value;
         this.info.password = this.inputPassword.nativeElement.value;
-        this.store.dispatch( new Login(this.info));
+        this.store.dispatch( new TryLogin(this.info));
       }
     }
   }

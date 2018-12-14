@@ -37,15 +37,12 @@ export function CartReducer(state = initialState, action: CartActions.CartAction
         ...state,
         cartInfo : {
           free : action.payload[0],
-          pack : action.payload.slice(1, action.payload.length - 1),
+          pack : action.payload.slice(1, action.payload.length),
         },
         cartList : object,
       }
 
     case CartActions.CREATE_TO_CART_SUCCESS :
-      // console.log('deleted!!!!');
-      // console.log(action.payload.productSlug);
-      // console.log(state.cartList);
 
       console.log(action.payload.product);
       console.log(state.cartList);
@@ -54,9 +51,6 @@ export function CartReducer(state = initialState, action: CartActions.CartAction
         cartList : {
           ...state.cartList,
           [action.payload.product] : action.payload,
-          // [action.payload.productSlug]: {
-          //
-          // }
         }
       };
 
@@ -75,7 +69,6 @@ export function CartReducer(state = initialState, action: CartActions.CartAction
       }
 
     case CartActions.SUBTRACT_FROM_CART_SUCCESS :
-      console.log('subtracted!!!');
       return {
         ...state,
         cartList : {
@@ -88,11 +81,7 @@ export function CartReducer(state = initialState, action: CartActions.CartAction
       }
 
     case CartActions.DELETE_FROM_CART_SUCCESS :
-      console.log('deleted!!!!');
-      console.log(action.payload.productSlug);
-      console.log(state.cartList);
       delete state.cartList[action.payload.productSlug];
-      console.log(state.cartList);
       return {
         ...state,
         cartList : {

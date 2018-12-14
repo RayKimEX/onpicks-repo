@@ -1,7 +1,9 @@
+
+// Angular Core
+import { ActivatedRoute, Router } from '@angular/router';
 import {
   AfterViewChecked,
   AfterViewInit,
-  ChangeDetectionStrategy,
   Component,
   HostListener,
   OnDestroy,
@@ -9,22 +11,24 @@ import {
   Renderer2,
   ViewChild
 } from '@angular/core';
-import {combineLatest, fromEvent} from 'rxjs';
-import {AppState} from '../../../../../../../core/store/app.reducer';
-import {select, Store} from '@ngrx/store';
-import {UserState} from '../../../../../../../core/store/user/user.model';
-import {ActivatedRoute, Router} from '@angular/router';
-import {PDataService} from '../../../../../../../core/service/data-pages/p/p-data.service';
-import {AddComment, GetCommentsProduct} from '../../../store/p.actions';
-import {map, share, shareReplay, startWith, tap, withLatestFrom} from 'rxjs/operators';
+
+// NgRX & RxJS
+import { TryAddComment, TryGetCommentsProduct } from '../../../store/p.actions';
+import { map, shareReplay, withLatestFrom } from 'rxjs/operators';
+import { combineLatest, fromEvent } from 'rxjs';
+import { select, Store } from '@ngrx/store';
+
+// Custom
+import { PDataService } from '../../../../../../../core/service/data-pages/p/p-data.service';
+import { AppState } from '../../../../../../../core/store/app.reducer';
+import { UserState } from '../../../../../../../core/store/user.model';
 
 @Component({
   selector: 'onpicks-communicate-box',
   templateUrl: './communicate-box.component.html',
   styleUrls: ['./communicate-box.component.scss'],
 })
-export class CommunicateBoxComponent implements OnInit,
-  AfterViewChecked, AfterViewInit, OnDestroy {
+export class CommunicateBoxComponent implements AfterViewChecked, AfterViewInit, OnDestroy {
   // @Input('comment') comment;
   // @Input('commentIndex') commentIndex;
   // Output을 넣지 않으면, consturctor에다가, service나, store같은, 것을 넣어야됨.
@@ -36,7 +40,6 @@ export class CommunicateBoxComponent implements OnInit,
   @ViewChild('scrollOuter') scrollOuter;
 
 
-  comment;
   currentReviewIndex = 0;
   signInUserInfo: UserState;
 
@@ -76,23 +79,19 @@ export class CommunicateBoxComponent implements OnInit,
           map(([child, parent]) => {
             return { child, parent};
           })),
-          // tap( v => console.log(v))
+
       ).subscribe(
         val => {
-          console.log('hello');
+
           this.reviewsId = parseInt(val[1].child['id'], 10);
 
           // @ts-ignore
           this.currentReviewIndex = val[0].results.indexOf(this.reviewsId);
           this.productId = val[1].parent['id'];
-          console.log(this.productId);
-          // this.store.dispatch( new GetCommentsProduct({ productId : v.parent['id'], reviewsId : v.child['id']}));
+
           // buttonState가 false 일 때만, 이미지를 바로 표출할 수 있게
           // 해당 State는 transition이 끝날때거나, 버튼 누르지 않고, 바로 화면에 뜰때만 false가 됨
-          // console.log('hello');
-          // console.log(val.state);
-          console.log(val);
-          console.log(this.currentData$);
+
 
           /* undefined로 이외에 더 나은 조건으로 현재는 생각하기가 힘든 상태.
           * 왜냐하면, Loading화면을 위해 Get_CooemtnsProduct에다가 undfeined를 넣었는데, 넣을때마다, subscribe가 동작함.*/
@@ -100,7 +99,7 @@ export class CommunicateBoxComponent implements OnInit,
 
           // @ts-ignore
           if ( val[0].list[this.reviewsId] && val[0].list[this.reviewsId].isCommentsLoaded === undefined) {
-            this.store.dispatch( new GetCommentsProduct({ productId : val[1].parent['id'], reviewsId : val[1].child['id']}));
+            this.store.dispatch( new TryGetCommentsProduct({ productId : val[1].parent['id'], reviewsId : val[1].child['id']}));
           }
 
           if ( this.buttonState === false ) { this.isViewImage = true; }
@@ -120,15 +119,8 @@ export class CommunicateBoxComponent implements OnInit,
     });
   }
 
-
-  ngOnInit() {
-
-  }
-
   ngOnDestroy() {
     this.renderer.setStyle( document.body, 'overflow', '' );
-    console.log('destrony')
-    console.log(this.userState$);
     this.combine$.unsubscribe();
     this.userState$.unsubscribe();
     this.communicateBoxTransition$.unsubscribe();
@@ -162,7 +154,6 @@ export class CommunicateBoxComponent implements OnInit,
         'scrollTop',
         (result));
 
-      console.log(result);
     }
 
   }
@@ -187,8 +178,7 @@ export class CommunicateBoxComponent implements OnInit,
 
     if ( event.key === 'Enter' ) {
 
-      this.store.dispatch(new AddComment({ productId : this.productId, reviewsId : this.reviewsId, addedText : f.value }));
-
+      this.store.dispatch(new TryAddComment({ productId : this.productId, reviewsId : this.reviewsId, addedText : f.value }));
       this.renderer.setProperty(f, 'value', '');
 
       // ngAfterViewChecked가 매번 계속 발생하기 때문에,
@@ -229,7 +219,6 @@ export class CommunicateBoxComponent implements OnInit,
   clickout(event) {
     if ( this.popupState === true) {
       if (this.communicateBox.nativeElement.contains(event.target)) {
-        // console.log('clicked inside');
 
       } else {
         if ( this.buttonState ) {

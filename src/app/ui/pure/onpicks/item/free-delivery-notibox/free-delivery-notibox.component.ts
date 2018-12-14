@@ -16,7 +16,7 @@ export class FreeDeliveryNotiboxComponent implements OnInit {
     console.log(this.cartInfo);
   }
 
-  cartInfo;
+  cartInfo = null;
 
   constructor(
     @Inject(LOCATION_MAP) public locationMap: any,

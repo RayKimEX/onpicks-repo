@@ -29,8 +29,8 @@
     #plusIcon
     [ngStyle]="
      {
-        left : isFixExtend ? 'auto' : '',
-        right : isFixExtend ? '1.9rem' : ''
+        left : isFixExtend || this.amount !== 0  ? 'auto' : '',
+        right : isFixExtend || this.amount !== 0  ? '1.9rem' : ''
      }"
     [type]="'plus'" ></ui-plus-minus-icon>
 

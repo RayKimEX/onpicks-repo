@@ -21,3 +21,14 @@ export const LOCATION_MAP_CONST = {
   'gorge' : 'atl',
   'hong' : 'hkg'
 }
+
+export const CATEGORY_MAP = new InjectionToken<any>( 'app.config');
+export const CATEGORY_MAP_CONST = {
+  'pantry-and-household' : 1000000,
+  'electronics' : 2000000,
+  'home-living' : 3000000,
+  'beauty' : 4000000,
+  'sports-fitness-outdoor' : 5000000,
+  'fashion' : 6000000
+}
+

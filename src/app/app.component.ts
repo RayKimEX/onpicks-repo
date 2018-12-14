@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 import {select, Store} from '@ngrx/store';
 import {AppState} from './core/store/app.reducer';
-import {GetAuthUser} from './core/store/auth/auth.actions';
+import {TryGetAuthUser} from './core/store/auth/auth.actions';
 import {
   NavigationCancel,
   NavigationEnd,
@@ -16,9 +16,13 @@ import {
   Router,
   RouterEvent
 } from '@angular/router';
-import {GetCategoryAll, UpdateUrlActive} from './core/store/ui/ui.actions';
+import {
+  GetCategoryAll,
+  UpdateUrlActive
+} from './core/store/ui/ui.actions';
 import {UiService} from './core/service/ui/ui.service';
-import {GetCartInfo} from './core/store/cart/cart.actions';
+import {TryGetCartInfo} from './core/store/cart/cart.actions';
+import {GetFirstCategory, TryGetSecondCategory, TryGetThirdCategory} from './core/store/search/search.actions';
 
 @Component({
   selector: 'onpicks-root',
@@ -39,11 +43,10 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
   ) {
 
     this.uiService.postLanguageSetting();
-    this.store.dispatch(new GetAuthUser());
-    this.store.dispatch(new GetCartInfo());
+    this.store.dispatch(new TryGetAuthUser());
+    this.store.dispatch(new TryGetCartInfo());
 
     this.uiState$ = this.store.pipe(select( 'ui')).subscribe( val => this.isCategoryLoaded = val.currentCategoryList.isLoaded )
-    // this.store.pipe(select( 'ui')).subscribe( val => console.log(val) )
     router.events.subscribe((event: RouterEvent) => {
       this._navigationInterceptor(event);
     });
@@ -51,20 +54,6 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
 
   // Shows and hides the loading spinner during RouterEvent changes
   private _navigationInterceptor(event: RouterEvent): void {
-/*    if (event instanceof NavigationStart) {
-      // We wanna run this function outside of Angular's zone to
-      // bypass change detection
-      this.ngZone.runOutsideAngular(() => {
-        // For simplicity we are going to turn opacity on / off
-        // you could add/remove a class for more advanced styling
-        // and enter/leave animation of the spinner
-        this.renderer.setElementStyle(
-          this.spinnerElement.nativeElement,
-          'opacity',
-          '1'
-        )
-      })
-    }*/
 
     if (event instanceof NavigationEnd) {
 
@@ -77,10 +66,9 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
       // category가 /c/안에 url일경우
 
       // onedepth
-      console.log(url[3]);
       if ( url.length === 4 ) {
-        this.store.dispatch(new GetCategoryAll(
-          { firstSortKey: url[3] }
+        this.store.dispatch(new GetFirstCategory(
+          { data: '', type : 'cpage', firstSortKey: url[3] }
           )
         );
         return ;
@@ -88,8 +76,9 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
 
       // twoDepth
       if ( url.length === 5 ) {
-        this.store.dispatch(new GetCategoryAll(
-          { firstSortKey: url[3], secondSortKey: url[4] }
+        console.log('trygetSecondCategory!!');
+        this.store.dispatch(new TryGetSecondCategory(
+          { firstSortKey: url[3], secondSortKey: url[4], type : 'cpage' }
           )
         );
         return ;
@@ -97,8 +86,8 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
 
       // threeDepth
       if ( url.length === 6 ) {
-        this.store.dispatch(new GetCategoryAll(
-          { firstSortKey: url[3], secondSortKey: url[4], thirdSortKey: url[5] }
+        this.store.dispatch(new TryGetThirdCategory(
+          { firstSortKey: url[3], secondSortKey: url[4], thirdSortKey: url[5], type :'cpage' }
           )
         );
         return;

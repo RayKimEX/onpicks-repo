@@ -31,7 +31,7 @@ export class CartEffects {
 
   @Effect()
   getCartInfo = this.actions$.pipe(
-    ofType( CartActions.GET_CART_INFO ),
+    ofType( CartActions.TRY_GET_CART_INFO ),
     map( payload => payload['payload']),
     switchMap( payload => {
       return this.cartService.getCartInfo()
@@ -48,7 +48,7 @@ export class CartEffects {
 
   @Effect()
   deleteFromCart = this.actions$.pipe(
-    ofType( CartActions.DELETE_FROM_CART ),
+    ofType( CartActions.TRY_DELETE_FROM_CART ),
     map( payload => payload['payload']),
     switchMap( payload => {
       return this.cartService.deleteFromCart(payload.productSlug)
@@ -65,7 +65,7 @@ export class CartEffects {
 
   @Effect()
   addToCart = this.actions$.pipe(
-    ofType( CartActions.ADD_OR_CREATE_TO_CART ),
+    ofType( CartActions.TRY_ADD_OR_CREATE_TO_CART ),
     map( payload => payload['payload']),
     tap( v => console.log('thisis add to cart!!1')),
     // @ts-ignore
@@ -96,7 +96,7 @@ export class CartEffects {
 
   @Effect()
   subtractFromCart = this.actions$.pipe(
-    ofType( CartActions.SUBTRACT_OR_DELETE_FROM_CART ),
+    ofType( CartActions.TRY_SUBTRACT_OR_DELETE_FROM_CART ),
     map( payload => payload['payload']),
     tap( v => console.log(v)),
     // @ts-ignore

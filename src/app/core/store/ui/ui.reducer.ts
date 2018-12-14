@@ -5,25 +5,22 @@ import {
   UPDATE_CATEGORY,
   UPDATE_URL_ACTIVE
 } from './ui.actions';
+
 import {normalize, schema} from 'normalizr';
-//
-//
-// export interface Course {
-//   id:number;
-//   description:string;
-//   iconUrl?: string;
-//   courseListIcon?: string;
-//   longDescription?: string;
-//   category:string;
-//   seqNo: number;
-//   lessonsCount?:number;
-//   promo?:boolean;
-// }
+
 export interface UiState {
   currentCategoryList: any;
-  searchList: any;
+  // searchList: any;
   activeUrl: any;
 }
+
+export const initialState: UiState = {
+  currentCategoryList : {
+    isLoaded : false,
+  },
+  activeUrl : [],
+  // searchList : {},
+};
 
 
 
@@ -66,8 +63,8 @@ export function UiReducer(state = initialState, action: UiActions): UiState {
       sortedThirdList = [];
       currentSlug = '';
 
-      const normalizeSearchData = normalizerSearch(searchConstList);
-      console.log(normalizeSearchData);
+      // const normalizeSearchData = normalizerSearch(searchConstList);
+
       const normalizedCategoryData = normalizer(action.payload.data);
       const secondCategoryData = normalizedCategoryData.entities.secondCategory;
       const thirdCategoryData = normalizedCategoryData.entities.thirdCategory;
@@ -79,6 +76,8 @@ export function UiReducer(state = initialState, action: UiActions): UiState {
         thirdResultList[key] = secondCategoryData[key].children;
       });
 
+      console.log(sortSecondInfo);
+      console.log(action.payload.secondSortKey);
       getSecondSortValue = sortSecondInfo[action.payload.secondSortKey];
 
       // third category info에 관한것을, 정리
@@ -108,6 +107,8 @@ export function UiReducer(state = initialState, action: UiActions): UiState {
           sortedSecondList.push(item);
         }
       });
+      console.log('11111111')
+      console.log(getSecondSortValue);
 
       thirdResultList[getSecondSortValue].forEach( item => {
         if ( item === getThirdSortValue) {
@@ -116,6 +117,8 @@ export function UiReducer(state = initialState, action: UiActions): UiState {
           sortedThirdList.push(item);
         }
       });
+
+      console.log('222222222')
 
       currentSlug = secondCategoryData[getSecondSortValue].slug;
 
@@ -161,11 +164,11 @@ export function UiReducer(state = initialState, action: UiActions): UiState {
       return {
         ...state,
         currentCategoryList : normalizedData,
-        searchList : {
-          ...searchConstList,
-          result : normalizeSearchData.result,
-          data : normalizeSearchData.entities.searchList,
-        },
+        // searchList : {
+        //   ...searchConstList,
+        //   result : normalizeSearchData.result,
+        //   data : normalizeSearchData.entities.searchList,
+        // },
       };
       break;
 
@@ -265,96 +268,6 @@ export function UiReducer(state = initialState, action: UiActions): UiState {
             }
           },
           currentSlug : currentSlug,
-        },
-        searchList : {
-          count: 2,
-          next: null,
-          previous: null,
-          filters: {
-            term: null,
-            category: 1000000,
-            brands: [
-              '메서드'
-            ],
-            values: [],
-            locations: []
-          },
-          sort: null,
-          results: [
-            {
-              id: 1,
-              thumbnail: 'https://jetimages.jetcdn.net/md5/687b683710db21b1d31cd7190aa2dee',
-              brand: '메서드',
-              title: '메서드 포밍 핸드 워시, 워터폴',
-              review_avg_rating: 0.0,
-              review_count: 0,
-              price: 4390.0,
-              msrp: 4500.0,
-              ship_from: 'jfk',
-              in_stock: true,
-              quantity: 30
-            },
-            {
-              id: 1,
-              thumbnail: 'https://jetimages.jetcdn.net/md5/687b683710db21b1d31cd7190aa2dee',
-              brand: '메서드',
-              title: '메서드 포밍 핸드 워시, 워터폴',
-              review_avg_rating: 0.0,
-              review_count: 0,
-              price: 4390.0,
-              msrp: 4500.0,
-              ship_from: 'jfk',
-              in_stock: true,
-              quantity: 30
-            }
-          ],
-          aggregation: {
-            categories: [
-              {
-                id: 1030000,
-                name: '퍼스날케어'
-              },
-              {
-                id: 1070000,
-                name: '사무용품'
-              }
-            ],
-            brands: [
-              {
-                id: 3,
-                name: '메서드',
-                count: 2
-              }
-            ],
-            values: [
-              {
-                id: 2,
-                name: '임상 실험 완료',
-                count: 2
-              },
-              {
-                id: 3,
-                name: '100% 재활용 용기',
-                count: 2
-              },
-              {
-                id: 4,
-                name: '무독성',
-                count: 2
-              },
-              {
-                id: 5,
-                name: '동물 대상 실험 미실시',
-                count: 2
-              }
-            ],
-            locations: [
-              {
-                ship_from: 'jfk',
-                count: 2
-              }
-            ]
-          }
         }
       };
       break;
@@ -363,14 +276,6 @@ export function UiReducer(state = initialState, action: UiActions): UiState {
       return state;
   }
 }
-
-export const initialState: UiState = {
-  currentCategoryList : {
-    isLoaded : false,
-  },
-  activeUrl : [],
-  searchList : {},
-};
 
 
 function normalizer ( data ) {
@@ -410,96 +315,4 @@ function normalizerSearch ( data ) {
 
 
   return normalize(data.results, new schema.Array(normalSearchList));
-}
-
-
-const searchConstList = {
-  count: 2,
-    next: null,
-    previous: null,
-    filters: {
-    term: null,
-      category: 1000000,
-      brands: [
-      '메서드'
-    ],
-      values: [],
-      locations: []
-  },
-  sort: null,
-    results: [
-    {
-      id: 23,
-      thumbnail: 'https://jetimages.jetcdn.net/md5/687b683710db21b1d31cd7190aa2dee',
-      brand: '메서드',
-      title: '메서드 포밍 핸드 워시, 워터폴',
-      review_avg_rating: 0.0,
-      review_count: 0,
-      price: 4390.0,
-      msrp: 4500.0,
-      ship_from: 'jfk',
-      in_stock: true,
-      quantity: 30
-    },
-    {
-      id: 34,
-      thumbnail: 'https://jetimages.jetcdn.net/md5/687b683710db21b1d31cd7190aa2dee',
-      brand: '메서드',
-      title: '메서드 포밍 핸드 워시, 워터폴',
-      review_avg_rating: 0.0,
-      review_count: 0,
-      price: 4390.0,
-      msrp: 4500.0,
-      ship_from: 'jfk',
-      in_stock: true,
-      quantity: 30
-    }
-  ],
-    aggregation: {
-    categories: [
-      {
-        id: 1030000,
-        name: '퍼스날케어'
-      },
-      {
-        id: 1070000,
-        name: '사무용품'
-      }
-    ],
-      brands: [
-      {
-        id: 3,
-        name: '메서드',
-        count: 2
-      }
-    ],
-      values: [
-      {
-        id: 2,
-        name: '임상 실험 완료',
-        count: 2
-      },
-      {
-        id: 3,
-        name: '100% 재활용 용기',
-        count: 2
-      },
-      {
-        id: 4,
-        name: '무독성',
-        count: 2
-      },
-      {
-        id: 5,
-        name: '동물 대상 실험 미실시',
-        count: 2
-      }
-    ],
-      locations: [
-      {
-        ship_from: 'jfk',
-        count: 2
-      }
-    ]
-  }
 }

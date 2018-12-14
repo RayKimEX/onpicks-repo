@@ -1,4 +1,4 @@
-<div class="free-delivery-notibox">
+<div class="free-delivery-notibox" *ngIf="cartInfo as data;">
   <ul class="free-delivery-notibox__innerBox">
     <ng-container *ngFor="let item of cartInfo">
     <li class="free-delivery-notibox__item" *ngIf="item.subtotal !== 0">

@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, HostListener, Input, OnInit, Renderer2, ViewChild, ViewChildren} from '@angular/core';
+import {AfterViewInit, Component, HostListener, Input, OnInit, Output, Renderer2, ViewChild, ViewChildren} from '@angular/core';
 
 @Component({
   selector: 'onpicks-check-box',

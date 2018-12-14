@@ -14,7 +14,7 @@
 //   auth: AuthState;
 // }
 
-import {UserState} from '../user/user.model';
+import {UserState} from '../user.model';
 
 export interface AuthState {
   user: UserState;

@@ -60,6 +60,9 @@ onpicks-check-box {
   border-bottom : 1px solid $color-light-grey;
   &__title {
     margin-top : 1.6rem;
+    &--name {
+      margin-right: 0.8rem;
+    }
     &--remove{
       float:right;
     }
@@ -255,6 +258,9 @@ onpicks-check-box {
 
   &__title {
     margin-top : 3.2rem;
+    onpicks-sort-box {
+      float : right;
+    }
   }
   &__pagination {
     &--outer {

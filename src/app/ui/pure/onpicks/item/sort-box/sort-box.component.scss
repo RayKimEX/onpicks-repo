@@ -93,16 +93,19 @@
 
       &-outer {
         padding : 0px 3px;
-        display: block;
+        display: table;
         height:100%;
         width:100%;
       }
 
       &-label {
+        display:table-cell;
+        vertical-align: middle;
+        height : 20px;
         cursor:pointer;
         width:100%;
-        display:block;
-        padding: 12px 24px 12px 12px;
+        padding : 0px 24px 0px 12px;
+        // padding: auto 12px;
         input {
           display : none;
         }

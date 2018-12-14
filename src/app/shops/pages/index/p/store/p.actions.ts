@@ -1,24 +1,22 @@
-// Section 2
-
-import {Action} from '@ngrx/store';
+import { Action } from '@ngrx/store';
 
 export const UPDATE_MENUPOSITION    = '[P] UPDATE_MENUPOSITION';
-
 export const UPDATE_PRODUCT_INDEX = '[P] UPDATE_PRODUCT_INDEX';
 
-export const GET_REVIEWS_PRODUCT = '[P] GET_REVIEWS_PRODUCT';
+export const TRY_GET_REVIEWS_PRODUCT = '[P] TRY_GET_REVIEWS_PRODUCT';
 export const GET_REVIEWS_PRODUCT_SUCCESS = '[P] GET_REVIEWS_PRODUCT_SUCCESS';
 export const GET_REVIEWS_PRODUCT_FAILURE = '[P] GET_REVIEWS_PRODUCT_FAILURE';
 
-export const GET_COMMENTS_PRODUCT = '[P] GET_COMMENTS_PRODUCT';
+export const TRY_GET_COMMENTS_PRODUCT = '[P] TRY_GET_COMMENTS_PRODUCT';
 export const GET_COMMENTS_PRODUCT_SUCCESS = '[P] GET_COMMENTS_PRODUCT_SUCCESS';
 export const GET_COMMENTS_PRODUCT_FAILURE = '[P] GET_REVIEWS_PRODUCT_FAILURE';
 
-export const ADD_COMMENT = '[P] ADD_COMMENT';
-
+export const TRY_ADD_COMMENT = '[P] TRY_ADD_COMMENT';
 export const ADD_COMMENT_SUCCESS = '[P] ADD_COMMENT_SUCCESS';
 export const ADD_COMMENT_FAILURE = '[P] ADD_COMMENT_FAILURE';
 
+
+/* UPDATE_UI */
 export class UpdateMenuPosition implements Action {
   readonly type = UPDATE_MENUPOSITION;
 
@@ -32,8 +30,10 @@ export class UpdateProductIndex implements Action {
 
 }
 
-export class GetReviewProduct implements Action {
-  readonly type = GET_REVIEWS_PRODUCT;
+
+/* GET_REVIEWS */
+export class TryGetReviewProduct implements Action {
+  readonly type = TRY_GET_REVIEWS_PRODUCT;
 
   constructor(public payload: string) {}
 }
@@ -50,9 +50,11 @@ export class GetReviewProductFailure implements Action {
   constructor(public payload: { error: any }) {}
 }
 
-/* COMMENTS */
-export class GetCommentsProduct implements Action {
-  readonly type = GET_COMMENTS_PRODUCT;
+
+
+/* GET_COMMENTS */
+export class TryGetCommentsProduct implements Action {
+  readonly type = TRY_GET_COMMENTS_PRODUCT;
 
   constructor(public payload: { productId, reviewsId }) {}
 }
@@ -72,8 +74,9 @@ export class GetCommentsProductFailure implements Action {
 
 
 
-export class AddComment implements Action {
-  readonly type = ADD_COMMENT;
+/* ADD_COMMENTS */
+export class TryAddComment implements Action {
+  readonly type = TRY_ADD_COMMENT;
 
   constructor(public payload: { addedText, productId, reviewsId }) {
 
@@ -88,7 +91,6 @@ export class AddCommentSuccess implements  Action {
   }
 }
 
-
 export class AddCommentFailure implements  Action {
   readonly type = ADD_COMMENT_FAILURE;
 
@@ -99,14 +101,18 @@ export class AddCommentFailure implements  Action {
 
 
 export type PActions =
+  //
   UpdateMenuPosition |
   UpdateProductIndex |
-  GetReviewProduct |
+  //
+  TryGetReviewProduct |
   GetReviewProductSuccess |
   GetReviewProductFailure |
-  GetCommentsProduct |
+  //
+  TryGetCommentsProduct |
   GetCommentsProductSuccess |
   GetCommentsProductFailure |
-  AddComment |
+  //
+  TryAddComment |
   AddCommentSuccess|
   AddCommentFailure;

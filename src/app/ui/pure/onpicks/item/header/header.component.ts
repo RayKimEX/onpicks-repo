@@ -1,26 +1,30 @@
-import {
-  AfterViewInit, ChangeDetectionStrategy,
-  Component, ElementRef, Inject, LOCALE_ID, OnDestroy,
-  OnInit,
-  Renderer2,
-  ViewChild
-} from '@angular/core';
-import {TestService} from '../../../../../core/service/util/test/test.service';
-import {FormControl, FormGroup} from '@angular/forms';
-import {AuthService} from '../../../../../core/service/auth/auth.service';
-import {AppState} from '../../../../../core/store/app.reducer';
-import {select, Store} from '@ngrx/store';
-
-import {fromEvent, Observable} from 'rxjs';
-import {AuthState} from '../../../../../core/store/auth/auth.model';
-import {Logout} from '../../../../../core/store/auth/auth.actions';
-import {APP_BASE_HREF} from '@angular/common';
-import {CURRENCY} from '../../../../../app.config';
+// Angular Core
 import {ActivatedRoute, Router} from '@angular/router';
-import {UiState} from '../../../../../core/store/ui/ui.reducer';
-import {SearchService} from '../../../../../core/service/data-pages/search/search.service';
-import {encode} from 'punycode';
+import {APP_BASE_HREF} from '@angular/common';
+import {
+  ChangeDetectionStrategy,
+  AfterViewInit,
+  ElementRef,
+  Component,
+  LOCALE_ID,
+  OnDestroy,
+  Renderer2,
+  ViewChild,
+  Inject,
+  OnInit,
+} from '@angular/core';
+
+// NgRX & RxJS
+import {select, Store} from '@ngrx/store';
+import {fromEvent, Observable} from 'rxjs';
 import {tap} from 'rxjs/operators';
+
+// Custom
+import {SearchService} from '../../../../../core/service/data-pages/search/search.service';
+import {AuthService} from '../../../../../core/service/auth/auth.service';
+import {AuthState} from '../../../../../core/store/auth/auth.model';
+import {AppState} from '../../../../../core/store/app.reducer';
+import {CURRENCY} from '../../../../../app.config';
 
 @Component({
   selector: 'ui-header',
@@ -51,6 +55,8 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
   clearSetTimeout;
   // TODO: 이부분에 대해서 이방식이 맞는지? ngrx로 하려면, 한번더 update를 쳐야 되서 이방식이 아닌거같음 ->
 
+  firstLoadPreventCount = 0;
+
   constructor(
     @Inject(LOCALE_ID) public locale: string,
     @Inject(APP_BASE_HREF) public region: string,
@@ -73,31 +79,54 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
     this.cart$ = this.store.pipe(
       select(state => state.cart),
       tap( v => {
-        console.log(v);
-        // console.log(this.deliveryBox);
         if ( this.deliveryBox === undefined) { return ; }
+        // 두번까지 막고
+        if ( this.firstLoadPreventCount <= 1 ) {
+          this.firstLoadPreventCount ++;
+          return;
+        }
 
 
         // 무슨 변경이 있던간에, 항상 딱 보여주고 그다음 ㅁ주조건 삭제하는 로직.
         // TODO : 처음 로딩 할때 뜨는것만 처리하면 될듯.
-        clearTimeout(this.clearSetTimeout);
+
+        if ( this.clearSetTimeout !== undefined) {
+          clearTimeout(this.clearSetTimeout);
+        }
 
         this.renderer.setStyle(this.deliveryBox.nativeElement, 'display', 'block');
+        if ( window.pageYOffset >= 108 ){
+          this.renderer.setStyle(this.deliveryBox.nativeElement, 'position', 'fixed');
+          this.renderer.setStyle(this.deliveryBox.nativeElement, 'top', '1.6rem');
+        } else {
+          this.renderer.setStyle(this.deliveryBox.nativeElement, 'position', 'absolute');
+          this.renderer.setStyle(this.deliveryBox.nativeElement, 'top', '12.4rem');
+        }
         this.clearSetTimeout = setTimeout( v => {
           this.renderer.setStyle(this.deliveryBox.nativeElement, 'display', 'none');
 
           if ( this.scrollForDeliveryBox$ != null ) {
+            console.log('unsubscrdibe!!')
             this.scrollForDeliveryBox$.unsubscribe();
+            this.scrollForDeliveryBox$ = null;
           }
 
-        }, 60000);
+        }, 3000);
+
         if ( this.scrollForDeliveryBox$ == null ) {
+          console.log('i`m scroll!!' );
           this.scrollForDeliveryBox$ = fromEvent( window , 'scroll').subscribe(
-            scrollValue => console.log(window.pageYOffset )
+            scrollValue => {
+              if( window.pageYOffset >= 108 ){
+                this.renderer.setStyle(this.deliveryBox.nativeElement, 'position', 'fixed');
+                this.renderer.setStyle(this.deliveryBox.nativeElement, 'top', '1.6rem');
+              }else {
+                this.renderer.setStyle(this.deliveryBox.nativeElement, 'position', 'absolute');
+                this.renderer.setStyle(this.deliveryBox.nativeElement, 'top', '12.4rem');
+              }
+            }
           );
         }
-
-
 
       })
     );

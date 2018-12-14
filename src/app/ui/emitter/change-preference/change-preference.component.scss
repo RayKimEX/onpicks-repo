@@ -4,18 +4,17 @@
 
   position:relative;
   &-item {
-
     padding : 0 2px;
+
     span {
-      vertical-align: top;
+
     }
+
     svg {
       vertical-align: top;
       margin-top : 5px;
       margin-left: 0.9rem;
     }
-
-
   }
 
   &-modal {
