@@ -124,4 +124,4 @@ export type SearchActions =
   TryGetFourthCategory |
   GetFourthCategorySuccess |
   GetFourthCategoryFailure |
-  GetFourthCategory |;
+  GetFourthCategory;
