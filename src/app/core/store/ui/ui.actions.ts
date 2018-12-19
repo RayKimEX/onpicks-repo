@@ -23,12 +23,12 @@ export class GetCategoryAll implements Action {
 
 }
 
-export class GetCategorySuccess implements Action {
+export class GetCategoryAllSuccess implements Action {
   readonly type = GET_CATEGORY_ALL_SUCCESS;
 
   constructor(public payload: {
     data: any,
-    secondCategorySlug: number,
+    secondSortKey: number,
     thirdSortKey: number,
     fourthSortKey: number,
   }) {
@@ -60,7 +60,7 @@ export class UpdateUrlActive implements Action {
 
 export type UiActions =
   GetCategoryAll |
-  GetCategorySuccess |
+  GetCategoryAllSuccess |
   GetCategoryFailure |
   UpdateCategory |
   UpdateUrlActive ;

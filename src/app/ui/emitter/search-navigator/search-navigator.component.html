@@ -27,6 +27,7 @@
       <ui-mini-list [setTitle]="'추천 상품'"></ui-mini-list>
     </ng-container>
     <ng-container *ngIf="currentList?.length !== 0">
+
       <div class="col-3-of-12">
         <div class="c-navigator-padding">
           <div class="c-category-navigator">
@@ -37,7 +38,7 @@
               <nav class="subtitle-3-bold u-color-dark-grey">
 
                 <ul #depthOuter>
-                  <li #oneDepth *ngFor="let firstCategoryId of categoryList">
+                  <li #oneDepth *ngFor="let firstCategoryId of result">
                     <!--twoDepth-->
                     <div class="c-category-navigator__item">
                       <a (click)="updateSecondCategory(firstCategoryId, categoryList.secondCategory[firstCategoryId].slug)"
@@ -83,11 +84,10 @@
                         </div>
 
                         <ul #f2
-                            [ngStyle]="{ 'maxHeight' : categoryList.thirdCategory[secondCategoryId].active ? '700px' : '0px' }"
-                        >
+                            [ngStyle]="{ 'maxHeight' : categoryList.thirdCategory[secondCategoryId].active ? '700px' : '0px' }">
                           <li #threeDepth *ngFor="let thirdCategoryId of categoryList.thirdCategory[secondCategoryId].children">
                             <div class="c-category-navigator__item">
-                              <a
+                              <a (click)="updateFourthCategory()"
                                 [ngClass]="categoryList.thirdCategory[secondCategoryId].active ? categoryList.fourthCategory[thirdCategoryId].active ? 'main-active' : 'sub-active' : 'main-deactive'"
                               >{{categoryList.fourthCategory[thirdCategoryId].name}}</a>
                             </div>

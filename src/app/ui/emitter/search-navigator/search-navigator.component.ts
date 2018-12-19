@@ -7,9 +7,9 @@ import {
   OnInit,
   Renderer2
 } from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
-import {select, Store} from '@ngrx/store';
-import {UpdateCategory} from '../../../core/store/ui/ui.actions';
+import { ActivatedRoute, Router } from '@angular/router';
+import { select, Store } from '@ngrx/store';
+import { UpdateThirdCategory } from '../../../core/store/ui/ui.actions';
 import {
   TryAddOrCreateToCart, TrySubtractOrDeleteFromCart
 } from '../../../core/store/cart/cart.actions';
@@ -119,13 +119,13 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
     private cd: ChangeDetectorRef,
 
   ) {
-    this.uiStore$ = this.store.pipe(select(state => state.search.categoryList)).subscribe(val => {
+    this.uiStore$ = this.store.pipe(select(state => state.ui.currentCategoryList)).subscribe(val => {
       console.log(val);
-      this.categoryList = val;
-      // this.categoryList = val.currentCategoryList.entities;
-      // this.result = val.currentCategoryList.result;
-      // this.previous = val.currentCategoryList.previous;
-      // this.currentSlug = val.currentCategoryList.currentSlug;
+      // this.categoryList = val;
+      this.categoryList = val.entities;
+      this.result = val.result;
+      this.previous = val.previous;
+      this.currentSlug = val.currentSlug;
     });
 
     this.cartStore$ = this.store.pipe(select( state => state.cart)).subscribe( val => {
@@ -182,7 +182,8 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
     if (url[url.length - 1] === slug) { return; };
 
 
-    this.router.navigate( ['/shops/c/pantry-and-household/' + slug], {relativeTo : this.route});
+
+
   }
 
   updateThirdCategory(index, secondSlug, thirdSlug) {
@@ -190,7 +191,7 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
     console.log(url.length);
     // if (url[url.length - 1] === slug) { return; };
 
-    this.store.dispatch(new UpdateCategory({ secondCategorySlug : secondSlug, thirdSortKey: thirdSlug }));
+    this.store.dispatch(new UpdateThirdCategory({ secondSortKey : secondSlug, thirdSortKey: thirdSlug }));
     // this.store.dispatch(new UpdateThirdCategory({secondSortBy : index}));
     this.router.navigate( ['/shops/c/pantry-and-household/' + secondSlug + '/' + thirdSlug], {relativeTo : this.route});
   }

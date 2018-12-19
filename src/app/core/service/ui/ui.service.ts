@@ -18,7 +18,8 @@ export class UiService {
 
   getCategoryAll(oneDepthCode) {
     //
-    return this.httpClient.get<any>(this.BASE_URL + '/api/categories/' + oneDepthCode + '/descendants/' );
+    // return this.httpClient.get<any>(this.BASE_URL + '/api/categories/' + oneDepthCode + '/descendants/' );
+    return of(this.dataCategory);
   }
 
   postLanguageSetting() {

@@ -1,13 +1,13 @@
-import {AfterViewInit, Component, OnDestroy, OnInit, Renderer2, ViewChild, ViewChildren} from '@angular/core';
-import {fromEvent} from 'rxjs';
-import {ActivatedRoute, ActivatedRouteSnapshot, NavigationEnd, Params, Router, UrlSegment, UrlSegmentGroup} from '@angular/router';
+import {AfterViewInit, ChangeDetectionStrategy, Component, OnDestroy, OnInit, Renderer2} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
 import {select, Store} from '@ngrx/store';
-import {GetCategoryAll, UpdateCategory} from '../../../../../../core/store/ui/ui.actions';
+import {UpdateSecondCategory, UpdateThirdCategory} from '../../../../../../core/store/ui/ui.actions';
 
 @Component({
   selector: 'onpicks-c-index',
   templateUrl: './c-index.component.html',
-  styleUrls: ['./c-index.component.scss']
+  styleUrls: ['./c-index.component.scss'],
+  changeDetection : ChangeDetectionStrategy.OnPush,
 })
 export class CIndexComponent implements OnInit, AfterViewInit, OnDestroy{
 
@@ -62,11 +62,8 @@ export class CIndexComponent implements OnInit, AfterViewInit, OnDestroy{
   updateSecondCategory(id, slug) {
     if ( this.isCategoryLoaded ) {
       this.url = this.router.url.split('/');
-      console.log(this.url);
-      console.log(this.url[this.url.length - 1]);
-      console.log(slug);
       if (this.url[this.url.length - 1] === slug) { return; };
-      this.store.dispatch(new UpdateCategory({ secondCategorySlug : slug }));
+      this.store.dispatch(new UpdateSecondCategory({ secondSortKey : slug }));
     }
 
   }

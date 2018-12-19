@@ -44,11 +44,12 @@ let getSecondSortValue;
 let getThirdSortValue;
 let currentSlug;
 
+let notChangeSecondPrevious;
+let notChangeThirdPrevious;
+
 export function UiReducer(state = initialState, action: UiActions): UiState {
 
   switch (action.type) {
-
-
     case UPDATE_URL_ACTIVE :
 
       return {
@@ -63,8 +64,6 @@ export function UiReducer(state = initialState, action: UiActions): UiState {
       sortedThirdList = [];
       currentSlug = '';
 
-      // const normalizeSearchData = normalizerSearch(searchConstList);
-
       const normalizedCategoryData = normalizer(action.payload.data);
       const secondCategoryData = normalizedCategoryData.entities.secondCategory;
       const thirdCategoryData = normalizedCategoryData.entities.thirdCategory;
@@ -76,16 +75,11 @@ export function UiReducer(state = initialState, action: UiActions): UiState {
         thirdResultList[key] = secondCategoryData[key].children;
       });
 
-      console.log(sortSecondInfo);
-      console.log(action.payload.secondCategorySlug);
-      getSecondSortValue = sortSecondInfo[action.payload.secondCategorySlug];
+      getSecondSortValue = sortSecondInfo[action.payload.secondSortKey];
 
       // third category info에 관한것을, 정리
       Object.keys(thirdCategoryData).forEach(function (key) {
         sortThirdInfo[thirdCategoryData[key].slug] = parseInt(key, 10 );
-
-        // })
-        // do something with obj[key]
       });
 
       // fourth category info에 관한것을, 정리
@@ -107,8 +101,7 @@ export function UiReducer(state = initialState, action: UiActions): UiState {
           sortedSecondList.push(item);
         }
       });
-      console.log('11111111')
-      console.log(getSecondSortValue);
+
 
       thirdResultList[getSecondSortValue].forEach( item => {
         if ( item === getThirdSortValue) {
@@ -118,13 +111,10 @@ export function UiReducer(state = initialState, action: UiActions): UiState {
         }
       });
 
-      console.log('222222222')
-
       currentSlug = secondCategoryData[getSecondSortValue].slug;
 
       if (getThirdSortValue !== undefined ) {
         currentSlug = thirdCategoryData[getThirdSortValue].slug;
-
       }
 
 
@@ -173,6 +163,7 @@ export function UiReducer(state = initialState, action: UiActions): UiState {
       break;
 
 
+      // 무조건 같이 바껴야 됩니다.  그래서 Update-category
     case UPDATE_CATEGORY :
       getSecondSortValue = 0;
       getThirdSortValue = 0;
@@ -182,7 +173,7 @@ export function UiReducer(state = initialState, action: UiActions): UiState {
 
       console.log(state);
 
-      getSecondSortValue = sortSecondInfo[action.payload.secondCategorySlug];
+      getSecondSortValue = sortSecondInfo[action.payload.secondSortKey];
       getThirdSortValue = sortThirdInfo[action.payload.thirdSortKey];
       // 전역 변수에 넣은 초기값 (현재 값이아닌 ) 기준으로, 새로 가져와서 변화시킴
       // state에 있는값은 바뀐 값을 다시 가져오기 때문에 의미가 없음.
@@ -203,21 +194,13 @@ export function UiReducer(state = initialState, action: UiActions): UiState {
       });
 
 
-      console.log('@@@@@@@@@@@@@@@@@@@@');
-      console.log(getSecondSortValue);
-      console.log(getThirdSortValue);
-      console.log('@@@@@@@@@@@@@@@@@@@@');
-      // console.log(sortedSecondList);
-
       currentSlug = state.currentCategoryList.entities.secondCategory[getSecondSortValue].slug;
 
       if (getThirdSortValue !== undefined ) {
         currentSlug = state.currentCategoryList.entities.thirdCategory[getThirdSortValue].slug;
       }
 
-      // thirdResultList.forEach
-      let notChangeSecondPrevious = false;
-      let notChangeThirdPrevious = false;
+
 
       if ( state.currentCategoryList.previous['secondPrevious'] === getSecondSortValue ) {
         notChangeSecondPrevious = true;
