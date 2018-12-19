@@ -28,7 +28,7 @@ export class GetCategorySuccess implements Action {
 
   constructor(public payload: {
     data: any,
-    secondSortKey: number,
+    secondCategorySlug: number,
     thirdSortKey: number,
     fourthSortKey: number,
   }) {

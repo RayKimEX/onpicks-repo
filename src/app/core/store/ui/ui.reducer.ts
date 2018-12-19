@@ -77,8 +77,8 @@ export function UiReducer(state = initialState, action: UiActions): UiState {
       });
 
       console.log(sortSecondInfo);
-      console.log(action.payload.secondSortKey);
-      getSecondSortValue = sortSecondInfo[action.payload.secondSortKey];
+      console.log(action.payload.secondCategorySlug);
+      getSecondSortValue = sortSecondInfo[action.payload.secondCategorySlug];
 
       // third category info에 관한것을, 정리
       Object.keys(thirdCategoryData).forEach(function (key) {
@@ -182,7 +182,7 @@ export function UiReducer(state = initialState, action: UiActions): UiState {
 
       console.log(state);
 
-      getSecondSortValue = sortSecondInfo[action.payload.secondSortKey];
+      getSecondSortValue = sortSecondInfo[action.payload.secondCategorySlug];
       getThirdSortValue = sortThirdInfo[action.payload.thirdSortKey];
       // 전역 변수에 넣은 초기값 (현재 값이아닌 ) 기준으로, 새로 가져와서 변화시킴
       // state에 있는값은 바뀐 값을 다시 가져오기 때문에 의미가 없음.

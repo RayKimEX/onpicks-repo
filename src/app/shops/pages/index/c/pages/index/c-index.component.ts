@@ -66,7 +66,7 @@ export class CIndexComponent implements OnInit, AfterViewInit, OnDestroy{
       console.log(this.url[this.url.length - 1]);
       console.log(slug);
       if (this.url[this.url.length - 1] === slug) { return; };
-      this.store.dispatch(new UpdateCategory({ secondSortKey : slug }));
+      this.store.dispatch(new UpdateCategory({ secondCategorySlug : slug }));
     }
 
   }

@@ -37,7 +37,7 @@ export class GetFirstCategoryFailure implements Action {
 export class GetFirstCategory implements Action {
   readonly type = GET_FIRST_CATEGORY;
 
-  constructor( public payload: { firstSortKey, type, data } ) { }
+  constructor( public payload: { firstCategorySlug, type, data } ) { }
 }
 
 
@@ -45,13 +45,13 @@ export class GetFirstCategory implements Action {
 export class TryGetSecondCategory implements Action {
   readonly type = TRY_GET_SECOND_CATEGORY;
 
-  constructor( public payload: { firstSortKey, secondSortKey, type } ) { }
+  constructor( public payload: { firstCategorySlug, type } ) { }
 }
 
 export class GetSecondCategorySuccess implements Action {
   readonly type = GET_SECOND_CATEGORY_SUCCESS;
 
-  constructor( public payload: { firstSortKey, secondSortKey, type, data } ) { }
+  constructor( public payload: { firstCategorySlug, secondCategorySlug, type, data } ) { }
 }
 
 export class GetSecondCategoryFailure implements Action {
@@ -70,7 +70,7 @@ export class GetSecondCategory implements Action {
 export class TryGetThirdCategory implements Action {
   readonly type = TRY_GET_THIRD_CATEGORY;
 
-  constructor( public payload: { firstSortKey, secondSortKey, thirdSortKey, type } ) { }
+  constructor( public payload: { firstCategorySlug, secondCategorySlug, type } ) { }
 }
 
 export class GetThirdCategorySuccess implements Action {

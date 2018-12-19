@@ -190,7 +190,7 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
     console.log(url.length);
     // if (url[url.length - 1] === slug) { return; };
 
-    this.store.dispatch(new UpdateCategory({ secondSortKey : secondSlug, thirdSortKey: thirdSlug }));
+    this.store.dispatch(new UpdateCategory({ secondCategorySlug : secondSlug, thirdSortKey: thirdSlug }));
     // this.store.dispatch(new UpdateThirdCategory({secondSortBy : index}));
     this.router.navigate( ['/shops/c/pantry-and-household/' + secondSlug + '/' + thirdSlug], {relativeTo : this.route});
   }

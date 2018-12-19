@@ -28,14 +28,14 @@ export class SearchEffects {
     map( payload => payload['payload']),
     tap( v => console.log('@@@@')),
     switchMap( payload => {
-      return this.searchService.getChildrenCategory(payload['firstSortKey'])
+      return this.searchService.getChildrenCategory(payload['firstCategorySlug'])
         .pipe(
           map( (categoryInfo) => {
             console.log(categoryInfo);
             return new GetSecondCategorySuccess({
               data : categoryInfo,
-              firstSortKey : payload['firstSortKey'],
-              secondSortKey : payload['secondSortKey'],
+              firstCategorySlug : payload['firstCategorySlug'],
+              secondCategorySlug : payload['secondCategorySlug'],
               type : payload['type'],
             });
           }),

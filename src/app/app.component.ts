@@ -22,7 +22,7 @@ import {
 } from './core/store/ui/ui.actions';
 import {UiService} from './core/service/ui/ui.service';
 import {TryGetCartInfo} from './core/store/cart/cart.actions';
-import {GetFirstCategory, TryGetSecondCategory, TryGetThirdCategory} from './core/store/search/search.actions';
+import {GetFirstCategory, GetSecondCategory, TryGetSecondCategory, TryGetThirdCategory} from './core/store/search/search.actions';
 
 @Component({
   selector: 'onpicks-root',
@@ -33,7 +33,7 @@ import {GetFirstCategory, TryGetSecondCategory, TryGetThirdCategory} from './cor
 
 export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
   title = 'onpicks';
-  isCategoryLoaded = false;
+  categoryStatus = {};
   uiState$;
   constructor(
     @Inject(LOCALE_ID) public locale: string,
@@ -46,7 +46,7 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
     this.store.dispatch(new TryGetAuthUser());
     this.store.dispatch(new TryGetCartInfo());
 
-    this.uiState$ = this.store.pipe(select( 'ui')).subscribe( val => this.isCategoryLoaded = val.currentCategoryList.isLoaded )
+    this.uiState$ = this.store.pipe(select( state => state.search.categoryList.status)).subscribe( val => this.categoryStatus = val );
     router.events.subscribe((event: RouterEvent) => {
       this._navigationInterceptor(event);
     });
@@ -62,23 +62,41 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
 
       this.store.dispatch(new UpdateUrlActive(url));
 
-      if ( url[2] !== 'c' || this.isCategoryLoaded  ) { return; };
+      if ( url[2] !== 'c') { return; };
       // category가 /c/안에 url일경우
 
       // onedepth
+      // example : /shops/c/pantry-and-household
       if ( url.length === 4 ) {
-        this.store.dispatch(new GetFirstCategory(
-          { data: '', type : 'cpage', firstSortKey: url[3] }
-          )
-        );
+
+        console.log(url);
+        // cpage에서는 SecondCategory가 oneDepth임 -> 정확히는 cpage에서도 twoDepth임
+
+        if ( this.categoryStatus['secondCategory'] === 'notLoaded') {
+          this.store.dispatch(new TryGetSecondCategory(
+            { type : 'cpage', firstCategorySlug: url[3] }
+            )
+          );
+        }
+
+
+        // isloaded
         return ;
       }
 
       // twoDepth
+      // example : /shops/c/pantry-and-household/grocery
       if ( url.length === 5 ) {
         console.log('trygetSecondCategory!!');
-        this.store.dispatch(new TryGetSecondCategory(
-          { firstSortKey: url[3], secondSortKey: url[4], type : 'cpage' }
+
+        if ( this.categoryStatus['thirdCategory'] === 'notLoaded') {
+          this.store.dispatch(new TryGetThirdCategory(
+            { type : 'cpage', firstCategorySlug: url[3], secondCategorySlug: url[4] }
+            )
+          );
+        }
+        this.store.dispatch(new TryGetThirdCategory(
+          { firstCategorySlug: url[3], secondCategorySlug: url[4], type : 'cpage' }
           )
         );
         return ;
@@ -87,7 +105,7 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
       // threeDepth
       if ( url.length === 6 ) {
         this.store.dispatch(new TryGetThirdCategory(
-          { firstSortKey: url[3], secondSortKey: url[4], thirdSortKey: url[5], type :'cpage' }
+          { firstCategorySlug: url[3], secondCategorySlug: url[4], thirdSortKey: url[5], type :'cpage' }
           )
         );
         return;

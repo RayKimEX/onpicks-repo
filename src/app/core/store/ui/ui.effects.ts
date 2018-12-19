@@ -21,14 +21,14 @@ export class UiEffects {
     map( payload => payload['payload']),
     switchMap( payload => {
       console.log(payload);
-      console.log(payload['secondSortKey']);
+      console.log(payload['secondCategorySlug']);
       return this.uiService.getCategoryAll(1000000)
         .pipe(
           map( (categoryInfo) => {
             console.log(categoryInfo);
             return new GetCategorySuccess( {
               data : categoryInfo.children,
-              secondSortKey : payload['secondSortKey'],
+              secondCategorySlug : payload['secondCategorySlug'],
               thirdSortKey : payload['thirdSortKey'],
               fourthSortKey : payload['fourthSortKey'],
             });
@@ -47,10 +47,10 @@ export class UiEffects {
   //   map( payload => payload['payload']),
   //   switchMap( (payload) => {
   //         console.log(payload);
-  //         console.log(payload['secondSortKey']);
+  //         console.log(payload['secondCategorySlug']);
   //     return new GetCategorySuccess({
   //       data: this.dataCategory,
-  //       secondSortKey: payload['secondSortKey'],
+  //       secondCategorySlug: payload['secondCategorySlug'],
   //       thirdSortKey: payload['thirdSortKey'],
   //       fourthSortKey: payload['fourthSortKey'],
   //     });
