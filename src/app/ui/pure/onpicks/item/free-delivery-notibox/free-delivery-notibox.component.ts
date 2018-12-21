@@ -9,7 +9,6 @@ import {LOCATION_MAP} from '../../../../../app.config';
 })
 export class FreeDeliveryNotiboxComponent implements OnInit {
   @Input() set setCartInfo(_cartInfo) {
-
     this.cartInfo = _cartInfo;
     if ( _cartInfo == null ) { return; };
     this.cartInfo = _cartInfo.cartInfo.pack;

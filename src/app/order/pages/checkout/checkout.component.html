@@ -8,22 +8,66 @@
       <div class="checkout-order-info">
         <h1 class="checkout-order-info__title h1-bold">주문자 정보</h1>
 
-        <div class="checkout-order-info__sub-title subtitle-2-regular">주문자</div>
-        <onpicks-input-box class="checkout-order-info__input" [width]="'40.8rem'" [placeholder]="'주문자 성함'"></onpicks-input-box>
+        <div class="checkout-order-info__sub-title--outer">
+          <div class="checkout-order-info__sub-title subtitle-2-regular">주문자</div>
+          <onpicks-input-box
+            #inputOrderName
+            class="checkout-order-info__input"
+            [width]="'40.8rem'"
+            [placeholder]="'주문자 성함'"></onpicks-input-box>
+          <div *ngIf="checkBitWise(EMPTY_ORDER_NAME)" class="checkout_warning subtitle-2-regular u-color-orange">주문자 성함을 입력해주세요</div>
+        </div>
 
-        <div class="checkout-order-info__sub-title subtitle-2-regular">주문자 연락처</div>
-        <onpicks-input-box class="checkout-order-info__input" [width]="'40.8rem'" [placeholder]="'주문자 연락처'"></onpicks-input-box>
+        <div class="checkout-order-info__sub-title--outer">
+          <div class="checkout-order-info__sub-title subtitle-2-regular">주문자 연락처</div>
+          <onpicks-input-box
+            #inputOrderNumber
+            class="checkout-order-info__input"
+            [width]="'40.8rem'"
+            [placeholder]="'주문자 연락처'"></onpicks-input-box>
+          <div *ngIf="checkBitWise(EMPTY_ORDER_NUMBER)" class="checkout_warning subtitle-2-regular u-color-orange">주문자 연락처를 입력해주세요</div>
+          <div *ngIf="checkBitWise(INVALID_ORDER_NUMBER)" class="checkout_warning subtitle-2-regular u-color-orange">숫자만 입력가능합니다</div>
+        </div>
       </div>
 
       <div class="checkout-left__info--delivery">
         <h1 class="checkout-left__info--delivery-title h1-bold">배송지 정보</h1>
 
-        <div class="checkout-left__info--delivery-tag subtitle-2-regular">받는분</div>
-        <input class="checkout-left__info--delivery-input body-2-regular" type="text" placeholder="받는분 성함">
-        <div class="checkout-left__info--delivery-tag subtitle-2-regular">받는분 연락처</div>
-        <input class="checkout-left__info--delivery-input body-2-regular" type="text" placeholder="받는분 연락처">
+        <div class="checkout-left__info--delivery-tag--outer">
+          <div class="checkout-left__info--delivery-tag subtitle-2-regular">받는분</div>
+          <onpicks-input-box
+            #inputRecipientName
+            class="checkout-left__info--delivery-input body-2-regular"
+            [width]="'40.8rem'"
+            [placeholder]="'받는분 성함'"></onpicks-input-box>
+          <div *ngIf="checkBitWise(EMPTY_RECIPIENT_NAME)" class="checkout_warning subtitle-2-regular u-color-orange">받는분 성함을 입력해주세요</div>
+        </div>
+
+        <div class="checkout-left__info--delivery-tag--outer">
+          <div class="checkout-left__info--delivery-tag subtitle-2-regular">받는분 연락처</div>
+          <onpicks-input-box
+            #inputRecipientNumber
+            class="checkout-left__info--delivery-input body-2-regular"
+            [width]="'40.8rem'"
+            [placeholder]="'받는분 연락처'"></onpicks-input-box>
+          <div *ngIf="checkBitWise(EMPTY_RECIPIENT_NUMBER)" class="checkout_warning subtitle-2-regular u-color-orange">받는분 연락처를 입력해주세요</div>
+          <div *ngIf="checkBitWise(INVALID_RECIPIENT_NUMBER)" class="checkout_warning subtitle-2-regular u-color-orange">숫자만 입력가능합니다</div>
+        </div>
+
         <div class="checkout-left__info--delivery-tag subtitle-2-regular">주소</div>
-        <input #inputZipnumber class="checkout-left__info--delivery-input-address body-2-regular" type="text" placeholder="우편번호">
+
+        <onpicks-input-box
+          #inputZipnumber
+          (click)="showSearchBox('input')"
+          [readonly]="true"
+          class="checkout-left__info--delivery-input-address  body-2-regular"
+          [width]="'27.8rem'"
+          [placeholder]="'우편번호'"></onpicks-input-box>
+        <!--<input-->
+          <!--#inputZipnumber-->
+          <!--class="checkout-left__info&#45;&#45;delivery-input-address body-2-regular"-->
+          <!--type="text"-->
+          <!--placeholder="우편번호">-->
 
         <onpicks-button
           [type]="'white'"
@@ -32,7 +76,11 @@
           (click)="showSearchBox()">우편번호 찾기</onpicks-button>
 
         <div #inputSearchBoxOuter class="checkout-left__info--delivery-searchBox-outer">
-          <onpicks-search-box #inputSearchBox class="checkout-left__info--delivery-searchBox"  [width]="55.2" [placeholder]="'검색할 주소를 입력해주세요'" ></onpicks-search-box>
+          <onpicks-search-box
+            #inputSearchBox
+            class="checkout-left__info--delivery-searchBox"
+            [width]="55.2"
+            [placeholder]="'검색할 주소를 입력해주세요'" ></onpicks-search-box>
           <div class="checkout-left__info--delivery-searchBox-option">
             <!-- TODO : list형식 관련 스타일 가이드 의견 교류 필요, 1. padding을 일괄적으로 주면서, 이쁘게 디자인 안나오는지,  -->
             <div *ngIf="searchState === 1" class="checkout-left__info--delivery-searchBox-option-list" >
@@ -85,48 +133,93 @@
             </div>
           </div>
         </div>
-        <input #inputJuso class="checkout-left__info--delivery-input body-2-regular" type="text">
-        <input class="checkout-left__info--delivery-input body-2-regular" type="text" placeholder="상세주소를 입력하세요">
+
+        <onpicks-input-box
+          #inputJuso
+          (click)="showSearchBox('input')"
+          [readonly]="true"
+          class="checkout-left__info--delivery-input  body-2-regular"
+          [width]="'40.8rem'"
+          [placeholder]="''"
+        ></onpicks-input-box>
+
+        <onpicks-input-box
+          #inputDetailJuso
+          class="checkout-left__info--delivery-input  body-2-regular"
+          [width]="'40.8rem'"
+          [placeholder]="'상세주소를 입력하세요'"></onpicks-input-box>
+
+        <div *ngIf="checkBitWise(EMPTY_DELIVERY_ADDRESS)" class="checkout_warning subtitle-2-regular u-color-orange">배송지를 입력해주세요</div>
 
         <onpicks-button
           [type]="'white'"
           [width]="'11.4rem'"
           class="checkout-left__info--delivery-save-btn"
           >배송지 저장</onpicks-button>
-        <div class="checkout-left__info--delivery-tag subtitle-2-regular">배송요청사항</div>
-        <onpicks-select-box [sortList]="deliveryOption"></onpicks-select-box>
-        <div class="checkout-left__info--delivery-description">도서산간 지역의 경우 추후 수령시 추가 배송비가 발생할 수 있으며, 해외 배송은 불가합니다.</div>
-      </div>
 
+        <div class="checkout-left__info--delivery-tag subtitle-2-regular">배송요청사항</div>
+        <onpicks-select-box
+          #selectDeliveryRequirement
+          [sortList]="deliveryOption">
+
+        </onpicks-select-box>
+        <div class="checkout-left__info--delivery-description">도서산간 지역의 경우 추후 수령시 추가 배송비가 발생할 수 있습니다.</div>
+      </div>
 
       <div class="checkout-addition-info">
         <h1 class="h1-bold checkout-addition-info__title">해외직구상품 추가정보 (필수)</h1>
-        <div class="subtitle-2-regular checkout-addition-info__sub-title">개인통관고유부호 소유자 성함</div>
-        <onpicks-input-box class="checkout-addition-info__input" [width]="'40.8rem'" [placeholder]="'주문자 성함'"></onpicks-input-box>
-        <div class="subtitle-2-regular u-color-dark-grey checkout-addition-info__description">반드시 주민등록상의 성함을 기재해 주셔야 하며, 잘못 기재 했을 시 통관지연등의 불이익을 받으실 수 있습니다.</div>
+        <!--<div class="subtitle-2-regular checkout-addition-info__sub-title">개인통관고유부호 소유자 성함</div>-->
+        <!--<onpicks-input-box-->
+          <!--#checkoutAdditionName-->
+          <!--class="checkout-addition-info__input"-->
+          <!--[width]="'40.8rem'"-->
+          <!--[placeholder]="'받는분 성함'"></onpicks-input-box>-->
+        <!--<div *ngIf="checkBitWise(EMPTY_JUSO)" class="write-review__photo&#45;&#45;description subtitle-2-regular u-color-orange">개인통관부호 소유자 성함을 입력해주세요.</div>-->
 
-        <div class="subtitle-2-regular checkout-addition-info__sub-title">개인통관고유부호</div>
-        <onpicks-input-box class="checkout-addition-info__input" [width]="'40.8rem'" [placeholder]="'P로 시작하는 13자리를 입력하세요'"></onpicks-input-box>
+        <!--<div class="subtitle-2-regular u-color-dark-grey checkout-addition-info__description">반드시 주민등록상의 성함을 기재해 주셔야 하며, 잘못 기재 했을 시 통관지연등의 불이익을 받으실 수 있습니다.</div>-->
 
-        <div class="subtitle-2-regular u-color-dark-grey checkout-addition-info__description">상품을 받는 분의 개인통관고유부호를 입력해주세요</div>
+        <div class="checkout-addition-info__outer">
+          <div class="subtitle-2-regular checkout-addition-info__sub-title">개인통관고유부호</div>
+          <onpicks-input-box
+            #checkoutAdditionNumber
+            class="checkout-addition-info__input"
+            [width]="'40.8rem'"
+            [placeholder]="'P로 시작하는 13자리를 입력하세요'"></onpicks-input-box>
 
-        <onpicks-check-box class="checkout-addition-info__checkbox">통관정보 수집, 제공에 동의 (필수)</onpicks-check-box>
+          <div *ngIf="!checkBitWise(EMPTY_CUSTOMS_ID_NUMBER) && !checkBitWise(INVALID_CUSTOMS_ID_NUMBER)" class="subtitle-2-regular u-color-dark-grey checkout-addition-info__description">상품을 받는분의 개인통관고유부호를 입력해주세요</div>
+          <div *ngIf="checkBitWise(EMPTY_CUSTOMS_ID_NUMBER)" class="checkout_warning subtitle-2-regular u-color-orange">받는분의 개인통관고유부호를 입력해주세요</div>
+          <div *ngIf="checkBitWise(INVALID_CUSTOMS_ID_NUMBER)" class="checkout_warning subtitle-2-regular u-color-orange">올바른 개인통관고유부호를 입력해주세요</div>
 
-        <div class="subtitle-2-regular u-color-green checkout-addition-info__question">개인통관고유부호란?</div>
+        </div>
+
+
+
+        <onpicks-check-box
+          (click)="checkG9DeliveryInfo = !checkG9DeliveryInfo"
+          [type]="'checkbox'"
+          class="checkout-addition-info__checkbox">통관정보 수집, 제공에 동의 (필수)</onpicks-check-box>
+        <div class="checkout-addition-info__description2 subtitle-2-regular u-color-dark-grey">받는분의 이름과 개인통관고유부호의 불일치로 인한 배송지연/환불에 대해서는 책임지지 않으니 이점 유의 하시기 바랍니다.</div>
+
+        <div class="checkout-addition-info__question">
+          <a
+            href="https://unipass.customs.go.kr/csp/persIndex.do"
+            class="subtitle-2-bold u-color-green">개인통관고유부호 발급하기&nbsp;&nbsp;></a>
+        </div>
 
         <onpicks-button
           [type]="'white'"
           [width]="'16.7rem'"
-          class="checkout-left__info--delivery-save-btn"
           >개인통관고유부호 저장</onpicks-button>
 
       </div>
 
       <div class="checkout-left__info--checkout">
         <h3 class="checkout-left__info--checkout-title">결제정보</h3>
-
         <div class="checkout-left__info--checkout-tag">쿠폰</div>
-        <input class="checkout-left__info--checkout-input" type="text" placeholder="쿠폰 번호를 입력하세요">
+        <input
+          class="checkout-left__info--checkout-input"
+          type="text"
+          placeholder="쿠폰 번호를 입력하세요">
         <onpicks-button
           [type]="'white'"
           [width]="'8.5rem'"
@@ -134,30 +227,47 @@
           >사용하기</onpicks-button>
 
         <div class="checkout-left__info--checkout-tag">결제방법 선택</div>
-        <onpicks-check-box>신용/체크카드</onpicks-check-box>
-        <onpicks-check-box>실시간계좌이체</onpicks-check-box>
-        <onpicks-check-box>무통장입금(가상계좌)</onpicks-check-box>
-        <onpicks-check-box>휴대폰결제</onpicks-check-box>
-        <onpicks-check-box>네이버페이</onpicks-check-box>
 
-
+        <onpicks-check-box
+          #isCard
+          (radioEvent)="checkBox($event, isCard)"
+          [value]="'card'"
+          [type]="'radio'">신용/체크카드</onpicks-check-box>
+        <onpicks-check-box
+          #isTransfer
+          (radioEvent)="checkBox($event, isTransfer)"
+          [value]="'transfer'"
+          [type]="'radio'">실시간계좌이체</onpicks-check-box>
+        <onpicks-check-box
+          #isVaccount
+          (radioEvent)="checkBox($event, isVaccount)"
+          [value]="'vaccount'"
+          [type]="'radio'">무통장입금(가상계좌)</onpicks-check-box>
+        <onpicks-check-box
+          #isMobile
+          (radioEvent)="checkBox($event, isMobile)"
+          [value]="'mobile'"
+          [type]="'radio'">휴대폰결제</onpicks-check-box>
+        <!--<onpicks-check-box [type]="'radio'">네이버페이</onpicks-check-box>-->
+        <div *ngIf="checkBitWise(EMPTY_PAYMENT_METHOD)" class="write-review__photo--description subtitle-2-regular u-color-orange">결제방법을 선택해주세요.</div>
       </div>
 
     </div>
   </div>
+
   <div class="col-6-of-12 checkout-right">
-    <div class="checkout-right__menu" *ngIf="(cartStore$ | async) as data; ">
+    <div class="checkout-right__menu" *ngIf="(checkoutStore$ | async) as data; ">
       <h3 class="checkout-right__menu--title subtitle-1-bold">최종결제금액</h3>
-      <div class="checkout-right__menu--item" *ngFor="let item of data | keyvalue">
+      <div class="checkout-right__menu--item" *ngFor="let item of data.items">
         <div class="checkout-right__menu--item-image">
-          <img drLazyLoad src="{{item.value.thumbnail}}" alt="">
+          <img drLazyLoad src="{{item.thumbnail}}" alt="">
         </div>
         <div class="checkout-right__menu--item-info">
-          <div class="checkout-right__menu--item-info-brand subtitle-3-bold">{{item.value.brand}}</div>
-          <div class="checkout-right__menu--item-info-name body-3-regular">{{item.value.title}}</div>
+          <div class="checkout-right__menu--item-info-brand subtitle-3-bold">{{item.brand}}</div>
+          <div class="checkout-right__menu--item-info-name body-3-regular">{{item.title}}</div>
           <div *ngIf="item.infoOption !== ''" class="checkout-right__menu--item-info-option subtitle-3-regular u-color-grey">{{item.infoOption}}</div>
 
-          <div class="checkout-right__menu--item-info-price subtitle-2-bold">{{item.value.sale_price | onpicksCurrency: 'KRW'}}</div>
+          <div class="checkout-right__menu--item-info-price subtitle-2-bold">{{item.sale_price | onpicksCurrency: 'KRW'}} / {{item.quantity}}개</div>
         </div>
       </div>
 
@@ -178,6 +288,7 @@
 
       <div class="checkout-right__menu--checkout">
         <onpicks-button
+          (click)="payment()"
           [type]="'black'"
           [width]="'100%'"
           [size]="'big'"
@@ -187,8 +298,5 @@
   </div>
 </div>
 
-<!-- 일단 div로하고 그 안에 span을 넣음 -->
-<!--'https://picsum.photos/1920/440?image=120',-->
-<!--'https://picsum.photos/1920/440?image=200',-->
-<!--'https://picsum.photos/1920/440?image=130',-->
-<!--'https://picsum.photos/1920/440?image=210',-->
+
+

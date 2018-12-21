@@ -44,9 +44,6 @@ export class ListActiveButtonComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    if ( this.isFixExtend ) {
-      this.amount = 1;
-    }
   }
 
   ngAfterViewInit() {

@@ -1,16 +1,10 @@
 
 <div class="cart">
-  <ng-container *ngIf="(cartStore$ | async) as syncedData">
-  <div class="row" >
-  <!--<div class="row"  *ngIf="{-->
-        <!--free: (cartStore$ | async) ? (cartStore$ | async)[0] : null,-->
-        <!--new: (cartStore$ | async) ? (cartStore$ | async)[1] : null,-->
-        <!--la : (cartStore$ | async) ? (cartStore$ | async)[2] : null,-->
-        <!--gorge : (cartStore$ | async) ? (cartStore$ | async)[3] : null,-->
-        <!--hong : (cartStore$ | async) ? (cartStore$ | async)[4] : null,-->
-        <!--osaka : (cartStore$ | async) ? (cartStore$ | async)[5] : null-->
-      <!--} as data;">-->
-
+  <ng-container *ngIf="{
+    cartList:   (cartStore$ | async)?.cartList,
+    cartInfo:   (cartStore$ | async)?.cartInfo
+  } as syncedData">
+  <div class="row">
     <div class="cart__title">쇼핑백</div>
       <div class="cart__section--title">무료배송 상품</div>
 
@@ -20,7 +14,12 @@
             <span class="cart__delivery-free-font">F</span>
           </span>
           <span class="cart__delivery-free-spot-list">
-            뉴저지 <span>무료배송</span>
+            <ng-container [ngSwitch]="locale">
+              <span *ngSwitchCase="'ko'" class="subtitle-1-bold" [ngStyle]="{ 'marginRight' : '0.4rem' }">뉴저지</span>
+              <span *ngSwitchCase="'en'" class="subtitle-1-bold" [ngStyle]="{ 'marginRight' : '0.8rem' }">뉴저지</span>
+              <span *ngSwitchCase="'zh'" class="subtitle-1-bold" [ngStyle]="{ 'marginRight' : '0.8rem' }">뉴저지</span>
+            </ng-container>
+            <span>무료배송</span>
           </span>
           <span class="cart__delivery-free-total-count">총 결제금액 <span>150000원</span></span>
         </div>
@@ -74,7 +73,7 @@
         </tr>
       </table>
     <div class="cart__section--title">묶음 배송 상품</div>
-    <div *ngFor="let item of syncedData?.pack">
+    <div *ngFor="let item of syncedData?.cartInfo?.pack; index as i">
       <ng-container *ngIf="item.items?.length !== 0">
 
         <div class="cart__delivery-multi">
@@ -91,32 +90,36 @@
             >
             </span>
             <span class="cart__delivery-multi-spot-list">
-              <span class="subtitle-1-bold">{{item.location.name}} </span>
+              <ng-container [ngSwitch]="locale">
+                <span *ngSwitchCase="'ko'" class="subtitle-1-bold" [ngStyle]="{ 'marginRight' : '0.4rem' }">{{item.location.name}}</span>
+                <span *ngSwitchCase="'en'" class="subtitle-1-bold" [ngStyle]="{ 'marginRight' : '0.8rem' }">{{item.location.name}}</span>
+                <span *ngSwitchCase="'zh'" class="subtitle-1-bold" [ngStyle]="{ 'marginRight' : '0.8rem' }">{{item.location.name}}</span>
+              </ng-container>
               <span class="subtitle-1-regular">묶음배송</span>
             </span>
             <span class="cart__delivery-multi-total-count">
               <span class="subtitle-2-regular u-color-dark-grey">총 결제금액</span>
               <span class="subtitle-2-bold">{{item.subtotal | onpicksCurrency: 'KRW'}}</span>
             </span>
-
           </div>
         </div>
 
         <div class="cart__delivery-multi-purchase">
-
           <div class="cart__delivery-multi-purchase--remain">
-            <div class="cart__delivery-multi-purchase--remain-description subtitle-2-regular">{{item.location.name}} 무료배송까지 {{item.free_shipping_threshold - (item.subtotal - item.shipping_fee) | onpicksCurrency:'KRW'}} 남았습니다</div>
-            <ui-progressive-bar [progressWidth]="'100%'"></ui-progressive-bar>
+            <div *ngIf="((item.free_shipping_threshold - (item.subtotal - item.shipping_fee)) > 0)" class="cart__delivery-multi-purchase--remain-description subtitle-2-regular">{{item.location.name}} 무료배송까지 {{item.free_shipping_threshold - (item.subtotal - item.shipping_fee) | onpicksCurrency:'KRW'}} 남았습니다</div>
+            <div *ngIf="!((item.free_shipping_threshold - (item.subtotal - item.shipping_fee)) > 0)"class="cart__delivery-multi-purchase--remain-description subtitle-2-bold">{{item.location.name}} 무료배송 조건이 충족되었습니다</div>
+            <ui-progressive-bar [progressWidth]="
+            ((((item.subtotal - item.shipping_fee) / item.free_shipping_threshold) * 100) > 100 ? 100 :  ((((item.subtotal - item.shipping_fee) / item.free_shipping_threshold) * 100))) + '%'"></ui-progressive-bar>
           </div>
 
           <onpicks-button
+            (click)="setCheckoutList(item.items)"
             class="cart__delivery-multi-purchase--btn"
             [type]="'white'"
             [size]="'big'"
             [width]="'16.1rem'"
           >묶음배송 구매하기</onpicks-button>
         </div>
-
       </ng-container>
       <table class="cart__multi-table">
         <tr *ngFor="let itemChild of item.items; index as i">
@@ -133,6 +136,9 @@
           <td>
             <div class="cart__multi-table--amount">
               <onpicks-list-active-button
+                (addEvent)="addToCart(syncedData.cartList[itemChild.product].quantity, itemChild.product)"
+                (subtractEvent)="subtractFromCart(syncedData.cartList[itemChild.product].quantity, itemChild.product)"
+                [amount]="syncedData.cartList[itemChild.product].quantity"
                 [isFixExtend]="true">
               </onpicks-list-active-button>
               <!--<onpicks-numeric-button [active]="item.amount !== 0" [type]="'minus'"></onpicks-numeric-button>-->
@@ -237,7 +243,13 @@
       </table>
     </div>
     <onpicks-button class="cart__btn--shopping" [type]="'white'" [size]="'big'" [width]="'13.4rem'">계속 쇼핑하기</onpicks-button>
-    <onpicks-button routerLink="/order/checkout"  class="cart__btn--shopping" [type]="'black'" [size]="'big'" [width]="'13.4rem'">전체 구매하기</onpicks-button>
+    <onpicks-button
+      (click)="setCheckoutList(denormalizr(cartStore.cartList))"
+      routerLink="/order/checkout"
+      class="cart__btn--shopping"
+      [type]="'black'"
+      [size]="'big'"
+      [width]="'13.4rem'">전체 구매하기</onpicks-button>
 
     </div>
   </ng-container>

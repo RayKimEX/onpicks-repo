@@ -67,6 +67,7 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
       // category가 /c/안에 url일경우
 
       // onedepth
+      // example : shops/c/pantry
       if ( url.length === 4 ) {
         this.store.dispatch(new GetCategoryAll(
           { data: '', type : 'cpage', firstSortKey: url[3] }
@@ -76,9 +77,11 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
       }
 
       // twoDepth
-      if ( url.length >= 5 ) {
+      // example : shops/c/pantry/house
+      if ( url.length === 5 ) {
+        console.log(url.length);
         console.log('trygetSecondCategory!!');
-        this.store.dispatch(new GetCategoryAll({ secondSortKey : url[4], firstSortKey : url[3] }));
+        this.store.dispatch(new GetCategoryAll({ firstSortKey : url[3], secondSortKey : url[4],  }));
         // this.store.dispatch(new TryGetSecondCategory(
         //   { firstSortKey: url[3], secondSortKey: url[4], type : 'cpage' }
         //   )
@@ -86,8 +89,11 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
         return ;
       }
 
-      // threeDepth
-      if ( url.length === 6 ) {
+      // threeDepth // fourDepth
+      // example : shops/c/pantry/house/ads
+      // example : shops/c/pantry/house/ads/asd
+      if ( url.length === 6 ||  url.length === 7) {
+        this.store.dispatch(new GetCategoryAll({ firstSortKey : url[3], secondSortKey : url[4], thirdSortKey : url[5] }));
         // this.store.dispatch(new TryGetThirdCategory(
         //   { firstSortKey: url[3], secondSortKey: url[4], thirdSortKey: url[5], type :'cpage' }
         //   )

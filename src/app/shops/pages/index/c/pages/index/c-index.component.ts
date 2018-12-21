@@ -1,7 +1,14 @@
-import {AfterViewInit, ChangeDetectionStrategy, Component, OnDestroy, OnInit, Renderer2} from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  Component,
+  OnDestroy,
+  OnInit,
+  Renderer2
+} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {select, Store} from '@ngrx/store';
-import {UpdateSecondCategory, UpdateThirdCategory} from '../../../../../../core/store/ui/ui.actions';
+import {UpdateCategory } from '../../../../../../core/store/ui/ui.actions';
 
 @Component({
   selector: 'onpicks-c-index',
@@ -13,7 +20,9 @@ export class CIndexComponent implements OnInit, AfterViewInit, OnDestroy{
 
   url;
   isCategoryLoaded = false;
+
   uiState$;
+  searchData$;
   constructor(
     private renderer: Renderer2,
     public route: ActivatedRoute,
@@ -63,7 +72,7 @@ export class CIndexComponent implements OnInit, AfterViewInit, OnDestroy{
     if ( this.isCategoryLoaded ) {
       this.url = this.router.url.split('/');
       if (this.url[this.url.length - 1] === slug) { return; };
-      this.store.dispatch(new UpdateSecondCategory({ secondSortKey : slug }));
+      this.store.dispatch(new UpdateCategory({ secondSortKey : slug }));
     }
 
   }

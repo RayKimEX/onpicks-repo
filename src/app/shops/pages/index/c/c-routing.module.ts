@@ -36,6 +36,10 @@ const routes: Routes = [
               {
                 path : ':id',
                 component : PageGroceryComponent,
+              },
+              {
+                path : ':id/:id',
+                component : PageGroceryComponent,
               }
             ]
           },
@@ -48,6 +52,10 @@ const routes: Routes = [
               },
               {
                 path : ':id',
+                component : PageHouseholdSuppliesComponent
+              },
+              {
+                path : ':id/:id',
                 component : PageHouseholdSuppliesComponent
               }
             ]
@@ -63,6 +71,10 @@ const routes: Routes = [
               {
                 path : ':id',
                 component : PagePersonalCareComponent
+              },
+              {
+                path : ':id/:id',
+                component : PagePersonalCareComponent
               }
             ]
           },
@@ -76,6 +88,10 @@ const routes: Routes = [
               },
               {
                 path : ':id',
+                component : PageHealthComponent
+              },
+              {
+                path : ':id/:id',
                 component : PageHealthComponent
               }
             ]
@@ -91,6 +107,10 @@ const routes: Routes = [
               {
                 path : ':id',
                 component : PageBabyComponent
+              },
+              {
+                path : ':id/:id',
+                component : PageBabyComponent
               }
             ]
           },
@@ -105,6 +125,10 @@ const routes: Routes = [
               {
                 path : ':id',
                 component : PagePetSuppliesComponent
+              },
+              {
+                path : ':id/:id',
+                component : PagePetSuppliesComponent
               }
             ]
           },
@@ -118,6 +142,10 @@ const routes: Routes = [
               },
               {
                 path : ':id',
+                component : PageOfficeSuppliesComponent
+              },
+              {
+                path : ':id/:id',
                 component : PageOfficeSuppliesComponent
               }
             ]

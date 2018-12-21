@@ -36,8 +36,8 @@
             <hr>
             <div class="c-category-navigator__content">
               <nav class="subtitle-3-bold u-color-dark-grey">
-
-                <ul #depthOuter>
+                <!-- async를 이용하여 마지막에의 변수값가져오기 -->
+                <ul #depthOuter *ngIf="route.url | async as lastUrl">
                   <li #oneDepth *ngFor="let firstCategoryId of result">
                     <!--twoDepth-->
                     <div class="c-category-navigator__item">
@@ -84,14 +84,22 @@
                         </div>
 
                         <ul #f2
-                            [ngStyle]="{ 'maxHeight' : categoryList.thirdCategory[secondCategoryId].active ? '700px' : '0px' }">
+                            [ngStyle]="{
+                            'maxHeight' : categoryList.thirdCategory[secondCategoryId].active ? '700px' : '0px' }">
                           <li #threeDepth *ngFor="let thirdCategoryId of categoryList.thirdCategory[secondCategoryId].children">
                             <div class="c-category-navigator__item">
-                              <a (click)="updateFourthCategory()"
-                                [ngClass]="categoryList.thirdCategory[secondCategoryId].active ? categoryList.fourthCategory[thirdCategoryId].active ? 'main-active' : 'sub-active' : 'main-deactive'"
+                              <a
+                                (click)="updateFourthCategory(
+                                    thirdCategoryId,
+                                    categoryList.secondCategory[firstCategoryId].slug,
+                                    categoryList.thirdCategory[secondCategoryId].slug,
+                                    categoryList.fourthCategory[thirdCategoryId].slug)"
+                                [ngClass]="categoryList.thirdCategory[secondCategoryId].active ?  lastUrl[1] == categoryList.fourthCategory[thirdCategoryId].slug ? 'main-active' : 'sub-active' : 'main-deactive'"
                               >{{categoryList.fourthCategory[thirdCategoryId].name}}</a>
                             </div>
-
+                            <!--<div *ngIf="route.url | async as data">-->
+                              <!--{{data[0]}}-->
+                            <!--</div>-->
                             <!--<ul>-->
                             <!--<li #FourDepth *ngFor="let firthDepth of secondDepth.value[thirdDepth.key] | keyvalue: nonCompareFunction">-->
                             <!--<a class="u-color-dark-grey">{{firthDepth.key}}</a>-->
@@ -208,6 +216,7 @@
       </div>
 
       <div class="col-9-of-12">
+
         <div *ngIf="currentList !== null; else loading" class="c-category-content" >
           <h1 class="c-category-content__title h1-bold">
             <span class="u-color-green">{{queryParams.term}}</span>에 대한 검색 결과 {{totalCount}}건

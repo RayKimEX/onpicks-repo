@@ -9,7 +9,7 @@ import {
 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
-import { UpdateThirdCategory } from '../../../core/store/ui/ui.actions';
+import { UpdateCategory } from '../../../core/store/ui/ui.actions';
 import {
   TryAddOrCreateToCart, TrySubtractOrDeleteFromCart
 } from '../../../core/store/cart/cart.actions';
@@ -24,6 +24,7 @@ import {
 export class SearchNavigatorComponent implements OnInit, OnDestroy {
   // @Input('categoryList') categoryList;
 
+  // TODO : 나중에하기, 이것을 app.component로 넘겨서 dispatch로 해서 값을 가져올 수 있게.
   @Input()  set inputInfoList(_infoList) {
     /* async 데이터가 들어오는데, null이라면 return을 해줌 */
     this.currentList = null;
@@ -116,6 +117,7 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
     private store: Store<any>,
     private router: Router,
     private route: ActivatedRoute,
+    public routeSnapShot: ActivatedRoute,
     private cd: ChangeDetectorRef,
 
   ) {
@@ -177,13 +179,12 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
   }
 
   updateSecondCategory(index, slug) {
-    console.log('updateSecondCategory');
+    console.log(index)
     const url = this.router.url.split('/');
-    if (url[url.length - 1] === slug) { return; };
+    if ( url[url.length - 1] === slug) { return; };
+    this.store.dispatch(new UpdateCategory({ secondSortKey : slug }));
 
-
-
-
+    this.router.navigate( ['/shops/c/pantry-and-household/' + slug], {relativeTo : this.route});
   }
 
   updateThirdCategory(index, secondSlug, thirdSlug) {
@@ -191,9 +192,19 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
     console.log(url.length);
     // if (url[url.length - 1] === slug) { return; };
 
-    this.store.dispatch(new UpdateThirdCategory({ secondSortKey : secondSlug, thirdSortKey: thirdSlug }));
+    this.store.dispatch(new UpdateCategory({ secondSortKey : secondSlug, thirdSortKey: thirdSlug }));
     // this.store.dispatch(new UpdateThirdCategory({secondSortBy : index}));
     this.router.navigate( ['/shops/c/pantry-and-household/' + secondSlug + '/' + thirdSlug], {relativeTo : this.route});
+  }
+
+  updateFourthCategory(index, secondSlug, thirdSlug, fourthSlug) {
+    const url = this.router.url.split('/')
+    console.log(url.length);
+    // if (url[url.length - 1] === slug) { return; };
+
+    // this.store.dispatch(new UpdateCategory({ secondSortKey : secondSlug, thirdSortKey: thirdSlug }));
+    // this.store.dispatch(new UpdateThirdCategory({secondSortBy : index}));
+    this.router.navigate( ['/shops/c/pantry-and-household/' + secondSlug + '/' + thirdSlug + '/' + fourthSlug], {relativeTo : this.route});
   }
 
   onedepthFold( dom, label ) {

@@ -22,8 +22,9 @@ export function CartReducer(state = initialState, action: CartActions.CartAction
   switch (action.type) {
 
     case CartActions.GET_CART_INFO_SUCCESS :
+      console.log(action.payload);
       let object = {}
-      action.payload.forEach( v => {
+      action.payload.results.forEach( v => {
 
          if ( v.items.length === 0 ) { return; };
 
@@ -36,8 +37,8 @@ export function CartReducer(state = initialState, action: CartActions.CartAction
       return {
         ...state,
         cartInfo : {
-          free : action.payload[0],
-          pack : action.payload.slice(1, action.payload.length),
+          free : action.payload.results[0],
+          pack : action.payload.results.slice(1, action.payload.length),
         },
         cartList : object,
       }

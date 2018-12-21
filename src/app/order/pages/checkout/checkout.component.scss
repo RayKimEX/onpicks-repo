@@ -3,28 +3,38 @@
 .checkout {
   margin-top : 3.2rem;
 
+  &_warning {
+    margin-top : 0.8rem;
+  }
   &-order-info {
-
     padding-bottom : 8px;
     border-bottom : 1px solid $color-light-grey;
+
     &__title {
       margin-bottom : 2.4rem;
     }
+
     &__sub-title {
       margin-bottom : 0.8rem;
+      &--outer{
+        margin-bottom : 1.6rem;
+      }
     }
 
     &__input {
       display:inline-block;
-      margin-bottom : 1.6rem;
     }
-
   }
 
   &-addition-info {
 
     border-bottom : 1px solid $color-light-grey;
     padding-bottom : 2.4rem;
+
+    &__outer {
+      margin-bottom : 1.6rem;
+    }
+
     &__title {
       margin-top : 2.4rem;
       margin-bottom : 2.4rem;
@@ -36,10 +46,13 @@
 
     &__input {
       display:inline-block;
-      margin-bottom : 0.8rem;
     }
 
     &__description {
+      margin-top : 0.8rem;
+    }
+
+    &__description2 {
       margin-bottom : 1.6rem;
     }
 
@@ -124,12 +137,17 @@
         }
 
         &-save-btn {
+          display:inline-block;
+          margin-top : 1.6rem;
           margin-bottom : 2.4rem;
         }
 
         &-tag {
           margin-top : 2.4rem;
           margin-bottom : 8px;
+          &--outer {
+            margin-bottom : 1.6rem;
+          }
         }
 
         &-description {
@@ -197,8 +215,6 @@
                     //}
                   }
 
-
-
                   //table.fixed {table-layout:fixed; width:90px;}/*Setting the table width is important!*/
                   //table.fixed td {overflow:hidden;}/*Hide text outside the cell.*/
                   //table.fixed td:nth-of-type(1) {width:20px;}/*Setting the width of column 1.*/
@@ -207,13 +223,12 @@
                 }
               }
 
-              &-1{
+              &-1 {
                 font-size : 1.6rem;
                 line-height : 1.25;
                 font-weight : 700;
                 color : #292929;
                 margin-bottom : 1.6rem;
-
               }
 
               //&-2{
@@ -253,7 +268,7 @@
                 border-bottom : 1px solid #e5e5e5;
               }
 
-              &-title{
+              &-title {
                 margin-top : 10px;
                 color : #292929;
                 margin-bottom : 8px;
@@ -263,7 +278,6 @@
                 color : #8d8d8d;
               }
             }
-
           }
         }
 
@@ -271,25 +285,23 @@
           display:block;
           height : 4rem;
           width: 40.8rem;
-          padding : 1rem 1.6rem;
-          margin-bottom : 1.6rem;
 
-
+          &:last-of-type {
+            margin-top: 1.6rem;
+          }
           //TODO : 이부분은 크롬에서만 적용됨.
-          &::placeholder{
+          &::placeholder {
             color : #b3b3b3;
           }
 
           &-address {
             display:inline-block;
             height : 4rem;
-
-            padding : 1rem 1.6rem;
             width : 27.8rem;
             margin-bottom : 1.6rem;
 
             //TODO : 이부분은 크롬에서만 적용됨.
-            &::placeholder{
+            &::placeholder {
               color : #b3b3b3;
             }
           }

@@ -371,7 +371,7 @@
       line-height :1.5;
       font-weight: 700;
 
-      span {
+      span:last-of-type {
         color : $color-green;
       }
     }
