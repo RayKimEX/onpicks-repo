@@ -23,7 +23,7 @@ export class AccountDataService {
     return this.httpClient.get<any>( this.BASE_URL + '/api/orders/');
   }
 
-  getOrdersData(orderId) {
+  getOrdersDetailData(orderId) {
     return this.httpClient.get<any>( this.BASE_URL + '/api/orders/' + orderId + '/');
   }
 

@@ -45,7 +45,9 @@ export class DeliveryAddressComponent implements OnInit, OnDestroy, AfterViewIni
 
 
   updateDeliveryIndex = 0;
-  
+
+  errorStatus = 0;
+
   searchFirst$;
   searchLast$;
 
@@ -313,11 +315,10 @@ export class DeliveryAddressComponent implements OnInit, OnDestroy, AfterViewIni
 
   addDeliveryInfo() {
 
-    this.validateDeliveryInfo();
+    // this.validateDeliveryInfo();
 
     if ( this.errorStatus === 0 ) {
       console.log(this.deliveryData.length);
-
       const JSON_deliveryInfo = this.setDeliveryInfo();
 
       this.orderDataService.addDeliveryData(this.userStore.id, JSON_deliveryInfo).subscribe( v => {
@@ -334,72 +335,35 @@ export class DeliveryAddressComponent implements OnInit, OnDestroy, AfterViewIni
 
 
 
-  updateDeliveryDataToDefault( index ) {
-    this.orderDataService.updateDeliveryDataToDefault(this.userStore.id, this.deliveryData[index].id).subscribe(
-      v => {
 
-        console.log(this.deliveryData);
-        console.log(v);
-        const temp = [];
-        this.deliveryData.forEach( (value, forEachIndex) => {
-
-          if(forEachIndex === index) {
-            const valueTemp = {
-              ...value,
-              default : true,
-            }
-            temp.unshift(valueTemp);
-          } else {
-            const valueTemp = {
-              ...value,
-              default : false,
-            }
-            temp.push(valueTemp);
-          }
-        })
-
-        this.deliveryData = temp;
-
-        this.deliveryData$ = of(temp);
-        console.log(this.deliveryData);
-
-        this.cd.markForCheck();
-      }
-    );
-  }
-
-
-
-
-
-  validateDeliveryInfo(){
-
-    this.errorStatus = 0;
-
-
-    if ( this.inputRecipientName.last.nativeElement.children[0].value === '') {
-      if ( this.errorStatus === 0 ) {this.inputRecipientName.last.nativeElement.children[0].focus();}
-      this.errorStatus |= this.EMPTY_RECIPIENT_NAME;
-    }
-
-    if ( this.inputRecipientNumber.last.nativeElement.children[0].value === '') {
-      if ( this.errorStatus === 0 ) {this.inputRecipientNumber.last.nativeElement.children[0].focus();}
-      this.errorStatus |= this.EMPTY_RECIPIENT_NUMBER;
-    } else {
-      const patt = new RegExp('[a-zA-Z]');
-      if ( patt.test(this.inputRecipientNumber.last.nativeElement.children[0].value) ) {
-        if ( this.errorStatus === 0 ) {this.inputRecipientNumber.last.nativeElement.children[0].focus();}
-        this.errorStatus |= this.INVALID_RECIPIENT_NUMBER;
-      }
-    }
-
-    if ( this.inputZipnumber.last.nativeElement.children[0].value === ''
-      || this.inputJuso.last.nativeElement.children[0].value === ''
-    ) {
-      if ( this.errorStatus === 0 ) {this.inputZipnumber.last.nativeElement.children[0].focus();}
-      this.errorStatus |= this.EMPTY_DELIVERY_ADDRESS;
-    }
-  }
+  // validateDeliveryInfo(){
+  //
+  //   this.errorStatus = 0;
+  //
+  //
+  //   if ( this.inputRecipientName.last.nativeElement.children[0].value === '') {
+  //     if ( this.errorStatus === 0 ) {this.inputRecipientName.last.nativeElement.children[0].focus();}
+  //     this.errorStatus |= this.EMPTY_RECIPIENT_NAME;
+  //   }
+  //
+  //   if ( this.inputRecipientNumber.last.nativeElement.children[0].value === '') {
+  //     if ( this.errorStatus === 0 ) {this.inputRecipientNumber.last.nativeElement.children[0].focus();}
+  //     this.errorStatus |= this.EMPTY_RECIPIENT_NUMBER;
+  //   } else {
+  //     const patt = new RegExp('[a-zA-Z]');
+  //     if ( patt.test(this.inputRecipientNumber.last.nativeElement.children[0].value) ) {
+  //       if ( this.errorStatus === 0 ) {this.inputRecipientNumber.last.nativeElement.children[0].focus();}
+  //       this.errorStatus |= this.INVALID_RECIPIENT_NUMBER;
+  //     }
+  //   }
+  //
+  //   if ( this.inputZipnumber.last.nativeElement.children[0].value === ''
+  //     || this.inputJuso.last.nativeElement.children[0].value === ''
+  //   ) {
+  //     if ( this.errorStatus === 0 ) {this.inputZipnumber.last.nativeElement.children[0].focus();}
+  //     this.errorStatus |= this.EMPTY_DELIVERY_ADDRESS;
+  //   }
+  // }
 
   getCurrentText(event) {
     console.log(this.inputJuso);

@@ -14,11 +14,10 @@ export class OrdersDetailComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private
   ) {
     this.queryParams$ = this.route.queryParams.subscribe(
       query => {
-        console.log(query[4]);
+
       }
     );
   }
