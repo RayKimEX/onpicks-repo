@@ -2,12 +2,27 @@
 
 .header {
 
+  &__alert {
+    opacity : 0;
+    pointer-events: none;
+    position:absolute;
+    top : 11rem;
+    height: 50px;
+    width : 100%;
+    background-color : $color-sky;
+
+    transition : opacity .2s;
+    &--message {
+      @include absCenter;
+    }
+  }
+
   &__progressive-bar {
     position:fixed;
     top : 0;
     width : 100%;
     height : 2px;
-    background-color : #e5e5e5;
+    background-color : $color-light-grey;
     &--inner {
       width : 50%;
       height : 2px;
@@ -46,7 +61,7 @@
     position : relative;
     width :100%;
     height : 4rem;
-    border-bottom: 1px solid #e5e5e5;
+    border-bottom: 1px solid $color-light-grey;
 
 
     & span {
@@ -144,7 +159,7 @@
   &__main-nav {
     height : 7rem;
     position: relative;
-    border-bottom: 1px solid #e5e5e5;
+    border-bottom: 1px solid $color-light-grey;
 
     &--outer {
       position:relative;
@@ -154,6 +169,7 @@
 
     onpicks-search-box {
       display:block;
+      float:right;
       position:relative;
       top : -7px;
     }
@@ -207,7 +223,7 @@
 
           float:left;
           display : inline-block;
-          width:20rem;
+          width:26.4rem;
           font-size : 1.4rem;
           line-height : 1.71;
           vertical-align:middle;
@@ -219,7 +235,7 @@
             letter-spacing : 0.04rem;
           }
           &:not(:last-child){
-            margin-right : 3.2rem;
+            margin-right : 2.4rem;
           }
         }
 
@@ -246,20 +262,19 @@
       float:left;
       //position:relative;
       display: inline-block;
-      width : 20rem;
+      width : 26.4rem;
+
+      list-style : none;
       &--category {
 
       }
 
-      list-style : none;
       &:not(:last-child){
-        margin-right : 3.2rem;
+        margin-right : 2.4rem;
       }
       &--title{
 
         height : 12rem;
-        background-size : 5.875rem 5.875rem;
-        background: url('https://picsum.photos/96/96?image=125') no-repeat right bottom;
         display:block;
 
         span {
@@ -271,20 +286,36 @@
           letter-spacing : 0.03rem;
         }
 
-        &-grocery{
+        &-pantry-and-household{
+          background-position: right bottom;
+          background-repeat: no-repeat;
+          background-size : 8.8rem 8rem;
+          background-image: url('https://img.onpicks.com/assets/pantry-and-household.jpg?d=w176-h160');
           border-bottom: 2px solid $color-green;
         }
 
         &-beauty {
-          border-bottom: 2px solid #f2cacc;
+          background-position: right bottom;
+          background-repeat: no-repeat;
+          background-size : 8.8rem 8rem;
+          background-image: url('https://img.onpicks.com/assets/beauty.jpg?d=w176-h160');
+          border-bottom: 2px solid $color-pink;
         }
 
-        &-fashion {
-          border-bottom: 2px solid #000000;
+        &-baby {
+          background-position: right bottom;
+          background-repeat: no-repeat;
+          background-size : 8.8rem 8rem;
+          background-image: url('https://img.onpicks.com/assets/baby.jpg?d=w176-h160');
+          border-bottom: 2px solid $color-orange;
         }
 
-        &-home {
-          border-bottom: 2px solid #417505;
+        &-health {
+          background-position: right bottom;
+          background-repeat: no-repeat;
+          background-size : 8.8rem 8rem;
+          background-image: url('https://img.onpicks.com/assets/health.jpg?d=w176-h160');
+          border-bottom: 2px solid $color-dark-green;
         }
 
         &-electronics {
@@ -320,29 +351,5 @@
       }
     }
   }
-
-  //&__category-nav {
-  //  background-color : $color-dark-black;
-  //  height : 6rem;
-  //  position: relative;
-  //  nav{
-  //    @include verticalCenter;
-  //    top: 49%;
-  //    ul {
-  //      li {
-  //        font-size:1.4rem;
-  //        font-weight:700;
-  //        letter-spacing : 0.03rem;
-  //        color : $color-white;
-  //        list-style : none;
-  //        display:inline-block;
-  //
-  //        &:not(:last-child) {
-  //          margin-right: 4rem;
-  //        }
-  //      }
-  //    }
-  //  }
-  //}
 
 }

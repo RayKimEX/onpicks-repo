@@ -3,14 +3,14 @@
 import { Injectable } from '@angular/core';
 
 // NgRX & RxJS
-import { catchError, map, switchMap } from 'rxjs/operators';
+import {catchError, map, switchMap, tap} from 'rxjs/operators';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
 import {
   AddCommentFailure,
   AddCommentSuccess,
   GetCommentsProductFailure,
-  GetCommentsProductSuccess,
+  GetCommentsProductSuccess, GetProductInfoFailure, GetProductInfoSuccess,
   GetReviewProductFailure,
   GetReviewProductSuccess
 } from './p.actions';
@@ -31,6 +31,25 @@ export class PEffects {
   ) {
 
   }
+
+  @Effect()
+  getProductInfo = this.actions$.pipe(
+    ofType( PActions.TRY_GET_PRODUCT_INFO ),
+    tap( v => console.log(v)),
+    map( payload => payload['payload']),
+    switchMap( productSlug => {
+      return this.pDataService.getPageData(productSlug)
+        .pipe(
+          map( (getProductInfo) => {
+            return new GetProductInfoSuccess( getProductInfo);
+          }),
+          catchError( (error) => {
+            console.log(error);
+            return of(new GetProductInfoFailure({ error : error}));
+          })
+        );
+    })
+  )
 
   @Effect()
   getReviews = this.actions$.pipe(

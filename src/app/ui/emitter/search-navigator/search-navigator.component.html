@@ -32,7 +32,7 @@
         <div class="c-navigator-padding">
           <div class="c-category-navigator">
             <!--해당을 누르면 식품품 생홀용품 카테고리 메인페이지로 가게-->
-            <div class="c-category-navigator__title subtitle-1-bold">식품 생활용품</div>
+            <div class="c-category-navigator__title subtitle-1-bold">{{currentTitle}}</div>
             <hr>
             <div class="c-category-navigator__content">
               <nav class="subtitle-3-bold u-color-dark-grey">
@@ -95,6 +95,7 @@
                                     categoryList.thirdCategory[secondCategoryId].slug,
                                     categoryList.fourthCategory[thirdCategoryId].slug)"
                                 [ngClass]="categoryList.thirdCategory[secondCategoryId].active ?  lastUrl[1] == categoryList.fourthCategory[thirdCategoryId].slug ? 'main-active' : 'sub-active' : 'main-deactive'"
+
                               >{{categoryList.fourthCategory[thirdCategoryId].name}}</a>
                             </div>
                             <!--<div *ngIf="route.url | async as data">-->
@@ -126,18 +127,10 @@
 
             <div class="c-filter-navigator__content">
               <ul class="c-filter-navigator__content-ul">
-                <li class="c-filter-navigator__content-ul--item subtitle-3-regular">
+                <li *ngFor="let item of orderedFilterList" class="c-filter-navigator__content-ul--item subtitle-3-regular">
                   <span class="c-filter-navigator__content-ul--item-remove"></span>
-                  <span>Blue Buddha</span>
+                  <span>{{item}}</span>
                 </li>
-                <!--<li class="c-filter-navigator__content-ul&#45;&#45;item subtitle-3-regular">-->
-                  <!--<span class="c-filter-navigator__content-ul&#45;&#45;item-remove"></span>-->
-                  <!--<span>Kosher</span>-->
-                <!--</li>-->
-                <!--<li class="c-filter-navigator__content-ul&#45;&#45;item subtitle-3-regular">-->
-                  <!--<span class="c-filter-navigator__content-ul&#45;&#45;item-remove"></span>-->
-                  <!--<span>뉴저지 출고</span>-->
-                <!--</li>-->
               </ul>
             </div>
           </div>
@@ -159,6 +152,7 @@
                   class="c-brand-navigator__content-ul--item"
                   *ngFor="let item of brandList">
                   <onpicks-check-box
+                    [isChecked]="brandListForCheck[item.slug] !== true ? false : true"
                     (click)="brandClicked(item.slug)"
                     [type]="'checkbox'">
                     <span class="subtitle-3-regular">{{item.slug}}</span>
@@ -184,6 +178,7 @@
                   class="c-value-navigator__content-ul--item"
                   *ngFor="let item of valueList">
                   <onpicks-check-box
+                    [isChecked]="valueListForCheck[item.slug] !== true ? false : true"
                     (click)="valueClicked(item.slug)"
                     [type]="'checkbox'">
                     <span class="subtitle-3-regular">{{item.name}}</span>
@@ -203,8 +198,11 @@
               <ul class="c-forwarding-place-navigator__content-ul">
                 <li
                   class="c-forwarding-place-navigator__content-ul--item"
-                  *ngFor="let item of forwardingPlaceList">
-                  <onpicks-check-box [type]="'checkbox'">
+                  *ngFor="let item of locationList">
+                  <onpicks-check-box
+                    (click)="locationClicked(item.slug)"
+                    [isChecked]="locationListForCheck[item.slug]"
+                    [type]="'checkbox'">
                     <span class="subtitle-3-regular">{{item.name}}</span>
                     <span class="subtitle-3-regular u-color-dark-grey">{{item.count}}</span>
                   </onpicks-check-box>
@@ -216,11 +214,23 @@
       </div>
 
       <div class="col-9-of-12">
-
         <div *ngIf="currentList !== null; else loading" class="c-category-content" >
           <h1 class="c-category-content__title h1-bold">
-            <span class="u-color-green">{{queryParams.term}}</span>에 대한 검색 결과 {{totalCount}}건
-            <onpicks-sort-box [sortList]="[{ title : '다음에 구매할 물건 불러오기', value : 0 }]"></onpicks-sort-box>
+            <ng-container *ngIf="searchState == 'search'">
+              <span
+                *ngIf="searchState == 'search'"
+                class="u-color-green">{{queryParams.term}}</span>에 대한 검색 결과 {{totalCount}}건
+            </ng-container>
+
+            <ng-container  *ngIf="searchState == 'category'">
+               <span>{{currentName}} {{currentList.length}}</span>건
+            </ng-container>
+
+            <onpicks-sort-box
+              [selectedElement]="{ value : currentSortSlug}"
+              (changeEvent)="sortClicked($event)"
+              [sortList]="sortList">
+            </onpicks-sort-box>
           </h1>
           <div class="c-category-content__content--outer">
             <div class="c-category-content__content">

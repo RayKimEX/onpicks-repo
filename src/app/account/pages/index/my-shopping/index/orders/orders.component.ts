@@ -1,4 +1,16 @@
-import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnInit
+} from '@angular/core';
+
+import {
+  AccountDataService
+} from '../../../../../../core/service/data-pages/account/account-data.service';
+
+import {
+  tap
+} from 'rxjs/operators';
 
 @Component({
   selector: 'onpicks-orders',
@@ -18,10 +30,20 @@ export class OrdersComponent implements OnInit {
       value : 0
     }
   ]
+  orderData$;
 
-  constructor() { }
+  constructor(
+    private accountDataService: AccountDataService,
+  ) {
+    this.orderData$ = this.accountDataService
+      .getOrdersData()
+      .pipe(
+      tap( v => console.log(v))
+    );
+  }
 
   ngOnInit() {
+
   }
 
 }

@@ -1,6 +1,8 @@
 @import '~src/assets/scss/abstracts/variables';
 
-
+onpicks-search-box {
+  float : right;
+}
 
 onpicks-circle-n-button {
   right : -9rem;
@@ -11,7 +13,27 @@ onpicks-circle-n-button {
   border : 1px solid red;
 }
 
+.modal {
+  &__title {
+    margin-bottom : 0.8rem;
+  }
 
+  &__item {
+    padding : 1.6rem 0;
+    border-bottom : 1px solid $color-light-grey;
+
+    &--check-box {
+      float : right;
+    }
+  }
+
+  &__btn {
+    display:inline-block;
+    margin-top : 2.4rem;
+  }
+
+
+}
 
 .p-reviews {
 
@@ -152,6 +174,9 @@ onpicks-circle-n-button {
 
 
   &__pagination {
+    &--outer {
+      text-align : center;
+    }
     margin-left : -1.2rem;
     user-select: none;
     li {

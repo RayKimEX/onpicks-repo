@@ -175,6 +175,10 @@ textarea {
   }
 }
 
+.u-open-modal {
+  overflow : hidden !important;
+}
+
 
 .u-fade-in {
   animation-name : fade-in;
@@ -241,6 +245,14 @@ textarea {
 
 .u-opacity-full {
   opacity : 1 !important;;
+}
+
+.u-background-color-green {
+  background-color : $color-green !important;
+}
+
+.u-background-color-pink {
+  background-color : $color-pink !important;
 }
 
 .u-color-white {

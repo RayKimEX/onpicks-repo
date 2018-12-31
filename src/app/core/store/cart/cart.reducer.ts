@@ -6,6 +6,7 @@ export interface CartState {
   cartInfo: {
     free: any;
     pack: any;
+    total: {};
   },
 }
 
@@ -14,6 +15,7 @@ export const initialState: CartState = {
   cartInfo: {
     free: {},
     pack: [],
+    total: {},
   },
 };
 
@@ -29,9 +31,9 @@ export function CartReducer(state = initialState, action: CartActions.CartAction
          if ( v.items.length === 0 ) { return; };
 
          // @ts-ignore
-        const tempForInfo = Object.assign(...v.items.map( k => ({ [k.product] : k})));// Object.assign(...v.items.map(k => ({ [k].product: 0 })));
+        const tempForInfo = Object.assign(...v.items.map( k => ({ [k.product] : k})));
 
-        object = {...object, ...tempForInfo};
+        object = { ...object, ...tempForInfo };
       })
 
       return {
@@ -39,6 +41,12 @@ export function CartReducer(state = initialState, action: CartActions.CartAction
         cartInfo : {
           free : action.payload.results[0],
           pack : action.payload.results.slice(1, action.payload.length),
+          total : {
+            total_discounts :  action.payload.total_discounts,
+            total_items : action.payload.total_items,
+            total_shipping_fee : action.payload.total_shipping_fee
+          }
+
         },
         cartList : object,
       }
@@ -57,14 +65,14 @@ export function CartReducer(state = initialState, action: CartActions.CartAction
 
 
     case CartActions.ADD_TO_CART_SUCCESS :
-      console.log(action.payload);
+      console.log(action.payload.payload);
       return {
         ...state,
         cartList : {
           ...state.cartList,
-          [action.payload.productSlug] : {
-            ...state.cartList[action.payload.productSlug],
-            quantity : action.payload.amount,
+          [action.payload.payload.productSlug] : {
+            ...state.cartList[action.payload.payload.productSlug],
+            quantity : action.payload.payload.amount,
           }
         },
       }
@@ -82,7 +90,9 @@ export function CartReducer(state = initialState, action: CartActions.CartAction
       }
 
     case CartActions.DELETE_FROM_CART_SUCCESS :
+      console.log(state.cartList);
       delete state.cartList[action.payload.productSlug];
+      console.log(state.cartList);
       return {
         ...state,
         cartList : {

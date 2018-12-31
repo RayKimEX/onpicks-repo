@@ -10,15 +10,18 @@ $color-black: #292929;
 $color-light-black : #4a4a4a;
 $color-dark-black : #000000;
 
-$color-white :#FFFFFF;
+$color-white : #FFFFFF;
 $color-orange : #F68B1A;
 $color-green : #008489;
+$color-dark-green : #417505;
 
 
+$color-sky : #c2e4e7;
+$color-blue : #4a90e2;
+$color-pink : #f2cacc;
 
 // FONT
 $default-font-size: 1.6rem;
-
 
 // GRID
 $grid-width: 112.8rem;
@@ -42,6 +45,12 @@ $default-padding : 8rem;
 
 @mixin absCenter {
   position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@mixin justCenter {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);

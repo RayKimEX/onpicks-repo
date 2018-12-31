@@ -34,6 +34,5 @@ export class CategoryListComponent implements OnInit, AfterViewInit {
   prevButton() {
     this.imageIndex++;
     this.renderer.setStyle(this.container.nativeElement, 'transform', 'translateX(' + this.imageIndex * 192 + 'px)');
-
   }
 }

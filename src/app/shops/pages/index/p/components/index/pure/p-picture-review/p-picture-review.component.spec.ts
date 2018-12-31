@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BeautyComponent } from './beauty.component';
+import { PPictureReviewComponent } from './p-picture-review.component';
 
-describe('BeautyComponent', () => {
-  let component: BeautyComponent;
-  let fixture: ComponentFixture<BeautyComponent>;
+describe('PCustomerComponent', () => {
+  let component: PPictureReviewComponent;
+  let fixture: ComponentFixture<PPictureReviewComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BeautyComponent ]
+      declarations: [ PPictureReviewComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(BeautyComponent);
+    fixture = TestBed.createComponent(PPictureReviewComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

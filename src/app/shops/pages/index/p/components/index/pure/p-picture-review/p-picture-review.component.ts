@@ -1,23 +1,19 @@
-import {
-  AfterViewInit,
-  Component, ElementRef, OnDestroy,
-  OnInit,
-  Renderer2, ViewChild,
-  ViewChildren
-} from '@angular/core';
-import {fromEvent, pipe} from 'rxjs';
-import {debounceTime, first, last, map, skip, take} from 'rxjs/operators';
+import {AfterViewInit, ChangeDetectionStrategy, Component, OnDestroy, OnInit, Renderer2, ViewChild, ViewChildren} from '@angular/core';
+import {fromEvent} from 'rxjs';
+import {map} from 'rxjs/operators';
+import {select, Store} from '@ngrx/store';
 
 @Component({
   selector: 'onpicks-p-customer',
-  templateUrl: './p-customer.component.html',
-  styleUrls: ['./p-customer.component.scss'],
+  templateUrl: './p-picture-review.component.html',
+  styleUrls: ['./p-picture-review.component.scss'],
+  changeDetection : ChangeDetectionStrategy.OnPush,
 })
 
 
 
 
-export class PCustomerComponent implements OnInit, AfterViewInit, OnDestroy {
+export class PPictureReviewComponent implements OnInit, AfterViewInit, OnDestroy {
 
   @ViewChildren('imageLargeOuter') imageLargeOuter;
   @ViewChild('imagesSmallOuter') imagesSmallOuter;
@@ -71,8 +67,12 @@ export class PCustomerComponent implements OnInit, AfterViewInit, OnDestroy {
 
   animationEndEvent;
 
-  constructor(private renderer: Renderer2) {
-
+  reviews$;
+  constructor(
+    private renderer: Renderer2,
+    private store: Store<any>
+  ) {
+    this.reviews$ = this.store.pipe(select((state) => state['p']['reviews']));
   }
 
   ngOnInit() {

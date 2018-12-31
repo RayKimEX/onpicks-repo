@@ -1,5 +1,13 @@
 @import '~src/assets/scss/abstracts/variables';
 
+.modal {
+  &__body {
+    padding-bottom : 2.4rem;
+    margin-bottom : 2.4rem;
+    border-bottom : 1px solid $color-light-grey;
+  }
+}
+
 .checkout {
   margin-top : 3.2rem;
 
@@ -95,6 +103,7 @@
           font-weight : 700;
           margin-bottom : 2.4rem;
         }
+
         &-tag {
           font-size : 1.4rem;
           line-height : 1.71;
@@ -126,6 +135,69 @@
       &--delivery{
         padding-bottom : 3rem;
         border-bottom: 1px solid #e5e5e5;
+
+        hr {
+          margin-bottom : 2.4rem;
+        }
+
+        &__col {
+          border-radius : 4px;
+          width : 26.4rem;
+          height : 26.4rem;
+          padding:2.4rem;
+          margin-bottom : 0.8rem;
+
+          &:nth-child(2n) {
+            margin-right : 0;
+          }
+          &--padding {
+            position:relative;
+            height : 100%;
+            width : 100%;
+          }
+
+          &--name {
+            margin-bottom : 8px;
+          }
+
+          &--address {
+            margin-bottom : 8px;
+          }
+
+
+          &-bottom {
+            width : 100%;
+            position: absolute;
+            bottom : 0;
+            &--isDefault {
+              margin-bottom : 0.8rem;
+            }
+
+            &--modify {
+              display: inline-block;
+            }
+
+            &--remove {
+              display: inline-block;
+              float: right;
+            }
+          }
+
+        }
+
+        &__row {
+
+          @include clearfix;
+          margin-bottom: 2.4rem;
+        }
+
+        .isActive {
+          border : 1px solid $color-green;
+        }
+
+        .isNotActive {
+          border : 1px solid $color-light-grey;
+        }
 
         &-title{
           margin-top: 2.4rem;
@@ -159,11 +231,9 @@
           height : 4rem;
           display:block;
           padding : 0;
-          width: 55.2rem;
           border : 0;
           &-outer {
             display:none;
-
           }
 
 
@@ -203,23 +273,17 @@
                     td:nth-of-type(2) { padding-bottom: 8px;}
                   }
 
-                  td:nth-of-type(1) { color : #8d8d8d; width : 55px}
+                  td:nth-of-type(1) { vertical-align: text-top; color : #8d8d8d; width : 55px}
                   td:nth-of-type(2) {
-                    color : #292929;
+
+                    color : $color-black;
+                    button {
+                      text-align : left;
+                    }
                     button:hover {
                       text-decoration-line: underline;
                     }
-                    //a{
-                    //
-                    //  font-weight:400;
-                    //}
                   }
-
-                  //table.fixed {table-layout:fixed; width:90px;}/*Setting the table width is important!*/
-                  //table.fixed td {overflow:hidden;}/*Hide text outside the cell.*/
-                  //table.fixed td:nth-of-type(1) {width:20px;}/*Setting the width of column 1.*/
-                  //table.fixed td:nth-of-type(2) {width:30px;}/*Setting the width of column 2.*/
-                  //table.fixed td:nth-of-type(3) {width:40px;}/*Setting the width of column 3.*/
                 }
               }
 
@@ -282,9 +346,9 @@
         }
 
         &-input {
-          display:block;
+          display : block;
           height : 4rem;
-          width: 40.8rem;
+          width : 40.8rem;
 
           &:last-of-type {
             margin-top: 1.6rem;

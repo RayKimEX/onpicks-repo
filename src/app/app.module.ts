@@ -23,11 +23,11 @@ import {
   API_URL,
   API_URL_CONST,
   CATEGORY_MAP,
-  CATEGORY_MAP_CONST,
+  CATEGORY_MAP_CONST, CATEGORY_SECOND_MAP, CATEGORY_SECOND_MAP_CONST,
   CURRENCY,
   DOMAIN_HOST,
   LOCATION_MAP,
-  LOCATION_MAP_CONST
+  LOCATION_MAP_CONST, MENU_MAP, MENU_MAP_CONST, REPORT_REASON_MAP, REPORT_REASON_MAP_CONST
 } from './app.config';
 import {AuthInterceptorService} from './core/service/auth/auth-interceptor.service';
 import {UiEffects} from './core/store/ui/ui.effects';
@@ -120,6 +120,18 @@ function getCookie(cname) {
     {
       provide: CATEGORY_MAP,
       useValue : CATEGORY_MAP_CONST,
+    },
+    {
+      provide : REPORT_REASON_MAP,
+      useValue : REPORT_REASON_MAP_CONST
+    },
+    {
+      provide : MENU_MAP,
+      useValue : MENU_MAP_CONST
+    },
+    {
+      provide : CATEGORY_SECOND_MAP,
+      useValue : CATEGORY_SECOND_MAP_CONST,
     }
   ],
   bootstrap: [ AppComponent ]

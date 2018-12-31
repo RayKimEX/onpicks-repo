@@ -12,7 +12,6 @@ export class FreeDeliveryNotiboxComponent implements OnInit {
     this.cartInfo = _cartInfo;
     if ( _cartInfo == null ) { return; };
     this.cartInfo = _cartInfo.cartInfo.pack;
-    console.log(this.cartInfo);
   }
 
   cartInfo = null;

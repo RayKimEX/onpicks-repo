@@ -36,6 +36,23 @@ export function PReducer (state = initialState, action: PActions.PActions) {
 
       };
 
+    case PActions.GET_PRODUCT_INFO_SUCCESS:
+      console.log(action.payload);
+      return {
+        ...state,
+        data : {
+          ...action.payload
+        },
+        reviews : {
+          ...state.reviews,
+          extraInfo : {
+            ...state.reviews['extraInfo'],
+            reviewAvgRating : action.payload['review_avg_rating'],
+            reviewRatingsDist : action.payload['review_ratings_dist']
+          }
+        }
+      }
+
     case PActions.GET_REVIEWS_PRODUCT_SUCCESS :
 
       console.log(action.payload);
@@ -83,7 +100,7 @@ export function PReducer (state = initialState, action: PActions.PActions) {
             [action.payload.reviewsId] : {
               ...state.reviews.list[action.payload.reviewsId],
               comments : action.payload.currentComments,
-              isCommentsLoaded : true,
+              isCommentsLoaded : true
             }
           }
         }

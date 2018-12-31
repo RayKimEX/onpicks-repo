@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PCustomerComponent } from './p-customer.component';
+import { BeautyIndexComponent } from './beauty-index.component';
 
-describe('PCustomerComponent', () => {
-  let component: PCustomerComponent;
-  let fixture: ComponentFixture<PCustomerComponent>;
+describe('BeautyComponent', () => {
+  let component: BeautyIndexComponent;
+  let fixture: ComponentFixture<BeautyIndexComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PCustomerComponent ]
+      declarations: [ BeautyIndexComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PCustomerComponent);
+    fixture = TestBed.createComponent(BeautyIndexComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -23,3 +23,5 @@ describe('PCustomerComponent', () => {
     expect(component).toBeTruthy();
   });
 });
+
+

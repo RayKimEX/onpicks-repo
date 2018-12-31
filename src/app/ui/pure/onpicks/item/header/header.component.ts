@@ -17,14 +17,15 @@ import {
 // NgRX & RxJS
 import {select, Store} from '@ngrx/store';
 import {fromEvent, Observable} from 'rxjs';
-import {tap} from 'rxjs/operators';
+import {shareReplay, tap} from 'rxjs/operators';
 
 // Custom
 import {SearchService} from '../../../../../core/service/data-pages/search/search.service';
 import {AuthService} from '../../../../../core/service/auth/auth.service';
 import {AuthState} from '../../../../../core/store/auth/auth.model';
 import {AppState} from '../../../../../core/store/app.reducer';
-import {CURRENCY} from '../../../../../app.config';
+import {CURRENCY, MENU_MAP} from '../../../../../app.config';
+import {RemoveAlertMessage} from '../../../../../core/store/ui/ui.actions';
 
 @Component({
   selector: 'ui-header',
@@ -36,24 +37,30 @@ import {CURRENCY} from '../../../../../app.config';
 
 
 export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
-
+  @ViewChild('deliveryBox', {read : ElementRef}) deliveryBox;
   @ViewChild('menu') menuRef;
   @ViewChild('shops') shopsRef;
   @ViewChild('form') form;
-  @ViewChild('deliveryBox', {read : ElementRef}) deliveryBox;
+  @ViewChild('alertMessage') alertMessage;
+
 
   tempDiv;
-
   cart;
 
   // subscription
   auth$: Observable<AuthState>;
   url$: Observable<any>;
   cart$;
+  uiStore$;
+
   scrollForDeliveryBox$ = null;
+  scrollForAlert$ = null;
+
 
   clearSetTimeout;
   // TODO: 이부분에 대해서 이방식이 맞는지? ngrx로 하려면, 한번더 update를 쳐야 되서 이방식이 아닌거같음 ->
+
+  clearSetTimeoutForAlert;
 
   firstLoadPreventCount = 0;
 
@@ -61,34 +68,86 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
     @Inject(LOCALE_ID) public locale: string,
     @Inject(APP_BASE_HREF) public region: string,
     @Inject(CURRENCY) public currency: string,
+    @Inject(MENU_MAP) public menuMap,
     private renderer: Renderer2,
     private authService: AuthService,
     private store: Store<AppState>,
     private router: Router,
     private route: ActivatedRoute,
-    private searchService: SearchService,
-
+    private searchService: SearchService
   ) {
+    this.uiStore$ = this.store.pipe( select( state => state.ui.alertMessage ))
+      .subscribe( updatedMessages => {
+
+        if ( this.alertMessage === undefined ) { return ;};
+
+        if ( updatedMessages.display ) {
+          this.renderer.setStyle(this.alertMessage.nativeElement, 'opacity', 1);
+          this.renderer.setProperty(this.alertMessage.nativeElement.children[0], 'innerHTML', updatedMessages.message);
+
+          if ( window.pageYOffset >= 110 ) {
+            this.renderer.setStyle(this.alertMessage.nativeElement, 'position', 'fixed');
+            this.renderer.setStyle(this.alertMessage.nativeElement, 'top', '0');
+          } else {
+            this.renderer.setStyle(this.alertMessage.nativeElement, 'position', 'absolute');
+            this.renderer.setStyle(this.alertMessage.nativeElement, 'top', '11rem');
+          }
+
+          if ( this.clearSetTimeoutForAlert !== undefined) {
+            clearTimeout(this.clearSetTimeoutForAlert);
+          }
+          this.clearSetTimeoutForAlert = setTimeout( v => {
+
+            this.store.dispatch( new RemoveAlertMessage())
+            if ( this.scrollForAlert$ != null ) {
+              this.scrollForAlert$.unsubscribe();
+              this.scrollForAlert$ = null;
+            }
+          }, 2000);
+        } else {
+          this.renderer.setStyle(this.alertMessage.nativeElement, 'opacity', 0);
+        }
+
+        if ( this.scrollForAlert$ == null ) {
+          this.scrollForAlert$ = fromEvent( window , 'scroll').subscribe(
+            scrollValue => {
+
+              if( window.pageYOffset >= 110 ){
+                this.renderer.setStyle(this.alertMessage.nativeElement, 'position', 'fixed');
+                this.renderer.setStyle(this.alertMessage.nativeElement, 'top', '0');
+              } else {
+                this.renderer.setStyle(this.alertMessage.nativeElement, 'position', 'absolute');
+                this.renderer.setStyle(this.alertMessage.nativeElement, 'top', '11rem');
+              }
+            }
+          );
+        }
+
+
+      });
+
     this.auth$ = this.store.pipe(
       select('auth')
     );
+
     this.url$ = this.store.pipe(
-      select(state => state.ui.activeUrl)
+      select(state => state.ui.activeUrl),
+      shareReplay(1)
     );
+
     // [ngStyle]="{ display : cartData.isViewCart ? 'block' : 'none'}"
     this.cart$ = this.store.pipe(
       select(state => state.cart),
       tap( v => {
+        console.log(v);
         if ( this.deliveryBox === undefined) { return ; }
-        // 두번까지 막고
+        // 2번 불리는데 이유는 잘 모르겠음. 일단 두번까지 막음.
         if ( this.firstLoadPreventCount <= 1 ) {
           this.firstLoadPreventCount ++;
           return;
         }
 
-
-        // 무슨 변경이 있던간에, 항상 딱 보여주고 그다음 ㅁ주조건 삭제하는 로직.
-        // TODO : 처음 로딩 할때 뜨는것만 처리하면 될듯.
+        // 무슨 변경이 있던간에, 항상 보여주고 그다음 주조건 삭제하는 로직.
 
         if ( this.clearSetTimeout !== undefined) {
           clearTimeout(this.clearSetTimeout);
@@ -106,15 +165,12 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
           this.renderer.setStyle(this.deliveryBox.nativeElement, 'display', 'none');
 
           if ( this.scrollForDeliveryBox$ != null ) {
-            console.log('unsubscrdibe!!')
             this.scrollForDeliveryBox$.unsubscribe();
             this.scrollForDeliveryBox$ = null;
           }
-
         }, 3000);
 
         if ( this.scrollForDeliveryBox$ == null ) {
-          console.log('i`m scroll!!' );
           this.scrollForDeliveryBox$ = fromEvent( window , 'scroll').subscribe(
             scrollValue => {
               if( window.pageYOffset >= 108 ){
@@ -127,10 +183,8 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
             }
           );
         }
-
       })
     );
-
   }
 
   ngOnDestroy() {
@@ -141,7 +195,7 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
     if (searchTerms === '') { return; };
 
     // jet에서도 uri encode를 하지 않아서 했다가 다시 지움. 20181210 - ray
-    this.router.navigate(   ['/shops/search'], { relativeTo: this.route, queryParams: { term : searchTerms } } );
+    this.router.navigate(   ['/shops/search'], { relativeTo: this.route, queryParams: { term : searchTerms, ordering : 'most_popular' } } );
   }
 
   ngOnInit() {
@@ -173,6 +227,4 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
 }
-
-
 

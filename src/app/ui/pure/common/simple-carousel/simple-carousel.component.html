@@ -1,13 +1,19 @@
+<ng-template #spomething>
+  hello
+</ng-template>
+
 
 <div class="ui-simple-carousel__images">
+
   <div class="ui-simple-carousel__images--large">
+
     <div
       *ngFor="let item of imagesLargeList; index as i"
       #imageLargeOuter
       [ngClass]="{'simple-carousel-active' : i === this.imageIndex}"
       class="ui-simple-carousel__images--large-cur">
       <span>
-        <img drCleanLoad [src]="item" alt="">
+        <img [src]="item" alt="">
       </span>
 
     </div>

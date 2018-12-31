@@ -1,21 +1,23 @@
-
-
-
 import {
   AfterViewInit,
-  Component, ElementRef, Input, OnDestroy,
+  ChangeDetectionStrategy, ChangeDetectorRef,
+  Component,
+  Input, OnChanges,
+  OnDestroy,
   OnInit,
-  Renderer2, ViewChild,
+  Renderer2, SimpleChanges,
+  ViewChild,
   ViewChildren
 } from '@angular/core';
-import {fromEvent, pipe} from 'rxjs';
-import {debounceTime, first, last, map, skip, take} from 'rxjs/operators';
+import {fromEvent} from 'rxjs';
+import {map} from 'rxjs/operators';
 
 
 @Component({
   selector: 'ui-simple-carousel',
   templateUrl: './simple-carousel.component.html',
   styleUrls: ['./simple-carousel.component.scss'],
+  changeDetection : ChangeDetectionStrategy.OnPush,
   // animations: [
   //   trigger('')
   // ]
@@ -24,33 +26,34 @@ import {debounceTime, first, last, map, skip, take} from 'rxjs/operators';
 // 29cm 참고해서 다시 재 도전
 // 일렬로 나열해서 해야될 것 같음
 //
-export class SimpleCarouselComponent implements OnInit, AfterViewInit, OnDestroy {
+export class SimpleCarouselComponent implements OnInit, AfterViewInit, OnDestroy, OnChanges {
 
   @ViewChildren('imageLargeOuter') imageLargeOuter;
   @ViewChild('imagesSmallOuter') imagesSmallOuter;
   @ViewChildren('imageSmallOuter') imageSmallOuter;
   @Input() width;
   @Input() height;
+  @Input('imagesLargeList') imagesLargeList = null;
+  @Input('imagesSmallList') imagesSmallList = null;
 
 
   // TODO : 모든 subscription에 대해서 unsubscribe확실하게 정리하기
-  imagesLargeList = [
-    'http://img.onpicks.com/p-customer__image--large-2.png',
-    'http://img.onpicks.com/p-customer__image--large-3.png',
-    'http://img.onpicks.com/p-customer__image--large-4.png',
-    'http://img.onpicks.com/p-customer__image--large-5.png',
-  ];
-
-  imagesSmallList = [
-    'http://img.onpicks.com/p-customer__image-small-1.jpg',
-    'http://img.onpicks.com/p-customer__image-small-2.jpg',
-    'http://img.onpicks.com/p-customer__image-small-3.jpg',
-    'http://img.onpicks.com/p-customer__image-small-4.jpg',
-  ];
+  // imagesLargeList = [
+  //   'http://img.onpicks.com/p-customer__image--large-2.png',
+  //   'http://img.onpicks.com/p-customer__image--large-3.png',
+  //   'http://img.onpicks.com/p-customer__image--large-4.png',
+  //   'http://img.onpicks.com/p-customer__image--large-5.png',
+  // ];
+  //
+  // imagesSmallList = [
+  //   'http://img.onpicks.com/p-customer__image-small-1.jpg',
+  //   'http://img.onpicks.com/p-customer__image-small-2.jpg',
+  //   'http://img.onpicks.com/p-customer__image-small-3.jpg',
+  //   'http://img.onpicks.com/p-customer__image-small-4.jpg',
+  // ];
 
   imageIndex = 0;
   // 456(width) + 16 ( margin )
-  customWidth = 646;
   state = 'stay';
 
   imageLargeOuterArray = [];
@@ -58,11 +61,19 @@ export class SimpleCarouselComponent implements OnInit, AfterViewInit, OnDestroy
 
   animationEnd$;
 
-  constructor(private renderer: Renderer2) {
+  constructor(
+    private renderer: Renderer2,
+    private cd: ChangeDetectorRef
+  ) {
+    console.log(this.imagesLargeList);
   }
 
   ngOnInit() {
 
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    console.log(this.imagesLargeList);
   }
 
   ngOnDestroy() {

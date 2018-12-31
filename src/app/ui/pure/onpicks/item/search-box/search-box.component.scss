@@ -29,16 +29,16 @@
 .p-reviews{
 
   &__search-reviews {
+
     position:relative;
     height: 4rem;
     width:inherit;
-    float:right;
     display:inline-block;
     border-radius : 2px;
     border : solid 1px #dddddd;
     line-height: 4rem;
-    &--input {
 
+    &--input {
       margin-top: 1.1rem;
       margin-left: 5.6rem;
       border : 0;

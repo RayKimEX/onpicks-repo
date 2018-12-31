@@ -1,18 +1,16 @@
 import {
-  AfterViewInit,
-  ChangeDetectionStrategy, ChangeDetectorRef,
+  ChangeDetectionStrategy,
   Component,
-  Inject, LOCALE_ID, OnDestroy, OnInit,
+  Inject,
+  LOCALE_ID,
   Renderer2
 } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import {share, shareReplay, tap} from 'rxjs/operators';
 import {DOMAIN_HOST, LOCATION_MAP} from '../../../app.config';
 import {TryAddOrCreateToCart, TryDeleteFromCart, TrySubtractOrDeleteFromCart} from '../../../core/store/cart/cart.actions';
-import {CartToCheckoutService} from '../../share/cart-to-checkout.service';
 import {Router} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
-import { denormalize, schema } from 'normalizr';
 
 @Component({
   selector: 'onpicks-cart',
@@ -35,11 +33,14 @@ export class CartComponent {
     private router: Router,
     private store: Store<any>,
     private httpClient: HttpClient
-
   ) {
     this.cartStore$ = this.store.pipe(
       select( state => state.cart ),
       tap( state => this.cartStore = state),
+      tap( v => {
+        console.log('in tap!!!')
+        console.log(v.cartInfo);
+      }),
       shareReplay(1)
     );
   }
@@ -48,14 +49,13 @@ export class CartComponent {
   // 쓰는것도 의미가 없음 너무 복잡해짐
   setCheckoutList(xCheckoutList) {
 
-    console.log(xCheckoutList);
-
     const productArray = [];
     xCheckoutList.forEach( item => {
       productArray.push(item.product);
     });
 
     console.log(productArray);
+
 
     this.httpClient.post<any>( this.BASE_URL + '/api/cart/checkout/', { products : productArray }).
     subscribe(
@@ -68,15 +68,6 @@ export class CartComponent {
         console.log(error);
       }
     );
-
-
-    // console.log( this.cartStore );
-    // console.log(typeof(xCheckoutList));
-    // xCheckoutList.forEach( value => {
-    //   console.log(value);
-    // })
-
-    // this.httpClient.post<any>( this.BASE_URL + '/api/cart/checkout/', { products :  })
 
   }
 
@@ -107,7 +98,6 @@ export class CartComponent {
   }
 
   addToCart(xAmount, xProductSlug) {
-
     xAmount++;
 
     // 만약 카트 아이디가. 카트스토어 카트리스트에 있다면, increase cart를 하고, create cart를 하지 않는다.

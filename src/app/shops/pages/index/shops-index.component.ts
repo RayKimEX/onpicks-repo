@@ -271,39 +271,23 @@ export class ShopsIndexComponent implements OnInit, AfterViewInit {
 
   popularCategory = [
     {
-      imgSrc : 'https://picsum.photos/168/168?image=55',
+      imgSrc : 'https://img.onpicks.com/assets/category_pantry-and-household.jpg',
       name : '식품·생활용품',
     },
     {
-      imgSrc : 'https://picsum.photos/168/168?image=60',
+      imgSrc : 'https://img.onpicks.com/assets/category_beauty.jpg',
       name : '뷰티',
     },
     {
-      imgSrc : 'https://picsum.photos/168/168?image=65',
-      name : '패션',
-    },
-    {
-      imgSrc : 'https://picsum.photos/168/168?image=70',
+      imgSrc : 'https://img.onpicks.com/assets/category_home-deco.jpg',
       name : '홈·데코',
     },
     {
-      imgSrc : 'https://picsum.photos/168/168?image=75',
+      imgSrc :  'https://img.onpicks.com/assets/category_digital.jpg',
       name : '가전·디지털',
     },
     {
-      imgSrc : 'https://picsum.photos/168/168?image=80',
-      name : '유아동',
-    },
-    {
-      imgSrc : 'https://picsum.photos/168/168?image=70',
-      name : '홈·데코',
-    },
-    {
-      imgSrc : 'https://picsum.photos/168/168?image=75',
-      name : '가전·디지털',
-    },
-    {
-      imgSrc : 'https://picsum.photos/168/168?image=80',
+      imgSrc : 'https://img.onpicks.com/assets/category_baby.jpg',
       name : '유아동',
     },
   ]

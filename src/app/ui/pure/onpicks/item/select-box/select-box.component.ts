@@ -1,4 +1,15 @@
-import {ChangeDetectionStrategy, Component, ElementRef, HostListener, Input, OnInit, Renderer2, ViewChild} from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  EventEmitter,
+  HostListener,
+  Input, OnChanges,
+  OnInit,
+  Output,
+  Renderer2, SimpleChanges,
+  ViewChild
+} from '@angular/core';
 
 @Component({
   selector: 'onpicks-select-box',
@@ -6,12 +17,14 @@ import {ChangeDetectionStrategy, Component, ElementRef, HostListener, Input, OnI
   styleUrls: ['./select-box.component.scss'],
   changeDetection : ChangeDetectionStrategy.OnPush,
 })
-export class SelectBoxComponent implements OnInit {
+export class SelectBoxComponent implements OnInit, OnChanges {
   @ViewChild('HTMLdropDown') HTMLdropDown;
   @Input('sortList') sortList;
   @Input('scrollMin') scrollMin;
+  @Input('selectedElement') selectedElement;
 
-  selectedElement;
+  @Output('changeEvent') changeEvent = new EventEmitter();
+
   isOpen = false;
   dropBoxItemHeight = 40;
 
@@ -27,19 +40,47 @@ export class SelectBoxComponent implements OnInit {
 
   constructor(
     private eRef: ElementRef,
-    private renderer: Renderer2 ) {
+    private renderer: Renderer2
+  ) {
 
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+
+    if ( this.selectedElement === undefined ) {
+      if ( this.sortList.title === undefined ){
+        this.selectedElement = this.sortList.list[0];
+      } else {
+        this.selectedElement = {
+          title : this.sortList.title,
+        };
+      }
+
+    } else {
+      if ( this.selectedElement.value === null ) {
+        return ;
+      }
+
+      /* TODO : forEach말고 keyvalue로 indexing하는 방법으로 바꾸기*/
+      this.sortList.list.forEach( v => {
+        if ( v.value == this.selectedElement.value ) {
+          this.selectedElement = v;
+        }
+      });
+    }
   }
 
   ngOnInit() {
     // const temp = [...this.sortList];
     // console.log(temp);
     // init시에 무조건 첫번째 Object를 가져옴
-    if ( this.sortList.title === undefined) {
-      this.selectedElement = this.sortList.list[0];
-    } else {
-      this.selectedElement = this.sortList;
-    }
+    // if ( this.sortList.title === undefined) {
+    //   this.selectedElement = this.sortList.list[0];
+    // } else {
+    //   this.selectedElement = this.sortList;
+    // }
+
+
 
   }
 
@@ -57,14 +98,14 @@ export class SelectBoxComponent implements OnInit {
 
     this.selectedElement = {
       title : inputValue.name,
-      value : parseInt(inputValue.value, 10)
+      value : inputValue.value,
     }
 
     // this.selectedElement.value =
     // this.selectedElement.title = inputValue.name;
     this.isOpen = false;
     this.renderer.setStyle( this.HTMLdropDown.nativeElement, 'display', 'none');
+    this.changeEvent.emit(inputValue.value);
   }
+
 }
-
-

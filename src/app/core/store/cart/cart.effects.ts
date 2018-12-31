@@ -74,7 +74,7 @@ export class CartEffects {
         return this.cartService.addToCart( payload.productSlug, payload.amount )
           .pipe(
             map( getCartInfo => {
-              return new AddToCartSuccess( payload );
+              return new AddToCartSuccess( {payload : payload, cartInfo: getCartInfo} );
             }),
             catchError( error => {
               return of(new AddToCartFailure( {error : error}));
@@ -117,7 +117,7 @@ export class CartEffects {
         return this.cartService.deleteFromCart( payload.productSlug )
           .pipe(
             map( respond => {
-              return new DeleteFromCartSuccess( payload );
+              return new DeleteFromCartSuccess( { productSlug : '', packType: '', packIndex: '', itemIndex: '' });
             }),
             catchError( error => {
               return of(new DeleteFromCartFailure( {error : error}));

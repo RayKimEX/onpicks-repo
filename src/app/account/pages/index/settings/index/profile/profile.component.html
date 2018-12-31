@@ -1,78 +1,134 @@
-<div class="settings-profile">
+<div class="settings-profile" *ngLet="profileData$ | async as data">
   <div class="settings-profile__normal-info">
     <div class="settings-profile__row">
       <div class="settings-profile__row--title subtitle-2-regular">닉네임</div>
       <onpicks-input-box
+        #nickname
+        [value]="data?.nickname"
         [placeholder]="'닉네임을 입력해주세요'"
         [width]="'64.5rem'"></onpicks-input-box>
-      <div class="settings-profile__row--description subtitle-2-regular u-color-dark-grey">다른 사용자들에겐 사용자가 설정한 닉네임으로 보여집니다.</div>
+      <div *ngIf="!checkBitWise(EMPTY_ORDER_NAME)" class="settings-profile__row--description subtitle-2-regular u-color-dark-grey">다른 사용자들에겐 사용자가 설정한 닉네임으로 보여집니다.</div>
+      <div *ngIf="checkBitWise(EMPTY_ORDER_NAME)"class="settings-profile__row--description subtitle-2-regular u-color-orange">닉네임을 입력해주세요.</div>
     </div>
-    <div class="settings-profile__row">
-      <div class="settings-profile__row--title subtitle-2-regular">이메일</div>
-      <onpicks-input-box
-        [placeholder]="'이메일을 입력해주세요'"
-        [width]="'64.5rem'"></onpicks-input-box>
-      <div class="settings-profile__row--description subtitle-2-regular u-color-dark-grey">이메일 주소는 다른 회원에게 공개되지 않습니다.</div>
-    </div>
-    <div class="settings-profile__row">
-      <div class="settings-profile__row--title subtitle-2-regular">비밀번호</div>
-      <onpicks-input-box
-        [marginRight]="'1.6rem'"
-        [password]="true"
-        [placeholder]="'비밀번호를 입력해주세요'"
-        [width]="'31.2rem'">
-      </onpicks-input-box>
-      <onpicks-button
-        [type]="'white'"
-        [width]="'8.5rem'"
-      >수정하기</onpicks-button>
-    </div>
+    <!--<div class="settings-profile__row">-->
+      <!--<div class="settings-profile__row&#45;&#45;title subtitle-2-regular">이메일</div>-->
+      <!--<onpicks-input-box-->
+        <!--#email-->
+        <!--[placeholder]="'이메일을 입력해주세요'"-->
+        <!--[width]="'64.5rem'">-->
+      <!--</onpicks-input-box>-->
+      <!--<div class="settings-profile__row&#45;&#45;description subtitle-2-regular u-color-dark-grey">이메일 주소는 다른 회원에게 공개되지 않습니다.</div>-->
+    <!--</div>-->
+
     <div class="settings-profile__row">
       <div class="settings-profile__row--title subtitle-2-regular">연락처</div>
       <onpicks-input-box
+        #tel
+        [value]="data?.contact"
         [marginRight]="'1.6rem'"
         [placeholder]="'전화번호를 입력해주세요'"
         [width]="'31.2rem'">
       </onpicks-input-box>
+      <!--<onpicks-button-->
+        <!--[type]="'white'"-->
+        <!--[width]="'8.5rem'"-->
+      <!--&gt;수정하기</onpicks-button>-->
+    </div>
+    <div class="settings-profile__row">
+      <div class="settings-profile__row--title subtitle-2-regular">비밀번호</div>
+      <form action="" style="display:inline-block;">
+        <onpicks-input-box
+          #password
+          [marginRight]="'1.6rem'"
+          [password]="true"
+          [placeholder]="'비밀번호를 입력해주세요'"
+          [width]="'31.2rem'">
+        </onpicks-input-box>
+      </form>
       <onpicks-button
+        (click)="updatePassword()"
         [type]="'white'"
         [width]="'8.5rem'"
       >수정하기</onpicks-button>
     </div>
     <div class="settings-profile__row">
       <div class="settings-profile__row--title subtitle-2-regular">성별</div>
-      <onpicks-check-box [marginRight]="'3.2rem'">남자</onpicks-check-box>
-      <onpicks-check-box>여자</onpicks-check-box>
+      <onpicks-check-box
+        [isChecked]="data?.gender === 'M'"
+        (radioEvent)="setGender($event)"
+        [value]="'M'"
+        [type]="'radio'"
+        [marginRight]="'3.2rem'">
+        남자
+      </onpicks-check-box>
+
+      <onpicks-check-box
+        [isChecked]="data?.gender === 'F'"
+        (radioEvent)="setGender($event)"
+        [value]="'F'"
+        [type]="'radio'">
+        여자
+      </onpicks-check-box>
+
       <div class="settings-profile__row--description subtitle-2-regular u-color-dark-grey">이 정보는 통계 목적으로 사용되며 다른 회원들에게 절대 공개되지 않습니다.</div>
     </div>
   </div>
   <div class="settings-profile__private-info">
     <div class="settings-profile__row">
       <div class="settings-profile__row--title subtitle-2-regular">생년월일</div>
+
       <onpicks-select-box
+        [selectedElement]="{ value : data?.birthday.split('-')[1] }"
+        (changeEvent)="setMonth($event)"
         class="settings-profile__row--select-box-month"
         [sortList]="monthList"
       ></onpicks-select-box>
       <onpicks-select-box
+        [selectedElement]="{ value : data?.birthday.split('-')[2] }"
+        (changeEvent)="setDay($event)"
         class="settings-profile__row--select-box-day"
         [sortList]="dayList"
       ></onpicks-select-box>
       <onpicks-select-box
+        [selectedElement]="{ value : data?.birthday.split('-')[0] }"
+        (changeEvent)="setYear($event)"
         class="settings-profile__row--select-box-year"
         [sortList]="yearList"
       ></onpicks-select-box>
-      <div class="settings-profile__row--description subtitle-2-regular u-color-dark-grey">이 정보는 통계 목적으로 사용되며 다른 회원들에게 절대 공개되지 않습니다.</div>
+      <div *ngIf="!checkBitWise(EMPTY_DATE)" class="settings-profile__row--description subtitle-2-regular u-color-dark-grey">이 정보는 통계 목적으로 사용되며 다른 회원들에게 절대 공개되지 않습니다.</div>
+      <div *ngIf="checkBitWise(EMPTY_DATE)" class="settings-profile__row--description subtitle-2-regular u-color-orange">생년월일을 정확히 입력해주세요.</div>
     </div>
     <div class="settings-profile__row">
       <div class="settings-profile__row--title subtitle-2-regular">키</div>
-      <onpicks-input-box [width]="'31.2rem'" [placeholder]="'cm'"></onpicks-input-box>
+      <onpicks-input-box
+        #height
+        [value]="data?.height"
+        [width]="'31.2rem'"
+        [placeholder]="'cm'">
+      </onpicks-input-box>
       <div class="settings-profile__row--description subtitle-2-regular u-color-dark-grey">이 정보는 통계 목적으로 사용되며 다른 회원들에게 절대 공개되지 않습니다.</div>
     </div>
     <div class="settings-profile__row">
       <div class="settings-profile__row--title subtitle-2-regular">몸무게</div>
-      <onpicks-input-box [width]="'31.2rem'" [placeholder]="'kg'"></onpicks-input-box>
+      <onpicks-input-box
+        #weight
+        [value]="data?.weight"
+        [width]="'31.2rem'"
+        [placeholder]="'kg'">
+      </onpicks-input-box>
       <div class="settings-profile__row--description subtitle-2-regular u-color-dark-grey">이 정보는 통계 목적으로 사용되며 다른 회원들에게 절대 공개되지 않습니다.</div>
     </div>
+
+    <onpicks-button
+      (click)="saveProfile()"
+      [width]="'10.1rem'"
+      [size]="'small'"
+      [type]="'white'"
+    >
+      프로필 저장
+    </onpicks-button>
   </div>
 
 </div>
+
+

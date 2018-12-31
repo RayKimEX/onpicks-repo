@@ -11,12 +11,14 @@ import { CheckoutSuccessComponent } from './pages/checkout-success/checkout-succ
 import { CheckoutSuccessNoBankComponent } from './pages/checkout-success-no-bank/checkout-success-no-bank.component';
 import {PipeModule} from '../core/pipe/pipe.module';
 import {CartToCheckoutService} from './share/cart-to-checkout.service';
+import {ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   imports: [
     CommonModule,
     OrderRoutingModule,
     DirectivesModule,
+    ReactiveFormsModule,
     PipeModule,
     UiModule
   ],

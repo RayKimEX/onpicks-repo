@@ -28,8 +28,12 @@
       display:inline-block;
       width : 13.5rem;
     }
-    &:not(:last-child) {
+    &:not(:last-of-type) {
       margin-bottom : 1.6rem;
+    }
+
+    &:last-of-type {
+      margin-bottom : 2.4rem;
     }
   }
 }

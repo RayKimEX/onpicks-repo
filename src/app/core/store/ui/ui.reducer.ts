@@ -1,6 +1,8 @@
 
 import {
+  DISPLAY_ALERT_MESSAGE,
   GET_CATEGORY_ALL_SUCCESS,
+  REMOVE_ALERT_MESSAGE,
   UiActions,
   UPDATE_CATEGORY,
   UPDATE_URL_ACTIVE
@@ -12,6 +14,7 @@ export interface UiState {
   currentCategoryList: any;
   // searchList: any;
   activeUrl: any;
+  alertMessage: any;
 }
 
 export const initialState: UiState = {
@@ -19,6 +22,7 @@ export const initialState: UiState = {
     isLoaded : false,
   },
   activeUrl : [],
+  alertMessage: '',
   // searchList : {},
 };
 
@@ -34,6 +38,7 @@ let sortedSecondList = [];
 let sortedThirdList = [];
 
 // sortInfomation
+let sortAllInfo = {};
 const sortSecondInfo = {};
 const sortThirdInfo = {};
 const sortFourthInfo = {};
@@ -43,6 +48,7 @@ const sortFourthInfo = {};
 let getSecondSortValue;
 let getThirdSortValue;
 let currentSlug;
+let currentName;
 
 let notChangeSecondPrevious;
 let notChangeThirdPrevious;
@@ -57,18 +63,40 @@ export function UiReducer(state = initialState, action: UiActions): UiState {
         activeUrl : action.payload,
       };
 
-    case GET_CATEGORY_ALL_SUCCESS:
+    case DISPLAY_ALERT_MESSAGE :
+      return {
+        ...state,
+        alertMessage : {
+          message: action.payload,
+          display: true,
+        }
+      }
+
+    case REMOVE_ALERT_MESSAGE :
+      return {
+        ...state,
+        alertMessage : {
+          message : '',
+          display: false,
+        },
+      }
+
+    case GET_CATEGORY_ALL_SUCCESS :
+
       getSecondSortValue = 0;
       getThirdSortValue = 0;
       sortedSecondList = [];
       sortedThirdList = [];
       currentSlug = '';
+      currentName = '';
 
+      console.log(action.payload);
       const normalizedCategoryData = normalizer(action.payload.data);
       const secondCategoryData = normalizedCategoryData.entities.secondCategory;
       const thirdCategoryData = normalizedCategoryData.entities.thirdCategory;
       const fourthCategoryData = normalizedCategoryData.entities.fourthCategory;
 
+      console.log('111');
       // second category info에 관한것을, 정리
       Object.keys(secondCategoryData).forEach(function (key) {
         sortSecondInfo[secondCategoryData[key].slug] = parseInt(key, 10 );
@@ -77,17 +105,20 @@ export function UiReducer(state = initialState, action: UiActions): UiState {
 
       getSecondSortValue = sortSecondInfo[action.payload.secondSortKey];
 
+      console.log('222');
       // third category info에 관한것을, 정리
       Object.keys(thirdCategoryData).forEach(function (key) {
         sortThirdInfo[thirdCategoryData[key].slug] = parseInt(key, 10 );
       });
 
+      console.log('333');
       // fourth category info에 관한것을, 정리
       Object.keys(fourthCategoryData).forEach(function (key) {
         sortFourthInfo[fourthCategoryData[key].slug] = parseInt(key, 10 );
         // do something with obj[key]
       });
 
+      console.log('444');
       // 초기값을 새로운 전역 변수에 넣어준다.
       secondResultList = normalizedCategoryData.result;
       getThirdSortValue = sortThirdInfo[action.payload.thirdSortKey];
@@ -102,6 +133,7 @@ export function UiReducer(state = initialState, action: UiActions): UiState {
         }
       });
 
+      console.log('555');
 
       thirdResultList[getSecondSortValue].forEach( item => {
         if ( item === getThirdSortValue ) {
@@ -111,12 +143,23 @@ export function UiReducer(state = initialState, action: UiActions): UiState {
         }
       });
 
-      currentSlug = secondCategoryData[getSecondSortValue].slug;
+      console.log('666');
 
+      currentSlug = secondCategoryData[getSecondSortValue].slug;
+      currentName = secondCategoryData[getSecondSortValue].name;
       if (getThirdSortValue !== undefined ) {
         currentSlug = thirdCategoryData[getThirdSortValue].slug;
+        currentName = thirdCategoryData[getThirdSortValue].name;
       }
 
+
+      sortAllInfo = {
+        ...sortSecondInfo,
+        ...sortThirdInfo,
+        ...sortFourthInfo
+      };
+
+      console.log(sortAllInfo);
 
       // 초기값에, 식품을 검은색으로
       const normalizedData = {
@@ -144,10 +187,14 @@ export function UiReducer(state = initialState, action: UiActions): UiState {
           secondPrevious : getSecondSortValue,
           thirdPrevious : getThirdSortValue,
         },
+        currentName : currentName,
         currentSlug : currentSlug,
+        currentCode : sortAllInfo[currentSlug],
+        currentTitle : action.payload.categoryTitle,
         // sortSecondInfo : sortSecondInfo,
         // sortThirdInfo : sortThirdInfo,
         // sortFourthInfo : sortFourthInfo,
+        type : action.payload.type,
         isLoaded : true,
       };
 
@@ -256,6 +303,7 @@ export function UiReducer(state = initialState, action: UiActions): UiState {
             }
           },
           currentSlug : currentSlug,
+          currentCode : sortAllInfo[currentSlug],
         }
       };
       break;

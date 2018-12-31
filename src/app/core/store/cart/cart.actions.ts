@@ -105,13 +105,15 @@ export class SubtractFromFailure implements Action {
 export class TryDeleteFromCart implements Action {
   readonly type = TRY_DELETE_FROM_CART;
 
-  constructor( public payload: any ) { }
+  constructor( public payload: any ) {
+
+  }
 }
 
 export class DeleteFromCartSuccess implements Action {
   readonly type = DELETE_FROM_CART_SUCCESS;
 
-  constructor ( public payload: { productSlug }) { }
+  constructor ( public payload: { productSlug, packType, packIndex, itemIndex }) { }
 }
 
 export class DeleteFromCartFailure implements Action {

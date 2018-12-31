@@ -55,6 +55,7 @@
               <a
                 (click)="deleteCart()"
                 class="subtitle-2-regular u-color-grey">
+
                 삭제하기
               </a>
             </div>
@@ -136,9 +137,9 @@
           <td>
             <div class="cart__multi-table--amount">
               <onpicks-list-active-button
-                (addEvent)="addToCart(syncedData.cartList[itemChild.product].quantity, itemChild.product)"
-                (subtractEvent)="subtractFromCart(syncedData.cartList[itemChild.product].quantity, itemChild.product)"
-                [amount]="syncedData.cartList[itemChild.product].quantity"
+                (addEvent)="addToCart(syncedData?.cartList[itemChild.product]?.quantity, itemChild.product)"
+                (subtractEvent)="subtractFromCart(syncedData?.cartList[itemChild.product]?.quantity, itemChild.product)"
+                [amount]="syncedData?.cartList[itemChild.product]?.quantity"
                 [isFixExtend]="true">
               </onpicks-list-active-button>
               <!--<onpicks-numeric-button [active]="item.amount !== 0" [type]="'minus'"></onpicks-numeric-button>-->
@@ -232,25 +233,24 @@
           <td>총 결제금액</td>
         </tr>
         <tr>
-          <td>99999000</td>
+          <td>{{syncedData?.cartInfo?.total?.total_items | onpicksCurrency: 'KRW'}}</td>
           <td>+</td>
-          <td>무료</td>
+          <td [ngClass]="{ 'u-color-black' : syncedData?.cartInfo?.total?.total_shipping_fee !== 0}">{{syncedData?.cartInfo?.total?.total_shipping_fee === 0 ? '무료' : (syncedData?.cartInfo?.total?.total_shipping_fee  | onpicksCurrency: 'KRW')}}</td>
           <td>-</td>
-          <td>999,999원</td>
+          <td>{{syncedData?.cartInfo?.total?.total_discounts | onpicksCurrency: 'KRW'}}</td>
           <td>=</td>
-          <td>9,999,999원</td>
+          <td>{{syncedData?.cartInfo?.total?.total_items + syncedData?.cartInfo?.total?.total_shipping_fee | onpicksCurrency : 'KRW'}}</td>
         </tr>
       </table>
     </div>
     <onpicks-button class="cart__btn--shopping" [type]="'white'" [size]="'big'" [width]="'13.4rem'">계속 쇼핑하기</onpicks-button>
     <onpicks-button
       (click)="setCheckoutList(denormalizr(cartStore.cartList))"
-      routerLink="/order/checkout"
       class="cart__btn--shopping"
       [type]="'black'"
       [size]="'big'"
-      [width]="'13.4rem'">전체 구매하기</onpicks-button>
-
+      [width]="'13.4rem'">전체 구매하기
+    </onpicks-button>
     </div>
   </ng-container>
 

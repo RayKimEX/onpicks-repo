@@ -1,6 +1,6 @@
 import {
   AfterViewInit,
-  ChangeDetectionStrategy,
+  ChangeDetectionStrategy, ChangeDetectorRef,
   Component,
   ElementRef,
   Input,
@@ -28,7 +28,7 @@ import ResizeSensor from 'css-element-queries/src/ResizeSensor';
 // TODO : 스크롤 메뉴 관련 // https://www.29cm.co.kr/order/checkout?pay_code=10 참고해서, fix메뉴가 충분히 아래로 내려가면, 그때 내려갈 수 있도록 변경
 export class PMenuComponent implements OnInit, OnDestroy, AfterViewInit, OnChanges {
 
-  @ViewChild('titleHeight') titleHeight;
+  @ViewChild('titleHeight') titleHeightElement;
   @ViewChild('pMenu') pMenu: ElementRef;
   @Input('data') data;
   chart;
@@ -42,6 +42,7 @@ export class PMenuComponent implements OnInit, OnDestroy, AfterViewInit, OnChang
   scrollEvent
   PStore$;
 
+  titleHeight;
 
 
   chartSortList = [
@@ -163,24 +164,26 @@ export class PMenuComponent implements OnInit, OnDestroy, AfterViewInit, OnChang
 
   constructor(
     private renderer: Renderer2,
-    private store: Store<PState>
+    private store: Store<PState>,
+    private cd: ChangeDetectorRef
   ) {
     this.initialDatesTitle = ['Date1', 'Date2', 'Date3'];
   }
 
   ngOnChanges( changes: SimpleChanges ) {
 
+    console.log(changes)
 
     /* async를 통해 데이터가 들어올때만 다음으로 넘어감*/
     if ( changes.data.currentValue == null ) { return  ;}
-    const result = parseInt(getComputedStyle(this.titleHeight.nativeElement, null).height, 10);
+    console.log(this.titleHeight)
+    const result = parseInt(getComputedStyle(this.titleHeightElement.nativeElement).height, 10);
     this.titleHeight = result === 0  ? this.titleHeight : result;
 
     // @ts-ignore
     const that = this
-    new ResizeSensor(this.titleHeight.nativeElement, function() {
-      that.titleHeight = parseInt(getComputedStyle(that.titleHeight.nativeElement, null).height, 10);
-
+    new ResizeSensor(this.titleHeightElement.nativeElement, function() {
+      that.titleHeight = parseInt(getComputedStyle(that.titleHeightElement.nativeElement).height, 10);
     });
     const weatherDates = []
 
@@ -190,12 +193,14 @@ export class PMenuComponent implements OnInit, OnDestroy, AfterViewInit, OnChang
     let menuTopValue: { menuPosition};
     this.PStore$ = this.PStore$.subscribe( (val: { menuPosition})  => {
       menuTopValue = val;
+
       // absolute
-      if (window.pageYOffset >= (menuTopValue.menuPosition - this.titleHeight) - 32 &&  setStatus === 'absolute') {
+      if (window.pageYOffset >= (menuTopValue.menuPosition - this.titleHeight) - 32 ) {
         this.renderer.setStyle(this.pMenu.nativeElement, 'position', 'absolute');
         this.renderer.setStyle(this.pMenu.nativeElement, 'top', (menuTopValue.menuPosition - this.titleHeight) * 0.1 + 'rem');
       }
 
+      this.cd.markForCheck();
     });
     this.scrollEvent = this.scrollEvent.subscribe(val => {
       // console.log(this.titleHeight);
@@ -220,6 +225,7 @@ export class PMenuComponent implements OnInit, OnDestroy, AfterViewInit, OnChang
         this.renderer.setStyle(this.pMenu.nativeElement, 'position', 'static');
         this.renderer.setStyle(this.pMenu.nativeElement, 'top', '0');
       }
+      this.cd.markForCheck();
     });
     // @ts-ignore
     const that = this;
@@ -461,8 +467,15 @@ export class PMenuComponent implements OnInit, OnDestroy, AfterViewInit, OnChang
   }
 
   ngOnDestroy() {
-    this.scrollEvent.unsubscribe();
-    this.PStore$.unsubscribe();
+    if ( this.scrollEvent !== undefined ) {
+      this.scrollEvent.unsubscribe();
+    }
+
+    if ( this.PStore$ !== undefined ) {
+      this.PStore$.unsubscribe();
+    }
+
+
   }
 
   ngAfterViewInit() {
