@@ -21,18 +21,19 @@ import {OrderDataService} from '../../../../../../core/service/data-pages/order/
   selector: 'onpicks-delivery-address',
   templateUrl: './delivery-address.component.html',
   styleUrls: ['./delivery-address.component.scss'],
-  changeDetection : ChangeDetectionStrategy.OnPush,
+  changeDetection : ChangeDetectionStrategy.OnPush
 })
+
 export class DeliveryAddressComponent implements OnInit, OnDestroy, AfterViewInit {
   @ViewChildren('inputSearchBoxOuter') inputSearchBoxOuter;
   @ViewChild('inputSearchBox', {read: ElementRef}) inputSearchBoxEL;
   @ViewChildren('inputSearchBox' ) inputSearchBox;
 
-  @ViewChild('inputRecipientName', { read : ElementRef }) inputRecipientName;
-  @ViewChild('inputRecipientNumber', { read : ElementRef }) inputRecipientNumber;
-  @ViewChild('inputZipnumber', { read : ElementRef }) inputZipnumber;
-  @ViewChild('inputJuso', { read : ElementRef }) inputJuso;
-  @ViewChild('inputDetailJuso', { read : ElementRef }) inputDetailJuso;
+  @ViewChildren('inputRecipientName', { read : ElementRef }) inputRecipientName;
+  @ViewChildren('inputRecipientNumber', { read : ElementRef }) inputRecipientNumber;
+  @ViewChildren('inputZipnumber', { read : ElementRef }) inputZipnumber;
+  @ViewChildren('inputJuso', { read : ElementRef }) inputJuso;
+  @ViewChildren('inputDetailJuso', { read : ElementRef }) inputDetailJuso;
 
   deliveryData$
   deliveryData = [];
@@ -174,46 +175,6 @@ export class DeliveryAddressComponent implements OnInit, OnDestroy, AfterViewIni
     });
   }
 
-  getCurrentText(event) {
-    console.log(this.inputJuso);
-    this.renderer.setProperty(this.inputJuso.nativeElement.children[0], 'value', event.target.innerText);
-    this.renderer.setProperty(this.inputZipnumber.nativeElement.children[0], 'value', event.target.getAttribute('data-zipnumber'));
-    this.isShowSearchBox = false;
-    this.renderer.setStyle( this.inputSearchBoxOuter.nativeElement, 'display', 'none' );
-  }
-
-  updateDeliveryInfo() {
-    const temp = {
-      'id': this.deliveryData[this.updateDeliveryIndex].id,
-      'full_name': '',
-      'zip_code': '',
-      'street_address_1': '',
-      'street_address_2': '',
-      'city': 'hellocity',
-      'state': '',
-      'phone_number': '',
-      // default를 false로 주던 true로주던 값이 API에서 허용 안되도록 막힘
-      'default': this.deliveryData[this.updateDeliveryIndex].default,
-    }
-
-    temp.full_name = this.inputRecipientName.nativeElement.children[0].value;
-    temp.street_address_1 = this.inputJuso.nativeElement.children[0].value;
-    temp.street_address_2 = this.inputDetailJuso.nativeElement.children[0].value;
-    temp.zip_code = this.inputZipnumber.nativeElement.children[0].value;
-    temp.phone_number = this.inputRecipientNumber.nativeElement.children[0].value;
-    this.deliveryData[this.updateDeliveryIndex] = temp;
-
-
-    this.orderDataService.updateDeliveryData(
-      this.userStore.id,
-      this.deliveryData[this.updateDeliveryIndex].id,
-      temp
-    ).subscribe( v => {
-      this.isShowDeliveryModal = false;
-      this.cd.markForCheck();
-    });
-  }
-
   showSearchBox( xParam ) {
     // 내용이 있으면 show안되게
 
@@ -221,7 +182,7 @@ export class DeliveryAddressComponent implements OnInit, OnDestroy, AfterViewIni
     this.searchState = 0;
     if( this.isShowDeliveryModal === true ){
       if ( this.isShowSearchBox === false ) {
-        if ( xParam === 'input' && this.inputJuso.nativeElement.children[0].value !== ''  ) {
+        if ( xParam === 'input' && this.inputJuso.first.nativeElement.children[0].value !== ''  ) {
           return;
         }
         this.isShowSearchBox = true;
@@ -238,13 +199,12 @@ export class DeliveryAddressComponent implements OnInit, OnDestroy, AfterViewIni
       }
     } else {
       if ( this.isShowSearchBox === false ) {
-        if ( xParam === 'input' && this.inputJuso.nativeElement.children[0].value !== ''  ) {
+        if ( xParam === 'input' && this.inputJuso.last.nativeElement.children[0].value !== ''  ) {
           return;
         }
         this.isShowSearchBox = true;
 
         this.renderer.setStyle( this.inputSearchBoxOuter.last.nativeElement, 'display', 'block' );
-        console.log(this.inputSearchBox);
         this.inputSearchBox.last.inputTag.nativeElement.focus();
       } else {
         if ( xParam === 'input' ) {
@@ -254,6 +214,27 @@ export class DeliveryAddressComponent implements OnInit, OnDestroy, AfterViewIni
         this.renderer.setStyle( this.inputSearchBoxOuter.last.nativeElement, 'display', 'none' );
       }
     }
+  }
+
+  setDeliveryInfo() {
+    const temp = {
+      'full_name': '',
+      'zip_code': '',
+      'street_address_1': '',
+      'street_address_2': '',
+      'city': 'hellocity',
+      'state': '',
+      'phone_number': '',
+      // default를 false로 주던 true로주던 값이 API에서 허용 안되도록 막힘
+      'default': false
+    }
+
+    temp.full_name = this.inputRecipientName.last.nativeElement.children[0].value;
+    temp.street_address_1 = this.inputJuso.last.nativeElement.children[0].value;
+    temp.street_address_2 = this.inputDetailJuso.last.nativeElement.children[0].value;
+    temp.zip_code = this.inputZipnumber.last.nativeElement.children[0].value;
+    temp.phone_number = this.inputRecipientNumber.last.nativeElement.children[0].value;
+    return temp;
   }
 
   removeDeliveryInfo(index) {
@@ -272,11 +253,11 @@ export class DeliveryAddressComponent implements OnInit, OnDestroy, AfterViewIni
     this.isShowDeliveryModal = false;
     this.isShowSearchBox = false;
 
-    this.renderer.setProperty( this.inputRecipientName.nativeElement.children[0], 'value', '');
-    this.renderer.setProperty( this.inputJuso.nativeElement.children[0], 'value', '');
-    this.renderer.setProperty( this.inputDetailJuso.nativeElement.children[0], 'value', '');
-    this.renderer.setProperty( this.inputZipnumber.nativeElement.children[0], 'value', '');
-    this.renderer.setProperty( this.inputRecipientNumber.nativeElement.children[0], 'value', '');
+    // this.renderer.setProperty( this.inputRecipientName.nativeElement.children[0], 'value', '');
+    // this.renderer.setProperty( this.inputJuso.nativeElement.children[0], 'value', '');
+    // this.renderer.setProperty( this.inputDetailJuso.nativeElement.children[0], 'value', '');
+    // this.renderer.setProperty( this.inputZipnumber.nativeElement.children[0], 'value', '');
+    // this.renderer.setProperty( this.inputRecipientNumber.nativeElement.children[0], 'value', '');
   }
 
   showModifyDeliveryModal(index) {
@@ -286,29 +267,18 @@ export class DeliveryAddressComponent implements OnInit, OnDestroy, AfterViewIni
     this.renderer.setStyle( this.inputSearchBoxOuter.last.nativeElement, 'display', 'none' );
     this.updateDeliveryIndex = index;
 
-    this.renderer.setProperty(this.inputRecipientName.nativeElement.children[0], 'value', this.deliveryData[this.updateDeliveryIndex].full_name);
-    this.renderer.setProperty( this.inputJuso.nativeElement.children[0], 'value', this.deliveryData[this.updateDeliveryIndex].street_address_1);
-    this.renderer.setProperty( this.inputDetailJuso.nativeElement.children[0], 'value', this.deliveryData[this.updateDeliveryIndex].street_address_2);
-    this.renderer.setProperty( this.inputZipnumber.nativeElement.children[0], 'value', this.deliveryData[this.updateDeliveryIndex].zip_code);
-    this.renderer.setProperty( this.inputRecipientNumber.nativeElement.children[0], 'value', this.deliveryData[this.updateDeliveryIndex].phone_number);
+    this.renderer.setProperty( this.inputRecipientName.first.nativeElement.children[0], 'value', this.deliveryData[this.updateDeliveryIndex].full_name);
+    this.renderer.setProperty( this.inputJuso.first.nativeElement.children[0], 'value', this.deliveryData[this.updateDeliveryIndex].street_address_1);
+    this.renderer.setProperty( this.inputDetailJuso.first.nativeElement.children[0], 'value', this.deliveryData[this.updateDeliveryIndex].street_address_2);
+    this.renderer.setProperty( this.inputZipnumber.first.nativeElement.children[0], 'value', this.deliveryData[this.updateDeliveryIndex].zip_code);
+    this.renderer.setProperty( this.inputRecipientNumber.first.nativeElement.children[0], 'value', this.deliveryData[this.updateDeliveryIndex].phone_number);
 
     this.cd.markForCheck();
   }
 
-  addDeliveryInfo() {
-    const JSON_deliveryInfo = this.setDeliveryInfo();
-
-    this.orderDataService.addDeliveryData(this.userStore.id, JSON_deliveryInfo).subscribe( v => {
-      console.log(v);
-
-      this.deliveryData.push(v);
-      this.isShowDeliveryView = false;
-      this.cd.markForCheck();
-    });
-  }
-
-  setDeliveryInfo() {
+  updateDeliveryInfo() {
     const temp = {
+      'id': this.deliveryData[this.updateDeliveryIndex].id,
       'full_name': '',
       'zip_code': '',
       'street_address_1': '',
@@ -317,14 +287,172 @@ export class DeliveryAddressComponent implements OnInit, OnDestroy, AfterViewIni
       'state': '',
       'phone_number': '',
       // default를 false로 주던 true로주던 값이 API에서 허용 안되도록 막힘
-      'default': false
+      'default': this.deliveryData[this.updateDeliveryIndex].default,
     }
 
-    temp.full_name = this.inputRecipientName.nativeElement.children[0].value;
-    temp.street_address_1 = this.inputJuso.nativeElement.children[0].value;
-    temp.street_address_2 = this.inputDetailJuso.nativeElement.children[0].value;
-    temp.zip_code = this.inputZipnumber.nativeElement.children[0].value;
-    temp.phone_number = this.inputRecipientNumber.nativeElement.children[0].value;
-    return temp;
+    temp.full_name = this.inputRecipientName.first.nativeElement.children[0].value;
+    temp.street_address_1 = this.inputJuso.first.nativeElement.children[0].value;
+    temp.street_address_2 = this.inputDetailJuso.first.nativeElement.children[0].value;
+    temp.zip_code = this.inputZipnumber.first.nativeElement.children[0].value;
+    temp.phone_number = this.inputRecipientNumber.first.nativeElement.children[0].value;
+    this.deliveryData[this.updateDeliveryIndex] = temp;
+    this.orderDataService.updateDeliveryData(
+      this.userStore.id,
+      this.deliveryData[this.updateDeliveryIndex].id,
+      temp
+    ).subscribe( v => {
+
+
+      this.exitModifyDeliveryModal();
+      this.cd.markForCheck();
+    }, error => {
+
+    });
   }
+
+
+  addDeliveryInfo() {
+
+    this.validateDeliveryInfo();
+
+    if ( this.errorStatus === 0 ) {
+      console.log(this.deliveryData.length);
+
+      const JSON_deliveryInfo = this.setDeliveryInfo();
+
+      this.orderDataService.addDeliveryData(this.userStore.id, JSON_deliveryInfo).subscribe( v => {
+        console.log(v);
+
+        this.deliveryData.push(v);
+        this.deliveryData$ = of(this.deliveryData);
+        this.isShowDeliveryView = false;
+        this.cd.markForCheck();
+      });
+    }
+  }
+
+
+
+
+  updateDeliveryDataToDefault( index ) {
+    this.orderDataService.updateDeliveryDataToDefault(this.userStore.id, this.deliveryData[index].id).subscribe(
+      v => {
+
+        console.log(this.deliveryData);
+        console.log(v);
+        const temp = [];
+        this.deliveryData.forEach( (value, forEachIndex) => {
+
+          if(forEachIndex === index) {
+            const valueTemp = {
+              ...value,
+              default : true,
+            }
+            temp.unshift(valueTemp);
+          } else {
+            const valueTemp = {
+              ...value,
+              default : false,
+            }
+            temp.push(valueTemp);
+          }
+        })
+
+        this.deliveryData = temp;
+
+        this.deliveryData$ = of(temp);
+        console.log(this.deliveryData);
+
+        this.cd.markForCheck();
+      }
+    );
+  }
+
+
+
+
+
+  validateDeliveryInfo(){
+
+    this.errorStatus = 0;
+
+
+    if ( this.inputRecipientName.last.nativeElement.children[0].value === '') {
+      if ( this.errorStatus === 0 ) {this.inputRecipientName.last.nativeElement.children[0].focus();}
+      this.errorStatus |= this.EMPTY_RECIPIENT_NAME;
+    }
+
+    if ( this.inputRecipientNumber.last.nativeElement.children[0].value === '') {
+      if ( this.errorStatus === 0 ) {this.inputRecipientNumber.last.nativeElement.children[0].focus();}
+      this.errorStatus |= this.EMPTY_RECIPIENT_NUMBER;
+    } else {
+      const patt = new RegExp('[a-zA-Z]');
+      if ( patt.test(this.inputRecipientNumber.last.nativeElement.children[0].value) ) {
+        if ( this.errorStatus === 0 ) {this.inputRecipientNumber.last.nativeElement.children[0].focus();}
+        this.errorStatus |= this.INVALID_RECIPIENT_NUMBER;
+      }
+    }
+
+    if ( this.inputZipnumber.last.nativeElement.children[0].value === ''
+      || this.inputJuso.last.nativeElement.children[0].value === ''
+    ) {
+      if ( this.errorStatus === 0 ) {this.inputZipnumber.last.nativeElement.children[0].focus();}
+      this.errorStatus |= this.EMPTY_DELIVERY_ADDRESS;
+    }
+  }
+
+  getCurrentText(event) {
+    console.log(this.inputJuso);
+    console.log(event.target.innerText)
+    console.log(event.target.getAttribute('data-zipnumber'));
+    if( this.isShowDeliveryModal === true ) {
+      this.renderer.setProperty(this.inputJuso.first.nativeElement.children[0], 'value', event.target.innerText);
+      this.renderer.setProperty(this.inputZipnumber.first.nativeElement.children[0], 'value', event.target.getAttribute('data-zipnumber'));
+      this.isShowSearchBox = false;
+      this.renderer.setStyle(this.inputSearchBoxOuter.first.nativeElement, 'display', 'none');
+    } else {
+      this.renderer.setProperty(this.inputJuso.last.nativeElement.children[0], 'value', event.target.innerText);
+      this.renderer.setProperty(this.inputZipnumber.last.nativeElement.children[0], 'value', event.target.getAttribute('data-zipnumber'));
+      this.isShowSearchBox = false;
+      this.renderer.setStyle( this.inputSearchBoxOuter.last.nativeElement, 'display', 'none' );
+    }
+  }
+
+
+
+  updateDeliveryDataToDefault( index ) {
+    this.orderDataService.updateDeliveryDataToDefault(this.userStore.id, this.deliveryData[index].id).subscribe(
+      v => {
+
+        console.log(this.deliveryData);
+        console.log(v);
+        const temp = [];
+        this.deliveryData.forEach( (value, forEachIndex) => {
+
+          if(forEachIndex === index) {
+            const valueTemp = {
+              ...value,
+              default : true,
+            }
+            temp.unshift(valueTemp);
+          } else {
+            const valueTemp = {
+              ...value,
+              default : false,
+            }
+            temp.push(valueTemp);
+          }
+        })
+
+        this.deliveryData = temp;
+
+        this.deliveryData$ = of(temp);
+        console.log(this.deliveryData);
+
+        this.cd.markForCheck();
+      }
+    );
+  }
+
+
 }

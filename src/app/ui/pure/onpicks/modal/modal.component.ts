@@ -34,7 +34,7 @@ export class ModalComponent implements OnInit, OnChanges {
     console.log(changes);
     if ( changes.isShow.currentValue === true ) {
       this.renderer.addClass(document.body , 'u-open-modal');
-    }else {
+    } else {
       this.renderer.removeClass(document.body, 'u-open-modal');
     }
   }

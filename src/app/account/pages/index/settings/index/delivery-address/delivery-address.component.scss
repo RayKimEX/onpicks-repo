@@ -35,6 +35,11 @@
     border-radius : 4px;
     height : 26.4rem;
     padding:2.4rem;
+
+
+    &:nth-child(3n) {
+      margin-right : 0;
+    }
     &--padding {
       position:relative;
       height : 100%;

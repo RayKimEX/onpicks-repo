@@ -36,12 +36,12 @@ export class CheckoutComponent implements OnInit, AfterViewInit, OnDestroy {
   ////
   @ViewChild('inputOrderName', { read : ElementRef }) inputOrderName;
   @ViewChild('inputOrderNumber', { read : ElementRef }) inputOrderNumber;
-  @ViewChild('inputRecipientName', { read : ElementRef }) inputRecipientName;
-  @ViewChild('inputRecipientNumber', { read : ElementRef }) inputRecipientNumber;
+  @ViewChildren('inputRecipientName', { read : ElementRef }) inputRecipientName;
+  @ViewChildren('inputRecipientNumber', { read : ElementRef }) inputRecipientNumber;
 
-  @ViewChild('inputZipnumber', { read : ElementRef }) inputZipnumber;
-  @ViewChild('inputJuso', { read : ElementRef }) inputJuso;
-  @ViewChild('inputDetailJuso', { read : ElementRef }) inputDetailJuso;
+  @ViewChildren('inputZipnumber', { read : ElementRef }) inputZipnumber;
+  @ViewChildren('inputJuso', { read : ElementRef }) inputJuso;
+  @ViewChildren('inputDetailJuso', { read : ElementRef }) inputDetailJuso;
   @ViewChild('selectDeliveryRequirement') selectDeliveryRequirement;
 
   @ViewChild('checkoutAdditionNumber', { read : ElementRef}) checkoutAdditionNumber;
@@ -84,6 +84,9 @@ export class CheckoutComponent implements OnInit, AfterViewInit, OnDestroy {
   // readonly INVALID_COUPON_NUMBER = 0b00000001;
   // readonly EMPTY_CUSTOMS_ID_NUMBER = 0b01000000;
   // readonly INVALID_COUPON_NUMBER = 0b00000001;
+
+
+
 
 
   // MUST TODO : 이미지 안보인는건 src를 초기화 해서 memory낭비 적게 하기
@@ -272,46 +275,6 @@ export class CheckoutComponent implements OnInit, AfterViewInit, OnDestroy {
     this.formData.payment_method = value;
   }
 
-  showSearchBox( xParam ) {
-    // 내용이 있으면 show안되게
-
-    this.jusoList = [];
-    this.searchState = 0;
-    if( this.isShowDeliveryModal === true ){
-      if ( this.isShowSearchBox === false ) {
-        if ( xParam === 'input' && this.inputJuso.nativeElement.children[0].value !== ''  ) {
-          return;
-        }
-        this.isShowSearchBox = true;
-
-        this.renderer.setStyle( this.inputSearchBoxOuter.first.nativeElement, 'display', 'block' );
-
-        this.inputSearchBox.first.inputTag.nativeElement.focus();
-      } else {
-        if ( xParam === 'input' ) {
-          return;
-        }
-        this.isShowSearchBox = false;
-        this.renderer.setStyle( this.inputSearchBoxOuter.first.nativeElement, 'display', 'none' );
-      }
-    } else {
-      if ( this.isShowSearchBox === false ) {
-        if ( xParam === 'input' && this.inputJuso.nativeElement.children[0].value !== ''  ) {
-          return;
-        }
-        this.isShowSearchBox = true;
-
-        this.renderer.setStyle( this.inputSearchBoxOuter.last.nativeElement, 'display', 'block' );
-        this.inputSearchBox.last.inputTag.nativeElement.focus();
-      } else {
-        if ( xParam === 'input' ) {
-          return;
-        }
-        this.isShowSearchBox = false;
-        this.renderer.setStyle( this.inputSearchBoxOuter.last.nativeElement, 'display', 'none' );
-      }
-    }
-  }
 
   payment(form) {
 
@@ -374,6 +337,46 @@ export class CheckoutComponent implements OnInit, AfterViewInit, OnDestroy {
 
   }
 
+  showSearchBox( xParam ) {
+    // 내용이 있으면 show안되게
+
+    this.jusoList = [];
+    this.searchState = 0;
+    if( this.isShowDeliveryModal === true ){
+      if ( this.isShowSearchBox === false ) {
+        if ( xParam === 'input' && this.inputJuso.first.nativeElement.children[0].value !== ''  ) {
+          return;
+        }
+        this.isShowSearchBox = true;
+
+        this.renderer.setStyle( this.inputSearchBoxOuter.first.nativeElement, 'display', 'block' );
+
+        this.inputSearchBox.first.inputTag.nativeElement.focus();
+      } else {
+        if ( xParam === 'input' ) {
+          return;
+        }
+        this.isShowSearchBox = false;
+        this.renderer.setStyle( this.inputSearchBoxOuter.first.nativeElement, 'display', 'none' );
+      }
+    } else {
+      if ( this.isShowSearchBox === false ) {
+        if ( xParam === 'input' && this.inputJuso.last.nativeElement.children[0].value !== ''  ) {
+          return;
+        }
+        this.isShowSearchBox = true;
+
+        this.renderer.setStyle( this.inputSearchBoxOuter.last.nativeElement, 'display', 'block' );
+        this.inputSearchBox.last.inputTag.nativeElement.focus();
+      } else {
+        if ( xParam === 'input' ) {
+          return;
+        }
+        this.isShowSearchBox = false;
+        this.renderer.setStyle( this.inputSearchBoxOuter.last.nativeElement, 'display', 'none' );
+      }
+    }
+  }
 
   setDeliveryInfo() {
     const temp = {
@@ -388,11 +391,11 @@ export class CheckoutComponent implements OnInit, AfterViewInit, OnDestroy {
       'default': false
     }
 
-    temp.full_name = this.inputRecipientName.nativeElement.children[0].value;
-    temp.street_address_1 = this.inputJuso.nativeElement.children[0].value;
-    temp.street_address_2 = this.inputDetailJuso.nativeElement.children[0].value;
-    temp.zip_code = this.inputZipnumber.nativeElement.children[0].value;
-    temp.phone_number = this.inputRecipientNumber.nativeElement.children[0].value;
+    temp.full_name = this.inputRecipientName.last.nativeElement.children[0].value;
+    temp.street_address_1 = this.inputJuso.last.nativeElement.children[0].value;
+    temp.street_address_2 = this.inputDetailJuso.last.nativeElement.children[0].value;
+    temp.zip_code = this.inputZipnumber.last.nativeElement.children[0].value;
+    temp.phone_number = this.inputRecipientNumber.last.nativeElement.children[0].value;
     return temp;
   }
 
@@ -412,11 +415,11 @@ export class CheckoutComponent implements OnInit, AfterViewInit, OnDestroy {
     this.isShowDeliveryModal = false;
     this.isShowSearchBox = false;
 
-    this.renderer.setProperty( this.inputRecipientName.nativeElement.children[0], 'value', '');
-    this.renderer.setProperty( this.inputJuso.nativeElement.children[0], 'value', '');
-    this.renderer.setProperty( this.inputDetailJuso.nativeElement.children[0], 'value', '');
-    this.renderer.setProperty( this.inputZipnumber.nativeElement.children[0], 'value', '');
-    this.renderer.setProperty( this.inputRecipientNumber.nativeElement.children[0], 'value', '');
+    // this.renderer.setProperty( this.inputRecipientName.nativeElement.children[0], 'value', '');
+    // this.renderer.setProperty( this.inputJuso.nativeElement.children[0], 'value', '');
+    // this.renderer.setProperty( this.inputDetailJuso.nativeElement.children[0], 'value', '');
+    // this.renderer.setProperty( this.inputZipnumber.nativeElement.children[0], 'value', '');
+    // this.renderer.setProperty( this.inputRecipientNumber.nativeElement.children[0], 'value', '');
   }
 
   showModifyDeliveryModal(index) {
@@ -426,14 +429,13 @@ export class CheckoutComponent implements OnInit, AfterViewInit, OnDestroy {
     this.renderer.setStyle( this.inputSearchBoxOuter.last.nativeElement, 'display', 'none' );
     this.updateDeliveryIndex = index;
 
-    this.renderer.setProperty(this.inputRecipientName.nativeElement.children[0], 'value', this.deliveryData[this.updateDeliveryIndex].full_name);
-    this.renderer.setProperty( this.inputJuso.nativeElement.children[0], 'value', this.deliveryData[this.updateDeliveryIndex].street_address_1);
-    this.renderer.setProperty( this.inputDetailJuso.nativeElement.children[0], 'value', this.deliveryData[this.updateDeliveryIndex].street_address_2);
-    this.renderer.setProperty( this.inputZipnumber.nativeElement.children[0], 'value', this.deliveryData[this.updateDeliveryIndex].zip_code);
-    this.renderer.setProperty( this.inputRecipientNumber.nativeElement.children[0], 'value', this.deliveryData[this.updateDeliveryIndex].phone_number);
+    this.renderer.setProperty( this.inputRecipientName.first.nativeElement.children[0], 'value', this.deliveryData[this.updateDeliveryIndex].full_name);
+    this.renderer.setProperty( this.inputJuso.first.nativeElement.children[0], 'value', this.deliveryData[this.updateDeliveryIndex].street_address_1);
+    this.renderer.setProperty( this.inputDetailJuso.first.nativeElement.children[0], 'value', this.deliveryData[this.updateDeliveryIndex].street_address_2);
+    this.renderer.setProperty( this.inputZipnumber.first.nativeElement.children[0], 'value', this.deliveryData[this.updateDeliveryIndex].zip_code);
+    this.renderer.setProperty( this.inputRecipientNumber.first.nativeElement.children[0], 'value', this.deliveryData[this.updateDeliveryIndex].phone_number);
 
     this.cd.markForCheck();
-
   }
 
   updateDeliveryInfo() {
@@ -450,19 +452,23 @@ export class CheckoutComponent implements OnInit, AfterViewInit, OnDestroy {
       'default': this.deliveryData[this.updateDeliveryIndex].default,
     }
 
-    temp.full_name = this.inputRecipientName.nativeElement.children[0].value;
-    temp.street_address_1 = this.inputJuso.nativeElement.children[0].value;
-    temp.street_address_2 = this.inputDetailJuso.nativeElement.children[0].value;
-    temp.zip_code = this.inputZipnumber.nativeElement.children[0].value;
-    temp.phone_number = this.inputRecipientNumber.nativeElement.children[0].value;
+    temp.full_name = this.inputRecipientName.first.nativeElement.children[0].value;
+    temp.street_address_1 = this.inputJuso.first.nativeElement.children[0].value;
+    temp.street_address_2 = this.inputDetailJuso.first.nativeElement.children[0].value;
+    temp.zip_code = this.inputZipnumber.first.nativeElement.children[0].value;
+    temp.phone_number = this.inputRecipientNumber.first.nativeElement.children[0].value;
     this.deliveryData[this.updateDeliveryIndex] = temp;
-
     this.orderDataService.updateDeliveryData(
       this.userStore.id,
       this.deliveryData[this.updateDeliveryIndex].id,
       temp
     ).subscribe( v => {
-      console.log(v);
+
+
+      this.exitModifyDeliveryModal();
+      this.cd.markForCheck();
+    }, error => {
+
     });
   }
 
@@ -532,30 +538,52 @@ export class CheckoutComponent implements OnInit, AfterViewInit, OnDestroy {
     this.errorStatus = 0;
 
 
-    if ( this.inputRecipientName.nativeElement.children[0].value === '') {
-      if ( this.errorStatus === 0 ) {this.inputRecipientName.nativeElement.children[0].focus();}
+    if ( this.inputRecipientName.last.nativeElement.children[0].value === '') {
+      if ( this.errorStatus === 0 ) {this.inputRecipientName.last.nativeElement.children[0].focus();}
       this.errorStatus |= this.EMPTY_RECIPIENT_NAME;
     }
 
-    console.log(this.inputRecipientNumber.nativeElement.children[0].value )
-    if ( this.inputRecipientNumber.nativeElement.children[0].value === '') {
-      if ( this.errorStatus === 0 ) {this.inputRecipientNumber.nativeElement.children[0].focus();}
+    if ( this.inputRecipientNumber.last.nativeElement.children[0].value === '') {
+      if ( this.errorStatus === 0 ) {this.inputRecipientNumber.last.nativeElement.children[0].focus();}
       this.errorStatus |= this.EMPTY_RECIPIENT_NUMBER;
     } else {
       const patt = new RegExp('[a-zA-Z]');
-      if ( patt.test(this.inputRecipientNumber.nativeElement.children[0].value) ) {
-        if ( this.errorStatus === 0 ) {this.inputRecipientNumber.nativeElement.children[0].focus();}
+      if ( patt.test(this.inputRecipientNumber.last.nativeElement.children[0].value) ) {
+        if ( this.errorStatus === 0 ) {this.inputRecipientNumber.last.nativeElement.children[0].focus();}
         this.errorStatus |= this.INVALID_RECIPIENT_NUMBER;
       }
     }
 
-    if ( this.inputZipnumber.nativeElement.children[0].value === ''
-      || this.inputJuso.nativeElement.children[0].value === ''
+    if ( this.inputZipnumber.last.nativeElement.children[0].value === ''
+      || this.inputJuso.last.nativeElement.children[0].value === ''
     ) {
-      if ( this.errorStatus === 0 ) {this.inputZipnumber.nativeElement.children[0].focus();}
+      if ( this.errorStatus === 0 ) {this.inputZipnumber.last.nativeElement.children[0].focus();}
       this.errorStatus |= this.EMPTY_DELIVERY_ADDRESS;
     }
   }
+
+  getCurrentText(event) {
+    console.log(this.inputJuso);
+    console.log(event.target.innerText)
+    console.log(event.target.getAttribute('data-zipnumber'));
+    if( this.isShowDeliveryModal === true ) {
+      this.renderer.setProperty(this.inputJuso.first.nativeElement.children[0], 'value', event.target.innerText);
+      this.renderer.setProperty(this.inputZipnumber.first.nativeElement.children[0], 'value', event.target.getAttribute('data-zipnumber'));
+      this.isShowSearchBox = false;
+      this.renderer.setStyle(this.inputSearchBoxOuter.first.nativeElement, 'display', 'none');
+    } else {
+      this.renderer.setProperty(this.inputJuso.last.nativeElement.children[0], 'value', event.target.innerText);
+      this.renderer.setProperty(this.inputZipnumber.last.nativeElement.children[0], 'value', event.target.getAttribute('data-zipnumber'));
+      this.isShowSearchBox = false;
+      this.renderer.setStyle( this.inputSearchBoxOuter.last.nativeElement, 'display', 'none' );
+    }
+  }
+
+  checkBitWise( data ) {
+    return ((this.errorStatus & data) > 0);
+  }
+
+
 
   validate() {
 
@@ -563,7 +591,7 @@ export class CheckoutComponent implements OnInit, AfterViewInit, OnDestroy {
       this.inputOrderName.nativeElement.children[0].focus();
       this.errorStatus |= this.EMPTY_ORDER_NAME;
 
-      console.log('1')
+      console.log('1');
     }
 
     if ( this.inputOrderNumber.nativeElement.children[0].value === '') {
@@ -580,34 +608,34 @@ export class CheckoutComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
     if ( this.deliveryData.length === 0 ) {
-      console.log(this.inputRecipientName.nativeElement.children[0].value);
-      if ( this.inputRecipientName.nativeElement.children[0].value === '') {
+      console.log(this.inputRecipientName.last.nativeElement.children[0].value);
+      if ( this.inputRecipientName.last.nativeElement.children[0].value === '') {
         console.log('4');
-        if ( this.errorStatus === 0 ) {this.inputRecipientName.nativeElement.children[0].focus();}
+        if ( this.errorStatus === 0 ) {this.inputRecipientName.last.nativeElement.children[0].focus();}
         this.errorStatus |= this.EMPTY_RECIPIENT_NAME;
       }
 
-      console.log(this.inputRecipientNumber.nativeElement.children[0].value);
-      if ( this.inputRecipientNumber.nativeElement.children[0].value === '') {
+      console.log(this.inputRecipientNumber.last.nativeElement.children[0].value);
+      if ( this.inputRecipientNumber.last.nativeElement.children[0].value === '') {
         console.log('5');
-        if ( this.errorStatus === 0 ) {this.inputRecipientNumber.nativeElement.children[0].focus();}
+        if ( this.errorStatus === 0 ) {this.inputRecipientNumber.last.nativeElement.children[0].focus();}
         this.errorStatus |= this.EMPTY_RECIPIENT_NUMBER;
       } else {
         const patt = new RegExp('[a-zA-Z]');
-        if ( patt.test(this.inputRecipientNumber.nativeElement.children[0].value) ) {
+        if ( patt.test(this.inputRecipientNumber.last.nativeElement.children[0].value) ) {
           console.log('6');
-          if ( this.errorStatus === 0 ) {this.inputRecipientNumber.nativeElement.children[0].focus();}
+          if ( this.errorStatus === 0 ) {this.inputRecipientNumber.last.nativeElement.children[0].focus();}
           this.errorStatus |= this.INVALID_RECIPIENT_NUMBER;
         }
       }
 
 
-      console.log(this.inputZipnumber.nativeElement.children[0].value);
-      if ( this.inputZipnumber.nativeElement.children[0].value === ''
-        || this.inputJuso.nativeElement.children[0].value === ''
+      console.log(this.inputZipnumber.last.nativeElement.children[0].value);
+      if ( this.inputZipnumber.last.nativeElement.children[0].value === ''
+        || this.inputJuso.last.nativeElement.children[0].value === ''
       ) {
         console.log('7');
-        if ( this.errorStatus === 0 ) {this.inputZipnumber.nativeElement.children[0].focus();}
+        if ( this.errorStatus === 0 ) {this.inputZipnumber.last.nativeElement.children[0].focus();}
         this.errorStatus |= this.EMPTY_DELIVERY_ADDRESS;
       }
     }
@@ -639,16 +667,5 @@ export class CheckoutComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   }
 
-  checkBitWise( data ) {
-    return ((this.errorStatus & data) > 0);
-  }
 
-
-  getCurrentText(event) {
-    console.log(this.inputJuso);
-    this.renderer.setProperty(this.inputJuso.nativeElement.children[0], 'value', event.target.innerText);
-    this.renderer.setProperty(this.inputZipnumber.nativeElement.children[0], 'value', event.target.getAttribute('data-zipnumber'));
-    this.isShowSearchBox = false;
-    this.renderer.setStyle( this.inputSearchBoxOuter.nativeElement, 'display', 'none' );
-  }
 }

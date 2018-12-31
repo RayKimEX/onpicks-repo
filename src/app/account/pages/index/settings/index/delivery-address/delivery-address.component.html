@@ -6,14 +6,21 @@
       <div class="delivery-address__row">
         <!--TODO : use a method : propotionally increase or decrease size https://stackoverflow.com/questions/8894506/can-i-scale-a-divs-height-proportionally-to-its-width-using-css-->
         <div
-          *ngFor="let item of data"
+          *ngFor="let item of data; index as i"
            [ngClass]="item.default ? 'isActive' : 'isNotActive'" class="col-4-of-12 delivery-address__col">
           <div class="delivery-address__col--padding">
             <div class="delivery-address__col--name subtitle-2-bold">{{item.full_name}}</div>
             <div class="delivery-address__col--address subtitle-2-regular">{{item.zip_code}}, {{item.street_address_1}}, {{item.street_address_2}}</div>
             <div class="delivery-address__col--phoneNumber subtitle-2-regular">{{item.phone_number}}</div>
             <div class="delivery-address__col-bottom">
-              <div *ngIf="!item.default" class="delivery-address__col-bottom--isDefault subtitle-2-regular u-color-dark-grey">기본 배송지로 설정</div>
+              <div *ngIf="!item.default" class="delivery-address__col-bottom--isDefault">
+                <a
+                  class="subtitle-2-regular u-color-dark-grey"
+                  (click)="updateDeliveryDataToDefault(i)">
+                  기본 배송지로 설정
+                </a>
+
+              </div>
               <div *ngIf="item.default" class="delivery-address__col-bottom--isDefault subtitle-2-regular u-color-green">기본 배송지</div>
               <div class="delivery-address__col-bottom--modify">
                 <a
@@ -41,6 +48,7 @@
       <hr>
 
       <onpicks-button
+        *ngIf="data?.length < 6"
         class="delivery-address__btn"
         (click)="isShowDeliveryView = !isShowDeliveryView"
         [width]="isShowDeliveryView ? '13.6rem' : '10.9rem'"
