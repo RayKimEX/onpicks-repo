@@ -23,6 +23,10 @@ export class AccountDataService {
     return this.httpClient.get<any>( this.BASE_URL + '/api/orders/');
   }
 
+  getOrdersData(orderId) {
+    return this.httpClient.get<any>( this.BASE_URL + '/api/orders/' + orderId + '/');
+  }
+
   saveProfileData(userId, data) {
     return this.httpClient.put<any>( this.BASE_URL + '/api/customers/' + userId + '/', data);
   }

@@ -43,11 +43,9 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
     private router: Router,
     private uiService: UiService,
   ) {
-
     this.uiService.postLanguageSetting();
     this.store.dispatch(new TryGetAuthUser());
     this.store.dispatch(new TryGetCartInfo());
-
 
     this.uiState$ = this.store.pipe(select( 'ui')).subscribe( val => {
       this.isCategoryLoaded = val.currentCategoryList.isLoaded;
@@ -70,7 +68,6 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
 
       // category가 /c/안에 url일경우
       if ( url[2] !== 'c' ) { return; };
-
 
       // twoDepth
       // example : shops/c/pantry/house

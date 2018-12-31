@@ -109,7 +109,7 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
   constructor(
     private renderer: Renderer2,
     private store: Store<any>,
-    private router: Router,
+    public router: Router,
     private route: ActivatedRoute,
     private cd: ChangeDetectorRef,
     private searchService: SearchService
@@ -170,9 +170,7 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
             }
           });
 
-
         } else {
-
 
           this.searchData$ = this.searchService.categorySearch(this.sortInfo[url[url.length - 1]]).subscribe(_infoList => {
             this.searchState = 'category';

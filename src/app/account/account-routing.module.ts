@@ -51,7 +51,17 @@ const routes: Routes = [
           },
           {
             path : 'orders-detail',
-            component : OrdersDetailComponent
+            children : [
+              {
+                path : '',
+                component : OrdersDetailComponent
+              },
+              {
+                path : ':id',
+                component : OrdersDetailComponent
+              }
+            ]
+
           }
         ]
       },

@@ -40,13 +40,18 @@
     &:last-child{
       border-bottom : 1px solid $color-light-grey;
     }
+
     &--image {
       vertical-align: top;
       display:inline-block;
       width: 11.2rem;
       height : 11.2rem;
       margin-right: 2.4rem;
-      background-color:red;
+
+      img {
+        width : 11.2rem;
+        height : 11.2rem;
+      }
     }
 
     &-info {
