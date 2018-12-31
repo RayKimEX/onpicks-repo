@@ -7,7 +7,8 @@ import {
   OnChanges,
   OnDestroy,
   OnInit,
-  Renderer2, SimpleChanges,
+  Renderer2,
+  SimpleChanges,
   ViewChild
 } from '@angular/core';
 import {fromEvent, interval} from 'rxjs';
@@ -486,6 +487,10 @@ export class PMenuComponent implements OnInit, OnDestroy, AfterViewInit, OnChang
 
   ngOnInit() {
 
+  }
+
+  toFixed( data: number) {
+    return data.toFixed(2);
   }
 
   typeof( hello ) {

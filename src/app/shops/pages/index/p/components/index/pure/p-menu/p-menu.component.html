@@ -48,7 +48,7 @@
         </svg>
 
         <!--소수점 떨어지는거 관련해서 약간 이슈가 있음-->
-        <span class="p-menu__product-info--price-discount price-bold u-color-green">{{100 - (data?.price / data?.msrp).toFixed(2) * 100}}%</span>
+        <span class="p-menu__product-info--price-discount price-bold u-color-green">{{100 - toFixed(data?.price / data?.msrp) * 100}}%</span>
         <span class="p-menu__product-info--price-realprice price-bold">{{data?.price | onpicksCurrency:'KRW'}}</span>
         <onpicks-sort-box
           [sortList]="chartSortList">
