@@ -7,12 +7,12 @@
     <div class="p-menu__title subtitle-1-bold">
       <!--이것은 전체를 기준으로 처리하려고 했으나, ViewChild를 가져오는 기준은, template이 시작될때 가져오는것 같음따라서,
           중간에 데이터 들어오는것과 처리가 잘 안맞음. 그래서 각각 element에다가 ngIf를 따로 설정하여줌.-->
-      <ng-container *ngIf="data !== null;">{{data?.brand?.name}}</ng-container>
+      <ng-container *ngIf="_data !== null;">{{_data?.brand?.name}}</ng-container>
 
     </div>
     <div class="p-menu__icon-list">
       <span>
-        <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="-2 -2 24 24">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="-2 -2 24 24">
           <title>thumbsup-icon</title>
           <path d="M18,4H18A2,2,0,0,1,18,8h0a2,2,0,0,1,0-4m0-2a4,4,0,0,0-.1,8H18a4,4,0,0,0,.11-8Z" transform="translate(-2.01 -2)"/>
           <path d="M6,10h0a2,2,0,0,1,0,4H6a2,2,0,0,1,0-4M6,8a4,4,0,0,0-.11,8H6a4,4,0,0,0,.1-8Z" transform="translate(-2.01 -2)"/>
@@ -27,17 +27,17 @@
 
     <div class="p-menu__product-info">
       <h1 class="h1-regular p-menu__product-info--title" #titleHeight>
-        <ng-container *ngIf="data !== null;">{{data?.title}}</ng-container>
+        <ng-container *ngIf="_data !== null;">{{_data?.title}}</ng-container>
         <!--알엑스바 리얼 푸드 프로틴 에너지바 믹스드 베리 52G / RxBar Real Food Protein Bars Mixed BerryRxBar Re-->
       </h1>
       <ui-star-rating
-        [star-point]="data ? data.review_avg_rating : 0">
+        [star-point]="_data ? _data.review_avg_rating : 0">
       </ui-star-rating>
-      <span class="p-menu__product-info--read-reviews subtitle-1-regular u-color-dark-grey">{{data?.review_count}}개 리뷰</span>
+      <span class="p-menu__product-info--read-reviews subtitle-1-regular u-color-dark-grey">{{_data?.review_count}}개 리뷰</span>
       <div class="p-menu__product-info--MSRP subtitle-1-regular">
         <!--TODO: MSRP는 지역에 따라 보이고 안보이고 설정-->
         <!--<span class="p-menu__product-info&#45;&#45;MSRP-name">MSRP&nbsp;</span>-->
-        <span class="p-menu__product-info--MSRP-discount u-color-grey">{{data?.msrp | onpicksCurrency:'KRW'}}</span>
+        <span class="p-menu__product-info--MSRP-discount u-color-grey">{{_data?.msrp | onpicksCurrency:'KRW'}}</span>
         <span class="p-menu__product-info--MSRP-description u-color-green">담을수록 추가 할인</span>
       </div>
       <div class="p-menu__product-info--price">
@@ -48,8 +48,8 @@
         </svg>
 
         <!--소수점 떨어지는거 관련해서 약간 이슈가 있음-->
-        <span class="p-menu__product-info--price-discount price-bold u-color-green">{{100 - toFixed(data?.price / data?.msrp) * 100}}%</span>
-        <span class="p-menu__product-info--price-realprice price-bold">{{data?.price | onpicksCurrency:'KRW'}}</span>
+        <span class="p-menu__product-info--price-discount price-bold u-color-green">{{100 - discountPercent * 100}}%</span>
+        <span class="p-menu__product-info--price-realprice price-bold">{{_data?.price | onpicksCurrency:'KRW'}}</span>
         <onpicks-sort-box
           [sortList]="chartSortList">
         </onpicks-sort-box>
@@ -69,13 +69,13 @@
 
           </span>
           <span class="p-menu__delivery--first-spot subtitle-2-bold">
-            {{data?.location?.name}}
+            {{_data?.location?.name}}
           </span>
           <span class="p-menu__delivery--first-info subtitle-2-regular">출고, 묶음배송, {{9000| onpicksCurrency: 'KRW'}}</span>
 
         </div>
 
-        <div class="p-menu__delivery--second subtitle-2-regular u-color-dark-grey">{{data?.location?.name}} 묶음배송 상품 {{80000| onpicksCurrency:'KRW'}} 이상 배송료 무료</div>
+        <div class="p-menu__delivery--second subtitle-2-regular u-color-dark-grey">{{_data?.location?.name}} 묶음배송 상품 {{80000| onpicksCurrency:'KRW'}} 이상 배송료 무료</div>
       </div>
     </div>
 

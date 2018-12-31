@@ -31,7 +31,17 @@ export class PMenuComponent implements OnInit, OnDestroy, AfterViewInit, OnChang
 
   @ViewChild('titleHeight') titleHeightElement;
   @ViewChild('pMenu') pMenu: ElementRef;
-  @Input('data') data;
+  @Input('data')
+    set data( xData) {
+      console.log(xData);
+      if ( xData === undefined ) { return; };
+      this._data = xData;
+      this.discountPercent = (xData.price / xData.msrp).toFixed(2);
+    }
+
+  discountPercent;
+  _data;
+
   chart;
   dateTitle;
   amazonPrice;
@@ -213,24 +223,22 @@ export class PMenuComponent implements OnInit, OnDestroy, AfterViewInit, OnChang
           this.renderer.setStyle(this.pMenu.nativeElement, 'position', 'absolute');
           this.renderer.setStyle(this.pMenu.nativeElement, 'top', (menuTopValue.menuPosition - this.titleHeight) * 0.1 + 'rem');
         } else {
-
           if ( setStatus === 'fixed' ) { return; }
           setStatus = 'fixed';
           this.renderer.setStyle(this.pMenu.nativeElement, 'position', 'fixed');
           this.renderer.setStyle(this.pMenu.nativeElement, 'top', '32px');
         }
-
       } else {
-        if ( setStatus === '' ) return;
+        if (setStatus === '') return;
         setStatus = '';
         this.renderer.setStyle(this.pMenu.nativeElement, 'position', 'static');
         this.renderer.setStyle(this.pMenu.nativeElement, 'top', '0');
       }
+
       this.cd.markForCheck();
     });
     // @ts-ignore
     const that = this;
-
 
     Chart.defaults.LineWithLine = Chart.defaults.line;
     Chart.controllers.LineWithLine = Chart.controllers.line.extend({
@@ -246,7 +254,7 @@ export class PMenuComponent implements OnInit, OnDestroy, AfterViewInit, OnChang
           ctx.save();
           ctx.beginPath();
           ctx.moveTo(x, topY);
-          ctx.lineTo(x, bottomY-5);
+          ctx.lineTo(x, bottomY - 5);
           ctx.lineWidth = 2;
           ctx.strokeStyle = '#b3b3b3';
           ctx.stroke();
@@ -480,8 +488,6 @@ export class PMenuComponent implements OnInit, OnDestroy, AfterViewInit, OnChang
   }
 
   ngAfterViewInit() {
-    console.log('ngAfterViewInit!!!');
-    console.log(this.titleHeight);
     // interval(1000).subscribe( val => console.log(this.data));
   }
 
