@@ -23,6 +23,10 @@ export class AccountDataService {
     return this.httpClient.get<any>( this.BASE_URL + '/api/orders/');
   }
 
+  getOrdersNotReviewedData() {
+    return this.httpClient.get<any>( this.BASE_URL + '/api/orders/?filter=not_reviewed');
+  }
+
   getOrdersDetailData(orderId) {
     return this.httpClient.get<any>( this.BASE_URL + '/api/orders/' + orderId + '/');
   }
@@ -33,5 +37,35 @@ export class AccountDataService {
 
   getProfileData(userId) {
     return this.httpClient.get<any>( this.BASE_URL + '/api/customers/' + userId + '/');
+  }
+
+  uploadReviewImage( xProductSlug, xReviewId, xFile ) {
+
+    console.log(xProductSlug);
+    console.log(xReviewId);
+    console.log(xFile);
+    const formData: FormData = new FormData();
+    formData.append('file', xFile, xFile.name );
+    return this.httpClient.post<any>(
+      this.BASE_URL + '/api/products/' + xProductSlug + '/reviews/' + xReviewId + '/pictures/', formData);
+  }
+
+  getPendingReviewData( xProductSlug, xReviewId ) {
+    console.log(xProductSlug)
+    console.log(xReviewId);
+    return this.httpClient.get<any>(
+      this.BASE_URL + '/api/products/' + xProductSlug + '/reviews/' + xReviewId + '/');
+  }
+
+
+  createReviewData( xProductSlug, orderId ) {
+    return this.httpClient.post<any>(
+      this.BASE_URL + '/api/products/' + xProductSlug + '/reviews/', {order : orderId});
+  }
+
+  publishReviewData( xProductSlug, xReviewId, xRating, xText ) {
+    return this.httpClient.patch<any>(
+      this.BASE_URL + '/api/products/' + xProductSlug + '/reviews/' + xReviewId + '/', { rating : xRating, text : xText }
+    );
   }
 }

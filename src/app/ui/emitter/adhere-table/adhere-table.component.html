@@ -4,11 +4,11 @@
     <div class="subtitle-2-regular">
       <span>주문일자</span>
       <span>
-        <strong>2018년 12월 29일</strong>
+        <strong>{{results.created | date : 'longDate'}}</strong>
       </span>
       <span>주문번호</span>
       <span>
-        <strong>1732405826</strong>
+        <strong>{{results.code}}</strong>
       </span>
       <span>
          <button
@@ -23,7 +23,6 @@
       <img src="{{item.thumbnail}}" alt="">
     </div>
 
-
     <div class="adhere-table__item-info">
       <div class="adhere-table__item-info--title subtitle-2-bold">{{item.brand}}</div>
       <div class="adhere-table__item-info--name body-3-regular">{{item.title}}</div>
@@ -37,13 +36,46 @@
 
     <div class="adhere-table__item-state">
       <div class="adhere-table__item-state--title subtitle-2-bold">{{item.status_display}}</div>
-      <div class="adhere-table__item-state--date subtitle-3-regular">입금기한 2018년 9월 14일</div>
+      <div
+        *ngIf="results.deposit_until !== ''"
+        class="adhere-table__item-state--date subtitle-3-regular">입금기한 {{results.deposit_until | date : 'longDate'}}
+      </div>
       <div class="adhere-table__item-state--btn subtitle-2-regular">
 
-        <onpicks-button *ngIf="type === 'available'" [type]="'green'"  (click)="changeViewModal()" [width]="'8.8rem'">리뷰 쓰기</onpicks-button>
-        <onpicks-button *ngIf="type !== 'available'" [type]="'white'" [width]="'8.8rem'">주문 취소</onpicks-button>
+        <onpicks-button
+          *ngIf="item.status === 'completed' && items?.review_published === false"
+          [type]="'green'"
+          (click)="viewModal('write_review', item, results.code)"
+          [width]="'8.8rem'">리뷰 쓰기
+        </onpicks-button>
+
+        <onpicks-button
+          *ngIf="item.status === 'pending' || item.status === 'paid'"
+          [type]="'white'"
+          [width]="'8.8rem'">주문 취소
+        </onpicks-button>
+
+        <onpicks-button
+          *ngIf="item.status === 'fulfilled'"
+          [type]="'white'"
+          [width]="'8.8rem'">배송 추적
+        </onpicks-button>
+
+        <onpicks-button
+          *ngIf="item.status === 'delivered'"
+          [type]="'white'"
+          [width]="'8.8rem'">구매 확정
+        </onpicks-button>
+
+        <onpicks-button
+          *ngIf="item.status === 'delivered'"
+          [type]="'white'"
+          [marginLeft]="'0.8rem'"
+          [width]="'8.8rem'">반품 요청
+        </onpicks-button>
       </div>
     </div>
+
   </div>
 </div>
 

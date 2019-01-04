@@ -7,11 +7,11 @@
           class="free-delivery-notibox__item--region-icon"
           [ngClass]=
           "[
-            (item.location.slug === locationMap['la'])  ? 'icon-la' : '',
-            (item.location.slug === locationMap['new'])  ? 'icon-new' : '',
-            (item.location.slug === locationMap['osaka'])  ? 'icon-osaka' : '',
-            (item.location.slug === locationMap['gorge'])  ? 'icon-gorge' : '',
-            (item.location.slug === locationMap['hong'])  ? 'icon-hong' : ''
+            (locationMap[item.location.slug].nickname === 'la')  ? 'icon-la' : '',
+            (locationMap[item.location.slug].nickname === 'new')  ? 'icon-new' : '',
+            (locationMap[item.location.slug].nickname === 'osaka')  ? 'icon-osaka' : '',
+            (locationMap[item.location.slug].nickname === 'gorgia')  ? 'icon-gorgia' : '',
+            (locationMap[item.location.slug].nickname === 'hong')  ? 'icon-hong' : ''
           ]"
         >
         </span>

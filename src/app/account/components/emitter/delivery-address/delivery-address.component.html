@@ -7,7 +7,7 @@
         <!--TODO : use a method : propotionally increase or decrease size https://stackoverflow.com/questions/8894506/can-i-scale-a-divs-height-proportionally-to-its-width-using-css-->
         <div
           *ngFor="let item of data; index as i"
-           [ngClass]="item.default ? 'isActive' : 'isNotActive'" class="col-4-of-12 delivery-address__col">
+          [ngClass]="item.default ? 'isActive' : 'isNotActive'" class="col-4-of-12 delivery-address__col">
           <div class="delivery-address__col--padding">
             <div class="delivery-address__col--name subtitle-2-bold">{{item.full_name}}</div>
             <div class="delivery-address__col--address subtitle-2-regular">{{item.zip_code}}, {{item.street_address_1}}, {{item.street_address_2}}</div>
@@ -86,7 +86,7 @@
 
 
 <ng-template #templateRef>
-<!--<ng-container *ngIf="deliveryData.length == 0 || isShowDeliveryView">-->
+  <!--<ng-container *ngIf="deliveryData.length == 0 || isShowDeliveryView">-->
   <div class="delivery-address__insert-box">
     <div class="delivery-address__insert-box--row">
       <div class="subtitle-2-regular">받는분</div>
@@ -131,7 +131,7 @@
       </onpicks-search-box>
       <div class="delivery-address__info--delivery-searchBox-option"
            [ngStyle]="{width : isShowDeliveryModal ? '50.2rem' : '55.2rem'}"
-        >
+      >
         <!-- TODO : list형식 관련 스타일 가이드 의견 교류 필요, 1. padding을 일괄적으로 주면서, 이쁘게 디자인 안나오는지,  -->
         <div *ngIf="searchState === 1" class="delivery-address__info--delivery-searchBox-option-list" >
           <div class="delivery-address__info--delivery-searchBox-option-list-outer" *ngFor="let item of jusoList ">

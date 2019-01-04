@@ -1,7 +1,7 @@
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
-  Component,
+  Component, Inject,
   Input,
   OnDestroy,
   OnInit,
@@ -13,6 +13,7 @@ import {
   TryAddOrCreateToCart, TrySubtractOrDeleteFromCart
 } from '../../../core/store/cart/cart.actions';
 import {SearchService} from '../../../core/service/data-pages/search/search.service';
+import {LOCATION_MAP} from '../../../app.config';
 @Component({
   selector: 'emitter-search-navigator',
   templateUrl: './search-navigator.component.html',
@@ -107,6 +108,7 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
   ]
 
   constructor(
+    @Inject( LOCATION_MAP ) public locationMap: any,
     private renderer: Renderer2,
     private store: Store<any>,
     public router: Router,
@@ -166,6 +168,7 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
               this.totalPageArray.push(this.totalPageArray.length + 1);
 
               this.currentList = this.infoList.slice(0, this.maxRow);
+              console.log(this.currentList);
               this.cd.markForCheck();
             }
           });

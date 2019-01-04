@@ -99,7 +99,7 @@
         </ng-container>
         <div class="checkout-left__info--delivery-tag subtitle-2-regular">배송요청사항</div>
         <onpicks-select-box
-          #selectDeliveryRequirement
+          (changeEvent)="setShippingMessage($event)"
           [sortList]="deliveryOption">
 
         </onpicks-select-box>

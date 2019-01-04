@@ -5,13 +5,13 @@ import * as CartActions from './cart.actions';
 import {catchError, map, switchMap, tap} from 'rxjs/operators';
 import {
   AddToCartFailure,
-  AddToCartSuccess,
+  AddToCartSuccess, AddToWishListFailure, AddToWishListSuccess,
   CreateToCartFailure,
   CreateToCartSuccess,
   DeleteFromCartFailure,
-  DeleteFromCartSuccess,
+  DeleteFromCartSuccess, DeleteWishListFailure, DeleteWishListSuccess,
   GetCartInfoFailure,
-  GetCartInfoSuccess,
+  GetCartInfoSuccess, GetWishListInfoFailure, GetWishListInfoSuccess,
   SubtractFromFailure,
   SubtractFromSuccess
 } from './cart.actions';
@@ -24,10 +24,63 @@ export class CartEffects {
   constructor(
     private cartService: CartService,
     private actions$: Actions,
-  ) {
+  ) { }
 
-  }
+  @Effect()
+  deleteWishList = this.actions$.pipe(
+    ofType( CartActions.TRY_DELETE_WISH_LIST),
+    map( payload => payload['payload']),
+    switchMap( payload => {
+      return this.cartService.deleteToWishList( payload.wishListId )
+        .pipe(
+          map( response => {
+            return new DeleteWishListSuccess( payload.index );
+          }),
+          catchError( error => {
+            return of(new DeleteWishListFailure( { error: error}));
+          })
+        );
+    })
+  )
 
+  @Effect()
+  getWishListInfo = this.actions$.pipe(
+    ofType( CartActions.TRY_GET_WISH_LIST_INFO),
+    map( payload => payload['payload']),
+    switchMap( payload => {
+
+      return this.cartService.getWishListInfo()
+        .pipe(
+          map( response => {
+            return new GetWishListInfoSuccess( response );
+          }),
+          catchError( error => {
+            return of(new GetWishListInfoFailure( {error : error}));
+          })
+        );
+      }
+    )
+
+  )
+
+  @Effect()
+  addToWishList = this.actions$.pipe(
+    ofType( CartActions.TRY_ADD_TO_WISH_LIST),
+    map( payload => payload['payload']),
+    switchMap( payload => {
+      console.log(payload);
+      return this.cartService.addToWishList( payload.productSlug )
+        .pipe(
+          map( response => {
+            return new AddToWishListSuccess(response);
+          }),
+          catchError( error => {
+            console.log(error)
+            return of(new AddToWishListFailure( { error : error }));
+          })
+        );
+    })
+  )
 
   @Effect()
   getCartInfo = this.actions$.pipe(
@@ -53,8 +106,15 @@ export class CartEffects {
     switchMap( payload => {
       return this.cartService.deleteFromCart(payload.productSlug)
         .pipe(
-          map( respond => {
-            return new DeleteFromCartSuccess( payload );
+          map( response => {
+            console.log(payload);
+            return new DeleteFromCartSuccess( {
+              productSlug : payload['productSlug'],
+              itemIndex : payload['itemIndex'],
+              packIndex : payload['packIndex'],
+              packType : payload['packType']
+            });
+            return new DeleteFromCartSuccess( response);
           }),
           catchError( error => {
             return of(new DeleteFromCartFailure( {error : error}));
@@ -84,7 +144,11 @@ export class CartEffects {
         return this.cartService.createToCart( payload.productSlug, payload.amount )
           .pipe(
             map( getCartInfo => {
-              return new CreateToCartSuccess( getCartInfo );
+              return new CreateToCartSuccess( {
+                product: payload.productSlug,
+                amount : payload.amount,
+                cartInfo: getCartInfo}
+              );
             }),
             catchError( error => {
               return of(new CreateToCartFailure( {error : error}));

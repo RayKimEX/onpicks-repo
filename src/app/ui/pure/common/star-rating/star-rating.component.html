@@ -1,5 +1,7 @@
 
-<div [ngSwitch]="sizePoint" class="star-source">
+<div
+  [ngSwitch]="sizePoint"
+  class="star-source">
 
 
   <span *ngSwitchCase="10">
@@ -65,7 +67,9 @@
 
       <!--i == 0, 1, 2, 3, 4-->
       <svg>
-        <use #shapeStars [ngStyle]="{ fill : currentIndex > i   ? currentIndex == i + 0.5 ? 'url(#grad)' : '#292929' : '#b3b3b3' }" [attr.data-index]="i+1" xlink:href="#star28"/>
+        <use
+          #shapeStars
+          [ngStyle]="{ fill : currentIndex > i ? currentIndex == i + 0.5 ? 'url(#grad)' : '#292929' : '#b3b3b3' }" [attr.data-index]="i+1" xlink:href="#star28"/>
       </svg>
       <label (mouseover)="mouseOver(i+1)" for="star28-{{i+1}}--full">
       </label>

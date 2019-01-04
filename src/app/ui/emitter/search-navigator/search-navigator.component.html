@@ -250,8 +250,8 @@
                         <onpicks-list-active-button
                           [amount]="cartStore.cartList[item.slug] === undefined ? 0 : cartStore.cartList[item.slug]?.quantity"
                           *ngSwitchCase="0"
-                          (addEvent)="addToCart($event, item.slug)"
-                          (subtractEvent)="subtractFromCart($event, item.slug)"
+                          (addEvent)="addToCart($event, item.slug, locationMap[item.location.slug].sequence)"
+                          (subtractEvent)="subtractFromCart($event, item.slug, locationMap[item.location.slug].sequence)"
                         ></onpicks-list-active-button>
 
                         <div
@@ -301,7 +301,7 @@
                           <span class="c-category-content__delivery-point--text subtitle-2-regular u-color-black"><strong>뉴저지</strong> 출고</span>
                         </ng-container>
                         <ng-container *ngSwitchCase="'atl'">
-                          <span class="c-category-content__delivery-point--icon icon-small-gorge"></span>
+                          <span class="c-category-content__delivery-point--icon icon-small-gorgia"></span>
                           <span class="c-category-content__delivery-point--text subtitle-2-regular u-color-black"><strong>죠지아</strong> 출고</span>
                         </ng-container>
                         <ng-container *ngSwitchCase="'kix'">

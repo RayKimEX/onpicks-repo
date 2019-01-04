@@ -15,9 +15,16 @@
   margin-left: 7.3rem;
   will-change: transform;
 
-  &:empty{
-
-  }
+  //&:empty{
+  //  height: 60rem;
+  //  background-color : $color-light-grey;
+  //  background-image : linear-gradient( 120deg, rgba(255, 255, 255, 0) 35%, rgba(255, 255, 255, 0.5) 50%, rgba(255, 255, 255, 0) 65%);
+  //  background-size : 70rem 75rem;
+  //  background-position : -700px -100px;
+  //  // background-position : -350px;
+  //  background-repeat: no-repeat;
+  //  animation : shine 1.5s infinite;
+  //}
 
   &__inner-margin {
     margin:2.4rem;

@@ -42,10 +42,8 @@ export class CheckoutComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChildren('inputZipnumber', { read : ElementRef }) inputZipnumber;
   @ViewChildren('inputJuso', { read : ElementRef }) inputJuso;
   @ViewChildren('inputDetailJuso', { read : ElementRef }) inputDetailJuso;
-  @ViewChild('selectDeliveryRequirement') selectDeliveryRequirement;
 
   @ViewChild('checkoutAdditionNumber', { read : ElementRef}) checkoutAdditionNumber;
-
   @ViewChild('addDeliveryView') addDeliveryView;
 
 
@@ -56,11 +54,11 @@ export class CheckoutComponent implements OnInit, AfterViewInit, OnDestroy {
     list : [
       {
         title : '택배기사 아저씨한테 부탁해주세요',
-        value : 0
+        value : '택배기사 아저씨한테 부탁해주세요'
       },
       {
         title : '문 앞에 냅둬주세요!',
-        value : 1
+        value : '문 앞에 냅둬주세요!'
       }
   ]};
 
@@ -126,6 +124,7 @@ export class CheckoutComponent implements OnInit, AfterViewInit, OnDestroy {
   searchFirst$;
   searchLast$;
 
+  paymentScript = null;
 
   formData = {
     'buyer_name': '',
@@ -297,39 +296,56 @@ export class CheckoutComponent implements OnInit, AfterViewInit, OnDestroy {
         this.formData.phone_number = this.deliveryData[0].phone_number;
         this.formData.zip_code = this.deliveryData[0].zip_code;
         this.formData.street_address_1 = this.deliveryData[0].street_address_1;
-        this.formData.street_address_2 = this.deliveryData[0].street_address_1;
+        this.formData.street_address_2 = this.deliveryData[0].street_address_2;
       }
 
 
 
-      this.formData.shipping_message = this.selectDeliveryRequirement.value !== undefined ?  this.selectDeliveryRequirement.title : '';
+
       this.formData.customs_id_number = this.checkoutAdditionNumber.nativeElement.children[0].value;
 
 
       this.formData.city = 'helloCity';
       this.formData.country = 'helloCountry';
 
+      console.log(this.formData);
       this.httpClient.post<any>( this.BASE_URL + '/api/orders/', this.formData )
         .subscribe( response => {
 
-          const script = document.createElement('script');
-          script.src = response.pay_script;
-          script.async = true;
-          script.onload = function() {
-            console.log('Script loaded');
+
+          if ( this.paymentScript === null ){
+            this.paymentScript = document.createElement('script');
+            this.paymentScript.src = response.pay_script;
+            this.paymentScript.async = true;
+            this.paymentScript.onload = function() {
+              console.log('Script loaded');
+              // @ts-ignore
+              INIStdPay.pay(form);
+            };
+            document.head.appendChild(this.paymentScript);
+
+            Object.keys(response.form_data).forEach(key => {
+              const input = document.createElement('input');
+              input.type = 'text';
+              input.hidden = true;
+              input.name = key;
+              input.value = response.form_data[key];
+              form.appendChild(input);
+            });
+          } else {
+            form.innerHTML = '';
+
+            Object.keys(response.form_data).forEach(key => {
+              const input = document.createElement('input');
+              input.type = 'text';
+              input.hidden = true;
+              input.name = key;
+              input.value = response.form_data[key];
+              form.appendChild(input);
+            });
             // @ts-ignore
             INIStdPay.pay(form);
-          };
-          document.head.appendChild(script);
-
-          Object.keys(response.form_data).forEach(key => {
-            const input = document.createElement('input');
-            input.type = 'text';
-            input.hidden = true;
-            input.name = key;
-            input.value = response.form_data[key];
-            form.appendChild(input);
-          });
+          }
 
         });
 
@@ -667,5 +683,9 @@ export class CheckoutComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   }
 
+
+  setShippingMessage(xShippingMessage) {
+    this.formData.shipping_message = xShippingMessage;
+  }
 
 }

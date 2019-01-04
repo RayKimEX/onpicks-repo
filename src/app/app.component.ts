@@ -21,7 +21,7 @@ import {
   UpdateUrlActive
 } from './core/store/ui/ui.actions';
 import {UiService} from './core/service/ui/ui.service';
-import {TryGetCartInfo} from './core/store/cart/cart.actions';
+import {TryGetCartInfo, TryGetWishListInfo} from './core/store/cart/cart.actions';
 import {CATEGORY_MAP} from './app.config';
 
 @Component({
@@ -46,11 +46,13 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
     this.uiService.postLanguageSetting();
     this.store.dispatch(new TryGetAuthUser());
     this.store.dispatch(new TryGetCartInfo());
+    this.store.dispatch(new TryGetWishListInfo());
 
     this.uiState$ = this.store.pipe(select( 'ui')).subscribe( val => {
       this.isCategoryLoaded = val.currentCategoryList.isLoaded;
       this.categoryLoadType = val.currentCategoryList.type;
     })
+
     router.events.subscribe((event: RouterEvent) => {
       this._navigationInterceptor(event);
     });

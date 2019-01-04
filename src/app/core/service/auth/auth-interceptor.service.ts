@@ -23,6 +23,15 @@ export class AuthInterceptorService implements HttpInterceptor {
       return next.handle(request);
     }
 
+    if ( request.url.endsWith('/pictures/')) {
+      request = request.clone(
+        { headers: new HttpHeaders({
+            'X-CSRFTOKEN' : csrfToken
+          }),
+        });
+      return next.handle(request);
+    }
+
 
     request = request.clone(
       { headers: new HttpHeaders({

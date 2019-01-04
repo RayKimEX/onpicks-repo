@@ -1,5 +1,5 @@
 import {
-  ChangeDetectionStrategy,
+  ChangeDetectionStrategy, ChangeDetectorRef,
   Component,
   OnInit
 } from '@angular/core';
@@ -32,14 +32,58 @@ export class OrdersComponent implements OnInit {
   ]
   orderData$;
 
+  writeReview = {
+    isShow : false,
+    orderData : undefined,
+  }
+  isShowWriteReview = false;
+
   constructor(
     private accountDataService: AccountDataService,
+    private cd: ChangeDetectorRef
   ) {
     this.orderData$ = this.accountDataService
       .getOrdersData()
       .pipe(
-      tap( v => console.log(v))
+      tap( v => {
+        console.log(v);
+      })
     );
+  }
+
+  viewModal(xParam) {
+
+    console.log(xParam);
+
+    if (xParam.data.review === null ) {
+      this.accountDataService.createReviewData(xParam.data.product, xParam.orderId).subscribe(
+        response => {
+          console.log(xParam.param);
+          console.log(response);
+          if ( xParam.param === 'write_review' ) {
+            this.writeReview.isShow = true;
+            this.writeReview.orderData = xParam.data;
+            this.writeReview.orderData.review = response.review;
+          }
+          this.cd.markForCheck();
+        }, error => {
+          console.log(error);
+        }
+      );
+    } else {
+      if ( xParam.param === 'write_review' ) {
+        this.writeReview = {
+          isShow : true,
+          orderData : {
+            ...xParam.data
+          }
+        }
+        this.cd.markForCheck();
+      }
+    }
+
+
+
   }
 
   ngOnInit() {

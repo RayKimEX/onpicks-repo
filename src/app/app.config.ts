@@ -14,12 +14,28 @@ export const API_URL_CONST = {
 }
 
 export const LOCATION_MAP = new InjectionToken<any>('app.config');
+
 export const LOCATION_MAP_CONST = {
-  'la' : 'lax',
-  'new' : 'jfk',
-  'osaka' : 'kix',
-  'gorge' : 'atl',
-  'hong' : 'hkg'
+  'lax' : {
+    nickname : 'la',
+    sequence : 1
+  },
+  'jfk' : {
+    nickname : 'new',
+    sequence : 0
+  },
+  'kix' : {
+    nickname : 'osaka',
+    sequence : 4
+  },
+  'atl' : {
+    nickname : 'gorgia',
+    sequence : 2
+  },
+  'hkg' : {
+    nickname : 'hong',
+    sequence : 3
+  }
 }
 
 export const CATEGORY_MAP = new InjectionToken<any>( 'app.config');

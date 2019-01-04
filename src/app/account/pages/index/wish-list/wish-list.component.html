@@ -1,15 +1,15 @@
-<div #f class="row wish-list">
+<div #f class="row wish-list" *ngIf="wishList$ | async as data">
   <div class="wish-list__title h1-bold">다음에 구매하기</div>
   <table class="wish-list__table">
-    <tr>
+    <tr *ngFor="let item of data">
       <td>
         <div class="wish-list__table--image">
-          <img src="https://picsum.photos/112/112?image=180" alt="">
+          <img src="{{item.thumbnail}}" alt="">
         </div>
         <div class="wish-list__table--info">
-          <div class="wish-list__table--info-title subtitle-3-bold">알엑스바</div>
-          <div class="wish-list__table--info-name body-3-regular">알엑스바 리얼 푸드 프로틴 에너지바 믹스드 베리 52G / RxBar Real Food Protein Bars Mixed Berry 1.83OZ</div>
-          <div class="wish-list__table--info-price subtitle-2-bold">40,900원</div>
+          <div class="wish-list__table--info-title subtitle-3-bold">{{item.brand}}</div>
+          <div class="wish-list__table--info-name body-3-regular">{{item.title}}</div>
+          <div class="wish-list__table--info-price subtitle-2-bold">{{item.price | onpicksCurrency: 'KRW'}}</div>
         </div>
       </td>
       <td>
@@ -18,13 +18,17 @@
             <img src="http://img.onpicks.com/cart__table--info-N.png" alt="">
           </div>
 
-          <div class="wish-list__table--delivery-info-where"><span class="subtitle-2-bold">뉴저지</span> <span class="subtitle-2-regular">출고</span><span class="subtitle-2-bold">무료배송</span></div>
-          <div class="wish-list__table--delivery-info-description subtitle-2-regular u-color-dark-grey">5개 이상 구매시 무료배송</div>
+          <div class="wish-list__table--delivery-info-where">
+            <span class="subtitle-2-bold">{{item.location.name}}</span>
+            <span class="subtitle-2-regular"> · </span><span class="subtitle-2-bold">무료배송</span></div>
+          <div class="wish-list__table--delivery-info-description subtitle-2-regular u-color-dark-grey">{{item.location.name}} 단독 배송 상품 {{item.location.free_shipping_threshold | onpicksCurrency: 'KRW'}} 이상 주문시 무료 배송</div>
         </div>
       </td>
       <td>
         <button class="btn btn--white btn--small wish-list__table--btn">옵션 선택하기</button>
-        <button class="btn btn--white btn--small wish-list__table--btn">삭제하기</button>
+        <button
+          (click)="deleteWishList()"
+          class="btn btn--white btn--small wish-list__table--btn">삭제하기</button>
       </td>
     </tr>
   </table>

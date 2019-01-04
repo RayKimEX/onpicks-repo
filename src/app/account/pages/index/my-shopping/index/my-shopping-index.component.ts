@@ -16,10 +16,7 @@ export class MyShoppingIndexComponent implements OnInit {
   ) {
     this.url$ = this.store.pipe(
       select(state => state.ui.activeUrl),
-      tap( v => console.log(v))
     );
-
-
   }
 
   url$;

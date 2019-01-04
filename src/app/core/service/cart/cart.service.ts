@@ -18,8 +18,6 @@ export class CartService {
     return this.httpClient.get<any>(this.BASE_URL + '/api/cart/');
   }
 
-
-
   createToCart(xProductSlug, xAmount) {
     return this.httpClient.post<any>(this.BASE_URL + '/api/cart/', { product : xProductSlug, quantity: xAmount });
   }
@@ -43,6 +41,18 @@ export class CartService {
 
   deleteFromCart( xProductSlug ) {
     return this.httpClient.delete<any>(this.BASE_URL + '/api/cart/' +  xProductSlug + '/');
+  }
+
+  addToWishList( xProductSlug ) {
+    return this.httpClient.post<any>( this.BASE_URL + '/api/favorites/', { product : xProductSlug});
+  }
+
+  getWishListInfo( ) {
+    return this.httpClient.get<any>(this.BASE_URL + '/api/favorites/');
+  }
+
+  deleteToWishList( xProductSlug ) {
+    return this.httpClient.delete<any>( this.BASE_URL + '/api/favorites/' + xProductSlug + '/');
   }
 }
 

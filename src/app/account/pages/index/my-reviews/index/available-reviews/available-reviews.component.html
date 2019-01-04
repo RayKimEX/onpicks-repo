@@ -2,133 +2,17 @@
 
   <h1 class="h1-bold">작성 가능한 리뷰</h1>
 
-  <emitter-adhere-table (viewModal)="isViewModal = !isViewModal" [type]="'available'"></emitter-adhere-table>
+  <emitter-adhere-table
+    (viewModal)="viewModal($event)"
+    [data]="orderData$ | async"
+    [type]="'available'">
+  </emitter-adhere-table>
 
-  <div
-    [ngStyle]="{ display: isViewModal ? 'block' : 'none'}"
-    class="write-review"
-  >
-
-    <div class="write-review__outer"></div>
-    <div class="write-review__inner">
-
-      <div class="write-review__info">
-        <span (click)="isViewModal = false" class="write-review__info--exit-btn">
-          <span class="write-review__info--exit-btn-inner"></span>
-        </span>
-        <h1 class="write-review__info--title h1-bold">리뷰쓰기</h1>
-        <span class="write-review__info--description subtitle-2-regular u-color-dark-grey">포토리뷰 작성시 250P지급</span>
-        <div>
-          <div class="write-review__info--image">
-            <img drLazyLoad src="http://picsum.photos/112/112?image=999" alt="">
-          </div>
-          <div class="write-review__info--product">
-            <div class="write-review__info--product-div subtitle-3-bold">알엑스바</div>
-            <div class="write-review__info--product-div body-3-regular">알엑스바 리얼 푸드 프로틴 에너지바 믹스드 베리 52G / RxBar Real Food Protein Bars Mixed Berry 1.83OZ</div>
-            <div class="write-review__info--product-div subtitle-3-regular u-color-dark-grey">사이즈: 라지 · 컬러: 블랙</div>
-            <div class="write-review__info--product-div subtitle-2-bold">40,900원</div>
-          </div>
-        </div>
-
-      </div>
-      <div class="write-review__rating">
-        <h1 class="write-review__rating--title h1-bold">만족도를 평가해주세요</h1>
-        <ui-star-rating [size]="28"></ui-star-rating>
-      </div>
-      <div class="write-review__photo">
-        <h1 class="write-review__photo--title h1-bold">사진을 올려주세요</h1>
-        <ng-container [ngSwitch]="errorStatus">
-          <div *ngSwitchCase="0" class="write-review__photo--description subtitle-2-regular u-color-dark-grey">사진은 최대 20MB 이하의 JPG, PNG, GIF 파일 10장까지 첨부 가능합니다.</div>
-          <div *ngSwitchCase="1" class="write-review__photo--description subtitle-2-regular u-color-orange">사진은 최대 10장까지 첨부가 가능합니다.</div>
-          <div *ngSwitchCase="2" class="write-review__photo--description subtitle-2-regular u-color-orange">사진은 최대 20mb 이하만 첨부가 가능합니다</div>
-        </ng-container>
-
-        <div class="write-review__photo--images">
-          <ul>
-            <li class="write-review__photo--images-item" *ngFor="let item of imageFileList; index as i">
-              <img [src]="item.blobData | safeHtml" alt="">
-              <div (click)="deleteImageFile(i)"  class="write-review__photo--images-exit">
-                <span class="write-review__photo--images-exit-inner"></span>
-              </div>
-
-            </li>
-
-            <ng-container *ngIf="viewDragArea">
-              <li
-                class="write-review__photo--upload"
-                (drop)="dropFiles($event)"
-                [ngStyle]="{ backgroundColor : isDraggedEnter ? '#e5e5e5' : '#FFFFFF' }"
-                (dragenter)="dragEnter($event)"
-                (dragleave)="dragLeave($event)"
-                (dragover)="onDragOver($event)">
-                <img src="" alt="">
-                <div></div>
-              </li>
-            </ng-container>
-            <!--// <div class="row">-->
-            <!--//   <div (drop)="dropFiles($event)" (dragover)="onDragOver($event)" class="drag-and-drop">-->
-            <!--//-->
-            <!--//   </div>-->
-            <!--//   <img [src]="imgSrc | safeHtml" alt="">-->
-            <!--//   &lt;!&ndash;<form action="" enctype="multipart/form-data">&ndash;&gt;-->
-            <!--//   &lt;!&ndash;<div class="box__input">&ndash;&gt;-->
-            <!--//   &lt;!&ndash;<input class="box__file" type="file" name="files[]" id="file" multiple />&ndash;&gt;-->
-            <!--// &lt;!&ndash;<label for="file"><strong>Choose a file</strong><span class="box__dragndrop"> or drag it here</span>.</label>&ndash;&gt;-->
-            <!--// &lt;!&ndash;&lt;!&ndash;<button class="box__button" type="submit">Upload</button>&ndash;&gt;&ndash;&gt;-->
-            <!--//     &lt;!&ndash;</div>&ndash;&gt;-->
-            <!--//     &lt;!&ndash;</form>&ndash;&gt;-->
-            <!--//     </div>-->
-            <!--<li>-->
-              <!--<img src="" alt="">-->
-              <!--<div></div>-->
-            <!--</li>-->
-            <!--<li>-->
-              <!--<img src="" alt="">-->
-              <!--<div></div>-->
-            <!--</li>-->
-            <!--<li>-->
-              <!--<img src="" alt="">-->
-              <!--<div></div>-->
-            <!--</li>-->
-            <!--<li>-->
-              <!--<img src="" alt="">-->
-              <!--<div></div>-->
-            <!--</li>-->
-            <!--<li>-->
-              <!--<img src="" alt="">-->
-              <!--<div></div>-->
-            <!--</li>-->
-            <!--<li>-->
-              <!--<img src="" alt="">-->
-              <!--<div></div>-->
-            <!--</li>-->
-            <!--<li>-->
-              <!--<img src="" alt="">-->
-              <!--<div></div>-->
-            <!--</li>-->
-            <!--<li>-->
-              <!--<img src="" alt="">-->
-              <!--<div></div>-->
-            <!--</li>-->
-            <!--<li>-->
-              <!--<img src="" alt="">-->
-              <!--<div></div>-->
-            <!--</li>-->
-          </ul>
-        </div>
-      </div>
-      <div class="write-review__review">
-        <h1 class="write-review__review--title h1-bold">리뷰를 작성해주세요</h1>
-        <div class="write-review__review--description subtitle-2-regular u-color-dark-grey">개인정보, 허위, 악의 등등 적절하지 아니한 내용의 게시물은 임의로 삭제될 수 있습니다</div>
-        <textarea class="write-review__review--textarea body-1-regular" placeholder="이 상품을 사용하면서 느꼈던 장점과 단점을 10자 이상으로 작성해주세요." name="" id="" cols="35" rows="6"></textarea>
-      </div>
-
-      <onpicks-button [type]="'black'" [width]="'10.3rem'">등록하기</onpicks-button>
-
-
-    </div>
-    </div>
-
+  <onpicks-write-review
+    [data]="writeReview.currentData"
+    (exit)="writeReview.isShow = !writeReview.isShow"
+    [isShow]="writeReview.isShow">
+  </onpicks-write-review>
 
   <!--<div>작성 가능한 리뷰가 없습니다. 다양한 아이템을 최적의 가격으로 쇼핑하여 리뷰를 남겨주세요!</div>-->
   <!--<ui-mini-list [setTitle]="'추천상품'"></ui-mini-list>-->

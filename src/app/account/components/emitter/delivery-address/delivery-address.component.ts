@@ -1,30 +1,18 @@
-import {
-  AfterViewInit,
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  ElementRef,
-  OnDestroy,
-  OnInit,
-  Renderer2,
-  ViewChild,
-  ViewChildren
-} from '@angular/core';
-import {fromEvent, of} from 'rxjs';
-import {debounceTime, distinctUntilChanged, flatMap, map, tap} from 'rxjs/operators';
-import {HttpClient, HttpParams} from '@angular/common/http';
-import {AccountDataService} from '../../../../../../core/service/data-pages/account/account-data.service';
+import {Component, OnInit, ChangeDetectionStrategy, ViewChildren, ViewChild, ElementRef, Renderer2, ChangeDetectorRef} from '@angular/core';
+import {HttpClient, HttpParams} from '../../../../../../node_modules/@angular/common/http';
+import {AccountDataService} from '../../../../core/service/data-pages/account/account-data.service';
+import {OrderDataService} from '../../../../core/service/data-pages/order/order-data.service';
 import {select, Store} from '@ngrx/store';
-import {OrderDataService} from '../../../../../../core/service/data-pages/order/order-data.service';
+import {debounceTime, distinctUntilChanged, flatMap, map, tap} from 'rxjs/operators';
+import {fromEvent, of} from 'rxjs';
 
 @Component({
-  selector: 'onpicks-delivery-address',
+  selector: 'emitter-delivery-address',
   templateUrl: './delivery-address.component.html',
   styleUrls: ['./delivery-address.component.scss'],
-  changeDetection : ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-
-export class DeliveryAddressComponent implements OnInit, OnDestroy, AfterViewInit {
+export class DeliveryAddressComponent implements OnInit {
   @ViewChildren('inputSearchBoxOuter') inputSearchBoxOuter;
   @ViewChild('inputSearchBox', {read: ElementRef}) inputSearchBoxEL;
   @ViewChildren('inputSearchBox' ) inputSearchBox;

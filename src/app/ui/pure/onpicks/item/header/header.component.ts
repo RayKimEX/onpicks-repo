@@ -137,15 +137,13 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
 
     // [ngStyle]="{ display : cartData.isViewCart ? 'block' : 'none'}"
     this.cart$ = this.store.pipe(
-      select(state => state.cart),
+      select(state => state.cart.cartInfo),
       tap( v => {
         console.log(v);
         if ( this.deliveryBox === undefined) { return ; }
-        // 2번 불리는데 이유는 잘 모르겠음. 일단 두번까지 막음.
-        if ( this.firstLoadPreventCount <= 1 ) {
-          this.firstLoadPreventCount ++;
-          return;
-        }
+        // 세번 불리는데 이유는 잘 모르겠음. 일단 세번까지 막음.
+        // 그중 한번은 getCartInfo
+        // 그중 또 한번은 getWishListInfo
 
         // 무슨 변경이 있던간에, 항상 보여주고 그다음 주조건 삭제하는 로직.
 
