@@ -1,43 +1,54 @@
+<ng-template #loading>
+  <onpicks-loading-icon></onpicks-loading-icon>
+</ng-template>
+
 <div class="col-7-of-12 written-reviews">
-  <h1 class="h1-bold written-reviews__title">내가 쓴 리뷰</h1>
+  <ng-container *ngIf="(writtenReviews$ | async)?.results as reivewsData; else loading">
 
+    <h1 class="h1-bold written-reviews__title">내가 쓴 리뷰</h1>
 
-  <div class="written-reviews__item" *ngFor="let item of currentList">
-    <figure class="written-reviews__item--figure u-margin-bottom--small">
-      <div class="written-reviews__item--figure-image">
-        <img [drLazyLoad]="{method:'animation'}" src="{{item.profileImg}}" alt="Person on a tour" class="story__img">
+    <div class="written-reviews__item" *ngFor="let item of reivewsData">
+      <figure class="written-reviews__item--figure u-margin-bottom--small">
+        <div class="written-reviews__item--figure-image">
+          <img [drLazyLoad]="{method:'animation'}" src="{{item?.author?.avatar}}" alt="Person on a tour" class="story__img">
+        </div>
+        <div class="written-reviews__item--figure-caption">
+          <figcaption class="written-reviews__item--figcaption subtitle-1-bold">{{item?.author?.nickname}}</figcaption>
+          <ui-star-rating [star-point]="item.rating" class="written-reviews__item--star-rating"></ui-star-rating>
+          <span class="written-reviews__item-figure-caption-date subtitle-2-regular u-color-grey">{{item.modified | timeAgo}}</span>
+        </div>
+      </figure>
+      <!--<div class="subtitle-1-regular u-color-grey">사이즈: 엑스라지 · 컬러: 아쿠아그린 · 맛: 바닐라 초콜렛 · {{item.helpfulCount}} 명이 추천하였습니다 </div>-->
+      <div class="written-reviews__item--content-outer">
+
+        <div class="written-reviews__item--content body-1-regular"
+           [ngStyle]="{'width' : item.picture === '' ? 'auto' : '52.8rem'}">
+          {{item.text}}
+        </div>
+
+        <span class="written-reviews__item--image"
+              *ngIf="item.picture !== ''">
+          <img
+            [drLazyLoad] = "{ method : 'animation' }"
+            src="{{item.picture}}" alt="">
+        </span>
+
       </div>
-      <div class="written-reviews__item--figure-caption">
-        <figcaption class="written-reviews__item--figcaption subtitle-1-bold">{{item.name}}</figcaption>
-        <ui-star-rating [star-point]="item.starRating" class="written-reviews__item--star-rating"></ui-star-rating>
-        <span class="written-reviews__item-figure-caption-date u-color-grey">{{item.regitDate | timeAgo}}</span>
+
+      <div class="written-reviews__link-to-product">
+        <div class="written-reviews__link-to-product--inner">
+          <div class="written-reviews__link-to-product--image">
+            <img src="" alt="">
+          </div>
+          <div class="written-reviews__link-to-product--description body-3-regular">
+            {{item.product.title}}
+          </div>
+        </div>
       </div>
-    </figure>
-    <div class="subtitle-1-regular u-color-grey">사이즈: 엑스라지 · 컬러: 아쿠아그린 · 맛: 바닐라 초콜렛 · {{item.helpfulCount}} 명이 추천하였습니다 </div>
-    <div class="written-reviews__item--content body-1-regular"
-       [ngStyle]="{'width' : item.reviewThumbImg === '' ? 'auto' : '52.8rem'}">
-      {{item.review}}
+
     </div>
 
-    <span class="written-reviews__item--image"
-          *ngIf="item.reviewThumbImg !== ''">
-      <img
-        [drLazyLoad] = "{ method : 'animation' }"
-        src="{{item.reviewThumbImg}}" alt="">
-    </span>
-
-    <div class="written-reviews__link-to-product">
-      <div class="written-reviews__link-to-product--inner">
-        <div class="written-reviews__link-to-product--image">
-          <img src="" alt="">
-        </div>
-        <div class="written-reviews__link-to-product--description body-3-regular">
-          알엑스바 리얼 푸드 프로틴 에너지바 믹스드 베리 52G / RxBar Real Food Protein Bars Mixed Berry 1.83OZ
-        </div>
-      </div>
-    </div>
-
-  </div>
+  </ng-container>
 </div>
 
 

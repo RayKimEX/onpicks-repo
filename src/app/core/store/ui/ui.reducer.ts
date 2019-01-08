@@ -96,7 +96,6 @@ export function UiReducer(state = initialState, action: UiActions): UiState {
       const thirdCategoryData = normalizedCategoryData.entities.thirdCategory;
       const fourthCategoryData = normalizedCategoryData.entities.fourthCategory;
 
-      console.log('111');
       // second category info에 관한것을, 정리
       Object.keys(secondCategoryData).forEach(function (key) {
         sortSecondInfo[secondCategoryData[key].slug] = parseInt(key, 10 );
@@ -105,20 +104,17 @@ export function UiReducer(state = initialState, action: UiActions): UiState {
 
       getSecondSortValue = sortSecondInfo[action.payload.secondSortKey];
 
-      console.log('222');
       // third category info에 관한것을, 정리
       Object.keys(thirdCategoryData).forEach(function (key) {
         sortThirdInfo[thirdCategoryData[key].slug] = parseInt(key, 10 );
       });
 
-      console.log('333');
       // fourth category info에 관한것을, 정리
       Object.keys(fourthCategoryData).forEach(function (key) {
         sortFourthInfo[fourthCategoryData[key].slug] = parseInt(key, 10 );
         // do something with obj[key]
       });
 
-      console.log('444');
       // 초기값을 새로운 전역 변수에 넣어준다.
       secondResultList = normalizedCategoryData.result;
       getThirdSortValue = sortThirdInfo[action.payload.thirdSortKey];
@@ -133,8 +129,6 @@ export function UiReducer(state = initialState, action: UiActions): UiState {
         }
       });
 
-      console.log('555');
-
       thirdResultList[getSecondSortValue].forEach( item => {
         if ( item === getThirdSortValue ) {
           sortedThirdList.unshift(item);
@@ -142,8 +136,6 @@ export function UiReducer(state = initialState, action: UiActions): UiState {
           sortedThirdList.push(item);
         }
       });
-
-      console.log('666');
 
       currentSlug = secondCategoryData[getSecondSortValue].slug;
       currentName = secondCategoryData[getSecondSortValue].name;
@@ -159,7 +151,6 @@ export function UiReducer(state = initialState, action: UiActions): UiState {
         ...sortFourthInfo
       };
 
-      console.log(sortAllInfo);
 
       // 초기값에, 식품을 검은색으로
       const normalizedData = {
@@ -230,6 +221,8 @@ export function UiReducer(state = initialState, action: UiActions): UiState {
 
       getSecondSortValue = sortSecondInfo[action.payload.secondSortKey];
       getThirdSortValue = sortThirdInfo[action.payload.thirdSortKey];
+      console.log(getSecondSortValue);
+      console.log(getThirdSortValue);
       // 전역 변수에 넣은 초기값 (현재 값이아닌 ) 기준으로, 새로 가져와서 변화시킴
       // state에 있는값은 바뀐 값을 다시 가져오기 때문에 의미가 없음.
       secondResultList.forEach( item => {
@@ -250,9 +243,12 @@ export function UiReducer(state = initialState, action: UiActions): UiState {
 
 
       currentSlug = state.currentCategoryList.entities.secondCategory[getSecondSortValue].slug;
+      currentName = state.currentCategoryList.entities.secondCategory[getSecondSortValue].name;
+      console.log( state.currentCategoryList.entities.secondCategory[getSecondSortValue].name);
 
       if (getThirdSortValue !== undefined ) {
         currentSlug = state.currentCategoryList.entities.thirdCategory[getThirdSortValue].slug;
+        currentName = state.currentCategoryList.entities.thirdCategory[getThirdSortValue].name;
       }
 
 
@@ -303,6 +299,7 @@ export function UiReducer(state = initialState, action: UiActions): UiState {
             }
           },
           currentSlug : currentSlug,
+          currentName : currentName,
           currentCode : sortAllInfo[currentSlug],
         }
       };

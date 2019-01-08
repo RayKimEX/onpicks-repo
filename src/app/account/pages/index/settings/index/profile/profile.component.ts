@@ -175,19 +175,19 @@ export class ProfileComponent implements OnInit, OnDestroy {
   }
 
   setGender(value) {
-    this.formData.gender = value;
+    this.formData.gender = value.value;
   }
 
   setMonth(xMonth) {
-    this.dateData.month = xMonth;
+    this.dateData.month = xMonth.value;
   }
 
   setDay(xDay) {
-    this.dateData.day = xDay;
+    this.dateData.day = xDay.value;
   }
 
   setYear(xYear) {
-    this.dateData.year = xYear;
+    this.dateData.year = xYear.value;
   }
 
 

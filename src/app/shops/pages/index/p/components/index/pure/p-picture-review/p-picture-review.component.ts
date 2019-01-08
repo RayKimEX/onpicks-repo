@@ -1,10 +1,21 @@
-import {AfterViewInit, ChangeDetectionStrategy, Component, OnDestroy, OnInit, Renderer2, ViewChild, ViewChildren} from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectionStrategy, ChangeDetectorRef,
+  Component,
+  Input,
+  OnDestroy,
+  OnInit,
+  Renderer2,
+  ViewChild,
+  ViewChildren
+} from '@angular/core';
 import {fromEvent} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {select, Store} from '@ngrx/store';
+import {PDataService} from '../../../../../../../../core/service/data-pages/p/p-data.service';
 
 @Component({
-  selector: 'onpicks-p-customer',
+  selector: 'onpicks-p-picture-review',
   templateUrl: './p-picture-review.component.html',
   styleUrls: ['./p-picture-review.component.scss'],
   changeDetection : ChangeDetectionStrategy.OnPush,
@@ -15,47 +26,192 @@ import {select, Store} from '@ngrx/store';
 
 export class PPictureReviewComponent implements OnInit, AfterViewInit, OnDestroy {
 
+  _pictureReviewList = [];
   @ViewChildren('imageLargeOuter') imageLargeOuter;
   @ViewChild('imagesSmallOuter') imagesSmallOuter;
   @ViewChildren('imageSmallOuter') imageSmallOuter;
 
-  imagesLargeList = [
-    'empty',
-    'http://img.onpicks.com/p-customer__image--large-2.png',
-    'http://img.onpicks.com/p-customer__image--large-3.png',
-    'http://img.onpicks.com/p-customer__image--large-4.png',
-    'http://img.onpicks.com/p-customer__image--large-5.png',
-    'http://img.onpicks.com/p-customer__image--large-6.png',
-    'http://img.onpicks.com/p-customer__image--large-2.png',
-    'http://img.onpicks.com/p-customer__image--large-3.png',
-    'http://img.onpicks.com/p-customer__image--large-4.png',
-    'http://img.onpicks.com/p-customer__image--large-5.png',
-    'http://img.onpicks.com/p-customer__image--large-6.png',
-    'http://img.onpicks.com/p-customer__image--large-2.png',
-    'http://img.onpicks.com/p-customer__image--large-3.png',
-    'http://img.onpicks.com/p-customer__image--large-4.png',
-    'http://img.onpicks.com/p-customer__image--large-5.png',
-    'http://img.onpicks.com/p-customer__image--large-6.png',
-    'empty',
-  ]
+  @Input('pictureReviewList') set setList(xData) {
+    console.log(xData);
 
-  imagesSmallList = [
-    'http://img.onpicks.com/p-customer__image-small-1.jpg',
-    'http://img.onpicks.com/p-customer__image-small-2.jpg',
-    'http://img.onpicks.com/p-customer__image-small-3.jpg',
-    'http://img.onpicks.com/p-customer__image-small-4.jpg',
-    'http://img.onpicks.com/p-customer__image-small-5.jpg',
-    'http://img.onpicks.com/p-customer__image-small-1.jpg',
-    'http://img.onpicks.com/p-customer__image-small-2.jpg',
-    'http://img.onpicks.com/p-customer__image-small-3.jpg',
-    'http://img.onpicks.com/p-customer__image-small-4.jpg',
-    'http://img.onpicks.com/p-customer__image-small-5.jpg',
-    'http://img.onpicks.com/p-customer__image-small-1.jpg',
-    'http://img.onpicks.com/p-customer__image-small-2.jpg',
-    'http://img.onpicks.com/p-customer__image-small-3.jpg',
-    'http://img.onpicks.com/p-customer__image-small-4.jpg',
-    'http://img.onpicks.com/p-customer__image-small-5.jpg',
-  ]
+    if ( xData === null ) { return ; };
+    this.imagesLargeList = xData;
+    this.imagesLargeList.unshift({});
+    this.imagesLargeList.push({});
+    setTimeout( () => {
+      this.imagesLargeList.forEach( item => {
+        console.log(item.url);
+        if ( item.url !== undefined ){
+          this.imagesSmallList.push(item.url);
+        }
+      });
+
+
+
+
+
+      const initialLeft_x = -37.6;
+      const offsetLeft = 47.2;
+      const initialRight_x = 104;
+
+
+      this.imageLargeOuter.forEach(
+        (outer, index) => {
+
+          this.animationEndEvent = fromEvent(outer.nativeElement.parentNode, 'animationend' );
+
+          if ( index === 0 ) {
+            this.renderer.setStyle(outer.nativeElement,
+              'left',
+              (initialLeft_x) + 'rem');
+          } else if ( index >= 3 ) {
+            this.renderer.setStyle(outer.nativeElement,
+              'left',
+              (initialRight_x + 'rem'));
+          } else {
+            this.renderer.setStyle(outer.nativeElement,
+              'left',
+              (initialLeft_x + (offsetLeft * index)) + 'rem');
+          }
+
+        }
+      );
+
+      let animationCount = 0;
+
+      this.animationEndEvent = this.animationEndEvent.pipe(map((val: AnimationEvent) => val.target));
+      this.animationEndEvent = this.animationEndEvent.subscribe(val => {
+
+        // @ts-ignore
+        const temp = getComputedStyle(( val ), null);
+        // force로 duration을 0으로 줘서 이벤트를 중지시켜도 animationend는 불려짐
+        if (this.state === 'leftAnimating' || this.state === 'leftInteruptAnimating') {
+          this.renderer.removeClass(val, 'animate-left');
+
+          this.renderer.setStyle(
+            val, 'left', (parseInt(temp.left, 10) - (this.customWidth)) + 'px');
+
+          // interupt animationend
+          if (this.state === 'leftInteruptAnimating') {
+            this.renderer.removeClass(val, 'u-animation-stop');
+
+            animationCount++;
+            if (animationCount >= 4) {
+              animationCount = 0;
+              this.state = 'leftAnimating';
+              this.animateCarousel('left', 'cur', 'animate-left', 'add');
+              this.imageIndex++;
+            }
+
+            return;
+          }
+          if (this.state === 'leftAnimating') {
+
+            // else의 경우의 수가 명시적이지가 않다..
+            // else를 대신해서 this.state === 'leftAnimating' 하면 되야 되는게 맞는것같은데
+            // else를 풀고 저렇게 하면 제대로 동작하지 않음. 이유에 대해선 정확히 잘 모르겠음
+            animationCount++;
+            if (animationCount >= 4) {
+              this.state = 'stay';
+              animationCount = 0;
+            }
+            return;
+          }
+        }
+
+        if (this.state === 'rightAnimating' || this.state === 'rightInteruptAnimating') {
+          this.renderer.removeClass(val, 'animate-right');
+
+          this.renderer.setStyle(
+            val, 'left', (parseInt(temp.left, 10) + (this.customWidth)) + 'px');
+
+          // interupt animationend
+          if (this.state === 'rightInteruptAnimating') {
+            this.renderer.removeClass(val, 'u-animation-stop');
+
+            animationCount++;
+            if (animationCount >= 4) {
+              animationCount = 0;
+              this.state = 'rightAnimating';
+              this.animateCarousel('right', 'cur', 'animate-right', 'add');
+              this.imageIndex--;
+            }
+
+            return;
+          }
+          if (this.state === 'rightAnimating') {
+
+            // else의 경우의 수가 명시적이지가 않다..
+            // else를 대신해서 this.state === 'leftAnimating' 하면 되야 되는게 맞는것같은데
+            // else를 풀고 저렇게 하면 제대로 동작하지 않음. 이유에 대해선 정확히 잘 모르겠음
+            animationCount++;
+            if (animationCount >= 4) {
+              this.state = 'stay';
+              animationCount = 0;
+            }
+            return;
+          }
+
+
+        };
+        //
+        //     // 이 else의 경우의 수도 명시적이지가 않다..
+        //     this.renderer.removeClass(val, 'animate-right');
+        //
+        //     this.renderer.setStyle(
+        //       val, 'left', (parseInt(temp.left, 10) + this.customWidth ) + 'px');
+        //
+        //   }
+        //
+        // }
+      });
+
+      this.cd.markForCheck();
+
+
+
+    }, 0);
+  }
+
+  imagesLargeList = [];
+  imagesSmallList = [];
+  // imagesLargeList = [
+  //   'empty',
+  //   'http://img.onpicks.com/p-customer__image--large-2.png',
+  //   'http://img.onpicks.com/p-customer__image--large-3.png',
+  //   'http://img.onpicks.com/p-customer__image--large-4.png',
+  //   'http://img.onpicks.com/p-customer__image--large-5.png',
+  //   'http://img.onpicks.com/p-customer__image--large-6.png',
+  //   'http://img.onpicks.com/p-customer__image--large-2.png',
+  //   'http://img.onpicks.com/p-customer__image--large-3.png',
+  //   'http://img.onpicks.com/p-customer__image--large-4.png',
+  //   'http://img.onpicks.com/p-customer__image--large-5.png',
+  //   'http://img.onpicks.com/p-customer__image--large-6.png',
+  //   'http://img.onpicks.com/p-customer__image--large-2.png',
+  //   'http://img.onpicks.com/p-customer__image--large-3.png',
+  //   'http://img.onpicks.com/p-customer__image--large-4.png',
+  //   'http://img.onpicks.com/p-customer__image--large-5.png',
+  //   'http://img.onpicks.com/p-customer__image--large-6.png',
+  //   'empty',
+  // ]
+
+  // imagesSmallList = [
+  //   'http://img.onpicks.com/p-customer__image-small-1.jpg',
+  //   'http://img.onpicks.com/p-customer__image-small-2.jpg',
+  //   'http://img.onpicks.com/p-customer__image-small-3.jpg',
+  //   'http://img.onpicks.com/p-customer__image-small-4.jpg',
+  //   'http://img.onpicks.com/p-customer__image-small-5.jpg',
+  //   'http://img.onpicks.com/p-customer__image-small-1.jpg',
+  //   'http://img.onpicks.com/p-customer__image-small-2.jpg',
+  //   'http://img.onpicks.com/p-customer__image-small-3.jpg',
+  //   'http://img.onpicks.com/p-customer__image-small-4.jpg',
+  //   'http://img.onpicks.com/p-customer__image-small-5.jpg',
+  //   'http://img.onpicks.com/p-customer__image-small-1.jpg',
+  //   'http://img.onpicks.com/p-customer__image-small-2.jpg',
+  //   'http://img.onpicks.com/p-customer__image-small-3.jpg',
+  //   'http://img.onpicks.com/p-customer__image-small-4.jpg',
+  //   'http://img.onpicks.com/p-customer__image-small-5.jpg',
+  // ]
 
   imageIndex = 0;
   // 456(width) + 16 ( margin )
@@ -70,7 +226,10 @@ export class PPictureReviewComponent implements OnInit, AfterViewInit, OnDestroy
   reviews$;
   constructor(
     private renderer: Renderer2,
-    private store: Store<any>
+    private store: Store<any>,
+    private pDataService: PDataService,
+    private cd: ChangeDetectorRef
+    //
   ) {
     this.reviews$ = this.store.pipe(select((state) => state['p']['reviews']));
   }
@@ -87,123 +246,7 @@ export class PPictureReviewComponent implements OnInit, AfterViewInit, OnDestroy
   }
 
   ngAfterViewInit() {
-    this.imageLargeOuterArray = this.imageLargeOuter.toArray();
-    this.imageSmallOuterArray = this.imageSmallOuter.toArray();
-    const initialLeft_x = -37.6;
-    const offsetLeft = 47.2;
-    const initialRight_x = 104;
 
-
-    this.imageLargeOuter.forEach(
-      (outer, index) => {
-
-        this.animationEndEvent = fromEvent(outer.nativeElement.parentNode, 'animationend' );
-
-        if ( index === 0 ) {
-          this.renderer.setStyle(outer.nativeElement,
-            'left',
-            (initialLeft_x) + 'rem');
-        } else if ( index >= 3 ) {
-          this.renderer.setStyle(outer.nativeElement,
-            'left',
-            (initialRight_x + 'rem'));
-        } else {
-          this.renderer.setStyle(outer.nativeElement,
-            'left',
-            (initialLeft_x + (offsetLeft * index)) + 'rem');
-        }
-
-      }
-    );
-
-    let animationCount = 0;
-
-    this.animationEndEvent = this.animationEndEvent.pipe(map((val: AnimationEvent) => val.target));
-    this.animationEndEvent = this.animationEndEvent.subscribe(val => {
-
-      // @ts-ignore
-      const temp = getComputedStyle(( val ), null);
-      // force로 duration을 0으로 줘서 이벤트를 중지시켜도 animationend는 불려짐
-      if (this.state === 'leftAnimating' || this.state === 'leftInteruptAnimating') {
-        this.renderer.removeClass(val, 'animate-left');
-
-        this.renderer.setStyle(
-          val, 'left', (parseInt(temp.left, 10) - (this.customWidth)) + 'px');
-
-        // interupt animationend
-        if (this.state === 'leftInteruptAnimating') {
-          this.renderer.removeClass(val, 'u-animation-stop');
-
-          animationCount++;
-          if (animationCount >= 4) {
-            animationCount = 0;
-            this.state = 'leftAnimating';
-            this.animateCarousel('left', 'cur', 'animate-left', 'add');
-            this.imageIndex++;
-          }
-
-          return;
-        }
-        if (this.state === 'leftAnimating') {
-
-          // else의 경우의 수가 명시적이지가 않다..
-          // else를 대신해서 this.state === 'leftAnimating' 하면 되야 되는게 맞는것같은데
-          // else를 풀고 저렇게 하면 제대로 동작하지 않음. 이유에 대해선 정확히 잘 모르겠음
-          animationCount++;
-          if (animationCount >= 4) {
-            this.state = 'stay';
-            animationCount = 0;
-          }
-          return;
-        }
-      }
-
-      if (this.state === 'rightAnimating' || this.state === 'rightInteruptAnimating') {
-        this.renderer.removeClass(val, 'animate-right');
-
-        this.renderer.setStyle(
-          val, 'left', (parseInt(temp.left, 10) + (this.customWidth)) + 'px');
-
-        // interupt animationend
-        if (this.state === 'rightInteruptAnimating') {
-          this.renderer.removeClass(val, 'u-animation-stop');
-
-          animationCount++;
-          if (animationCount >= 4) {
-            animationCount = 0;
-            this.state = 'rightAnimating';
-            this.animateCarousel('right', 'cur', 'animate-right', 'add');
-            this.imageIndex--;
-          }
-
-          return;
-        }
-        if (this.state === 'rightAnimating') {
-
-          // else의 경우의 수가 명시적이지가 않다..
-          // else를 대신해서 this.state === 'leftAnimating' 하면 되야 되는게 맞는것같은데
-          // else를 풀고 저렇게 하면 제대로 동작하지 않음. 이유에 대해선 정확히 잘 모르겠음
-          animationCount++;
-          if (animationCount >= 4) {
-            this.state = 'stay';
-            animationCount = 0;
-          }
-          return;
-        }
-
-
-      };
-      //
-      //     // 이 else의 경우의 수도 명시적이지가 않다..
-      //     this.renderer.removeClass(val, 'animate-right');
-      //
-      //     this.renderer.setStyle(
-      //       val, 'left', (parseInt(temp.left, 10) + this.customWidth ) + 'px');
-      //
-      //   }
-      //
-      // }
-    });
 
   }
 
@@ -256,6 +299,8 @@ export class PPictureReviewComponent implements OnInit, AfterViewInit, OnDestroy
   }
 
   prevButton() {
+    this.imageLargeOuterArray = this.imageLargeOuter.toArray();
+    this.imageSmallOuterArray = this.imageSmallOuter.toArray();
     if ( this.imageIndex <= this.imageSmallOuterArray.length - 5 ) {
       this.renderer.setProperty(this.imagesSmallOuter.nativeElement,
         'scrollLeft',
@@ -277,6 +322,8 @@ export class PPictureReviewComponent implements OnInit, AfterViewInit, OnDestroy
   }
 
   nextButton() {
+    this.imageLargeOuterArray = this.imageLargeOuter.toArray();
+    this.imageSmallOuterArray = this.imageSmallOuter.toArray();
     if ( this.imageIndex >= 4 ) {
       this.renderer.setProperty(this.imagesSmallOuter.nativeElement,
         'scrollLeft',

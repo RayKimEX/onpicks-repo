@@ -39,6 +39,9 @@ $mini-width : 264+24px;
 
 
 .ui-mini-list {
+  &__title {
+    margin-bottom : 2.4rem;
+  }
 
   &__delivery-point {
     margin-top : 0.8rem;
@@ -106,6 +109,10 @@ $mini-width : 264+24px;
       position: relative;
       width: 26.4rem;
       height: 26.4rem;
+      img {
+        width: 26.4rem;
+        height: 26.4rem;
+      }
       onpicks-list-active-button {
         position: absolute;
         right : 0;

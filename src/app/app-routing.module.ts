@@ -51,7 +51,8 @@ const appRoutes: Routes = [
     /* TODO : review에서 anchorScrolling 구현요망*/
     RouterModule.forRoot( appRoutes , {
       anchorScrolling : 'enabled',
-      onSameUrlNavigation : 'reload'
+      onSameUrlNavigation : 'reload',
+      scrollPositionRestoration: 'enabled'
     })
   ],
   exports: [ RouterModule ]

@@ -9,6 +9,7 @@
     top : 11rem;
     height: 50px;
     width : 100%;
+    z-index : 9999;
     background-color : $color-sky;
 
     transition : opacity .2s;
@@ -23,6 +24,7 @@
     width : 100%;
     height : 2px;
     background-color : $color-light-grey;
+
     &--inner {
       width : 50%;
       height : 2px;
@@ -39,9 +41,11 @@
     position:absolute;
     top : 12.4rem;
     right : $default-padding;
+    pointer-events: none;
     will-change: transform;
+    opacity: 0;
     transition-duration: .5s;
-    transition-property: transform;
+    transition-property: transform, opacity;
   }
 
   .active {

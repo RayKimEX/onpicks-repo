@@ -25,7 +25,7 @@ import {AuthService} from '../../../../../core/service/auth/auth.service';
 import {AuthState} from '../../../../../core/store/auth/auth.model';
 import {AppState} from '../../../../../core/store/app.reducer';
 import {CURRENCY, MENU_MAP} from '../../../../../app.config';
-import {RemoveAlertMessage} from '../../../../../core/store/ui/ui.actions';
+import {DisplayAlertMessage, RemoveAlertMessage} from '../../../../../core/store/ui/ui.actions';
 
 @Component({
   selector: 'ui-header',
@@ -145,13 +145,17 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
         // 그중 한번은 getCartInfo
         // 그중 또 한번은 getWishListInfo
 
+        if ( v.isPopUp === false ) { return ; };
+
         // 무슨 변경이 있던간에, 항상 보여주고 그다음 주조건 삭제하는 로직.
 
         if ( this.clearSetTimeout !== undefined) {
           clearTimeout(this.clearSetTimeout);
         }
 
-        this.renderer.setStyle(this.deliveryBox.nativeElement, 'display', 'block');
+
+        this.renderer.setStyle(this.deliveryBox.nativeElement, 'pointer-events', 'auto');
+        this.renderer.setStyle(this.deliveryBox.nativeElement, 'opacity', '1');
         if ( window.pageYOffset >= 108 ){
           this.renderer.setStyle(this.deliveryBox.nativeElement, 'position', 'fixed');
           this.renderer.setStyle(this.deliveryBox.nativeElement, 'top', '1.6rem');
@@ -160,7 +164,8 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
           this.renderer.setStyle(this.deliveryBox.nativeElement, 'top', '12.4rem');
         }
         this.clearSetTimeout = setTimeout( v => {
-          this.renderer.setStyle(this.deliveryBox.nativeElement, 'display', 'none');
+          this.renderer.setStyle(this.deliveryBox.nativeElement, 'opacity', '0');
+          this.renderer.setStyle(this.deliveryBox.nativeElement, 'pointer-events', 'none');
 
           if ( this.scrollForDeliveryBox$ != null ) {
             this.scrollForDeliveryBox$.unsubscribe();
@@ -224,5 +229,8 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
     this.renderer.setStyle(this.menuRef.nativeElement, 'display', 'block');
   }
 
+  showPreparingMessage(){
+    this.store.dispatch( new DisplayAlertMessage('준비중입니다'));
+  }
 }
 

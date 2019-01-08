@@ -68,7 +68,6 @@
                              [ngClass]="categoryList.secondCategory[firstCategoryId].active && !categoryList.thirdCategory[secondCategoryId].active
                                       ? previous.thirdPrevious !== undefined ? 'main-deactive' : 'sub-active' : categoryList.thirdCategory[secondCategoryId].active ?  'main-active' : 'main-deactive' ">
                             {{categoryList.thirdCategory[secondCategoryId].name}}
-
                           </a>
                           <!--3dpeth-->
                           <label *ngIf="categoryList.thirdCategory[secondCategoryId].children.length !== 0 " for="" (click)="twodepthFold(f2, label2)"  >
@@ -95,7 +94,6 @@
                                     categoryList.thirdCategory[secondCategoryId].slug,
                                     categoryList.fourthCategory[thirdCategoryId].slug)"
                                 [ngClass]="categoryList.thirdCategory[secondCategoryId].active ?  lastUrl[1] == categoryList.fourthCategory[thirdCategoryId].slug ? 'main-active' : 'sub-active' : 'main-deactive'"
-
                               >{{categoryList.fourthCategory[thirdCategoryId].name}}</a>
                             </div>
                             <!--<div *ngIf="route.url | async as data">-->
@@ -223,14 +221,21 @@
             </ng-container>
 
             <ng-container  *ngIf="searchState == 'category'">
+              <ng-container *ngIf="currentList.length !== 0">
                <span>{{currentName}} {{currentList.length}}</span>건
+                <onpicks-sort-box
+                  [selectedElement]="{ value : currentSortSlug}"
+                  (changeEvent)="sortClicked($event)"
+                  [sortList]="sortList">
+                </onpicks-sort-box>
+              </ng-container>
+              <ng-container *ngIf="currentList.length === 0">
+                해당 카테고리는 준비중 입니다.
+
+              </ng-container>
             </ng-container>
 
-            <onpicks-sort-box
-              [selectedElement]="{ value : currentSortSlug}"
-              (changeEvent)="sortClicked($event)"
-              [sortList]="sortList">
-            </onpicks-sort-box>
+
           </h1>
           <div class="c-category-content__content--outer">
             <div class="c-category-content__content">
@@ -242,7 +247,6 @@
                       <a href="" routerLink="/shops/p/{{item.slug}}">
                         <img drCleanLoad src="{{item.thumbnail}}" alt="">
                       </a>
-
 
                       <!--카트정보가 어떤식으로 들어갈지 알아야, 대충이라도 작업할 수 있음.-->
                       <ng-container
@@ -321,7 +325,7 @@
           </div>
         </div>
 
-        <div class="c-category-content__pagination--outer" *ngIf="currentList != null">
+        <div class="c-category-content__pagination--outer" *ngIf="currentList != null && currentList.length !== 0">
           <div class="c-category-content__pagination">
             <ul *ngIf="currentPage >= 1">
               <li *ngIf="currentPage !== 1">

@@ -8,10 +8,12 @@ import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 })
 export class BeautyIndexComponent implements OnInit {
   pantryAndHouseHoldBannerImages = [
-    'https://picsum.photos/1920/440?image=990',
-    'https://picsum.photos/1920/440?image=970',
-    'https://picsum.photos/1920/440?image=965',
-    'https://picsum.photos/1920/440?image=960',
+    {
+      imgSrc : 'https://img.onpicks.com/assets/beauty_banner3.jpg',
+      // marginLeftForText : '6.2%',
+      title : [],
+      description : []
+    }
   ]
 
   popularPantryCategory = [

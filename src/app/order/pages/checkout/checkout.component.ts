@@ -62,7 +62,8 @@ export class CheckoutComponent implements OnInit, AfterViewInit, OnDestroy {
       }
   ]};
 
-  readonly EMPTY_ORDER_NAME          = 0b00000000001;
+  readonly
+  EMPTY_ORDER_NAME          = 0b00000000001;
   readonly EMPTY_ORDER_NUMBER        = 0b00000000010;
   readonly INVALID_ORDER_NUMBER      = 0b00000100000;
 
@@ -685,7 +686,7 @@ export class CheckoutComponent implements OnInit, AfterViewInit, OnDestroy {
 
 
   setShippingMessage(xShippingMessage) {
-    this.formData.shipping_message = xShippingMessage;
+    this.formData.shipping_message = xShippingMessage.value;
   }
 
 }

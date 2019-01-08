@@ -409,6 +409,14 @@
         margin-bottom : 4px;
       }
 
+      &-option {
+        margin-bottom : 4px;
+        &--spliter-margin {
+          margin-left: 2px;
+          margin-right: 2px;
+        }
+      }
+
       &-price {
       }
     }
@@ -504,6 +512,10 @@
       height : 11.2rem;
       display: inline-block;
       margin-right :2.4rem;
+      img {
+        width : 11.2rem;
+        height : 11.2rem;
+      }
     }
 
     &--info{

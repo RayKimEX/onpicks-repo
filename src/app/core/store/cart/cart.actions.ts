@@ -56,14 +56,17 @@ export class GetCartInfoFailure implements Action {
   constructor( public payload: { error }) { }
 }
 
-
-
-
 //
 export class TryAddOrCreateToCart implements Action {
   readonly type = TRY_ADD_OR_CREATE_TO_CART;
 
-  constructor( public payload: { productSlug, amount, increaseOrCreate }) { }
+  constructor( public payload: {
+    isPopUp,
+    productSlug,
+    amount,
+    packIndex,
+    increaseOrCreate
+  }) { }
 }
 
 export class AddToCartSuccess implements Action {
@@ -98,7 +101,13 @@ export class CreateToCartFailure implements Action {
 export class TrySubtractOrDeleteFromCart implements Action {
   readonly type = TRY_SUBTRACT_OR_DELETE_FROM_CART;
 
-  constructor( public payload: { productSlug, amount, subtractOrDelete }) { }
+  constructor( public payload: {
+    isPopUp,
+    productSlug,
+    amount,
+    packIndex,
+    subtractOrDelete
+  }) { }
 }
 
 export class SubtractFromSuccess implements Action {
@@ -114,21 +123,25 @@ export class SubtractFromFailure implements Action {
 }
 
 
-
-
 //
 export class TryDeleteFromCart implements Action {
   readonly type = TRY_DELETE_FROM_CART;
 
-  constructor( public payload: { productSlug, packType, packIndex, itemIndex } ) {
+  constructor( public payload: {
+    productSlug,
+    packType,
+    packIndex,
+    itemIndex
+  } ) {
 
   }
 }
 
+
 export class DeleteFromCartSuccess implements Action {
   readonly type = DELETE_FROM_CART_SUCCESS;
 
-  constructor ( public payload: { productSlug, packType, packIndex, itemIndex }) { }
+  constructor ( public payload: any) { }
 }
 
 export class DeleteFromCartFailure implements Action {
@@ -150,7 +163,7 @@ export class TryAddToWishList implements Action {
 export class AddToWishListSuccess implements Action {
   readonly type = ADD_TO_WISH_LIST_SUCCESS;
 
-  constructor ( public payload: { response } ) { }
+  constructor ( public payload: {response} ) { }
 }
 
 export class AddToWishListFailure implements Action {

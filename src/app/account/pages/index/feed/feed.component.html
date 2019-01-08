@@ -1,17 +1,16 @@
 <div class="row feed-section">
 
-  <h1 class="h1-bold" *ngIf="(userState$ | async) as data ">
-    {{data.nickname}} 위한 추천 리뷰
+  <h1 class="h1-bold">
+    준비중입니다.
   </h1>
-  <div class="feed-section__grid">
-
-
-    <div *ngFor="let item of feedList;  index as i" class="feed-section__col">
-      <img drLazyLoad src="{{item.imgSrc}}" alt="">
-    </div>
-
-
-  </div>
+  <!--<h1 class="h1-bold" *ngIf="(userState$ | async) as data ">-->
+    <!--{{data.nickname}} 위한 추천 리뷰-->
+  <!--</h1>-->
+  <!--<div class="feed-section__grid">-->
+    <!--<div *ngFor="let item of feedList;  index as i" class="feed-section__col">-->
+      <!--<img drLazyLoad src="{{item.imgSrc}}" alt="">-->
+    <!--</div>-->
+  <!--</div>-->
 </div>
 
 

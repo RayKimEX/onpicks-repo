@@ -7,6 +7,7 @@ export interface CartState {
     free: any;
     pack: any;
     total: {};
+    isPopUp: boolean,
   };
   wishList: any;
 }
@@ -25,6 +26,7 @@ export const initialState: CartState = {
       }
     ],
     total: {},
+    isPopUp : false,
   },
   wishList : [],
 };
@@ -33,10 +35,11 @@ export function CartReducer(state = initialState, action: CartActions.CartAction
 
   switch (action.type) {
     case CartActions.DELETE_WISH_LIST_SUCCESS :
+      console.log(action.payload);
       state.wishList.splice(action.payload, 1);
       return {
         ...state,
-        wishList : state.wishList,
+        wishList : [...state.wishList],
       }
 
     case CartActions.GET_WISH_LIST_INFO_SUCCESS :
@@ -50,8 +53,8 @@ export function CartReducer(state = initialState, action: CartActions.CartAction
       }
 
     case CartActions.ADD_TO_WISH_LIST_SUCCESS :
-      console.log(action.payload)
-      state.wishList.push(action.payload);
+      console.log(action.payload.response)
+      state.wishList.push(action.payload.response);
 
       return {
         ...state,
@@ -66,29 +69,26 @@ export function CartReducer(state = initialState, action: CartActions.CartAction
 
          if ( value.items.length === 0 ) { return; };
 
-         if ( index !== 0 ) {
-           let temp = {}
-           value.items.forEach( (xItem, index) => {
-             xItem['itemIndex'] = index;
-             cartObjectItems.push(xItem);
-           });
+         value.items.forEach( (xItem, ii) => {
+           xItem['itemIndex'] = ii;
+           cartObjectItems.push(xItem);
+         });
 
-           console.log(cartObjectItems);
 
-         }
 
-         // @ts-ignore
-        const tempForInfo = Object.assign(...cartObjectItems.map( k => ({ [k.product] : k})));
-        object = { ...object, ...tempForInfo };
+
       })
+      const tempForInfo = Object.assign({}, ...cartObjectItems.map( k => ({ [k.product] : k})));
+      object = { ...object, ...tempForInfo };
 
-
+      console.log(object);
 
       return {
         ...state,
         cartInfo : {
+          ...state.cartInfo,
           free : action.payload.results[0],
-          pack : action.payload.results.slice(1, action.payload.length),
+          pack : action.payload.results.slice(1, action.payload.results.length),
           total : {
             total_discounts :  action.payload.total_discounts,
             total_items : action.payload.total_items,
@@ -99,42 +99,55 @@ export function CartReducer(state = initialState, action: CartActions.CartAction
       }
 
     case CartActions.CREATE_TO_CART_SUCCESS :
-      console.log(action.payload);
-      // state.cartInfo.pack.items.push(action.payload)
-      return {
-        ...state,
-        cartList : {
-          ...state.cartList,
-          [action.payload.product]: {
-            ...state.cartList[action.payload.product],
-            quantity: action.payload.amount,
-          }
-        },
+      if ( action.payload.packIndex !== 'free' ){
+        const createTemp = state.cartInfo.pack[action.payload.packIndex];
+        createTemp.subtotal = action.payload.cartInfo.results.slice(1, action.payload.cartInfo.results.length)[action.payload.packIndex].subtotal;
+        createTemp.items = action.payload.cartInfo.results.slice(1, action.payload.cartInfo.results.length)[action.payload.packIndex].items;
+        state.cartInfo.pack[action.payload.packIndex] = createTemp;
+      } else {
+        console.log('create to cart free!!');
+        const createForFreeTemp = state.cartInfo.free;
+        createForFreeTemp.subtotal = action.payload.cartInfo.results.slice(0, 1)[0].subtotal;
+        createForFreeTemp.items = action.payload.cartInfo.results.slice(0, 1)[0].items;
+        state.cartInfo.free = createForFreeTemp;
       }
+      console.log(state.cartInfo.free)
 
-    case CartActions.ADD_TO_CART_SUCCESS :
-      console.log(action.payload);
+
       return {
         ...state,
         cartList : {
           ...state.cartList,
-          [action.payload.payload.productSlug] : {
-            ...state.cartList[action.payload.payload.productSlug],
-            quantity : action.payload.payload.amount,
+          [action.payload.productSlug]: {
+            ...state.cartList[action.payload.productSlug],
+            quantity: 1,
           }
         },
         cartInfo : {
-          free : action.payload.cartInfo.results[0],
-          pack : action.payload.cartInfo.results.slice(1, action.payload.cartInfo.results.length),
+          ...state.cartInfo,
+          free : {
+            ...state.cartInfo.free
+          },
+          pack : [...state.cartInfo.pack],
           total : {
             total_discounts :  action.payload.cartInfo.total_discounts,
             total_items : action.payload.cartInfo.total_items,
             total_shipping_fee : action.payload.cartInfo.total_shipping_fee
-          }
-        }
+          },
+          isPopUp : action.payload.isPopUp,
+        },
       }
 
-    case CartActions.SUBTRACT_FROM_CART_SUCCESS :
+    case CartActions.ADD_TO_CART_SUCCESS :
+      if ( action.payload.packIndex !== 'free' ) {
+        const addTemp = state.cartInfo.pack[action.payload.packIndex];
+        addTemp.subtotal = action.payload.cartInfo.results.slice(1, action.payload.cartInfo.results.length)[action.payload.packIndex].subtotal;
+        state.cartInfo.pack[action.payload.packIndex] = addTemp;
+      } else {
+        const addForFreeTemp = state.cartInfo.free;
+        addForFreeTemp.subtotal = action.payload.cartInfo.results.slice(0, 1)[0].subtotal;
+        state.cartInfo.free = addForFreeTemp;
+      }
       return {
         ...state,
         cartList : {
@@ -144,25 +157,103 @@ export function CartReducer(state = initialState, action: CartActions.CartAction
             quantity : action.payload.amount,
           }
         },
+        cartInfo : {
+          ...state.cartInfo,
+          free : {
+            ...state.cartInfo.free,
+          },
+          // pack : action.payload.cartInfo.results.slice(1, action.payload.cartInfo.results.length),
+          pack : [...state.cartInfo.pack],
+          total : {
+            total_discounts :  action.payload.cartInfo.total_discounts,
+            total_items : action.payload.cartInfo.total_items,
+            total_shipping_fee : action.payload.cartInfo.total_shipping_fee
+          },
+          isPopUp : action.payload.isPopUp,
+        },
+      }
+
+    case CartActions.SUBTRACT_FROM_CART_SUCCESS :
+
+      if ( action.payload.packIndex !== 'free' ) {
+        const subtractTemp = state.cartInfo.pack[action.payload.packIndex];
+
+        subtractTemp.subtotal = action.payload.cartInfo.results.slice(1, action.payload.cartInfo.results.length)[action.payload.packIndex].subtotal;
+        state.cartInfo.pack[action.payload.packIndex] = subtractTemp;
+      } else {
+        const subtractForFreeTemp = state.cartInfo.free;
+        console.log(action.payload.cartInfo.results.slice(0, 1));
+        subtractForFreeTemp.subtotal = action.payload.cartInfo.results.slice(0, 1)[0].subtotal;
+        state.cartInfo.free = subtractForFreeTemp;
+      }
+      return {
+        ...state,
+        cartList : {
+          ...state.cartList,
+          [action.payload.productSlug] : {
+            ...state.cartList[action.payload.productSlug],
+            quantity : action.payload.amount,
+          }
+        },
+        cartInfo : {
+          ...state.cartInfo,
+          free : {
+            ...state.cartInfo.free,
+          },
+          pack : [...state.cartInfo.pack],
+          total : {
+            total_discounts :  action.payload.cartInfo.total_discounts,
+            total_items : action.payload.cartInfo.total_items,
+            total_shipping_fee : action.payload.cartInfo.total_shipping_fee
+          },
+          isPopUp : action.payload.isPopUp,
+        }
       }
 
     case CartActions.DELETE_FROM_CART_SUCCESS :
 
 
-      console.log(state);
-      console.log(state.cartInfo[action.payload.packType][action.payload.packIndex].items);
-      state.cartInfo[action.payload.packType][action.payload.packIndex].items.splice(action.payload.itemIndex, 1); // [action.payload.itemIndex]
+      console.log(action.payload.packIndex);
+      if ( action.payload.packIndex !== 'free' ) {
+        const deleteTemp = state.cartInfo.pack[action.payload.packIndex];
 
-      console.log(state.cartInfo[action.payload.packType][action.payload.packIndex].items);
-      console.log(state);
+
+        deleteTemp.subtotal = action.payload.cartInfo.results.slice(1, action.payload.cartInfo.results.length)[action.payload.packIndex].subtotal;
+        deleteTemp.items = action.payload.cartInfo.results.slice(1, action.payload.cartInfo.results.length)[action.payload.packIndex].items;
+        state.cartInfo.pack[action.payload.packIndex] = deleteTemp;
+
+      } else {
+        const deleteForFreeTemp = state.cartInfo.free;
+        deleteForFreeTemp.subtotal = action.payload.cartInfo.results.slice(0, 1)[0].subtotal;
+        deleteForFreeTemp.items = action.payload.cartInfo.results.slice(0, 1)[0].items;
+        state.cartInfo.free = deleteForFreeTemp;
+      }
+      delete state.cartList[action.payload.productSlug];
       return {
         ...state,
         cartList : {
           ...state.cartList,
+          // [action.payload.productSlug]: {
+          //   ...state.cartList[action.payload.productSlug],
+          //   quantity: 0,
+          // }
         },
         cartInfo : {
           ...state.cartInfo,
-        },
+          free : {
+            ...state.cartInfo.free,
+          },
+          pack : [...state.cartInfo.pack],
+          total : {
+            total_discounts :  action.payload.cartInfo.total_discounts,
+            total_items : action.payload.cartInfo.total_items,
+            total_shipping_fee : action.payload.cartInfo.total_shipping_fee
+          },
+          isPopUp : action.payload.isPopUp,
+        }
+        // cartInfo : {
+        //   ...state.cartInfo,
+        // },
       };
 
 

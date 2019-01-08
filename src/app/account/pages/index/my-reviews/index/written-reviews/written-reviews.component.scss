@@ -16,8 +16,12 @@
     &--image {
       vertical-align: top;
       display:inline-block;
-      width : 48px;
-      height : 48px;
+      width : 4.8rem;
+      height : 4.8rem;
+      img {
+        width : 4.8rem;
+        height : 4.8rem;
+      }
     }
     &--description {
       display:inline-block;
@@ -39,6 +43,15 @@
     margin-top : 2.4rem;
     border-bottom : 1px solid $color-light-grey;
 
+    &--image {
+      width : 10.4rem;
+      height : 10.4rem;
+      float:right;
+      img {
+        width : 10.4rem;
+        height : 10.4rem;
+      }
+    }
     &--star-rating {
       margin-right : 0.8rem;
     }
@@ -46,9 +59,12 @@
       margin-bottom : 3px;
     }
     &--content {
-      margin-top : 0.8rem;
+
       min-height: 11.2rem;
       display:inline-block;
+      &-outer{
+        margin-top : 0.8rem;
+      }
     }
     &__option {
       margin-top:2.4rem;
@@ -85,6 +101,10 @@
         margin-right:1.6rem;
         border-radius : 50%;
         overflow:hidden;
+        img {
+          width:4rem;
+          height:4.2rem;
+        }
       }
 
 
@@ -95,7 +115,6 @@
         display: inline-block;
 
         & > figcaption {
-          width : 10rem;
           margin-bottom: 1px;
         }
 

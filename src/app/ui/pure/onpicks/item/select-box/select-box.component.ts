@@ -1,5 +1,5 @@
 import {
-  ChangeDetectionStrategy,
+  ChangeDetectionStrategy, ChangeDetectorRef,
   Component,
   ElementRef,
   EventEmitter,
@@ -19,10 +19,47 @@ import {
 })
 export class SelectBoxComponent implements OnInit, OnChanges {
   @ViewChild('HTMLdropDown') HTMLdropDown;
-  @Input('sortList') sortList;
-  @Input('scrollMin') scrollMin;
-  @Input('selectedElement') selectedElement;
+  _sortList;
+  @Input('sortList') set sortList(xData) {
+    this._sortList = xData;
+    console.log(xData);
+    console.log(this.selectedElement);
+    if ( this.selectedElement.title === null ) {
+      if ( this._sortList.title === undefined ) {
+        if( this._sortList.list === undefined ) { return ; }
+        this.selectedElement = this._sortList.list[0];
+      } else {
+        console.log('@@@@@@@@@');
 
+        console.log(this._sortList.title);
+        this.selectedElement = {
+          title : this._sortList.title,
+          value : null
+        };
+      }
+
+    } else {
+      if ( this.selectedElement.value === null || this._sortList.list === undefined) {
+        return ;
+      }
+
+      /* TODO : forEach말고 keyvalue로 indexing하는 방법으로 바꾸기*/
+      this._sortList.list.forEach( v => {
+        if ( v.value == this.selectedElement.value ) {
+          this.selectedElement = v;
+        }
+      });
+    }
+
+
+    console.log(this.sortList);
+    this.cd.markForCheck();
+  }
+  @Input('scrollMin') scrollMin;
+  @Input('selectedElement') selectedElement = { title : null, value : null };
+
+
+  // changeEvent는 value만 들어감
   @Output('changeEvent') changeEvent = new EventEmitter();
 
   isOpen = false;
@@ -40,34 +77,12 @@ export class SelectBoxComponent implements OnInit, OnChanges {
 
   constructor(
     private eRef: ElementRef,
-    private renderer: Renderer2
-  ) {
-
-  }
+    private renderer: Renderer2,
+    private cd: ChangeDetectorRef
+  ) { }
 
   ngOnChanges(changes: SimpleChanges) {
 
-    if ( this.selectedElement === undefined ) {
-      if ( this.sortList.title === undefined ){
-        this.selectedElement = this.sortList.list[0];
-      } else {
-        this.selectedElement = {
-          title : this.sortList.title,
-        };
-      }
-
-    } else {
-      if ( this.selectedElement.value === null ) {
-        return ;
-      }
-
-      /* TODO : forEach말고 keyvalue로 indexing하는 방법으로 바꾸기*/
-      this.sortList.list.forEach( v => {
-        if ( v.value == this.selectedElement.value ) {
-          this.selectedElement = v;
-        }
-      });
-    }
   }
 
   ngOnInit() {
@@ -94,7 +109,7 @@ export class SelectBoxComponent implements OnInit, OnChanges {
     }
   }
 
-  clickSortBoxElement(inputValue) {
+  clickSelectBoxElement(inputValue) {
 
     this.selectedElement = {
       title : inputValue.name,
@@ -105,7 +120,7 @@ export class SelectBoxComponent implements OnInit, OnChanges {
     // this.selectedElement.title = inputValue.name;
     this.isOpen = false;
     this.renderer.setStyle( this.HTMLdropDown.nativeElement, 'display', 'none');
-    this.changeEvent.emit(inputValue.value);
+    this.changeEvent.emit({ value : inputValue.value, index : inputValue.dataset.index});
   }
 
 }

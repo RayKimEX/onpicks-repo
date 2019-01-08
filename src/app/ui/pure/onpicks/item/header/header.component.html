@@ -57,7 +57,7 @@
       <nav class="header__main-nav--router">
         <ul>
           <li>
-            <a href=""
+            <a
                class="h1-bold u-color-grey"
                #shops
                (mouseenter)="hoverMenu()"
@@ -68,31 +68,37 @@
             </a>
           </li>
           <li>
-            <a href=""
+            <a
                class="h1-bold u-color-grey"
-               routerLink="showcases"
-               [routerLinkActive]="['u-color-black', 'u-active']"
+
+               (click)="showPreparingMessage()"
                i18n="@@header__showcases">
                쇼케이스|showcases
             </a>
+            <!--routerLink="showcases"-->
+            <!--[routerLinkActive]="['u-color-black', 'u-active']"-->
           </li>
           <li>
-            <a href=""
+            <a
                class="h1-bold u-color-grey"
-               routerLink="events"
-               [routerLinkActive]="['u-color-black', 'u-active']"
+
+               (click)="showPreparingMessage()"
                i18n="@@header__events">
                이벤트|events
             </a>
+            <!--routerLink="events"-->
+            <!--[routerLinkActive]="['u-color-black', 'u-active']"-->
           </li>
           <li>
-            <a href=""
+            <a
                class="h1-bold u-color-grey"
-               routerLink="reviews"
-               [routerLinkActive]="['u-color-black', 'u-active']"
+
+               (click)="showPreparingMessage()"
                i18n="@@header__reviews">
                리뷰|reviews
             </a>
+            <!--routerLink="reviews"-->
+            <!--[routerLinkActive]="['u-color-black', 'u-active']"-->
           </li>
         </ul>
       </nav>
@@ -108,7 +114,7 @@
   <onpicks-free-delivery-notibox
     #deliveryBox
     [setCartInfo]="cart$ | async"
-    [ngStyle]="{ display : 'none'}"
+    [ngStyle]="{ opacity : '0'}"
   ></onpicks-free-delivery-notibox>
 
   <div #menu class="header-menu__outer">

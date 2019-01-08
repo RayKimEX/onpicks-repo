@@ -18,10 +18,13 @@
     </onpicks-p-thumbnail>
 
     <onpicks-p-other-sellers></onpicks-p-other-sellers>
-    <onpicks-p-customer></onpicks-p-customer>
+    <onpicks-p-picture-review
+      [pictureReviewList]="(pPictureReviews$ | async)?.results"
+    ></onpicks-p-picture-review>
     <onpicks-p-item-detail></onpicks-p-item-detail>
     <onpicks-p-description [description]="(pData$ | async)?.description"></onpicks-p-description>
-    <!--async를 붙여서 넘기는 이유는 받을때 좀더 편하게 받게 하기 위함-->
+    <!--async를 붙여서 넘기는 이유는 받을때 좀더 편
+    하게 받게 하기 위함-->
     <onpicks-p-reviews #onpicksReview></onpicks-p-reviews>
     <onpicks-p-refund></onpicks-p-refund>
   </div>
@@ -45,7 +48,7 @@
 </div>
 
 <div class="row">
-  <ui-mini-list [setTitle]="'이 상품 구매자가 함께 본 상품'"></ui-mini-list>
+  <ui-mini-list [infoList]="weeklyBest$ | async" [setTitle]="'이 상품 구매자가 함께 본 상품'"></ui-mini-list>
 </div>
 
 

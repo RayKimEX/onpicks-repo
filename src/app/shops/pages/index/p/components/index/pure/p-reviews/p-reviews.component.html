@@ -45,26 +45,26 @@
         리뷰 {{data.results?.length}}개
       </h1>
       <ui-star-rating
-        [star-point]="data.extraInfo.reviewAvgRating">
+        [star-point]="data.extraInfo?.reviewAvgRating">
       </ui-star-rating>
-      <onpicks-search-box
-        [width]="20"
-        [top]="-1"
-        [placeholder]="'리뷰 검색'">
-      </onpicks-search-box>
+      <!--<onpicks-search-box-->
+        <!--[width]="20"-->
+        <!--[top]="-1"-->
+        <!--[placeholder]="'리뷰 검색'">-->
+      <!--</onpicks-search-box>-->
 
       <div class="subtitle-1-regular u-color-dark-grey u-margin-bottom--small">
         별점 분포
       </div>
       <table class="p-reviews__table">
         <tr  *ngFor="let key of objectKeys(starMaxList);  index as i ">
-          <td class="p-reviews__table--col">
+          <td class="p-reviews__table--col subtitle-1-regular">
             <svg  width="14" height="14"  class="star--14">
               <path class="u-color-fill-black"  d="M10.76,8h0l1.47-1.12L13.69,5.8c.48-.36.39-.66-.2-.66H8.79L8.45,4.06h0L7.89,2.25,7.33.44c-.18-.59-.48-.59-.66,0L5.55,4.06h0L5.21,5.14H.51c-.59,0-.68.3-.2.66L1.77,6.92,3.24,8h0l.87.67-.89,2.88L2.66,13.4c-.19.59.06.78.54.41L7,10.91l2.34,1.78,1.46,1.12c.48.37.73.18.54-.41l-.56-1.81L9.89,8.71Z"/>
             </svg>
-            <span class="p-reviews__table--point">{{5-i}} 점</span>
+            <span class="p-reviews__table--point">{{5-i}}점</span>
           </td>
-          <td class="p-reviews__table--col">
+          <td class="p-reviews__table--col subtitle-1-regular">
             <div class="p-reviews__table--line">
               <div class="p-reviews__table--line-current"
                    drAnimateOnScroll
@@ -74,7 +74,7 @@
               </div>
             </div>
           </td>
-          <td class="p-reviews__table--col">{{(starMaxList[key] / data.results?.length) * 100}}%</td>
+          <td class="p-reviews__table--col subtitle-1-regular">{{(starMaxList[key] / data.results?.length) * 100}}%</td>
         </tr>
       </table>
 
@@ -98,18 +98,22 @@
         </figure>
         <div class="subtitle-1-regular u-color-grey">Size: X-Large · Color: Aqua · {{data.list[item].helpful_count}}명이 추천하였습니다 </div>
 
-        <!--array length가 0이거나, pictures[0]이 ''인경우 : 이미지가 없는경우-->
-        <p class="p-reviews__content body-1-regular"
-           [ngStyle]="{'width' : data.list[item].pictures.length === 0 || data.list[item].pictures[0] === '' ? 'auto' : '52.8rem'}">
-          {{data.list[item].text}}
-        </p>
+        <div class="p-reviews__content-outer">
+
+          <!--array length가 0이거나, pictures[0]이 ''인경우 : 이미지가 없는경우-->
+          <p class="p-reviews__content body-1-regular"
+             [ngStyle]="{'width' : data.list[item].pictures.length === 0 || data.list[item].pictures[0] === '' ? 'auto' : '52.8rem'}">
+            {{data.list[item].text}}
+          </p>
 
 
-        <!--array length이 0이 아니면, pictures[0]도 ''가 아니어야한다. : 이미지가 있는 경우-->
-        <span class="p-reviews__image"
-              *ngIf="data.list[item].pictures.length !== 0 && data.list[item].pictures[0] !== ''">
-          <img [drLazyLoad]="{method:'animation'}" src="{{data.list[item].pictures[0]}}" alt="">
-        </span>
+          <!--array length이 0이 아니면, pictures[0]도 ''가 아니어야한다. : 이미지가 있는 경우-->
+          <span class="p-reviews__image"
+                *ngIf="data.list[item].pictures.length !== 0 && data.list[item].pictures[0] !== ''">
+            <img [drLazyLoad]="{method:'animation'}" src="{{data.list[item].pictures[0]}}" alt="">
+          </span>
+
+        </div>
 
         <div class="p-reviews__option">
           <a>

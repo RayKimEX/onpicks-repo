@@ -1,5 +1,5 @@
 import {
-  ChangeDetectionStrategy,
+  ChangeDetectionStrategy, ChangeDetectorRef,
   Component,
   Inject,
   LOCALE_ID,
@@ -27,6 +27,10 @@ export class CartComponent {
 
   cartStore$;
   cartStore;
+  lengthCheckForPack = 0;
+  lengthCheckForFree = 0;
+
+  objectKeys = Object.keys;
 
 
   constructor(
@@ -37,14 +41,25 @@ export class CartComponent {
     private renderer: Renderer2,
     private router: Router,
     private store: Store<any>,
-    private httpClient: HttpClient
+    private httpClient: HttpClient,
+    private cd: ChangeDetectorRef,
   ) {
     this.cartStore$ = this.store.pipe(
       select( state => state.cart ),
       tap( state => this.cartStore = state),
       tap( v => {
-        console.log('in tap!!!')
-        console.log(v.cartInfo);
+        console.log(v);
+        this.lengthCheckForPack = 0;
+        if( v.cartInfo.free.items !== undefined) {
+          this.lengthCheckForFree = v.cartInfo.free.items.length;
+        }
+
+        v.cartInfo.pack.forEach( pack => {
+          this.lengthCheckForPack += pack.items.length;
+        });
+
+
+        // this.cd.markForCheck();
       }),
       shareReplay(1)
     );
@@ -85,9 +100,7 @@ export class CartComponent {
     return array;
   }
 
-  deleteCart(xProductSlug, xItemIndex, xPackIndex, xType) {
-    this.store.dispatch(new TryDeleteFromCart({ productSlug : xProductSlug, itemIndex : xItemIndex, packIndex : xPackIndex, packType : xType}));
-  }
+
 
   toggleWishList(item) {
 
@@ -98,23 +111,60 @@ export class CartComponent {
     }
   }
 
-  addToCart(xAmount, xProductSlug) {
+  deleteCart(xProductSlug, xItemIndex, xPackIndex, xType) {
+    this.store.dispatch(new TryDeleteFromCart({ productSlug : xProductSlug, itemIndex : xItemIndex, packIndex : xPackIndex, packType : xType}));
+  }
+
+  addToCart(xAmount, xProductSlug, xPackIndex) {
     xAmount++;
 
+
+    console.log(xPackIndex);
     // 만약 카트 아이디가. 카트스토어 카트리스트에 있다면, increase cart를 하고, create cart를 하지 않는다.
-    //
-    this.store.dispatch( new TryAddOrCreateToCart( { productSlug : xProductSlug, amount : xAmount, increaseOrCreate : xProductSlug in this.cartStore.cartList }) );
+
+    this.store.dispatch( new TryAddOrCreateToCart(
+      {
+        isPopUp : false,
+        productSlug : xProductSlug,
+        amount : xAmount,
+        packIndex : xPackIndex,
+        increaseOrCreate : xProductSlug in this.cartStore.cartList
+      }) );
   }
 
-  subtractFromCart(xAmount, xProductSlug) {
+  moveWishListToCart(xAmount, xProductSlug, xPackIndex, xWishListId, xIndex){
+    console.log(xAmount);
+    this.store.dispatch( new TryAddOrCreateToCart(
+      {
+        isPopUp : false,
+        productSlug : xProductSlug,
+        amount : xAmount,
+        packIndex : xPackIndex,
+        increaseOrCreate : xProductSlug in this.cartStore.cartList
+      }) );
+
+    this.store.dispatch( new TryDeleteWishList( { wishListId : xWishListId, index : xIndex}));
+  }
+
+  subtractFromCart(xAmount, xProductSlug, xPackIndex ) {
     xAmount--;
-    this.store.dispatch( new TrySubtractOrDeleteFromCart( { productSlug : xProductSlug, amount : xAmount, subtractOrDelete : xAmount !== 0 ? true : false }) );
+    console.log(xPackIndex);
+    this.store.dispatch( new TrySubtractOrDeleteFromCart(
+      {
+        isPopUp : false,
+        productSlug : xProductSlug,
+        amount : xAmount,
+        packIndex : xPackIndex,
+        subtractOrDelete : xAmount !== 0 ? true : false
+      }));
   }
 
-  addToWishList(xProductSlug) {
+  addToWishList(xProductSlug, xPackIndex) {
 
     console.log(xProductSlug);
-    this.store.dispatch( new TryAddToWishList( { productSlug : xProductSlug }));
+    this.store.dispatch( new TryAddToWishList( { productSlug : xProductSlug, packIndex : xPackIndex }));
+
+
   }
 
   deleteWishList( xWishListId, xIndex ) {

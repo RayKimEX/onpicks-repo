@@ -16,6 +16,10 @@ export class UiService {
 
   }
 
+  getWeeklyBestGoods() {
+    return this.httpClient.get<any>(this.BASE_URL + '/api/home/weekly_best/');
+  }
+
   getCategoryAll(oneDepthCode) {
     //
     // return this.httpClient.get<any>(this.BASE_URL + '/api/categories/' + oneDepthCode + '/descendants/' );

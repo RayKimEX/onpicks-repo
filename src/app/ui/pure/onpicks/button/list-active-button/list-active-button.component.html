@@ -40,7 +40,8 @@
         (mouseleave)="upOpacity('plus')"
         (click)="extendWidth()"
   ></span>
-  <span *ngIf="amount !== 0" class="touch__amount-down"
+  <span
+    *ngIf="amount !== 0" class="touch__amount-down"
         (mousedown)="downOpacity('minus')"
         (mouseup)="upOpacity('minus')"
         (mouseleave)="upOpacity('minus')"

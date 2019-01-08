@@ -1,18 +1,42 @@
-<div class="col-9-of-12 available-reviews">
+<div class="col-9-of-12 available-reviews" *ngLet="orderData$ | async as data">
 
-  <h1 class="h1-bold">작성 가능한 리뷰</h1>
+  <ng-template #loading>
+    <onpicks-loading-icon></onpicks-loading-icon>
+  </ng-template>
 
-  <emitter-adhere-table
-    (viewModal)="viewModal($event)"
-    [data]="orderData$ | async"
-    [type]="'available'">
-  </emitter-adhere-table>
 
-  <onpicks-write-review
-    [data]="writeReview.currentData"
-    (exit)="writeReview.isShow = !writeReview.isShow"
-    [isShow]="writeReview.isShow">
-  </onpicks-write-review>
+  <ng-container *ngIf="data?.results.length === 0; else loading">
+    <h1 class="h1-bold">작성 가능한 리뷰</h1>
+    <div
+
+      class="available-reviews__empty-title subtitle-1-regular u-color-dark-grey"
+    >
+      작성 가능한 리뷰가 없습니다. 다양한 아이템을 최적의 가격으로 쇼핑하여 리뷰를 남겨주세요!
+    </div>
+
+    <ui-mini-list
+      [carouselLength]="3"
+      [infoList]="weeklyBest$ | async"
+      [setTitle]="'인기상품'">
+
+    </ui-mini-list>
+  </ng-container>
+
+  <ng-container  *ngIf="data?.results.length !== 0">
+    <emitter-adhere-table
+      (viewModal)="viewModal($event)"
+      [data]="data"
+      [type]="'available'">
+    </emitter-adhere-table>
+
+    <onpicks-write-review
+      [data]="writeReview.currentData"
+      (exit)="writeReview.isShow = !writeReview.isShow"
+      [isShow]="writeReview.isShow">
+    </onpicks-write-review>
+  </ng-container>
+
+
 
   <!--<div>작성 가능한 리뷰가 없습니다. 다양한 아이템을 최적의 가격으로 쇼핑하여 리뷰를 남겨주세요!</div>-->
   <!--<ui-mini-list [setTitle]="'추천상품'"></ui-mini-list>-->
