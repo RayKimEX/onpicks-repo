@@ -4,6 +4,10 @@
 
   &__title {
     margin-bottom : 2.4rem;
+
+    span {
+      margin-left : 1.6rem;
+    }
   }
 
   &__table{
@@ -27,18 +31,18 @@
         vertical-align: middle;;
         display:inline-block;
 
-
-        &:first-child {
-
-        }
-
-        &:not(:last-child) {
+        &:nth-child(1) {
           width:21.6rem;
-          margin-right : 4.7rem;
+          margin-right : 7.1rem;
         }
 
-        &:last-child {
-          width:12.2rem;
+        &:nth-child(2) {
+          width:13.6rem;
+          margin-right : 7.1rem;
+        }
+
+        &:nth-child(3) {
+          width:15.4rem;
         }
 
       }
@@ -46,7 +50,7 @@
       &:not(:first-child) > div {
 
         &:last-child {
-          text-align:center;
+          text-align:right;
         }
       }
     }

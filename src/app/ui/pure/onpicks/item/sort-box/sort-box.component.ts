@@ -1,10 +1,21 @@
-import {AfterViewInit, Component, ElementRef, EventEmitter, HostListener, Input, OnInit, Output, Renderer2, ViewChild} from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef, EventEmitter,
+  HostListener,
+  Input,
+  OnInit, Output,
+  Renderer2,
+  ViewChild
+} from '@angular/core';
 
 
 @Component({
   selector: 'onpicks-sort-box',
   templateUrl: './sort-box.component.html',
-  styleUrls: ['./sort-box.component.scss']
+  styleUrls: ['./sort-box.component.scss'],
+  changeDetection : ChangeDetectionStrategy.OnPush,
 })
 export class SortBoxComponent implements OnInit, AfterViewInit {
   @ViewChild('HTMLdropDown') HTMLdropDown;
@@ -12,8 +23,10 @@ export class SortBoxComponent implements OnInit, AfterViewInit {
   @Input('sortList') sortList;
   @Input('fontSize') fontSize;
   @Input('showBox') showBox;
+  @Input('selectedElement') selectedElement;
 
-  selectedElement;
+  @Output('changeEvent') changeEvent = new EventEmitter();
+
   isOpen = false;
 
   @HostListener('document:click', ['$event'])
@@ -35,7 +48,23 @@ export class SortBoxComponent implements OnInit, AfterViewInit {
     // const temp = [...this.sortList];
     // console.log(temp);
     // init시에 무조건 첫번째 Object를 가져옴
-    this.selectedElement = this.sortList[0];
+
+
+    if ( this.selectedElement === undefined ) {
+      this.selectedElement = this.sortList[0];
+    } else {
+      if ( this.selectedElement.value === undefined ) {
+        this.selectedElement = this.sortList[0];
+      } else {
+        this.sortList.forEach( v => {
+          if ( v.value === this.selectedElement.value ) {
+            this.selectedElement = v;
+          }
+        });
+      }
+    }
+
+
   }
 
   ngAfterViewInit() {
@@ -61,14 +90,14 @@ export class SortBoxComponent implements OnInit, AfterViewInit {
   }
 
   clickSortBoxElement(inputValue) {
-
     this.selectedElement = {
       title : inputValue.name,
-      value : parseInt(inputValue.value, 10)
+      value : inputValue.value// parseInt(inputValue.value, 10)
     }
 
     this.isOpen = false;
     this.renderer.setStyle( this.HTMLdropDown.nativeElement, 'display', 'none');
+    this.changeEvent.emit(inputValue.value);
   }
 
 }

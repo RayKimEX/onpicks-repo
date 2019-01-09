@@ -1,16 +1,25 @@
 
 <ng-container [ngSwitch]="type">
-  <label for="radio" *ngSwitchDefault class="radio-checkbox" (click)="deselectBox(f)" [ngStyle]="{ 'margin-right' : marginRight }">
-    <input id="radio" class="radio-checkbox__input" type="radio" name="radio" #radioBoxView >
+
+  <label for="{{uuid}}" *ngSwitchDefault class="radio-checkbox" [ngStyle]="{ 'margin-right' : marginRight }">
+    <input
+      id="{{uuid}}"
+      [checked]="isChecked"
+      class="radio-checkbox__input"
+      (change)="handleChangeForRadio($event)"
+      type="radio"
+      name="radio"
+      #radioBoxView
+    >
     <span class="radio-checkbox__checkmark">
     </span>
-    <span>
+    <span class="radio-checkbox__content">
       <ng-container *ngTemplateOutlet="tempOutlet" ></ng-container>
     </span>
   </label>
 
-  <div for="checkbox" *ngSwitchCase="'checkbox'" class="normal-checkbox" (click)="clickBox(checkBoxView)" [ngStyle]="{ 'margin-right' : marginRight }">
-    <input id="checkbox" class="normal-checkbox__input" type="checkbox"  #checkBoxView>
+  <div for="checkbox" *ngSwitchCase="'checkbox'" class="normal-checkbox" (click)="handleChangeForCheckbox(checkBoxView)" [ngStyle]="{ 'margin-right' : marginRight }">
+    <input id="checkbox" class="normal-checkbox__input" type="checkbox" [checked]="isChecked"  #checkBoxView>
     <span class="normal-checkbox__checkmark">
     </span>
     <span>

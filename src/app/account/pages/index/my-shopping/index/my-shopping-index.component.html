@@ -3,7 +3,7 @@
     <div>
       <button class="my-shopping-navigator__item subtitle-2-bold u-color-grey"
               routerLink="orders"
-              routerLinkActive="u-color-black"
+              [ngClass]="{ 'u-color-black' : ((url$ | async)[3] === 'orders') || ((url$ | async)[3] === 'orders-detail')}"
       >
         주문·배송조회
       </button>
@@ -11,8 +11,7 @@
     <div>
       <button class="my-shopping-navigator__item subtitle-2-bold u-color-grey"
               routerLink="credits"
-              routerLinkActive="u-color-black"
-      >
+              routerLinkActive="u-color-black">
         포인트·쿠폰
       </button>
     </div>
@@ -20,5 +19,4 @@
 
   <router-outlet></router-outlet>
 </div>
-
 

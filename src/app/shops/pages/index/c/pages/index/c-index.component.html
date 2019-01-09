@@ -1,41 +1,50 @@
-<div class="c-header">
+<div
+  [ngClass]=
+    "[
+      (this.router.url.split('/')[3] === 'pantry-and-household')  ? 'u-background-color-green' : '',
+      (this.router.url.split('/')[3] === 'beauty')  ? 'u-background-color-pink' : ''
+    ]"
+  class="c-header">
+
   <div class="c-header__category u-default-site-padding">
     <ul class="c-header__category--ul">
-      <li class="c-header__category--li">
-        <a class="u-color-white" (click)="updateSecondCategory(1010000, 'grocery')" routerLink="/shops/c/pantry-and-household/grocery">
-          식품
+      <li
+        *ngFor="let item of objectKeys(secondCategoryMap[this.router.url.split('/')[3]])"
+        class="c-header__category--li subtitle-2-bold u-color-white">
+        <a class="u-color-white" [routerLink]="'/shops/c/' + this.router.url.split('/')[3] + '/' + item">
+          {{secondCategoryMap[this.router.url.split('/')[3]][item]}}
         </a>
       </li>
-      <li class="c-header__category--li" >
-        <a class="u-color-white" (click)="updateSecondCategory(1020000, 'household-supplies')" routerLink="/shops/c/pantry-and-household/household-supplies">
-          생활용품
-        </a>
-      </li>
-      <li class="c-header__category--li" (click)="updateSecondCategory(1030000, 'personal-care')" routerLink="/shops/c/pantry-and-household/personal-care">
-        <a class="u-color-white">
-          퍼스널케어
-        </a>
-      </li>
-      <li class="c-header__category--li" (click)="updateSecondCategory(1040000, 'health')" routerLink="/shops/c/pantry-and-household/health">
-        <a class="u-color-white">
-          건강
-        </a>
-      </li>
-      <li class="c-header__category--li" (click)="updateSecondCategory(1050000, 'baby')" routerLink="/shops/c/pantry-and-household/baby">
-        <a class="u-color-white">
-          유아동
-        </a>
-      </li>
-      <li class="c-header__category--li" (click)="updateSecondCategory(1060000, 'pet-supplies')" routerLink="/shops/c/pantry-and-household/pet-supplies">
-        <a class="u-color-white">
-          반려용품
-        </a>
-      </li>
-      <li class="c-header__category--li" (click)="updateSecondCategory(1070000, 'office-supplies')" routerLink="/shops/c/pantry-and-household/office-supplies">
-        <a class="u-color-white">
-          사무용품
-        </a>
-      </li>
+      <!--<li class="c-header__category&#45;&#45;li" >-->
+        <!--<a class="u-color-white" routerLink="/shops/c/pantry-and-household/household-supplies">-->
+          <!--생활용품-->
+        <!--</a>-->
+      <!--</li>-->
+      <!--<li class="c-header__category&#45;&#45;li" routerLink="/shops/c/pantry-and-household/personal-care">-->
+        <!--<a class="u-color-white">-->
+          <!--퍼스널케어-->
+        <!--</a>-->
+      <!--</li>-->
+      <!--<li class="c-header__category&#45;&#45;li" routerLink="/shops/c/pantry-and-household/health">-->
+        <!--<a class="u-color-white">-->
+          <!--건강-->
+        <!--</a>-->
+      <!--</li>-->
+      <!--<li class="c-header__category&#45;&#45;li" routerLink="/shops/c/pantry-and-household/baby">-->
+        <!--<a class="u-color-white">-->
+          <!--유아동-->
+        <!--</a>-->
+      <!--</li>-->
+      <!--<li class="c-header__category&#45;&#45;li" routerLink="/shops/c/pantry-and-household/pet-supplies">-->
+        <!--<a class="u-color-white">-->
+          <!--반려용품-->
+        <!--</a>-->
+      <!--</li>-->
+      <!--<li class="c-header__category&#45;&#45;li" routerLink="/shops/c/pantry-and-household/office-supplies">-->
+        <!--<a class="u-color-white">-->
+          <!--사무용품-->
+        <!--</a>-->
+      <!--</li>-->
     </ul>
   </div>
 </div>

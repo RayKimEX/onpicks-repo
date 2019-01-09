@@ -1,16 +1,19 @@
-$color-grey: #b3b3b3;
-$color-light-grey: #e5e5e5;
-$color-dark-grey: #8d8d8d;
+$color-grey : #b3b3b3;
+$color-light-grey : #e5e5e5;
+$color-dark-grey : #8d8d8d;
 
 
-$color-black: #292929;
+$color-black : #292929;
 $color-light-black : #4a4a4a;
 $color-dark-black : #000000;
 
-$color-white :#FFFFFF;
+$color-white : #FFFFFF;
 $color-orange : #F68B1A;
 $color-green : #008489;
+$color-dark-green : #417505;
 
+$color-blue : #4a90e2;
+$color-pink : #f2cacc;
 
 
 // FONT
@@ -91,18 +94,24 @@ $default-padding : 8rem;
 }
 
 .h2 {
+  &-bold {
+    font-size : 3.6rem;
+    line-height : 1.5;
+    font-weight : 700;
+    letter-spacing: 0.07px;
+  }
   &-medium {
-    font-size: 4rem;
+    font-size: 3.6rem;
     font-weight: 700;
     line-height: 1.5;
     letter-spacing: 0.1px;
   }
 
   &-regular {
-    font-size: 4rem;
+    font-size: 3.6rem;
     font-weight: 400;
     line-height: 1.5;
-    letter-spacing: 0.1px;
+    letter-spacing: 0.07px;
   }
 }
 

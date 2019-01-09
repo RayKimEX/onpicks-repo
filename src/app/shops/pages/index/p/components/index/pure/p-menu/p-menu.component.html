@@ -2,17 +2,15 @@
 </ng-template>
 
 <div #pMenu class="p-menu">
-
   <div class="p-menu__inner-margin">
     <div class="p-menu__title subtitle-1-bold">
       <!--이것은 전체를 기준으로 처리하려고 했으나, ViewChild를 가져오는 기준은, template이 시작될때 가져오는것 같음따라서,
           중간에 데이터 들어오는것과 처리가 잘 안맞음. 그래서 각각 element에다가 ngIf를 따로 설정하여줌.-->
-      <ng-container *ngIf="data !== null;">{{data.brand.name}}</ng-container>
-
+      <ng-container *ngIf="_data !== null;">{{_data?.brand?.name}}</ng-container>
     </div>
     <div class="p-menu__icon-list">
       <span>
-        <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="-2 -2 24 24">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="-2 -2 24 24">
           <title>thumbsup-icon</title>
           <path d="M18,4H18A2,2,0,0,1,18,8h0a2,2,0,0,1,0-4m0-2a4,4,0,0,0-.1,8H18a4,4,0,0,0,.11-8Z" transform="translate(-2.01 -2)"/>
           <path d="M6,10h0a2,2,0,0,1,0,4H6a2,2,0,0,1,0-4M6,8a4,4,0,0,0-.11,8H6a4,4,0,0,0,.1-8Z" transform="translate(-2.01 -2)"/>
@@ -24,31 +22,34 @@
       </span>
     </div>
 
-
     <div class="p-menu__product-info">
       <h1 class="h1-regular p-menu__product-info--title" #titleHeight>
-        <ng-container *ngIf="data !== null;">{{data.title}}</ng-container>
-
+        <ng-container *ngIf="_data !== null;">{{_data?.title}}</ng-container>
         <!--알엑스바 리얼 푸드 프로틴 에너지바 믹스드 베리 52G / RxBar Real Food Protein Bars Mixed BerryRxBar Re-->
       </h1>
-      <ui-star-rating [star-point]="data ? data.review_avg_rating : 0"></ui-star-rating>
-      <span class="p-menu__product-info--read-reviews subtitle-1-regular u-color-dark-grey">30개 리뷰 보기</span>
+      <ui-star-rating
+        [star-point]="_data ? _data.review_avg_rating : 0">
+      </ui-star-rating>
+      <span class="p-menu__product-info--read-reviews subtitle-1-regular u-color-dark-grey">{{_data?.review_count}}개 리뷰</span>
       <div class="p-menu__product-info--MSRP subtitle-1-regular">
         <!--TODO: MSRP는 지역에 따라 보이고 안보이고 설정-->
         <!--<span class="p-menu__product-info&#45;&#45;MSRP-name">MSRP&nbsp;</span>-->
-        <span class="p-menu__product-info--MSRP-discount u-color-grey">{{57200 | onpicksCurrency:'KRW'}}</span>
+        <span class="p-menu__product-info--MSRP-discount u-color-grey">{{_data?.msrp | onpicksCurrency:'KRW'}}</span>
         <span class="p-menu__product-info--MSRP-description u-color-green">담을수록 추가 할인</span>
       </div>
       <div class="p-menu__product-info--price">
-        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="16" viewBox="0 0 18 16">
+        <svg width="18" height="16" viewBox="0 0 18 16">
           <g fill="none" fill-rule="evenodd">
             <path fill="#008488" d="M11.259 10H9.725l-.5-2-.227-.907L8.772 8l-.5 2H6.738l-.333-2-.084-.5H4.998V6H6.07l-.313-1.877c-.007-.042.004-.082.004-.123h1.497l.35 3 .037.319L7.7 7l.524-3h1.547l.523 3 .056.319.037-.319.35-3h1.497c0 .041.01.081.003.123L11.926 6h1.072v1.5h-1.322l-.084.5-.333 2zm6.223-3h-2.484V.5a.5.5 0 0 0-.5-.5h-11a.5.5 0 0 0-.5.5V7H.522c-.467 0-.698.549-.364.864l3.962 3.739 4.509 4.253a.544.544 0 0 0 .737 0l4.51-4.253 3.967-3.744c.332-.313.103-.859-.361-.859z" mask="url(#b)"/>
           </g>
         </svg>
 
-        <span class="p-menu__product-info--price-discount price-bold u-color-green">50%&nbsp;</span>
-        <span class="p-menu__product-info--price-realprice price-bold">{{28600 | onpicksCurrency:'KRW'}}</span>
-        <onpicks-sort-box [sortList]="chartSortList" ></onpicks-sort-box>
+        <!--소수점 떨어지는거 관련해서 약간 이슈가 있음-->
+        <span class="p-menu__product-info--price-discount price-bold u-color-green">{{discountPercent}}%</span>
+        <span class="p-menu__product-info--price-realprice price-bold">{{_data?.price | onpicksCurrency:'KRW'}}</span>
+        <onpicks-sort-box
+          [sortList]="chartSortList">
+        </onpicks-sort-box>
       </div>
     </div>
 
@@ -61,40 +62,53 @@
       <div class="p-menu__delivery--inner">
         <div class="p-menu__delivery--first">
 
-          <span class="icon-small-new">
-
+          <span [ngClass]=
+            "[
+              (locationMap[_data?.location.slug]?.nickname === 'la')  ? 'icon-small-la' : '',
+              (locationMap[_data?.location.slug]?.nickname === 'new')  ? 'icon-small-new' : '',
+              (locationMap[_data?.location.slug]?.nickname === 'osaka')  ? 'icon-small-osaka' : '',
+              (locationMap[_data?.location.slug]?.nickname === 'gorgia')  ? 'icon-small-gorgia' : '',
+              (locationMap[_data?.location.slug]?.nickname === 'hong')  ? 'icon-small-hong' : ''
+            ]">
           </span>
           <span class="p-menu__delivery--first-spot subtitle-2-bold">
-            뉴저지
+            {{_data?.location?.name}}
           </span>
           <span class="p-menu__delivery--first-info subtitle-2-regular">출고, 묶음배송, {{9000| onpicksCurrency: 'KRW'}}</span>
 
         </div>
 
-        <div class="p-menu__delivery--second subtitle-2-regular u-color-dark-grey">뉴저지 묶음배송 상품 {{80000| onpicksCurrency:'KRW'}} 이상 배송료 무료</div>
+        <div class="p-menu__delivery--second subtitle-2-regular u-color-dark-grey">{{_data?.location?.name}} 묶음배송 상품 {{80000| onpicksCurrency:'KRW'}} 이상 배송료 무료</div>
       </div>
     </div>
 
     <div class="p-menu__options">
-      <div class="p-menu__options--title subtitle-2-regular">
+      <div
+        *ngIf="_data?.attributes.length !== 0"
+        class="p-menu__options--title subtitle-2-regular">
         상세옵션을 선택해 주세요
       </div>
 
-      <onpicks-select-box [sortList]="oneOptionList"></onpicks-select-box>
-      <!--<select class="p-menu__options&#45;&#45;option" name="" id="" >-->
-        <!--<option value="">Select a Flavor</option>-->
-      <!--</select>-->
-      <onpicks-select-box [sortList]="twoOptionList"></onpicks-select-box>
+      <onpicks-select-box
+        *ngIf="_data?.attributes[0] !== undefined"
+        (changeEvent)="optionSelect($event, 0)"
+        [sortList]="optionObject">
+        </onpicks-select-box>
+      <onpicks-select-box
+        *ngIf="_data?.attributes[1] !== undefined"
+        (changeEvent)="optionSelect($event, 1)"
+        [sortList]="selectedFirstOptionIndex === null ? { title : _data?.attributes[1] } : optionObject.list[selectedFirstOptionIndex].children">
+      </onpicks-select-box>
 
-      <onpicks-select-box [sortList]="numberOptionList"></onpicks-select-box>
-      <!--<select class="p-menu__options&#45;&#45;option" name="" id="" >-->
-        <!--<option value="">Select a Size</option>-->
-      <!--</select>-->
-      <!--<br>-->
-      <!--<select class="p-menu__options&#45;&#45;option" name="" id="" >-->
-        <!--<option value="">1</option>-->
-      <!--</select>-->
+      <!--<onpicks-select-box [sortList]="twoOptionList"></onpicks-select-box>-->
+
+      <onpicks-select-box
+        (changeEvent)="amountSelect($event)"
+        [sortList]="numberOptionList">
+      </onpicks-select-box>
+
       <onpicks-button
+        (click)="addToCart(_data?.ship_alone ? 'free' : locationMap[_data?.location.slug].sequence)"
         [type]="'black'"
         [marginLeft]="'1.2rem'"
         [size]="'big'"
@@ -103,6 +117,5 @@
       </onpicks-button>
     </div>
   </div>
-
 </div>
 

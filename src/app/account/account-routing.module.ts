@@ -5,7 +5,7 @@ import {WishListComponent} from './pages/index/wish-list/wish-list.component';
 import {AccountIndexComponent} from './pages/index/account-index.component';
 import {SettingsIndexComponent} from './pages/index/settings/index/settings-index.component';
 import {ProfileComponent} from './pages/index/settings/index/profile/profile.component';
-import {DeliveryAddressComponent} from './pages/index/settings/index/delivery-address/delivery-address.component';
+import {PageDeliveryAddressComponent} from './pages/index/settings/index/delivery-address/page-delivery-address.component';
 import {RefundComponent} from './pages/index/settings/index/refund/refund.component';
 import {MyReviewsIndexComponent} from './pages/index/my-reviews/index/my-reviews-index.component';
 import {WrittenReviewsComponent} from './pages/index/my-reviews/index/written-reviews/written-reviews.component';
@@ -51,7 +51,17 @@ const routes: Routes = [
           },
           {
             path : 'orders-detail',
-            component : OrdersDetailComponent
+            children : [
+              {
+                path : '',
+                component : OrdersDetailComponent
+              },
+              {
+                path : ':id',
+                component : OrdersDetailComponent
+              }
+            ]
+
           }
         ]
       },
@@ -94,7 +104,7 @@ const routes: Routes = [
           },
           {
             path : 'delivery-address',
-            component: DeliveryAddressComponent,
+            component: PageDeliveryAddressComponent,
           },
           {
             path : 'refund',

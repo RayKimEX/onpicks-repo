@@ -1,14 +1,11 @@
-import {
-  Component, ElementRef, HostListener,
-  Input,
-  OnInit
-} from '@angular/core';
+import {ChangeDetectionStrategy, Component, ElementRef, HostListener, Input, OnInit} from '@angular/core';
 import {Store} from '@ngrx/store';
 
 @Component({
   selector: 'emitter-change-preference',
   templateUrl: './change-preference.component.html',
-  styleUrls: ['./change-preference.component.scss']
+  styleUrls: ['./change-preference.component.scss'],
+  changeDetection : ChangeDetectionStrategy.OnPush,
 })
 
 export class ChangePreferenceComponent implements OnInit {

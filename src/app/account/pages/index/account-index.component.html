@@ -1,14 +1,13 @@
 <div class="row account-profile">
-  <div class="account-profile__info">
+  <div class="account-profile__info" *ngLet="(user$ | async) as userData">
     <div class="account-profile__info--image">
-      <img *ngIf="(user$ | async) !== null" src="{{ (user$ | async).avatar }}" alt="">
+      <img src="{{ userData?.avatar === ''? 'http://img.onpicks.com/assets/default_avatar.png' : userData?.avatar }}" alt="">
     </div>
     <div class="account-profile__info-description">
-      <div class="account-profile__info-description--name h1-bold" *ngIf="(user$ | async) !== null">{{ (user$ | async).nickname }}</div>
+      <div class="account-profile__info-description--name h1-bold" >{{ userData?.nickname }}</div>
       <div class="account-profile__info-description--grade subtitle-2-regular">골드 멤버</div>
       <div class="account-profile__info-description--modify subtitle-2-regular u-color-grey">수정하기</div>
     </div>
-
   </div>
 </div>
 

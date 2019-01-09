@@ -1,6 +1,8 @@
 @import '~src/assets/scss/abstracts/variables';
 
-
+onpicks-search-box {
+  float : right;
+}
 
 onpicks-circle-n-button {
   right : -9rem;
@@ -11,7 +13,27 @@ onpicks-circle-n-button {
   border : 1px solid red;
 }
 
+.modal {
+  &__title {
+    margin-bottom : 0.8rem;
+  }
 
+  &__item {
+    padding : 1.6rem 0;
+    border-bottom : 1px solid $color-light-grey;
+
+    &--check-box {
+      float : right;
+    }
+  }
+
+  &__btn {
+    display:inline-block;
+    margin-top : 2.4rem;
+  }
+
+
+}
 
 .p-reviews {
 
@@ -42,9 +64,12 @@ onpicks-circle-n-button {
   }
 
   &__content{
-    margin-top : 0.8rem;
+
     min-height: 10.4rem;
     display:inline-block;
+    &-outer {
+      margin-top : 0.8rem;
+    }
   }
 
   hr {
@@ -60,24 +85,26 @@ onpicks-circle-n-button {
 
   &__table {
 
+    border-collapse: collapse;
+    border-spacing : 0;
     &--point {
-      margin-left : 0.4rem;
+      margin-left : 0.8rem;
+    }
+
+    & tr {
+      border-bottom : 0.4rem solid transparent;;
     }
     & td {
 
-      //margin-right : 2.2rem;
-      font-size : 1.6rem;
-      line-height : 1.75;
-      letter-spacing : 0.04rem;
 
-
+      &:first-child {
+        width : 7.2rem;
+      }
       &:last-child{
         text-align : right;
+        width : 6rem;
       }
 
-      &:not(:last-child){
-        border-right : 2rem solid transparent;;
-      }
     }
 
     &--line {
@@ -112,7 +139,10 @@ onpicks-circle-n-button {
       margin-right:1.6rem;
       border-radius : 50%;
       overflow:hidden;
-
+      img {
+        width:4rem;
+        height:4.2rem;
+      }
 
     }
 
@@ -123,7 +153,6 @@ onpicks-circle-n-button {
       display: inline-block;
 
       & > figcaption {
-        width : 10rem;
         margin-bottom: 1px;
       }
 
@@ -152,6 +181,9 @@ onpicks-circle-n-button {
 
 
   &__pagination {
+    &--outer {
+      text-align : center;
+    }
     margin-left : -1.2rem;
     user-select: none;
     li {

@@ -2,7 +2,12 @@
 input {
   padding: 1rem 1.6rem;
   height : 4rem;
+  border : 1px solid $color-light-grey;
   &::placeholder {
     color: $color-grey;
+  }
+
+  &:read-only {
+    border : 1px solid $color-light-grey;
   }
 }

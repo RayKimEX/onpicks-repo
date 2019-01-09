@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { PRoutingModule } from './p-routing.module';
 import {PIndexComponent} from './pages/index/p-index.component';
-import {PCustomerComponent} from './components/index/pure/p-customer/p-customer.component';
+import {PPictureReviewComponent} from './components/index/pure/p-picture-review/p-picture-review.component';
 import {PDescriptionComponent} from './components/index/pure/p-description/p-description.component';
 import {PMenuComponent} from './components/index/pure/p-menu/p-menu.component';
 import {PReviewsComponent} from './components/index/pure/p-reviews/p-reviews.component';
@@ -33,7 +33,7 @@ import { PEffects } from './store/p.effects';
   declarations: [
     PIndexComponent,
 
-    PCustomerComponent,
+    PPictureReviewComponent,
     PDescriptionComponent,
     PMenuComponent,
 

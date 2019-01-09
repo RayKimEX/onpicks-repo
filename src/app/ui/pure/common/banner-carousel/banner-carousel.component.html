@@ -5,21 +5,53 @@
       <ul #container>
         <li #itemList *ngFor="let item of imagesLargeList; index as i">
           <div class="banner-carousel__item">
-            <div #imageOuter class="banner-carousel__item--image-outer">
-              <img drLazyLoad src="{{item}}" alt="">
+            <div
+              class="banner-carousel__item--image-outer">
+              <img
+                drLazyLoad
+                [relativeOption]="false"
+                src="{{item.imgSrc}}"
+                alt="">
+            </div>
+            <div
+              *ngIf="!(item.title.length === 0 && item.description.length === 0)"
+              class="banner-carousel__item--text row"
+                 [ngStyle]="{ marginLeft : item.marginLeftForText }"
+              >
+              <div
+                class="banner-carousel__item--text-title-outer">
+                <div
+                  *ngFor="let title of item.title"
+                  class="banner-carousel__item--text-title"
+                  [ngClass]="item.titleFontType">
+                  {{title}}
+                </div>
+              </div>
+
+              <div *ngFor="let description of item.description"
+                class="banner-carousel__item--text-description"
+                [ngClass]="item.descriptionFontType"
+              >
+                {{description}}
+              </div>
             </div>
           </div>
         </li>
       </ul>
       <div class="circle-navigate" >
         <div  #circleNavigate class="circle-navigate__outer">
-          <span *ngFor="let item of imagesLargeList.slice(0, imagesLargeList.length - 2); index as i" [ngClass]="{ 'circle-navigate__active' : imageIndex === i + 1 }"></span>
+          <span
+            *ngFor="let item of imagesLargeList.slice(0, imagesLargeList.length - 2); index as i"
+            [ngClass]="{ 'circle-navigate__active' : imageIndex === i + 1 }">
+          </span>
         </div>
       </div>
+      <!--<div class="banner-carousel__content&#45;&#45;blur"></div>-->
     </div>
     <onpicks-circle-n-button #buttonNext (click)="nextButton()" ></onpicks-circle-n-button>
     <onpicks-circle-p-button #buttonPrev (click)="prevButton()" ></onpicks-circle-p-button>
   </div>
+
 </div>
 
 

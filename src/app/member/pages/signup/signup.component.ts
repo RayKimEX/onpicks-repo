@@ -1,12 +1,13 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {ChangeDetectionStrategy, Component, OnInit, ViewChild} from '@angular/core';
 import {AppState} from '../../../core/store/app.reducer';
 import {Store} from '@ngrx/store';
-import {Signup} from '../../../core/store/auth/auth.actions';
+import {Signup, TryLogin} from '../../../core/store/auth/auth.actions';
 
 @Component({
   selector: 'onpicks-signup',
   templateUrl: './signup.component.html',
-  styleUrls: ['./signup.component.scss']
+  styleUrls: ['./signup.component.scss'],
+  changeDetection : ChangeDetectionStrategy.OnPush
 })
 export class SignupComponent implements OnInit {
   @ViewChild('inputEmail') inputEmail;
@@ -21,14 +22,27 @@ export class SignupComponent implements OnInit {
 
   }
 
-  signUp() {
-    this.store.dispatch( new Signup(
-      {
+  signUp(event: KeyboardEvent) {
+
+    if (event === undefined) {
+
+      this.store.dispatch( new Signup({
         email: this.inputEmail.nativeElement.value,
         nickname: this.inputNickName.nativeElement.value,
         password: this.inputPassword.nativeElement.value,
+      }));
+
+    } else {
+      if ( event.key === 'Enter' ) {
+        this.store.dispatch(new Signup(
+          {
+            email: this.inputEmail.nativeElement.value,
+            nickname: this.inputNickName.nativeElement.value,
+            password: this.inputPassword.nativeElement.value,
+          }
+        ));
       }
-    ));
+    }
   }
 
 

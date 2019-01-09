@@ -1,4 +1,15 @@
-import {AfterViewInit, ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output, Renderer2, ViewChild} from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+  Renderer2, SimpleChanges,
+  ViewChild
+} from '@angular/core';
 
 @Component({
   selector: 'onpicks-search-box',
@@ -6,7 +17,7 @@ import {AfterViewInit, ChangeDetectionStrategy, Component, EventEmitter, Input, 
   styleUrls: ['./search-box.component.scss'],
   changeDetection : ChangeDetectionStrategy.OnPush,
 })
-export class SearchBoxComponent implements OnInit, AfterViewInit {
+export class SearchBoxComponent implements OnInit, AfterViewInit, OnChanges {
   @Input('placeholder') placeHolder;
   @Input('width') width;
   @Input('top') top;
@@ -25,6 +36,13 @@ export class SearchBoxComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.insertedValue = '';
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    this.renderer.setAttribute( this.inputTag.nativeElement, 'placeholder', this.placeHolder );
+    this.renderer.setStyle( this.inputTag.nativeElement, 'width', ( this.width - 9.6 ) + 'rem' );
+    this.renderer.setStyle( this.searchInputBox.nativeElement, 'width', this.width + 'rem' );
+    this.renderer.setStyle( this.searchInputBox.nativeElement, 'top', this.top + 'rem' );
   }
 
   ngAfterViewInit() {

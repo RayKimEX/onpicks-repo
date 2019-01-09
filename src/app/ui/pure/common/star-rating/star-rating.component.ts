@@ -2,10 +2,10 @@ import {
   AfterViewInit,
   ChangeDetectionStrategy, ChangeDetectorRef,
   Component,
-  ElementRef,
+  ElementRef, EventEmitter,
   HostListener,
   Input, OnChanges,
-  OnInit,
+  OnInit, Output,
   Renderer2, SimpleChanges,
   ViewChildren
 } from '@angular/core';
@@ -20,9 +20,9 @@ import {interval} from 'rxjs';
 })
 export class StarRatingComponent implements OnInit, AfterViewInit, OnChanges {
   @Input('star-point') starPoint;
-  @Input('async-star-point') starPoint$;
   @Input('size') sizePoint;
   @ViewChildren('shapeStars') shapeStars;
+  @Output('outputStarPoint') outputStartPoint = new EventEmitter();
 
   checkedIndex = 0;
   currentIndex = 0;
@@ -51,21 +51,14 @@ export class StarRatingComponent implements OnInit, AfterViewInit, OnChanges {
     // hlafStar의 조건은 0보다 크고 0.5이하일때 해당
     this.halfStarCondition = (this.starFloat <= 0.5 && this.starFloat !== 0 ) ? true : false;
 
-    // for ( let i = 0; i < this.starInt; i ++) {
-    //   this.renderer.setStyle(this.shapeStars.toArray()[i].nativeElement, 'fill', '#292929');
-    // }
-    //
-    // if ( this.halfStarCondition ) {
-    //   this.renderer.setStyle(this.shapeStars.toArray()[this.starInt].nativeElement, 'fill', 'url(#grad)');
-    // }
+
+    /* 28 star point를 위한 initializing */
+    // this.checkedIndex = this.currentIndex = 3.5
+    // this.isChecked = true;
   }
 
   ngAfterViewInit() {
 
-
-    /////////// For 28 px;
-    // this.currentOverIndex = this.shapeStars.nativeElement.getAttribute('data-index');
-    // console.log(this.currentOverIndex);
   }
 
   numberArray(n: number): any[] {
@@ -90,7 +83,7 @@ export class StarRatingComponent implements OnInit, AfterViewInit, OnChanges {
     console.log('mouselaeve');
     if (this.isChecked) {
       this.currentIndex = this.checkedIndex;
-    }else {
+    } else {
       this.currentIndex = 0;
     }
 
@@ -98,10 +91,11 @@ export class StarRatingComponent implements OnInit, AfterViewInit, OnChanges {
 
 
   updatedChecked($event) {
+    console.log($event.target.value);
     this.isChecked = true;
     this.checkedIndex = parseFloat($event.target.value );
     this.currentIndex = this.checkedIndex;
-    // console.log('[updatedChecked] currentIndex : ' + this.currentIndex);
+    this.outputStartPoint.emit($event.target.value);
   }
 
 

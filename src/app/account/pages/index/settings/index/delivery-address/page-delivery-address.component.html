@@ -1,0 +1,204 @@
+<emitter-delivery-address></emitter-delivery-address>
+<!--<div class="delivery-address">-->
+  <!--<h1 class="h1-bold">배송지</h1>-->
+  <!--<ng-container *ngLet="deliveryData$ | async as data">-->
+    <!--<ng-container *ngIf="data?.length != 0">-->
+      <!--<div class="delivery-address__row">-->
+        <!--&lt;!&ndash;TODO : use a method : propotionally increase or decrease size https://stackoverflow.com/questions/8894506/can-i-scale-a-divs-height-proportionally-to-its-width-using-css&ndash;&gt;-->
+        <!--<div-->
+          <!--*ngFor="let item of data; index as i"-->
+           <!--[ngClass]="item.default ? 'isActive' : 'isNotActive'" class="col-4-of-12 delivery-address__col">-->
+          <!--<div class="delivery-address__col&#45;&#45;padding">-->
+            <!--<div class="delivery-address__col&#45;&#45;name subtitle-2-bold">{{item.full_name}}</div>-->
+            <!--<div class="delivery-address__col&#45;&#45;address subtitle-2-regular">{{item.zip_code}}, {{item.street_address_1}}, {{item.street_address_2}}</div>-->
+            <!--<div class="delivery-address__col&#45;&#45;phoneNumber subtitle-2-regular">{{item.phone_number}}</div>-->
+            <!--<div class="delivery-address__col-bottom">-->
+              <!--<div *ngIf="!item.default" class="delivery-address__col-bottom&#45;&#45;isDefault">-->
+                <!--<a-->
+                  <!--class="subtitle-2-regular u-color-dark-grey"-->
+                  <!--(click)="updateDeliveryDataToDefault(i)">-->
+                  <!--기본 배송지로 설정-->
+                <!--</a>-->
+
+              <!--</div>-->
+              <!--<div *ngIf="item.default" class="delivery-address__col-bottom&#45;&#45;isDefault subtitle-2-regular u-color-green">기본 배송지</div>-->
+              <!--<div class="delivery-address__col-bottom&#45;&#45;modify">-->
+                <!--<a-->
+                  <!--(click)="showModifyDeliveryModal(i)"-->
+                  <!--class="subtitle-2-regular u-color-grey">-->
+                  <!--수정하기-->
+                <!--</a>-->
+              <!--</div>-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
+
+
+      <!--&lt;!&ndash;city: "hellocity"&ndash;&gt;-->
+      <!--&lt;!&ndash;default: true&ndash;&gt;-->
+      <!--&lt;!&ndash;full_name: "김혁해"&ndash;&gt;-->
+      <!--&lt;!&ndash;id: 28&ndash;&gt;-->
+      <!--&lt;!&ndash;phone_number: "01032762679"&ndash;&gt;-->
+      <!--&lt;!&ndash;state: ""&ndash;&gt;-->
+      <!--&lt;!&ndash;street_address_1: "서울특별시 성동구 성수동2가 300-1 성수역"&ndash;&gt;-->
+      <!--&lt;!&ndash;street_address_2: ""&ndash;&gt;-->
+      <!--&lt;!&ndash;zip_code: "04782"&ndash;&gt;-->
+      <!--&lt;!&ndash;__proto__: Object&ndash;&gt;-->
+      <!--<hr>-->
+
+      <!--<onpicks-button-->
+        <!--*ngIf="data?.length < 6"-->
+        <!--class="delivery-address__btn"-->
+        <!--(click)="isShowDeliveryView = !isShowDeliveryView"-->
+        <!--[width]="isShowDeliveryView ? '13.6rem' : '10.9rem'"-->
+        <!--[type]="'white'"-->
+        <!--[size]="'small'">{{isShowDeliveryView ? '배송지 추가 닫기' : '+배송지 추가'}}-->
+      <!--</onpicks-button>-->
+    <!--</ng-container>-->
+    <!--<div  [ngStyle]="{ 'display' : isShowDeliveryView ? 'block' : 'none' }">-->
+      <!--<ng-container *ngTemplateOutlet="templateRef"></ng-container>-->
+      <!--<onpicks-button-->
+        <!--(click)="addDeliveryInfo()"-->
+        <!--[type]="'white'"-->
+        <!--[width]="'10.1rem'">배송지 저장-->
+      <!--</onpicks-button>-->
+    <!--</div>-->
+  <!--</ng-container>-->
+<!--</div>-->
+
+<!--<onpicks-modal-->
+  <!--class="modal"-->
+  <!--(exit)="exitModifyDeliveryModal()" [isShow]="isShowDeliveryModal">-->
+  <!--<h1 class="h1-bold">배송지 수정</h1>-->
+  <!--<div class="modal__body">-->
+    <!--<ng-container *ngTemplateOutlet="templateRef"></ng-container>-->
+  <!--</div>-->
+
+  <!--<onpicks-button-->
+    <!--(click)="updateDeliveryInfo()"-->
+    <!--[width]="'10.3rem'"-->
+    <!--[size]="'big'"-->
+    <!--[type]="'black'">-->
+    <!--수정하기-->
+  <!--</onpicks-button>-->
+<!--</onpicks-modal>-->
+
+
+<!--<ng-template #templateRef>-->
+<!--&lt;!&ndash;<ng-container *ngIf="deliveryData.length == 0 || isShowDeliveryView">&ndash;&gt;-->
+  <!--<div class="delivery-address__insert-box">-->
+    <!--<div class="delivery-address__insert-box&#45;&#45;row">-->
+      <!--<div class="subtitle-2-regular">받는분</div>-->
+      <!--<onpicks-input-box-->
+        <!--#inputRecipientName-->
+        <!--[placeholder]="'받는분 성함'"-->
+        <!--[width]="'40.8rem'">-->
+      <!--</onpicks-input-box>-->
+    <!--</div>-->
+    <!--<div class="delivery-address__insert-box&#45;&#45;row">-->
+      <!--<div class="subtitle-2-regular">받는분 연락처</div>-->
+      <!--<onpicks-input-box-->
+        <!--#inputRecipientNumber-->
+        <!--[placeholder]="'받는분 연락처'"-->
+        <!--[width]="'40.8rem'">-->
+      <!--</onpicks-input-box>-->
+    <!--</div>-->
+    <!--<div class="delivery-address__insert-box&#45;&#45;row">-->
+      <!--<div class="subtitle-2-regular">주소</div>-->
+      <!--<onpicks-input-box-->
+        <!--#inputZipnumber-->
+        <!--(click)="showSearchBox('input')"-->
+        <!--[readonly]="true"-->
+        <!--[marginRight]="'1.6rem'"-->
+        <!--[placeholder]="'우편번호'"-->
+        <!--[width]="'27.8rem'">-->
+      <!--</onpicks-input-box>-->
+      <!--<onpicks-button-->
+        <!--(click)="showSearchBox()"-->
+        <!--[type]="'white'"-->
+        <!--[width]="'11.4rem'">우편번호 찾기-->
+      <!--</onpicks-button>-->
+    <!--</div>-->
+
+    <!--<div-->
+      <!--#inputSearchBoxOuter [ngStyle]="{ display : isShowSearchBox ? 'block' : 'none' }" class="delivery-address__info&#45;&#45;delivery-searchBox-outer">-->
+      <!--<onpicks-search-box-->
+        <!--#inputSearchBox-->
+        <!--[width]="isShowDeliveryModal ? 50.2 : 55.2"-->
+        <!--class="delivery-address__info&#45;&#45;delivery-searchBox"-->
+        <!--[placeholder]="'검색할 주소를 입력해주세요'" >-->
+      <!--</onpicks-search-box>-->
+      <!--<div class="delivery-address__info&#45;&#45;delivery-searchBox-option"-->
+           <!--[ngStyle]="{width : isShowDeliveryModal ? '50.2rem' : '55.2rem'}"-->
+        <!--&gt;-->
+        <!--&lt;!&ndash; TODO : list형식 관련 스타일 가이드 의견 교류 필요, 1. padding을 일괄적으로 주면서, 이쁘게 디자인 안나오는지,  &ndash;&gt;-->
+        <!--<div *ngIf="searchState === 1" class="delivery-address__info&#45;&#45;delivery-searchBox-option-list" >-->
+          <!--<div class="delivery-address__info&#45;&#45;delivery-searchBox-option-list-outer" *ngFor="let item of jusoList ">-->
+            <!--<div class="delivery-address__info&#45;&#45;delivery-searchBox-option-list-1">{{item.zipNo}}</div>-->
+            <!--<table>-->
+              <!--<tr>-->
+                <!--<td>도로명</td>-->
+                <!--<td><button (click)="getCurrentText($event)" [attr.data-zipnumber]="item.zipNo">{{item.jibunAddr}}</button></td>-->
+              <!--</tr>-->
+              <!--<tr>-->
+                <!--<td>지번</td>-->
+                <!--<td><button (click)="getCurrentText($event)" [attr.data-zipnumber]="item.zipNo">{{item.roadAddrPart1}}</button></td>-->
+              <!--</tr>-->
+            <!--</table>-->
+          <!--</div>-->
+        <!--</div>-->
+        <!--<div *ngIf="searchState === 2" class="delivery-address__info&#45;&#45;delivery-searchBox-option-no-result">-->
+          <!--<div>검색결과가 없습니다. 검색어에 잘못된 철자가 없는지,</div>-->
+          <!--<div>정확한 주소인지 확인 후 검색해 주세요.</div>-->
+        <!--</div>-->
+        <!--<div *ngIf="searchState === 0"  class="delivery-address__info&#45;&#45;delivery-searchBox-option-init">-->
+          <!--<div class="delivery-address__info&#45;&#45;delivery-searchBox-option-init-main">-->
+            <!--다음과 같이 검색을 하시면 정확한 결과를 얻을 수 있습니다.-->
+          <!--</div>-->
+          <!--<div class="delivery-address__info&#45;&#45;delivery-searchBox-option-init-title">-->
+            <!--도로명 + 건물번호-->
+          <!--</div>-->
+          <!--<div class="delivery-address__info&#45;&#45;delivery-searchBox-option-init-sub">-->
+            <!--예) 판교역로 235, 제주 첨단로 242-->
+          <!--</div>-->
+          <!--<div class="delivery-address__info&#45;&#45;delivery-searchBox-option-init-title">-->
+            <!--지역명 + 번지-->
+          <!--</div>-->
+          <!--<div class="delivery-address__info&#45;&#45;delivery-searchBox-option-init-sub">-->
+            <!--예) 판교역로 235, 제주 첨단로 242-->
+          <!--</div>-->
+          <!--<div class="delivery-address__info&#45;&#45;delivery-searchBox-option-init-title">-->
+            <!--지역명 + 건물명-->
+          <!--</div>-->
+          <!--<div class="delivery-address__info&#45;&#45;delivery-searchBox-option-init-sub">-->
+            <!--예) 판교역로 235, 제주 첨단로 242-->
+          <!--</div>-->
+          <!--<div class="delivery-address__info&#45;&#45;delivery-searchBox-option-init-title">-->
+            <!--사서함명 + 번호-->
+          <!--</div>-->
+          <!--<div class="delivery-address__info&#45;&#45;delivery-searchBox-option-init-sub">-->
+            <!--예) 판교역로 235, 제주 첨단로 242-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</div>-->
+
+    <!--<div class="delivery-address__insert-box&#45;&#45;row">-->
+      <!--<onpicks-input-box-->
+        <!--#inputJuso-->
+        <!--(click)="showSearchBox('input')"-->
+        <!--[readonly]="true"-->
+        <!--[placeholder]="''"-->
+        <!--[width]="'40.8rem'">-->
+      <!--</onpicks-input-box>-->
+    <!--</div>-->
+    <!--<div class="delivery-address__insert-box&#45;&#45;row">-->
+      <!--<onpicks-input-box-->
+        <!--#inputDetailJuso-->
+        <!--[placeholder]="'상세주소를 입력하세요'"-->
+        <!--[width]="'40.8rem'">-->
+      <!--</onpicks-input-box>-->
+    <!--</div>-->
+  <!--</div>-->
+<!--</ng-template>-->

@@ -12,8 +12,8 @@
 *,
 *::after,
 *::before {
+  //padding: 0;
   margin: 0;
-  padding: 0;
   box-sizing: inherit;
 }
 
@@ -50,6 +50,10 @@ a {
     //transition-duration: .2s;
     opacity: 0.6;
   }
+}
+
+ul {
+  padding : 0;
 }
 
 hr{
@@ -175,6 +179,10 @@ textarea {
   }
 }
 
+.u-open-modal {
+  overflow : hidden !important;
+}
+
 
 .u-fade-in {
   animation-name : fade-in;
@@ -220,7 +228,7 @@ textarea {
 }
 
 .u-img-load-transition {
-  transition : opacity .5s !important;;
+  transition : opacity .5s !important;
 }
 
 .u-visible-none {
@@ -241,6 +249,14 @@ textarea {
 
 .u-opacity-full {
   opacity : 1 !important;;
+}
+
+.u-background-color-green {
+  background-color : $color-green !important;
+}
+
+.u-background-color-pink {
+  background-color : $color-pink !important;
 }
 
 .u-color-white {
@@ -346,7 +362,7 @@ textarea {
   background-position : -48px -40px;
 }
 
-.icon-small-gorge {
+.icon-small-gorgia {
   display:inline-block;
   width:16px;
   height:16px;
@@ -381,7 +397,7 @@ textarea {
   background-position : -120px 0px;
 }
 
-.icon-gorge {
+.icon-gorgia {
   background-size: 200px 56px;
   background-image: url(http://img.onpicks.com/icon-etc.png);
   background-position : -80px 0px;

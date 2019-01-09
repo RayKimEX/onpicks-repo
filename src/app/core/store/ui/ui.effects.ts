@@ -4,7 +4,7 @@ import * as UiActions from './ui.actions';
 import {catchError, map, switchMap} from 'rxjs/operators';
 import {of} from 'rxjs';
 import {UiService} from '../../service/ui/ui.service';
-import {GetCategoryAll, GetCategoryFailure, GetCategorySuccess} from './ui.actions';
+import {GetCategoryAll, GetCategoryAllSuccess, GetCategoryFailure} from './ui.actions';
 
 
 @Injectable()
@@ -20,43 +20,23 @@ export class UiEffects {
     ofType( UiActions.GET_CATEGORY_ALL ),
     map( payload => payload['payload']),
     switchMap( payload => {
-      console.log(payload);
-      console.log(payload['secondSortKey']);
-      return this.uiService.getCategoryAll(1000000)
+      return this.uiService.getCategoryAll(payload['firstSortKey'])
         .pipe(
           map( (categoryInfo) => {
             console.log(categoryInfo);
-            return new GetCategorySuccess( {
+            return new GetCategoryAllSuccess( {
+              type : payload['type'],
               data : categoryInfo.children,
+              categoryTitle : categoryInfo.name,
               secondSortKey : payload['secondSortKey'],
               thirdSortKey : payload['thirdSortKey'],
               fourthSortKey : payload['fourthSortKey'],
             });
           }),
           catchError( (error) => {
-            console.log(error);
             return of(new GetCategoryFailure({ error : error }));
           })
         );
     })
   );
-  //
-  // @Effect()
-  // getCategory = this.actions$.pipe(
-  //   ofType( UiActions.GET_CATEGORY_ALL ),
-  //   map( payload => payload['payload']),
-  //   switchMap( (payload) => {
-  //         console.log(payload);
-  //         console.log(payload['secondSortKey']);
-  //     return new GetCategorySuccess({
-  //       data: this.dataCategory,
-  //       secondSortKey: payload['secondSortKey'],
-  //       thirdSortKey: payload['thirdSortKey'],
-  //       fourthSortKey: payload['fourthSortKey'],
-  //     });
-  //   })
-  // );
-
-
-
 }

@@ -32,6 +32,7 @@ import { CommunicateBoxComponent } from '../shops/pages/index/p/pages/index/revi
 import { SearchNavigatorComponent } from './emitter/search-navigator/search-navigator.component';
 import { ChangePreferenceComponent } from './emitter/change-preference/change-preference.component';
 import {LoadingIconComponent} from './pure/onpicks/item/loading-icon/loading-icon.component';
+import {ModalComponent} from './pure/onpicks/modal/modal.component';
 
 
 @NgModule({
@@ -72,6 +73,7 @@ import {LoadingIconComponent} from './pure/onpicks/item/loading-icon/loading-ico
     SearchNavigatorComponent,
     ChangePreferenceComponent,
     LoadingIconComponent,
+    ModalComponent
   ],
   exports: [
     SimpleCarouselComponent,
@@ -102,6 +104,7 @@ import {LoadingIconComponent} from './pure/onpicks/item/loading-icon/loading-ico
     SearchNavigatorComponent,
     ChangePreferenceComponent,
     LoadingIconComponent,
+    ModalComponent,
   ]
 })
 

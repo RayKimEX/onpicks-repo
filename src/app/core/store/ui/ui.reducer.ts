@@ -1,6 +1,8 @@
 
 import {
+  DISPLAY_ALERT_MESSAGE,
   GET_CATEGORY_ALL_SUCCESS,
+  REMOVE_ALERT_MESSAGE,
   UiActions,
   UPDATE_CATEGORY,
   UPDATE_URL_ACTIVE
@@ -12,6 +14,7 @@ export interface UiState {
   currentCategoryList: any;
   // searchList: any;
   activeUrl: any;
+  alertMessage: any;
 }
 
 export const initialState: UiState = {
@@ -19,6 +22,7 @@ export const initialState: UiState = {
     isLoaded : false,
   },
   activeUrl : [],
+  alertMessage: '',
   // searchList : {},
 };
 
@@ -34,6 +38,7 @@ let sortedSecondList = [];
 let sortedThirdList = [];
 
 // sortInfomation
+let sortAllInfo = {};
 const sortSecondInfo = {};
 const sortThirdInfo = {};
 const sortFourthInfo = {};
@@ -43,12 +48,14 @@ const sortFourthInfo = {};
 let getSecondSortValue;
 let getThirdSortValue;
 let currentSlug;
+let currentName;
+
+let notChangeSecondPrevious;
+let notChangeThirdPrevious;
 
 export function UiReducer(state = initialState, action: UiActions): UiState {
 
   switch (action.type) {
-
-
     case UPDATE_URL_ACTIVE :
 
       return {
@@ -56,15 +63,34 @@ export function UiReducer(state = initialState, action: UiActions): UiState {
         activeUrl : action.payload,
       };
 
-    case GET_CATEGORY_ALL_SUCCESS:
+    case DISPLAY_ALERT_MESSAGE :
+      return {
+        ...state,
+        alertMessage : {
+          message: action.payload,
+          display: true,
+        }
+      }
+
+    case REMOVE_ALERT_MESSAGE :
+      return {
+        ...state,
+        alertMessage : {
+          message : '',
+          display: false,
+        },
+      }
+
+    case GET_CATEGORY_ALL_SUCCESS :
+
       getSecondSortValue = 0;
       getThirdSortValue = 0;
       sortedSecondList = [];
       sortedThirdList = [];
       currentSlug = '';
+      currentName = '';
 
-      // const normalizeSearchData = normalizerSearch(searchConstList);
-
+      console.log(action.payload);
       const normalizedCategoryData = normalizer(action.payload.data);
       const secondCategoryData = normalizedCategoryData.entities.secondCategory;
       const thirdCategoryData = normalizedCategoryData.entities.thirdCategory;
@@ -76,16 +102,11 @@ export function UiReducer(state = initialState, action: UiActions): UiState {
         thirdResultList[key] = secondCategoryData[key].children;
       });
 
-      console.log(sortSecondInfo);
-      console.log(action.payload.secondSortKey);
       getSecondSortValue = sortSecondInfo[action.payload.secondSortKey];
 
       // third category info에 관한것을, 정리
       Object.keys(thirdCategoryData).forEach(function (key) {
         sortThirdInfo[thirdCategoryData[key].slug] = parseInt(key, 10 );
-
-        // })
-        // do something with obj[key]
       });
 
       // fourth category info에 관한것을, 정리
@@ -107,25 +128,28 @@ export function UiReducer(state = initialState, action: UiActions): UiState {
           sortedSecondList.push(item);
         }
       });
-      console.log('11111111')
-      console.log(getSecondSortValue);
 
       thirdResultList[getSecondSortValue].forEach( item => {
-        if ( item === getThirdSortValue) {
+        if ( item === getThirdSortValue ) {
           sortedThirdList.unshift(item);
         } else {
           sortedThirdList.push(item);
         }
       });
 
-      console.log('222222222')
-
       currentSlug = secondCategoryData[getSecondSortValue].slug;
-
+      currentName = secondCategoryData[getSecondSortValue].name;
       if (getThirdSortValue !== undefined ) {
         currentSlug = thirdCategoryData[getThirdSortValue].slug;
-
+        currentName = thirdCategoryData[getThirdSortValue].name;
       }
+
+
+      sortAllInfo = {
+        ...sortSecondInfo,
+        ...sortThirdInfo,
+        ...sortFourthInfo
+      };
 
 
       // 초기값에, 식품을 검은색으로
@@ -154,10 +178,14 @@ export function UiReducer(state = initialState, action: UiActions): UiState {
           secondPrevious : getSecondSortValue,
           thirdPrevious : getThirdSortValue,
         },
+        currentName : currentName,
         currentSlug : currentSlug,
+        currentCode : sortAllInfo[currentSlug],
+        currentTitle : action.payload.categoryTitle,
         // sortSecondInfo : sortSecondInfo,
         // sortThirdInfo : sortThirdInfo,
         // sortFourthInfo : sortFourthInfo,
+        type : action.payload.type,
         isLoaded : true,
       };
 
@@ -173,17 +201,28 @@ export function UiReducer(state = initialState, action: UiActions): UiState {
       break;
 
 
+    // second, third, fourth들이 서로 같이 바껴야 된다.
+    // 그래서 update_Category만 있음.
+    // secondCategory는 인자값 1개
+    // thirdCategory는 인자값 2개
+
+    // TODO : 업데이트 칠때, url기준으로 업데이트를 치는것이 깔끔. 현재는 클릭했을때, 업데이트를 치고, navigate url을 변환.
+    // 그렇지만 새로 고침했을땐, 또 url기준으로 하기때문에, 뭔가 일관되지 못함.
+
+    // TODO : url기준으로 카테고리 상태값도 매칭이 되게 ( 현재 그기능은 안되고 있음 )
     case UPDATE_CATEGORY :
+      notChangeSecondPrevious = false;
+      notChangeThirdPrevious = false;
       getSecondSortValue = 0;
       getThirdSortValue = 0;
       sortedSecondList = [];
       sortedThirdList = [];
       currentSlug = '';
 
-      console.log(state);
-
       getSecondSortValue = sortSecondInfo[action.payload.secondSortKey];
       getThirdSortValue = sortThirdInfo[action.payload.thirdSortKey];
+      console.log(getSecondSortValue);
+      console.log(getThirdSortValue);
       // 전역 변수에 넣은 초기값 (현재 값이아닌 ) 기준으로, 새로 가져와서 변화시킴
       // state에 있는값은 바뀐 값을 다시 가져오기 때문에 의미가 없음.
       secondResultList.forEach( item => {
@@ -203,21 +242,16 @@ export function UiReducer(state = initialState, action: UiActions): UiState {
       });
 
 
-      console.log('@@@@@@@@@@@@@@@@@@@@');
-      console.log(getSecondSortValue);
-      console.log(getThirdSortValue);
-      console.log('@@@@@@@@@@@@@@@@@@@@');
-      // console.log(sortedSecondList);
-
       currentSlug = state.currentCategoryList.entities.secondCategory[getSecondSortValue].slug;
+      currentName = state.currentCategoryList.entities.secondCategory[getSecondSortValue].name;
+      console.log( state.currentCategoryList.entities.secondCategory[getSecondSortValue].name);
 
       if (getThirdSortValue !== undefined ) {
         currentSlug = state.currentCategoryList.entities.thirdCategory[getThirdSortValue].slug;
+        currentName = state.currentCategoryList.entities.thirdCategory[getThirdSortValue].name;
       }
 
-      // thirdResultList.forEach
-      let notChangeSecondPrevious = false;
-      let notChangeThirdPrevious = false;
+
 
       if ( state.currentCategoryList.previous['secondPrevious'] === getSecondSortValue ) {
         notChangeSecondPrevious = true;
@@ -228,9 +262,6 @@ export function UiReducer(state = initialState, action: UiActions): UiState {
         notChangeThirdPrevious = true;
         console.log('notChangeSecondPrevious');
       }
-
-      // console.log(anotherResult);
-      // console.log(state.currentCategoryList.result);
 
       return {
         ...state,
@@ -268,6 +299,8 @@ export function UiReducer(state = initialState, action: UiActions): UiState {
             }
           },
           currentSlug : currentSlug,
+          currentName : currentName,
+          currentCode : sortAllInfo[currentSlug],
         }
       };
       break;

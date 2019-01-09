@@ -2,14 +2,17 @@
 
 
 .adhere-table {
-  border-top : 1px solid $color-light-grey;
-  border-bottom: 1px solid $color-light-grey;
+  &:first-child{
+    border-top : 1px solid $color-light-grey;
+  }
+  // border-bottom: 1px solid $color-light-grey;
 
   &__sub-title-box {
     width: 100%;
     display:table;
     padding: 1.6rem 2.4rem;
     height : 5.2rem;
+
     div {
       display: table-cell;
       vertical-align: middle;
@@ -40,13 +43,18 @@
     &:last-child{
       border-bottom : 1px solid $color-light-grey;
     }
+
     &--image {
       vertical-align: top;
       display:inline-block;
       width: 11.2rem;
       height : 11.2rem;
       margin-right: 2.4rem;
-      background-color:red;
+
+      img {
+        width : 11.2rem;
+        height : 11.2rem;
+      }
     }
 
     &-info {

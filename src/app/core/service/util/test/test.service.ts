@@ -59,29 +59,7 @@ export class TestService {
         // withCredentials: true
       }
     ).subscribe((response) => {
-      const {pay_script, form_data} = response;
-      const script = document.createElement('script');
-      script.src = pay_script;
-      script.async = true;
-      script.onload = function() {
-        console.log('Script loaded');
-        // @ts-ignore
-        INIStdPay.pay(form);
-      }
-      document.head.appendChild(script);
 
-      console.log(form)
-
-      Object.keys(form_data).forEach(key => {
-        const input = document.createElement('input');
-        input.type = 'text';
-        input.name = key;
-        input.value = form_data[key];
-        input.hidden = true;
-
-        form.appendChild(input);
-      });
-      console.log('Form created.');
     });
   }
 }

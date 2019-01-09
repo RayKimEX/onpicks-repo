@@ -1,14 +1,16 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 
 @Component({
   selector: 'emitter-adhere-table',
   templateUrl: './adhere-table.component.html',
-  styleUrls: ['./adhere-table.component.scss']
+  styleUrls: ['./adhere-table.component.scss'],
+  changeDetection : ChangeDetectionStrategy.OnPush,
 })
 export class AdhereTableComponent implements OnInit {
   @Input('type') type;
+  @Input('data') data;
   @Input('isViewModalInput') isViewModalInput;
-  @Output('viewModal') viewModal = new EventEmitter<any>();
+  @Output('viewModal') viewModalEmitter = new EventEmitter<any>();
 
   constructor() {
 
@@ -19,7 +21,8 @@ export class AdhereTableComponent implements OnInit {
   }
 
 
-  changeViewModal() {
-    this.viewModal.emit();
+  viewModal(xParam, xItem, xOrderId) {
+    this.viewModalEmitter.emit({ param : xParam, data: xItem, orderId : xOrderId });
   }
+
 }

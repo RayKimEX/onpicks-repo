@@ -25,14 +25,7 @@ export class AuthService {
 
   signup(parameters: UserSignUpAPI): Observable<any> {
     console.log('signup!!');
-    const reframe = {
-      user : {
-        email : parameters.email,
-        password : parameters.password
-      },
-      nickname : parameters.nickname,
-    }
-    return this.httpClient.post<any>(this.BASE_URL + '/api/customers/', reframe);
+    return this.httpClient.post<any>(this.BASE_URL + '/api/customers/', parameters);
   }
 
   getAuthUser(): Observable<any> {

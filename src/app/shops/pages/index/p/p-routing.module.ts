@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {PIndexComponent} from './pages/index/p-index.component';
-import {CommunicateBoxComponent} from './pages/index/reviews/communicate-box.component';
+import { PIndexComponent } from './pages/index/p-index.component';
+import { CommunicateBoxComponent } from './pages/index/reviews/communicate-box.component';
 
 const routes: Routes = [
   {

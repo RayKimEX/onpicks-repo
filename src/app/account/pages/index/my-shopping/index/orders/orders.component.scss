@@ -2,6 +2,11 @@
 
 .orders {
 
+  emitter-adhere-table {
+    display:block;
+    margin-bottom: 4rem;
+  }
+
   &__title-box {
     display:table;
     width:100%;
@@ -13,7 +18,7 @@
     }
 
     onpicks-sort-box {
-      width:6.5rem;
+      float:right;
       display:table-cell;
       vertical-align: middle;
     }

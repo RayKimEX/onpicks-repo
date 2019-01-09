@@ -62,7 +62,7 @@
 
   <div class="login__input-box">
     <form>
-      <input type="text" #inputEmail placeholder="이메일 주소"/>
+      <input type="text" #inputEmail autocomplete placeholder="이메일 주소"/>
       <input type="password" autocomplete #inputPassword (keypress)="login($event)" placeholder="비밀번호"/>
     </form>
   </div>
@@ -72,7 +72,7 @@
     <onpicks-check-box (click)="checkBox(isPersistent)" [type]="'checkbox'" #isPersistent>로그인 상태 유지</onpicks-check-box>
     <span ><a href="" routerLink="/member/forgot-password" class="u-float-right u-color-green u-regular">비밀번호가 생각나지 않으세요?</a></span>
   </div>
-  <button class="btn btn--black login__btn" (click)="loginClick($event)">로그인</button>
+  <button class="btn btn--black login__btn" (click)="loginClick()">로그인</button>
 
   <div class="login__line"></div>
 

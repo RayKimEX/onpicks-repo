@@ -21,12 +21,12 @@ export class PageSearchComponent implements OnInit {
     private router: Router,
     private searchService: SearchService,
   ) {
-    this.searchData$ = this.route.queryParams.pipe(
-      switchMap((value) => {
-        const param = this.router.url.substring(this.router.url.indexOf('?'), this.router.url.length);
-        return this.searchService.search(param);
-      })
-    );
+    // this.searchData$ = this.route.queryParams.pipe(
+    //   switchMap((value) => {
+    //     const param = this.router.url.substring(this.router.url.indexOf('?'), this.router.url.length);
+    //     return this.searchService.search(param);
+    //   })
+    // );
   }
 
   ngOnInit() {

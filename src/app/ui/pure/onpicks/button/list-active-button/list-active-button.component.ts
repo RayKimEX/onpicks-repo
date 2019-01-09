@@ -5,7 +5,7 @@ import {
   ElementRef,
   EventEmitter,
   HostListener,
-  Input,
+  Input, OnDestroy,
   OnInit,
   Output,
   Renderer2,
@@ -20,7 +20,7 @@ import {fromEvent} from 'rxjs';
   changeDetection : ChangeDetectionStrategy.OnPush,
 })
 
-export class ListActiveButtonComponent implements OnInit, AfterViewInit {
+export class ListActiveButtonComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('outer') outer;
   @ViewChild('plusIcon', {read : ElementRef}) plusIcon;
   @ViewChild('extendUI' ) extendUI;
@@ -44,13 +44,17 @@ export class ListActiveButtonComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    if ( this.isFixExtend ) {
-      this.amount = 1;
-    }
   }
 
   ngAfterViewInit() {
+    this.tempEvent = fromEvent(this.outer.nativeElement, 'transitionend').subscribe( v => {
+      // @ts-ignore
+      if (v.propertyName === 'width' ) { this.extendButtonPressed = false };
+    });
+  }
 
+  ngOnDestroy() {
+    this.tempEvent.unsubscribe();
   }
 
   @HostListener('mousemove')
@@ -106,6 +110,7 @@ export class ListActiveButtonComponent implements OnInit, AfterViewInit {
   extendWidth() {
     // 초기상태일때
 
+    // 눌린것을 체크해서, UI가 꼬이는 현상 방지
     if ( this.extendButtonPressed === false ) {
       this.addEvent.emit(this.amount);
     }
@@ -115,16 +120,10 @@ export class ListActiveButtonComponent implements OnInit, AfterViewInit {
       this.mouseHover = false;
       this.minusOpacity = 1;
 
-      // this.renderer.setStyle(this.extendUI.nativeElement, 'display', 'table-cell');
-      // this.renderer.setStyle(this.outer.nativeElement, 'backgroundColor', '#FFFFFF');
       this.renderer.setStyle(this.plusIcon.nativeElement, 'left', 'auto');
       this.renderer.setStyle(this.plusIcon.nativeElement, 'right', '1.9rem');
-      // this.renderer.setStyle(this.outer.nativeElement, 'width', '12.8rem');
       this.renderer.setStyle(this.outer.nativeElement, 'border-color', '#e5e5e5');
-      this.tempEvent = fromEvent(this.outer.nativeElement, 'transitionend').subscribe( v => {
-        // @ts-ignore
-        if (v.propertyName === 'width' ) { this.extendButtonPressed = false };
-      });
+
 
 
       // 이미 확장 되었을때,
@@ -145,20 +144,17 @@ export class ListActiveButtonComponent implements OnInit, AfterViewInit {
 
       // this.amount--;
       this.subtractEvent.emit(this.amount);
-
+      console.log('delete1');
 
     } else {
 
       if( this.isFixExtend ) { return; }
 
-      this.renderer.setStyle(this.extendUI.nativeElement, 'display', 'none');
-      this.renderer.setStyle(this.outer.nativeElement, 'width', '4rem');
-      this.renderer.setStyle(this.outer.nativeElement, 'border-color', '#292929');
+      // this.renderer.setStyle(this.extendUI.nativeElement, 'display', 'none');
 
 
-      // this.amount--;
       this.subtractEvent.emit(this.amount);
-
+      console.log('delete2');
     }
   }
 }

@@ -4,7 +4,6 @@
 
   width:100%;
   height : 6rem;
-  background-color : $color-green;
 
   &__category {
     position: relative;
@@ -18,9 +17,6 @@
     &--li{
       list-style : none;
       display:inline-block;
-      font-size: 1.4rem;
-      font-weight : 700;
-      color : $color-white;
       &:not(:last-child){
         margin-right : 7.2rem;
       }

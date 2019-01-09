@@ -1,27 +1,31 @@
-<div class="current-nav">
+<div class="current-nav" *ngLet="(pData$ | async) as data">
   <div class="row">
-    Health & Beauty
-    <span>/</span>
-    Health Care
-    <span>/</span>
-    Fitness & Nutrition
-    <span>/</span>
-    Nutrition Bars
-    <span>/</span>
-    Nutrition Bars
+    <span *ngFor="let item of data?.category; index as i">
+      <span class="current-nav__category subtitle-2-bold">{{item.name}}</span>
+      <span *ngIf="data?.category.length-1 !== (i)" class="current-nav__slash">/</span>
+    </span>
+
     <hr>
   </div>
 </div>
 
 <div class="row">
   <div class="col-7-of-12">
-    <onpicks-p-thumbnail></onpicks-p-thumbnail>
+    <onpicks-p-thumbnail
+      [imagesLargeList]="(pData$ | async)?.thumbnails"
+      [imagesSmallList]="(pData$ | async)?.thumbnails">
+
+    </onpicks-p-thumbnail>
+
     <onpicks-p-other-sellers></onpicks-p-other-sellers>
-    <onpicks-p-customer></onpicks-p-customer>
+    <onpicks-p-picture-review
+      [pictureReviewList]="(pPictureReviews$ | async)?.results"
+    ></onpicks-p-picture-review>
     <onpicks-p-item-detail></onpicks-p-item-detail>
-    <onpicks-p-description></onpicks-p-description>
-    <!--async를 붙여서 넘기는 이유는 받을때 좀더 편하게 받게 하기 위함-->
-    <onpicks-p-reviews [reviewAveragePoint]="(pData$ | async)?.review_avg_rating" [totalList]="totalList" #onpicksReview></onpicks-p-reviews>
+    <onpicks-p-description [description]="(pData$ | async)?.description"></onpicks-p-description>
+    <!--async를 붙여서 넘기는 이유는 받을때 좀더 편
+    하게 받게 하기 위함-->
+    <onpicks-p-reviews #onpicksReview></onpicks-p-reviews>
     <onpicks-p-refund></onpicks-p-refund>
   </div>
 
@@ -44,7 +48,7 @@
 </div>
 
 <div class="row">
-  <ui-mini-list [setTitle]="'이 상품 구매자가 함께 본 상품'"></ui-mini-list>
+  <ui-mini-list [infoList]="weeklyBest$ | async" [setTitle]="'이 상품 구매자가 함께 본 상품'"></ui-mini-list>
 </div>
 
 

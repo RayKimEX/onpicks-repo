@@ -51,6 +51,12 @@
     &--image {
       display: inline-block;
       margin-right :2.4rem;
+      width : 11.2rem;
+      height : 11.2rem;
+      img {
+        width : 11.2rem;
+        height : 11.2rem;
+      }
     }
 
     &--info {
@@ -85,6 +91,11 @@
         display: inline-block;
         vertical-align: top;
 
+      }
+
+      &-price {
+        display : inline-block;
+        vertical-align: top;
       }
 
       &-description {

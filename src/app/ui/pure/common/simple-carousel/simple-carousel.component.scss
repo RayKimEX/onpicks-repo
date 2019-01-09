@@ -145,7 +145,7 @@ $customer-height: 64.8rem;
 
 .simple-carousel-animate-second-left {
   display:inline-block;
-  left : 64.6rem;
+  left : 64.8rem;
   animation-name: simple-carousel-animate-left;
   animation-duration: .5s;
   animation-fill-mode: both;
@@ -161,7 +161,7 @@ $customer-height: 64.8rem;
 .simple-carousel-animate-second-right {
   display:inline-block;
   animation-name: simple-carousel-animate-right;
-  left : -64.6rem;
+  left : -64.8rem;
   animation-duration: .5s;
   animation-fill-mode: both;
 }

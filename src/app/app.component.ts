@@ -17,12 +17,12 @@ import {
   RouterEvent
 } from '@angular/router';
 import {
-  GetCategoryAll,
+  GetCategoryAll, UpdateCategory,
   UpdateUrlActive
 } from './core/store/ui/ui.actions';
 import {UiService} from './core/service/ui/ui.service';
-import {TryGetCartInfo} from './core/store/cart/cart.actions';
-import {GetFirstCategory, TryGetSecondCategory, TryGetThirdCategory} from './core/store/search/search.actions';
+import {TryGetCartInfo, TryGetWishListInfo} from './core/store/cart/cart.actions';
+import {CATEGORY_MAP} from './app.config';
 
 @Component({
   selector: 'onpicks-root',
@@ -34,19 +34,25 @@ import {GetFirstCategory, TryGetSecondCategory, TryGetThirdCategory} from './cor
 export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
   title = 'onpicks';
   isCategoryLoaded = false;
+  categoryLoadType = '';
   uiState$;
   constructor(
+    @Inject(CATEGORY_MAP) public categoryMap,
     @Inject(LOCALE_ID) public locale: string,
     private store: Store<AppState>,
     private router: Router,
     private uiService: UiService,
   ) {
-
     this.uiService.postLanguageSetting();
     this.store.dispatch(new TryGetAuthUser());
     this.store.dispatch(new TryGetCartInfo());
+    this.store.dispatch(new TryGetWishListInfo());
 
-    this.uiState$ = this.store.pipe(select( 'ui')).subscribe( val => this.isCategoryLoaded = val.currentCategoryList.isLoaded )
+    this.uiState$ = this.store.pipe(select( 'ui')).subscribe( val => {
+      this.isCategoryLoaded = val.currentCategoryList.isLoaded;
+      this.categoryLoadType = val.currentCategoryList.type;
+    })
+
     router.events.subscribe((event: RouterEvent) => {
       this._navigationInterceptor(event);
     });
@@ -62,36 +68,37 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
 
       this.store.dispatch(new UpdateUrlActive(url));
 
-      if ( url[2] !== 'c' || this.isCategoryLoaded  ) { return; };
       // category가 /c/안에 url일경우
-
-      // onedepth
-      if ( url.length === 4 ) {
-        this.store.dispatch(new GetFirstCategory(
-          { data: '', type : 'cpage', firstSortKey: url[3] }
-          )
-        );
-        return ;
-      }
+      if ( url[2] !== 'c' ) { return; };
 
       // twoDepth
-      if ( url.length === 5 ) {
-        console.log('trygetSecondCategory!!');
-        this.store.dispatch(new TryGetSecondCategory(
-          { firstSortKey: url[3], secondSortKey: url[4], type : 'cpage' }
-          )
-        );
+      // example : shops/c/pantry/house
+      if ( url.length >= 5 ) {
+
+        if ( this.isCategoryLoaded && this.categoryLoadType === url[3] ) {
+          // this.store.dispatch(new UpdateCategory({ secondSortKey :  url[4] }));
+          this.store.dispatch(new UpdateCategory({ secondSortKey : url[4], thirdSortKey:  url[5] }));
+        } else {
+          this.store.dispatch(new GetCategoryAll({  data: '', type : url[3], firstSortKey: this.categoryMap[url[3]], secondSortKey : url[4], thirdSortKey : url[5] }));
+        }
+
+
         return ;
       }
 
-      // threeDepth
-      if ( url.length === 6 ) {
-        this.store.dispatch(new TryGetThirdCategory(
-          { firstSortKey: url[3], secondSortKey: url[4], thirdSortKey: url[5], type :'cpage' }
-          )
-        );
-        return;
-      }
+
+      // if ( url.length === 6 ||  url.length === 7) {
+      //
+      //   if ( this.isCategoryLoaded ) {
+      //     this.store.dispatch(new UpdateCategory({ secondSortKey : url[4], thirdSortKey:  url[5] }));
+      //   } else {      // threeDepth // fourDepth
+      //     // example : shops/c/pantry/house/ads
+      //     // example : shops/c/pantry/house/ads/asd
+      //     this.store.dispatch(new GetCategoryAll({  data: '', type : 'cpage', firstSortKey: this.categoryMap[url[3]], secondSortKey : url[4], thirdSortKey : url[5] }));
+      //   }
+      //
+      //   return;
+      // }
     }
 
     // Set loading state to false in both of the below events to

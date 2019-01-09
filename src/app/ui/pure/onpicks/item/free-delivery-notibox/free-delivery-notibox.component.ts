@@ -9,14 +9,15 @@ import {LOCATION_MAP} from '../../../../../app.config';
 })
 export class FreeDeliveryNotiboxComponent implements OnInit {
   @Input() set setCartInfo(_cartInfo) {
-
     this.cartInfo = _cartInfo;
     if ( _cartInfo == null ) { return; };
-    this.cartInfo = _cartInfo.cartInfo.pack;
-    console.log(this.cartInfo);
+    console.log(_cartInfo);
+    this.totalItems = _cartInfo.total.total_items;
+    this.cartInfo = _cartInfo.pack;
   }
 
   cartInfo = null;
+  totalItems = 0;
 
   constructor(
     @Inject(LOCATION_MAP) public locationMap: any,

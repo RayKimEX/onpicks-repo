@@ -1,6 +1,6 @@
 <div class="onpicks-select-box">
   <button (click)="clickSortBox()" class="onpicks-select-box__fore-button subtitle-2-regular">
-    {{ selectedElement.title }}
+    {{ _selectedElement?.title }}
     <svg *ngIf="isOpen" width="18" height="12" viewBox="0 0 18 12">
       <polyline points="1 9.5 9 1.5 17 9.5" fill="none" stroke="#979797" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
     </svg>
@@ -11,10 +11,10 @@
   <div #HTMLdropDown class="onpicks-select-box__dropdown">
     <div [ngStyle]="{ maxHeight : '145px', overflowY : 'scroll' }" class="onpicks-select-box__dropdown--shape">
       <div>
-        <div *ngFor="let item of sortList.list" class="onpicks-select-box__dropdown--element">
+        <div *ngFor="let item of _sortList.list; index as selectIndex" class="onpicks-select-box__dropdown--element">
           <div class="onpicks-select-box__dropdown--element-outer">
-            <label  (click)="clickSortBoxElement(f)" for="" class="onpicks-select-box__dropdown--element-label">
-              <input #f type="radio" data-value="{{item.value}}" data-name="{{item.title}}">
+            <label  (click)="clickSelectBoxElement(f)" for="" class="onpicks-select-box__dropdown--element-label">
+              <input #f type="radio" data-value="{{item.value}}" attr.data-index="{{selectIndex}}" data-name="{{item.title}}">
               <span class="onpicks-select-box__dropdown--element-text subtitle-2-regular">{{item.title}}</span>
             </label>
           </div>

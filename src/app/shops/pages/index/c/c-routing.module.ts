@@ -12,7 +12,13 @@ import {PageOfficeSuppliesComponent} from './pages/index/pantry-and-household/in
 import {FashionComponent} from './pages/index/fashion/fashion.component';
 import {HomeComponent} from './pages/index/home/home.component';
 import {ElectronicsComponent} from './pages/index/electronics/electronics.component';
-import {BeautyComponent} from './pages/index/beauty/beauty.component';
+import {BeautyIndexComponent} from './pages/index/beauty/index/beauty-index.component';
+import {PageSkincareComponent} from './pages/index/beauty/index/skincare/page-skincare.component';
+import {PageHairComponent} from './pages/index/beauty/index/hair/page-hair.component';
+import {PageFragranceComponent} from './pages/index/beauty/index/fragrance/page-fragrance.component';
+import {PageMakeupComponent} from './pages/index/beauty/index/makeup/page-makeup.component';
+import {PageBathAndBodyComponent} from './pages/index/beauty/index/bath-and-body/page-bath-and-body.component';
+import {PageMenComponent} from './pages/index/beauty/index/men/page-men.component';
 
 const routes: Routes = [
   {
@@ -36,6 +42,10 @@ const routes: Routes = [
               {
                 path : ':id',
                 component : PageGroceryComponent,
+              },
+              {
+                path : ':id/:id',
+                component : PageGroceryComponent,
               }
             ]
           },
@@ -49,12 +59,15 @@ const routes: Routes = [
               {
                 path : ':id',
                 component : PageHouseholdSuppliesComponent
+              },
+              {
+                path : ':id/:id',
+                component : PageHouseholdSuppliesComponent
               }
             ]
           },
           {
             path : 'personal-care',
-            component : PagePersonalCareComponent,
             children : [
               {
                 path : '',
@@ -62,13 +75,16 @@ const routes: Routes = [
               },
               {
                 path : ':id',
+                component : PagePersonalCareComponent
+              },
+              {
+                path : ':id/:id',
                 component : PagePersonalCareComponent
               }
             ]
           },
           {
             path : 'health',
-            component : PageHealthComponent,
             children : [
               {
                 path : '',
@@ -76,13 +92,16 @@ const routes: Routes = [
               },
               {
                 path : ':id',
+                component : PageHealthComponent
+              },
+              {
+                path : ':id/:id',
                 component : PageHealthComponent
               }
             ]
           },
           {
             path : 'baby',
-            component : PageBabyComponent,
             children : [
               {
                 path : '',
@@ -90,13 +109,16 @@ const routes: Routes = [
               },
               {
                 path : ':id',
+                component : PageBabyComponent
+              },
+              {
+                path : ':id/:id',
                 component : PageBabyComponent
               }
             ]
           },
           {
             path : 'pet-supplies',
-            component : PagePetSuppliesComponent,
             children : [
               {
                 path : '',
@@ -105,12 +127,15 @@ const routes: Routes = [
               {
                 path : ':id',
                 component : PagePetSuppliesComponent
+              },
+              {
+                path : ':id/:id',
+                component : PagePetSuppliesComponent
               }
             ]
           },
           {
             path : 'office-supplies',
-            component : PageOfficeSuppliesComponent,
             children : [
               {
                 path : '',
@@ -118,6 +143,10 @@ const routes: Routes = [
               },
               {
                 path : ':id',
+                component : PageOfficeSuppliesComponent
+              },
+              {
+                path : ':id/:id',
                 component : PageOfficeSuppliesComponent
               }
             ]
@@ -138,7 +167,114 @@ const routes: Routes = [
       },
       {
         path: 'beauty',
-        component: BeautyComponent,
+        children : [
+          {
+            path : '',
+            component : BeautyIndexComponent,
+          },
+          {
+            path : 'skincare',
+            children : [
+              {
+                path : '',
+                component : PageSkincareComponent,
+              },
+              {
+                path : ':id',
+                component : PageSkincareComponent,
+              },
+              {
+                path : ':id/:id',
+                component : PageSkincareComponent,
+              }
+            ]
+          },
+          {
+            path : 'hair',
+            children : [
+              {
+                path : '',
+                component : PageHairComponent,
+              },
+              {
+                path : ':id',
+                component : PageHairComponent,
+              },
+              {
+                path : ':id/:id',
+                component : PageHairComponent,
+              }
+            ]
+          },
+          {
+            path : 'fragrance',
+            children : [
+              {
+                path : '',
+                component : PageFragranceComponent,
+              },
+              {
+                path : ':id',
+                component : PageFragranceComponent,
+              },
+              {
+                path : ':id/:id',
+                component : PageFragranceComponent,
+              }
+            ]
+          },
+          {
+            path : 'makeup',
+            children : [
+              {
+                path : '',
+                component : PageMakeupComponent,
+              },
+              {
+                path : ':id',
+                component : PageMakeupComponent,
+              },
+              {
+                path : ':id/:id',
+                component : PageMakeupComponent,
+              }
+            ]
+          },
+          {
+            path : 'bath-and-body',
+            children : [
+              {
+                path : '',
+                component : PageBathAndBodyComponent,
+              },
+              {
+                path : ':id',
+                component : PageBathAndBodyComponent,
+              },
+              {
+                path : ':id/:id',
+                component : PageBathAndBodyComponent,
+              }
+            ]
+          },
+          {
+            path : 'men',
+            children : [
+              {
+                path : '',
+                component : PageMenComponent,
+              },
+              {
+                path : ':id',
+                component : PageMenComponent,
+              },
+              {
+                path : ':id/:id',
+                component : PageMenComponent,
+              }
+            ]
+          },
+        ]
       },
     ]
   },

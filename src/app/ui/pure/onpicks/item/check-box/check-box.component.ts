@@ -1,26 +1,38 @@
-import {AfterViewInit, Component, HostListener, Input, OnInit, Output, Renderer2, ViewChild, ViewChildren} from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  ViewChild
+} from '@angular/core';
+import {v4 as uuid} from 'uuid';
 
 @Component({
   selector: 'onpicks-check-box',
   templateUrl: './check-box.component.html',
-  styleUrls: ['./check-box.component.scss']
+  styleUrls: ['./check-box.component.scss'],
+  changeDetection : ChangeDetectionStrategy.OnPush,
 })
-export class CheckBoxComponent implements OnInit, AfterViewInit {
+export class CheckBoxComponent implements AfterViewInit {
   @Input('type') type;
   @Input('value') value;
   @Input('fontSize') fontSize;
   @Input('marginRight') marginRight;
+  @Input('isChecked') isChecked = false;
 
   // TODO : CheckBox에 Input font-size를 추가해서, manipulate할 수 있게 수정
   @ViewChild('radioBoxView') radioBoxView;
   @ViewChild('checkBoxView') checkBoxView;
+
+  @Output('radioEvent') radioEvent = new EventEmitter<any>();
   view;
-  // isChecked = false;
+  uuid;
 
-  constructor() { }
-
-  ngOnInit() {
-
+  constructor() {
+    this.uuid = uuid();
   }
 
   ngAfterViewInit() {
@@ -31,33 +43,14 @@ export class CheckBoxComponent implements OnInit, AfterViewInit {
     }
   }
 
-  //
-  // @HostListener('mouseover')
-  // onMouseOver() {
-  //   if (this.fView !== undefined) {
-  //     this.isChecked = this.fView.nativeElement.checked;
-  //   } else {
-  //     this.isChecked = this.gView.nativeElement.checked;
-  //   }
-  //
-  //   console.log('mouseover isChecked : ' + this.isChecked);
-  // }
-  //
-  // deselectBox(ref) {
-  //
-  //   if ( this.isChecked === true ) {
-  //     this.isChecked = false;
-  //   } else {
-  //     this.isChecked = true;
-  //   }
-  //
-  //   console.log('deselectBox isChecked : ' + this.isChecked);
-  // }
+  handleChangeForRadio(evt) {
+    this.radioEvent.emit(this.value);
+  }
 
-  clickBox(ref) {
+  handleChangeForCheckbox(ref) {
+    // ref.checked = !ref.checked;
 
-    ref.checked = !ref.checked ;
-
+    this.isChecked = !this.isChecked;
   }
 
 }

@@ -9,8 +9,8 @@ export const UPDATE_CATEGORY = '[UI Search] UPDATE_CATEGORY';
 
 export const UPDATE_URL_ACTIVE = '[URL Active] UPDATE_URL_ACTIVE';
 
-export const ADD_TO_CART = '[UI Cart] ADD_TO_CART';
-export const SUBTRACT_FROM_CART = '[UI Cart] SUBTRACT_FROM_CART';
+export const DISPLAY_ALERT_MESSAGE = '[UI] DISPLAY_ALERT_MESSAGE';
+export const REMOVE_ALERT_MESSAGE = '[UI] REMOVE_ALERT_MESSAGE';
 
 
 
@@ -23,11 +23,13 @@ export class GetCategoryAll implements Action {
 
 }
 
-export class GetCategorySuccess implements Action {
+export class GetCategoryAllSuccess implements Action {
   readonly type = GET_CATEGORY_ALL_SUCCESS;
 
   constructor(public payload: {
+    type: any,
     data: any,
+    categoryTitle: any,
     secondSortKey: number,
     thirdSortKey: number,
     fourthSortKey: number,
@@ -58,9 +60,26 @@ export class UpdateUrlActive implements Action {
   }
 }
 
+export class DisplayAlertMessage implements Action {
+  readonly type = DISPLAY_ALERT_MESSAGE;
+
+  constructor( public payload: any ) {
+
+  }
+}
+export class RemoveAlertMessage implements Action {
+  readonly type = REMOVE_ALERT_MESSAGE;
+
+  constructor( ) {
+
+  }
+}
+
 export type UiActions =
   GetCategoryAll |
-  GetCategorySuccess |
+  GetCategoryAllSuccess |
   GetCategoryFailure |
   UpdateCategory |
-  UpdateUrlActive ;
+  UpdateUrlActive |
+  DisplayAlertMessage |
+  RemoveAlertMessage;

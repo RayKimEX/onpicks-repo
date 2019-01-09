@@ -10,8 +10,6 @@
       <emitter-change-preference [type]="'locale'" class="header__miscell--item">{{ locale === 'ko' ? '한글' : 'ENG' }}</emitter-change-preference>
 
       <div class="header__miscell--profile u-float-right" *ngIf="(auth$ | async) as auth;">
-
-        {{auth.avatar}}
         <ng-container *ngIf=" auth.isAuthenticated === false">
           <span class="header__miscell--profile--login" ><a i18n="@@header__login" routerLink="/member/login" >로그인/login</a></span>
           <span class="header__miscell--profile--slash">&nbsp;|&nbsp;</span>
@@ -21,21 +19,19 @@
         <ng-container *ngIf=" auth.isAuthenticated === true">
           <span class="header__miscell--profile--image">
             <a routerLink="/account">
-              <img src="{{auth.user.avatar}}"  alt="">
+              <img src="{{auth?.user?.avatar === ''? 'http://img.onpicks.com/assets/default_avatar.png' : auth.user.avatar}}"  alt="">
             </a>
           </span>
 
           <!--<span><button (click)="logout()">로그아웃</button></span>-->
         </ng-container>
-
-      <span class="header__miscell--shopping-bag">
-        <a href="" routerLink="/order/cart">
-          <svg width="24" height="24" viewBox="0 0 24 24">
-            <path d="M19.85,9a2.18,2.18,0,0,0-.19-.48A2.83,2.83,0,0,0,17.14,7H17A5,5,0,1,0,7,7H6.86A2.83,2.83,0,0,0,4.34,8.52,2.18,2.18,0,0,0,4.15,9,2.83,2.83,0,0,0,4,9.86v9.28a2.9,2.9,0,0,0,.34,1.34A2.83,2.83,0,0,0,6.86,22H17.14a2.83,2.83,0,0,0,2.52-1.52A2.9,2.9,0,0,0,20,19.14V9.86A2.83,2.83,0,0,0,19.85,9ZM9.24,5.83a3,3,0,0,1,1.63-1.61A2.92,2.92,0,0,1,12,4a3,3,0,0,1,3,3H9A3,3,0,0,1,9.24,5.83ZM18,10v9.14a.86.86,0,0,1-.86.86H6.86A.86.86,0,0,1,6,19.14V9.86A.86.86,0,0,1,6.86,9H17.14a.86.86,0,0,1,.86.86Z" fill="#161616"/>
-          </svg>
-        </a>
-
-      </span>
+        <span class="header__miscell--shopping-bag">
+          <a href="" routerLink="/order/cart">
+            <svg width="24" height="24" viewBox="0 0 24 24">
+              <path d="M19.85,9a2.18,2.18,0,0,0-.19-.48A2.83,2.83,0,0,0,17.14,7H17A5,5,0,1,0,7,7H6.86A2.83,2.83,0,0,0,4.34,8.52,2.18,2.18,0,0,0,4.15,9,2.83,2.83,0,0,0,4,9.86v9.28a2.9,2.9,0,0,0,.34,1.34A2.83,2.83,0,0,0,6.86,22H17.14a2.83,2.83,0,0,0,2.52-1.52A2.9,2.9,0,0,0,20,19.14V9.86A2.83,2.83,0,0,0,19.85,9ZM9.24,5.83a3,3,0,0,1,1.63-1.61A2.92,2.92,0,0,1,12,4a3,3,0,0,1,3,3H9A3,3,0,0,1,9.24,5.83ZM18,10v9.14a.86.86,0,0,1-.86.86H6.86A.86.86,0,0,1,6,19.14V9.86A.86.86,0,0,1,6.86,9H17.14a.86.86,0,0,1,.86.86Z" fill="#161616"/>
+            </svg>
+          </a>
+        </span>
 
       </div>
     </div>
@@ -57,7 +53,7 @@
       <nav class="header__main-nav--router">
         <ul>
           <li>
-            <a href=""
+            <a
                class="h1-bold u-color-grey"
                #shops
                (mouseenter)="hoverMenu()"
@@ -68,31 +64,37 @@
             </a>
           </li>
           <li>
-            <a href=""
+            <a
                class="h1-bold u-color-grey"
-               routerLink="showcases"
-               [routerLinkActive]="['u-color-black', 'u-active']"
+
+               (click)="showPreparingMessage()"
                i18n="@@header__showcases">
                쇼케이스|showcases
             </a>
+            <!--routerLink="showcases"-->
+            <!--[routerLinkActive]="['u-color-black', 'u-active']"-->
           </li>
           <li>
-            <a href=""
+            <a
                class="h1-bold u-color-grey"
-               routerLink="events"
-               [routerLinkActive]="['u-color-black', 'u-active']"
+
+               (click)="showPreparingMessage()"
                i18n="@@header__events">
                이벤트|events
             </a>
+            <!--routerLink="events"-->
+            <!--[routerLinkActive]="['u-color-black', 'u-active']"-->
           </li>
           <li>
-            <a href=""
+            <a
                class="h1-bold u-color-grey"
-               routerLink="reviews"
-               [routerLinkActive]="['u-color-black', 'u-active']"
+
+               (click)="showPreparingMessage()"
                i18n="@@header__reviews">
                리뷰|reviews
             </a>
+            <!--routerLink="reviews"-->
+            <!--[routerLinkActive]="['u-color-black', 'u-active']"-->
           </li>
         </ul>
       </nav>
@@ -108,91 +110,50 @@
   <onpicks-free-delivery-notibox
     #deliveryBox
     [setCartInfo]="cart$ | async"
-    [ngStyle]="{ display : 'none'}"
+    [ngStyle]="{ opacity : '0'}"
   ></onpicks-free-delivery-notibox>
 
   <div #menu class="header-menu__outer">
     <nav>
-      <ul class="header-menu__item">
+      <ul class="header-menu__item" *ngFor="let item of menuMap[locale]?.main">
         <li>
-          <a href="" routerLink="/shops/c/pantry-and-household">
-            <div class="header-menu__item--title header-menu__item--title-grocery">
-              <span i18n="@@header-menu__pantry-and-household"> </span>
+          <a [routerLink]="'/shops/c/' + item.href">
+          <div
+            class="header-menu__item--title"
+            [ngClass] =
+            "[
+              (item.slug === 'pantry-and-household')  ? 'header-menu__item--title-pantry-and-household' : '',
+              (item.slug === 'beauty')  ? 'header-menu__item--title-beauty' : '',
+              (item.slug === 'baby')  ? 'header-menu__item--title-baby' : '',
+              (item.slug === 'health')  ? 'header-menu__item--title-health' : ''
+            ]"
+          >
+              <!--(item.slug === locationMap['hong'])  ? 'header-menu__item&#45;&#45;title-electronics' : '',-->
+              <!--(item.slug === locationMap['hong'])  ? 'header-menu__item&#45;&#45;title-baby' : '',-->
+              <!--(item.slug === locationMap['hong'])  ? 'header-menu__item&#45;&#45;title-health' : '',-->
+              <span>{{item.name}}</span>
             </div>
           </a>
         </li>
-        <li class="header-menu__item--category"><a href="" i18n="@@header-menu__pantry"> </a></li>
-        <li class="header-menu__item--category"><a href="" i18n="@@header-menu__beverage"> </a></li>
-        <li class="header-menu__item--category"><a href="" i18n="@@header-menu__healthy-things"> </a></li>
-        <li class="header-menu__item--category"><a href="" i18n="@@header-menu__pet"> </a></li>
-        <li class="header-menu__item--category"><a href="" i18n="@@header-menu__pantry-and-household-more"> </a></li>
-      </ul>
-      <ul class="header-menu__item">
-        <li>
-          <a href="" routerLink="/shops/c/beauty">
-            <div  class="header-menu__item--title header-menu__item--title-beauty">
-              <span i18n="@@header-menu__beauty"> </span>
-            </div>
-          </a>
+        <li class="header-menu__item--category"
+            *ngFor="let subItem of item.sub">
+          <a [routerLink]="'/shops/c/' + subItem.href">{{subItem.name}}</a>
         </li>
-        <li class="header-menu__item--category"><a href="" i18n="@@header-menu__skin-care"> </a></li>
-        <li class="header-menu__item--category"><a href="" i18n="@@header-menu__hair"> </a></li>
-        <li class="header-menu__item--category"><a href="" i18n="@@header-menu__makeup"> </a></li>
-        <li class="header-menu__item--category"><a href="" i18n="@@header-menu__men-grooming"> </a></li>
-        <li class="header-menu__item--category"><a href="" i18n="@@header-menu__beauty-more"> </a></li>
-      </ul>
-      <ul class="header-menu__item">
-        <li>
-          <a href="" routerLink="/shops/c/fashion">
-            <div class="header-menu__item--title header-menu__item--title-fashion">
-              <span i18n="@@header-menu__fashion"> </span>
-            </div>
-          </a>
+        <li class="header-menu__item--category">
+          <a [routerLink]="'/shops/c/' + item.href">{{item.name}} 더보기 ></a>
         </li>
-        <li class="header-menu__item--category"><a href="" i18n="@@header-menu__women-wear"> </a></li>
-        <li class="header-menu__item--category"><a href="" i18n="@@header-menu__men-wear"> </a></li>
-        <li class="header-menu__item--category"><a href="" i18n="@@header-menu__kids-baby-wear"> </a></li>
-        <li class="header-menu__item--category"><a href="" i18n="@@header-menu__sports"> </a></li>
-        <li class="header-menu__item--category"><a href="" i18n="@@header-menu__fashion-more"> </a></li>
-      </ul>
-      <ul class="header-menu__item">
-        <li>
-          <a href="" routerLink="/shops/c/home">
-            <div class="header-menu__item--title header-menu__item--title-home">
-              <span i18n="@@header-menu__home-deco"> </span>
-            </div>
-          </a>
-        </li>
-        <li class="header-menu__item--category"><a href="" i18n="@@header-menu__home-electronics"> </a></li>
-        <li class="header-menu__item--category"><a href="" i18n="@@header-menu__kitchen"> </a></li>
-        <li class="header-menu__item--category"><a href="" i18n="@@header-menu__bathroom"> </a></li>
-        <li class="header-menu__item--category"><a href="" i18n="@@header-menu__bedroom"> </a></li>
-        <li class="header-menu__item--category"><a href="" i18n="@@header-menu__home-deco-more"> </a></li>
-      </ul>
-      <ul class="header-menu__item">
-        <li>
-          <a href="" routerLink="/shops/c/electronics">
-            <div class="header-menu__item--title header-menu__item--title-electronics">
-              <span i18n="@@header-menu__electronics"> </span>
-            </div>
-          </a>
-        </li>
-        <li class="header-menu__item--category"><a href="" i18n="@@header-menu__TV"> </a></li>
-        <li class="header-menu__item--category"><a href="" i18n="@@header-menu__computer-and-tablet"> </a></li>
-        <li class="header-menu__item--category"><a href="" i18n="@@header-menu__sound-device"> </a></li>
-        <li class="header-menu__item--category"><a href="" i18n="@@header-menu__smart-home"> </a></li>
-        <li class="header-menu__item--category"><a href="" i18n="@@header-menu__electronics-more"> </a></li>
       </ul>
     </nav>
     <div class="header-menu__recommend">
       <ul class="header-menu__recommend--ul">
         <li class="header-menu__recommend--ul-item" i18n="@@header-menu__recommend-category"> </li>
-        <li class="header-menu__recommend--ul-item"><a href="" i18n="@@header-menu__kids-baby"> </a></li>
-        <li class="header-menu__recommend--ul-item"><a href="" i18n="@@header-menu__pet"> </a></li>
-        <li class="header-menu__recommend--ul-item"><a href="" i18n="@@header-menu__sports"> </a></li>
-        <li class="header-menu__recommend--ul-item"><a href="" i18n="@@header-menu__health-foods"> </a></li>
+        <li class="header-menu__recommend--ul-item" *ngFor="let item of menuMap[locale]?.recommandCategory"><a [routerLink]="'/shops/c/' + item.href">{{item.name}}</a></li>
       </ul>
     </div>
+  </div>
+  <div #alertMessage class="header__alert">
+    <span  class="header__alert--message subtitle-2-regular u-color-green">언녕하세요</span>
+    <span class></span>
   </div>
 
 </header>

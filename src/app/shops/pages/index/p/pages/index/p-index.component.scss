@@ -2,15 +2,7 @@
 
 .current-nav {
   margin-top : 3.2rem;
-  font-size : 1.4rem;
-  font-weight: 500;
-  color : $color-black;
-
-  line-height:1.14;
-  //0.1px;
-  letter-spacing: 0.01rem;//0.01rem = 0.1px, 0.1rem = 1px
-
-  span{
+  &__slash {
     padding: 0 2.4rem;
     color: $color-grey;
   }

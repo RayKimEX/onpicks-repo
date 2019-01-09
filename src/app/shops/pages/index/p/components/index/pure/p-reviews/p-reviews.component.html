@@ -2,189 +2,239 @@
   loading stuff...
 </ng-template>
 
-<div class="p-reviews u-margin-bottom">
-  <!--async에대한 처리로 추가로 감싸줌-->
-  <ng-container *ngIf="(reviews$ | async) as data; else loading">
+<onpicks-modal
+  class="modal"
+  (exit)="isShowModal = false" [isShow]="isShowModal">
+  <!--<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40">-->
+    <!--<g fill="none" fill-rule="evenodd">-->
+      <!--<path fill="#008489" d="M40 20c0 11.046-8.954 20-20 20S0 31.046 0 20 8.954 0 20 0s20 8.954 20 20"/>-->
+      <!--<path fill="#FFF" d="M18.968 23.896l.014.014-.014-.014zm-1.517.014l-.01.01.01-.01zm.767 3.313h-.013a2.573 2.573 0 0 1-1.86-.811l-4.934-5.146a1.817 1.817 0 1 1 2.623-2.517l4.185 4.367 7.737-8.007a1.818 1.818 0 0 1 2.613 2.527l-8.506 8.802a2.57 2.57 0 0 1-1.845.785z"/>-->
+    <!--</g>-->
+  <!--</svg>-->
 
-    <h1 class="p-reviews__title h1-bold">
-      리뷰 {{data.results?.length}}개
-    </h1>
-    <ui-star-rating [star-point]="reviewAveragePoint"></ui-star-rating>
-    <onpicks-search-box [width]="20" [top]="-1" [placeholder]="'리뷰 검색'"></onpicks-search-box>
+  <h1 class="modal__title h1-bold">신고사유를 선택해주세요.</h1>
+  <div
+    *ngFor="let key of objectKeys(reasonMap['ko'])"
+    class="modal__item subtitle-2-regular">
+    {{key}}
 
-    <div class="subtitle-1-regular u-color-dark-grey u-margin-bottom--small">
-      별점 분포
-    </div>
-    <table class="p-reviews__table">
-      <tr  *ngFor="let key of objectKeys(starMaxList);  index as i ">
-        <td class="p-reviews__table--col">
-          <svg  width="14" height="14"  class="star--14">
-            <path class="u-color-fill-black"  d="M10.76,8h0l1.47-1.12L13.69,5.8c.48-.36.39-.66-.2-.66H8.79L8.45,4.06h0L7.89,2.25,7.33.44c-.18-.59-.48-.59-.66,0L5.55,4.06h0L5.21,5.14H.51c-.59,0-.68.3-.2.66L1.77,6.92,3.24,8h0l.87.67-.89,2.88L2.66,13.4c-.19.59.06.78.54.41L7,10.91l2.34,1.78,1.46,1.12c.48.37.73.18.54-.41l-.56-1.81L9.89,8.71Z"/>
-          </svg>
-          <span class="p-reviews__table--point">{{5-i}} 점</span>
-        </td>
-        <td class="p-reviews__table--col">
-          <div class="p-reviews__table--line">
-            <div class="p-reviews__table--line-current"
-                 drAnimateOnScroll
-                 [animateObject]="{ property: 'width', value: starMaxList[key] + '%' }"
-                 [timing-function]="'cubic-bezier(0.075, 0.82, 0.165, 1)'"
-                 [duration]="'1s'">
-            </div>
-          </div>
-        </td>
-        <td class="p-reviews__table--col">{{starMaxList[key]}}%</td>
-      </tr>
-    </table>
-
-    <hr id="forReview" #hrLineList>
-
-    <div class="p-reviews__small-header">
-      <div class="subtitle-1-bold u-inline-block">구매자들의 {{data.results.length}}개 리뷰</div>
-      <onpicks-sort-box [sortList]="reviewSortList"></onpicks-sort-box>
-    </div>
-
-    <div *ngFor="let item of data.results; index as i">
-      <figure class="p-reviews__figure u-margin-bottom--small">
-        <span class="p-reviews__figure--outer">
-          <img [drLazyLoad]="{ method : 'animation' }" src="{{data.list[item].author.avatar}}" alt="Person on a tour" class="story__img">
-        </span>
-        <div class="p-reviews__figure--caption">
-          <figcaption class="p-reviews__figure subtitle-1-bold">{{data.list[item].author.nickname}}</figcaption>
-          <ui-star-rating [star-point]="data.list[item].rating"></ui-star-rating>
-          <span class="p-reviews__figure--caption-date subtitle-2-regular u-color-dark-grey">{{data.list[item].modified | timeAgo}}</span>
-        </div>
-      </figure>
-      <div class="subtitle-1-regular u-color-grey">Size: X-Large / Color: Aqua / {{data.list[item].helpful_count}}명이 추천하였습니다 </div>
-
-      <!--array length가 0이거나, pictures[0]이 ''인경우 : 이미지가 없는경우-->
-      <p class="p-reviews__content body-1-regular"
-         [ngStyle]="{'width' : data.list[item].pictures.length === 0 || data.list[item].pictures[0] === '' ? 'auto' : '52.8rem'}">
-        {{data.list[item].text}}
-      </p>
+    <onpicks-check-box
+      class="modal__item--check-box"
+      [value]="reasonMap['ko'][key]"
+      [type]="'radio'">
+    </onpicks-check-box>
 
 
-      <!--array length이 0이 아니면, pictures[0]도 ''가 아니어야한다. : 이미지가 있는 경우-->
-      <span class="p-reviews__image"
-            *ngIf="data.list[item].pictures.length !== 0 && data.list[item].pictures[0] !== ''">
-        <img [drLazyLoad]="{method:'animation'}" src="{{data.list[item].pictures[0]}}" alt="">
-      </span>
+  </div>
+  <onpicks-button
+    class="modal__btn"
+    [width]="'10.1rem'"
+    [size]="'big'"
+    [type]="'black'"
+  >
+    신고하기
+  </onpicks-button>
+  <!--<div class="body-2-regular">보내주신 의견은 회원님들의 쾌적한 Onpicks이용에 많은 도움이 됩니다. 앞으로도 규정 위반 행위를 보게 된다면 신고 기능을 적극 이용해 주시길 부탁드립니다.</div>-->
+</onpicks-modal>
 
-      <div class="p-reviews__option">
-        <a>
-          <img src="http://img.onpicks.com/thumbs-up-icon.jpg" alt="">
-          <span class="p-reviews__option--feature action-1-medium">추천하기</span>
-        </a>
-        <a>
-          <img src="http://img.onpicks.com/comments-icon.jpg" alt="">
-          <span class="p-reviews__option--feature action-1-medium"
-                [routerLink]="'reviews/' + data.list[item].id"
-          >댓글 달기</span>
-        </a>
-        <a>
-          <img src="http://img.onpicks.com/share-icon.jpg" alt="">
-          <span class="p-reviews__option--feature action-1-medium">공유 하기</span>
-        </a>
-        <a>
-          <span class="p-reviews__option--report subtitle-1-regular u-color-grey">신고하기</span>
-        </a>
-        <hr #hrLineList>
+<ng-container *ngLet="(reviews$ | async) as data;">
+  <div class="p-reviews u-margin-bottom" *ngIf="data?.results?.length > 0">
+    <!--async에대한 처리로 추가로 감싸줌-->
+
+      <h1 class="p-reviews__title h1-bold">
+        리뷰 {{data.results?.length}}개
+      </h1>
+      <ui-star-rating
+        [star-point]="data.extraInfo?.reviewAvgRating">
+      </ui-star-rating>
+      <!--<onpicks-search-box-->
+        <!--[width]="20"-->
+        <!--[top]="-1"-->
+        <!--[placeholder]="'리뷰 검색'">-->
+      <!--</onpicks-search-box>-->
+
+      <div class="subtitle-1-regular u-color-dark-grey u-margin-bottom--small">
+        별점 분포
       </div>
-    </div>
-  </ng-container>
+      <table class="p-reviews__table">
+        <tr  *ngFor="let key of objectKeys(starMaxList);  index as i ">
+          <td class="p-reviews__table--col subtitle-1-regular">
+            <svg  width="14" height="14"  class="star--14">
+              <path class="u-color-fill-black"  d="M10.76,8h0l1.47-1.12L13.69,5.8c.48-.36.39-.66-.2-.66H8.79L8.45,4.06h0L7.89,2.25,7.33.44c-.18-.59-.48-.59-.66,0L5.55,4.06h0L5.21,5.14H.51c-.59,0-.68.3-.2.66L1.77,6.92,3.24,8h0l.87.67-.89,2.88L2.66,13.4c-.19.59.06.78.54.41L7,10.91l2.34,1.78,1.46,1.12c.48.37.73.18.54-.41l-.56-1.81L9.89,8.71Z"/>
+            </svg>
+            <span class="p-reviews__table--point">{{5-i}}점</span>
+          </td>
+          <td class="p-reviews__table--col subtitle-1-regular">
+            <div class="p-reviews__table--line">
+              <div class="p-reviews__table--line-current"
+                   drAnimateOnScroll
+                   [animateObject]="{ property: 'width', value: (starMaxList[key] / data.results?.length) * 100 + '%' }"
+                   [timing-function]="'cubic-bezier(0.075, 0.82, 0.165, 1)'"
+                   [duration]="'1s'">
+              </div>
+            </div>
+          </td>
+          <td class="p-reviews__table--col subtitle-1-regular">{{(starMaxList[key] / data.results?.length) * 100}}%</td>
+        </tr>
+      </table>
 
-  <div class="p-reviews__pagination">
-    <ul *ngIf="currentPage >= 1">
-      <li *ngIf="currentPage !== 1">
-        <div (click)="paginate(currentPage - 1)">
-          <svg width="9" height="14" viewBox="0 0 9 14">
-            <path fill="none" fill-rule="evenodd" stroke="#767676" stroke-width="2" d="M8 1L2 7.05 8 13"/>
-          </svg>
-        </div>
-      </li>
+      <hr id="forReview" #hrLineList>
 
-      <span *ngIf="currentPage <= 4">
-        <!--5이하일 경우엔 가변 처리 없이, 무조건 5까지 다 보여줌-->
-        <span *ngIf="totalPageArray.length <= 7">
-          <li *ngFor="let number of totalPageArray;  index as i;" >
-            <div (click)="paginate(i + 1)" [ngClass]="{'p-reviews__pagination--number-bold' : currentPage === (1 + i)}">{{i + 1}}</div>
-          </li>
-        </span>
-        <span *ngIf="totalPageArray.length >= 8">
-          <li *ngFor="let number of numberArray(5)  index as i;" >
-            <div (click)="paginate(i+ 1)" [ngClass]="{'p-reviews__pagination--number-bold' : currentPage === (1 + i)}">{{i+ 1}}</div>
-          </li>
-          <li>
-            <div class="p-reviews__pagination--finite-num">...</div>
-          </li>
-          <li>
-            <div (click)="paginate( totalPageArray.length )" [ngClass]="{'p-reviews__pagination--number-bold' : currentPage === totalPageArray.length }">{{totalPageArray.length }}</div>
-          </li>
-        </span>
-      </span>
+      <div class="p-reviews__small-header">
+        <div class="subtitle-1-bold u-inline-block">구매자들의 {{data.results.length}}개 리뷰</div>
+        <onpicks-sort-box [sortList]="reviewSortList"></onpicks-sort-box>
+      </div>
 
-      <span *ngIf="currentPage >= 5">
-        <!--currentPage가 5이상일 경우에도 가변 처리 없이, 무조건 7까지는 다 보여줌-->
-        <span *ngIf="totalPageArray.length <= 7">
-          <li *ngFor="let number of totalPageArray;  index as i;" >
-            <div (click)="paginate(i + 1)" [ngClass]="{'p-reviews__pagination--number-bold' : currentPage === (1 + i)}">{{i + 1}}</div>
-          </li>
-        </span>
-        <!--currentPage가 5이상이고 totalPage가 8이상일 경우엔 가변처리를 뿌려줌-->
-        <span *ngIf="totalPageArray.length >= 8">
-          <li>
-            <div (click)="paginate( 1 )" >1</div>
-          </li>
-          <li>
-            <div class="p-reviews__pagination--finite-num">...</div>
-          </li>
+      <div *ngFor="let item of data.results; index as i">
+        <figure class="p-reviews__figure u-margin-bottom--small">
+          <span class="p-reviews__figure--outer">
+            <img [drLazyLoad]="{ method : 'animation' }" src="{{data.list[item].author.avatar}}" alt="Person on a tour" class="story__img">
+          </span>
+          <div class="p-reviews__figure--caption">
+            <figcaption class="p-reviews__figure subtitle-1-bold">{{data.list[item].author.nickname}}</figcaption>
+            <ui-star-rating [star-point]="data.list[item].rating"></ui-star-rating>
+            <span class="p-reviews__figure--caption-date subtitle-2-regular u-color-dark-grey">{{data.list[item].modified | timeAgo}}</span>
+          </div>
+        </figure>
+        <div class="subtitle-1-regular u-color-grey">Size: X-Large · Color: Aqua · {{data.list[item].helpful_count}}명이 추천하였습니다 </div>
 
-          <!--currentPage가 5이상이고 totalPage - currentPage가 4보다 크면 가변 처리 되는 조건 ( 거의 대부분의 조건에 해당 )-->
-          <span *ngIf="(totalPageArray.length - currentPage) >= 4">
-            <li>
-             <div (click)="paginate( currentPage - 1 )">{{currentPage - 1}}</div>
-            </li>
-            <li>
-             <div (click)="paginate( currentPage )" class="p-reviews__pagination--number-bold">{{currentPage}}</div>
-            </li>
-            <li>
-             <div (click)="paginate( currentPage + 1)">{{currentPage + 1}}</div>
-            </li>
-            <li>
-              <div class="p-reviews__pagination--finite-num">...</div>
-            </li>
-            <li>
-              <div (click)="paginate( totalPageArray.length )" [ngClass]="{'p-reviews__pagination--number-bold' : currentPage === totalPageArray.length }">{{totalPageArray.length }}</div>
-            </li>
+        <div class="p-reviews__content-outer">
+
+          <!--array length가 0이거나, pictures[0]이 ''인경우 : 이미지가 없는경우-->
+          <p class="p-reviews__content body-1-regular"
+             [ngStyle]="{'width' : data.list[item].pictures.length === 0 || data.list[item].pictures[0] === '' ? 'auto' : '52.8rem'}">
+            {{data.list[item].text}}
+          </p>
+
+
+          <!--array length이 0이 아니면, pictures[0]도 ''가 아니어야한다. : 이미지가 있는 경우-->
+          <span class="p-reviews__image"
+                *ngIf="data.list[item].pictures.length !== 0 && data.list[item].pictures[0] !== ''">
+            <img [drLazyLoad]="{method:'animation'}" src="{{data.list[item].pictures[0]}}" alt="">
           </span>
 
-          <!--totalPage - currentPage가 3이하면 특수 조건 발동 -->
-          <span *ngIf="(totalPageArray.length - currentPage) <= 3">
-            <!-- 특수 조건에서 for 갯수는,totalPage - currentPage + 2가됨,
-             마지막 page일 경우 ( currentPage === length )에는, 1을 더 추가해서, 앞에 하나 더 나오게 함  -->
-            <!-- TODO : 아래의 소스는 가독성이 떨어지므로 한번 수정 필요  -->
-            <span *ngFor="let item of numberArray(totalPageArray.length - currentPage + 2 + (  currentPage === totalPageArray.length ? 1 : 0));  index as i;">
+        </div>
+
+        <div class="p-reviews__option">
+          <a>
+            <img src="http://img.onpicks.com/thumbs-up-icon.jpg" alt="">
+            <span class="p-reviews__option--feature action-1-medium">추천하기</span>
+          </a>
+          <a>
+            <img src="http://img.onpicks.com/comments-icon.jpg" alt="">
+            <span class="p-reviews__option--feature action-1-medium"
+                  [routerLink]="'reviews/' + data.list[item].id"
+            >댓글 달기</span>
+          </a>
+          <a>
+            <img src="http://img.onpicks.com/share-icon.jpg" alt="">
+            <span class="p-reviews__option--feature action-1-medium">공유 하기</span>
+          </a>
+          <a>
+            <span
+              (click)="isShowModal = true"
+              class="p-reviews__option--report subtitle-1-regular u-color-grey">
+              신고하기
+            </span>
+          </a>
+          <hr #hrLineList>
+        </div>
+      </div>
+    <div class="p-reviews__pagination--outer">
+      <div class="p-reviews__pagination">
+        <ul *ngIf="currentPage >= 1">
+          <li *ngIf="currentPage !== 1">
+            <div (click)="paginate(currentPage - 1)">
+              <svg width="9" height="14" viewBox="0 0 9 14">
+                <path fill="none" fill-rule="evenodd" stroke="#767676" stroke-width="2" d="M8 1L2 7.05 8 13"/>
+              </svg>
+            </div>
+          </li>
+
+          <span *ngIf="currentPage <= 4">
+            <!--5이하일 경우엔 가변 처리 없이, 무조건 5까지 다 보여줌-->
+            <span *ngIf="totalPageArray.length <= 7">
+              <li *ngFor="let number of totalPageArray;  index as i;" >
+                <div (click)="paginate(i + 1)" [ngClass]="{'p-reviews__pagination--number-bold' : currentPage === (1 + i)}">{{i + 1}}</div>
+              </li>
+            </span>
+            <span *ngIf="totalPageArray.length >= 8">
+              <li *ngFor="let number of numberArray(5)  index as i;" >
+                <div (click)="paginate(i+ 1)" [ngClass]="{'p-reviews__pagination--number-bold' : currentPage === (1 + i)}">{{i+ 1}}</div>
+              </li>
               <li>
-                <!-- +1의 의미는 현재 페이지에서 앞에 li를 하나 더 나오게 한다는 의미-->
-                <div
-                  (click)="paginate( totalPageArray.length - ( (totalPageArray.length - currentPage + 1 + ( currentPage === totalPageArray.length ? 1 : 0)) - i ) )"
-                  [ngClass]="{'p-reviews__pagination--number-bold' : currentPage === (totalPageArray.length - ( (totalPageArray.length - currentPage + 1 + ( currentPage === totalPageArray.length ? 1 : 0))- i)) }">
-                  {{totalPageArray.length - ( (totalPageArray.length - currentPage + 1 + ( currentPage === totalPageArray.length ? 1 : 0))- i) }}
-                </div>
+                <div class="p-reviews__pagination--finite-num">...</div>
+              </li>
+              <li>
+                <div (click)="paginate( totalPageArray.length )" [ngClass]="{'p-reviews__pagination--number-bold' : currentPage === totalPageArray.length }">{{totalPageArray.length }}</div>
               </li>
             </span>
           </span>
-        </span>
-      </span>
-      <li *ngIf="currentPage !== totalPageArray.length">
-        <div (click)="paginate(currentPage + 1)">
-          <svg width="9" height="14" viewBox="0 0 9 14">
-            <path fill="none" fill-rule="evenodd" stroke="#767676" stroke-width="2" d="M1 13l6-6.05L1 1"/>
-          </svg>
-        </div>
-      </li>
-    </ul>
-  </div>
 
-</div>
+          <span *ngIf="currentPage >= 5">
+            <!--currentPage가 5이상일 경우에도 가변 처리 없이, 무조건 7까지는 다 보여줌-->
+            <span *ngIf="totalPageArray.length <= 7">
+              <li *ngFor="let number of totalPageArray;  index as i;" >
+                <div (click)="paginate(i + 1)" [ngClass]="{'p-reviews__pagination--number-bold' : currentPage === (1 + i)}">{{i + 1}}</div>
+              </li>
+            </span>
+            <!--currentPage가 5이상이고 totalPage가 8이상일 경우엔 가변처리를 뿌려줌-->
+            <span *ngIf="totalPageArray.length >= 8">
+              <li>
+                <div (click)="paginate( 1 )" >1</div>
+              </li>
+              <li>
+                <div class="p-reviews__pagination--finite-num">...</div>
+              </li>
+
+              <!--currentPage가 5이상이고 totalPage - currentPage가 4보다 크면 가변 처리 되는 조건 ( 거의 대부분의 조건에 해당 )-->
+              <span *ngIf="(totalPageArray.length - currentPage) >= 4">
+                <li>
+                 <div (click)="paginate( currentPage - 1 )">{{currentPage - 1}}</div>
+                </li>
+                <li>
+                 <div (click)="paginate( currentPage )" class="p-reviews__pagination--number-bold">{{currentPage}}</div>
+                </li>
+                <li>
+                 <div (click)="paginate( currentPage + 1)">{{currentPage + 1}}</div>
+                </li>
+                <li>
+                  <div class="p-reviews__pagination--finite-num">...</div>
+                </li>
+                <li>
+                  <div (click)="paginate( totalPageArray.length )" [ngClass]="{'p-reviews__pagination--number-bold' : currentPage === totalPageArray.length }">{{totalPageArray.length }}</div>
+                </li>
+              </span>
+
+              <!--totalPage - currentPage가 3이하면 특수 조건 발동 -->
+              <span *ngIf="(totalPageArray.length - currentPage) <= 3">
+                <!-- 특수 조건에서 for 갯수는,totalPage - currentPage + 2가됨,
+                 마지막 page일 경우 ( currentPage === length )에는, 1을 더 추가해서, 앞에 하나 더 나오게 함  -->
+                <!-- TODO : 아래의 소스는 가독성이 떨어지므로 한번 수정 필요  -->
+                <span *ngFor="let item of numberArray(totalPageArray.length - currentPage + 2 + (  currentPage === totalPageArray.length ? 1 : 0));  index as i;">
+                  <li>
+                    <!-- +1의 의미는 현재 페이지에서 앞에 li를 하나 더 나오게 한다는 의미-->
+                    <div
+                      (click)="paginate( totalPageArray.length - ( (totalPageArray.length - currentPage + 1 + ( currentPage === totalPageArray.length ? 1 : 0)) - i ) )"
+                      [ngClass]="{'p-reviews__pagination--number-bold' : currentPage === (totalPageArray.length - ( (totalPageArray.length - currentPage + 1 + ( currentPage === totalPageArray.length ? 1 : 0))- i)) }">
+                      {{totalPageArray.length - ( (totalPageArray.length - currentPage + 1 + ( currentPage === totalPageArray.length ? 1 : 0))- i) }}
+                    </div>
+                  </li>
+                </span>
+              </span>
+            </span>
+          </span>
+          <li *ngIf="currentPage !== totalPageArray.length && totalPageArray.length !== 0">
+            <div (click)="paginate(currentPage + 1)">
+              <svg width="9" height="14" viewBox="0 0 9 14">
+                <path fill="none" fill-rule="evenodd" stroke="#767676" stroke-width="2" d="M1 13l6-6.05L1 1"/>
+              </svg>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</ng-container>
 

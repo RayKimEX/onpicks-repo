@@ -1,30 +1,48 @@
 @import '~src/assets/scss/abstracts/variables';
 
+.modal {
+  &__body {
+    padding-bottom : 2.4rem;
+    margin-bottom : 2.4rem;
+    border-bottom : 1px solid $color-light-grey;
+  }
+}
+
 .checkout {
   margin-top : 3.2rem;
 
+  &_warning {
+    margin-top : 0.8rem;
+  }
   &-order-info {
-
     padding-bottom : 8px;
     border-bottom : 1px solid $color-light-grey;
+
     &__title {
       margin-bottom : 2.4rem;
     }
+
     &__sub-title {
       margin-bottom : 0.8rem;
+      &--outer{
+        margin-bottom : 1.6rem;
+      }
     }
 
     &__input {
       display:inline-block;
-      margin-bottom : 1.6rem;
     }
-
   }
 
   &-addition-info {
 
     border-bottom : 1px solid $color-light-grey;
     padding-bottom : 2.4rem;
+
+    &__outer {
+      margin-bottom : 1.6rem;
+    }
+
     &__title {
       margin-top : 2.4rem;
       margin-bottom : 2.4rem;
@@ -36,10 +54,13 @@
 
     &__input {
       display:inline-block;
-      margin-bottom : 0.8rem;
     }
 
     &__description {
+      margin-top : 0.8rem;
+    }
+
+    &__description2 {
       margin-bottom : 1.6rem;
     }
 
@@ -82,6 +103,7 @@
           font-weight : 700;
           margin-bottom : 2.4rem;
         }
+
         &-tag {
           font-size : 1.4rem;
           line-height : 1.71;
@@ -114,6 +136,69 @@
         padding-bottom : 3rem;
         border-bottom: 1px solid #e5e5e5;
 
+        hr {
+          margin-bottom : 2.4rem;
+        }
+
+        &__col {
+          border-radius : 4px;
+          width : 26.4rem;
+          height : 26.4rem;
+          padding:2.4rem;
+          margin-bottom : 0.8rem;
+
+          &:nth-child(2n) {
+            margin-right : 0;
+          }
+          &--padding {
+            position:relative;
+            height : 100%;
+            width : 100%;
+          }
+
+          &--name {
+            margin-bottom : 8px;
+          }
+
+          &--address {
+            margin-bottom : 8px;
+          }
+
+
+          &-bottom {
+            width : 100%;
+            position: absolute;
+            bottom : 0;
+            &--isDefault {
+              margin-bottom : 0.8rem;
+            }
+
+            &--modify {
+              display: inline-block;
+            }
+
+            &--remove {
+              display: inline-block;
+              float: right;
+            }
+          }
+
+        }
+
+        &__row {
+
+          @include clearfix;
+          margin-bottom: 2.4rem;
+        }
+
+        .isActive {
+          border : 1px solid $color-green;
+        }
+
+        .isNotActive {
+          border : 1px solid $color-light-grey;
+        }
+
         &-title{
           margin-top: 2.4rem;
           margin-bottom : 2.4rem;
@@ -124,12 +209,17 @@
         }
 
         &-save-btn {
+          display:inline-block;
+          margin-top : 1.6rem;
           margin-bottom : 2.4rem;
         }
 
         &-tag {
           margin-top : 2.4rem;
           margin-bottom : 8px;
+          &--outer {
+            margin-bottom : 1.6rem;
+          }
         }
 
         &-description {
@@ -141,11 +231,9 @@
           height : 4rem;
           display:block;
           padding : 0;
-          width: 55.2rem;
           border : 0;
           &-outer {
             display:none;
-
           }
 
 
@@ -185,35 +273,26 @@
                     td:nth-of-type(2) { padding-bottom: 8px;}
                   }
 
-                  td:nth-of-type(1) { color : #8d8d8d; width : 55px}
+                  td:nth-of-type(1) { vertical-align: text-top; color : #8d8d8d; width : 55px}
                   td:nth-of-type(2) {
-                    color : #292929;
+
+                    color : $color-black;
+                    button {
+                      text-align : left;
+                    }
                     button:hover {
                       text-decoration-line: underline;
                     }
-                    //a{
-                    //
-                    //  font-weight:400;
-                    //}
                   }
-
-
-
-                  //table.fixed {table-layout:fixed; width:90px;}/*Setting the table width is important!*/
-                  //table.fixed td {overflow:hidden;}/*Hide text outside the cell.*/
-                  //table.fixed td:nth-of-type(1) {width:20px;}/*Setting the width of column 1.*/
-                  //table.fixed td:nth-of-type(2) {width:30px;}/*Setting the width of column 2.*/
-                  //table.fixed td:nth-of-type(3) {width:40px;}/*Setting the width of column 3.*/
                 }
               }
 
-              &-1{
+              &-1 {
                 font-size : 1.6rem;
                 line-height : 1.25;
                 font-weight : 700;
                 color : #292929;
                 margin-bottom : 1.6rem;
-
               }
 
               //&-2{
@@ -253,7 +332,7 @@
                 border-bottom : 1px solid #e5e5e5;
               }
 
-              &-title{
+              &-title {
                 margin-top : 10px;
                 color : #292929;
                 margin-bottom : 8px;
@@ -263,33 +342,30 @@
                 color : #8d8d8d;
               }
             }
-
           }
         }
 
         &-input {
-          display:block;
+          display : block;
           height : 4rem;
-          width: 40.8rem;
-          padding : 1rem 1.6rem;
-          margin-bottom : 1.6rem;
+          width : 40.8rem;
 
-
+          &:last-of-type {
+            margin-top: 1.6rem;
+          }
           //TODO : 이부분은 크롬에서만 적용됨.
-          &::placeholder{
+          &::placeholder {
             color : #b3b3b3;
           }
 
           &-address {
             display:inline-block;
             height : 4rem;
-
-            padding : 1rem 1.6rem;
             width : 27.8rem;
             margin-bottom : 1.6rem;
 
             //TODO : 이부분은 크롬에서만 적용됨.
-            &::placeholder{
+            &::placeholder {
               color : #b3b3b3;
             }
           }

@@ -11,9 +11,8 @@
 
   &__rate {
     display: inherit;
-    transition-duration: .25s;
+    transition-duration: 1s;
     transition-property: width;
-    //
     height : 1.2rem;
     background-color : $color-green;
     border-radius: 6px;

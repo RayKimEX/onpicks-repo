@@ -27,6 +27,7 @@ import { UserState } from '../../../../../../../core/store/user.model';
   selector: 'onpicks-communicate-box',
   templateUrl: './communicate-box.component.html',
   styleUrls: ['./communicate-box.component.scss'],
+  // ChangeDetection을 안준 이유가 있을거임.
 })
 export class CommunicateBoxComponent implements AfterViewChecked, AfterViewInit, OnDestroy {
   // @Input('comment') comment;
@@ -38,6 +39,7 @@ export class CommunicateBoxComponent implements AfterViewChecked, AfterViewInit,
   @ViewChild('communicateBoxOnly') communicateBoxOnly;
   @ViewChild('communicateBox') communicateBox;
   @ViewChild('scrollOuter') scrollOuter;
+
 
 
   currentReviewIndex = 0;
