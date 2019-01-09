@@ -1,5 +1,6 @@
 import {
-  ChangeDetectionStrategy, ChangeDetectorRef,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   ElementRef,
   EventEmitter,
@@ -7,7 +8,8 @@ import {
   Input, OnChanges,
   OnInit,
   Output,
-  Renderer2, SimpleChanges,
+  Renderer2,
+  SimpleChanges,
   ViewChild
 } from '@angular/core';
 
@@ -18,50 +20,62 @@ import {
   changeDetection : ChangeDetectionStrategy.OnPush,
 })
 export class SelectBoxComponent implements OnInit, OnChanges {
-  @ViewChild('HTMLdropDown') HTMLdropDown;
-  _sortList;
-  @Input('sortList') set sortList(xData) {
-    this._sortList = xData;
-    console.log(xData);
-    console.log(this.selectedElement);
-    if ( this.selectedElement.title === null ) {
+  @Input('scrollMin') scrollMin;
+  @Input('selectedElement') set selectedElement (xSelectedElement) {
+
+    this._selectedElement = xSelectedElement;
+    console.log(  this._selectedElement );
+
+    if ( this._selectedElement.title === null ) {
       if ( this._sortList.title === undefined ) {
         if( this._sortList.list === undefined ) { return ; }
-        this.selectedElement = this._sortList.list[0];
+        this._selectedElement = this._sortList.list[0];
       } else {
-        console.log('@@@@@@@@@');
-
-        console.log(this._sortList.title);
-        this.selectedElement = {
+        this._selectedElement = {
           title : this._sortList.title,
           value : null
         };
       }
 
     } else {
-      if ( this.selectedElement.value === null || this._sortList.list === undefined) {
+      console.log(this._selectedElement);
+      console.log(this._sortList)
+      if ( this._selectedElement.value === null || this._sortList.list === undefined) {
         return ;
       }
+      console.log('dddsfsdfdsfsdf');
 
       /* TODO : forEach말고 keyvalue로 indexing하는 방법으로 바꾸기*/
       this._sortList.list.forEach( v => {
-        if ( v.value == this.selectedElement.value ) {
-          this.selectedElement = v;
+        if ( v.value == this._selectedElement.value ) {
+          this._selectedElement = v;
         }
       });
     }
 
-
-    console.log(this.sortList);
     this.cd.markForCheck();
   }
-  @Input('scrollMin') scrollMin;
-  @Input('selectedElement') selectedElement = { title : null, value : null };
-
-
   // changeEvent는 value만 들어감
   @Output('changeEvent') changeEvent = new EventEmitter();
+  @ViewChild('HTMLdropDown') HTMLdropDown;
 
+  @Input('sortList') set sortList(xData) {
+    this._sortList = xData;
+
+      if ( this._sortList.title === undefined ) {
+        if( this._sortList.list === undefined ) { return ; }
+        this._selectedElement = this._sortList.list[0];
+      } else {
+        this._selectedElement = {
+          title : this._sortList.title,
+          value : null
+        };
+      }
+
+  }
+
+  _selectedElement;
+  _sortList;
   isOpen = false;
   dropBoxItemHeight = 40;
 
@@ -94,9 +108,6 @@ export class SelectBoxComponent implements OnInit, OnChanges {
     // } else {
     //   this.selectedElement = this.sortList;
     // }
-
-
-
   }
 
   clickSortBox() {
@@ -111,13 +122,13 @@ export class SelectBoxComponent implements OnInit, OnChanges {
 
   clickSelectBoxElement(inputValue) {
 
-    this.selectedElement = {
+    this._selectedElement = {
       title : inputValue.name,
       value : inputValue.value,
     }
 
-    // this.selectedElement.value =
-    // this.selectedElement.title = inputValue.name;
+    // this._selectedElement.value =
+    // this._selectedElement.title = inputValue.name;
     this.isOpen = false;
     this.renderer.setStyle( this.HTMLdropDown.nativeElement, 'display', 'none');
     this.changeEvent.emit({ value : inputValue.value, index : inputValue.dataset.index});

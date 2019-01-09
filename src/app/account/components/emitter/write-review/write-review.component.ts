@@ -7,9 +7,14 @@ import {
   EventEmitter,
   HostListener,
   SimpleChanges,
-  OnChanges, Renderer2, ChangeDetectorRef, OnDestroy, ViewChild
+  OnChanges,
+  Renderer2,
+  ChangeDetectorRef,
+  OnDestroy,
+  ViewChild
 } from '@angular/core';
 import {AccountDataService} from '../../../../core/service/data-pages/account/account-data.service';
+import {UiService} from '../../../../core/service/ui/ui.service';
 
 @Component({
   selector: 'onpicks-write-review',
@@ -20,7 +25,20 @@ import {AccountDataService} from '../../../../core/service/data-pages/account/ac
 
 export class WriteReviewComponent implements OnInit, OnChanges {
   @Input('isShow') isShow = false;
-  @Input('data') data;
+  @Input('data') set data(xData) {
+
+    if( xData === undefined || xData.orderData === undefined ) { return; }
+
+    this._data = xData;
+    this.accountDataService.getPendingReviewData(this._data.orderData['product'], this._data.orderData['review'])
+      .subscribe( v => {
+        v.pictures.forEach( item => {
+          this.imageFileList.push({file : '', blobData : item});
+          console.log(item);
+          this.cd.markForCheck();
+        });
+      });
+  }
   @Output('exit') exitEvent = new EventEmitter()
   @ViewChild('reviewTextView') reviewTextView;
   imageFileList: { file, blobData }[] = [];
@@ -29,13 +47,16 @@ export class WriteReviewComponent implements OnInit, OnChanges {
   viewDragArea = true;
   isDraggedEnter = false;
   starRating = 0;
+  _data;
+
+  weeklyBest$;
 
   constructor(
     private renderer: Renderer2,
     private accountDataService: AccountDataService,
-    private cd: ChangeDetectorRef
+    private cd: ChangeDetectorRef,
+    private uiService: UiService
   ) {
-
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -46,20 +67,6 @@ export class WriteReviewComponent implements OnInit, OnChanges {
       this.renderer.removeClass(document.body, 'u-open-modal');
     }
 
-    console.log(changes);
-    // console.log(changes.data !== undefined );
-    // console.log(changes.data.currentValue.orderData);
-    // console.log(changes.data.currentValue.orderData !== undefined );
-    if ( changes.data.currentValue !== undefined && changes.data !== undefined && changes.data.currentValue.orderData !== undefined ) {
-      this.accountDataService.getPendingReviewData(changes.data.currentValue.orderData['product'], changes.data.currentValue.orderData['review'])
-        .subscribe( v => {
-          v.pictures.forEach( item => {
-            this.imageFileList.push({file : '', blobData : item});
-            console.log(item);
-            this.cd.markForCheck();
-          });
-        });
-    }
   }
 
 

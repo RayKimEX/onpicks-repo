@@ -3,7 +3,7 @@ import {Actions, Effect, ofType} from '@ngrx/effects';
 import * as AuthActions from './auth.actions';
 import {
   catchError,
-  map,
+  map, mergeMap,
   switchMap, tap
 } from 'rxjs/operators';
 
@@ -22,6 +22,8 @@ import {Router} from '@angular/router';
 import {of} from 'rxjs';
 import {UserSignUpAPI} from '../user.model';
 import {UiService} from '../../service/ui/ui.service';
+import {TryGetCartInfo} from '../cart/cart.actions';
+import {DisplayAlertMessage} from '../ui/ui.actions';
 
 @Injectable()
 export class AuthEffects {
@@ -48,9 +50,17 @@ export class AuthEffects {
 
             return new LoginSuccess( payload);
           }),
-          catchError( (error) => {
+          catchError( (response) => {
 
-            return of(new LoginFailure({ error : error }));
+            let errorMessage = '';
+            Object.keys(response.error).forEach( key => {
+              errorMessage = response.error[key][0];
+              console.log(errorMessage);
+            })
+            return [
+                new LoginFailure({ error : response }),
+                new DisplayAlertMessage(errorMessage)
+            ];
           })
         );
     })
@@ -63,13 +73,19 @@ export class AuthEffects {
     switchMap( payload => {
       return this.authService.login( payload.email, payload.password,  payload.isPersistent )
         .pipe(
-          map( (user) => {
+          mergeMap( (user) => {
             this.router.navigate(['/shops']);
-            return new LoginSuccess(user);
+            return [
+              new LoginSuccess(user),
+              new TryGetCartInfo()
+            ];
           }),
-          catchError( (error) => {
-            console.log(error);
-            return of(new LoginFailure({ error : error }));
+          catchError( (response) => {
+            console.log(response)
+            return [
+              new LoginFailure({ response : response }),
+              new DisplayAlertMessage(response.error.detail)
+            ];
           })
         );
     })

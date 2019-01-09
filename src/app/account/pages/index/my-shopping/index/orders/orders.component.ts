@@ -11,6 +11,7 @@ import {
 import {
   tap
 } from 'rxjs/operators';
+import {UiService} from '../../../../../../core/service/ui/ui.service';
 
 @Component({
   selector: 'onpicks-orders',
@@ -38,10 +39,15 @@ export class OrdersComponent implements OnInit {
   }
   isShowWriteReview = false;
 
+  weeklyBest$;
+
   constructor(
+    private uiDataService: UiService,
     private accountDataService: AccountDataService,
     private cd: ChangeDetectorRef
   ) {
+
+    this.weeklyBest$ = this.uiDataService.getWeeklyBestGoods().pipe( tap( v => console.log(v));
     this.orderData$ = this.accountDataService
       .getOrdersData()
       .pipe(

@@ -23,7 +23,6 @@ export class AdhereTableComponent implements OnInit {
 
   viewModal(xParam, xItem, xOrderId) {
     this.viewModalEmitter.emit({ param : xParam, data: xItem, orderId : xOrderId });
-    console.log(xItem);
   }
 
 }

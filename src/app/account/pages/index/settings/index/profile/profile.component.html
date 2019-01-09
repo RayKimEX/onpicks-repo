@@ -46,7 +46,7 @@
         </onpicks-input-box>
       </form>
       <onpicks-button
-        (click)="updatePassword()"
+        (click)="changePassword(password)"
         [type]="'white'"
         [width]="'8.5rem'"
       >수정하기</onpicks-button>
@@ -78,19 +78,19 @@
       <div class="settings-profile__row--title subtitle-2-regular">생년월일</div>
 
       <onpicks-select-box
-        [selectedElement]="{ value : data?.birthday.split('-')[1] }"
+        [selectedElement]="{ title: '', value : data?.birthday?.split('-')[1] }"
         (changeEvent)="setMonth($event)"
         class="settings-profile__row--select-box-month"
         [sortList]="monthList"
       ></onpicks-select-box>
       <onpicks-select-box
-        [selectedElement]="{ value : data?.birthday.split('-')[2] }"
+        [selectedElement]="{ value : data?.birthday?.split('-')[2] }"
         (changeEvent)="setDay($event)"
         class="settings-profile__row--select-box-day"
         [sortList]="dayList"
       ></onpicks-select-box>
       <onpicks-select-box
-        [selectedElement]="{ value : data?.birthday.split('-')[0] }"
+        [selectedElement]="{ value : data?.birthday?.split('-')[0] }"
         (changeEvent)="setYear($event)"
         class="settings-profile__row--select-box-year"
         [sortList]="yearList"

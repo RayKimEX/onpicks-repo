@@ -72,4 +72,9 @@ export class AccountDataService {
       this.BASE_URL + '/api/products/' + xProductSlug + '/reviews/' + xReviewId + '/', { rating : xRating, text : xText }
     );
   }
+
+  changePasswordData( xPassword ) {
+    return this.httpClient.post<any>(
+      this.BASE_URL + '/api/customers/change_password/', {password : xPassword});
+  }
 }

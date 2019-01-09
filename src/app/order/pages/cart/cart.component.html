@@ -6,7 +6,14 @@
     wishList:   (cartStore$ | async)?.wishList
   } as syncedData">
   <div class="row">
-    <div class="cart__title h1-bold">쇼핑백</div>
+    <ng-container *ngIf="lengthCheckForFree !== 0 || lengthCheckForPack !== 0">
+      <h1 class="cart__title h1-bold">쇼핑백</h1>
+    </ng-container>
+    <ng-container *ngIf="lengthCheckForFree === 0 && lengthCheckForPack === 0">
+      <h1 class="cart__title h1-bold">쇼핑백이 비었어요!</h1>
+      <div class="cart__title--empty-description subtitle-1-regular u-color-dark-grey">마음에 드는 상품을 못찾으셨나요? Onpicks와 함께 다양한 아이템을 최적의 가격으로 쇼핑하세요!</div>
+    </ng-container>
+
     <ng-container *ngIf="lengthCheckForFree !== 0" >
       <div class="cart__section--title subtitle-1-bold">무료배송 상품</div>
 
@@ -61,7 +68,6 @@
               </div>
               <div class="cart__free-table--info-price subtitle-2-bold">{{itemForFree.price | onpicksCurrency : 'KRW'}}</div>
             </div>
-
           </td>
           <td>
             <div class="cart__free-table--amount">
@@ -241,6 +247,11 @@
     </onpicks-sort-box>
     <div #f class="cart__wishlist">
       <div class="cart__wishlist--title h1-bold">다음에 구매하기</div>
+      <ng-container *ngIf="syncedData?.wishList.length === 0">
+        <div class="subtitle-1-regular u-color-dark-grey">
+          다음에 구매할 상품이 없습니다. 다음에 구매할 상품을 담아주세요!
+        </div>
+      </ng-container>
       <table class="cart__wishlist-table">
         <tr *ngFor="let item of syncedData?.wishList; index as i">
           <td>

@@ -334,14 +334,16 @@
     &-spot-list {
       display:inline-block;
       @include verticalCenter;
-
-
     }
   }
 
   &__title {
     margin-top : 3.2rem;
     margin-bottom : 2.4rem;
+
+    &--empty-description {
+      margin-bottom : 5.6rem;
+    }
   }
 
   &__section--title {
@@ -368,7 +370,6 @@
     tr:not(:last-child) {
       border-bottom : 1px solid #e5e5e5;
     }
-
 
     td:nth-of-type(1){
       width: 64.8rem;

@@ -53,9 +53,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
   }
 
   readonly EMPTY_ORDER_NAME = 0b00000000001;
-
   readonly EMPTY_DATE = 0b00000000010;
-
 
   @ViewChild('nickname', { read: ElementRef}) nickname;
   @ViewChild('email', { read: ElementRef}) email;
@@ -82,12 +80,12 @@ export class ProfileComponent implements OnInit, OnDestroy {
     }
 
     for ( let i = 1 ; i < 32 ; i ++) {
-      const formattedNumber = ("0" + i).slice(-2);
+      const formattedNumber = ('0' + i).slice(-2);
       this.dayList.list.push({ title : ((i) + '일'), value : (formattedNumber) });
     }
 
     for ( let i = 1 ; i < 13 ; i ++ ) {
-      const formattedNumber = ("0" + i).slice(-2);
+      const formattedNumber = ('0' + i).slice(-2);
       this.monthList.list.push({ title : (i) + '월', value : (formattedNumber) });
     }
     console.log(this.monthList);
@@ -99,7 +97,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
           .getProfileData(this.userStore.id)
           .pipe(
             tap( profileData => {
-              console.log(profileData)
               if (profileData.gender !== '') {
                 this.formData.gender = profileData.gender;
                 this.dateData.day = profileData.birthday.split('-')[2];
@@ -146,11 +143,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
     console.log( this.nickname.nativeElement.children[0].value );
 
     this.formData['nickname'] = this.nickname.nativeElement.children[0].value;
-    // data['avatar'] = this.nickname.nativeElement.value;
     this.formData['contact'] = this.tel.nativeElement.children[0].value;
-
-    // data['gender'] = this.nickname.nativeElement.children[0].value;
-    // data['birthday'] = this.nickname.nativeElement.children[0].value;
 
     this.formData['height'] = this.height.nativeElement.children[0].value;
     this.formData['weight'] = this.weight.nativeElement.children[0].value;
@@ -216,11 +209,13 @@ export class ProfileComponent implements OnInit, OnDestroy {
     }
 
     this.cd.markForCheck();
-    console.log(this.errorStatus);
   }
 
   parseInt( data ){
-    console.log(data);
     return parseInt( data , 10);
+  }
+
+  changePassword(xPassword) {
+    this.accountDataService.changePasswordData(this.password.nativeElement.children[0].value).subscribe( v => console.log(v));
   }
 }

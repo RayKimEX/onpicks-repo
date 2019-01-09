@@ -1,12 +1,14 @@
+
+<ng-template #loading>
+  <onpicks-loading-icon></onpicks-loading-icon>
+</ng-template>
+
 <div class="col-9-of-12 available-reviews" *ngLet="orderData$ | async as data">
 
-  <ng-template #loading>
-    <onpicks-loading-icon></onpicks-loading-icon>
-  </ng-template>
 
 
-  <ng-container *ngIf="data?.results.length === 0; else loading">
-    <h1 class="h1-bold">작성 가능한 리뷰</h1>
+  <ng-container *ngIf="data?.results.length === 0;">
+
     <div
 
       class="available-reviews__empty-title subtitle-1-regular u-color-dark-grey"
@@ -22,7 +24,8 @@
     </ui-mini-list>
   </ng-container>
 
-  <ng-container  *ngIf="data?.results.length !== 0">
+  <ng-container  *ngIf="data?.results.length !== 0; else loading">
+    <h1 class="h1-bold">작성 가능한 리뷰</h1>
     <emitter-adhere-table
       (viewModal)="viewModal($event)"
       [data]="data"
@@ -30,8 +33,8 @@
     </emitter-adhere-table>
 
     <onpicks-write-review
-      [data]="writeReview.currentData"
-      (exit)="writeReview.isShow = !writeReview.isShow"
+      [data]="writeReview"
+      (exit)="writeReview.isShow = false"
       [isShow]="writeReview.isShow">
     </onpicks-write-review>
   </ng-container>

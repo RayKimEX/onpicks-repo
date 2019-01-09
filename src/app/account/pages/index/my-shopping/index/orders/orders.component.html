@@ -10,7 +10,18 @@
         [sortList]="sortList">
       </onpicks-sort-box>
     </div>
+    <ng-container *ngIf="data?.results.length === 0">
+      <div class="u-margin-bottom subtitle-1-regular u-color-dark-grey">
+        주문한 상품이 없습니다. Onpicks와 함께 다양한 아이템을 최적의 가격으로 쇼핑하세요!
+      </div>
 
+      <ui-mini-list
+        [setTitle]="'추천상품'"
+        [infoList]="weeklyBest$ | async"
+      >
+
+      </ui-mini-list>
+    </ng-container>
 
     <!-- TODO : 이거는 금방 만들수 있을것 같아서, 조금만 작업하고 안함 -->
     <emitter-adhere-table
