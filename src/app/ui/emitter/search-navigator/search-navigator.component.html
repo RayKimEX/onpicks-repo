@@ -35,18 +35,82 @@
             <!--해당을 누르면 식품품 생홀용품 카테고리 메인페이지로 가게-->
             <ng-container *ngIf="router.url.split('/')[2].indexOf('search') > -1">
               <div class="c-category-navigator__title subtitle-1-bold">카테고리</div>
-              <div class="subtitle-3-bold u-color-dark-grey">모든 카테고리</div>
+              <div>
+                <a
+                  class="subtitle-3-bold u-color-dark-grey"
+                  (click)="removeAllFilterCategory()">
+                  모든 카테고리
+                </a>
+              </div>
               <ng-container *ngIf="categoryList?.length !== 0">
-                <div *ngFor="let category of categoryList">
-                  <div class="subtitle-3-regular">
-                    <span *ngIf="currentCategory != 0 && category.code != currentCategory"><</span>{{ category.name }}
+                <div
+                  [ngStyle]="{marginLeft : currentCategory == undefined || currentCategory / category?.code <= 1 ? '10px' : ''}"
+                  *ngFor="let category of categoryList">
+                  <div class="c-category-navigator__item subtitle-3-bold">
+                    <span
+                      class="c-category-navigator__category-indicator"
+                      *ngIf="category?.code / currentCategory  < 1">
+                      <svg width="6" height="10" viewBox="0 0 6 10">
+ 	                      <path fill="#B3B3B3" d="M5 10a.997.997 0 0 1-.707-.293l-4-4a.999.999 0 0 1 0-1.414l4-4a.999.999 0 1 1 1.414 1.414L2.414 5l3.293 3.293A.999.999 0 0 1 5 10" />
+                      </svg>
+                    </span>
+                    <span>
+                      <a
+                        [ngClass]="{'u-color-dark-grey' : (category?.code / currentCategory < 1)}"
+                        (click)="categoryClicked(category?.code)">{{ category.name }}
+                      </a>
+                    </span>
                   </div>
-                  <div class="subtitle-3-regular" *ngFor="let twoCat of category?.children">
-                    <span *ngIf="twoCat.code != currentCategory"><</span>{{ twoCat.name }}
-                    <div class="subtitle-3-regular" *ngFor="let threeCat of twoCat?.children">
-                      <span *ngIf="twoCat.code != currentCategory && threeCat.code != currentCategory"><</span>{{ threeCat.name }}
-                      <div style="margin-left: 8px" class="subtitle-3-regular" *ngFor="let fourthCat of threeCat?.children">
-                        {{ fourthCat.name }}
+                  <div
+                    [ngStyle]="{marginLeft : currentCategory / twoCat?.code <= 1 ? '10px' : ''}"
+                    class="c-category-navigator__item subtitle-3-bold" *ngFor="let twoCat of category?.children">
+                    <span
+                      class="c-category-navigator__category-indicator"
+                      *ngIf="twoCat?.code / currentCategory < 1">
+                      <svg width="6" height="10" viewBox="0 0 6 10">
+ 	                      <path fill="#B3B3B3" d="M5 10a.997.997 0 0 1-.707-.293l-4-4a.999.999 0 0 1 0-1.414l4-4a.999.999 0 1 1 1.414 1.414L2.414 5l3.293 3.293A.999.999 0 0 1 5 10" />
+                      </svg>
+                    </span>
+                    <span>
+                      <a
+                        [ngClass]="[
+                          (twoCat?.code / currentCategory < 1) ? 'u-color-dark-grey' : '',
+                          (twoCat?.code / currentCategory < 1 || currentCategory == twoCat?.code ) ? 'subtitle-3-bold' : 'subtitle-3-regular'
+                        ]"
+                        (click)="categoryClicked(twoCat?.code)">{{ twoCat.name }}
+                      </a>
+                    </span>
+                    <div
+                      [ngStyle]="{marginLeft : currentCategory / threeCat?.code <= 1 ? '10px' : ''}"
+                      class="c-category-navigator__item subtitle-3-bold"
+                      *ngFor="let threeCat of twoCat?.children">
+                      <span
+                        class="c-category-navigator__category-indicator"
+                        *ngIf="threeCat?.code / currentCategory < 1">
+                        <svg width="6" height="10" viewBox="0 0 6 10">
+ 	                        <path fill="#B3B3B3" d="M5 10a.997.997 0 0 1-.707-.293l-4-4a.999.999 0 0 1 0-1.414l4-4a.999.999 0 1 1 1.414 1.414L2.414 5l3.293 3.293A.999.999 0 0 1 5 10" />
+                        </svg>
+                      </span>
+                      <span>
+                        <a
+                          [ngClass]="[
+                            (threeCat?.code / currentCategory < 1) ? 'u-color-dark-grey' : '',
+                            (threeCat?.code / currentCategory < 1 || currentCategory == threeCat?.code ) ? 'subtitle-3-bold' : 'subtitle-3-regular'
+                            ]"
+                          (click)="categoryClicked(threeCat?.code)">
+                          {{ threeCat.name }}
+                        </a>
+                      </span>
+                      <div
+                        style="margin-left: 10px"
+                        class="c-category-navigator__item"
+                        *ngFor="let fourthCat of threeCat?.children">
+                        <a
+                          [ngClass]="[(currentCategory == fourthCat?.code ) ? 'subtitle-3-bold' : 'subtitle-3-regular']"
+                          (click)="categoryClicked(fourthCat?.code)">
+                          {{ fourthCat?.name }}
+                        </a>
+
                       </div>
                     </div>
                   </div>
@@ -161,7 +225,13 @@
             <div class="c-brand-navigator__title">
               <span class="c-brand-navigator__title--name subtitle-3-bold">브랜드</span>
               <span class="c-brand-navigator__title--count subtitle-3-regular u-color-dark-grey">{{brandList?.length}}</span>
-              <span class="c-brand-navigator__title--remove subtitle-3-regular u-color-grey">모두제거</span>
+              <span class="c-brand-navigator__title--remove">
+                <a
+                  class="subtitle-3-regular u-color-grey"
+                  (click)="removeAllFilterBrand()">
+                  모두제거
+                </a>
+              </span>
             </div>
             <onpicks-search-box
               class="c-brand-navigator__search-box"
@@ -193,7 +263,12 @@
             <div class="c-value-navigator__title">
               <span class="c-value-navigator__title--name subtitle-3-bold">식품인증</span>
               <span class="c-value-navigator__title--count subtitle-3-regular u-color-dark-grey">{{valueList?.length}}</span>
-              <span class="c-value-navigator__title--remove subtitle-3-regular u-color-grey">모두제거</span>
+              <span class="c-value-navigator__title--remove">
+                <a
+                  class="subtitle-3-regular u-color-grey"
+                  (click)="removeAllFilterValue()">모두제거
+                </a>
+              </span>
             </div>
             <div class="c-value-navigator__content">
               <ul class="c-value-navigator__content-ul">

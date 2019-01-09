@@ -451,10 +451,9 @@ onpicks-check-box {
 
 .c-category-navigator {
 
-
-
-
-
+  &__category-indicator {
+    margin-right : 4px;
+  }
   &__title {
     margin-bottom :1.6rem;
   }

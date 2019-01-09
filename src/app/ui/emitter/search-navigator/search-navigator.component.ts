@@ -47,7 +47,7 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
 
   imageIndex = 0;
 
-  ///////////////////////
+  /******* pagination ******/
   totalCount;
   totalPage;
 
@@ -60,7 +60,7 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
 
   searchState = '';
 
-  // subscribe
+  /******* subscribe ******/
   cartStore$;
   uiStore$;
   queryParams$;
@@ -117,12 +117,12 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
         this.currentList = null;
         this.orderedFilterList = [];
         this.currentCategory = val.category;
+        console.log(this.currentCategory);
 
 
         const url = this.router.url.split('/');
         if (url[2].indexOf('search') > -1) {
           this.searchState = 'search';
-          this.categoryList = null;
           this.result = null;
           this.previous = null;
           this.currentSlug = null;
@@ -148,7 +148,6 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
               this.totalPageArray.push(this.totalPageArray.length + 1);
 
               this.currentList = this.infoList.slice(0, this.maxRow);
-              console.log(this.currentList);
               this.cd.markForCheck();
             }
           });
@@ -185,8 +184,7 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
           const tempArray = temp.split('&');
           tempArray.forEach(item => {
             const paramTemp = item.split('=');
-
-            if (paramTemp[0] !== 'ordering') {
+            if ( paramTemp[0] !== 'ordering' && paramTemp[0] !== 'category'  ) {
               this.orderedFilterList.push(paramTemp[1]);
             } else {
               this.currentSortSlug = paramTemp[1];
@@ -202,20 +200,33 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
           term: val.term,
         };
 
-        this.queryParams.brand.forEach(v => {
-          const tempForInfo = Object.assign({[v]: true});
-          this.brandListForCheck = {...this.brandListForCheck, ...tempForInfo};
-        });
+        console.log(this.queryParams.brand);
+        if ( this.queryParams.brand.length === 0 ){
+          this.brandListForCheck = {};
+        } else {
+          this.queryParams.brand.forEach(v => {
+            const tempForInfo = Object.assign({[v]: true});
+            this.brandListForCheck = {...this.brandListForCheck, ...tempForInfo};
+          });
+        }
 
-        this.queryParams.value.forEach(v => {
-          const tempForInfo = Object.assign({[v]: true});
-          this.valueListForCheck = {...this.valueListForCheck, ...tempForInfo};
-        });
+        if ( this.queryParams.value.length === 0 ){
+          this.valueListForCheck = {};
+        } else {
+          this.queryParams.value.forEach(v => {
+            const tempForInfo = Object.assign({[v]: true});
+            this.valueListForCheck = {...this.valueListForCheck, ...tempForInfo};
+          });
+        }
 
-        this.queryParams.location.forEach(v => {
-          const tempForInfo = Object.assign({[v]: true});
-          this.locationListForCheck = {...this.locationListForCheck, ...tempForInfo};
-        });
+        if ( this.queryParams.location.length === 0 ){
+          this.locationListForCheck = {};
+        } else {
+          this.queryParams.location.forEach(v => {
+            const tempForInfo = Object.assign({[v]: true});
+            this.locationListForCheck = {...this.locationListForCheck, ...tempForInfo};
+          });
+        }
 
         this.cd.markForCheck();
       });
@@ -362,12 +373,34 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
     });
   }
 
+
+
   sortClicked(xSortSlug) {
     this.currentSortSlug = xSortSlug;
     // this.orderedFilterListForCheck[]
     this.router.navigate(['/shops/search'], {queryParams: {ordering: xSortSlug}, queryParamsHandling: 'merge'});
   }
 
+  categoryClicked( xCategoryCode ){
+    this.router.navigate( ['/shops/search'], {queryParams: {category: xCategoryCode}, queryParamsHandling: 'merge'});
+  }
+
+
+  removeAllFilterCategory(){
+    this.router.navigate(['/shops/search'], {queryParams: {category: null}, queryParamsHandling: 'merge'});
+  }
+
+  removeAllFilterBrand(){
+    this.router.navigate(['/shops/search'], {queryParams: {brand: null}, queryParamsHandling: 'merge'});
+  }
+
+  removeAllFilterValue(){
+    this.router.navigate(['/shops/search'], {queryParams: {value: null}, queryParamsHandling: 'merge'});
+  }
+
+  removeAllFilterLocation(){
+    this.router.navigate(['/shops/search'], {queryParams: {location: null}, queryParamsHandling: 'merge'});
+  }
 
   normalizer ( data ) {
     const slug = new schema.Entity('slug', {

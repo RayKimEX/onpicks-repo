@@ -193,7 +193,7 @@ export class CheckoutComponent implements OnInit, AfterViewInit, OnDestroy {
                   .set('resultType', 'json')),
                 // json으로 바꿔주기 위해 flatMap 사용
                 flatMap( (val: HttpParams) =>
-                  this.httpClient.get<any>('http://www.juso.go.kr/addrlink/addrLinkApi.do', { params: val, responseType : 'json' }, )
+                  this.httpClient.get<any>(location.protocol + '//www.juso.go.kr/addrlink/addrLinkApi.do', { params: val, responseType : 'json' }, )
                 ),
                 map( val => val['results'].juso ),
               ).subscribe(val => {
