@@ -47,7 +47,7 @@ export class OrdersComponent implements OnInit {
     private cd: ChangeDetectorRef
   ) {
 
-    this.weeklyBest$ = this.uiDataService.getWeeklyBestGoods().pipe( tap( v => console.log(v));
+    this.weeklyBest$ = this.uiDataService.getWeeklyBestGoods();
     this.orderData$ = this.accountDataService
       .getOrdersData()
       .pipe(
