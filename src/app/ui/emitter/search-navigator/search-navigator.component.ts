@@ -15,6 +15,7 @@ import {
 import {SearchService} from '../../../core/service/data-pages/search/search.service';
 import {LOCATION_MAP} from '../../../app.config';
 import {UiService} from '../../../core/service/ui/ui.service';
+import {normalize, schema} from 'normalizr';
 @Component({
   selector: 'emitter-search-navigator',
   templateUrl: './search-navigator.component.html',
@@ -23,37 +24,6 @@ import {UiService} from '../../../core/service/ui/ui.service';
 })
 
 export class SearchNavigatorComponent implements OnInit, OnDestroy {
-  // @Input('categoryList') categoryList;
-
-  // let hello = {}
-  //
-  // let helloList = [];
-  // console.time('qeution1')
-  // // v.items.reduce( (obj, v) => {
-  // //   console.log(obj);
-  // // });
-  //
-  // for ( let k = 0; k < 400; k ++ ) {
-  //   for ( let i = 0 ; i < 2 ; i ++ ) {
-  //
-  //     Object.assign(hello, {[_infoList.aggregation.brands[i].slug + k]:_infoList.aggregation.brands[i]});
-  //     helloList.push(_infoList.aggregation.brands[i]);
-  //   }
-  // }
-  // console.timeEnd('qeution1');
-  //
-  // console.log(helloList);
-  // console.log(hello);
-  // hello = {}
-  //
-  // let cnt = 0;
-  // console.time('reduce')
-  // helloList.reduce( (obj, v) => {
-  //   Object.assign(hello, {[v.slug + cnt++]:_infoList.aggregation.brands[0]});
-  // });
-  // console.timeEnd('reduce')
-  //
-  // console.log(hello);
 
   locationList;
   locationListForCheck = {};
@@ -73,6 +43,7 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
   currentCode;
   currentTitle;
   currentName = '';
+  currentCategory = 0;
 
   imageIndex = 0;
 
@@ -95,7 +66,7 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
   queryParams$;
   searchData$;
 
-  // subscribe value
+      // subscribe ``value``
   queryParams = {term: '', brand: [], value: [], location: []};
   cartStore;
 
@@ -142,9 +113,11 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
     this.weeklyBest$ = this.uiService.getWeeklyBestGoods();
 
     this.queryParams$ = this.route.queryParams
-      .subscribe((val: { term, brand, value, location }) => {
+      .subscribe((val: { term, brand, value, location, category }) => {
         this.currentList = null;
         this.orderedFilterList = [];
+        this.currentCategory = val.category;
+
 
         const url = this.router.url.split('/');
         if (url[2].indexOf('search') > -1) {
@@ -157,7 +130,6 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
           const param = this.router.url.substring(this.router.url.indexOf('?'), this.router.url.length);
 
           this.searchData$ = this.searchService.search(param).subscribe(_infoList => {
-            console.log(_infoList);
             /* async 데이터가 들어오는데, null이라면 return을 해줌 */
             this.currentList = null;
             if (_infoList != null) {
@@ -166,6 +138,7 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
               this.brandList = _infoList.aggregation.brands;
               this.categoryList =  _infoList.aggregation.categories;
 
+              console.log(this.categoryList);
               this.infoList = _infoList.results;
 
               this.totalCount = this.infoList.length;
@@ -191,7 +164,6 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
               this.valueList = _infoList.aggregation.values;
               this.locationList = _infoList.aggregation.locations;
               this.brandList = _infoList.aggregation.brands;
-
               this.infoList = _infoList.results;
 
               this.totalCount = this.infoList.length;
@@ -394,6 +366,33 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
     this.currentSortSlug = xSortSlug;
     // this.orderedFilterListForCheck[]
     this.router.navigate(['/shops/search'], {queryParams: {ordering: xSortSlug}, queryParamsHandling: 'merge'});
+  }
+
+
+  normalizer ( data ) {
+    const slug = new schema.Entity('slug', {
+
+    });
+
+    const fourthCategory = new schema.Entity('fourthCategory', {
+
+    });
+
+    // // // Define your comments schema
+    const thirdCategory = new schema.Entity('thirdCategory', {
+      name : name,
+      children : [fourthCategory]
+    });
+
+    const secondCategory = new schema.Entity('secondCategory', {
+      // idAttribute: () => slug
+      children : [thirdCategory]
+    });
+
+    const object = new schema.Array(secondCategory);
+
+
+    return normalize(data, object);
   }
 
   // @ts-ignore

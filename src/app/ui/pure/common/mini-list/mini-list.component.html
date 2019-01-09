@@ -14,12 +14,12 @@
         *ngIf="imageIndex !== 0"
         [top]="'12.6rem'"
         [left]="'-2rem'"
-        (click)="prevButton()" >
+        (click)="prevButton()">
       </onpicks-circle-p-button>
     <div class="ui-mini-list__content">
       <ul #container>
         <ng-container *ngFor="let item of infoList; index as i">
-          <li *ngIf="pressedPrev ? i < imageIndex + 7 :i < imageIndex + carouselLength">
+          <li *ngIf="pressedPrev ? i < imageIndex + 7 : i < imageIndex + carouselLength">
             <div class="col-3-of-12 ui-mini-list__item">
 
               <div class="ui-mini-list__item--image-outer">
@@ -29,15 +29,11 @@
                 <onpicks-list-active-button
                   [amount]="cartStore?.cartList[item.slug] === undefined ? 0 : cartStore?.cartList[item.slug]?.quantity"
                   (addEvent)="addToCart($event, item.slug, item.ship_alone ? 'free' : locationMap[item.location.slug].sequence)"
-                  (subtractEvent)="subtractFromCart($event, item.slug, item.ship_alone ? 'free' : locationMap[item.location.slug].sequence)"
-                >
+                  (subtractEvent)="subtractFromCart($event, item.slug, item.ship_alone ? 'free' : locationMap[item.location.slug].sequence)">
                 </onpicks-list-active-button>
               </div>
 
-
               <div class="ui-mini-list__item--name-outer">
-
-
                 <div class="ui-mini-list__item--name-outer-brand subtitle-2-bold">
                   <a routerLink="/shops/p/method-foaming-hand-soap-waterfall">
                     {{item.brand}}
@@ -85,7 +81,6 @@
                     <span class="ui-mini-list__delivery-point--text subtitle-2-regular u-color-black"><strong>홍콩</strong> 출고</span>
                   </ng-container>
                 </ng-container>
-
               </div>
             </div>
           </li>

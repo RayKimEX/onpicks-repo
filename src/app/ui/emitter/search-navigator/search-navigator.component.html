@@ -29,22 +29,34 @@
         [setTitle]="'추천 상품'"></ui-mini-list>
     </ng-container>
     <ng-container *ngIf="currentList?.length !== 0 || !(router.url.split('/')[2].indexOf('search') > -1)">
-
       <div class="col-3-of-12">
         <div class="c-navigator-padding">
           <div class="c-category-navigator">
             <!--해당을 누르면 식품품 생홀용품 카테고리 메인페이지로 가게-->
             <ng-container *ngIf="router.url.split('/')[2].indexOf('search') > -1">
               <div class="c-category-navigator__title subtitle-1-bold">카테고리</div>
-              <ng-container *ngIf="categoryList.length !== 0">
-                <div class="subtitle-3-bold u-color-dark-grey">모든 카테고리</div>
+              <div class="subtitle-3-bold u-color-dark-grey">모든 카테고리</div>
+              <ng-container *ngIf="categoryList?.length !== 0">
                 <div *ngFor="let category of categoryList">
-                  <div class="subtitle-3-regular">{{category.name}}</div>
+                  <div class="subtitle-3-regular">
+                    <span *ngIf="currentCategory != 0 && category.code != currentCategory"><</span>{{ category.name }}
+                  </div>
+                  <div class="subtitle-3-regular" *ngFor="let twoCat of category?.children">
+                    <span *ngIf="twoCat.code != currentCategory"><</span>{{ twoCat.name }}
+                    <div class="subtitle-3-regular" *ngFor="let threeCat of twoCat?.children">
+                      <span *ngIf="twoCat.code != currentCategory && threeCat.code != currentCategory"><</span>{{ threeCat.name }}
+                      <div style="margin-left: 8px" class="subtitle-3-regular" *ngFor="let fourthCat of threeCat?.children">
+                        {{ fourthCat.name }}
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </ng-container>
             </ng-container>
-            <div class="c-category-navigator__title subtitle-1-bold">{{currentTitle}}</div>
-            <hr>
+            <ng-container *ngIf="!router.url.split('/')[2].indexOf('search') > -1">
+              <div class="c-category-navigator__title subtitle-1-bold">{{currentTitle}}</div>
+              <hr>
+            </ng-container>
 
 
             <div class="c-category-navigator__content">
