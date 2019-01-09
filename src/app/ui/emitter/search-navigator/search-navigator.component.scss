@@ -1,7 +1,10 @@
 @import '~src/assets/scss/abstracts/variables';
 
 
-
+onpicks-loading-icon {
+  display:block;
+  margin-top : 4rem;
+}
 
 @mixin transitionSettings {
   transition-property : height;
@@ -32,6 +35,9 @@ onpicks-check-box {
 .c-forwarding-place-navigator {
   &__title {
     margin-top : 1.6rem;
+    &--name {
+      margin-right : 0.8rem;
+    }
     &--remove{
       float : right;
     }
@@ -124,6 +130,7 @@ onpicks-check-box {
     margin-top : 4rem;
     padding-bottom : 1.6rem;
     border-bottom : 1px solid $color-light-grey;
+    margin-bottom: 1.6rem;
     &--remove {
       float : right;
     }
@@ -141,7 +148,17 @@ onpicks-check-box {
           position:relative;
           width :1.4rem;
           height : 2px;
-          margin-right : 0.8rem;
+
+          &-outer {
+            cursor : pointer;
+            display:inline-block;
+            width: 1.4rem;
+            height : 1.4rem;
+            margin-right : 0.8rem;
+            &:hover {
+              opacity : 0.5;
+            }
+          }
           &:before{
             position:absolute;
             top:-4px;
@@ -454,8 +471,11 @@ onpicks-check-box {
   &__category-indicator {
     margin-right : 4px;
   }
+
   &__title {
-    margin-bottom :1.6rem;
+    margin-bottom : 1.6rem;
+    padding-bottom : 1.6rem;
+    border-bottom : 1px solid $color-light-grey;
   }
 
   &__item {

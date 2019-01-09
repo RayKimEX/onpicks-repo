@@ -7,10 +7,14 @@ import {
   OnInit,
   Renderer2
 } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import {
+  Location
+} from '@angular/common';
+import {ActivatedRoute, ActivatedRouteSnapshot, Router} from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import {
-  TryAddOrCreateToCart, TrySubtractOrDeleteFromCart
+  TryAddOrCreateToCart,
+  TrySubtractOrDeleteFromCart
 } from '../../../core/store/cart/cart.actions';
 import {SearchService} from '../../../core/service/data-pages/search/search.service';
 import {LOCATION_MAP} from '../../../app.config';
@@ -44,6 +48,7 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
   currentTitle;
   currentName = '';
   currentCategory = 0;
+  currentParamList = {};
 
   imageIndex = 0;
 
@@ -88,12 +93,13 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
     private store: Store<any>,
     public router: Router,
     private route: ActivatedRoute,
+    private location: Location,
     private cd: ChangeDetectorRef,
     private searchService: SearchService
   ) {
+
     this.uiStore$ = this.store.pipe(select(state => state.ui.currentCategoryList))
       .subscribe(val => {
-        console.log(val);
         // this.categoryList = val;
         this.categoryList = val.entities;
         this.result = val.result;
@@ -116,9 +122,10 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
       .subscribe((val: { term, brand, value, location, category }) => {
         this.currentList = null;
         this.orderedFilterList = [];
-        this.currentCategory = val.category;
-        console.log(this.currentCategory);
-
+        this.currentParamList = {
+          ...val
+        };
+        console.log(val);
 
         const url = this.router.url.split('/');
         if (url[2].indexOf('search') > -1) {
@@ -137,7 +144,7 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
               this.locationList = _infoList.aggregation.locations;
               this.brandList = _infoList.aggregation.brands;
               this.categoryList =  _infoList.aggregation.categories;
-
+              this.currentCategory = val.category;
               console.log(this.categoryList);
               this.infoList = _infoList.results;
 
@@ -192,7 +199,9 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
           });
         }
 
-
+        this.brandListForCheck = {};
+        this.valueListForCheck = {};
+        this.locationListForCheck = {};
         this.queryParams = {
           brand: val.brand === undefined ? [] : typeof(val.brand) === 'string' ? Array(val.brand) : val.brand,
           value: val.value === undefined ? [] : typeof(val.value) === 'string' ? Array(val.value) : val.value,
@@ -201,32 +210,24 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
         };
 
         console.log(this.queryParams.brand);
-        if ( this.queryParams.brand.length === 0 ){
-          this.brandListForCheck = {};
-        } else {
-          this.queryParams.brand.forEach(v => {
-            const tempForInfo = Object.assign({[v]: true});
-            this.brandListForCheck = {...this.brandListForCheck, ...tempForInfo};
-          });
-        }
+        this.queryParams.brand.forEach(v => {
+          const tempForInfo = Object.assign({[v]: true});
+          this.brandListForCheck = {...this.brandListForCheck, ...tempForInfo};
+        });
 
-        if ( this.queryParams.value.length === 0 ){
-          this.valueListForCheck = {};
-        } else {
-          this.queryParams.value.forEach(v => {
-            const tempForInfo = Object.assign({[v]: true});
-            this.valueListForCheck = {...this.valueListForCheck, ...tempForInfo};
-          });
-        }
 
-        if ( this.queryParams.location.length === 0 ){
-          this.locationListForCheck = {};
-        } else {
-          this.queryParams.location.forEach(v => {
-            const tempForInfo = Object.assign({[v]: true});
-            this.locationListForCheck = {...this.locationListForCheck, ...tempForInfo};
-          });
-        }
+
+        this.queryParams.value.forEach(v => {
+          const tempForInfo = Object.assign({[v]: true});
+          this.valueListForCheck = {...this.valueListForCheck, ...tempForInfo};
+        });
+
+
+
+        this.queryParams.location.forEach(v => {
+          const tempForInfo = Object.assign({[v]: true});
+          this.locationListForCheck = {...this.locationListForCheck, ...tempForInfo};
+        });
 
         this.cd.markForCheck();
       });
@@ -385,6 +386,44 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
     this.router.navigate( ['/shops/search'], {queryParams: {category: xCategoryCode}, queryParamsHandling: 'merge'});
   }
 
+  removeSpecificFilter(xValue) {
+
+    let temp = {
+      ...this.currentParamList
+    };
+    Object.keys(this.currentParamList).forEach( key => {
+      if ( Array.isArray(this.currentParamList[key])) {
+        this.currentParamList[key].forEach( (innerValue, innerIndex) => {
+          if ( innerValue === xValue ) {
+            this.currentParamList[key].splice(innerIndex, 1)
+            if ( this.currentParamList[key].length === 0 ){
+
+              delete temp[key];
+            } else {
+              temp = {
+                ...this.currentParamList,
+                [key] : [...this.currentParamList[key]]
+              };
+            }
+
+          }
+        });
+      } else {
+        if ( this.currentParamList[key] === xValue) {
+          delete temp[key];
+        }
+      }
+    });
+
+
+    console.log(this.currentParamList);
+    console.log(temp);
+    this.router.navigate( ['/shops/search'], {queryParams: temp});
+  }
+
+  removeAllFilter() {
+    this.router.navigate(['/shops/search'], {queryParams: {brand: null, value: null, location : null}, queryParamsHandling: 'merge'});
+  }
 
   removeAllFilterCategory(){
     this.router.navigate(['/shops/search'], {queryParams: {category: null}, queryParamsHandling: 'merge'});
