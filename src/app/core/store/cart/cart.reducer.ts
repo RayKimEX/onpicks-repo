@@ -111,8 +111,6 @@ export function CartReducer(state = initialState, action: CartActions.CartAction
         createForFreeTemp.items = action.payload.cartInfo.results.slice(0, 1)[0].items;
         state.cartInfo.free = createForFreeTemp;
       }
-      console.log(state.cartInfo.free)
-
 
       return {
         ...state,

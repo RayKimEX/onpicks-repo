@@ -28,8 +28,8 @@
                 </a>
                 <onpicks-list-active-button
                   [amount]="cartStore?.cartList[item.slug] === undefined ? 0 : cartStore?.cartList[item.slug]?.quantity"
-                  (addEvent)="addToCart($event, item.slug, locationMap[item.location.slug].sequence)"
-                  (subtractEvent)="subtractFromCart($event, item.slug, locationMap[item.location.slug].sequence)"
+                  (addEvent)="addToCart($event, item.slug, item.ship_alone ? 'free' : locationMap[item.location.slug].sequence)"
+                  (subtractEvent)="subtractFromCart($event, item.slug, item.ship_alone ? 'free' : locationMap[item.location.slug].sequence)"
                 >
                 </onpicks-list-active-button>
               </div>

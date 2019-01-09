@@ -10,13 +10,13 @@
       <emitter-change-preference [type]="'locale'" class="header__miscell--item">{{ locale === 'ko' ? '한글' : 'ENG' }}</emitter-change-preference>
 
       <div class="header__miscell--profile u-float-right" *ngIf="(auth$ | async) as auth;">
-        <ng-container *ngIf=" auth.isAuthenticated === false">
+        <ng-container *ngIf="auth.isAuthenticated === false">
           <span class="header__miscell--profile--login" ><a i18n="@@header__login" routerLink="/member/login" >로그인/login</a></span>
           <span class="header__miscell--profile--slash">&nbsp;|&nbsp;</span>
           <span class="header__miscell--profile--signup"><a i18n="@@header__signup" routerLink="/member/signup">회원가입|signup</a></span>
         </ng-container>
 
-        <ng-container *ngIf=" auth.isAuthenticated === true">
+        <ng-container *ngIf="auth.isAuthenticated === true">
           <span class="header__miscell--profile--image">
             <a routerLink="/account">
               <img src="{{auth?.user?.avatar === ''? 'http://img.onpicks.com/assets/default_avatar.png' : auth.user.avatar}}"  alt="">
@@ -126,8 +126,7 @@
               (item.slug === 'beauty')  ? 'header-menu__item--title-beauty' : '',
               (item.slug === 'baby')  ? 'header-menu__item--title-baby' : '',
               (item.slug === 'health')  ? 'header-menu__item--title-health' : ''
-            ]"
-          >
+            ]">
               <!--(item.slug === locationMap['hong'])  ? 'header-menu__item&#45;&#45;title-electronics' : '',-->
               <!--(item.slug === locationMap['hong'])  ? 'header-menu__item&#45;&#45;title-baby' : '',-->
               <!--(item.slug === locationMap['hong'])  ? 'header-menu__item&#45;&#45;title-health' : '',-->

@@ -14,6 +14,7 @@ import {
 } from '../../../core/store/cart/cart.actions';
 import {SearchService} from '../../../core/service/data-pages/search/search.service';
 import {LOCATION_MAP} from '../../../app.config';
+import {UiService} from '../../../core/service/ui/ui.service';
 @Component({
   selector: 'emitter-search-navigator',
   templateUrl: './search-navigator.component.html',
@@ -98,6 +99,8 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
   queryParams = {term: '', brand: [], value: [], location: []};
   cartStore;
 
+  weeklyBest$;
+
   sortList = [
     {title: '인기순', value: 'most_popular'},
     // { title : '판매량', value : 'most_popular' },
@@ -109,6 +112,7 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
 
   constructor(
     @Inject( LOCATION_MAP ) public locationMap: any,
+    private uiService: UiService,
     private renderer: Renderer2,
     private store: Store<any>,
     public router: Router,
@@ -135,6 +139,8 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
         this.cd.markForCheck();
       });
 
+    this.weeklyBest$ = this.uiService.getWeeklyBestGoods();
+
     this.queryParams$ = this.route.queryParams
       .subscribe((val: { term, brand, value, location }) => {
         this.currentList = null;
@@ -151,13 +157,14 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
           const param = this.router.url.substring(this.router.url.indexOf('?'), this.router.url.length);
 
           this.searchData$ = this.searchService.search(param).subscribe(_infoList => {
-
+            console.log(_infoList);
             /* async 데이터가 들어오는데, null이라면 return을 해줌 */
             this.currentList = null;
             if (_infoList != null) {
               this.valueList = _infoList.aggregation.values;
               this.locationList = _infoList.aggregation.locations;
               this.brandList = _infoList.aggregation.brands;
+              this.categoryList =  _infoList.aggregation.categories;
 
               this.infoList = _infoList.results;
 
@@ -177,6 +184,7 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
 
           this.searchData$ = this.searchService.categorySearch(this.sortInfo[url[url.length - 1]]).subscribe(_infoList => {
             this.searchState = 'category';
+
             /* async 데이터가 들어오는데, null이라면 return을 해줌 */
             this.currentList = null;
             if (_infoList != null) {
@@ -288,9 +296,7 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
   }
 
   updateSecondCategory(index, slug) {
-    console.log(index);
     const url = this.router.url.split('/');
-    console.log(url);
     if (url[url.length - 1] === slug) {
       return;
     }

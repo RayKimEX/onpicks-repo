@@ -344,6 +344,6 @@
     </div>
   </ng-container>
 
-  <ui-mini-list [setTitle]="'이 상품과 함께 구매한 상품'"></ui-mini-list>
+  <ui-mini-list [infoList]="weeklyBest$ | async" [setTitle]="'추천상품'"></ui-mini-list>
 </div>
 

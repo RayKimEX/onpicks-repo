@@ -24,7 +24,9 @@
         <div class="c-category-content__empty--description subtitle-1-regular u-color-grey">다른검색어를 입력하시거나 철자와 띄어쓰기를 확인해보세요</div>
         <div class="c-category-content__empty--description subtitle-1-regular u-color-grey">현재 판매종료 상품일 수 있으니 나중에 다시 검색해보세요</div>
       </div>
-      <ui-mini-list [setTitle]="'추천 상품'"></ui-mini-list>
+      <ui-mini-list
+        [infoList]="weeklyBest$ | async"
+        [setTitle]="'추천 상품'"></ui-mini-list>
     </ng-container>
     <ng-container *ngIf="currentList?.length !== 0 || !(router.url.split('/')[2].indexOf('search') > -1)">
 
@@ -32,8 +34,19 @@
         <div class="c-navigator-padding">
           <div class="c-category-navigator">
             <!--해당을 누르면 식품품 생홀용품 카테고리 메인페이지로 가게-->
-            <div class="c-category-navigator__title subtitle-1-bold">{{router.url.split('/')[2].indexOf('search') > -1 ? '카테고리' : currentTitle }}</div>
+            <ng-container *ngIf="router.url.split('/')[2].indexOf('search') > -1">
+              <div class="c-category-navigator__title subtitle-1-bold">카테고리</div>
+              <ng-container *ngIf="categoryList.length !== 0">
+                <div class="subtitle-3-bold u-color-dark-grey">모든 카테고리</div>
+                <div *ngFor="let category of categoryList">
+                  <div class="subtitle-3-regular">{{category.name}}</div>
+                </div>
+              </ng-container>
+            </ng-container>
+            <div class="c-category-navigator__title subtitle-1-bold">{{currentTitle}}</div>
             <hr>
+
+
             <div class="c-category-navigator__content">
               <nav class="subtitle-3-bold u-color-dark-grey">
                 <!-- async를 이용하여 마지막에의 변수값가져오기 -->
@@ -234,8 +247,6 @@
 
               </ng-container>
             </ng-container>
-
-
           </h1>
           <div class="c-category-content__content--outer">
             <div class="c-category-content__content">
@@ -254,8 +265,8 @@
                         <onpicks-list-active-button
                           [amount]="cartStore.cartList[item.slug] === undefined ? 0 : cartStore.cartList[item.slug]?.quantity"
                           *ngSwitchCase="0"
-                          (addEvent)="addToCart($event, item.slug, locationMap[item.location.slug].sequence)"
-                          (subtractEvent)="subtractFromCart($event, item.slug, locationMap[item.location.slug].sequence)"
+                          (addEvent)="addToCart($event, item.slug, item.ship_alone ? 'free' : locationMap[item.location.slug].sequence)"
+                          (subtractEvent)="subtractFromCart($event, item.slug, item.ship_alone ? 'free' : locationMap[item.location.slug].sequence)"
                         ></onpicks-list-active-button>
 
                         <div

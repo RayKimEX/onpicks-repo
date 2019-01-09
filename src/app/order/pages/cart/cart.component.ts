@@ -16,6 +16,7 @@ import {
 } from '../../../core/store/cart/cart.actions';
 import {Router} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
+import {UiService} from '../../../core/service/ui/ui.service';
 
 @Component({
   selector: 'onpicks-cart',
@@ -33,6 +34,7 @@ export class CartComponent {
   objectKeys = Object.keys;
 
 
+  weeklyBest$;
   constructor(
     // TODO: 나중에 locale정보같은거는 모두 ngrx에 넣어서 처리하기
     @Inject( LOCATION_MAP ) public locationMap: any,
@@ -43,6 +45,7 @@ export class CartComponent {
     private store: Store<any>,
     private httpClient: HttpClient,
     private cd: ChangeDetectorRef,
+    private uiService: UiService
   ) {
     this.cartStore$ = this.store.pipe(
       select( state => state.cart ),
@@ -63,6 +66,8 @@ export class CartComponent {
       }),
       shareReplay(1)
     );
+
+    this.weeklyBest$ = this.uiService.getWeeklyBestGoods();
   }
 
   // 단순히 한 컴포넌트에서 다른 컴포넌트로 넘어갈때는 딱히, ngrx를 쓰지 않음.
