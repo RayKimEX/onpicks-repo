@@ -54,7 +54,7 @@
           class="btn btn--white btn--small wish-list__table--btn"
         >쇼핑백에 담기</button>
         <button
-          (click)="deleteWishList()"
+          (click)="deleteWishList(item.id, wishListIndex)"
           class="btn btn--white btn--small wish-list__table--btn">삭제하기</button>
       </td>
     </tr>

@@ -165,11 +165,7 @@ export class CartComponent {
   }
 
   addToWishList(xProductSlug, xPackIndex) {
-
-    console.log(xProductSlug);
     this.store.dispatch( new TryAddToWishList( { productSlug : xProductSlug, packIndex : xPackIndex }));
-
-
   }
 
   deleteWishList( xWishListId, xIndex ) {

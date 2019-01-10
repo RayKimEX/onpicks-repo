@@ -52,8 +52,6 @@ export class WishListComponent implements OnInit, OnDestroy {
         increaseOrCreate : xProductSlug in this.cartStore.cartList
       }) );
 
-    console.log(xWishListId)
-    console.log(xIndex);
     this.store.dispatch( new TryDeleteWishList( { wishListId : xWishListId, index : xIndex}));
   }
 
@@ -61,4 +59,8 @@ export class WishListComponent implements OnInit, OnDestroy {
 
   }
 
+
+  deleteWishList( xWishListId, xIndex ) {
+    this.store.dispatch( new TryDeleteWishList( { wishListId : xWishListId, index : xIndex}));
+  }
 }
