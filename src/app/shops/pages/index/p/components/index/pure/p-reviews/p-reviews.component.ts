@@ -12,6 +12,7 @@ import {
 import {select, Store} from '@ngrx/store';
 import {REPORT_REASON_MAP} from '../../../../../../../../app.config';
 import {tap} from 'rxjs/operators';
+import {PDataService} from '../../../../../../../../core/service/data-pages/p/p-data.service';
 
 
 @Component({
@@ -65,6 +66,7 @@ export class PReviewsComponent implements AfterViewInit {
 
   constructor(
     @Inject(REPORT_REASON_MAP) public reasonMap: string,
+    private pDataService: PDataService,
     private renderer: Renderer2,
     private store: Store<any>,
     private cd: ChangeDetectorRef,
@@ -73,6 +75,7 @@ export class PReviewsComponent implements AfterViewInit {
       select((state) => state['p']['reviews']),
       tap( v => {
         if ( v.extraInfo === undefined ) { return };
+        console.log(v);
         this.starMaxList = v.extraInfo.reviewRatingsDist;
 
         this.totalList = v.results;
@@ -100,6 +103,11 @@ export class PReviewsComponent implements AfterViewInit {
     this.currentPage = pageIndex;
     this.currentList = this.totalList.slice(  (this.currentPage - 1 ) * this.maxRow , this.currentPage * this.maxRow )
   }
+
+  voteReviews() {
+    this.pDataService.voteReviewsData().subscribe( v => console.log(v));
+  }
+
 
 }
 
