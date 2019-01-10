@@ -17,13 +17,14 @@
             <div class="p-customer__images--profile-box-inner">
               <figure>
                 <span class="p-customer__images--profile-image-outer">
-                  <img drLazyLoad src="http://img.onpicks.com/profile-john.png" alt="Person on a tour" class="story__img">
+                  <img drLazyLoad src="{{item?.author?.avatar}}" alt="Person on a tour" class="story__img">
                 </span>
 
-                <figcaption class="p-reviews__figure subtitle-1-bold u-color-white">도로로로로롱</figcaption>
+                <figcaption class="p-customer__figure subtitle-1-bold u-color-white">{{item?.author?.nickname}}</figcaption>
                 <!--<!--[@divState] (load) ---->
-                <ui-star-rating></ui-star-rating>
-                <span class="subtitle-2-regular u-color-white">{{this.imageLargeOuterArray.length}}</span>
+                <ui-star-rating [star-point]="item?.rating"
+                ></ui-star-rating>
+                <span class="p-customer__figure--date subtitle-2-regular u-color-white">{{item?.modified | date : 'longDate'}}</span>
               </figure>
             </div>
           </div>

@@ -1,5 +1,6 @@
 import * as PActions from './p.actions';
 import {normalize, schema} from 'normalizr';
+import {TOGGLE_VOTE_REIVEW_SUCCESS} from './p.actions';
 
 
 export interface PState {
@@ -26,6 +27,23 @@ const initialState: PState = {
 export function PReducer (state = initialState, action: PActions.PActions) {
 
   switch ( action.type ) {
+
+    case PActions.TOGGLE_VOTE_REIVEW_SUCCESS :
+      console.log(action.payload);
+      return {
+        ...state,
+        reviews : {
+          ...state.reviews,
+          list : {
+            ...state.reviews.list,
+            [action.payload['id']] : {
+              ...action.payload
+            }
+          },
+
+        }
+      };
+
     case PActions.UPDATE_MENUPOSITION:
       return {
         ...state,

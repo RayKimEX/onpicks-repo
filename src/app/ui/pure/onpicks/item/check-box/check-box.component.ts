@@ -27,7 +27,7 @@ export class CheckBoxComponent implements AfterViewInit {
   @ViewChild('radioBoxView') radioBoxView;
   @ViewChild('checkBoxView') checkBoxView;
 
-  @Output('radioEvent') radioEvent = new EventEmitter<any>();
+  @Output('boxEvent') boxEvent = new EventEmitter<any>();
   view;
   uuid;
 
@@ -44,12 +44,12 @@ export class CheckBoxComponent implements AfterViewInit {
   }
 
   handleChangeForRadio(evt) {
-    this.radioEvent.emit(this.value);
+    this.boxEvent.emit(this.value);
   }
 
   handleChangeForCheckbox(ref) {
     // ref.checked = !ref.checked;
-
+    this.boxEvent.emit(this.value);
     this.isChecked = !this.isChecked;
   }
 

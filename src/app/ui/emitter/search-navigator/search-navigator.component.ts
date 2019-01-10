@@ -247,7 +247,6 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
 
     xAmount++;
 
-    console.log(xAmount);
     console.log(this.cartStore.cartList);
     // 만약 카트 아이디가. 카트스토어 카트리스트에 있다면, increase cart를 하고, create cart를 하지 않는다.
     this.store.dispatch(new TryAddOrCreateToCart({
@@ -415,9 +414,6 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
       }
     });
 
-
-    console.log(this.currentParamList);
-    console.log(temp);
     this.router.navigate( ['/shops/search'], {queryParams: temp});
   }
 

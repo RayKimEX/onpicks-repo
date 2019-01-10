@@ -13,6 +13,8 @@ import {select, Store} from '@ngrx/store';
 import {REPORT_REASON_MAP} from '../../../../../../../../app.config';
 import {tap} from 'rxjs/operators';
 import {PDataService} from '../../../../../../../../core/service/data-pages/p/p-data.service';
+import {TryToggleVoteReview} from '../../../../store/p.actions';
+import {DisplayAlertMessage} from '../../../../../../../../core/store/ui/ui.actions';
 
 
 @Component({
@@ -27,9 +29,15 @@ export class PReviewsComponent implements AfterViewInit {
   @Output('updateState') updateState = new EventEmitter<any>();
   @Input('reviewAveragePoint') reviewAveragePoint;
   @Input('totalList') totalList;
+  objectKeys = Object.keys;
 
+  /***신고 Modal***/
   isShowModal = false;
+  reviewIndexForModal = null;
+  productSlugForModal = null;
+  textReportReasonForModal = null;
 
+  /** Pagination **/
   maxRow = 6;
   totalPage;
   totalCount;
@@ -40,8 +48,12 @@ export class PReviewsComponent implements AfterViewInit {
 
 
   starMaxList = {};
-  //{Star5 : 55, Star4 : 18, Star3 : 6, Star2 : 7, Star1 : 14}
-  objectKeys = Object.keys;
+  // {Star5 : 55, Star4 : 18, Star3 : 6, Star2 : 7, Star1 : 14}
+
+
+  reviews$;
+
+
 
   reviewSortList = [
     {
@@ -61,8 +73,6 @@ export class PReviewsComponent implements AfterViewInit {
       value : 3
     }
   ]
-
-  reviews$;
 
   constructor(
     @Inject(REPORT_REASON_MAP) public reasonMap: string,
@@ -103,10 +113,27 @@ export class PReviewsComponent implements AfterViewInit {
     this.currentList = this.totalList.slice(  (this.currentPage - 1 ) * this.maxRow , this.currentPage * this.maxRow )
   }
 
-  voteReviews( xProductSlug, xReviewsId) {
-    this.pDataService.voteReviewsData(xProductSlug, xReviewsId).subscribe( v => console.log(v));
+  toggleVoteReviews( xProductSlug, xReviewsId, xIsVoted) {
+    this.store.dispatch( new TryToggleVoteReview({ productSlug: xProductSlug, reviewId : xReviewsId, isVote: !xIsVoted}));
   }
 
+  reportReview( xProductSlug, xReviewId, xReportReason ) {
+    console.log('reportReview');
+    console.log(xProductSlug);
+    console.log(xReviewId);
+    console.log(xReportReason);
+    this.pDataService.reportReviewData( xProductSlug, xReviewId, xReportReason)
+      .subscribe(
+        response => {
+          this.isShowModal = false;
+          this.store.dispatch(new DisplayAlertMessage('신고가 정상적으로 접수 되었습니다.'));
+          this.cd.markForCheck();
+        },
+        error => {
+          alert('신고 중 에러가 발생하였습니다.');
+        }
+    );
+  }
 
 }
 

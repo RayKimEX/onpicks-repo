@@ -168,7 +168,13 @@ onpicks-circle-n-button {
   &__option {
     margin-top:2.4rem;
 
+    &--thumbs-up-active {
+      fill : $color-green;
+    }
+
+
     &--active {
+
       color : $color-green;
     }
     &--feature {

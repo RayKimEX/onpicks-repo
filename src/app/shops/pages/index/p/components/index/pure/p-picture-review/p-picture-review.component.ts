@@ -46,10 +46,6 @@ export class PPictureReviewComponent implements OnInit, AfterViewInit, OnDestroy
         }
       });
 
-
-
-
-
       const initialLeft_x = -37.6;
       const offsetLeft = 47.2;
       const initialRight_x = 104;
@@ -154,16 +150,6 @@ export class PPictureReviewComponent implements OnInit, AfterViewInit, OnDestroy
 
 
         };
-        //
-        //     // 이 else의 경우의 수도 명시적이지가 않다..
-        //     this.renderer.removeClass(val, 'animate-right');
-        //
-        //     this.renderer.setStyle(
-        //       val, 'left', (parseInt(temp.left, 10) + this.customWidth ) + 'px');
-        //
-        //   }
-        //
-        // }
       });
 
       this.cd.markForCheck();
@@ -175,43 +161,6 @@ export class PPictureReviewComponent implements OnInit, AfterViewInit, OnDestroy
 
   imagesLargeList = [];
   imagesSmallList = [];
-  // imagesLargeList = [
-  //   'empty',
-  //   'http://img.onpicks.com/p-customer__image--large-2.png',
-  //   'http://img.onpicks.com/p-customer__image--large-3.png',
-  //   'http://img.onpicks.com/p-customer__image--large-4.png',
-  //   'http://img.onpicks.com/p-customer__image--large-5.png',
-  //   'http://img.onpicks.com/p-customer__image--large-6.png',
-  //   'http://img.onpicks.com/p-customer__image--large-2.png',
-  //   'http://img.onpicks.com/p-customer__image--large-3.png',
-  //   'http://img.onpicks.com/p-customer__image--large-4.png',
-  //   'http://img.onpicks.com/p-customer__image--large-5.png',
-  //   'http://img.onpicks.com/p-customer__image--large-6.png',
-  //   'http://img.onpicks.com/p-customer__image--large-2.png',
-  //   'http://img.onpicks.com/p-customer__image--large-3.png',
-  //   'http://img.onpicks.com/p-customer__image--large-4.png',
-  //   'http://img.onpicks.com/p-customer__image--large-5.png',
-  //   'http://img.onpicks.com/p-customer__image--large-6.png',
-  //   'empty',
-  // ]
-
-  // imagesSmallList = [
-  //   'http://img.onpicks.com/p-customer__image-small-1.jpg',
-  //   'http://img.onpicks.com/p-customer__image-small-2.jpg',
-  //   'http://img.onpicks.com/p-customer__image-small-3.jpg',
-  //   'http://img.onpicks.com/p-customer__image-small-4.jpg',
-  //   'http://img.onpicks.com/p-customer__image-small-5.jpg',
-  //   'http://img.onpicks.com/p-customer__image-small-1.jpg',
-  //   'http://img.onpicks.com/p-customer__image-small-2.jpg',
-  //   'http://img.onpicks.com/p-customer__image-small-3.jpg',
-  //   'http://img.onpicks.com/p-customer__image-small-4.jpg',
-  //   'http://img.onpicks.com/p-customer__image-small-5.jpg',
-  //   'http://img.onpicks.com/p-customer__image-small-1.jpg',
-  //   'http://img.onpicks.com/p-customer__image-small-2.jpg',
-  //   'http://img.onpicks.com/p-customer__image-small-3.jpg',
-  //   'http://img.onpicks.com/p-customer__image-small-4.jpg',
-  //   'http://img.onpicks.com/p-customer__image-small-5.jpg',
-  // ]
 
   imageIndex = 0;
   // 456(width) + 16 ( margin )

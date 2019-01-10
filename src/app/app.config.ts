@@ -74,11 +74,11 @@ export const CATEGORY_SECOND_MAP = new InjectionToken<any>( 'app.config');
 export const REPORT_REASON_MAP = new InjectionToken<any>( 'app.config');
 export const REPORT_REASON_MAP_CONST = {
   'ko' : {
-    '주제와 관련 없음' : 0,
-    '음란, 욕설 및 비방' : 1,
-    '스팸 및 광고성 ' : 2,
-    '복제 등 저작권 침해 우려' : 3,
-    '기타' : 4,
+    '주제와 관련 없음' : '주제와 관련 없음',
+    '음란, 욕설 및 비방' : '음란, 욕설 및 비방',
+    '스팸 및 광고성' : '스팸 및 광고성',
+    '복제 등 저작권 침해 우려' : '복제 등 저작권 침해 우려',
+    '기타' : '기타',
   },
   'en' : {
 

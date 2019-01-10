@@ -171,22 +171,22 @@
 
         <onpicks-check-box
           #isCard
-          (radioEvent)="changePaymentMethod($event, isCard)"
+          (boxEvent)="changePaymentMethod($event, isCard)"
           [value]="'card'"
           [type]="'radio'">신용/체크카드</onpicks-check-box>
         <onpicks-check-box
           #isTransfer
-          (radioEvent)="changePaymentMethod($event, isTransfer)"
+          (boxEvent)="changePaymentMethod($event, isTransfer)"
           [value]="'transfer'"
           [type]="'radio'">실시간계좌이체</onpicks-check-box>
         <onpicks-check-box
           #isVaccount
-          (radioEvent)="changePaymentMethod($event, isVaccount)"
+          (boxEvent)="changePaymentMethod($event, isVaccount)"
           [value]="'vaccount'"
           [type]="'radio'">무통장입금(가상계좌)</onpicks-check-box>
         <onpicks-check-box
           #isMobile
-          (radioEvent)="changePaymentMethod($event, isMobile)"
+          (boxEvent)="changePaymentMethod($event, isMobile)"
           [value]="'mobile'"
           [type]="'radio'">휴대폰결제</onpicks-check-box>
         <!--<onpicks-check-box [type]="'radio'">네이버페이</onpicks-check-box>-->

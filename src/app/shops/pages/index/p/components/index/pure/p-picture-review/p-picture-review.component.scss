@@ -40,6 +40,12 @@ $customer-height: 587px;
 
 .p-customer {
 
+  &__figure {
+    &--date {
+      margin-left : 0.8rem;
+    }
+
+  }
 
   &__title {
     margin-bottom : 2.4rem;
@@ -58,13 +64,17 @@ $customer-height: 587px;
       height:4rem;
       border-radius : 50%;
       overflow:hidden;
+      img {
+        width:4rem;
+        height:4rem;
+      }
     }
     &--profile-opacity-box {
       position:absolute;
       width:45.6rem;
       height : 7.4rem;
-      opacity: 0.5;
-      background-color:$color-white;
+      opacity: 0.35;
+      background-color:$color-black;
       bottom:0;
     }
 

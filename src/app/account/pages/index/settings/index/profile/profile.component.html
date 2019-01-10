@@ -55,7 +55,7 @@
       <div class="settings-profile__row--title subtitle-2-regular">성별</div>
       <onpicks-check-box
         [isChecked]="data?.gender === 'M'"
-        (radioEvent)="setGender($event)"
+        (boxEvent)="setGender($event)"
         [value]="'M'"
         [type]="'radio'"
         [marginRight]="'3.2rem'">
@@ -64,7 +64,7 @@
 
       <onpicks-check-box
         [isChecked]="data?.gender === 'F'"
-        (radioEvent)="setGender($event)"
+        (boxEvent)="setGender($event)"
         [value]="'F'"
         [type]="'radio'">
         여자

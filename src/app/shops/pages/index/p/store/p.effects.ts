@@ -12,7 +12,7 @@ import {
   GetCommentsProductFailure,
   GetCommentsProductSuccess, GetProductInfoFailure, GetProductInfoSuccess,
   GetReviewProductFailure,
-  GetReviewProductSuccess
+  GetReviewProductSuccess, ToggleVoteReviewFailure, ToggleVoteReviewSuccess, TRY_TOGGLE_VOTE_REIVEW
 } from './p.actions';
 import * as PActions from './p.actions';
 
@@ -31,6 +31,41 @@ export class PEffects {
   ) {
 
   }
+
+
+  @Effect()
+  tryToggleVoteReview = this.actions$.pipe(
+    ofType( PActions.TRY_TOGGLE_VOTE_REIVEW ),
+    tap( v => console.log(v)),
+    map( payload => payload['payload']),
+    switchMap( payload => {
+      if ( payload.isVote ) {
+        return this.pDataService.voteReviewsData(payload.productSlug, payload.reviewId)
+          .pipe(
+            map( (response) => {
+              return new ToggleVoteReviewSuccess(response);
+            }),
+            catchError( (error) => {
+              console.log(error);
+              return of(new ToggleVoteReviewFailure({ error : error}));
+            })
+          );
+      } else {
+        return this.pDataService.unvoteReviewsData(payload.productSlug, payload.reviewId)
+          .pipe(
+            map( (response) => {
+              return new ToggleVoteReviewSuccess(response);
+            }),
+            catchError( (error) => {
+              console.log(error);
+              return of(new ToggleVoteReviewFailure({ error : error}));
+            })
+          );
+      }
+
+    })
+  )
+
 
   @Effect()
   getProductInfo = this.actions$.pipe(

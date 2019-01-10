@@ -9,8 +9,7 @@ export const GET_PRODUCT_INFO_FAILURE = '[P] GET_PRODUCT_INFO_FAILURE';
 
 export const TRY_GET_REVIEWS_PRODUCT = '[P] TRY_GET_REVIEWS_PRODUCT';
 export const GET_REVIEWS_PRODUCT_SUCCESS = '[P] GET_REVIEWS_PRODUCT_SUCCESS';
-export const GET_REVIEWS_PRODUCT_FAILURE = '[P] G' +
-  'ET_REVIEWS_PRODUCT_FAILURE';
+export const GET_REVIEWS_PRODUCT_FAILURE = '[P] GET_REVIEWS_PRODUCT_FAILURE';
 
 export const TRY_GET_COMMENTS_PRODUCT = '[P] TRY_GET_COMMENTS_PRODUCT';
 export const GET_COMMENTS_PRODUCT_SUCCESS = '[P] GET_COMMENTS_PRODUCT_SUCCESS';
@@ -19,6 +18,35 @@ export const GET_COMMENTS_PRODUCT_FAILURE = '[P] GET_REVIEWS_PRODUCT_FAILURE';
 export const TRY_ADD_COMMENT = '[P] TRY_ADD_COMMENT';
 export const ADD_COMMENT_SUCCESS = '[P] ADD_COMMENT_SUCCESS';
 export const ADD_COMMENT_FAILURE = '[P] ADD_COMMENT_FAILURE';
+
+export const TRY_TOGGLE_VOTE_REIVEW = '[P] TRY_TOGGLE_VOTE_REVIEW';
+export const TOGGLE_VOTE_REIVEW_SUCCESS = '[P] TOGGLE_VOTE_REIVEW_SUCCESS'
+export const TOGGLE_VOTE_REIVEW_FAILURE = '[P] TOGGLE_VOTE_REIVEW_FAILURE'
+
+
+export class TryToggleVoteReview implements Action {
+  readonly type = TRY_TOGGLE_VOTE_REIVEW;
+
+  constructor( public payload: { productSlug, reviewId, isVote} ) {
+
+  }
+}
+
+export class ToggleVoteReviewSuccess implements Action {
+  readonly type = TOGGLE_VOTE_REIVEW_SUCCESS;
+
+  constructor( public payload: { response } ) {
+
+  }
+}
+
+export class ToggleVoteReviewFailure implements Action {
+  readonly type = TOGGLE_VOTE_REIVEW_FAILURE;
+
+  constructor( public payload: { error } ) {
+
+  }
+}
 
 
 /* UPDATE_UI */
@@ -127,6 +155,11 @@ export class AddCommentFailure implements  Action {
 
 
 export type PActions =
+
+  //
+  TryToggleVoteReview |
+  ToggleVoteReviewSuccess |
+  ToggleVoteReviewFailure |
   //
   UpdateMenuPosition |
   UpdateProductIndex |
