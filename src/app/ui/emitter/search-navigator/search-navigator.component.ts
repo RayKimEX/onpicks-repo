@@ -876,10 +876,10 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
     'feeding-and-watering-supplies': 1060216,
     skincare: 4010000,
     // @ts-ignore
-    makeup: 4020000,
+    // makeup: 4020000,
     'bath-and-body': 4060600,
     // @ts-ignore
-    hair: 4060800,
+    // hair: 4060800,
     fragrance: 4050000,
     men: 4050200,
     'k-beauty': 4070000,
@@ -889,14 +889,14 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
     'face-mask': 4010400,
     'eye-cream-and-treatments': 4010500,
     // @ts-ignore
-    'lip-care': 4010600,
+    // 'lip-care': 4010600,
     'toners-and-mists': 4010700,
     'sun-care-and-sunscreens': 4010800,
     'tools-and-devices': 4010900,
     'gift-sets': 4040600,
     'top-brands': 4060900,
     // @ts-ignore
-    face: 4020100,
+    // face: 4020100,
     cheek: 4020200,
     eyes: 4020300,
     lip: 4020400,
@@ -910,16 +910,16 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
     'bubble-bath': 4030600,
     'body-sun-care-and-sunscreens': 4030700,
     // @ts-ignore
-    shampoos: 4040100,
+    // shampoos: 4040100,
     // @ts-ignore
-    conditioners: 4040200,
+    // conditioners: 4040200,
     'hair-treatments': 4040300,
     'hair-styling': 4040400,
     // @ts-ignore
-    'hair-tools-and-accessories': 4040500,
+    // 'hair-tools-and-accessories': 4040500,
     women: 4050100,
     // @ts-ignore
-    candles: 4050300,
+    // candles: 4050300,
     'fragrance-sets': 4050400,
     'travel-size': 4050500,
     'face-wash': 4060100,
@@ -998,7 +998,7 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
     edp: 4050201,
     edt: 4050202,
     // @ts-ignore
-    cologne: 4050203,
+    // cologne: 4050203,
     citrus: 4050501,
     floral: 4050502,
     woody: 4050503,
