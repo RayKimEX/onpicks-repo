@@ -85,7 +85,6 @@ export class PReviewsComponent implements AfterViewInit {
         this.totalPageArray =  Array(parseInt(this.totalPage, 10));
         this.totalPageArray.push(this.totalPageArray.length + 1);
         this.currentList = this.totalList.slice( 0, this.maxRow );
-
       })
     );
   }
