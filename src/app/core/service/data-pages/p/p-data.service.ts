@@ -41,4 +41,8 @@ export class PDataService {
     return this.httpClient.get<any>( this.BASE_URL + '/api/products/' + productId + '/picture_reviews/');
   }
 
+  voteReviewsData( productSlug, reviewsId) {
+    return this.httpClient.post<any>( this.BASE_URL + '/api/products/' + productSlug + '/reviews/' + reviewsId + '/vote/', {});
+  }
+
 }

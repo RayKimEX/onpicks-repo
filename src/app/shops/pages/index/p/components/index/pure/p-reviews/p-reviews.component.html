@@ -17,24 +17,19 @@
     *ngFor="let key of objectKeys(reasonMap['ko'])"
     class="modal__item subtitle-2-regular">
     {{key}}
-
     <onpicks-check-box
       class="modal__item--check-box"
       [value]="reasonMap['ko'][key]"
       [type]="'radio'">
     </onpicks-check-box>
-
-
   </div>
   <onpicks-button
     class="modal__btn"
     [width]="'10.1rem'"
     [size]="'big'"
-    [type]="'black'"
-  >
+    [type]="'black'">
     신고하기
   </onpicks-button>
-  <!--<div class="body-2-regular">보내주신 의견은 회원님들의 쾌적한 Onpicks이용에 많은 도움이 됩니다. 앞으로도 규정 위반 행위를 보게 된다면 신고 기능을 적극 이용해 주시길 부탁드립니다.</div>-->
 </onpicks-modal>
 
 <ng-container *ngLet="(reviews$ | async) as data;">
@@ -47,11 +42,6 @@
       <ui-star-rating
         [star-point]="data.extraInfo?.reviewAvgRating">
       </ui-star-rating>
-      <!--<onpicks-search-box-->
-        <!--[width]="20"-->
-        <!--[top]="-1"-->
-        <!--[placeholder]="'리뷰 검색'">-->
-      <!--</onpicks-search-box>-->
 
       <div class="subtitle-1-regular u-color-dark-grey u-margin-bottom--small">
         별점 분포

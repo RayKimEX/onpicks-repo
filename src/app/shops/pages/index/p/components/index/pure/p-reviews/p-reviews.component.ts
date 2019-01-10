@@ -38,7 +38,8 @@ export class PReviewsComponent implements AfterViewInit {
   currentList = [];
 
 
-  starMaxList = {};//{Star5 : 55, Star4 : 18, Star3 : 6, Star2 : 7, Star1 : 14}
+  starMaxList = {};
+  //{Star5 : 55, Star4 : 18, Star3 : 6, Star2 : 7, Star1 : 14}
   objectKeys = Object.keys;
 
   reviewSortList = [
@@ -60,14 +61,13 @@ export class PReviewsComponent implements AfterViewInit {
     }
   ]
 
-
   reviews$;
 
   constructor(
     @Inject(REPORT_REASON_MAP) public reasonMap: string,
     private renderer: Renderer2,
     private store: Store<any>,
-    private cd: ChangeDetectorRef
+    private cd: ChangeDetectorRef,
   ) {
     this.reviews$ = this.store.pipe(
       select((state) => state['p']['reviews']),

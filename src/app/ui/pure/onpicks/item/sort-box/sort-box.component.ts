@@ -42,7 +42,10 @@ export class SortBoxComponent implements OnInit, AfterViewInit {
 
   constructor(
     private eRef: ElementRef,
-    private renderer: Renderer2  ) { }
+    private renderer: Renderer2
+  ) {
+
+  }
 
   ngOnInit() {
     // const temp = [...this.sortList];
@@ -50,6 +53,7 @@ export class SortBoxComponent implements OnInit, AfterViewInit {
     // init시에 무조건 첫번째 Object를 가져옴
 
 
+    console.log(this.selectedElement);
     if ( this.selectedElement === undefined ) {
       this.selectedElement = this.sortList[0];
     } else {
@@ -63,8 +67,6 @@ export class SortBoxComponent implements OnInit, AfterViewInit {
         });
       }
     }
-
-
   }
 
   ngAfterViewInit() {
@@ -92,7 +94,7 @@ export class SortBoxComponent implements OnInit, AfterViewInit {
   clickSortBoxElement(inputValue) {
     this.selectedElement = {
       title : inputValue.name,
-      value : inputValue.value// parseInt(inputValue.value, 10)
+      value : inputValue.value
     }
 
     this.isOpen = false;
