@@ -1,8 +1,6 @@
 import {Inject, Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {DOMAIN_HOST} from '../../../../app.config';
-import {ActivatedRoute, ActivatedRouteSnapshot} from '@angular/router';
-import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -48,8 +46,8 @@ export class PDataService {
 //
 // { text : "" }
 
-  addReportData( xProductSlug, reviewId) {
-    return this.http
+  addReportData( xProductSlug, xReviewId) {
+    return this.httpClient.post<any>( this.BASE_URL + '/api/products/' + xProductSlug + '/reviews/' + xReviewId + '/report', {});
   }
 
 }
