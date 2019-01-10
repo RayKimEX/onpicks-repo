@@ -3,7 +3,7 @@
   <onpicks-loading-icon></onpicks-loading-icon>
 </ng-template>
 
-<div class="col-9-of-12 available-reviews" *ngLet="orderData$ | async as data">
+<div class="col-9-of-12 available-reviews" *ngIf="orderData$ | async as data; else loading">
 
 
 
@@ -24,7 +24,7 @@
     </ui-mini-list>
   </ng-container>
 
-  <ng-container  *ngIf="data?.results.length !== 0; else loading">
+  <ng-container  *ngIf="data?.results.length !== 0; ">
     <h1 class="h1-bold">작성 가능한 리뷰</h1>
     <emitter-adhere-table
       (viewModal)="viewModal($event)"
