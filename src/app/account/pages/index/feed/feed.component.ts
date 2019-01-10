@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, ElementRef, NgZone, OnDestroy, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, OnDestroy, OnInit} from '@angular/core';
 import {fromEvent} from 'rxjs';
 import {sampleTime} from 'rxjs/operators';
 import {select, Store} from '@ngrx/store';
@@ -7,6 +7,7 @@ import {select, Store} from '@ngrx/store';
   selector: 'onpicks-feed',
   templateUrl: './feed.component.html',
   styleUrls: ['./feed.component.scss'],
+  changeDetection :ChangeDetectionStrategy.OnPush
 })
 export class FeedComponent implements OnInit, OnDestroy {
 
@@ -34,14 +35,11 @@ export class FeedComponent implements OnInit, OnDestroy {
     }
 
     this.body = document.body;
-    console.log(this.body);
 
     this.scroll$ = fromEvent(window, 'scroll').pipe(sampleTime(50))
       .subscribe( val => {
         if (((( window.scrollY + window.innerHeight ) / document.body.scrollHeight) * 100) >= 90 && !this.willLoadData) {
-          console.log(this.willLoadData);
           this.willLoadData = true;
-          console.log('hello');
           this.willLoadDataFunction();
         }
       });
@@ -73,8 +71,4 @@ export class FeedComponent implements OnInit, OnDestroy {
 
   }
 
-
-  onScroll() {
-    console.log('onscroll');
-  }
 }

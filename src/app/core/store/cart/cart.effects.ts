@@ -151,7 +151,6 @@ export class CartEffects {
   addToCart = this.actions$.pipe(
     ofType( CartActions.TRY_ADD_OR_CREATE_TO_CART ),
     map( payload => payload['payload']),
-    tap( v => console.log('thisis add to cart!!1')),
     // @ts-ignore
     switchMap( (payload: {isPopUp, productSlug, amount, packIndex, increaseOrCreate}) => {
       if ( payload.increaseOrCreate ) {
@@ -216,7 +215,7 @@ export class CartEffects {
             })
           );
       } else {
-        console.log( payload.productSlug )
+
         return this.cartService.deleteFromCart( payload.productSlug )
           .pipe(
             map( getCartInfo => {

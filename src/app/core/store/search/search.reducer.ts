@@ -32,26 +32,17 @@ export function SearchReducer(state = initialState, action: SearchActions): Sear
 
     case GET_FIRST_CATEGORY_SUCCESS :
     case GET_FIRST_CATEGORY :
-      // const normalizedCategoryData = normalizer(action.payload.data);
-      console.log('getSecondCategorySuccess');
-      // console.log(action.payload.data);
-      // console.log(action.payload.type);
 
       return {
         ...state,
         categoryList : {
           ...state.categoryList,
-          // firstCategory : action.payload.data,
-          // type : action.payload.type,
+
         }
       }
 
     case GET_SECOND_CATEGORY_SUCCESS :
     case GET_SECOND_CATEGORY :
-      // const secondCategory = normalizer(action.payload.data);
-      console.log('getSecondCategorySuccess');
-      // console.log(secondCategory);
-      console.log(action.payload);
 
       return {
         // 각각 depth 마다 ...를 넣어주지 않으면, 이전 데이터가 유지가 되지 않음.
@@ -71,10 +62,6 @@ export function SearchReducer(state = initialState, action: SearchActions): Sear
     case GET_THIRD_CATEGORY_SUCCESS :
     case GET_THIRD_CATEGORY :
 
-      console.log('getThirdCategorySuccess');
-      console.log(action.payload.data);
-      console.log(action.payload.type);
-
       return {
         ...state,
         categoryList : {
@@ -86,10 +73,6 @@ export function SearchReducer(state = initialState, action: SearchActions): Sear
 
     case GET_FOURTH_CATEGORY_SUCCESS:
     case GET_FOURTH_CATEGORY :
-
-      console.log('getFourthCategorySuccess');
-      console.log(action.payload.data);
-      console.log(action.payload.type);
 
       return {
         ...state,

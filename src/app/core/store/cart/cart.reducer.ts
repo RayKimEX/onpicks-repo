@@ -35,7 +35,6 @@ export function CartReducer(state = initialState, action: CartActions.CartAction
 
   switch (action.type) {
     case CartActions.DELETE_WISH_LIST_SUCCESS :
-      console.log(action.payload);
       state.wishList.splice(action.payload, 1);
       return {
         ...state,
@@ -44,7 +43,6 @@ export function CartReducer(state = initialState, action: CartActions.CartAction
 
     case CartActions.GET_WISH_LIST_INFO_SUCCESS :
 
-      console.log(action.payload);
       state.wishList = action.payload.results;
       // state.wishList.push(action.payload)
 
@@ -53,7 +51,6 @@ export function CartReducer(state = initialState, action: CartActions.CartAction
       }
 
     case CartActions.ADD_TO_WISH_LIST_SUCCESS :
-      console.log(action.payload.response)
       state.wishList.push(action.payload.response);
 
       return {
@@ -61,7 +58,6 @@ export function CartReducer(state = initialState, action: CartActions.CartAction
       }
 
     case CartActions.GET_CART_INFO_SUCCESS :
-      console.log(action.payload);
       let object = {}
 
       const cartObjectItems = [];
@@ -81,7 +77,6 @@ export function CartReducer(state = initialState, action: CartActions.CartAction
       const tempForInfo = Object.assign({}, ...cartObjectItems.map( k => ({ [k.product] : k})));
       object = { ...object, ...tempForInfo };
 
-      console.log(object);
 
       return {
         ...state,
@@ -105,7 +100,6 @@ export function CartReducer(state = initialState, action: CartActions.CartAction
         createTemp.items = action.payload.cartInfo.results.slice(1, action.payload.cartInfo.results.length)[action.payload.packIndex].items;
         state.cartInfo.pack[action.payload.packIndex] = createTemp;
       } else {
-        console.log('create to cart free!!');
         const createForFreeTemp = state.cartInfo.free;
         createForFreeTemp.subtotal = action.payload.cartInfo.results.slice(0, 1)[0].subtotal;
         createForFreeTemp.items = action.payload.cartInfo.results.slice(0, 1)[0].items;
@@ -180,7 +174,6 @@ export function CartReducer(state = initialState, action: CartActions.CartAction
         state.cartInfo.pack[action.payload.packIndex] = subtractTemp;
       } else {
         const subtractForFreeTemp = state.cartInfo.free;
-        console.log(action.payload.cartInfo.results.slice(0, 1));
         subtractForFreeTemp.subtotal = action.payload.cartInfo.results.slice(0, 1)[0].subtotal;
         state.cartInfo.free = subtractForFreeTemp;
       }
@@ -210,8 +203,6 @@ export function CartReducer(state = initialState, action: CartActions.CartAction
 
     case CartActions.DELETE_FROM_CART_SUCCESS :
 
-
-      console.log(action.payload.packIndex);
       if ( action.payload.packIndex !== 'free' ) {
         const deleteTemp = state.cartInfo.pack[action.payload.packIndex];
 

@@ -27,8 +27,7 @@ export class CleanLoadDirective implements AfterViewInit, OnDestroy {
     this.renderer.setStyle(this.el.nativeElement.parentNode, 'position', 'relative');
     this.renderer.setStyle(this.el.nativeElement.parentNode, 'display', 'inline-block');
     this.renderer.appendChild(this.el.nativeElement.parentNode, backgroundColor);
-    // console.log(temp.width)
-    // console.log(this.el.nativeElement);
+
 
     this.renderer.addClass(this.el.nativeElement, 'u-img-load-transition');
     this.renderer.addClass(this.el.nativeElement, 'u-opacity-zero');

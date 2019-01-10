@@ -52,7 +52,6 @@ export class PMenuComponent implements OnInit, OnDestroy, AfterViewInit, OnChang
 
 
       /* async를 통해 데이터가 들어올때만 다음으로 넘어감*/
-      console.log(this.titleHeight)
       const result = parseInt(getComputedStyle(this.titleHeightElement.nativeElement).height, 10);
       this.titleHeight = result === 0  ? this.titleHeight : result;
 
@@ -92,7 +91,6 @@ export class PMenuComponent implements OnInit, OnDestroy, AfterViewInit, OnChang
         let listFirstDepthTemp = [];
         let listTwoDepthParentTemp = {};
         let listTwoDepthListTemp = [];
-        console.log(test);
         xData.attributes.forEach( attributes_key => {
 
           listFirstDepthTemp = [];
@@ -100,8 +98,6 @@ export class PMenuComponent implements OnInit, OnDestroy, AfterViewInit, OnChang
           Object.keys(test).forEach( (key, index) => {
             listTwoDepthListTemp = [];
             Object.keys(test[key]).forEach( twoKey => {
-              console.log(key);
-              console.log(twoKey);
               listTwoDepthListTemp.push({title: twoKey, value: twoKey});
             });
             listTwoDepthParentTemp = { title : xData.attributes[1], list: listTwoDepthListTemp.slice()};
@@ -117,16 +113,13 @@ export class PMenuComponent implements OnInit, OnDestroy, AfterViewInit, OnChang
 
           depthCnt++;
           this.optionObject = {title: xData.attributes[0], list: listFirstDepthTemp };
-          console.log(this.optionObject);
-          console.log()
+
         });
 
 
         this.cd.markForCheck();
-        console.log(this._data.attributes);
       }, 0);
 
-      console.log(this._data.attributes);
       this.discountPercent = 100 - Math.round((xData.price / xData.msrp * 100));
     }
 
@@ -227,7 +220,6 @@ export class PMenuComponent implements OnInit, OnDestroy, AfterViewInit, OnChang
   }
   ngOnDestroy() {
     this._data = null;
-    console.log('destroy!!');
     if ( this.scrollEvent !== undefined ) {
       this.scrollEvent.unsubscribe();
     }
@@ -256,7 +248,6 @@ export class PMenuComponent implements OnInit, OnDestroy, AfterViewInit, OnChang
   }
 
   addToCart(xPackIndex){
-    console.log(xPackIndex);
     let keyForSlug = '';
     this.keyListForSlug.forEach( (value, index) => {
       if ( (this.keyListForSlug.length - 1) === index ){
@@ -314,10 +305,8 @@ export class PMenuComponent implements OnInit, OnDestroy, AfterViewInit, OnChang
       this.cd.markForCheck();
     });
     this.scrollEvent = this.scrollEvent.subscribe(val => {
-      // console.log(this.titleHeight);
       if (window.pageYOffset >= 172) {
         if (window.pageYOffset >= (menuTopValue.menuPosition - this.titleHeight) - 32) {
-          // console.log('activated menuPosition : ' + window.pageYOffset);
           if ( setStatus === 'absolute') { return; }
           setStatus = 'absolute';
           this.renderer.setStyle(this.pMenu.nativeElement, 'position', 'absolute');

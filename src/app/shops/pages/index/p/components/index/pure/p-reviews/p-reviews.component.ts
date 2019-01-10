@@ -118,10 +118,6 @@ export class PReviewsComponent implements AfterViewInit {
   }
 
   reportReview( xProductSlug, xReviewId, xReportReason ) {
-    console.log('reportReview');
-    console.log(xProductSlug);
-    console.log(xReviewId);
-    console.log(xReportReason);
     this.pDataService.reportReviewData( xProductSlug, xReviewId, xReportReason)
       .subscribe(
         response => {

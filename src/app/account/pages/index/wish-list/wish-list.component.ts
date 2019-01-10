@@ -42,7 +42,6 @@ export class WishListComponent implements OnInit, OnDestroy {
   }
 
   moveWishListToCart(xAmount, xProductSlug, xPackIndex, xWishListId, xIndex){
-    console.log(xAmount);
     this.store.dispatch( new TryAddOrCreateToCart(
       {
         isPopUp : false,

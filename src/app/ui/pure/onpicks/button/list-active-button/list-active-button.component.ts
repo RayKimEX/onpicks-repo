@@ -141,20 +141,12 @@ export class ListActiveButtonComponent implements OnInit, AfterViewInit, OnDestr
 
   amountDown() {
     if ( this.amount > 1) {
-
-      // this.amount--;
       this.subtractEvent.emit(this.amount);
-      console.log('delete1');
 
     } else {
 
       if( this.isFixExtend ) { return; }
-
-      // this.renderer.setStyle(this.extendUI.nativeElement, 'display', 'none');
-
-
       this.subtractEvent.emit(this.amount);
-      console.log('delete2');
     }
   }
 }

@@ -10,13 +10,6 @@ import {AfterViewInit, ChangeDetectionStrategy, Component, OnInit} from '@angula
 export class ShopsIndexComponent implements OnInit, AfterViewInit {
 
 
-  // shopsBannerImages = [
-  //   'https://picsum.photos/1920/440?image=120',
-  //   'https://picsum.photos/1920/440?image=200',
-  //   'https://picsum.photos/1920/440?image=130',
-  //   'https://picsum.photos/1920/440?image=210',
-  // ]
-
   shopsBannerImages = [
     {
       imgSrc : 'https://img.onpicks.com/assets/beauty_banner1.jpg',
@@ -79,7 +72,7 @@ export class ShopsIndexComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    console.log('i`ve loadded!! ');
+
   }
 }
 

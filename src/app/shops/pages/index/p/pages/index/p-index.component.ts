@@ -52,7 +52,6 @@ export class PIndexComponent implements OnDestroy {
   }
 
   ngOnDestroy() {
-    console.log('destroye from p-index');
   }
 
 }

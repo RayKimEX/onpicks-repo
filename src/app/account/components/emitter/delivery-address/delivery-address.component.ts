@@ -1,4 +1,14 @@
-import {Component, OnInit, ChangeDetectionStrategy, ViewChildren, ViewChild, ElementRef, Renderer2, ChangeDetectorRef} from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ChangeDetectionStrategy,
+  ViewChildren,
+  ViewChild,
+  ElementRef,
+  Renderer2,
+  ChangeDetectorRef,
+  AfterViewInit, OnDestroy
+} from '@angular/core';
 import {HttpClient, HttpParams} from '../../../../../../node_modules/@angular/common/http';
 import {AccountDataService} from '../../../../core/service/data-pages/account/account-data.service';
 import {OrderDataService} from '../../../../core/service/data-pages/order/order-data.service';
@@ -12,7 +22,7 @@ import {fromEvent, of} from 'rxjs';
   styleUrls: ['./delivery-address.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DeliveryAddressComponent implements OnInit {
+export class DeliveryAddressComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChildren('inputSearchBoxOuter') inputSearchBoxOuter;
   @ViewChild('inputSearchBox', {read: ElementRef}) inputSearchBoxEL;
   @ViewChildren('inputSearchBox' ) inputSearchBox;
@@ -89,7 +99,6 @@ export class DeliveryAddressComponent implements OnInit {
   ngAfterViewInit() {
     this.searchInputFirstEvent$ = fromEvent(this.inputSearchBox.first.searchInputBox.nativeElement, 'input');
     this.searchInputLastEvent$ = fromEvent(this.inputSearchBox.last.searchInputBox.nativeElement, 'input');
-    console.log(this.inputSearchBox);
 
     // TODO : 20정도가 딱 적당하게 바로바로 반응함.
     this.searchFirst$ = this.searchInputFirstEvent$.pipe(
@@ -306,7 +315,6 @@ export class DeliveryAddressComponent implements OnInit {
     // this.validateDeliveryInfo();
 
     if ( this.errorStatus === 0 ) {
-      console.log(this.deliveryData.length);
       const JSON_deliveryInfo = this.setDeliveryInfo();
 
       this.orderDataService.addDeliveryData(this.userStore.id, JSON_deliveryInfo).subscribe( v => {
@@ -354,9 +362,6 @@ export class DeliveryAddressComponent implements OnInit {
   // }
 
   getCurrentText(event) {
-    console.log(this.inputJuso);
-    console.log(event.target.innerText)
-    console.log(event.target.getAttribute('data-zipnumber'));
     if( this.isShowDeliveryModal === true ) {
       this.renderer.setProperty(this.inputJuso.first.nativeElement.children[0], 'value', event.target.innerText);
       this.renderer.setProperty(this.inputZipnumber.first.nativeElement.children[0], 'value', event.target.getAttribute('data-zipnumber'));
@@ -376,8 +381,6 @@ export class DeliveryAddressComponent implements OnInit {
     this.orderDataService.updateDeliveryDataToDefault(this.userStore.id, this.deliveryData[index].id).subscribe(
       v => {
 
-        console.log(this.deliveryData);
-        console.log(v);
         const temp = [];
         this.deliveryData.forEach( (value, forEachIndex) => {
 
@@ -399,7 +402,6 @@ export class DeliveryAddressComponent implements OnInit {
         this.deliveryData = temp;
 
         this.deliveryData$ = of(temp);
-        console.log(this.deliveryData);
 
         this.cd.markForCheck();
       }

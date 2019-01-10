@@ -34,7 +34,6 @@ export class WriteReviewComponent implements OnInit, OnChanges {
       .subscribe( v => {
         v.pictures.forEach( item => {
           this.imageFileList.push({file : '', blobData : item});
-          console.log(item);
           this.cd.markForCheck();
         });
       });
@@ -92,12 +91,10 @@ export class WriteReviewComponent implements OnInit, OnChanges {
   dragEnter() {
     this.isDraggedEnter = true;
 
-    console.log('dragEneter');
   }
 
   dragLeave() {
     this.isDraggedEnter = false;
-    console.log('dragLeave');
   }
 
   @HostListener('drop', ['$event'])
@@ -107,7 +104,6 @@ export class WriteReviewComponent implements OnInit, OnChanges {
 
   @HostListener('dragover', ['$event'])
   dragOverOnPage(event) {
-    console.log('dragover!!')
     event.preventDefault();
   }
 
@@ -133,9 +129,6 @@ export class WriteReviewComponent implements OnInit, OnChanges {
 
       this.imageFileList.push({file : event.dataTransfer.files[key], blobData : temp});
       // this.imgSrc = temp;
-      console.log(this.imageFileList);
-
-      console.log(this.data);
       this.imageFileList.forEach(
         value => {
 
@@ -154,16 +147,13 @@ export class WriteReviewComponent implements OnInit, OnChanges {
   }
 
   deleteImageFile(index) {
-    console.log(index);
     this.errorStatus = 0;
     this.viewDragArea = true;
     this.imageFileList.splice(index , 1);
-    console.log(this.imageFileList);
   }
 
   publishReview( xProductSlug, xReviewId ){
     // xProductSlug, xReviewId, xRating, xText
-    console.log(this.reviewTextView.nativeElement.value);
 
     this.accountDataService.publishReviewData(xProductSlug, xReviewId, this.starRating, this.reviewTextView.nativeElement.value).subscribe( v => console.log(v))
   }

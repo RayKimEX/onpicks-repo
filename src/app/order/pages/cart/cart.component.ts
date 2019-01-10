@@ -79,16 +79,12 @@ export class CartComponent {
       productArray.push(item.product);
     });
 
-    console.log(productArray);
-
     this.httpClient.post<any>( this.BASE_URL + '/api/cart/checkout/', { products : productArray }).
     subscribe(
       data => {
-        console.log('i`m succeed!');
         this.router.navigate(['/order/checkout']);
       },
       error => {
-        console.log('i`m failed');
         console.log(error);
       }
     );
@@ -123,8 +119,6 @@ export class CartComponent {
   addToCart(xAmount, xProductSlug, xPackIndex) {
     xAmount++;
 
-
-    console.log(xPackIndex);
     // 만약 카트 아이디가. 카트스토어 카트리스트에 있다면, increase cart를 하고, create cart를 하지 않는다.
 
     this.store.dispatch( new TryAddOrCreateToCart(
@@ -138,7 +132,6 @@ export class CartComponent {
   }
 
   moveWishListToCart(xAmount, xProductSlug, xPackIndex, xWishListId, xIndex){
-    console.log(xAmount);
     this.store.dispatch( new TryAddOrCreateToCart(
       {
         isPopUp : false,
@@ -153,7 +146,6 @@ export class CartComponent {
 
   subtractFromCart(xAmount, xProductSlug, xPackIndex ) {
     xAmount--;
-    console.log(xPackIndex);
     this.store.dispatch( new TrySubtractOrDeleteFromCart(
       {
         isPopUp : false,

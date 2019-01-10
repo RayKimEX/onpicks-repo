@@ -24,7 +24,6 @@ export class SearchService {
   }
 
   getChildrenCategory(categoryCode) {
-    console.log('getChildrenCategory');
     return this.httpClient.get<any>( this.BASE_URL + '/api/categories/' + this.CATEGORY_MAP_CONST[categoryCode] + '/children/' );
   }
 

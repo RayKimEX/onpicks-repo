@@ -45,9 +45,6 @@ export class AccountDataService {
 
   uploadReviewImage( xProductSlug, xReviewId, xFile ) {
 
-    console.log(xProductSlug);
-    console.log(xReviewId);
-    console.log(xFile);
     const formData: FormData = new FormData();
     formData.append('file', xFile, xFile.name );
     return this.httpClient.post<any>(
@@ -55,8 +52,7 @@ export class AccountDataService {
   }
 
   getPendingReviewData( xProductSlug, xReviewId ) {
-    console.log(xProductSlug)
-    console.log(xReviewId);
+
     return this.httpClient.get<any>(
       this.BASE_URL + '/api/products/' + xProductSlug + '/reviews/' + xReviewId + '/');
   }

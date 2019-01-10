@@ -24,7 +24,6 @@ export class SelectBoxComponent implements OnInit, OnChanges {
   @Input('selectedElement') set selectedElement (xSelectedElement) {
 
     this._selectedElement = xSelectedElement;
-    console.log(  this._selectedElement );
 
     if ( this._selectedElement.title === null ) {
       if ( this._sortList.title === undefined ) {

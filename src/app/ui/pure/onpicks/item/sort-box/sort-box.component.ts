@@ -33,7 +33,6 @@ export class SortBoxComponent implements OnInit, AfterViewInit {
   clickout(event) {
 
     if ( this.eRef.nativeElement.contains(event.target)) {
-      // console.log('clicked inside');
     } else {
       this.isOpen = false;
       this.renderer.setStyle( this.HTMLdropDown.nativeElement, 'display', 'none');
@@ -48,12 +47,8 @@ export class SortBoxComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    // const temp = [...this.sortList];
-    // console.log(temp);
     // init시에 무조건 첫번째 Object를 가져옴
 
-
-    console.log(this.selectedElement);
     if ( this.selectedElement === undefined ) {
       this.selectedElement = this.sortList[0];
     } else {

@@ -62,9 +62,6 @@ export class MiniListComponent implements OnInit, AfterViewInit, OnDestroy {
   addToCart(xAmount, xProductSlug, xPackIndex) {
 
     xAmount++;
-
-    console.log(xAmount);
-    console.log(this.cartStore.cartList);
     // 만약 카트 아이디가. 카트스토어 카트리스트에 있다면, increase cart를 하고, create cart를 하지 않는다.
     this.store.dispatch(new TryAddOrCreateToCart({
       isPopUp : true,
@@ -96,7 +93,6 @@ export class MiniListComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit() {
-    console.log(this.infoList);
     this.renderer.setProperty( this.insertTitle.nativeElement, 'innerHTML', this.setTitle);
   }
 

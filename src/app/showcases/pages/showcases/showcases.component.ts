@@ -1,11 +1,10 @@
-import {AfterViewInit, Component, OnInit} from '@angular/core';
-import {fromEvent} from 'rxjs';
-import {sampleTime} from 'rxjs/operators';
+import {AfterViewInit, ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'onpicks-showcases',
   templateUrl: './showcases.component.html',
-  styleUrls: ['./showcases.component.scss']
+  styleUrls: ['./showcases.component.scss'],
+  changeDetection : ChangeDetectionStrategy.OnPush
 })
 export class ShowcasesComponent implements OnInit, AfterViewInit {
 
@@ -91,41 +90,18 @@ export class ShowcasesComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    console.log('Showcases Init!');
   }
 
   onDragOver(files) {
-    console.log(files);
     files.preventDefault();
   }
 
   dropFiles(event) {
     const that = this;
-    console.log(event);
     event.dataTransfer.dropEffect = 'copy';
-    console.log(event.dataTransfer.files[0]);
 
-    // const reader = new FileReader();
-    // reader.readAsDataURL(event.dataTransfer.files[0]);
     const temp = URL.createObjectURL(event.dataTransfer.files[0]);
-    console.log( temp );
     this.imgSrc = temp;
-    // reader.onload = function(read) {
-    //   console.log(reader.result);
-    //   // let hello = '';
-    //   if (typeof reader.result === 'string') {
-    //     // hello = btoa(unescape(encodeURIComponent(reader.result)))
-    //     console.log(typeof(reader.result));
-    //     const temp = that.b64Data(reader.result, 'image/png');
-    //     console.log(temp);
-    //     // const temp2 = that.b64Data2(reader.result, 'image/png');
-    //     // console.log(temp2);
-    //
-    //     const blobUrl = URL.createObjectURL(temp);
-    //     that.imgSrc = blobUrl;
-    //     console.log(that.imgSrc);
-    //   }
-    // }
     event.preventDefault();
   }
 

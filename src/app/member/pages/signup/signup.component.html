@@ -45,7 +45,7 @@
 
   <div class="signup__or-line">
     <span class="signup__or-line--active">
-      <span class="signup__or-line--text">
+      <span class="signup__or-line--text subtitle-2-regular u-color-dark-grey">
         또는
       </span>
     </span>
@@ -65,19 +65,22 @@
   </div>
 
 
-  <div class="signup__description">
+  <div class="signup__description subtitle-2-regular u-color-dark-grey">
     가입하기를 클릭하면 본인은 만 14세 이상이며, Onpicks
     <span><a href="" routerLink="/terms" class="u-color-green u-regular">이용약관</a></span>,
     <span><a href="" routerLink="/terms/privacy" class="u-color-green u-regular">개인정보 처리 방침</a></span>을 확인 하였으며, 동의하는 것입니다.
   </div>
-  <button class="btn btn--black signup__btn" (click)="signUp(undefined)">동의하고 가입하기</button>
+  <button class="btn btn--black signup__btn button-bold-white" (click)="signUp(undefined)">동의하고 가입하기</button>
 
   <div class="signup__line"></div>
 
   <div class="signup__already-account">
-    <span class="signup__already-account--text">
-      이미 Onpicks 계정이 있나요?<a routerLink="/member/login"> <span class="u-color-green u-bold">&nbsp;&nbsp;로그인 ></span></a>
+    <span class="signup__already-account--text subtitle-2-regular">
+      이미 Onpicks 계정이 있나요?
     </span>
+    <a routerLink="/member/login">
+      <ui-angle-bracket-navigator>로그인</ui-angle-bracket-navigator>
+    </a>
   </div>
 </div>
 

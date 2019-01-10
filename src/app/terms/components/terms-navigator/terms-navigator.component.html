@@ -1,14 +1,35 @@
 
 <div class="terms-navigator">
-  <ul >
-    <li class="terms-navigator--item"><a href="" routerLink="/terms" class="subtitle-2-bold u-color-grey" [routerLinkActive]="['u-color-black']" [routerLinkActiveOptions]="{exact: true}" >이용약관</a></li>
-    <li class="terms-navigator--item"><a href="" routerLink="/terms/privacy" class="subtitle-2-bold u-color-grey" [routerLinkActive]="['u-color-black']">개인정보 처리 방침</a></li>
+  <ul>
+    <li class="terms-navigator--item">
+      <a
+         routerLink="/terms"
+         class="subtitle-2-bold u-color-grey"
+         [routerLinkActive]="['u-color-black']"
+         [routerLinkActiveOptions]="{exact: true}">
+        이용약관
+      </a>
+    </li>
+    <li
+      class="terms-navigator--item">
+      <a
+        routerLink="/terms/privacy"
+        class="subtitle-2-bold u-color-grey"
+        [routerLinkActive]="['u-color-black']">
+        개인정보 처리 방침
+      </a>
+    </li>
   </ul>
 
 
-  <div class="terms-navigator--help-tel"> 고객 센터 1644-0560</div>
-  <div class="terms-navigator--help-mail">help@onpicks.com</div>
-  <div class="terms-navigator--operate-time">AM 10:00 ~ PM 18:00
+  <div class="terms-navigator--help-tel subtitle-2-regular">고객 센터 1644-0560</div>
+  <div class="terms-navigator--help-mail">
+    <a
+      class="subtitle-2-regular u-color-green"
+      href="mailto:help@onpicks.com">help@onpicks.com
+    </a>
+  </div>
+  <div class="terms-navigator--operate-time body-2-regular">AM 10:00 ~ PM 18:00
     <br>점심시간 13:00 ~ 14:00
     <br>토, 일, 공휴일 휴무
   </div>

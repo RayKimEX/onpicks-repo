@@ -209,7 +209,6 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
           term: val.term,
         };
 
-        console.log(this.queryParams.brand);
         this.queryParams.brand.forEach(v => {
           const tempForInfo = Object.assign({[v]: true});
           this.brandListForCheck = {...this.brandListForCheck, ...tempForInfo};
@@ -247,7 +246,6 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
 
     xAmount++;
 
-    console.log(this.cartStore.cartList);
     // 만약 카트 아이디가. 카트스토어 카트리스트에 있다면, increase cart를 하고, create cart를 하지 않는다.
     this.store.dispatch(new TryAddOrCreateToCart({
       isPopUp : true,
@@ -293,7 +291,6 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
 
   updateFourthCategory(index, secondSlug, thirdSlug, fourthSlug) {
     const url = this.router.url.split('/');
-    console.log(url.length);
 
     this.router.navigate(['/shops/c/' + url[3] + '/' + secondSlug + '/' + thirdSlug + '/' + fourthSlug], {relativeTo: this.route});
   }

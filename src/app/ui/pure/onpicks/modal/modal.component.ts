@@ -31,7 +31,6 @@ export class ModalComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges){
-    console.log(changes);
     if ( changes.isShow.currentValue === true ) {
       this.renderer.addClass(document.body , 'u-open-modal');
     } else {

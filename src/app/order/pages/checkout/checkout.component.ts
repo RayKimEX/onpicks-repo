@@ -174,7 +174,6 @@ export class CheckoutComponent implements OnInit, AfterViewInit, OnDestroy {
               }
               this.searchInputFirstEvent$ = fromEvent(this.inputSearchBox.first.searchInputBox.nativeElement, 'input');
               this.searchInputLastEvent$ = fromEvent(this.inputSearchBox.last.searchInputBox.nativeElement, 'input');
-              console.log(this.inputSearchBox);
 
               // TODO : 20정도가 딱 적당하게 바로바로 반응함.
               this.searchFirst$ = this.searchInputFirstEvent$.pipe(
@@ -281,7 +280,6 @@ export class CheckoutComponent implements OnInit, AfterViewInit, OnDestroy {
     this.errorStatus = 0;
     this.validate();
 
-    console.log(this.errorStatus);
     if ( this.errorStatus === 0 ) {
 
       this.formData.buyer_name = this.inputOrderName.nativeElement.children[0].value;
@@ -309,7 +307,6 @@ export class CheckoutComponent implements OnInit, AfterViewInit, OnDestroy {
       this.formData.city = 'helloCity';
       this.formData.country = 'helloCountry';
 
-      console.log(this.formData);
       this.httpClient.post<any>( this.BASE_URL + '/api/orders/', this.formData )
         .subscribe( response => {
 
@@ -319,7 +316,7 @@ export class CheckoutComponent implements OnInit, AfterViewInit, OnDestroy {
             this.paymentScript.src = response.pay_script;
             this.paymentScript.async = true;
             this.paymentScript.onload = function() {
-              console.log('Script loaded');
+
               // @ts-ignore
               INIStdPay.pay(form);
             };
@@ -494,12 +491,10 @@ export class CheckoutComponent implements OnInit, AfterViewInit, OnDestroy {
     this.validateDeliveryInfo();
 
     if ( this.errorStatus === 0 ) {
-      console.log(this.deliveryData.length);
 
       const JSON_deliveryInfo = this.setDeliveryInfo();
 
       this.orderDataService.addDeliveryData(this.userStore.id, JSON_deliveryInfo).subscribe( v => {
-        console.log(v);
 
         this.deliveryData.push(v);
         this.deliveryData$ = of(this.deliveryData);
@@ -516,8 +511,6 @@ export class CheckoutComponent implements OnInit, AfterViewInit, OnDestroy {
     this.orderDataService.updateDeliveryDataToDefault(this.userStore.id, this.deliveryData[index].id).subscribe(
       v => {
 
-        console.log(this.deliveryData);
-        console.log(v);
         const temp = [];
         this.deliveryData.forEach( (value, forEachIndex) => {
 
@@ -537,9 +530,7 @@ export class CheckoutComponent implements OnInit, AfterViewInit, OnDestroy {
         })
 
         this.deliveryData = temp;
-
         this.deliveryData$ = of(temp);
-        console.log(this.deliveryData);
 
         this.cd.markForCheck();
       }
@@ -580,9 +571,6 @@ export class CheckoutComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   getCurrentText(event) {
-    console.log(this.inputJuso);
-    console.log(event.target.innerText)
-    console.log(event.target.getAttribute('data-zipnumber'));
     if( this.isShowDeliveryModal === true ) {
       this.renderer.setProperty(this.inputJuso.first.nativeElement.children[0], 'value', event.target.innerText);
       this.renderer.setProperty(this.inputZipnumber.first.nativeElement.children[0], 'value', event.target.getAttribute('data-zipnumber'));
@@ -608,50 +596,41 @@ export class CheckoutComponent implements OnInit, AfterViewInit, OnDestroy {
       this.inputOrderName.nativeElement.children[0].focus();
       this.errorStatus |= this.EMPTY_ORDER_NAME;
 
-      console.log('1');
     }
 
     if ( this.inputOrderNumber.nativeElement.children[0].value === '') {
-      console.log('2')
       if ( this.errorStatus === 0 ) {this.inputOrderNumber.nativeElement.children[0].focus();}
       this.errorStatus |= this.EMPTY_ORDER_NUMBER;
     } else {
       const patt = new RegExp('[a-zA-Z]');
       if ( patt.test(this.inputOrderNumber.nativeElement.children[0].value) ) {
-        console.log('3')
+
         if ( this.errorStatus === 0 ) {this.inputOrderNumber.nativeElement.children[0].focus();}
         this.errorStatus |= this.INVALID_RECIPIENT_NUMBER;
       }
     }
 
     if ( this.deliveryData.length === 0 ) {
-      console.log(this.inputRecipientName.last.nativeElement.children[0].value);
       if ( this.inputRecipientName.last.nativeElement.children[0].value === '') {
-        console.log('4');
         if ( this.errorStatus === 0 ) {this.inputRecipientName.last.nativeElement.children[0].focus();}
         this.errorStatus |= this.EMPTY_RECIPIENT_NAME;
       }
 
-      console.log(this.inputRecipientNumber.last.nativeElement.children[0].value);
       if ( this.inputRecipientNumber.last.nativeElement.children[0].value === '') {
-        console.log('5');
         if ( this.errorStatus === 0 ) {this.inputRecipientNumber.last.nativeElement.children[0].focus();}
         this.errorStatus |= this.EMPTY_RECIPIENT_NUMBER;
       } else {
         const patt = new RegExp('[a-zA-Z]');
         if ( patt.test(this.inputRecipientNumber.last.nativeElement.children[0].value) ) {
-          console.log('6');
           if ( this.errorStatus === 0 ) {this.inputRecipientNumber.last.nativeElement.children[0].focus();}
           this.errorStatus |= this.INVALID_RECIPIENT_NUMBER;
         }
       }
 
-
-      console.log(this.inputZipnumber.last.nativeElement.children[0].value);
       if ( this.inputZipnumber.last.nativeElement.children[0].value === ''
         || this.inputJuso.last.nativeElement.children[0].value === ''
       ) {
-        console.log('7');
+
         if ( this.errorStatus === 0 ) {this.inputZipnumber.last.nativeElement.children[0].focus();}
         this.errorStatus |= this.EMPTY_DELIVERY_ADDRESS;
       }
@@ -660,13 +639,11 @@ export class CheckoutComponent implements OnInit, AfterViewInit, OnDestroy {
 
 
     if ( this.checkoutAdditionNumber.nativeElement.children[0].value === '') {
-      console.log('8');
       if ( this.errorStatus === 0 ) {this.checkoutAdditionNumber.nativeElement.children[0].focus();}
       this.errorStatus |= this.EMPTY_CUSTOMS_ID_NUMBER;
     } else {
       const patt = new RegExp('^P[0-9]{12}$');
       if ( !(patt.test(this.checkoutAdditionNumber.nativeElement.children[0].value))) {
-        console.log('9');
         if ( this.errorStatus === 0 ) {this.checkoutAdditionNumber.nativeElement.children[0].focus();}
         this.errorStatus |= this.INVALID_CUSTOMS_ID_NUMBER;
       }
@@ -674,12 +651,10 @@ export class CheckoutComponent implements OnInit, AfterViewInit, OnDestroy {
 
     // 결제 모듈 선택 안한 상태
     if ( this.formData.payment_method === null ) {
-      console.log('10');
       this.errorStatus |= this.EMPTY_PAYMENT_METHOD;
     }
 
     if ( this.isAgreementDirectBuyingInfo === false ) {
-      console.log('11');
       this.errorStatus |= this.EMPTY_AGREEMENT_DIRECT_BUYING;
     }
   }

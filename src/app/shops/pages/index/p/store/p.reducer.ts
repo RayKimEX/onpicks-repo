@@ -29,7 +29,7 @@ export function PReducer (state = initialState, action: PActions.PActions) {
   switch ( action.type ) {
 
     case PActions.TOGGLE_VOTE_REIVEW_SUCCESS :
-      console.log(action.payload);
+
       return {
         ...state,
         reviews : {
@@ -54,8 +54,7 @@ export function PReducer (state = initialState, action: PActions.PActions) {
 
       };
 
-    case PActions.GET_PRODUCT_INFO_SUCCESS:
-      console.log(action.payload);
+    case PActions.GET_PRODUCT_INFO_SUCCESS :
       return {
         ...state,
         data : {
@@ -73,7 +72,6 @@ export function PReducer (state = initialState, action: PActions.PActions) {
 
     case PActions.GET_REVIEWS_PRODUCT_SUCCESS :
 
-      console.log(action.payload);
       const data =  reviewNormalizer(action.payload.results);
       return {
         ...state,
@@ -126,7 +124,7 @@ export function PReducer (state = initialState, action: PActions.PActions) {
 
     case PActions.ADD_COMMENT_SUCCESS :
       const addedCommentState = state.reviews.list[action.payload.reviewsId].comments.results
-      console.log(state.reviews.list[action.payload.reviewsId].comments);
+
       addedCommentState.push(action.payload.respond);
       return {
         ...state,

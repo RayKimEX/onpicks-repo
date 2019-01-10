@@ -52,9 +52,6 @@ export class AnimateOnScrollDirective implements AfterViewInit {
   }
 
   private checkIfIntersecting (entry: IntersectionObserverEntry) {
-    // console.log('===entry===')
-    // console.log(entry.target)
-    // console.log(this._elementRef.nativeElement)
     return (<any>entry).isIntersecting && entry.target === this.el.nativeElement;
   }
 

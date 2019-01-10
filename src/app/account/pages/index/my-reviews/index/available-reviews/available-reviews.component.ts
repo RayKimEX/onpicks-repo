@@ -42,8 +42,6 @@ export class AvailableReviewsComponent implements OnInit {
     if (xParam.data.review === null ) {
       this.accountDataService.createReviewData(xParam.data.product, xParam.orderId).subscribe(
         response => {
-          console.log(xParam.param);
-          console.log(response);
           if ( xParam.param === 'write_review' ) {
             this.writeReview.isShow = true;
             this.writeReview.orderData = xParam.data;

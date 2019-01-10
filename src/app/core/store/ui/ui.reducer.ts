@@ -118,7 +118,6 @@ export function UiReducer(state = initialState, action: UiActions): UiState {
       // 초기값을 새로운 전역 변수에 넣어준다.
       secondResultList = normalizedCategoryData.result;
       getThirdSortValue = sortThirdInfo[action.payload.thirdSortKey];
-      console.log(thirdResultList);
 
       // 실제로 순서를 보여주게 하는것 순서 변환
       secondResultList.forEach( item => {
@@ -221,8 +220,7 @@ export function UiReducer(state = initialState, action: UiActions): UiState {
 
       getSecondSortValue = sortSecondInfo[action.payload.secondSortKey];
       getThirdSortValue = sortThirdInfo[action.payload.thirdSortKey];
-      console.log(getSecondSortValue);
-      console.log(getThirdSortValue);
+
       // 전역 변수에 넣은 초기값 (현재 값이아닌 ) 기준으로, 새로 가져와서 변화시킴
       // state에 있는값은 바뀐 값을 다시 가져오기 때문에 의미가 없음.
       secondResultList.forEach( item => {
@@ -244,7 +242,6 @@ export function UiReducer(state = initialState, action: UiActions): UiState {
 
       currentSlug = state.currentCategoryList.entities.secondCategory[getSecondSortValue].slug;
       currentName = state.currentCategoryList.entities.secondCategory[getSecondSortValue].name;
-      console.log( state.currentCategoryList.entities.secondCategory[getSecondSortValue].name);
 
       if (getThirdSortValue !== undefined ) {
         currentSlug = state.currentCategoryList.entities.thirdCategory[getThirdSortValue].slug;
@@ -255,12 +252,10 @@ export function UiReducer(state = initialState, action: UiActions): UiState {
 
       if ( state.currentCategoryList.previous['secondPrevious'] === getSecondSortValue ) {
         notChangeSecondPrevious = true;
-        console.log('notChangeSecondPrevious');
       }
 
       if ( state.currentCategoryList.previous['thirdPrevious'] === getThirdSortValue ) {
         notChangeThirdPrevious = true;
-        console.log('notChangeSecondPrevious');
       }
 
       return {

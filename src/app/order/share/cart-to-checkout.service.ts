@@ -14,19 +14,8 @@ export class CartToCheckoutService {
 
   getCheckoutList() {
 
-    // tap( obj => {
-    //   console.log(obj);
-    //   obj.cartList
-    //   Object.keys(obj).forEach( key => {
-    //     this.totalProductPrice += obj[key].sale_price;
-    //   });
-    //   console.log(obj);
-    //
-    // }
-
     Object.keys(this.checkoutList).forEach( key => {
       this.totalProductPrice += this.checkoutList[key].sale_price;
-      console.log(this.checkoutList);
     });
     return of(this.checkoutList);
   }

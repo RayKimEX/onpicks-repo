@@ -32,7 +32,6 @@ export class PPictureReviewComponent implements OnInit, AfterViewInit, OnDestroy
   @ViewChildren('imageSmallOuter') imageSmallOuter;
 
   @Input('pictureReviewList') set setList(xData) {
-    console.log(xData);
 
     if ( xData === null ) { return ; };
     this.imagesLargeList = xData;
@@ -40,7 +39,6 @@ export class PPictureReviewComponent implements OnInit, AfterViewInit, OnDestroy
     this.imagesLargeList.push({});
     setTimeout( () => {
       this.imagesLargeList.forEach( item => {
-        console.log(item.url);
         if ( item.url !== undefined ){
           this.imagesSmallList.push(item.url);
         }

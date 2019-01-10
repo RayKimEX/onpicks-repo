@@ -23,7 +23,7 @@ export class UiEffects {
       return this.uiService.getCategoryAll(payload['firstSortKey'])
         .pipe(
           map( (categoryInfo) => {
-            console.log(categoryInfo);
+
             return new GetCategoryAllSuccess( {
               type : payload['type'],
               data : categoryInfo.children,

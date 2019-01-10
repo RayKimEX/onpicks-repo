@@ -20,7 +20,7 @@ export class AuthGuard implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
     return this.store.pipe(select( ngrxState => ngrxState.auth.isAuthenticated), take(1)).toPromise().then(
       isAuthenticated => {
-        console.log(isAuthenticated);
+
         if (isAuthenticated) {
 
           return true;

@@ -66,8 +66,7 @@ export class StarRatingComponent implements OnInit, AfterViewInit, OnChanges {
   }
 
   mouseOver(value, type) {
-    // console.log(getList);
-   //  console.log('[MouseOver] currentIndex : ' + this.currentIndex);
+
     if ( this.isChecked ) {
       if ( this.checkedIndex <= value ) {
         this.currentIndex = value;
@@ -80,7 +79,6 @@ export class StarRatingComponent implements OnInit, AfterViewInit, OnChanges {
   }
   @HostListener('mouseleave', ['$event'])
   mouseHandling(event) {
-    console.log('mouselaeve');
     if (this.isChecked) {
       this.currentIndex = this.checkedIndex;
     } else {

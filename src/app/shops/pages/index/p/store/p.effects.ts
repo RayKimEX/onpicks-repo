@@ -90,7 +90,6 @@ export class PEffects {
   getReviews = this.actions$.pipe(
     ofType( PActions.TRY_GET_REVIEWS_PRODUCT ),
     map( payload => payload['payload']),
-    // tap( (payload) =>  console.log(payload)),
     switchMap( payload => {
       return this.pDataService.getReviewsData(payload)
         .pipe(
@@ -109,7 +108,6 @@ export class PEffects {
   getCommnets = this.actions$.pipe(
     ofType( PActions.TRY_GET_COMMENTS_PRODUCT ),
     map( payload => payload['payload']),
-    // tap( (payload: {productId, reviewsId}) => console.log(payload)),
     switchMap( payload => {
       return this.pDataService.getCommentsData(payload.productId, payload.reviewsId)
         .pipe(
@@ -128,7 +126,6 @@ export class PEffects {
   addComments = this.actions$.pipe(
     ofType( PActions.TRY_ADD_COMMENT ),
     map( payload => payload['payload']),
-    // tap( (payload: {productId, reviewsId}) => console.log(payload)),
     switchMap( payload => {
       return this.pDataService.addCommentsData( payload.productId, payload.reviewsId, payload.addedText )
         .pipe(

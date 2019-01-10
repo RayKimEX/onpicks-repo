@@ -24,7 +24,7 @@ export class AuthService {
   }
 
   signup(parameters: UserSignUpAPI): Observable<any> {
-    console.log('signup!!');
+
     return this.httpClient.post<any>(this.BASE_URL + '/api/customers/', parameters);
   }
 

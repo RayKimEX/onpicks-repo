@@ -88,7 +88,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
       const formattedNumber = ('0' + i).slice(-2);
       this.monthList.list.push({ title : (i) + '월', value : (formattedNumber) });
     }
-    console.log(this.monthList);
 
     this.userStore$ = this.store.pipe(select( state => state.auth.user))
       .subscribe( v => {
@@ -139,26 +138,11 @@ export class ProfileComponent implements OnInit, OnDestroy {
       this.formData['birthday'] = this.dateData.year + '-' + this.dateData.month + '-' + this.dateData.day;
     }
 
-    console.log( this.nickname.nativeElement.value);
-    console.log( this.nickname.nativeElement.children[0].value );
-
     this.formData['nickname'] = this.nickname.nativeElement.children[0].value;
     this.formData['contact'] = this.tel.nativeElement.children[0].value;
 
     this.formData['height'] = this.height.nativeElement.children[0].value;
     this.formData['weight'] = this.weight.nativeElement.children[0].value;
-
-     // dateTemp.set
-     //  {
-     //  'nickname': '만기님',
-     //  'avatar': '',
-     //  'contact': '+821091796420',
-     // 'gender': 'M',
-     //  'birthday': '1980-05-12',
-     // 'height': '182',
-     // 'weight': '79'
-     //  }
-
 
     this.accountDataService.saveProfileData(this.userStore.id, this.formData).subscribe( response => {
       this.store.dispatch(new DisplayAlertMessage('프로필이 저장되었습니다.'));

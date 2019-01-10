@@ -45,10 +45,6 @@ export class TestService {
 
   requestPayment (formGroup, form) {
 
-    console.log('form');
-    console.log(form);
-    console.log('formGroup');
-    console.log(formGroup);
     this.httpClient.post<any>( // https://localhost/api/orders/1/payments/
       'http://localhost/api/orders/1/payments/',
       { method : 'cards' },

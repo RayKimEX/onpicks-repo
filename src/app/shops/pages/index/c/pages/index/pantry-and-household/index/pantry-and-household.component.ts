@@ -91,7 +91,6 @@ export class PantryAndHouseholdComponent implements OnInit {
   ngOnInit() {
     this.routeSubScription$ = this.route.params.subscribe((params: Params) => {
       this.getCategoryOneDepth = params['categoryOneDepth'];
-      console.log(this.getCategoryOneDepth);
     });
   }
 }

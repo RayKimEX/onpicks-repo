@@ -44,7 +44,6 @@ export class ChangePreferenceComponent implements OnInit {
   @HostListener('document:click', ['$event'])
   clickout(event) {
     if ( this.eRef.nativeElement.contains(event.target)) {
-      // console.log('clicked inside');
     } else {
       this.isShowModal = false;
     }
@@ -55,11 +54,7 @@ export class ChangePreferenceComponent implements OnInit {
   }
 
   ngOnInit() {
-    // console.log(this.type);
-    // console.log(this.preferenceList[this.type]);
-    // console.log(this.preferenceList[this.type]);
-    // console.log(this.preferenceList[this.type].title);
-    // console.log(this.preferenceList[this.type].list);
+
   }
   showModal() {
     this.isShowModal = !this.isShowModal;
