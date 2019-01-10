@@ -104,7 +104,7 @@ export class PReviewsComponent implements AfterViewInit {
   }
 
   voteReviews() {
-    this.pDataService.voteReviewsData().subscribe( v => console.log(v));
+    // this.pDataService.voteReviewsData().subscribe( v => console.log(v));
   }
 
 
