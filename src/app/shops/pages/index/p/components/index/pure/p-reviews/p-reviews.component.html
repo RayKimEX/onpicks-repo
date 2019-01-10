@@ -109,6 +109,8 @@
           <a>
             <img src="http://img.onpicks.com/thumbs-up-icon.jpg" alt="">
             <span
+              (click)="voteReviews(data.list[item].product, data.list[item].id)"
+              [ngClass]="{ 'p-reviews__option--active' : data.list[item].mark_as_voted}"
               class="p-reviews__option--feature action-1-medium">
               추천하기
             </span>

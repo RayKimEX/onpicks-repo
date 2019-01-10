@@ -167,6 +167,10 @@ onpicks-circle-n-button {
 
   &__option {
     margin-top:2.4rem;
+
+    &--active {
+      color : $color-green;
+    }
     &--feature {
       position:relative;
       margin-left: 0.8rem;

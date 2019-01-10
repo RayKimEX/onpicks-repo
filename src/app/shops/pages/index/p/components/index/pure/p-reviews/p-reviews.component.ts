@@ -103,8 +103,8 @@ export class PReviewsComponent implements AfterViewInit {
     this.currentList = this.totalList.slice(  (this.currentPage - 1 ) * this.maxRow , this.currentPage * this.maxRow )
   }
 
-  voteReviews() {
-    // this.pDataService.voteReviewsData().subscribe( v => console.log(v));
+  voteReviews( xProductSlug, xReviewsId) {
+    this.pDataService.voteReviewsData(xProductSlug, xReviewsId).subscribe( v => console.log(v));
   }
 
 
