@@ -35,14 +35,21 @@ export class PDataService {
     return this.httpClient.post<any>( this.BASE_URL + '/api/products/' + productId + '/reviews/' + reviewsId + '/comments/', { text : addedText });
   }
 
-  getPictureReviewsData( productId ){
+  getPictureReviewsData( productId ) {
     // api/products/{{slug}}/picture_reviews/
-    console.log(productId);
     return this.httpClient.get<any>( this.BASE_URL + '/api/products/' + productId + '/picture_reviews/');
   }
 
   voteReviewsData( productSlug, reviewsId) {
     return this.httpClient.post<any>( this.BASE_URL + '/api/products/' + productSlug + '/reviews/' + reviewsId + '/vote/', {});
+  }
+
+//   [POST] api/products/[ slug] /reviews/ [ id ] / report
+//
+// { text : "" }
+
+  addReportData( xProductSlug, reviewId) {
+    return this.http
   }
 
 }
