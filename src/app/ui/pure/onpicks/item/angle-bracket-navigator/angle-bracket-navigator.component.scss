@@ -1,0 +1,8 @@
+.angle-bracket-navigator {
+  display:inherit;
+  &__angle-bracket {
+    display: inline-block;
+    vertical-align: text-top;
+    margin-left: 0.8rem;
+  }
+}
