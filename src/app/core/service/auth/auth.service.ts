@@ -36,3 +36,6 @@ export class AuthService {
     return this.httpClient.get<any>( this.BASE_URL + '/api/customers/oauth2/' + type + '/');
   }
 }
+
+
+// TODO : 뭐 있었는데 기억안남

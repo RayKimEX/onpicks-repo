@@ -64,6 +64,7 @@ export class LoginComponent implements OnInit {
   }
 
   loginWithSocial (xType) {
+    console.log(xType);
     this.authService.loginWithSocial(xType).subscribe( v => console.log(v));
   }
 
