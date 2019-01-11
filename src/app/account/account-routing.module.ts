@@ -88,7 +88,6 @@ const routes: Routes = [
         path : 'wish-list',
         component : WishListComponent,
       },
-      // TODO : 이부분에 대해서 folder structure는 settingsIndex 안에 pages폴더를 만들고, 다시 그 구조를 만들어 낼수 있지만, 일단은 그냥. 그 안에 pages라고 가정하고 component들을 임시로 만듬.
       {
         path : 'settings',
         component : SettingsIndexComponent,

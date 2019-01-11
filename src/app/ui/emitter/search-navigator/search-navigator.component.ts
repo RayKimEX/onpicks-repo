@@ -20,6 +20,7 @@ import {SearchService} from '../../../core/service/data-pages/search/search.serv
 import {LOCATION_MAP} from '../../../app.config';
 import {UiService} from '../../../core/service/ui/ui.service';
 import {normalize, schema} from 'normalizr';
+import {DisplayAlertMessage} from '../../../core/store/ui/ui.actions';
 @Component({
   selector: 'emitter-search-navigator',
   templateUrl: './search-navigator.component.html',
@@ -413,9 +414,18 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
     this.router.navigate( ['/shops/search'], {queryParams: temp});
   }
 
+  // TODO : 리뷰 검색, 브랜드 검색 2차 스콥때 하기
+
+  brandSearch(event: KeyboardEvent) {
+
+    if ( event.key === 'Enter' ) {
+      this.store.dispatch(new DisplayAlertMessage('준비중 입니다.'));
+    }
+  }
+
   removeAllFilter() {
     this.router.navigate(['/shops/search'], {queryParams: {brand: null, value: null, location : null}, queryParamsHandling: 'merge'});
-  }ㅊ
+  }
 
   removeAllFilterCategory(){
     this.router.navigate(['/shops/search'], {queryParams: {category: null}, queryParamsHandling: 'merge'});

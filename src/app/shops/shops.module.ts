@@ -8,8 +8,6 @@ import { ShopsIndexComponent } from './pages/index/shops-index.component';;
 import { NgModule } from '@angular/core';
 import { PageSearchComponent } from './pages/index/search/page-search/page-search.component';
 
-
-// TODO : 2가지 해결
 @NgModule({
   imports: [
     CommonModule,

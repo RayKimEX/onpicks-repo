@@ -228,6 +228,7 @@
               </span>
             </div>
             <onpicks-search-box
+              (keypress)="brandSearch($event)"
               class="c-brand-navigator__search-box"
               [placeholder]="'검색'"
               [width]="22.6">

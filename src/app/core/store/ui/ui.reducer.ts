@@ -23,7 +23,6 @@ export const initialState: UiState = {
   },
   activeUrl : [],
   alertMessage: '',
-  // searchList : {},
 };
 
 
@@ -181,9 +180,6 @@ export function UiReducer(state = initialState, action: UiActions): UiState {
         currentSlug : currentSlug,
         currentCode : sortAllInfo[currentSlug],
         currentTitle : action.payload.categoryTitle,
-        // sortSecondInfo : sortSecondInfo,
-        // sortThirdInfo : sortThirdInfo,
-        // sortFourthInfo : sortFourthInfo,
         type : action.payload.type,
         isLoaded : true,
       };
@@ -191,24 +187,9 @@ export function UiReducer(state = initialState, action: UiActions): UiState {
       return {
         ...state,
         currentCategoryList : normalizedData,
-        // searchList : {
-        //   ...searchConstList,
-        //   result : normalizeSearchData.result,
-        //   data : normalizeSearchData.entities.searchList,
-        // },
       };
       break;
 
-
-    // second, third, fourth들이 서로 같이 바껴야 된다.
-    // 그래서 update_Category만 있음.
-    // secondCategory는 인자값 1개
-    // thirdCategory는 인자값 2개
-
-    // TODO : 업데이트 칠때, url기준으로 업데이트를 치는것이 깔끔. 현재는 클릭했을때, 업데이트를 치고, navigate url을 변환.
-    // 그렇지만 새로 고침했을땐, 또 url기준으로 하기때문에, 뭔가 일관되지 못함.
-
-    // TODO : url기준으로 카테고리 상태값도 매칭이 되게 ( 현재 그기능은 안되고 있음 )
     case UPDATE_CATEGORY :
       notChangeSecondPrevious = false;
       notChangeThirdPrevious = false;

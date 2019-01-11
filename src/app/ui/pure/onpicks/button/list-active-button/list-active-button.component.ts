@@ -35,8 +35,6 @@ export class ListActiveButtonComponent implements OnInit, AfterViewInit, OnDestr
   tempEvent;
   extendButtonPressed = false;
 
-  // TODO : 해당 HTML파일에서, Border-radius에 대한, 부분에는, mouseover에 대한, css변경이 정확히 circle안에서만 이루어지게
-  // TODO : span 2개를 따로만들어서, 버튼 처리 했는데, 그것을, position absolute말고, padding을 추가해서 가운대로 맞춘후, parentWidth, Height로 button처리 하기
   constructor(
     private renderer: Renderer2
   ) {

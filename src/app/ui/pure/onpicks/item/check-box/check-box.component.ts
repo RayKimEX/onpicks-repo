@@ -22,8 +22,6 @@ export class CheckBoxComponent implements AfterViewInit {
   @Input('fontSize') fontSize;
   @Input('marginRight') marginRight;
   @Input('isChecked') isChecked = false;
-
-  // TODO : CheckBox에 Input font-size를 추가해서, manipulate할 수 있게 수정
   @ViewChild('radioBoxView') radioBoxView;
   @ViewChild('checkBoxView') checkBoxView;
 

@@ -33,21 +33,11 @@
     padding: 10px 16px 10px 16px;
     text-align: left;
     background-color: transparent;
-    // MUST TODO : 언어에 따라서, layout이 조금씩 유동적으로 늘어나거나 줄어들 수 있게
-
-    // MUST TODO : 언어에 따라서 font line-height, font-weight따로 가게
-
-    // MUST TODO : API 어떤 언어로 들어갈지 -> header 에다가 값을 넣기만 하면됨. country region이 어딘지
-    // header에 넣기만 하면 되는데 어떻게 하지?
 
     svg {
       pointer-events: none;
       float : right;
       margin-top : 3px;
-      // ray.kim
-      // top right bottom left
-      // svg 중앙 맞추기 위한 처리
-      //padding: 5px 10px 8px 3px;
 
     }
   }

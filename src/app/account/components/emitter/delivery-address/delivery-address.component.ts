@@ -113,7 +113,7 @@ export class DeliveryAddressComponent implements OnInit, AfterViewInit, OnDestro
     this.searchInputFirstEvent$ = fromEvent(this.inputSearchBox.first.searchInputBox.nativeElement, 'input');
     this.searchInputLastEvent$ = fromEvent(this.inputSearchBox.last.searchInputBox.nativeElement, 'input');
 
-    // TODO : 20정도가 딱 적당하게 바로바로 반응함.
+    // 80정도가 딱 적당하게 바로바로 반응함.
     this.searchFirst$ = this.searchInputFirstEvent$.pipe(
       debounceTime(80),
       distinctUntilChanged(),
@@ -148,8 +148,6 @@ export class DeliveryAddressComponent implements OnInit, AfterViewInit, OnDestro
       this.jusoList = val;
       this.cd.markForCheck();
     });
-
-    // TODO : 20정도가 딱 적당하게 바로바로 반응함.
 
     this.searchLast$ = this.searchInputLastEvent$.pipe(
       debounceTime(80),

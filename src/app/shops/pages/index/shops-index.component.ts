@@ -62,10 +62,9 @@ export class ShopsIndexComponent implements OnInit, AfterViewInit {
       name : '유아동',
     },
   ]
+  constructor() {
 
-
-  // MUST TODO : Login관련 pycharm과 연관지어 작업하기, image folder convention지정
-  constructor() { }
+  }
 
   ngOnInit() {
 
