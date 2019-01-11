@@ -17,6 +17,7 @@ import {
 import {Router} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
 import {UiService} from '../../../core/service/ui/ui.service';
+import {DisplayAlertMessage} from '../../../core/store/ui/ui.actions';
 
 @Component({
   selector: 'onpicks-cart',
@@ -85,7 +86,14 @@ export class CartComponent {
         this.router.navigate(['/order/checkout']);
       },
       error => {
-        console.log(error);
+        if ( error.status === 502 ) {
+          this.store.dispatch(new DisplayAlertMessage('서버에 상태가 불안정합니다.'));
+        } else if ( error.status === 403 ) {
+          this.router.navigate(['/member/login']);
+          this.store.dispatch(new DisplayAlertMessage('로그인이 필요합니다.'));
+        } else {
+          this.store.dispatch(new DisplayAlertMessage('error code : ' + error.status));
+        }
       }
     );
   }

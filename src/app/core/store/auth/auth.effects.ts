@@ -48,7 +48,7 @@ export class AuthEffects {
           map( (user) => {
             this.router.navigate(['/shops']);
 
-            return new LoginSuccess( payload);
+            return new LoginSuccess( user);
           }),
           catchError( (response) => {
 

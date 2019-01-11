@@ -15,6 +15,7 @@ import {OrderDataService} from '../../../../core/service/data-pages/order/order-
 import {select, Store} from '@ngrx/store';
 import {debounceTime, distinctUntilChanged, flatMap, map, tap} from 'rxjs/operators';
 import {fromEvent, of} from 'rxjs';
+import {DisplayAlertMessage} from '../../../../core/store/ui/ui.actions';
 
 @Component({
   selector: 'emitter-delivery-address',
@@ -40,8 +41,6 @@ export class DeliveryAddressComponent implements OnInit, AfterViewInit, OnDestro
   isShowSearchBox = false;
   isShowDeliveryView = false;
   isShowDeliveryModal = false;
-
-
   updateDeliveryIndex = 0;
 
   errorStatus = 0;
@@ -54,10 +53,23 @@ export class DeliveryAddressComponent implements OnInit, AfterViewInit, OnDestro
 
   jusoList;
 
-
   pageData$;
   userStore$;
   userStore;
+
+  readonly EMPTY_ORDER_NUMBER        = 0b00000000010;
+  readonly INVALID_ORDER_NUMBER      = 0b00000100000;
+
+  readonly EMPTY_RECIPIENT_NAME      = 0b00000000100;
+  readonly EMPTY_RECIPIENT_NUMBER    = 0b00000001000;
+  readonly INVALID_RECIPIENT_NUMBER  = 0b00001000000;
+  readonly EMPTY_DELIVERY_ADDRESS    = 0b00000010000;
+
+  readonly EMPTY_CUSTOMS_ID_NUMBER   = 0b00010000000;
+  readonly INVALID_CUSTOMS_ID_NUMBER = 0b00100000000;
+
+  readonly EMPTY_PAYMENT_METHOD      = 0b01000000000;
+  readonly EMPTY_AGREEMENT_DIRECT_BUYING = 0b10000000000;
 
   constructor(
     private httpClient: HttpClient,
@@ -97,6 +109,7 @@ export class DeliveryAddressComponent implements OnInit, AfterViewInit, OnDestro
   }
 
   ngAfterViewInit() {
+    console.log(location.protocol);
     this.searchInputFirstEvent$ = fromEvent(this.inputSearchBox.first.searchInputBox.nativeElement, 'input');
     this.searchInputLastEvent$ = fromEvent(this.inputSearchBox.last.searchInputBox.nativeElement, 'input');
 
@@ -117,7 +130,7 @@ export class DeliveryAddressComponent implements OnInit, AfterViewInit, OnDestro
         .set('resultType', 'json')),
       // json으로 바꿔주기 위해 flatMap 사용
       flatMap( (val: HttpParams) =>
-        this.httpClient.get<any>(location.protocol + '://www.juso.go.kr/addrlink/addrLinkApi.do', { params: val, responseType : 'json' }, )
+        this.httpClient.get<any>(location.protocol + '//www.juso.go.kr/addrlink/addrLinkApi.do', { params: val, responseType : 'json' }, )
       ),
       map( val => val['results'].juso ),
     ).subscribe(val => {
@@ -154,7 +167,7 @@ export class DeliveryAddressComponent implements OnInit, AfterViewInit, OnDestro
         .set('resultType', 'json')),
       // json으로 바꿔주기 위해 flatMap 사용
       flatMap( (val: HttpParams) =>
-        this.httpClient.get<any>(location.protocol + '://www.juso.go.kr/addrlink/addrLinkApi.do', { params: val, responseType : 'json' }, )
+        this.httpClient.get<any>(location.protocol + '//www.juso.go.kr/addrlink/addrLinkApi.do', { params: val, responseType : 'json' }, )
       ),
       map( val => val['results'].juso ),
     ).subscribe(val => {
@@ -251,12 +264,6 @@ export class DeliveryAddressComponent implements OnInit, AfterViewInit, OnDestro
   exitModifyDeliveryModal() {
     this.isShowDeliveryModal = false;
     this.isShowSearchBox = false;
-
-    // this.renderer.setProperty( this.inputRecipientName.nativeElement.children[0], 'value', '');
-    // this.renderer.setProperty( this.inputJuso.nativeElement.children[0], 'value', '');
-    // this.renderer.setProperty( this.inputDetailJuso.nativeElement.children[0], 'value', '');
-    // this.renderer.setProperty( this.inputZipnumber.nativeElement.children[0], 'value', '');
-    // this.renderer.setProperty( this.inputRecipientNumber.nativeElement.children[0], 'value', '');
   }
 
   showModifyDeliveryModal(index) {
@@ -317,49 +324,58 @@ export class DeliveryAddressComponent implements OnInit, AfterViewInit, OnDestro
     if ( this.errorStatus === 0 ) {
       const JSON_deliveryInfo = this.setDeliveryInfo();
 
-      this.orderDataService.addDeliveryData(this.userStore.id, JSON_deliveryInfo).subscribe( v => {
+      this.orderDataService.addDeliveryData(this.userStore.id, JSON_deliveryInfo).subscribe(
+        v => {
         console.log(v);
 
         this.deliveryData.push(v);
         this.deliveryData$ = of(this.deliveryData);
         this.isShowDeliveryView = false;
         this.cd.markForCheck();
+      }, error => {
+          if ( error.status === 502 ) {
+            this.store.dispatch(new DisplayAlertMessage('서버 상태가 불안정합니다.'));
+          } else {
+            this.store.dispatch(new DisplayAlertMessage('빈 공간을 채워주세요.'))
+          }
       });
     }
   }
 
 
+  checkBitWise( data ) {
+    return ((this.errorStatus & data) > 0);
+  }
 
 
+  validateDeliveryInfo(){
 
-  // validateDeliveryInfo(){
-  //
-  //   this.errorStatus = 0;
-  //
-  //
-  //   if ( this.inputRecipientName.last.nativeElement.children[0].value === '') {
-  //     if ( this.errorStatus === 0 ) {this.inputRecipientName.last.nativeElement.children[0].focus();}
-  //     this.errorStatus |= this.EMPTY_RECIPIENT_NAME;
-  //   }
-  //
-  //   if ( this.inputRecipientNumber.last.nativeElement.children[0].value === '') {
-  //     if ( this.errorStatus === 0 ) {this.inputRecipientNumber.last.nativeElement.children[0].focus();}
-  //     this.errorStatus |= this.EMPTY_RECIPIENT_NUMBER;
-  //   } else {
-  //     const patt = new RegExp('[a-zA-Z]');
-  //     if ( patt.test(this.inputRecipientNumber.last.nativeElement.children[0].value) ) {
-  //       if ( this.errorStatus === 0 ) {this.inputRecipientNumber.last.nativeElement.children[0].focus();}
-  //       this.errorStatus |= this.INVALID_RECIPIENT_NUMBER;
-  //     }
-  //   }
-  //
-  //   if ( this.inputZipnumber.last.nativeElement.children[0].value === ''
-  //     || this.inputJuso.last.nativeElement.children[0].value === ''
-  //   ) {
-  //     if ( this.errorStatus === 0 ) {this.inputZipnumber.last.nativeElement.children[0].focus();}
-  //     this.errorStatus |= this.EMPTY_DELIVERY_ADDRESS;
-  //   }
-  // }
+    this.errorStatus = 0;
+
+
+    if ( this.inputRecipientName.last.nativeElement.children[0].value === '') {
+      if ( this.errorStatus === 0 ) {this.inputRecipientName.last.nativeElement.children[0].focus();}
+      this.errorStatus |= this.EMPTY_RECIPIENT_NAME;
+    }
+
+    if ( this.inputRecipientNumber.last.nativeElement.children[0].value === '') {
+      if ( this.errorStatus === 0 ) {this.inputRecipientNumber.last.nativeElement.children[0].focus();}
+      this.errorStatus |= this.EMPTY_RECIPIENT_NUMBER;
+    } else {
+      const patt = new RegExp('[a-zA-Z]');
+      if ( patt.test(this.inputRecipientNumber.last.nativeElement.children[0].value) ) {
+        if ( this.errorStatus === 0 ) {this.inputRecipientNumber.last.nativeElement.children[0].focus();}
+        this.errorStatus |= this.INVALID_RECIPIENT_NUMBER;
+      }
+    }
+
+    if ( this.inputZipnumber.last.nativeElement.children[0].value === ''
+      || this.inputJuso.last.nativeElement.children[0].value === ''
+    ) {
+      if ( this.errorStatus === 0 ) {this.inputZipnumber.last.nativeElement.children[0].focus();}
+      this.errorStatus |= this.EMPTY_DELIVERY_ADDRESS;
+    }
+  }
 
   getCurrentText(event) {
     if( this.isShowDeliveryModal === true ) {
@@ -374,8 +390,6 @@ export class DeliveryAddressComponent implements OnInit, AfterViewInit, OnDestro
       this.renderer.setStyle( this.inputSearchBoxOuter.last.nativeElement, 'display', 'none' );
     }
   }
-
-
 
   updateDeliveryDataToDefault( index ) {
     this.orderDataService.updateDeliveryDataToDefault(this.userStore.id, this.deliveryData[index].id).subscribe(

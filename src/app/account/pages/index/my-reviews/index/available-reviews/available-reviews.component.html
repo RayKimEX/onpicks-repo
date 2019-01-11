@@ -5,7 +5,7 @@
     <onpicks-loading-icon></onpicks-loading-icon>
   </ng-template>
   <ng-container *ngIf="orderData$ | async as data; else loading">
-
+    <h1 class="h1-bold">작성 가능한 리뷰</h1>
     <ng-container *ngIf="data?.results?.length === 0;">
       <div
         class="available-reviews__empty-title subtitle-1-regular u-color-dark-grey">
@@ -21,7 +21,6 @@
     </ng-container>
 
     <ng-container  *ngIf="data?.results?.length !== 0; ">
-      <h1 class="h1-bold">작성 가능한 리뷰</h1>
       <emitter-adhere-table
         (viewModal)="viewModal($event)"
         [data]="data"

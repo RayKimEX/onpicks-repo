@@ -13,6 +13,7 @@ export function AuthReducer ( state = initialState, action: AuthActions.AuthActi
   switch ( action.type ) {
     case AuthActions.GET_AUTHUSER_INFO_SUCCESS :
     case AuthActions.LOGIN_SUCCESS :
+      console.log(action.payload);
       return {
         ...state,
         user : action.payload,

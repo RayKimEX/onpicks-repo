@@ -80,13 +80,6 @@ export class CheckoutComponent implements OnInit, AfterViewInit, OnDestroy {
   readonly EMPTY_PAYMENT_METHOD      = 0b01000000000;
   readonly EMPTY_AGREEMENT_DIRECT_BUYING = 0b10000000000;
 
-  // readonly INVALID_COUPON_NUMBER = 0b00000001;
-  // readonly EMPTY_CUSTOMS_ID_NUMBER = 0b01000000;
-  // readonly INVALID_COUPON_NUMBER = 0b00000001;
-
-
-
-
 
   // MUST TODO : 이미지 안보인는건 src를 초기화 해서 memory낭비 적게 하기
 
@@ -229,7 +222,7 @@ export class CheckoutComponent implements OnInit, AfterViewInit, OnDestroy {
                   .set('resultType', 'json')),
                 // json으로 바꿔주기 위해 flatMap 사용
                 flatMap( (val: HttpParams) =>
-                  this.httpClient.get<any>(location.protocol + '://www.juso.go.kr/addrlink/addrLinkApi.do', { params: val, responseType : 'json' }, )
+                  this.httpClient.get<any>(location.protocol + '//www.juso.go.kr/addrlink/addrLinkApi.do', { params: val, responseType : 'json' }, )
                 ),
                 map( val => val['results'].juso ),
               ).subscribe(val => {
@@ -265,9 +258,18 @@ export class CheckoutComponent implements OnInit, AfterViewInit, OnDestroy {
 
 
   ngOnDestroy() {
-    this.userStore$.unsubscribe();
-    this.searchLast$.unsubscribe();
-    this.searchFirst$.unsubscribe();
+    if ( this.userStore$ !== undefined ) {
+      this.userStore$.unsubscribe();
+    }
+
+    if ( this.searchLast$ !== undefined ) {
+      this.searchLast$.unsubscribe();
+    }
+
+    if ( this.searchFirst$ !== undefined ) {
+      this.searchFirst$.unsubscribe();
+    }
+
   }
 
   changePaymentMethod(value, xId) {

@@ -33,18 +33,6 @@
           </div>
         </div>
       </div>
-
-
-      <!--city: "hellocity"-->
-      <!--default: true-->
-      <!--full_name: "김혁해"-->
-      <!--id: 28-->
-      <!--phone_number: "01032762679"-->
-      <!--state: ""-->
-      <!--street_address_1: "서울특별시 성동구 성수동2가 300-1 성수역"-->
-      <!--street_address_2: ""-->
-      <!--zip_code: "04782"-->
-      <!--__proto__: Object-->
       <hr>
 
       <onpicks-button
@@ -56,7 +44,7 @@
         [size]="'small'">{{isShowDeliveryView ? '배송지 추가 닫기' : '+배송지 추가'}}
       </onpicks-button>
     </ng-container>
-    <div  [ngStyle]="{ 'display' : isShowDeliveryView ? 'block' : 'none' }">
+    <div  [ngStyle]="{ 'display' : isShowDeliveryView ? 'none' : 'block' }">
       <ng-container *ngTemplateOutlet="templateRef"></ng-container>
       <onpicks-button
         (click)="addDeliveryInfo()"
