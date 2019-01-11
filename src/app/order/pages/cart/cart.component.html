@@ -297,8 +297,9 @@
               *ngIf="item.attributes.length === 0"
               class="btn btn--white btn--small cart__wishlist-table--btn"
               >쇼핑백에 담기</button>
-            <button class="btn btn--white btn--small cart__wishlist-table--btn"
-                    (click)="deleteWishList(item.id, i)">삭제하기</button>
+            <button
+              class="btn btn--white btn--small cart__wishlist-table--btn"
+              (click)="deleteWishList(item.id, i)">삭제하기</button>
           </td>
         </tr>
       </table>
@@ -330,6 +331,7 @@
     </div>
     <onpicks-button
       class="cart__btn--shopping"
+      routerLink="'/shops'"
       [type]="'white'"
       [size]="'big'"
       [width]="'13.4rem'">계속 쇼핑하기

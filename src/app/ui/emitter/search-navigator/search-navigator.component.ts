@@ -392,7 +392,7 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
         this.currentParamList[key].forEach( (innerValue, innerIndex) => {
           if ( innerValue === xValue ) {
             this.currentParamList[key].splice(innerIndex, 1)
-            if ( this.currentParamList[key].length === 0 ){
+            if ( this.currentParamList[key].length === 0 ) {
 
               delete temp[key];
             } else {
@@ -401,7 +401,6 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
                 [key] : [...this.currentParamList[key]]
               };
             }
-
           }
         });
       } else {
@@ -416,7 +415,7 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
 
   removeAllFilter() {
     this.router.navigate(['/shops/search'], {queryParams: {brand: null, value: null, location : null}, queryParamsHandling: 'merge'});
-  }
+  }ㅊ
 
   removeAllFilterCategory(){
     this.router.navigate(['/shops/search'], {queryParams: {category: null}, queryParamsHandling: 'merge'});

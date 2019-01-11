@@ -94,11 +94,13 @@ export function CartReducer(state = initialState, action: CartActions.CartAction
       }
 
     case CartActions.CREATE_TO_CART_SUCCESS :
+      console.log(action.payload);
       if ( action.payload.packIndex !== 'free' ){
         const createTemp = state.cartInfo.pack[action.payload.packIndex];
         createTemp.subtotal = action.payload.cartInfo.results.slice(1, action.payload.cartInfo.results.length)[action.payload.packIndex].subtotal;
         createTemp.items = action.payload.cartInfo.results.slice(1, action.payload.cartInfo.results.length)[action.payload.packIndex].items;
         state.cartInfo.pack[action.payload.packIndex] = createTemp;
+        console.log(state.cartInfo.pack);
       } else {
         const createForFreeTemp = state.cartInfo.free;
         createForFreeTemp.subtotal = action.payload.cartInfo.results.slice(0, 1)[0].subtotal;

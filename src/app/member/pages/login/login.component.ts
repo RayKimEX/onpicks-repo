@@ -8,6 +8,7 @@ import {
 import {AppState} from '../../../core/store/app.reducer';
 import {Store} from '@ngrx/store';
 import {TryLogin} from '../../../core/store/auth/auth.actions';
+import {AuthService} from '../../../core/service/auth/auth.service';
 
 
 @Component({
@@ -22,7 +23,8 @@ export class LoginComponent implements OnInit {
   @ViewChild('isPersistent', {read : ElementRef}) isPersistent;
 
   constructor(
-    private store: Store<AppState>
+    private store: Store<AppState>,
+    private authService: AuthService
   ) {
 
   }
@@ -60,4 +62,9 @@ export class LoginComponent implements OnInit {
       }
     }
   }
+
+  loginWithSocial (xType) {
+    this.authService.loginWithSocial(xType).subscribe( v => console.log(v));
+  }
+
 }
