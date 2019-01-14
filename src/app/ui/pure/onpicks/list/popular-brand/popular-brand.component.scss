@@ -1,4 +1,7 @@
+@import "~src/assets/scss/abstracts/variables";
+
 .popular-brand {
+  width: inherit;;
   margin-bottom:5.6rem;
 
 
@@ -17,23 +20,33 @@
   }
 
   &__title {
-    font-size : 1.8rem;
-    font-weight : 700;
-    line-height : 1.39;
     margin-bottom : 2.4rem;
   }
 
   &__image--outer {
-    width:16.8rem;
+    width: 100%;
     height:16.8rem;
     border-radius : 50%;
     overflow : hidden;
     margin-bottom : 2.4rem;
+
+
+    @include respond(fb){
+      height: 100%;
+    }
+
+    img {
+      width:100%;
+      height:100%;
+    }
   }
 
   &__item {
+    float : none !important;
     display:inline-block;
-    width:16.8rem;
+    img {
+      user-select: none;
+    }
     &--name {
       text-align: center;
       width:9rem;

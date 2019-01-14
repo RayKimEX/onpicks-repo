@@ -232,5 +232,10 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
   showPreparingMessage(){
     this.store.dispatch( new DisplayAlertMessage('준비중입니다'));
   }
+
+  naviClicked( xElement ){
+    console.log(xElement.checked);
+    console.log(xElement.value);
+  }
 }
 

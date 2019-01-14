@@ -420,6 +420,10 @@ textarea {
 
   @include clearfix;
 
+  @include respond(fb) {
+    margin: 0 3.2rem;
+  }
+
   [class *= "-nf"]{
     float: none !important;
 
@@ -437,12 +441,6 @@ textarea {
       width: 100% !important;
     }
   }
-
-
-  @include respond(tl) {
-    padding : 0 2rem;
-  }
-
 
   .col-1-of-12 {
     width: calc((100% - 11 * #{$gutter-horizontal}) / 12);

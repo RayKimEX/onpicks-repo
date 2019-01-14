@@ -1,19 +1,19 @@
 <div class="row today-collection">
-  <div class="today-collection__title">오늘의 컬렉션</div>
+  <div class="today-collection__title h1-bold">오늘의 컬렉션</div>
 
   <div class="today-collection__content--outer">
     <onpicks-circle-n-button  *ngIf="-imageIndex !== (todayCollection.length - 4)" (click)="nextButton()" [right]="'-2rem'"></onpicks-circle-n-button>
     <onpicks-circle-p-button  *ngIf="imageIndex !== 0" (click)="prevButton()" [left]="'-2rem'"></onpicks-circle-p-button>
     <div class="today-collection__content">
       <ul #container class="today-collection__ul">
-        <li #itemList *ngFor="let item of todayCollection" class="col-3-of-12-nf today-collection__item">
+        <li #itemList *ngFor="let item of todayCollection" class="col-3-of-12 today-collection__item">
           <div  class="today-collection__image--outer">
             <img drCleanLoad src="{{item.imgSrc}}" alt="">
           </div>
-          <div class="today-collection__item--category-name">
+          <div class="today-collection__item--category-name subtitle-3-bold u-color-green">
             {{item.todayCategoryName}}
           </div>
-          <div class="today-collection__item--title">
+          <div class="today-collection__item--title subtitle-1-bold">
             {{item.todayTitle}}
           </div>
           <div #shaveDiscription class="today-collection__item--discription body-2-regular">

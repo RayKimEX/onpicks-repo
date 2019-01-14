@@ -61,6 +61,22 @@ export class ShopsIndexComponent implements OnInit, AfterViewInit {
       imgSrc : 'https://img.onpicks.com/assets/category_baby.jpg',
       name : '유아동',
     },
+    {
+      imgSrc :  'https://img.onpicks.com/assets/category_digital.jpg',
+      name : '가전·디지털',
+    },
+    {
+      imgSrc : 'https://img.onpicks.com/assets/category_baby.jpg',
+      name : '유아동',
+    },
+    {
+      imgSrc :  'https://img.onpicks.com/assets/category_digital.jpg',
+      name : '가전·디지털',
+    },
+    {
+      imgSrc : 'https://img.onpicks.com/assets/category_baby.jpg',
+      name : '유아동',
+    },
   ]
   constructor() {
 

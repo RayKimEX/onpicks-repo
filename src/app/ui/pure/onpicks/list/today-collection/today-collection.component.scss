@@ -2,6 +2,8 @@
 
 
 .today-collection{
+
+  width : inherit;
   margin-bottom : 5.6rem;
 
   &__content {
@@ -17,36 +19,38 @@
   }
 
   &__title {
-    font-size : 1.8rem;
-    font-weight : 700;
-    line-height : 1.39;
     margin-bottom: 2.4rem;
   }
 
   &__image--outer {
     display:inline-block;
-    width:26.4rem;
+    width: 100%;
     height : 17.6rem;
     margin-bottom: 1.6rem;
+
+    @include respond(fb){
+      height: 100%;
+    }
+
+    img {
+      width:100%;
+      height:100%;
+    }
   }
 
   &__item {
+    float : none !important;
     vertical-align: top;
     display:inline-block;
-    width : 26.4rem;
+    img {
+      user-select: none;
+    }
     &--category-name {
-      color : $color-green;
-      font-size : 1.2rem;
-      font-weight : 700;
-      line-height: 1.33;
       margin-bottom : 0.4rem;
     }
 
     // TODO: CSS ELIPSIS ( ... ) Text 가변 처리 or javascript 가변처리 해결책 살펴보기
     &--title {
-      font-size: 1.4rem;
-      font-weight : 700;
-      line-height : 1.71;
       margin-bottom : 0.4rem;
     }
 

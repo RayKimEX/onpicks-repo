@@ -1,6 +1,111 @@
 @import '~src/assets/scss/abstracts/variables';
 
+.navigation {
+  display:table-cell;
+  width:100%;
+  vertical-align: middle;
+  &__checkbox {
+    display: none;
+  }
+
+  &__button {
+    float:left;
+    display:inline-block;
+    background-color: $color-white;
+    height: 2.4rem;
+    width: 2.4rem;
+    right: 6rem;
+    z-index: 2000;
+    cursor: pointer;
+  }
+
+  //ICON
+  &__icon {
+    position: relative;
+    top: 1rem;
+    &,
+    &::before,
+    &::after {
+      width: 1.6rem;
+      height: 2px;
+      background-color: $color-black;
+      display: inline-block;
+    }
+
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      transition: all .2s;
+    }
+
+    &::before { top: -.6rem; }
+    &::after { top: .6rem; }
+  }
+
+  &__button:hover &__icon::before {
+    top: -0.7rem;
+  }
+
+  &__button:hover &__icon::after {
+    top: 0.7rem;
+  }
+
+  &__checkbox:checked + &__button &__icon {
+    background-color: transparent;
+  }
+
+  &__checkbox:checked + &__button &__icon::before {
+    top: 0;
+    transform: rotate(135deg);
+  }
+
+  &__checkbox:checked + &__button &__icon::after {
+    top: 0;
+    transform: rotate(-135deg);
+  }
+}
+
 .header {
+
+  &__main-menu {
+    @include respond(tab-land) {
+      display:none;
+    }
+  }
+
+  &__mobile-menu {
+    display:none;
+    @include respond(tab-land) {
+      display:table;
+      text-align:center;
+      padding: 0 1.6rem;
+      background-color: $color-white;
+      height: 6rem;
+      width:100%;
+
+    }
+
+    &--search-icon {
+      float:right;
+      margin-top : 3px;
+      margin-right : 2.2rem;
+    }
+
+    &--shopping-bag-icon {
+      float:right;
+    }
+
+    &--onpicks-icon {
+
+      display:inline-block;
+      vertical-align: bottom;
+    }
+
+
+
+  }
 
   &__alert {
     opacity : 0;

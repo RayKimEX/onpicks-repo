@@ -1,13 +1,11 @@
 import {
   AfterViewInit, ChangeDetectionStrategy,
-  Component,
+  Component, HostListener,
   OnInit,
   Renderer2,
   ViewChild,
   ViewChildren
 } from '@angular/core';
-
-import shave from 'shave';
 
 @Component({
   selector: 'onpicks-today-collection',
@@ -73,10 +71,13 @@ export class TodayCollectionComponent implements OnInit, AfterViewInit {
 
   imageIndex = 0;
   itemListArray;
+  translateXWidth = 288;
 
   constructor(
     private renderer: Renderer2,
-  ) { }
+  ) {
+
+  }
 
   // TODO : shave는 나중에 하자
   // https://github.com/NetanelBasal/angular2-shave
@@ -86,16 +87,25 @@ export class TodayCollectionComponent implements OnInit, AfterViewInit {
   }
   ngAfterViewInit() {
     this.itemListArray = this.itemList.toArray();
+    const computedStyle = getComputedStyle(( this.itemList.first.nativeElement ), null);
+    this.translateXWidth =  parseInt(computedStyle.width, 10 ) + parseInt(computedStyle.marginRight, 10);
+  }
+
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    const computedStyle = getComputedStyle(( this.itemList.first.nativeElement ), null);
+    this.translateXWidth =  parseInt(computedStyle.width, 10 ) + parseInt(computedStyle.marginRight, 10);
   }
 
   nextButton() {
     this.imageIndex--;
-    this.renderer.setStyle(this.container.nativeElement, 'transform', 'translateX(' + this.imageIndex * 288 + 'px)');
+    this.renderer.setStyle(this.container.nativeElement, 'transform', 'translateX(' + this.imageIndex * this.translateXWidth  + 'px)');
   }
 
   prevButton() {
     this.imageIndex++;
-    this.renderer.setStyle(this.container.nativeElement, 'transform', 'translateX(' + this.imageIndex * 288 + 'px)');
+    this.renderer.setStyle(this.container.nativeElement, 'transform', 'translateX(' + this.imageIndex * this.translateXWidth  + 'px)');
   }
 
 }

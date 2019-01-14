@@ -1,11 +1,11 @@
 <div class="row popular-brand">
-  <div class="popular-brand__title" i18n="@@onpicks__popular-brand">인기 브랜드|Popular Brand</div>
+  <div class="popular-brand__title h1-bold" i18n="@@onpicks__popular-brand">인기 브랜드|Popular Brand</div>
   <div class="popular-brand__content--outer">
     <onpicks-circle-n-button *ngIf="-imageIndex !== (popularBrand.length - 6)"  (click)="nextButton()" [right]="'-2rem'"></onpicks-circle-n-button>
     <onpicks-circle-p-button *ngIf="imageIndex !== 0" (click)="prevButton()" [left]="'-2rem'"></onpicks-circle-p-button>
     <div class="popular-brand__content">
       <ul #container class="popular-brand__ul" >
-        <li  #itemList *ngFor="let item of popularBrand" class="col-2-of-12-nf popular-brand__item">
+        <li  #itemList *ngFor="let item of popularBrand" class="col-2-of-12 popular-brand__item">
           <div class="popular-brand__image--outer">
             <img drCleanLoad src="{{item.imgSrc}}" alt="">
           </div>
@@ -17,4 +17,6 @@
     </div>
   </div>
 </div>
+
+
 
