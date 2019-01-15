@@ -33,7 +33,7 @@ export class UiService {
     '1000000': {
       'id': 1000000,
       'slug': 'pantry-and-household',
-      'name': '식품∙생활용품',
+      'name': '식품·생활용품',
       'depth': 1,
       'parent': null,
       'children': [
@@ -118,7 +118,7 @@ export class UiService {
                 {
                   'id': 1010201,
                   'slug': 'applesauce-fruit-cups-and-squeezes',
-                  'name': '프루츠컵∙스퀴즈',
+                  'name': '프루츠컵·스퀴즈',
                   'depth': 4,
                   'parent': 1010100,
                   'children': []
@@ -126,7 +126,7 @@ export class UiService {
                 {
                   'id': 1010202,
                   'slug': 'chips-and-pretzels',
-                  'name': '칩∙프레첼',
+                  'name': '칩·프레첼',
                   'depth': 4,
                   'parent': 1010100,
                   'children': []
@@ -142,7 +142,7 @@ export class UiService {
                 {
                   'id': 1010204,
                   'slug': 'bread-and-crackers',
-                  'name': '빵∙크래커',
+                  'name': '빵·크래커',
                   'depth': 4,
                   'parent': 1010100,
                   'children': []
@@ -150,7 +150,7 @@ export class UiService {
                 {
                   'id': 1010205,
                   'slug': 'fruit-and-vegetable-snacks',
-                  'name': '과일∙야채스낵',
+                  'name': '과일·야채스낵',
                   'depth': 4,
                   'parent': 1010100,
                   'children': []
@@ -158,7 +158,7 @@ export class UiService {
                 {
                   'id': 1010206,
                   'slug': 'protein-and-granola-bars',
-                  'name': '프로틴∙곡물바',
+                  'name': '프로틴·곡물바',
                   'depth': 4,
                   'parent': 1010100,
                   'children': []
@@ -166,7 +166,7 @@ export class UiService {
                 {
                   'id': 1010207,
                   'slug': 'ice-cream-cones-and-toppings',
-                  'name': '아이스크림콘∙토핑',
+                  'name': '아이스크림콘·토핑',
                   'depth': 4,
                   'parent': 1010100,
                   'children': []
@@ -174,7 +174,7 @@ export class UiService {
                 {
                   'id': 1010208,
                   'slug': 'jerky-and-dried-meats',
-                  'name': '육포∙건어물',
+                  'name': '육포·건어물',
                   'depth': 4,
                   'parent': 1010100,
                   'children': []
@@ -182,7 +182,7 @@ export class UiService {
                 {
                   'id': 1010209,
                   'slug': 'nuts-seeds-and-trail-mix',
-                  'name': '견과류∙믹스',
+                  'name': '견과류·믹스',
                   'depth': 4,
                   'parent': 1010100,
                   'children': []
@@ -198,7 +198,7 @@ export class UiService {
                 {
                   'id': 1010211,
                   'slug': 'pudding-and-gelatin',
-                  'name': '푸딩∙젤라틴',
+                  'name': '푸딩·젤라틴',
                   'depth': 4,
                   'parent': 1010100,
                   'children': []
@@ -208,7 +208,7 @@ export class UiService {
             {
               'id': 1010300,
               'slug': 'candy-gum-and-chocolate',
-              'name': '캔디∙껌∙초콜릿',
+              'name': '캔디·껌·초콜릿',
               'depth': 3,
               'parent': 1010000,
               'children': [
@@ -264,7 +264,7 @@ export class UiService {
                 {
                   'id': 1010402,
                   'slug': 'hot-cereals-and-oats',
-                  'name': '핫시리얼∙오트밀',
+                  'name': '핫시리얼·오트밀',
                   'depth': 4,
                   'parent': 1010400,
                   'children': []
@@ -280,7 +280,7 @@ export class UiService {
                 {
                   'id': 1010404,
                   'slug': 'granola-and-museli',
-                  'name': '그래놀라∙무슬리',
+                  'name': '그래놀라·무슬리',
                   'depth': 4,
                   'parent': 1010400,
                   'children': []
@@ -288,7 +288,7 @@ export class UiService {
                 {
                   'id': 1010405,
                   'slug': 'meal-replacement-proein-and-granola-bars',
-                  'name': '식다대용프로틴바∙그래놀라바',
+                  'name': '식다대용프로틴바·그래놀라바',
                   'depth': 4,
                   'parent': 1010400,
                   'children': []
@@ -298,14 +298,14 @@ export class UiService {
             {
               'id': 1010500,
               'slug': 'soups-meals-and-side-dishes',
-              'name': '식사∙후식',
+              'name': '식사·후식',
               'depth': 3,
               'parent': 1010000,
               'children': [
                 {
                   'id': 1010501,
                   'slug': 'macaroni-and-cheese',
-                  'name': '마카로니∙치즈',
+                  'name': '마카로니·치즈',
                   'depth': 4,
                   'parent': 1010500,
                   'children': []
@@ -329,7 +329,7 @@ export class UiService {
                 {
                   'id': 1010504,
                   'slug': 'chilis-and-stews',
-                  'name': '칠리∙스튜',
+                  'name': '칠리·스튜',
                   'depth': 4,
                   'parent': 1010500,
                   'children': []
@@ -353,7 +353,7 @@ export class UiService {
                 {
                   'id': 1010507,
                   'slug': 'mexican-meals-and-taco-kits',
-                  'name': '멕시코식사∙타코',
+                  'name': '멕시코식사·타코',
                   'depth': 4,
                   'parent': 1010500,
                   'children': []
@@ -369,7 +369,7 @@ export class UiService {
                 {
                   'id': 1010509,
                   'slug': 'potatoes-and-stuffings',
-                  'name': '감자∙속재료',
+                  'name': '감자·속재료',
                   'depth': 4,
                   'parent': 1010500,
                   'children': []
@@ -386,7 +386,7 @@ export class UiService {
                 {
                   'id': 1010601,
                   'slug': 'spices-and-seasonings',
-                  'name': '양념∙향신료',
+                  'name': '양념·향신료',
                   'depth': 4,
                   'parent': 1010600,
                   'children': []
@@ -394,7 +394,7 @@ export class UiService {
                 {
                   'id': 1010602,
                   'slug': 'salt-and-pepper',
-                  'name': '소금∙후추',
+                  'name': '소금·후추',
                   'depth': 4,
                   'parent': 1010600,
                   'children': []
@@ -442,7 +442,7 @@ export class UiService {
                 {
                   'id': 1010608,
                   'slug': 'sauces-and-marinades',
-                  'name': '소스∙마리네이드',
+                  'name': '소스·마리네이드',
                   'depth': 4,
                   'parent': 1010600,
                   'children': []
@@ -450,7 +450,7 @@ export class UiService {
                 {
                   'id': 1010609,
                   'slug': 'salsas-and-dips',
-                  'name': '샐러드∙딥스',
+                  'name': '샐러드·딥스',
                   'depth': 4,
                   'parent': 1010600,
                   'children': []
@@ -466,7 +466,7 @@ export class UiService {
                 {
                   'id': 1010611,
                   'slug': 'jams-jellies-and-preserves',
-                  'name': '잼∙젤리',
+                  'name': '잼·젤리',
                   'depth': 4,
                   'parent': 1010600,
                   'children': []
@@ -490,7 +490,7 @@ export class UiService {
                 {
                   'id': 1010614,
                   'slug': 'sugar-and-other-sweeteners',
-                  'name': '설탕∙감미료',
+                  'name': '설탕·감미료',
                   'depth': 4,
                   'parent': 1010600,
                   'children': []
@@ -514,7 +514,7 @@ export class UiService {
                 {
                   'id': 1010617,
                   'slug': 'honey-and-syrups',
-                  'name': '꿀∙시럽',
+                  'name': '꿀·시럽',
                   'depth': 4,
                   'parent': 1010600,
                   'children': []
@@ -524,7 +524,7 @@ export class UiService {
             {
               'id': 1010700,
               'slug': 'pasta-and-pasta-sauce',
-              'name': '파스타∙파스타소스',
+              'name': '파스타·파스타소스',
               'depth': 3,
               'parent': 1010000,
               'children': [
@@ -572,7 +572,7 @@ export class UiService {
                 {
                   'id': 1010803,
                   'slug': 'canned-meat-and-seafood',
-                  'name': '해산물∙육류통조림',
+                  'name': '해산물·육류통조림',
                   'depth': 4,
                   'parent': 1010800,
                   'children': []
@@ -596,7 +596,7 @@ export class UiService {
                 {
                   'id': 1010806,
                   'slug': 'pickled-vegetables-and-olives',
-                  'name': '피클∙올리브통조림',
+                  'name': '피클·올리브통조림',
                   'depth': 4,
                   'parent': 1010800,
                   'children': []
@@ -637,7 +637,7 @@ export class UiService {
                 {
                   'id': 1010904,
                   'slug': 'doughs-shells-and-crusts',
-                  'name': '도우∙크러스트',
+                  'name': '도우·크러스트',
                   'depth': 4,
                   'parent': 1010900,
                   'children': []
@@ -677,7 +677,7 @@ export class UiService {
                 {
                   'id': 1010909,
                   'slug': 'sugar-and-other-sweeteners',
-                  'name': '설탕∙감미료',
+                  'name': '설탕·감미료',
                   'depth': 4,
                   'parent': 1010900,
                   'children': []
@@ -685,7 +685,7 @@ export class UiService {
                 {
                   'id': 1010910,
                   'slug': 'honey-and-syrups',
-                  'name': '꿀∙시럽',
+                  'name': '꿀·시럽',
                   'depth': 4,
                   'parent': 1010900,
                   'children': []
@@ -695,7 +695,7 @@ export class UiService {
             {
               'id': 1011000,
               'slug': 'rice-beans-and-grains',
-              'name': '쌀∙콩∙곡물',
+              'name': '쌀·콩·곡물',
               'depth': 3,
               'parent': 1010000,
               'children': [
@@ -834,7 +834,7 @@ export class UiService {
             {
               'id': 1020100,
               'slug': 'paper-and-plastic-products',
-              'name': '화장지∙일회용품',
+              'name': '화장지·일회용품',
               'depth': 3,
               'parent': 1020000,
               'children': [
@@ -914,7 +914,7 @@ export class UiService {
                 {
                   'id': 1020203,
                   'slug': 'dryer-sheets-and-balls',
-                  'name': '건조시트∙볼',
+                  'name': '건조시트·볼',
                   'depth': 4,
                   'parent': 1020200,
                   'children': []
@@ -995,7 +995,7 @@ export class UiService {
                 {
                   'id': 1020304,
                   'slug': 'sponges-and-brushes',
-                  'name': '스펀지∙브러쉬',
+                  'name': '스펀지·브러쉬',
                   'depth': 4,
                   'parent': 1020300,
                   'children': []
@@ -1084,7 +1084,7 @@ export class UiService {
                 {
                   'id': 1020401,
                   'slug': 'sponges-and-brushes',
-                  'name': '스펀지∙브러쉬',
+                  'name': '스펀지·브러쉬',
                   'depth': 4,
                   'parent': 1020400,
                   'children': []
@@ -1092,7 +1092,7 @@ export class UiService {
                 {
                   'id': 1020402,
                   'slug': 'mops-and-accessories',
-                  'name': '대걸레∙액세서리',
+                  'name': '대걸레·액세서리',
                   'depth': 4,
                   'parent': 1020400,
                   'children': []
@@ -1124,7 +1124,7 @@ export class UiService {
                 {
                   'id': 1020406,
                   'slug': 'bowl-brushes-and-plungers',
-                  'name': '볼브러쉬∙플런저',
+                  'name': '볼브러쉬·플런저',
                   'depth': 4,
                   'parent': 1020400,
                   'children': []
@@ -1142,7 +1142,7 @@ export class UiService {
             {
               'id': 1020500,
               'slug': 'food-storage-and-trash-bags',
-              'name': '보관용기∙팩',
+              'name': '보관용기·팩',
               'depth': 3,
               'parent': 1020000,
               'children': [
@@ -1181,7 +1181,7 @@ export class UiService {
                 {
                   'id': 1020505,
                   'slug': 'wax-and-parchment-paper',
-                  'name': '왁스∙파치먼트페이퍼',
+                  'name': '왁스·파치먼트페이퍼',
                   'depth': 4,
                   'parent': 1020500,
                   'children': []
@@ -1189,7 +1189,7 @@ export class UiService {
                 {
                   'id': 1020506,
                   'slug': 'trash-bags',
-                  'name': '왁스∙파치먼트페이퍼',
+                  'name': '왁스·파치먼트페이퍼',
                   'depth': 4,
                   'parent': 1020500,
                   'children': []
@@ -1393,7 +1393,7 @@ export class UiService {
                 {
                   'id': 1030114,
                   'slug': 'waxing-and-hair-removal',
-                  'name': '왁싱∙제모',
+                  'name': '왁싱·제모',
                   'depth': 4,
                   'parent': 1030100,
                   'children': []
@@ -1450,7 +1450,7 @@ export class UiService {
                 {
                   'id': 1030201,
                   'slug': 'bath-sponges-and-tools',
-                  'name': '목욕용품∙스펀지',
+                  'name': '목욕용품·스펀지',
                   'depth': 4,
                   'parent': 1030200,
                   'children': []
@@ -1587,7 +1587,7 @@ export class UiService {
                 {
                   'id': 1030307,
                   'slug': 'hair-perms-and-texturizers',
-                  'name': '펌∙텍스처',
+                  'name': '펌·텍스처',
                   'depth': 4,
                   'parent': 1030300,
                   'children': []
@@ -1636,7 +1636,7 @@ export class UiService {
                 {
                   'id': 1030402,
                   'slug': 'dryers-irons-and-diffusers',
-                  'name': '드라이어∙고데기',
+                  'name': '드라이어·고데기',
                   'depth': 4,
                   'parent': 1030400,
                   'children': []
@@ -1725,7 +1725,7 @@ export class UiService {
                 {
                   'id': 1030506,
                   'slug': 'eyeliner-and-brow-pencils',
-                  'name': '아이라이너∙브로우펜슬',
+                  'name': '아이라이너·브로우펜슬',
                   'depth': 4,
                   'parent': 1030500,
                   'children': []
@@ -1733,7 +1733,7 @@ export class UiService {
                 {
                   'id': 1030507,
                   'slug': 'mascara-and-lashes',
-                  'name': '마스카라∙래쉬',
+                  'name': '마스카라·래쉬',
                   'depth': 4,
                   'parent': 1030500,
                   'children': []
@@ -1879,7 +1879,7 @@ export class UiService {
                 {
                   'id': 1030709,
                   'slug': 'massage-oil-and-aromatherapy',
-                  'name': '마사지오일∙아로마',
+                  'name': '마사지오일·아로마',
                   'depth': 4,
                   'parent': 1030700,
                   'children': []
@@ -1903,7 +1903,7 @@ export class UiService {
                 {
                   'id': 1030712,
                   'slug': 'facial-moisturizers-and-treatment',
-                  'name': '보습∙미백',
+                  'name': '보습·미백',
                   'depth': 4,
                   'parent': 1030700,
                   'children': []
@@ -2002,7 +2002,7 @@ export class UiService {
                 {
                   'id': 1040101,
                   'slug': 'allergy-sinus-and-asthma',
-                  'name': '알러지∙천식',
+                  'name': '알러지·천식',
                   'depth': 4,
                   'parent': 1040100,
                   'children': []
@@ -2018,7 +2018,7 @@ export class UiService {
                 {
                   'id': 1040103,
                   'slug': 'cold-sore-and-blister-treatments',
-                  'name': '물집∙발진',
+                  'name': '물집·발진',
                   'depth': 4,
                   'parent': 1040100,
                   'children': []
@@ -2074,7 +2074,7 @@ export class UiService {
                 {
                   'id': 1040110,
                   'slug': 'sleep-and-snoring',
-                  'name': '수면∙코골이',
+                  'name': '수면·코골이',
                   'depth': 4,
                   'parent': 1040100,
                   'children': []
@@ -2147,7 +2147,7 @@ export class UiService {
                 {
                   'id': 1040203,
                   'slug': 'beds-and-accessories',
-                  'name': '침대∙액세서리',
+                  'name': '침대·액세서리',
                   'depth': 4,
                   'parent': 1040200,
                   'children': []
@@ -2237,14 +2237,14 @@ export class UiService {
             {
               'id': 1040300,
               'slug': 'sports-nutrition-and-diet',
-              'name': '헬스∙다이어트',
+              'name': '헬스·다이어트',
               'depth': 3,
               'parent': 1040000,
               'children': [
                 {
                   'id': 1040301,
                   'slug': 'protein-and-meal-replacement',
-                  'name': '프로틴∙식사대용',
+                  'name': '프로틴·식사대용',
                   'depth': 4,
                   'parent': 1040300,
                   'children': []
@@ -2252,7 +2252,7 @@ export class UiService {
                 {
                   'id': 1040302,
                   'slug': 'energy-and-endurance',
-                  'name': '에너지∙지구력',
+                  'name': '에너지·지구력',
                   'depth': 4,
                   'parent': 1040300,
                   'children': []
@@ -2276,7 +2276,7 @@ export class UiService {
                 {
                   'id': 1040305,
                   'slug': 'amino-acids-and-creatine',
-                  'name': '크레아틴∙아미노산',
+                  'name': '크레아틴·아미노산',
                   'depth': 4,
                   'parent': 1040300,
                   'children': []
@@ -2333,7 +2333,7 @@ export class UiService {
                 {
                   'id': 1040404,
                   'slug': 'fish-oils-and-omegas',
-                  'name': '오메가3∙피쉬오일',
+                  'name': '오메가3·피쉬오일',
                   'depth': 4,
                   'parent': 1040400,
                   'children': []
@@ -2357,7 +2357,7 @@ export class UiService {
                 {
                   'id': 1040407,
                   'slug': 'protein-and-meal-replacements',
-                  'name': '프로틴∙식사대용',
+                  'name': '프로틴·식사대용',
                   'depth': 4,
                   'parent': 1040400,
                   'children': []
@@ -2373,7 +2373,7 @@ export class UiService {
                 {
                   'id': 1040409,
                   'slug': 'amino-acids-and-creatine',
-                  'name': '크레아틴∙아미노산',
+                  'name': '크레아틴·아미노산',
                   'depth': 4,
                   'parent': 1040400,
                   'children': []
@@ -2389,7 +2389,7 @@ export class UiService {
                 {
                   'id': 1040411,
                   'slug': 'new-and-noteworthy-vitamins-and-supplements',
-                  'name': '베스트∙추천',
+                  'name': '베스트·추천',
                   'depth': 4,
                   'parent': 1040400,
                   'children': []
@@ -2416,7 +2416,7 @@ export class UiService {
             {
               'id': 1050100,
               'slug': 'baby-food-and-formula',
-              'name': '이유식∙분유',
+              'name': '이유식·분유',
               'depth': 3,
               'parent': 1050000,
               'children': [
@@ -2447,7 +2447,7 @@ export class UiService {
                 {
                   'id': 1050104,
                   'slug': 'toddler-juices-and-milk',
-                  'name': '유아주스∙우유',
+                  'name': '유아주스·우유',
                   'depth': 4,
                   'parent': 1050100,
                   'children': []
@@ -2457,7 +2457,7 @@ export class UiService {
             {
               'id': 1050200,
               'slug': 'diapering',
-              'name': '기저귀∙교체용품',
+              'name': '기저귀·교체용품',
               'depth': 3,
               'parent': 1050000,
               'children': [
@@ -2650,7 +2650,7 @@ export class UiService {
                 {
                   'id': 1050401,
                   'slug': 'car-seat-and-stroller-toys',
-                  'name': '카시트∙유모차 장난감',
+                  'name': '카시트·유모차 장난감',
                   'depth': 4,
                   'parent': 1050400,
                   'children': []
@@ -2700,14 +2700,14 @@ export class UiService {
             {
               'id': 1050500,
               'slug': 'feeding-and-nursing',
-              'name': '수유∙이유용품',
+              'name': '수유·이유용품',
               'depth': 3,
               'parent': 1050000,
               'children': [
                 {
                   'id': 1050501,
                   'slug': 'baby-bottles-and-accessories',
-                  'name': '젖병∙액세서리',
+                  'name': '젖병·액세서리',
                   'depth': 4,
                   'parent': 1050500,
                   'children': []
@@ -2860,7 +2860,7 @@ export class UiService {
                 {
                   'id': 1050605,
                   'slug': 'gates-and-rails',
-                  'name': '문∙난간',
+                  'name': '문·난간',
                   'depth': 4,
                   'parent': 1050600,
                   'children': []
@@ -2917,7 +2917,7 @@ export class UiService {
                 {
                   'id': 1050702,
                   'slug': 'baby-oil-and-lotion',
-                  'name': '베이비로션∙오일',
+                  'name': '베이비로션·오일',
                   'depth': 4,
                   'parent': 1050700,
                   'children': []
@@ -3023,7 +3023,7 @@ export class UiService {
                 {
                   'id': 1050904,
                   'slug': 'baby-washcloths-and-towels',
-                  'name': '목욕가운∙타월',
+                  'name': '목욕가운·타월',
                   'depth': 4,
                   'parent': 1050900,
                   'children': []
@@ -3056,7 +3056,7 @@ export class UiService {
                 {
                   'id': 1051002,
                   'slug': 'keepsakes-and-albums',
-                  'name': '기념품∙앨범',
+                  'name': '기념품·앨범',
                   'depth': 4,
                   'parent': 1051000,
                   'children': []
@@ -3064,7 +3064,7 @@ export class UiService {
                 {
                   'id': 1051003,
                   'slug': 'new-mom-gifts',
-                  'name': '기념품∙앨범',
+                  'name': '기념품·앨범',
                   'depth': 4,
                   'parent': 1051000,
                   'children': []
@@ -3154,7 +3154,7 @@ export class UiService {
                 {
                   'id': 1060108,
                   'slug': 'flea-and-tick-control',
-                  'name': '벼룩∙진드기관리',
+                  'name': '벼룩·진드기관리',
                   'depth': 4,
                   'parent': 1060100,
                   'children': []
@@ -3234,7 +3234,7 @@ export class UiService {
                 {
                   'id': 1060118,
                   'slug': 'gates-and-ramps',
-                  'name': '문∙통로',
+                  'name': '문·통로',
                   'depth': 4,
                   'parent': 1060100,
                   'children': []
@@ -3283,7 +3283,7 @@ export class UiService {
                 {
                   'id': 1060204,
                   'slug': 'flea-and-tick-control',
-                  'name': '벼룩∙진드기관리',
+                  'name': '벼룩·진드기관리',
                   'depth': 4,
                   'parent': 1060200,
                   'children': []
@@ -3406,7 +3406,7 @@ export class UiService {
             {
               'id': 1070200,
               'slug': 'tape-and-adhesives',
-              'name': '테이프∙접착제',
+              'name': '테이프·접착제',
               'depth': 3,
               'parent': 1070000,
               'children': []
@@ -3446,7 +3446,7 @@ export class UiService {
             {
               'id': 1070700,
               'slug': 'labels-indexes-and-stamps',
-              'name': '라벨∙인덱스',
+              'name': '라벨·인덱스',
               'depth': 3,
               'parent': 1070000,
               'children': []
@@ -3486,7 +3486,7 @@ export class UiService {
             {
               'id': 1071200,
               'slug': 'calendars-and-planners',
-              'name': '캘린더∙플래너',
+              'name': '캘린더·플래너',
               'depth': 3,
               'parent': 1070000,
               'children': []
@@ -3494,7 +3494,7 @@ export class UiService {
             {
               'id': 1071300,
               'slug': 'stationary',
-              'name': '캘린더∙플래너',
+              'name': '캘린더·플래너',
               'depth': 3,
               'parent': 1070000,
               'children': []
@@ -3602,13 +3602,13 @@ export class UiService {
                 {
                   'slug': 'fine-lines-wrinkles',
                   'id': 4010502,
-                  'name': 'Fine Lines ∙ Wrinkles',
+                  'name': 'Fine Lines · Wrinkles',
                   'children': []
                 },
                 {
                   'slug': 'dark-circles-puffness',
                   'id': 4010503,
-                  'name': 'Dark Circles ∙ Puffness',
+                  'name': 'Dark Circles · Puffness',
                   'children': []
                 }
                 ]
@@ -4341,7 +4341,7 @@ export class UiService {
                 {
                   'slug': 'shaving-creams-gels',
                   'id': 4060502,
-                  'name': 'Shaving Creams ∙ Gels',
+                  'name': 'Shaving Creams · Gels',
                   'children': []
                 },
                 {

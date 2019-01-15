@@ -10,6 +10,13 @@
     &-el {
       display:none;
     }
+    &-label {
+      float: right;
+      display:inline-block;
+      width : 50px;
+      hegiht : 30px;
+      cursor: pointer;
+    }
   }
 
   &__checkbox {
@@ -58,6 +65,10 @@
 
   &__button:hover &__icon::after {
     top: 0.7rem;
+  }
+
+  &__searchbox:checked + &__searchbox-el {
+    display:block;
   }
 
   &__checkbox:checked + &__button &__icon {

@@ -181,7 +181,7 @@ export const MENU_MAP_CONST = {
             href : 'pantry-and-household/health/vitamins-and-dietary-supplements'
           },
           {
-            name : '헬스∙다이어트',
+            name : '헬스·다이어트',
             slug : 'sports-nutrition-and-diet',
             href : 'pantry-and-household/health/sports-nutrition-and-diet'
           },
@@ -200,7 +200,7 @@ export const MENU_MAP_CONST = {
     ],
     recommandCategory : [
       {
-        name : '양념∙향신료',
+        name : '양념·향신료',
         slug : 'spices-and-seasonings',
         href : 'pantry-and-household/grocery/pantry/spices-and-seasonings'
       },
@@ -214,7 +214,7 @@ export const MENU_MAP_CONST = {
       //   slug : 'grocery',
       //   href : 'pantry-and-household/grocery'
       // },
-      // '양념∙향신료',
+      // '양념·향신료',
       // '반려용품',
       // '스포츠',
     ]
