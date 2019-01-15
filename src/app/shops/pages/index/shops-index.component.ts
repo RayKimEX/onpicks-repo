@@ -78,6 +78,66 @@ export class ShopsIndexComponent implements OnInit, AfterViewInit {
       name : '유아동',
     },
   ]
+
+  popularBrand = [
+    {
+      imgSrc : 'http://img.onpicks.com/brands/index-brand-hyredo.jpg',
+      name : '바이레도'
+    },
+    {
+      imgSrc : 'http://img.onpicks.com/brands/index-brand-aveda.jpg',
+      name : '아베다'
+    },
+    {
+      imgSrc : 'http://img.onpicks.com/brands/index-brand-mac.jpg',
+      name : '맥'
+    },
+    {
+      imgSrc : 'http://img.onpicks.com/brands/index-brand-natures-way.jpg',
+      name : '네이처스 웨이'
+    },
+    {
+      imgSrc : 'http://img.onpicks.com/brands/index-brand-thayers.jpg',
+      name : '세이어스'
+    },
+    {
+      imgSrc : 'http://img.onpicks.com/brands/index-brand-polum-organics.jpg',
+      name : '플럼 오가닉스'
+    },
+    {
+      imgSrc : 'http://img.onpicks.com/brands/index-brand-4th-and-heart.jpg',
+      name : '4Th & Heart'
+    },
+    {
+      imgSrc : 'http://img.onpicks.com/brands/index-brand-avalon-organics.jpg',
+      name : '아발론 오가닉스'
+    },
+    {
+      imgSrc : 'http://img.onpicks.com/brands/index-brand-simply-organic.jpg',
+      name : '심플리 오가닉'
+    },
+    {
+      imgSrc : 'http://img.onpicks.com/brands/index-brand-jomalone.jpg',
+      name : '조 말론'
+    },
+    {
+      imgSrc : 'http://img.onpicks.com/brands/index-brand-shu-uemura.jpg',
+      name : '슈에무라'
+    },
+    {
+      imgSrc : 'http://img.onpicks.com/brands/index-brand-diptqyue.jpg',
+      name : '딥디크'
+    },
+    {
+      imgSrc : 'http://img.onpicks.com/brands/index-brand-looccitane.jpg',
+      name : '록시땅'
+    },
+    {
+      imgSrc : 'http://img.onpicks.com/brands/index-brand-dior.jpg',
+      name : '디올'
+    },
+
+  ]
   constructor() {
 
   }

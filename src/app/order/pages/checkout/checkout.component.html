@@ -149,8 +149,9 @@
 
         <onpicks-button
           [type]="'white'"
-          [width]="'16.7rem'"
-          >개인통관고유부호 저장</onpicks-button>
+          [width]="'16.7rem'">
+          개인통관고유부호 저장
+        </onpicks-button>
 
       </div>
 
@@ -232,8 +233,9 @@
           (click)="payment(form)"
           [type]="'black'"
           [width]="'100%'"
-          [size]="'big'"
-        >결제하기</onpicks-button>
+          [size]="'big'">
+          결제하기
+        </onpicks-button>
       </div>
       <form #form [formGroup]="initialGroup">
 
@@ -247,7 +249,8 @@
 <!--modal-->
 <onpicks-modal
   class="modal"
-  (exit)="exitModifyDeliveryModal()" [isShow]="isShowDeliveryModal">
+  (exit)="exitModifyDeliveryModal()"
+  [isShow]="isShowDeliveryModal">
   <h1 class="h1-bold">배송지 수정</h1>
   <div class="modal__body">
     <ng-container *ngTemplateOutlet="templateRef"></ng-container>
@@ -271,7 +274,8 @@
       #inputRecipientName
       class="checkout-left__info--delivery-input body-2-regular"
       [width]="'40.8rem'"
-      [placeholder]="'받는분 성함'"></onpicks-input-box>
+      [placeholder]="'받는분 성함'">
+    </onpicks-input-box>
     <div *ngIf="checkBitWise(EMPTY_RECIPIENT_NAME)" class="checkout_warning subtitle-2-regular u-color-orange">받는분 성함을 입력해주세요</div>
   </div>
 
@@ -294,7 +298,8 @@
     [readonly]="true"
     class="checkout-left__info--delivery-input-address  body-2-regular"
     [width]="'27.8rem'"
-    [placeholder]="'우편번호'"></onpicks-input-box>
+    [placeholder]="'우편번호'">
+  </onpicks-input-box>
   <!--<input-->
   <!--#inputZipnumber-->
   <!--class="checkout-left__info&#45;&#45;delivery-input-address body-2-regular"-->
@@ -305,14 +310,15 @@
     [type]="'white'"
     [width]="'11.4rem'"
     class="checkout-left__info--delivery-search-btn"
-    (click)="showSearchBox()">우편번호 찾기</onpicks-button>
+    (click)="showSearchBox()">우편번호 찾기
+  </onpicks-button>
 
   <div #inputSearchBoxOuter class="checkout-left__info--delivery-searchBox-outer">
     <onpicks-search-box
       #inputSearchBox
       class="checkout-left__info--delivery-searchBox"
-      [width]="isShowDeliveryModal ? 50.2 : 55.2 "
-      [placeholder]="'검색할 주소를 입력해주세요'" ></onpicks-search-box>
+      [placeholder]="'검색할 주소를 입력해주세요'" >
+    </onpicks-search-box>
     <div class="checkout-left__info--delivery-searchBox-option">
       <div *ngIf="searchState === 1" class="checkout-left__info--delivery-searchBox-option-list" >
         <div class="checkout-left__info--delivery-searchBox-option-list-outer" *ngFor="let item of jusoList ">
@@ -371,16 +377,21 @@
     [readonly]="true"
     class="checkout-left__info--delivery-input  body-2-regular"
     [width]="'40.8rem'"
-    [placeholder]="''"
-  ></onpicks-input-box>
+    [placeholder]="''">
+  </onpicks-input-box>
 
   <onpicks-input-box
     #inputDetailJuso
     class="checkout-left__info--delivery-input  body-2-regular"
     [width]="'40.8rem'"
-    [placeholder]="'상세주소를 입력하세요'"></onpicks-input-box>
+    [placeholder]="'상세주소를 입력하세요'">
+  </onpicks-input-box>
 
-  <div *ngIf="checkBitWise(EMPTY_DELIVERY_ADDRESS)" class="checkout_warning subtitle-2-regular u-color-orange">배송지를 입력해주세요</div>
+  <div
+    *ngIf="checkBitWise(EMPTY_DELIVERY_ADDRESS)"
+    class="checkout_warning subtitle-2-regular u-color-orange">
+    배송지를 입력해주세요
+  </div>
 
 </ng-template>
 

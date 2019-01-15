@@ -78,6 +78,61 @@ export class PantryAndHouseholdComponent implements OnInit {
       name : '유아동',
     },
   ]
+  // Avalon Organics  아발론 오가닉스
+  // Nubian Heritage  누비안 헤리티지
+  // Nature’s Way  네이처스 웨이
+  // Earth Mama  얼스마마
+  // thayers  세이어스
+  // Plum Organics  플럼 오가닉스
+  // 4Th & Heart  4Th & Heart
+  // Hero Nutritional Products  히어로 뉴트리셔널
+  // Simply organic  심플리 오가닉
+  // Quest Nutrition  퀘스트 뉴트리션 (edited)
+  popularBrand = [
+    {
+      imgSrc : 'http://img.onpicks.com/brands/index-brand-avalon-organics.jpg',
+      name : '아발론 오가닉스'
+    },
+    {
+      imgSrc : 'http://img.onpicks.com/brands/index-brand-nubian-heritage.jpg',
+      name : '누비안 헤리티지'
+    },
+    {
+      imgSrc : 'http://img.onpicks.com/brands/index-brand-natures-way.jpg',
+      name : '네이처스 웨이'
+    },
+    {
+      imgSrc : 'http://img.onpicks.com/brands/index-brand-earth-mama.jpg',
+      name : '얼스마마'
+    },
+
+    {
+      imgSrc : 'http://img.onpicks.com/brands/index-brand-thayers.jpg',
+      name : '세이어스'
+    },
+    {
+      imgSrc : 'http://img.onpicks.com/brands/index-brand-polum-organics.jpg',
+      name : '플럼 오가닉스'
+    },
+    {
+      imgSrc : 'http://img.onpicks.com/brands/index-brand-4th-and-heart.jpg',
+      name : '4Th & Heart'
+    },
+    {
+      imgSrc : 'http://img.onpicks.com/brands/index-brand-hero-nutritionals.jpg',
+      name : '히어로 뉴트리셔널'
+    },
+    {
+      imgSrc : 'http://img.onpicks.com/brands/index-brand-simply-organic.jpg',
+      name : '심플리 오가닉'
+    },
+    {
+      imgSrc : 'http://img.onpicks.com/brands/index-brand-quest-nutrition.jpg',
+      name : '퀘스트 뉴트리션'
+    },
+
+
+  ]
 
   constructor(
     public route: ActivatedRoute,

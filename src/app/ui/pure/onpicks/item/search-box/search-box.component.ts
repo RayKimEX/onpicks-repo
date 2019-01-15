@@ -19,7 +19,6 @@ import {
 })
 export class SearchBoxComponent implements OnInit, AfterViewInit, OnChanges {
   @Input('placeholder') placeHolder;
-  @Input('width') width;
   @Input('top') top;
   @Output('enter') enterEvent = new EventEmitter<any>();
   @Output('keypress') keypress = new EventEmitter<any>();
@@ -38,18 +37,10 @@ export class SearchBoxComponent implements OnInit, AfterViewInit, OnChanges {
     this.insertedValue = '';
   }
 
-  ngOnChanges(changes: SimpleChanges) {
-    this.renderer.setAttribute( this.inputTag.nativeElement, 'placeholder', this.placeHolder );
-    this.renderer.setStyle( this.inputTag.nativeElement, 'width', ( this.width - 9.6 ) + 'rem' );
-    this.renderer.setStyle( this.searchInputBox.nativeElement, 'width', this.width + 'rem' );
-    this.renderer.setStyle( this.searchInputBox.nativeElement, 'top', this.top + 'rem' );
-  }
 
   ngAfterViewInit() {
 
     this.renderer.setAttribute( this.inputTag.nativeElement, 'placeholder', this.placeHolder );
-    this.renderer.setStyle( this.inputTag.nativeElement, 'width', ( this.width - 9.6 ) + 'rem' );
-    this.renderer.setStyle( this.searchInputBox.nativeElement, 'width', this.width + 'rem' );
     this.renderer.setStyle( this.searchInputBox.nativeElement, 'top', this.top + 'rem' );
   }
 

@@ -1,4 +1,14 @@
-import {AfterViewInit, ChangeDetectionStrategy, Component, HostListener, OnInit, Renderer2, ViewChild, ViewChildren} from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  Component,
+  HostListener,
+  Input,
+  OnInit,
+  Renderer2,
+  ViewChild,
+  ViewChildren
+} from '@angular/core';
 
 @Component({
   selector: 'onpicks-popular-brand',
@@ -10,50 +20,14 @@ import {AfterViewInit, ChangeDetectionStrategy, Component, HostListener, OnInit,
 export class PopularBrandComponent implements OnInit, AfterViewInit {
   @ViewChildren('itemList') itemList;
   @ViewChild('container') container;
+  @Input('popularBrand') popularBrand;
 
-  popularBrand = [
-    {
-      imgSrc : 'http://img.onpicks.com/index-brand-jomalone.jpg',
-      name : '조 말론'
-    },
-    {
-      imgSrc : 'http://img.onpicks.com/index-brand-hyredo.jpg',
-      name : '바이레도'
-    },
-    {
-      imgSrc : 'http://img.onpicks.com/index-brand-diptyque.jpg',
-      name : '딥 티크'
-    },
-    {
-      imgSrc : 'http://img.onpicks.com/index-brand-bose.jpg',
-      name : '보스'
-    },
-    {
-      imgSrc : 'http://img.onpicks.com/index-brand-sony.jpg',
-      name : '소니'
-    },
-    {
-      imgSrc : 'http://img.onpicks.com/index-brand-samsung.jpg',
-      name : '삼성'
-    },
-    {
-      imgSrc : 'http://img.onpicks.com/index-brand-sony.jpg',
-      name : '소니'
-    },
-    {
-      imgSrc : 'http://img.onpicks.com/index-brand-samsung.jpg',
-      name : '삼성'
-    },
-    {
-      imgSrc : 'http://img.onpicks.com/index-brand-sony.jpg',
-      name : '소니'
-    },
-    {
-      imgSrc : 'http://img.onpicks.com/index-brand-samsung.jpg',
-      name : '삼성'
-    },
-  ]
 
+
+  // SHUUEMURA 슈에무라
+  // DIPTYQUE 딥디크
+  // L’OCCITANE 록시땅
+  // DIOR 디올 (edited)
   imageIndex = 0;
   itemListArray;
   translateXWidth = 192;

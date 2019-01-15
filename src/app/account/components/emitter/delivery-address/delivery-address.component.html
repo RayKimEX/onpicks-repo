@@ -113,13 +113,11 @@
       #inputSearchBoxOuter [ngStyle]="{ display : isShowSearchBox ? 'block' : 'none' }" class="delivery-address__info--delivery-searchBox-outer">
       <onpicks-search-box
         #inputSearchBox
-        [width]="isShowDeliveryModal ? 50.2 : 55.2"
         class="delivery-address__info--delivery-searchBox"
         [placeholder]="'검색할 주소를 입력해주세요'" >
       </onpicks-search-box>
       <div class="delivery-address__info--delivery-searchBox-option"
-           [ngStyle]="{width : isShowDeliveryModal ? '50.2rem' : '55.2rem'}"
-      >
+           [ngStyle]="{width : isShowDeliveryModal ? '50.2rem' : '55.2rem'}">
         <!-- TODO : list형식 관련 스타일 가이드 의견 교류 필요, 1. padding을 일괄적으로 주면서, 이쁘게 디자인 안나오는지,  -->
         <div *ngIf="searchState === 1" class="delivery-address__info--delivery-searchBox-option-list" >
           <div class="delivery-address__info--delivery-searchBox-option-list-outer" *ngFor="let item of jusoList ">

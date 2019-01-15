@@ -42,6 +42,12 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('shops') shopsRef;
   @ViewChild('form') form;
   @ViewChild('alertMessage') alertMessage;
+  @ViewChild('mobileSearchBox', { read: ElementRef }) mobileSearchBox;
+  @ViewChild('mobileToggle') mobileToggle;
+  @ViewChild('mobileLogo') mobileLogo;
+  @ViewChild('mobileIconOuter') mobileIconOuter;
+  @ViewChild('mobileSearchIcon') mobileSearchIcon;
+  @ViewChild('mobileHamburger') mobileHamburger;
 
 
   tempDiv;
@@ -229,13 +235,44 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
     this.renderer.setStyle(this.menuRef.nativeElement, 'display', 'block');
   }
 
-  showPreparingMessage(){
+  showPreparingMessage() {
     this.store.dispatch( new DisplayAlertMessage('준비중입니다'));
   }
 
-  naviClicked( xElement ){
-    console.log(xElement.checked);
-    console.log(xElement.value);
+  naviClickedForMobile( xInputChecked ) {
+    console.log(xInputChecked.checked);
+    if(xInputChecked.checked) {
+      this.renderer.setStyle(this.mobileHamburger.nativeElement, 'display', 'none');
+      this.renderer.removeClass(document.body, 'u-open-modal');
+    } else {
+      this.renderer.setStyle(this.mobileHamburger.nativeElement, 'display', 'block');
+      this.renderer.addClass(document.body , 'u-open-modal');
+    }
+
+
+    // this.mobileHamburger.
+    // console.log(xElement.value);
+  }
+
+  clickMobileSearch() {
+    if ( this.mobileSearchBox.nativeElement.style.display === '' || this.mobileSearchBox.nativeElement.style.display === 'none' ) {
+      this.renderer.setStyle( this.mobileSearchBox.nativeElement, 'display', 'inline-block');
+      this.renderer.setStyle( this.mobileToggle.nativeElement, 'display', 'none');
+      this.renderer.setStyle( this.mobileLogo.nativeElement, 'display', 'none');
+      this.renderer.setStyle( this.mobileIconOuter.nativeElement, 'position', 'absolute');
+      this.renderer.setStyle( this.mobileIconOuter.nativeElement, 'top', '50%');
+      this.renderer.setStyle( this.mobileIconOuter.nativeElement, 'transform', 'translateY(-50%)');
+      this.renderer.setStyle( this.mobileIconOuter.nativeElement, 'right', '0px');
+    } else {
+      this.renderer.setStyle( this.mobileToggle.nativeElement, 'display', '');
+      this.renderer.setStyle( this.mobileLogo.nativeElement, 'display', 'inline-block');
+      this.renderer.setStyle( this.mobileSearchBox.nativeElement, 'display', 'none');
+      this.renderer.setStyle( this.mobileIconOuter.nativeElement, 'position', 'static');
+      this.renderer.setStyle( this.mobileIconOuter.nativeElement, 'top', '');
+      this.renderer.setStyle( this.mobileIconOuter.nativeElement, 'transform', '');
+      this.renderer.setStyle( this.mobileIconOuter.nativeElement, 'right', '');
+    }
+
   }
 }
 
