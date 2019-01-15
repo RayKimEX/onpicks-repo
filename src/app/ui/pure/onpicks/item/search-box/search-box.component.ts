@@ -17,7 +17,7 @@ import {
   styleUrls: ['./search-box.component.scss'],
   changeDetection : ChangeDetectionStrategy.OnPush,
 })
-export class SearchBoxComponent implements OnInit, AfterViewInit, OnChanges {
+export class SearchBoxComponent implements OnInit, AfterViewInit {
   @Input('placeholder') placeHolder;
   @Input('top') top;
   @Output('enter') enterEvent = new EventEmitter<any>();
