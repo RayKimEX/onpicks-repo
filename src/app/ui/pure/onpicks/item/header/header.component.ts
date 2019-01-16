@@ -47,7 +47,6 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('mobileLogo') mobileLogo;
   @ViewChild('mobileSearchIcon') mobileSearchIcon;
   @ViewChild('mobileIconOuter') mobileIconOuter;
-  @ViewChild('mobileSearchIcon') mobileSearchIcon;
   @ViewChild('mobileHamburger') mobileHamburger;
 
 
