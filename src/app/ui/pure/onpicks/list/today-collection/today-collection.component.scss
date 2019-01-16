@@ -9,6 +9,12 @@
   &__content {
     white-space: nowrap;
     overflow: hidden;
+    @include respond(tb){
+      overflow : auto;
+      &::-webkit-scrollbar{
+        display :none;
+      }
+    }
     &--outer {
       position:relative;
     }

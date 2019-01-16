@@ -88,45 +88,6 @@ export class TodayCollectionComponent implements OnInit, AfterViewInit {
 
   }
 
-  // onPan(event) {
-  //   console.log(event.type);
-  // }
-
-  onPanStart(event) {
-
-  }
-
-  onPanMove(event) {
-
-    const coorX = this.currentX + event.deltaX;
-    this.renderer.setStyle(this.container.nativeElement, 'transform', 'translateX(' + coorX + 'px)');
-  }
-
-
-  onPanEnd(event) {
-
-    this.currentPanVelocityX = event.velocityX * 12;
-    console.log('start');
-
-    console.log(this.currentPanVelocityX );
-    clearInterval(this.panInterval);
-    this.panInterval = setInterval( () => {
-
-      if ( this.currentPanVelocityX  > 0.4 ) {
-        this.currentPanVelocityX -= 0.3;
-      } else if ( this.currentPanVelocityX  < -0.4 ) {
-        this.currentPanVelocityX += 0.3;
-      } else {
-        clearInterval(this.panInterval);
-      }
-      console.log('interval')
-      console.log(this.currentPanVelocityX);
-      this.currentX += this.currentPanVelocityX;
-      this.renderer.setStyle(this.container.nativeElement, 'transform', 'translateX(' + this.currentX + 'px)');
-    }, 16);
-    this.currentX = this.currentX + event.deltaX;
-  }
-
   // TODO : shave는 나중에 하자
   // https://github.com/NetanelBasal/angular2-shave
   //
