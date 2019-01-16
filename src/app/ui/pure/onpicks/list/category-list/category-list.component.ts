@@ -1,14 +1,16 @@
 import {
   AfterViewInit,
-  ChangeDetectionStrategy,
+  ChangeDetectionStrategy, ChangeDetectorRef,
   Component,
-  HostListener,
+  HostListener, Inject,
   Input,
   OnInit,
   Renderer2,
   ViewChild,
   ViewChildren
 } from '@angular/core';
+import {BreakpointObserver, BreakpointState} from '@angular/cdk/layout';
+import {CATEGORY_MAP, RESPONSIVE_MAP} from '../../../../../app.config';
 
 @Component({
   selector: 'onpicks-category-list',
@@ -18,21 +20,37 @@ import {
 })
 export class CategoryListComponent implements OnInit, AfterViewInit {
   @Input('popularCategory') popularCategory;
-
   @ViewChildren('itemList') itemList;
   @ViewChild('container') container;
 
   imageIndex = 0;
   itemListArray;
   translateXWidth = 192;
+  isShowButton = true;
 
   constructor(
+    @Inject(RESPONSIVE_MAP) public categoryMap,
     private renderer: Renderer2,
+    private breakpointObserver:  BreakpointObserver,
+    private cd: ChangeDetectorRef
   ) {
 
   }
 
   ngOnInit() {
+    // tb
+    this.breakpointObserver
+      .observe([this.categoryMap['tb']])
+      .subscribe((state: BreakpointState) => {
+        if (state.matches) {
+          this.isShowButton = false;
+
+          this.cd.markForCheck();
+        } else {
+          this.isShowButton = true;
+
+        }
+      });
   }
 
   ngAfterViewInit() {

@@ -410,8 +410,66 @@ textarea {
 /**************************/
 
 /**************************/
+/********** List-lin-up-Grid **********/
+.row-list-line-up {
+  white-space: nowrap;
+  @include respond(tb) {
 
+  }
+  max-width : $grid-width;
+  margin: 0 auto;
+  @include respond(fb) {
+    padding: 0 3.2rem;
+  }
 
+  @include respond(tb) {
+    white-space: normal;
+    padding : 0 1.6rem;
+  }
+
+  [class *= "12-list-line-up"]{
+    margin-right : 0px !important;
+  }
+
+  .col-2-of-12-list-line-up {
+    width: 16.66%;
+    padding : 0 0.8rem;
+    @include respond(sb) {
+      padding : 0 0.4rem;
+    }
+
+    @include respond(tb) {
+      width : 14.8rem;
+      width : 33.33%;
+      padding : 0 0.4rem 2.4rem 0.4rem;
+    }
+  }
+}
+
+/********** List-scroll-Grid **********/
+.row-list-scroll {
+  max-width : $grid-width;
+  margin: 0 auto;
+  @include respond(fb) {
+    padding: 0 3.2rem;
+  }
+
+  @include respond(tb) {
+    padding : 0 0 0 1.6rem;
+  }
+
+  .col-3-of-12-list-scroll {
+    width: 25%;
+    padding : 0 0.8rem;
+    @include respond(sb) {
+      padding : 0 0.4rem;
+    }
+
+    @include respond(tb) {
+      width: 40%;
+    }
+  }
+}
 
 /********** Grid **********/
 .row {
@@ -421,26 +479,25 @@ textarea {
   @include clearfix;
 
   @include respond(fb) {
-    margin: 0 3.2rem;
+    padding: 0 3.2rem;
   }
 
-  [class *= "-nf"]{
-    float: none !important;
 
-  }
 
   /* class이름이 col로 시작한다는 말임 */
-  [class ^= "col-"]{
+  [class ^= "col-"] {
     float: left;
 
     &:not(:last-child) {
       margin-right: $gutter-horizontal;
     }
 
-    @include respond(tp) {
-      width: 100% !important;
-    }
+    //@include respond(tp) {
+    //  width: 100% !important;
+    //}
   }
+
+
 
   .col-1-of-12 {
     width: calc((100% - 11 * #{$gutter-horizontal}) / 12);

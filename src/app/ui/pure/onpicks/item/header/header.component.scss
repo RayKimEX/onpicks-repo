@@ -14,7 +14,7 @@
     &-el {
       display:none;
       float:left;
-      width : 82.76%;
+      width : calc(100% - 4rem);
     }
     &-label {
       float: right;

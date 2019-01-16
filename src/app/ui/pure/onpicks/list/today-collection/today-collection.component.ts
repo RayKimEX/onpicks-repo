@@ -1,11 +1,13 @@
 import {
-  AfterViewInit, ChangeDetectionStrategy,
-  Component, HostListener,
+  AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef,
+  Component, HostListener, Inject,
   OnInit,
   Renderer2,
   ViewChild,
   ViewChildren
 } from '@angular/core';
+import {BreakpointObserver, BreakpointState} from '../../../../../../../node_modules/@angular/cdk/layout';
+import {RESPONSIVE_MAP} from '../../../../../app.config';
 
 @Component({
   selector: 'onpicks-today-collection',
@@ -72,25 +74,58 @@ export class TodayCollectionComponent implements OnInit, AfterViewInit {
   imageIndex = 0;
   itemListArray;
   translateXWidth = 288;
+  isShowButton = true;
+  currentX = 0;
 
   constructor(
+    @Inject(RESPONSIVE_MAP) public categoryMap,
     private renderer: Renderer2,
+    private breakpointObserver:  BreakpointObserver,
+    private cd: ChangeDetectorRef
   ) {
 
+  }
+
+  // onPan(event) {
+  //   console.log(event.type);
+  // }
+
+  onPanStart(event) {
+
+  }
+
+  onPanMove(event) {
+
+    const coorX = this.currentX + event.deltaX;
+    console.log(coorX);
+    this.renderer.setStyle(this.container.nativeElement, 'transform', 'translateX(' + coorX + 'px)');
+  }
+
+  onPanEnd(event) {
+    this.currentX = this.currentX + event.deltaX;
   }
 
   // TODO : shave는 나중에 하자
   // https://github.com/NetanelBasal/angular2-shave
   //
   ngOnInit() {
-
+    // tb
+    this.breakpointObserver
+      .observe([this.categoryMap['tb']])
+      .subscribe((state: BreakpointState) => {
+        if (state.matches) {
+          this.isShowButton = false;
+          this.cd.markForCheck();
+        } else {
+          this.isShowButton = true;
+        }
+      });
   }
   ngAfterViewInit() {
     this.itemListArray = this.itemList.toArray();
     const computedStyle = getComputedStyle(( this.itemList.first.nativeElement ), null);
     this.translateXWidth =  parseInt(computedStyle.width, 10 ) + parseInt(computedStyle.marginRight, 10);
   }
-
 
   @HostListener('window:resize', ['$event'])
   onResize(event) {
@@ -107,5 +142,4 @@ export class TodayCollectionComponent implements OnInit, AfterViewInit {
     this.imageIndex++;
     this.renderer.setStyle(this.container.nativeElement, 'transform', 'translateX(' + this.imageIndex * this.translateXWidth  + 'px)');
   }
-
 }

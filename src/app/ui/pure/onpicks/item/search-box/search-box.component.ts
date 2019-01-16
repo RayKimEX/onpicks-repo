@@ -20,8 +20,10 @@ import {
 export class SearchBoxComponent implements OnInit, AfterViewInit {
   @Input('placeholder') placeHolder;
   @Input('top') top;
+  @Input('isMobile') isMobile = false;
   @Output('enter') enterEvent = new EventEmitter<any>();
   @Output('keypress') keypress = new EventEmitter<any>();
+  @Output('deleteText') deleteEvent = new EventEmitter();
   @ViewChild('searchInputBox') searchInputBox;
   @ViewChild('inputTag') inputTag;
 
@@ -52,6 +54,7 @@ export class SearchBoxComponent implements OnInit, AfterViewInit {
     // TODO : 이 부분을 NgRX를 사용하여 깔끔하게 바꿀 여지가 있는지? ( event dispatcher 사용하지 않고 )
     // TODO : Security Issue 체크 https://github.com/mgechev/angular-seed/issues/1881
     this.searchInputBox.nativeElement.dispatchEvent(new Event('input'));
+    this.deleteEvent.emit();
   }
 
   keypressEvent(event) {

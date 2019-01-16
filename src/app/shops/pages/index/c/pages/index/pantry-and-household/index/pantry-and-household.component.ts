@@ -105,7 +105,6 @@ export class PantryAndHouseholdComponent implements OnInit {
       imgSrc : 'http://img.onpicks.com/brands/index-brand-earth-mama.jpg',
       name : '얼스마마'
     },
-
     {
       imgSrc : 'http://img.onpicks.com/brands/index-brand-thayers.jpg',
       name : '세이어스'

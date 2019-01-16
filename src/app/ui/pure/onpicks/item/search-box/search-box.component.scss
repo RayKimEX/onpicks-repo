@@ -18,7 +18,7 @@
       padding-left: 5.6rem;
       border : 0;
       height : 1.6rem;
-      width : 85%;
+      width : calc(100% - 5rem);
 
       // TODO : placeholder 부분을 다른 div로 만들어서 처리하던가 해야됨. 이부분으 따로 class 만 줄수가 없음
       &::placeholder {
@@ -34,6 +34,11 @@
         float:right;
         right: 1rem;
         position: relative;
+        cursor:pointer;
+
+        &:hover {
+          opacity: .5;
+        }
 
         &::before,
         &::after {

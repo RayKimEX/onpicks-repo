@@ -45,6 +45,7 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('mobileSearchBox', { read: ElementRef }) mobileSearchBox;
   @ViewChild('mobileToggle') mobileToggle;
   @ViewChild('mobileLogo') mobileLogo;
+  @ViewChild('mobileSearchIcon') mobileSearchIcon;
   @ViewChild('mobileIconOuter') mobileIconOuter;
   @ViewChild('mobileSearchIcon') mobileSearchIcon;
   @ViewChild('mobileHamburger') mobileHamburger;
@@ -128,8 +129,6 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
             }
           );
         }
-
-
       });
 
     this.auth$ = this.store.pipe(
@@ -257,6 +256,7 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
   clickMobileSearch() {
     if ( this.mobileSearchBox.nativeElement.style.display === '' || this.mobileSearchBox.nativeElement.style.display === 'none' ) {
       this.renderer.setStyle( this.mobileSearchBox.nativeElement, 'display', 'inline-block');
+      this.renderer.setStyle( this.mobileSearchIcon.nativeElement, 'display', 'none');
       this.renderer.setStyle( this.mobileToggle.nativeElement, 'display', 'none');
       this.renderer.setStyle( this.mobileLogo.nativeElement, 'display', 'none');
       this.renderer.setStyle( this.mobileIconOuter.nativeElement, 'position', 'absolute');
@@ -264,6 +264,8 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
       this.renderer.setStyle( this.mobileIconOuter.nativeElement, 'transform', 'translateY(-50%)');
       this.renderer.setStyle( this.mobileIconOuter.nativeElement, 'right', '0px');
     } else {
+      this.renderer.setStyle( this.mobileSearchIcon.nativeElement, 'display', 'inline-block');
+      this.renderer.setStyle( this.mobileSearchBox.nativeElement, 'display', 'none');
       this.renderer.setStyle( this.mobileToggle.nativeElement, 'display', '');
       this.renderer.setStyle( this.mobileLogo.nativeElement, 'display', 'inline-block');
       this.renderer.setStyle( this.mobileSearchBox.nativeElement, 'display', 'none');
@@ -272,7 +274,6 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
       this.renderer.setStyle( this.mobileIconOuter.nativeElement, 'transform', '');
       this.renderer.setStyle( this.mobileIconOuter.nativeElement, 'right', '');
     }
-
   }
 }
 

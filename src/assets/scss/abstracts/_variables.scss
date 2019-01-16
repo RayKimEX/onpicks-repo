@@ -80,6 +80,108 @@ $default-padding : 8rem;
     display: none;
   }
 }
+
+
+//@mixin col-1-of-12 {
+//  width: calc((100% - 11 * #{$gutter-horizontal}) / 12);
+//}
+//@mixin col-2-of-12 {
+//  width: calc(2 * ((100% - 11 * #{$gutter-horizontal}) / 12) + 1 * #{$gutter-horizontal});
+//}
+//@mixin col-3-of-12 {
+//  width: calc(3 * ((100% - 11 * #{$gutter-horizontal}) / 12) + 2 * #{$gutter-horizontal});
+//}
+//@mixin col-4-of-12 {
+//  width: calc(4 * ((100% - 11 * #{$gutter-horizontal}) / 12) + 3 * #{$gutter-horizontal});
+//}
+//@mixin col-5-of-12 {
+//  width: calc(5 * ((100% - 11 * #{$gutter-horizontal}) / 12) + 4 * #{$gutter-horizontal});
+//}
+//@mixin col-6-of-12 {
+//  width: calc(6 * ((100% - 11 * #{$gutter-horizontal}) / 12) + 5 * #{$gutter-horizontal});
+//}
+//@mixin col-7-of-12 {
+//  width: calc(7 * ((100% - 11 * #{$gutter-horizontal}) / 12) + 6 * #{$gutter-horizontal});
+//}
+//@mixin col-8-of-12 {
+//  width: calc(8 * ((100% - 11 * #{$gutter-horizontal}) / 12) + 7 * #{$gutter-horizontal});
+//}
+//@mixin col-9-of-12 {
+//  width: calc(9 * ((100% - 11 * #{$gutter-horizontal}) / 12) + 8 * #{$gutter-horizontal});
+//}
+
+
+/********** Grid **********/
+//.row {
+//  max-width : $grid-width;
+//  margin: 0 auto;
+//
+//  @include clearfix;
+//
+//  @include respond(fb) {
+//    margin: 0 3.2rem;
+//  }
+//
+//  [class *= "-nf"]{
+//    float: none !important;
+//
+//  }
+//
+//  /* class이름이 col로 시작한다는 말임 */
+//  [class ^= "col-"]{
+//    float: left;
+//
+//    &:not(:last-child) {
+//      margin-right: $gutter-horizontal;
+//    }
+//
+//    @include respond(tp) {
+//      width: 100% !important;
+//    }
+//  }
+//
+//  .col-1-of-12 {
+//    width: calc((100% - 11 * #{$gutter-horizontal}) / 12);
+//  }
+//
+//  .col-2-of-12 {
+//    width: calc(2 * ((100% - 11 * #{$gutter-horizontal}) / 12) + 1 * #{$gutter-horizontal});
+//  }
+//
+//  .col-3-of-12 {
+//    width: calc(3 * ((100% - 11 * #{$gutter-horizontal}) / 12) + 2 * #{$gutter-horizontal});
+//  }
+//
+//
+//  .col-4-of-12 {
+//    width: calc(4 * ((100% - 11 * #{$gutter-horizontal}) / 12) + 3 * #{$gutter-horizontal});
+//  }
+//
+//  .col-5-of-12 {
+//    width: calc(5 * ((100% - 11 * #{$gutter-horizontal}) / 12) + 4 * #{$gutter-horizontal});
+//  }
+//
+//  .col-6-of-12 {
+//    width: calc(6 * ((100% - 11 * #{$gutter-horizontal}) / 12) + 5 * #{$gutter-horizontal});
+//  }
+//
+//
+//  .col-7-of-12 {
+//    width: calc(7 * ((100% - 11 * #{$gutter-horizontal}) / 12) + 6 * #{$gutter-horizontal});
+//  }
+//
+//  .col-8-of-12 {
+//    width: calc(8 * ((100% - 11 * #{$gutter-horizontal}) / 12) + 7 * #{$gutter-horizontal});
+//  }
+//
+//
+//  .col-9-of-12 {
+//    width: calc(9 * ((100% - 11 * #{$gutter-horizontal}) / 12) + 8 * #{$gutter-horizontal});
+//  }
+//}
+
+
+
 //
 //@mixin respond($breakpoint) {
 //  @if $breakpoint == phone {
@@ -101,12 +203,24 @@ $default-padding : 8rem;
 
 
 @mixin respond($breakpoint) {
+  // 360 ~ 768 - phone
+  // 768 ~ 1024  - ipad
+  // 1024 ~ 1280 - small
   @if $breakpoint == phone {
-    @media only screen and (max-width: 37.5em) { @content };    //600px
+    @media only screen and (max-width: 37.5em) { @content };    //650px
   }
 
+  // 650 / 16
+  // third-break-point : popularCategory, collection, popularBrands
+
+  @if $breakpoint == tb {
+    @media only screen and (max-width: 40em) { @content };    //640px
+  }
+
+  // 950 / 16
+  // second-break-point : popularCategory, collection, popularBrands/**/
   @if $breakpoint == sb {
-    @media only screen and (max-width: 56.25em) { @content };     //900px
+    @media only screen and (max-width: 59.375em) { @content };     //950px
   }
 
   // 1192 / 16

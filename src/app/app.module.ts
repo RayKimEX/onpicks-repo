@@ -27,13 +27,14 @@ import {
   CURRENCY,
   DOMAIN_HOST,
   LOCATION_MAP,
-  LOCATION_MAP_CONST, MENU_MAP, MENU_MAP_CONST, REPORT_REASON_MAP, REPORT_REASON_MAP_CONST
+  LOCATION_MAP_CONST, MENU_MAP, MENU_MAP_CONST, REPORT_REASON_MAP, REPORT_REASON_MAP_CONST, RESPONSIVE_MAP, RESPONSIVE_MAP_CONST
 } from './app.config';
 import {AuthInterceptorService} from './core/service/auth/auth-interceptor.service';
 import {UiEffects} from './core/store/ui/ui.effects';
 import {CartEffects} from './core/store/cart/cart.effects';
 import {SearchEffects} from './core/store/search/search.effects';
-
+import {LayoutModule} from '@angular/cdk/layout';
+import 'hammerjs';
 // export function getBaseHref(platformLocation: PlatformLocation): string {
 //   return platformLocation.getBaseHrefFromDOM();
 // }
@@ -62,6 +63,7 @@ function getCookie(cname) {
   ],
   imports: [
     BrowserModule,
+    LayoutModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
@@ -132,6 +134,10 @@ function getCookie(cname) {
     {
       provide : CATEGORY_SECOND_MAP,
       useValue : CATEGORY_SECOND_MAP_CONST,
+    },
+    {
+      provide : RESPONSIVE_MAP,
+      useValue : RESPONSIVE_MAP_CONST
     }
   ],
   bootstrap: [ AppComponent ]

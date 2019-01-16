@@ -50,32 +50,12 @@ export class ShopsIndexComponent implements OnInit, AfterViewInit {
       name : '뷰티',
     },
     {
-      imgSrc : 'https://img.onpicks.com/assets/category_home-deco.jpg',
-      name : '홈·데코',
-    },
-    {
-      imgSrc :  'https://img.onpicks.com/assets/category_digital.jpg',
-      name : '가전·디지털',
-    },
-    {
       imgSrc : 'https://img.onpicks.com/assets/category_baby.jpg',
       name : '유아동',
     },
     {
-      imgSrc :  'https://img.onpicks.com/assets/category_digital.jpg',
-      name : '가전·디지털',
-    },
-    {
-      imgSrc : 'https://img.onpicks.com/assets/category_baby.jpg',
-      name : '유아동',
-    },
-    {
-      imgSrc :  'https://img.onpicks.com/assets/category_digital.jpg',
-      name : '가전·디지털',
-    },
-    {
-      imgSrc : 'https://img.onpicks.com/assets/category_baby.jpg',
-      name : '유아동',
+      imgSrc : 'https://img.onpicks.com/assets/category_health.jpg',
+      name : '건강',
     },
   ]
 

@@ -1,13 +1,13 @@
-<div class="row category-list">
-  <div class="category-list__title h1-bold">인기 카테고리</div>
+<div class="row-list-line-up category-list">
+  <div class="category-list__title h1-bold">인기 카테고리{{document?.body.style.width}}</div>
   <div class="category-list__content--outer">
     <onpicks-circle-n-button
-      *ngIf="-imageIndex !== (popularCategory.length - 6) && popularCategory.length > 6"
+      *ngIf="isShowButton && (-imageIndex !== (popularCategory.length - 6) && popularCategory.length > 6)"
       (click)="nextButton()"
       [right]="'-2rem'">
     </onpicks-circle-n-button>
     <onpicks-circle-p-button
-      *ngIf="imageIndex !== 0 "
+      *ngIf="isShowButton && imageIndex !== 0 "
       (click)="prevButton()"
       [left]="'-2rem'">
     </onpicks-circle-p-button>
@@ -16,7 +16,7 @@
         <li
           #itemList
           *ngFor="let item of popularCategory"
-          class="col-2-of-12 category-list__item">
+          class="col-2-of-12-list-line-up category-list__item">
           <div class="category-list__image--outer">
             <img drCleanLoad src="{{item.imgSrc}}" alt="">
           </div>

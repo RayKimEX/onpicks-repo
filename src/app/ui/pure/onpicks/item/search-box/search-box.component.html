@@ -10,7 +10,7 @@
     (keypress)="keypressEvent($event)"
     class="p-reviews__search-reviews--input subtitle-2-regular" type="text" >
 
-  <span *ngIf="insertedValue !== ''"
+  <span *ngIf="insertedValue !== '' || isMobile"
         (click)="deleteText()"
         class="p-reviews__search-reviews--input-delete">
   </span>

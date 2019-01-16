@@ -85,6 +85,19 @@ export const REPORT_REASON_MAP_CONST = {
   }
 }
 
+export const RESPONSIVE_MAP = new InjectionToken<any>('app.config');
+export const RESPONSIVE_MAP_CONST = {
+  // 650 / 16
+  // third-break-point : popularCategory, collection, popularBrands
+  'tb' : '(max-width: 40em)',
+  // 950 / 16
+  // second-break-point : popularCategory, collection, popularBrands/**/
+  'sb' : '(max-width: 59.375em)',
+  // 1192 / 16
+  // first-break-point
+  'fb' : '(max-width: 74.5em)'
+}
+
 export const MENU_MAP = new InjectionToken<any>( 'app.config');
 export const MENU_MAP_CONST = {
   'ko' : {
