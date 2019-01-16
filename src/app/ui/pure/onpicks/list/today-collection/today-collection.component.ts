@@ -76,6 +76,8 @@ export class TodayCollectionComponent implements OnInit, AfterViewInit {
   translateXWidth = 288;
   isShowButton = true;
   currentX = 0;
+  currentPanVelocityX = 0;
+  panInterval = null;
 
   constructor(
     @Inject(RESPONSIVE_MAP) public categoryMap,
@@ -97,11 +99,31 @@ export class TodayCollectionComponent implements OnInit, AfterViewInit {
   onPanMove(event) {
 
     const coorX = this.currentX + event.deltaX;
-    console.log(coorX);
     this.renderer.setStyle(this.container.nativeElement, 'transform', 'translateX(' + coorX + 'px)');
   }
 
+
   onPanEnd(event) {
+
+    this.currentPanVelocityX = event.velocityX * 12;
+    console.log('start');
+
+    console.log(this.currentPanVelocityX );
+    clearInterval(this.panInterval);
+    this.panInterval = setInterval( () => {
+
+      if ( this.currentPanVelocityX  > 0.4 ) {
+        this.currentPanVelocityX -= 0.3;
+      } else if ( this.currentPanVelocityX  < -0.4 ) {
+        this.currentPanVelocityX += 0.3;
+      } else {
+        clearInterval(this.panInterval);
+      }
+      console.log('interval')
+      console.log(this.currentPanVelocityX);
+      this.currentX += this.currentPanVelocityX;
+      this.renderer.setStyle(this.container.nativeElement, 'transform', 'translateX(' + this.currentX + 'px)');
+    }, 16);
     this.currentX = this.currentX + event.deltaX;
   }
 

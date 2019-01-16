@@ -180,10 +180,10 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
         if ( this.scrollForDeliveryBox$ == null ) {
           this.scrollForDeliveryBox$ = fromEvent( window , 'scroll').subscribe(
             scrollValue => {
-              if( window.pageYOffset >= 108 ){
+              if ( window.pageYOffset >= 108 ) {
                 this.renderer.setStyle(this.deliveryBox.nativeElement, 'position', 'fixed');
                 this.renderer.setStyle(this.deliveryBox.nativeElement, 'top', '1.6rem');
-              }else {
+              } else {
                 this.renderer.setStyle(this.deliveryBox.nativeElement, 'position', 'absolute');
                 this.renderer.setStyle(this.deliveryBox.nativeElement, 'top', '12.4rem');
               }

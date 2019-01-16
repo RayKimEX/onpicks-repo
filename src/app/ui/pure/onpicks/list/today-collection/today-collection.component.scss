@@ -16,6 +16,10 @@
   &__ul {
 
     transition: transform .5s ease 0s;
+
+    @include respond(tb){
+      transition : none;
+    }
   }
 
   &__title {
