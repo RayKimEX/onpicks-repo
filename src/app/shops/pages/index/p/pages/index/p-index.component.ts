@@ -10,6 +10,7 @@ import {
   ViewChild
 } from '@angular/core';
 import {
+  share,
   shareReplay,
   tap
 } from 'rxjs/operators';
@@ -26,7 +27,7 @@ export class PIndexComponent implements OnDestroy {
 
   @ViewChild('communicateBox', { read : ElementRef}) communicateBox;
 
-  pData$;
+  pData$ = null;
   pPictureReviews$;
   weeklyBest$;
 
@@ -41,7 +42,8 @@ export class PIndexComponent implements OnDestroy {
     this.store.dispatch(new TryGetReviewProduct(this.route.snapshot.params.id));
     this.store.dispatch(new TryGetProductInfo(this.route.snapshot.params.id));
     this.pData$ = this.store.pipe(
-      select( state => state.p.data), shareReplay(1)
+      select( state => state.p.data),
+      share()
     );
     this.pPictureReviews$ = this.pDataService.getPictureReviewsData(this.route.snapshot.params.id).pipe( tap( v => console.log(v)));
     this.weeklyBest$ = this.uiService.getWeeklyBestGoods();

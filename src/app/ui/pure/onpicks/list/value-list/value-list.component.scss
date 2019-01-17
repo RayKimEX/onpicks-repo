@@ -7,6 +7,16 @@
   &__content {
     white-space: nowrap;
     overflow: hidden;
+    &::after {
+      position:absolute;
+      top:0;
+      right:0;
+      width: 7.2rem;
+      height : 18rem;
+      background-image: linear-gradient(to left, #ffffff, rgba(255, 255, 255, 0));
+      content : '';
+      display:inline-block;
+    }
     transition: -ms-transform 0.5s ease 0s, -webkit-transform 0.5s ease 0s, transform 0.5s ease 0s !important;
     @include respond(tb){
       overflow : auto;
@@ -34,37 +44,37 @@
   &__image--outer {
     display:inline-block;
     width: 100%;
-    height : 17.6rem;
+    height : 10.8rem;
     margin-bottom: 1.6rem;
 
     @include respond(fb){
-      height: 100%;
+      height: auto;
     }
 
     img {
       width:100%;
       height:100%;
+
     }
   }
 
   &__item {
+    width : 25.928%;
     float : none !important;
     vertical-align: top;
     display:inline-block;
+    border-radius:4px;
+    background-color : #fafafa;
+    height : 18rem;
+    margin-right : 2.4rem;
+
     img {
       user-select: none;
     }
-    &--category-name {
-      margin-bottom : 0.4rem;
-    }
 
-    // TODO: CSS ELIPSIS ( ... ) Text 가변 처리 or javascript 가변처리 해결책 살펴보기
     &--title {
-      margin-bottom : 0.4rem;
-    }
-
-    &--discription {
-      white-space: initial;
+      width :100%;
+      text-align: center;
     }
   }
 }

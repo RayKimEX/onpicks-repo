@@ -1,15 +1,32 @@
 <div class="row-list-scroll popular-brand">
   <h1 class="popular-brand__title h1-bold" i18n="@@onpicks__popular-brand">인기 브랜드|Popular Brand</h1>
   <div class="popular-brand__content--outer">
-    <onpicks-circle-n-button *ngIf="isShowButton && -imageIndex !== (popularBrand.length - 6)"  (click)="nextButton()" [right]="'-2rem'"></onpicks-circle-n-button>
-    <onpicks-circle-p-button *ngIf="isShowButton && imageIndex !== 0" (click)="prevButton()" [left]="'-2rem'"></onpicks-circle-p-button>
+    <onpicks-circle-n-button
+      *ngIf="isShowButton && -imageIndex < (popularBrand.length - 6)"
+      (click)="nextButton()"
+      [right]="'-2rem'">
+    </onpicks-circle-n-button>
+    <onpicks-circle-p-button
+      *ngIf="isShowButton && imageIndex !== 0"
+      (click)="prevButton()"
+      [left]="'-2rem'">
+    </onpicks-circle-p-button>
     <div class="popular-brand__content">
-      <ul #container class="popular-brand__ul" >
-        <li  #itemList *ngFor="let item of popularBrand" class="col-2-of-12-list-scroll popular-brand__item">
-          <div class="popular-brand__image--outer">
-            <img drCleanLoad src="{{item.imgSrc}}" alt="">
+      <ul
+        #container
+        class="popular-brand__ul" >
+        <li
+          #itemList
+          *ngFor="let item of popularBrand"
+          class="col-2-of-12-list-scroll popular-brand__item">
+          <div
+            class="popular-brand__image--outer">
+            <img
+              drCleanLoad
+              src="{{item.imgSrc}}" alt="">
           </div>
-          <div class="popular-brand__item--name subtitle-2-bold">
+          <div
+            class="popular-brand__item--name subtitle-2-bold">
             {{item.name}}
           </div>
         </li>

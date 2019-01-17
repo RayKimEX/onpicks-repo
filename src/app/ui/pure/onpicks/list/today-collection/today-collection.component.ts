@@ -39,36 +39,24 @@ export class TodayCollectionComponent implements OnInit, AfterViewInit {
       todayTitle : '글루텐프리',
       todayDiscription: '밀가루 무첨가 영양만점 글루텐프리',
     },
-    {
-      imgSrc : 'http://img.onpicks.com/index-collections-vesitable.jpg',
-      todayCategoryName : '식품·생활용품',
-      todayTitle : '채식주의자',
-      todayDiscription: '더 나은 삶을 위힌 채식주의',
-    },
-    {
-      imgSrc : 'http://img.onpicks.com/index-collections-gluten.jpg',
-      todayCategoryName : '식품·생활용품',
-      todayTitle : '글루텐프리',
-      todayDiscription: '밀가루 무첨가 영양만점 글루텐프리',
-    },
-    {
-      imgSrc : 'http://img.onpicks.com/index-collections-vesitable.jpg',
-      todayCategoryName : '식품·생활용품',
-      todayTitle : '채식주의자',
-      todayDiscription: '더 나은 삶을 위힌 채식주의',
-    },
-    {
-      imgSrc : 'http://img.onpicks.com/index-collections-gluten.jpg',
-      todayCategoryName : '식품·생활용품',
-      todayTitle : '글루텐프리',
-      todayDiscription: '밀가루 무첨가 영양만점 글루텐프리',
-    },
-    {
-      imgSrc : 'http://img.onpicks.com/index-collections-vesitable.jpg',
-      todayCategoryName : '식품·생활용품',
-      todayTitle : '채식주의자',
-      todayDiscription: '더 나은 삶을 위힌 채식주의',
-    }
+    // {
+    //   imgSrc : 'http://img.onpicks.com/index-collections-vesitable.jpg',
+    //   todayCategoryName : '식품·생활용품',
+    //   todayTitle : '채식주의자',
+    //   todayDiscription: '더 나은 삶을 위힌 채식주의',
+    // },
+    // {
+    //   imgSrc : 'http://img.onpicks.com/index-collections-gluten.jpg',
+    //   todayCategoryName : '식품·생활용품',
+    //   todayTitle : '글루텐프리',
+    //   todayDiscription: '밀가루 무첨가 영양만점 글루텐프리',
+    // },
+    // {
+    //   imgSrc : 'http://img.onpicks.com/index-collections-vesitable.jpg',
+    //   todayCategoryName : '식품·생활용품',
+    //   todayTitle : '채식주의자',
+    //   todayDiscription: '더 나은 삶을 위힌 채식주의',
+    // }
   ]
 
   imageIndex = 0;

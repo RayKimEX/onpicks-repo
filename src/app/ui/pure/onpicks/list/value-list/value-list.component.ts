@@ -35,9 +35,22 @@ export class ValueListComponent implements OnInit, AfterViewInit {
     {
       imgSrc : 'https:///img.onpicks.com/values/value-alcohol-free.png',
       title : 'Gluten Free',
-      description : {
-
-      }
+      description : 'GMO는 유전자 변형 유기체를 의미한다. 유전자 변형 유기체(GMO)는 유전자 변형/엔지니어링 기법을 사용해 실험실에서 만들어진 새로운 유기물이다. 과학자들과 소비자와 환경 단체들은 유전자변형농산물을 함유한 식품에 대한 많은 건강 및 환경 위험들을 언급했다.'
+    },
+    {
+      imgSrc : 'https:///img.onpicks.com/values/value-alcohol-free.png',
+      title : 'Gluten Free',
+      description : 'GMO는 유전자 변형 유기체를 의미한다. 유전자 변형 유기체(GMO)는 유전자 변형/엔지니어링 기법을 사용해 실험실에서 만들어진 새로운 유기물이다. 과학자들과 소비자와 환경 단체들은 유전자변형농산물을 함유한 식품에 대한 많은 건강 및 환경 위험들을 언급했다.'
+    },
+    {
+      imgSrc : 'https:///img.onpicks.com/values/value-alcohol-free.png',
+      title : 'Gluten Free',
+      description : 'GMO는 유전자 변형 유기체를 의미한다. 유전자 변형 유기체(GMO)는 유전자 변형/엔지니어링 기법을 사용해 실험실에서 만들어진 새로운 유기물이다. 과학자들과 소비자와 환경 단체들은 유전자변형농산물을 함유한 식품에 대한 많은 건강 및 환경 위험들을 언급했다.'
+    },
+    {
+      imgSrc : 'https:///img.onpicks.com/values/value-alcohol-free.png',
+      title : 'Gluten Free',
+      description : 'GMO는 유전자 변형 유기체를 의미한다. 유전자 변형 유기체(GMO)는 유전자 변형/엔지니어링 기법을 사용해 실험실에서 만들어진 새로운 유기물이다. 과학자들과 소비자와 환경 단체들은 유전자변형농산물을 함유한 식품에 대한 많은 건강 및 환경 위험들을 언급했다.'
     }
   ]
 

@@ -42,41 +42,29 @@ export class PantryAndHouseholdComponent implements OnInit {
 
   popularPantryCategory = [
     {
-      imgSrc : 'http://img.onpicks.com/pantry-category1.jpg',
+      imgSrc : 'http://img.onpicks.com/categories/category-grocery.png',
       name : '식품',
     },
     {
-      imgSrc : 'http://img.onpicks.com/pantry-category2.jpg',
+      imgSrc : 'http://img.onpicks.com/categories/category-household.png',
       name : '생활용품',
     },
     {
-      imgSrc : 'http://img.onpicks.com/pantry-category3.jpg',
+      imgSrc : 'http://img.onpicks.com/categories/category-personalcare.png',
       name : '퍼스널케어',
     },
     {
-      imgSrc : 'http://img.onpicks.com/pantry-category4.jpg',
+      imgSrc : 'http://img.onpicks.com/categories/category-health.png',
       name : '건강',
     },
     {
-      imgSrc : 'http://img.onpicks.com/pantry-category5.jpg',
+      imgSrc : 'http://img.onpicks.com/categories/category-baby.png',
       name : '유아동',
     },
     {
-      imgSrc : 'http://img.onpicks.com/pantry-category6.jpg',
+      imgSrc : 'http://img.onpicks.com/categories/category-pet.png',
       name : '반려용품',
-    },
-    {
-      imgSrc : 'https://picsum.photos/168/168?image=70',
-      name : '홈·데코',
-    },
-    {
-      imgSrc : 'https://picsum.photos/168/168?image=75',
-      name : '가전·디지털',
-    },
-    {
-      imgSrc : 'https://picsum.photos/168/168?image=80',
-      name : '유아동',
-    },
+    }
   ]
   // Avalon Organics  아발론 오가닉스
   // Nubian Heritage  누비안 헤리티지

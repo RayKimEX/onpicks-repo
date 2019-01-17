@@ -1,5 +1,6 @@
-import {ChangeDetectionStrategy, Component, ElementRef, HostListener, Input, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, ElementRef, EventEmitter, HostListener, Input, OnInit, Output} from '@angular/core';
 import {Store} from '@ngrx/store';
+import {UiService} from '../../../core/service/ui/ui.service';
 
 @Component({
   selector: 'emitter-change-preference',
@@ -11,6 +12,7 @@ import {Store} from '@ngrx/store';
 export class ChangePreferenceComponent implements OnInit {
 
   @Input('type') type;
+  @Output('showEvent') showEvent = new EventEmitter();
 
   isShowModal = false;
 
@@ -37,6 +39,7 @@ export class ChangePreferenceComponent implements OnInit {
   constructor(
     private store: Store<any>,
     private eRef: ElementRef,
+    private uiService: UiService
   ) {
 
   }
@@ -49,6 +52,10 @@ export class ChangePreferenceComponent implements OnInit {
     }
   }
 
+  changeLanguage(xLanguageCode) {
+    console.log(xLanguageCode);
+  }
+
   nonCompareFunction( a, b ) {
     return 0;
   }
@@ -58,5 +65,6 @@ export class ChangePreferenceComponent implements OnInit {
   }
   showModal() {
     this.isShowModal = !this.isShowModal;
+    this.showEvent.emit();
   }
 }

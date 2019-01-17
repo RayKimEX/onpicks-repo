@@ -42,7 +42,7 @@ export class PMenuComponent implements OnInit, OnDestroy, AfterViewInit, OnChang
   @Input('data')
     set data( xData) {
       console.log(xData);
-      if ( xData === undefined ) { return; };
+      if ( xData === undefined || xData === null ) { return; };
       this._data = xData;
       const ObjectKeysCount =  xData.attributes.length;
       let mergeKey = '';

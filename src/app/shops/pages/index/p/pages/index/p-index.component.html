@@ -1,55 +1,57 @@
-<div class="current-nav" *ngLet="(pData$ | async) as data">
-  <div class="row">
-    <span *ngFor="let item of data?.category; index as i">
-      <span class="current-nav__category subtitle-2-bold">{{item.name}}</span>
-      <span *ngIf="data?.category.length-1 !== (i)" class="current-nav__slash">/</span>
-    </span>
 
-    <hr>
-  </div>
-</div>
+<ng-container *ngLet="(pData$ | async) as data">
+  <div class="current-nav" >
+    <div class="row">
+      <span *ngFor="let item of data?.category; index as i">
+        <span class="current-nav__category subtitle-2-bold">{{item.name}}</span>
+        <span *ngIf="data?.category.length-1 !== (i)" class="current-nav__slash">/</span>
+      </span>
 
-<div class="row">
-  <div class="col-7-of-12">
-    <onpicks-p-thumbnail
-      [imagesLargeList]="(pData$ | async)?.thumbnails"
-      [imagesSmallList]="(pData$ | async)?.thumbnails">
-
-    </onpicks-p-thumbnail>
-    <onpicks-value-list></onpicks-value-list>
-
-    <onpicks-p-other-sellers></onpicks-p-other-sellers>
-    <onpicks-p-picture-review
-      [pictureReviewList]="(pPictureReviews$ | async)?.results"
-    ></onpicks-p-picture-review>
-    <onpicks-p-item-detail></onpicks-p-item-detail>
-    <onpicks-p-description [description]="(pData$ | async)?.description"></onpicks-p-description>
-    <!--async를 붙여서 넘기는 이유는 받을때 좀더 편
-    하게 받게 하기 위함-->
-    <onpicks-p-reviews #onpicksReview></onpicks-p-reviews>
-    <onpicks-p-refund></onpicks-p-refund>
-  </div>
-
-
-  <router-outlet></router-outlet>
-  <!--<onpicks-communicate-box-->
-    <!--#communicateBox-->
-    <!--[comment]="totalList[(popupReviewsUI$ | async).reviewIndex]"-->
-    <!--[commentIndex]="(popupReviewsUI$ | async).reviewIndex"-->
-    <!--[ngStyle]="{ 'display' : (popupReviewsUI$ | async).popupReviews == true ? 'block' : 'none' }"-->
-    <!--(willChangeCommentIndex)="changeCommentIndex($event)"-->
-    <!--(willAddComment)="addComment($event)">-->
-
-  <!--</onpicks-communicate-box>-->
-  <div class="col-5-of-12">
-    <div>
-      <onpicks-p-menu [data]="(pData$ | async)"></onpicks-p-menu>
+      <hr>
     </div>
   </div>
-</div>
 
-<div class="row">
-  <ui-mini-list [infoList]="weeklyBest$ | async" [setTitle]="'이 상품 구매자가 함께 본 상품'"></ui-mini-list>
-</div>
+  <div class="row">
+    <div class="col-7-of-12">
+      <onpicks-p-thumbnail
+        [imagesLargeList]="data?.thumbnails"
+        [imagesSmallList]="data?.thumbnails">
+
+      </onpicks-p-thumbnail>
+      <onpicks-value-list></onpicks-value-list>
+
+      <onpicks-p-other-sellers></onpicks-p-other-sellers>
+      <onpicks-p-picture-review
+        [pictureReviewList]="(pPictureReviews$ | async)?.results"
+      ></onpicks-p-picture-review>
+      <onpicks-p-item-detail></onpicks-p-item-detail>
+      <onpicks-p-description [description]="data?.description"></onpicks-p-description>
+      <!--async를 붙여서 넘기는 이유는 받을때 좀더 편
+      하게 받게 하기 위함-->
+      <onpicks-p-reviews #onpicksReview></onpicks-p-reviews>
+      <onpicks-p-refund></onpicks-p-refund>
+    </div>
 
 
+    <router-outlet></router-outlet>
+    <!--<onpicks-communicate-box-->
+      <!--#communicateBox-->
+      <!--[comment]="totalList[(popupReviewsUI$ | async).reviewIndex]"-->
+      <!--[commentIndex]="(popupReviewsUI$ | async).reviewIndex"-->
+      <!--[ngStyle]="{ 'display' : (popupReviewsUI$ | async).popupReviews == true ? 'block' : 'none' }"-->
+      <!--(willChangeCommentIndex)="changeCommentIndex($event)"-->
+      <!--(willAddComment)="addComment($event)">-->
+
+    <!--</onpicks-communicate-box>-->
+    <div class="col-5-of-12">
+      <div>
+        <onpicks-p-menu [data]="data"></onpicks-p-menu>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <ui-mini-list [infoList]="weeklyBest$ | async" [setTitle]="'이 상품 구매자가 함께 본 상품'"></ui-mini-list>
+  </div>
+
+</ng-container>

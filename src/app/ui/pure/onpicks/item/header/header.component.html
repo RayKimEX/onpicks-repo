@@ -7,8 +7,18 @@
     <div class="header__miscell u-default-site-padding">
       <div class="header__miscell--inner">
         <!--<emitter-change-preference class="header__miscell&#45;&#45;item">{{ region === '/kr' ? 'KOR' : 'USA' }}</emitter-change-preference>-->
-        <emitter-change-preference [type]="'currency'" class="header__miscell--item">{{ currency === 'KRW' ? 'KRW ₩' : 'USD $' }}</emitter-change-preference>
-        <emitter-change-preference [type]="'locale'" class="header__miscell--item">{{ locale === 'ko' ? '한글' : 'ENG' }}</emitter-change-preference>
+        <emitter-change-preference
+          (showEvent)="outMenu()"
+          [type]="'currency'"
+          class="header__miscell--item">
+          {{ currency === 'KRW' ? 'KRW ₩' : 'USD $' }}
+        </emitter-change-preference>
+        <emitter-change-preference
+          (showEvent)="outMenu()"
+          [type]="'locale'"
+          class="header__miscell--item">
+          {{ locale === 'ko' ? '한글' : 'ENG' }}
+        </emitter-change-preference>
 
         <div class="header__miscell--profile u-float-right" *ngIf="(auth$ | async) as auth;">
           <ng-container *ngIf="auth.isAuthenticated === false">

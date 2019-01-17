@@ -25,8 +25,14 @@ export class UiService {
     // return this.httpClient.get<any>(this.BASE_URL + '/api/categories/' + oneDepthCode + '/descendants/' );
     return of(this.dataCategory[oneDepthCode]);
   }
-  postLanguageSetting() {
-    return this.httpClient.post<any>( this.BASE_URL + '/api/preferences/language/', { language : 'ko'} );
+
+  postLanguageSetting(xLanguageCode) {
+    // ko = 한국어
+    // en = 영어
+
+    // us = 미국
+    // kr = 한국
+    return this.httpClient.post<any>( this.BASE_URL + '/api/preferences/language/', { language : xLanguageCode } );
   }
 
   dataCategory = {

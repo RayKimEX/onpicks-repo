@@ -2,7 +2,7 @@
   <h1 class="today-collection__title h1-bold">오늘의 컬렉션</h1>
 
   <div class="today-collection__content--outer">
-    <onpicks-circle-n-button  *ngIf="isShowButton && -imageIndex !== (todayCollection.length - 4)" (click)="nextButton()" [right]="'-2rem'"></onpicks-circle-n-button>
+    <onpicks-circle-n-button  *ngIf="isShowButton && -imageIndex < (todayCollection.length - 4)" (click)="nextButton()" [right]="'-2rem'"></onpicks-circle-n-button>
     <onpicks-circle-p-button  *ngIf="isShowButton && imageIndex !== 0" (click)="prevButton()" [left]="'-2rem'"></onpicks-circle-p-button>
     <div class="today-collection__content">
       <ul

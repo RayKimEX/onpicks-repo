@@ -95,6 +95,7 @@ export function CartReducer(state = initialState, action: CartActions.CartAction
 
     case CartActions.CREATE_TO_CART_SUCCESS :
       console.log(action.payload);
+      console.log(action.payload.packIndex);
       if ( action.payload.packIndex !== 'free' ){
         const createTemp = state.cartInfo.pack[action.payload.packIndex];
         createTemp.subtotal = action.payload.cartInfo.results.slice(1, action.payload.cartInfo.results.length)[action.payload.packIndex].subtotal;
@@ -204,7 +205,7 @@ export function CartReducer(state = initialState, action: CartActions.CartAction
       }
 
     case CartActions.DELETE_FROM_CART_SUCCESS :
-
+      console.log(action.payload);
       if ( action.payload.packIndex !== 'free' ) {
         const deleteTemp = state.cartInfo.pack[action.payload.packIndex];
 
