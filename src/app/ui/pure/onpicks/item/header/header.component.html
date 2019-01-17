@@ -274,29 +274,33 @@
     <nav>
       <ul class="header-menu__item" *ngFor="let item of menuMap[locale]?.main">
         <li>
-          <a [routerLink]="'/shops/c/' + item.href">
-          <div
-            class="header-menu__item--title"
-            [ngClass] =
-            "[
-              (item.slug === 'pantry-and-household')  ? 'header-menu__item--title-pantry-and-household' : '',
-              (item.slug === 'beauty')  ? 'header-menu__item--title-beauty' : '',
-              (item.slug === 'baby')  ? 'header-menu__item--title-baby' : '',
-              (item.slug === 'health')  ? 'header-menu__item--title-health' : ''
-            ]">
-              <!--(item.slug === locationMap['hong'])  ? 'header-menu__item&#45;&#45;title-electronics' : '',-->
-              <!--(item.slug === locationMap['hong'])  ? 'header-menu__item&#45;&#45;title-baby' : '',-->
-              <!--(item.slug === locationMap['hong'])  ? 'header-menu__item&#45;&#45;title-health' : '',-->
+          <a
+            (click)="routeForDeskTop('/shops/c/' + item.href)">
+            <div
+              class="header-menu__item--title"
+              [ngClass] =
+              "[
+                (item.slug === 'pantry-and-household')  ? 'header-menu__item--title-pantry-and-household' : '',
+                (item.slug === 'beauty')  ? 'header-menu__item--title-beauty' : '',
+                (item.slug === 'baby')  ? 'header-menu__item--title-baby' : '',
+                (item.slug === 'health')  ? 'header-menu__item--title-health' : ''
+              ]">
               <span>{{item.name}}</span>
             </div>
           </a>
         </li>
         <li class="header-menu__item--category"
             *ngFor="let subItem of item.sub">
-          <a [routerLink]="'/shops/c/' + subItem.href">{{subItem.name}}</a>
+          <a
+            (click)="routeForDeskTop('/shops/c/' + subItem.href)">
+            {{subItem.name}}
+          </a>
         </li>
         <li class="header-menu__item--category">
-          <a [routerLink]="'/shops/c/' + item.href">{{item.name}} 더보기 ></a>
+          <a
+            (click)="routeForDeskTop('/shops/c/' + item.href)">
+            {{item.name}} 더보기 >
+          </a>
         </li>
       </ul>
     </nav>

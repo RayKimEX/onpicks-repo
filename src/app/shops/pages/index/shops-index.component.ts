@@ -42,78 +42,78 @@ export class ShopsIndexComponent implements OnInit, AfterViewInit {
 
   popularCategory = [
     {
-      imgSrc : 'https://img.onpicks.com/assets/category_pantry-and-household.jpg',
+      imgSrc : 'https://img.onpicks.com/categories/main/category-pantry-and-household.jpg',
       name : '식품·생활용품',
     },
     {
-      imgSrc : 'https://img.onpicks.com/assets/category_beauty.jpg',
+      imgSrc : 'https://img.onpicks.com/categories/main/category-beauty.jpg',
       name : '뷰티',
     },
     {
-      imgSrc : 'https://img.onpicks.com/assets/category_baby.jpg',
+      imgSrc : 'https://img.onpicks.com/categories/main/category-baby.jpg',
       name : '유아동',
     },
     {
-      imgSrc : 'https://img.onpicks.com/assets/category_health.jpg',
+      imgSrc : 'https://img.onpicks.com/categories/main/category-health.jpg',
       name : '건강',
     },
   ]
 
   popularBrand = [
     {
-      imgSrc : 'http://img.onpicks.com/brands/index-brand-hyredo.jpg',
+      imgSrc : 'http://img.onpicks.com/brands/brand-hyredo.jpg',
       name : '바이레도'
     },
     {
-      imgSrc : 'http://img.onpicks.com/brands/index-brand-aveda.jpg',
+      imgSrc : 'http://img.onpicks.com/brands/brand-aveda.jpg',
       name : '아베다'
     },
     {
-      imgSrc : 'http://img.onpicks.com/brands/index-brand-mac.jpg',
+      imgSrc : 'http://img.onpicks.com/brands/brand-mac.jpg',
       name : '맥'
     },
     {
-      imgSrc : 'http://img.onpicks.com/brands/index-brand-natures-way.jpg',
+      imgSrc : 'http://img.onpicks.com/brands/brand-natures-way.jpg',
       name : '네이처스 웨이'
     },
     {
-      imgSrc : 'http://img.onpicks.com/brands/index-brand-thayers.jpg',
+      imgSrc : 'http://img.onpicks.com/brands/brand-thayers.jpg',
       name : '세이어스'
     },
     {
-      imgSrc : 'http://img.onpicks.com/brands/index-brand-polum-organics.jpg',
+      imgSrc : 'http://img.onpicks.com/brands/brand-polum-organics.jpg',
       name : '플럼 오가닉스'
     },
     {
-      imgSrc : 'http://img.onpicks.com/brands/index-brand-4th-and-heart.jpg',
+      imgSrc : 'http://img.onpicks.com/brands/brand-4th-and-heart.jpg',
       name : '4Th & Heart'
     },
     {
-      imgSrc : 'http://img.onpicks.com/brands/index-brand-avalon-organics.jpg',
+      imgSrc : 'http://img.onpicks.com/brands/brand-avalon-organics.jpg',
       name : '아발론 오가닉스'
     },
     {
-      imgSrc : 'http://img.onpicks.com/brands/index-brand-simply-organic.jpg',
+      imgSrc : 'http://img.onpicks.com/brands/brand-simply-organic.jpg',
       name : '심플리 오가닉'
     },
     {
-      imgSrc : 'http://img.onpicks.com/brands/index-brand-jomalone.jpg',
+      imgSrc : 'http://img.onpicks.com/brands/brand-jomalone.jpg',
       name : '조 말론'
     },
     {
-      imgSrc : 'http://img.onpicks.com/brands/index-brand-shu-uemura.jpg',
+      imgSrc : 'http://img.onpicks.com/brands/brand-shu-uemura.jpg',
       name : '슈에무라'
     },
     {
-      imgSrc : 'http://img.onpicks.com/brands/index-brand-diptqyue.jpg',
+      imgSrc : 'http://img.onpicks.com/brands/brand-diptqyue.jpg',
       name : '딥디크'
     },
     {
-      imgSrc : 'http://img.onpicks.com/brands/index-brand-looccitane.jpg',
+      imgSrc : 'http://img.onpicks.com/brands/brand-looccitane.jpg',
       name : '록시땅'
     },
     {
-      imgSrc : 'http://img.onpicks.com/brands/index-brand-dior.jpg',
+      imgSrc : 'http://img.onpicks.com/brands/brand-dior.jpg',
       name : '디올'
     },
 

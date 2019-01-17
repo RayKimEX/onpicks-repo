@@ -90,43 +90,43 @@ export class PantryAndHouseholdComponent implements OnInit {
   // Quest Nutrition  퀘스트 뉴트리션 (edited)
   popularBrand = [
     {
-      imgSrc : 'http://img.onpicks.com/brands/index-brand-avalon-organics.jpg',
+      imgSrc : 'http://img.onpicks.com/brands/brand-avalon-organics.jpg',
       name : '아발론 오가닉스'
     },
     {
-      imgSrc : 'http://img.onpicks.com/brands/index-brand-nubian-heritage.jpg',
+      imgSrc : 'http://img.onpicks.com/brands/brand-nubian-heritage.jpg',
       name : '누비안 헤리티지'
     },
     {
-      imgSrc : 'http://img.onpicks.com/brands/index-brand-natures-way.jpg',
+      imgSrc : 'http://img.onpicks.com/brands/brand-natures-way.jpg',
       name : '네이처스 웨이'
     },
     {
-      imgSrc : 'http://img.onpicks.com/brands/index-brand-earth-mama.jpg',
+      imgSrc : 'http://img.onpicks.com/brands/brand-earth-mama.jpg',
       name : '얼스마마'
     },
     {
-      imgSrc : 'http://img.onpicks.com/brands/index-brand-thayers.jpg',
+      imgSrc : 'http://img.onpicks.com/brands/brand-thayers.jpg',
       name : '세이어스'
     },
     {
-      imgSrc : 'http://img.onpicks.com/brands/index-brand-polum-organics.jpg',
+      imgSrc : 'http://img.onpicks.com/brands/brand-polum-organics.jpg',
       name : '플럼 오가닉스'
     },
     {
-      imgSrc : 'http://img.onpicks.com/brands/index-brand-4th-and-heart.jpg',
+      imgSrc : 'http://img.onpicks.com/brands/brand-4th-and-heart.jpg',
       name : '4Th & Heart'
     },
     {
-      imgSrc : 'http://img.onpicks.com/brands/index-brand-hero-nutritionals.jpg',
+      imgSrc : 'http://img.onpicks.com/brands/brand-hero-nutritionals.jpg',
       name : '히어로 뉴트리셔널'
     },
     {
-      imgSrc : 'http://img.onpicks.com/brands/index-brand-simply-organic.jpg',
+      imgSrc : 'http://img.onpicks.com/brands/brand-simply-organic.jpg',
       name : '심플리 오가닉'
     },
     {
-      imgSrc : 'http://img.onpicks.com/brands/index-brand-quest-nutrition.jpg',
+      imgSrc : 'http://img.onpicks.com/brands/brand-quest-nutrition.jpg',
       name : '퀘스트 뉴트리션'
     },
 

@@ -264,10 +264,14 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
       this.renderer.setStyle(this.mobileHamburger.nativeElement, 'display', 'block');
       this.renderer.addClass(document.body , 'u-open-modal');
     }
-
-
     // this.mobileHamburger.
     // console.log(xElement.value);
+  }
+
+  routeForDeskTop( xUrl ) {
+    this.renderer.removeChild(document.body, this.tempDiv);
+    this.renderer.setStyle(this.menuRef.nativeElement, 'display', 'none');
+    this.router.navigate([xUrl]);
   }
 
   routeForMobile(xUrl, xInputChecked) {

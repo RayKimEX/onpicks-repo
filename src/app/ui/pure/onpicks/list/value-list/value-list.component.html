@@ -2,13 +2,13 @@
   <h1 class="value-list__title h1-bold">식품 인증</h1>
 
   <div class="value-list__content--outer">
-    <onpicks-circle-n-button *ngIf="isShowButton && -imageIndex !== (todayCollection.length - 4)" (click)="nextButton()" [right]="'-2rem'"></onpicks-circle-n-button>
+    <onpicks-circle-n-button *ngIf="isShowButton && -imageIndex !== (valueList.length - 4)" (click)="nextButton()" [right]="'-2rem'"></onpicks-circle-n-button>
     <onpicks-circle-p-button *ngIf="isShowButton && imageIndex !== 0" (click)="prevButton()" [left]="'-2rem'"></onpicks-circle-p-button>
     <div class="value-list__content">
       <ul
         #container
         class="value-list__ul" >
-        <li #itemList *ngFor="let item of todayCollection" class="col-3-of-12-list-scroll value-list__item">
+        <li #itemList *ngFor="let item of valueList" class="col-3-of-12-list-scroll value-list__item">
           <div  class="value-list__image--outer">
             <img drCleanLoad src="{{item.imgSrc}}" alt="">
           </div>
