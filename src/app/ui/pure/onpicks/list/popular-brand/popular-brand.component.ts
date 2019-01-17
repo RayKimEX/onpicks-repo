@@ -1,14 +1,16 @@
 import {
   AfterViewInit,
-  ChangeDetectionStrategy,
+  ChangeDetectionStrategy, ChangeDetectorRef,
   Component,
-  HostListener,
+  HostListener, Inject,
   Input,
   OnInit,
   Renderer2,
   ViewChild,
   ViewChildren
 } from '@angular/core';
+import {BreakpointObserver, BreakpointState} from '../../../../../../../node_modules/@angular/cdk/layout';
+import {RESPONSIVE_MAP} from '../../../../../app.config';
 
 @Component({
   selector: 'onpicks-popular-brand',
@@ -31,13 +33,25 @@ export class PopularBrandComponent implements OnInit, AfterViewInit {
   imageIndex = 0;
   itemListArray;
   translateXWidth = 192;
-
+  isShowButton = true;
   constructor(
+    @Inject(RESPONSIVE_MAP) public categoryMap,
     private renderer: Renderer2,
+    private breakpointObserver:  BreakpointObserver,
+    private cd: ChangeDetectorRef
   ) { }
 
   ngOnInit() {
-
+    this.breakpointObserver
+      .observe([this.categoryMap['tb']])
+      .subscribe((state: BreakpointState) => {
+        if (state.matches) {
+          this.isShowButton = false;
+          this.cd.markForCheck();
+        } else {
+          this.isShowButton = true;
+        }
+      });
   }
 
   ngAfterViewInit() {

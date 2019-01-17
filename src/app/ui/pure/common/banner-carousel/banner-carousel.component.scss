@@ -38,9 +38,14 @@
 
       &-title-outer {
         margin-bottom : 1.6rem;
+        @include respond(tb){
+          display:none;
+        }
       }
       &-description {
-
+        @include respond(tb){
+          display:none;
+        }
       }
     }
 

@@ -217,10 +217,10 @@ $default-padding : 8rem;
     @media only screen and (max-width: 40em) { @content };    //640px
   }
 
-  // 950 / 16
+  // 890 / 16
   // second-break-point : popularCategory, collection, popularBrands/**/
   @if $breakpoint == sb {
-    @media only screen and (max-width: 59.375em) { @content };     //950px
+    @media only screen and (max-width: 55.625em) { @content };     //890px
   }
 
   // 1192 / 16

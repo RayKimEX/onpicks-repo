@@ -439,7 +439,6 @@ textarea {
     }
 
     @include respond(tb) {
-      width : 14.8rem;
       width : 33.33%;
       padding : 0 0.4rem 2.4rem 0.4rem;
     }
@@ -455,18 +454,51 @@ textarea {
   }
 
   @include respond(tb) {
-    padding : 0 0 0 1.6rem;
+    padding: 0;
+    h1 {
+      padding : 0 1.6rem;
+    }
   }
 
-  .col-3-of-12-list-scroll {
-    width: 25%;
+  .col-2-of-12-list-scroll {
+    width: 16.66%;
     padding : 0 0.8rem;
+
     @include respond(sb) {
       padding : 0 0.4rem;
     }
 
     @include respond(tb) {
       width: 40%;
+      &:first-child {
+        padding-left : 1.6rem;
+      }
+
+      &:last-child {
+        padding-right : 1.6rem;
+      }
+
+    }
+  }
+
+  .col-3-of-12-list-scroll {
+    width: 25%;
+    padding : 0 0.8rem;
+
+    @include respond(sb) {
+      padding : 0 0.4rem;
+    }
+
+    @include respond(tb) {
+      width: 40%;
+      &:first-child {
+        padding-left : 1.6rem;
+      }
+
+      &:last-child {
+        padding-right : 1.6rem;
+      }
+
     }
   }
 }

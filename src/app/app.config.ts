@@ -92,7 +92,7 @@ export const RESPONSIVE_MAP_CONST = {
   'tb' : '(max-width: 40em)',
   // 950 / 16
   // second-break-point : popularCategory, collection, popularBrands/**/
-  'sb' : '(max-width: 59.375em)',
+  'sb' : '(max-width: 55.625em)',
   // 1192 / 16
   // first-break-point
   'fb' : '(max-width: 74.5em)'
