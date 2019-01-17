@@ -2,7 +2,6 @@
 
 .popular-brand {
   width: 100%;
-  margin-bottom:5.6rem;
 
 
   &__content {
@@ -31,6 +30,11 @@
 
   &__title {
     margin-bottom : 2.4rem;
+
+    @include respond(tb){
+      margin-bottom : 1.6rem;
+    }
+
   }
 
   &__image--outer {
@@ -39,6 +43,9 @@
     height:16.8rem;
     margin-bottom : 2.4rem;
 
+    @include respond(tb){
+      margin-bottom : 1.6rem;
+    }
 
     @include respond(fb){
       height: 100%;

@@ -35,7 +35,7 @@ export class OrdersComponent implements OnInit {
 
   writeReview = {
     isShow : false,
-    orderData : undefined,
+    reviewData : undefined,
   }
   isShowWriteReview = false;
 
@@ -57,15 +57,22 @@ export class OrdersComponent implements OnInit {
     );
   }
 
-  viewModal(xParam) {
+  viewModal(xPassedData) {
 
-    if (xParam.data.review === null ) {
-      this.accountDataService.createReviewData(xParam.data.product, xParam.orderId).subscribe(
+    console.log(xPassedData.item);
+    if (xPassedData.item.review === null ) {
+      this.accountDataService.createReviewData(xPassedData.item.product, xPassedData.orderId).subscribe(
         response => {
-          if ( xParam.param === 'write_review' ) {
-            this.writeReview.isShow = true;
-            this.writeReview.orderData = xParam.data;
-            this.writeReview.orderData.review = response.review;
+          if ( xPassedData.condition === 'write_review' ) {
+
+            this.writeReview = {
+              isShow : true,
+              reviewData : {
+                ...xPassedData.item,
+                review : response.id
+              }
+            }
+            console.log(this.writeReview);
           }
           this.cd.markForCheck();
         }, error => {
@@ -73,13 +80,15 @@ export class OrdersComponent implements OnInit {
         }
       );
     } else {
-      if ( xParam.param === 'write_review' ) {
+      if ( xPassedData.condition === 'write_review' ) {
         this.writeReview = {
           isShow : true,
-          orderData : {
-            ...xParam.data
+          reviewData : {
+            ...xPassedData.item
           }
         }
+
+        console.log(this.writeReview);
         this.cd.markForCheck();
       }
     }

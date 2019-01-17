@@ -73,4 +73,16 @@ export class AccountDataService {
     return this.httpClient.post<any>(
       this.BASE_URL + '/api/customers/change_password/', {password : xPassword});
   }
+
+  completePurchaseData( xOrderId, xProductSlug ) {
+    return this.httpClient.put<any>(this.BASE_URL + '/api/orders/' + xOrderId + '/items/' + xProductSlug + '/complete/', {});
+  }
+
+  returnPurchaseData( xOrderId, xProductSlug ) {
+    return this.httpClient.put<any>(this.BASE_URL + '/api/orders/' + xOrderId + '/items/' + xProductSlug + '/return/', {});
+  }
+
+  cancelPurchaseData( xOrderId, xProductSlug ) {
+    return this.httpClient.put<any>(this.BASE_URL + '/api/orders/' + xOrderId + '/items/' + xProductSlug + '/cancel/', {});
+  }
 }

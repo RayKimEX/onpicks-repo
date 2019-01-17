@@ -186,22 +186,34 @@
       <ul class="header__mobile-hamburger--ul subtitle-2-regular">
         <li class="header__mobile-hamburger--li">
           <div>
-            <a routerLink="/account/my-shopping/orders">나의 쇼핑</a>
+            <a
+              (click)="routeForMobile('/account/my-shopping/orders', inputCheckedForToggle)">
+              나의 쇼핑
+            </a>
           </div>
         </li>
         <li class="header__mobile-hamburger--li">
           <div>
-            <a routerLink="/account/my-reviews/written">나의 리뷰</a>
+            <a
+              (click)="routeForMobile('/account/my-reviews/written', inputCheckedForToggle)">
+              나의 리뷰
+            </a>
           </div>
         </li>
         <li class="header__mobile-hamburger--li">
           <div>
-            <a routerLink="/account/wish-list">다음에 구매하기</a>
+            <a
+              (click)="routeForMobile('/account/wish-list', inputCheckedForToggle)">
+              다음에 구매하기
+            </a>
           </div>
         </li>
         <li class="header__mobile-hamburger--li">
           <div>
-            <a routerLink="/account/settings/profile">설정</a>
+            <a
+              (click)="routeForMobile('/account/settings/profile', inputCheckedForToggle)">
+              설정
+            </a>
           </div>
         </li>
       </ul>
@@ -210,7 +222,8 @@
           class="header__mobile-hamburger--li"
           *ngFor="let item of menuMap[locale]?.main">
           <div>
-            <a [routerLink]="'/shops/c/' + item.href">
+            <a
+              (click)="routeForMobile('/shops/c/' + item.href, inputCheckedForToggle)">
               <img [src]="'https://img.onpicks.com/assets/' + item.slug + '.jpg?d=w80-h80'" alt="">
               <span>{{item.name}}</span>
             </a>
@@ -220,17 +233,26 @@
       <ul class="header__mobile-hamburger--ul subtitle-2-regular">
         <li class="header__mobile-hamburger--li">
           <div>
-            <a routerLink="/reviews">리뷰</a>
+            <a
+              (click)="showPreparingMessage()">
+              리뷰
+            </a>
           </div>
         </li>
         <li class="header__mobile-hamburger--li">
           <div>
-            <a routerLink="/showcases">쇼케이스</a>
+            <a
+              (click)="showPreparingMessage()">
+              쇼케이스
+            </a>
           </div>
         </li>
         <li class="header__mobile-hamburger--li">
           <div>
-            <a routerLink="/events">이벤트</a>
+            <a
+              (click)="showPreparingMessage()">
+              이벤트
+            </a>
           </div>
         </li>
         <li class="header__mobile-hamburger--li">
@@ -287,7 +309,7 @@
   </div>
   <div #alertMessage class="header__alert">
     <span class="header__alert--message subtitle-2-regular u-color-green">언녕하세요</span>
-    <span class></span>
+    <span></span>
   </div>
 
 </header>

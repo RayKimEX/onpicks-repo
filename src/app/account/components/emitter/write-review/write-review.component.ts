@@ -27,10 +27,11 @@ export class WriteReviewComponent implements OnInit, OnChanges {
   @Input('isShow') isShow = false;
   @Input('data') set data(xData) {
 
-    if( xData === undefined || xData.orderData === undefined ) { return; }
+    if ( xData === undefined || xData.reviewData === undefined ) { return; }
 
     this._data = xData;
-    this.accountDataService.getPendingReviewData(this._data.orderData['product'], this._data.orderData['review'])
+    console.log(this._data.reviewData);
+    this.accountDataService.getPendingReviewData(this._data.reviewData['product'], this._data.reviewData['review'])
       .subscribe( v => {
         v.pictures.forEach( item => {
           this.imageFileList.push({file : '', blobData : item});
@@ -133,7 +134,7 @@ export class WriteReviewComponent implements OnInit, OnChanges {
         value => {
 
           if ( value.file !== '') {
-            this.accountDataService.uploadReviewImage(this.data.orderData.product, this.data.orderData.review, value.file).subscribe(
+            this.accountDataService.uploadReviewImage(this.data.reviewData.product, this.data.reviewData.review, value.file).subscribe(
               v => console.log('complete!!!')
             );
           }

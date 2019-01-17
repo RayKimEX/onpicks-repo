@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {CartComponent} from './pages/cart/cart.component';
 import {CheckoutComponent} from './pages/checkout/checkout.component';
-import {CheckoutSuccessNoBankComponent} from './pages/checkout-success-no-bank/checkout-success-no-bank.component';
+import {CheckoutSuccessVirtualAccountComponent} from './pages/checkout-success-virtual-account/checkout-success-virtual-account.component';
 import {CheckoutSuccessComponent} from './pages/checkout-success/checkout-success.component';
 
 const routes: Routes = [
@@ -27,8 +27,8 @@ const routes: Routes = [
         component : CheckoutSuccessComponent,
       },
       {
-        path: 'checkout-success-no-bank',
-        component : CheckoutSuccessNoBankComponent
+        path: 'checkout-success-virtual-account',
+        component : CheckoutSuccessVirtualAccountComponent
       }
     ]
   },

@@ -192,7 +192,7 @@ $default-padding : 8rem;
 //    @media only screen and (max-width: 56.25em) { @content };     //900px
 //  }
 
-//  @if $breakpoint == tab-land {
+//  @if $breakpoint == desktop {
 //    @media only screen and (max-width: 75em) { @content };    //1200px
 //  }
 
@@ -229,7 +229,8 @@ $default-padding : 8rem;
     @media only screen and (max-width: 74.5em) { @content };    //1192px
   }
 
-  @if $breakpoint == tab-land {
+  // 1280 / 16
+  @if $breakpoint == desktop {
     @media only screen and (max-width: 80em) { @content };    //1280px
   }
 

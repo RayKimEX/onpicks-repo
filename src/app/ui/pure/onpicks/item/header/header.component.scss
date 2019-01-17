@@ -131,14 +131,14 @@
     }
   }
   &__main-menu {
-    @include respond(tab-land) {
+    @include respond(desktop) {
       display:none;
     }
   }
 
   &__mobile-menu {
     display:none;
-    @include respond(tab-land) {
+    @include respond(desktop) {
       display:table;
       padding: 0 1.6rem;
       background-color: $color-white;

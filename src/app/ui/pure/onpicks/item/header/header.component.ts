@@ -11,7 +11,7 @@ import {
   Renderer2,
   ViewChild,
   Inject,
-  OnInit,
+  OnInit, ChangeDetectorRef,
 } from '@angular/core';
 
 // NgRX & RxJS
@@ -24,8 +24,9 @@ import {SearchService} from '../../../../../core/service/data-pages/search/searc
 import {AuthService} from '../../../../../core/service/auth/auth.service';
 import {AuthState} from '../../../../../core/store/auth/auth.model';
 import {AppState} from '../../../../../core/store/app.reducer';
-import {CURRENCY, MENU_MAP} from '../../../../../app.config';
+import {CURRENCY, MENU_MAP, RESPONSIVE_MAP} from '../../../../../app.config';
 import {DisplayAlertMessage, RemoveAlertMessage} from '../../../../../core/store/ui/ui.actions';
+import {BreakpointObserver, BreakpointState} from '../../../../../../../node_modules/@angular/cdk/layout';
 
 @Component({
   selector: 'ui-header',
@@ -70,18 +71,33 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
 
   firstLoadPreventCount = 0;
 
+  mobileAlertTop = '11rem';
+
   constructor(
     @Inject(LOCALE_ID) public locale: string,
     @Inject(APP_BASE_HREF) public region: string,
     @Inject(CURRENCY) public currency: string,
     @Inject(MENU_MAP) public menuMap,
+    @Inject(RESPONSIVE_MAP) public categoryMap,
     private renderer: Renderer2,
     private authService: AuthService,
     private store: Store<AppState>,
     private router: Router,
     private route: ActivatedRoute,
-    private searchService: SearchService
+    private breakpointObserver:  BreakpointObserver,
+    private cd: ChangeDetectorRef
   ) {
+
+    this.breakpointObserver
+      .observe([this.categoryMap['desktop']])
+      .subscribe((state: BreakpointState) => {
+        if (state.matches) {
+          this.mobileAlertTop = '6rem';
+          this.cd.markForCheck();
+        } else {
+          this.mobileAlertTop = '11rem';
+        }
+      });
     this.uiStore$ = this.store.pipe( select( state => state.ui.alertMessage ))
       .subscribe( updatedMessages => {
 
@@ -96,7 +112,7 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
             this.renderer.setStyle(this.alertMessage.nativeElement, 'top', '0');
           } else {
             this.renderer.setStyle(this.alertMessage.nativeElement, 'position', 'absolute');
-            this.renderer.setStyle(this.alertMessage.nativeElement, 'top', '11rem');
+            this.renderer.setStyle(this.alertMessage.nativeElement, 'top', this.mobileAlertTop);
           }
 
           if ( this.clearSetTimeoutForAlert !== undefined) {
@@ -123,11 +139,13 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
                 this.renderer.setStyle(this.alertMessage.nativeElement, 'top', '0');
               } else {
                 this.renderer.setStyle(this.alertMessage.nativeElement, 'position', 'absolute');
-                this.renderer.setStyle(this.alertMessage.nativeElement, 'top', '11rem');
+                this.renderer.setStyle(this.alertMessage.nativeElement, 'top', this.mobileAlertTop);
               }
             }
           );
         }
+
+
       });
 
     this.auth$ = this.store.pipe(
@@ -250,6 +268,23 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
 
     // this.mobileHamburger.
     // console.log(xElement.value);
+  }
+
+  routeForMobile(xUrl, xInputChecked) {
+    console.log(xInputChecked.checked);
+    // this.renderer.setAttribute(xInputChecked, 'checked', 'false');
+    if(xInputChecked.checked){
+      this.renderer.removeClass(document.body, 'u-open-modal');
+      this.renderer.setStyle(this.mobileHamburger.nativeElement, 'display', 'none');
+      this.renderer.setProperty(xInputChecked, 'checked', false);
+    } else {
+      this.renderer.addClass(document.body, 'u-open-modal');
+      this.renderer.setStyle(this.mobileHamburger.nativeElement, 'display', 'block');
+      this.renderer.setProperty(xInputChecked, 'checked', true);
+    }
+
+
+    this.router.navigate([xUrl]);
   }
 
   clickMobileSearch() {

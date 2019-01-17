@@ -95,7 +95,8 @@ export const RESPONSIVE_MAP_CONST = {
   'sb' : '(max-width: 55.625em)',
   // 1192 / 16
   // first-break-point
-  'fb' : '(max-width: 74.5em)'
+  'fb' : '(max-width: 74.5em)',
+  'desktop' : '(max-width: 80em)'
 }
 
 export const MENU_MAP = new InjectionToken<any>( 'app.config');

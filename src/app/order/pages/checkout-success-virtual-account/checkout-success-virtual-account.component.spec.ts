@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CheckoutSuccessNoBankComponent } from './checkout-success-no-bank.component';
+import { CheckoutSuccessVirtualAccountComponent } from './checkout-success-virtual-account.component';
 
 describe('CheckoutSuccessNoBankComponent', () => {
-  let component: CheckoutSuccessNoBankComponent;
-  let fixture: ComponentFixture<CheckoutSuccessNoBankComponent>;
+  let component: CheckoutSuccessVirtualAccountComponent;
+  let fixture: ComponentFixture<CheckoutSuccessVirtualAccountComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CheckoutSuccessNoBankComponent ]
+      declarations: [ CheckoutSuccessVirtualAccountComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CheckoutSuccessNoBankComponent);
+    fixture = TestBed.createComponent(CheckoutSuccessVirtualAccountComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

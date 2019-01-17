@@ -13,13 +13,13 @@
       <span class="write-review__info--description subtitle-2-regular u-color-dark-grey">포토리뷰 작성시 250P지급</span>
       <div>
         <div class="write-review__info--image">
-          <img drLazyLoad src="{{_data?.orderData?.thumbnail}}" alt="">
+          <img drLazyLoad src="{{_data?.reviewData?.thumbnail}}" alt="">
         </div>
         <div class="write-review__info--product">
-          <div class="write-review__info--product-div subtitle-3-bold">{{_data?.orderData?.brand}}</div>
-          <div class="write-review__info--product-div body-3-regular">{{_data?.orderData?.title}}</div>
+          <div class="write-review__info--product-div subtitle-3-bold">{{_data?.reviewData?.brand}}</div>
+          <div class="write-review__info--product-div body-3-regular">{{_data?.reviewData?.title}}</div>
           <div class="write-review__info--product-div subtitle-3-regular u-color-dark-grey">사이즈: 라지 · 컬러: 블랙</div>
-          <div class="write-review__info--product-div subtitle-2-bold">{{_data?.orderData?.sale_price | onpicksCurrency:'KRW'}}</div>
+          <div class="write-review__info--product-div subtitle-2-bold">{{_data?.reviewData?.sale_price | onpicksCurrency:'KRW'}}</div>
         </div>
       </div>
 
@@ -77,7 +77,7 @@
         id="" cols="35" rows="6"></textarea>
     </div>
 
-    <onpicks-button (click)='publishReview(_data?.orderData?.product, _data?.orderData?.review )'[type]="'black'" [width]="'10.3rem'">등록하기</onpicks-button>
+    <onpicks-button (click)='publishReview(_data?.reviewData?.product, _data?.reviewData?.review )'[type]="'black'" [width]="'10.3rem'">등록하기</onpicks-button>
 
 
   </div>

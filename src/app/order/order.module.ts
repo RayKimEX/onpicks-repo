@@ -8,7 +8,7 @@ import { OrderNavigatorComponent } from './components/order-navigator/order-navi
 import {DirectivesModule} from '../core/directives/directives.module';
 import {UiModule} from '../ui/ui.module';
 import { CheckoutSuccessComponent } from './pages/checkout-success/checkout-success.component';
-import { CheckoutSuccessNoBankComponent } from './pages/checkout-success-no-bank/checkout-success-no-bank.component';
+import { CheckoutSuccessVirtualAccountComponent } from './pages/checkout-success-virtual-account/checkout-success-virtual-account.component';
 import {PipeModule} from '../core/pipe/pipe.module';
 import {CartToCheckoutService} from './share/cart-to-checkout.service';
 import {ReactiveFormsModule} from '@angular/forms';
@@ -27,7 +27,7 @@ import {ReactiveFormsModule} from '@angular/forms';
     CartComponent,
     OrderNavigatorComponent,
     CheckoutSuccessComponent,
-    CheckoutSuccessNoBankComponent
+    CheckoutSuccessVirtualAccountComponent
   ],
   providers: [
     CartToCheckoutService
