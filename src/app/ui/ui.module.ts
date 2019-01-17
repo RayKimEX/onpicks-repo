@@ -34,7 +34,8 @@ import { ChangePreferenceComponent } from './emitter/change-preference/change-pr
 import { LoadingIconComponent } from './pure/onpicks/item/loading-icon/loading-icon.component';
 import { ModalComponent } from './pure/onpicks/modal/modal.component';
 import { WellBeingLabelListComponent } from './pure/onpicks/list/well-being-label-list/well-being-label-list.component';
-import {AngleBracketNavigatorComponent} from './pure/onpicks/item/angle-bracket-navigator/angle-bracket-navigator.component';
+import { AngleBracketNavigatorComponent } from './pure/onpicks/item/angle-bracket-navigator/angle-bracket-navigator.component';
+import { ValueListComponent } from './pure/onpicks/list/value-list/value-list.component';
 
 @NgModule({
 
@@ -76,7 +77,8 @@ import {AngleBracketNavigatorComponent} from './pure/onpicks/item/angle-bracket-
     LoadingIconComponent,
     ModalComponent,
     AngleBracketNavigatorComponent,
-    WellBeingLabelListComponent
+    WellBeingLabelListComponent,
+    ValueListComponent
 
   ],
   exports: [
@@ -110,7 +112,9 @@ import {AngleBracketNavigatorComponent} from './pure/onpicks/item/angle-bracket-
     LoadingIconComponent,
     ModalComponent,
     AngleBracketNavigatorComponent,
-    WellBeingLabelListComponent
+    WellBeingLabelListComponent,
+    ValueListComponent
+
 
   ]
 })
