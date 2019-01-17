@@ -43,7 +43,6 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
     private router: Router,
     private uiService: UiService,
   ) {
-    this.uiService.postLanguageSetting();
     this.store.dispatch(new TryGetAuthUser());
     this.store.dispatch(new TryGetCartInfo());
     this.store.dispatch(new TryGetWishListInfo());
