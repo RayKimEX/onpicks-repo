@@ -4,7 +4,7 @@
 
   width:100%;
   height : 6rem;
-  @include respond(tb){
+  @include respond(tab-land){
     display:none;
   }
   &__category {

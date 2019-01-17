@@ -31,7 +31,6 @@ export class SortBoxComponent implements OnInit, AfterViewInit {
 
   @HostListener('document:click', ['$event'])
   clickout(event) {
-
     if ( this.eRef.nativeElement.contains(event.target)) {
     } else {
       this.isOpen = false;
@@ -65,16 +64,12 @@ export class SortBoxComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-
     if ( this.fontSize !== undefined ) {
       this.renderer.setStyle(this.eRef.nativeElement.getElementsByClassName('onpicks-sort-box__fore-button')[0], 'fontSize', this.fontSize);
     }
-
   }
 
   clickSortBox() {
-
-
     if ( this.isOpen === false ) {
       this.isOpen = true;
       if ( this.showBox === false ) { return; }
@@ -96,5 +91,4 @@ export class SortBoxComponent implements OnInit, AfterViewInit {
     this.renderer.setStyle( this.HTMLdropDown.nativeElement, 'display', 'none');
     this.changeEvent.emit(inputValue.value);
   }
-
 }

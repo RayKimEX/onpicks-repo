@@ -1,39 +1,202 @@
-<footer class="footer u-default-site-padding">
-  <div class="footer__first-floor">
-    <nav class="footer__nav">
-      <ul>
-        <li><a href="http://www.mojostudio.io/" target="_blank" i18n="@@footer__about" >About Us</a></li>
-        <!--<li><a href="" routerLink="/help/blog" i18n="@@footer__blog">Blog</a></li>-->
-        <!--<li><a href="" routerLink="/help/career" i18n="@@footer__career">Career</a></li>-->
-        <li><a href="" routerLink="/help/contact" i18n="@@footer__contact">Contact</a></li>
-        <li><a href="" routerLink="/help/faq" i18n="@@footer__faq">FAQ</a></li>
-        <li><a href="" routerLink="/terms/privacy" i18n="@@footer__privacy">Privacy Policy</a></li>
-        <li><a href="" routerLink="/terms" i18n="@@footer__termsofuse">Terms of Use</a></li>
-      </ul>
-    </nav>
-    <div class="footer__miscell u-float-right">
-      <span class="footer__miscell--nation">usa</span>
-      <span class="footer__miscell--currency">usd&nbsp;$</span>
-      <span class="footer__miscell--language">eng</span>
+<footer class="footer">
+  <div class="footer__desktop">
+    <div class="footer__desktop--first-floor">
+      <nav class="footer__desktop--nav">
+        <ul>
+          <!--<li><a href="" routerLink="/help/blog" i18n="@@footer__desktop--blog">Blog</a></li>-->
+          <!--<li><a href="" routerLink="/help/career" i18n="@@footer__desktop--career">Career</a></li>-->
+          <li>
+            <a
+              href="http://www.mojostudio.io/"
+              class="subtitle-2-regular u-color-white"
+              target="_blank"
+              i18n="@@footer__about" >
+              회사소개|About Us
+            </a>
+          </li>
+          <li>
+            <a
+              routerLink="/help/contact"
+              class="subtitle-2-regular u-color-white"
+              i18n="@@footer__contact">
+              고객센터|Contact
+            </a>
+          </li>
+          <li>
+            <a
+              routerLink="/help/faq"
+              class="subtitle-2-regular u-color-white"
+              i18n="@@footer__faq">
+              FAQ|FAQ
+            </a>
+          </li>
+          <li>
+            <a
+              routerLink="/terms/privacy"
+              class="subtitle-2-regular u-color-white"
+              i18n="@@footer__privacy">
+              개인정보취급방침|Privacy Policy
+            </a>
+          </li>
+          <li>
+            <a
+              routerLink="/terms"
+              class="subtitle-2-regular u-color-white"
+              i18n="@@footer__termsofuse">
+              이용약관|Terms of Use
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <div class="footer__desktop--miscell u-float-right">
+        <span
+          class="footer__desktop--miscell--nation subtitle-2-regular u-color-white">
+          usa
+        </span>
+        <span
+          class="footer__desktop--miscell--currency subtitle-2-regular u-color-white">
+          usd&nbsp;$
+        </span>
+        <span
+          class="footer__desktop--miscell--language subtitle-2-regular u-color-white">
+          eng
+        </span>
+      </div>
+      <hr>
     </div>
-    <hr>
+
+    <div class="footer__desktop--second-floor subtitle-2-regular u-color-white">
+      <div class="footer__desktop--copyright">
+        <div class="footer__desktop--copyright--cooperation-name">
+          상호명 : 모조스튜디오 주식회사   대표이사: 유한태   이메일 : support@mojostudio.io   주소: 서울특별시 성동구 성수일로9길 59, 7층 805호
+        </div>
+        <div class="footer__desktop--copyright--business-number">
+          사업자등록번호 : 257-84-00061  통신판매업신고번호 : 제2018-서울성동-1395호 사업자 정보 확인
+        </div>
+        <div class="footer__desktop--copyright--customer-center">
+          고객센터 : 010-8934-1067  평일 10:00 ~ 17:00 / 점심시간 12:00 ~ 14:00 (토/일/공휴일 휴무)
+        </div>
+        <div class="footer__desktop--copyright--copyright-text" i18n="@@footer__copyright">
+
+        </div>
+      </div>
+
+      <div class="footer__share">
+        <a class="footer__share--instargram" href="">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+            <path fill="#FFF" fill-rule="evenodd" d="M12 0c3.259 0 3.668.014 4.948.072 1.277.058 2.15.261 2.912.558.79.307 1.459.717 2.126 1.384A5.883 5.883 0 0 1 23.37 4.14c.297.763.5 1.635.558 2.912C23.986 8.332 24 8.741 24 12c0 3.259-.014 3.668-.072 4.948-.058 1.277-.261 2.15-.558 2.912a5.883 5.883 0 0 1-1.384 2.126 5.883 5.883 0 0 1-2.126 1.384c-.763.297-1.635.5-2.912.558-1.28.058-1.689.072-4.948.072-3.259 0-3.668-.014-4.948-.072-1.277-.058-2.15-.261-2.912-.558a5.883 5.883 0 0 1-2.126-1.384A5.882 5.882 0 0 1 .63 19.86c-.297-.763-.5-1.635-.558-2.912C.014 15.668 0 15.259 0 12c0-3.259.014-3.668.072-4.948C.13 5.775.333 4.902.63 4.14a5.882 5.882 0 0 1 1.384-2.126A5.882 5.882 0 0 1 4.14.63C4.903.333 5.775.13 7.052.072 8.332.014 8.741 0 12 0zm0 2.162c-3.204 0-3.584.012-4.849.07-1.17.053-1.805.249-2.228.413-.56.218-.96.478-1.38.898-.42.42-.68.82-.898 1.38-.164.423-.36 1.058-.413 2.228-.058 1.265-.07 1.645-.07 4.849s.012 3.584.07 4.849c.053 1.17.249 1.805.413 2.228.218.56.478.96.898 1.38.42.42.82.68 1.38.898.423.164 1.058.36 2.228.413 1.265.058 1.645.07 4.849.07s3.584-.012 4.849-.07c1.17-.053 1.805-.249 2.228-.413.56-.218.96-.478 1.38-.898.42-.42.68-.82.898-1.38.164-.423.36-1.058.413-2.228.058-1.265.07-1.645.07-4.849s-.012-3.584-.07-4.849c-.053-1.17-.249-1.805-.413-2.228a3.718 3.718 0 0 0-.898-1.38c-.42-.42-.82-.68-1.38-.898-.423-.164-1.058-.36-2.228-.413-1.265-.058-1.645-.07-4.849-.07zm0 3.676a6.162 6.162 0 1 1 0 12.324 6.162 6.162 0 0 1 0-12.324zM12 16a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm7.846-10.406a1.44 1.44 0 1 1-2.88 0 1.44 1.44 0 0 1 2.88 0z"/>
+          </svg>
+        </a>
+        <a class="footer__share--facebook" href="">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+            <path fill="#FFF" fill-rule="evenodd" d="M12.82 24H1.324A1.325 1.325 0 0 1 0 22.675V1.325C0 .593.593 0 1.325 0h21.35C23.407 0 24 .593 24 1.325v21.35c0 .732-.593 1.325-1.325 1.325H16.56v-9.294h3.12l.466-3.622H16.56V8.77c0-1.048.29-1.763 1.795-1.763h1.918v-3.24c-.332-.045-1.47-.143-2.795-.143-2.766 0-4.659 1.688-4.659 4.788v2.67H9.692v3.623h3.127V24z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
   </div>
-
-  <div class="footer__second-floor">
-    <p class="footer__copyright" i18n="@@footer__copyright">
-
-    </p>
-    <div class="footer__share u-float-right">
-      <a class="footer__share--instargram" href="">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-          <path fill="#FFF" fill-rule="evenodd" d="M12 0c3.259 0 3.668.014 4.948.072 1.277.058 2.15.261 2.912.558.79.307 1.459.717 2.126 1.384A5.883 5.883 0 0 1 23.37 4.14c.297.763.5 1.635.558 2.912C23.986 8.332 24 8.741 24 12c0 3.259-.014 3.668-.072 4.948-.058 1.277-.261 2.15-.558 2.912a5.883 5.883 0 0 1-1.384 2.126 5.883 5.883 0 0 1-2.126 1.384c-.763.297-1.635.5-2.912.558-1.28.058-1.689.072-4.948.072-3.259 0-3.668-.014-4.948-.072-1.277-.058-2.15-.261-2.912-.558a5.883 5.883 0 0 1-2.126-1.384A5.882 5.882 0 0 1 .63 19.86c-.297-.763-.5-1.635-.558-2.912C.014 15.668 0 15.259 0 12c0-3.259.014-3.668.072-4.948C.13 5.775.333 4.902.63 4.14a5.882 5.882 0 0 1 1.384-2.126A5.882 5.882 0 0 1 4.14.63C4.903.333 5.775.13 7.052.072 8.332.014 8.741 0 12 0zm0 2.162c-3.204 0-3.584.012-4.849.07-1.17.053-1.805.249-2.228.413-.56.218-.96.478-1.38.898-.42.42-.68.82-.898 1.38-.164.423-.36 1.058-.413 2.228-.058 1.265-.07 1.645-.07 4.849s.012 3.584.07 4.849c.053 1.17.249 1.805.413 2.228.218.56.478.96.898 1.38.42.42.82.68 1.38.898.423.164 1.058.36 2.228.413 1.265.058 1.645.07 4.849.07s3.584-.012 4.849-.07c1.17-.053 1.805-.249 2.228-.413.56-.218.96-.478 1.38-.898.42-.42.68-.82.898-1.38.164-.423.36-1.058.413-2.228.058-1.265.07-1.645.07-4.849s-.012-3.584-.07-4.849c-.053-1.17-.249-1.805-.413-2.228a3.718 3.718 0 0 0-.898-1.38c-.42-.42-.82-.68-1.38-.898-.423-.164-1.058-.36-2.228-.413-1.265-.058-1.645-.07-4.849-.07zm0 3.676a6.162 6.162 0 1 1 0 12.324 6.162 6.162 0 0 1 0-12.324zM12 16a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm7.846-10.406a1.44 1.44 0 1 1-2.88 0 1.44 1.44 0 0 1 2.88 0z"/>
-        </svg>
-      </a>
-      <a class="footer__share--facebook" href="">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-          <path fill="#FFF" fill-rule="evenodd" d="M12.82 24H1.324A1.325 1.325 0 0 1 0 22.675V1.325C0 .593.593 0 1.325 0h21.35C23.407 0 24 .593 24 1.325v21.35c0 .732-.593 1.325-1.325 1.325H16.56v-9.294h3.12l.466-3.622H16.56V8.77c0-1.048.29-1.763 1.795-1.763h1.918v-3.24c-.332-.045-1.47-.143-2.795-.143-2.766 0-4.659 1.688-4.659 4.788v2.67H9.692v3.623h3.127V24z"/>
-        </svg>
-      </a>
+  <div class="footer__mobile">
+    <div class="footer__mobile--first-floor">
+      <div class="footer__mobile--first-floor--miscell u-float-left">
+        <span class="footer__mobile--first-floor--miscell--nation subtitle-2-regular u-color-white">usa</span>
+        <span class="footer__mobile--first-floor--miscell--currency subtitle-2-regular u-color-white">usd&nbsp;$</span>
+        <span class="footer__mobile--first-floor--miscell--language subtitle-2-regular u-color-white">eng</span>
+      </div>
+      <div class="footer__share u-float-right">
+        <a class="footer__share--instargram" href="">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+            <path fill="#FFF" fill-rule="evenodd" d="M12 0c3.259 0 3.668.014 4.948.072 1.277.058 2.15.261 2.912.558.79.307 1.459.717 2.126 1.384A5.883 5.883 0 0 1 23.37 4.14c.297.763.5 1.635.558 2.912C23.986 8.332 24 8.741 24 12c0 3.259-.014 3.668-.072 4.948-.058 1.277-.261 2.15-.558 2.912a5.883 5.883 0 0 1-1.384 2.126 5.883 5.883 0 0 1-2.126 1.384c-.763.297-1.635.5-2.912.558-1.28.058-1.689.072-4.948.072-3.259 0-3.668-.014-4.948-.072-1.277-.058-2.15-.261-2.912-.558a5.883 5.883 0 0 1-2.126-1.384A5.882 5.882 0 0 1 .63 19.86c-.297-.763-.5-1.635-.558-2.912C.014 15.668 0 15.259 0 12c0-3.259.014-3.668.072-4.948C.13 5.775.333 4.902.63 4.14a5.882 5.882 0 0 1 1.384-2.126A5.882 5.882 0 0 1 4.14.63C4.903.333 5.775.13 7.052.072 8.332.014 8.741 0 12 0zm0 2.162c-3.204 0-3.584.012-4.849.07-1.17.053-1.805.249-2.228.413-.56.218-.96.478-1.38.898-.42.42-.68.82-.898 1.38-.164.423-.36 1.058-.413 2.228-.058 1.265-.07 1.645-.07 4.849s.012 3.584.07 4.849c.053 1.17.249 1.805.413 2.228.218.56.478.96.898 1.38.42.42.82.68 1.38.898.423.164 1.058.36 2.228.413 1.265.058 1.645.07 4.849.07s3.584-.012 4.849-.07c1.17-.053 1.805-.249 2.228-.413.56-.218.96-.478 1.38-.898.42-.42.68-.82.898-1.38.164-.423.36-1.058.413-2.228.058-1.265.07-1.645.07-4.849s-.012-3.584-.07-4.849c-.053-1.17-.249-1.805-.413-2.228a3.718 3.718 0 0 0-.898-1.38c-.42-.42-.82-.68-1.38-.898-.423-.164-1.058-.36-2.228-.413-1.265-.058-1.645-.07-4.849-.07zm0 3.676a6.162 6.162 0 1 1 0 12.324 6.162 6.162 0 0 1 0-12.324zM12 16a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm7.846-10.406a1.44 1.44 0 1 1-2.88 0 1.44 1.44 0 0 1 2.88 0z"/>
+          </svg>
+        </a>
+        <a class="footer__share--facebook" href="">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+            <path fill="#FFF" fill-rule="evenodd" d="M12.82 24H1.324A1.325 1.325 0 0 1 0 22.675V1.325C0 .593.593 0 1.325 0h21.35C23.407 0 24 .593 24 1.325v21.35c0 .732-.593 1.325-1.325 1.325H16.56v-9.294h3.12l.466-3.622H16.56V8.77c0-1.048.29-1.763 1.795-1.763h1.918v-3.24c-.332-.045-1.47-.143-2.795-.143-2.766 0-4.659 1.688-4.659 4.788v2.67H9.692v3.623h3.127V24z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+    <div class="footer__mobile--second-floor">
+      <nav class="footer__mobile--second-floor--nav">
+        <ul class="footer__mobile--second-floor--nav--ul">
+          <!--<li><a href="" routerLink="/help/blog" i18n="@@footer__desktop--blog">Blog</a></li>-->
+          <!--<li><a href="" routerLink="/help/career" i18n="@@footer__desktop--career">Career</a></li>-->
+          <li class="footer__mobile--second-floor--nav--ul--li">
+            <a
+              href="http://www.mojostudio.io/"
+              class="subtitle-2-regular u-color-white"
+              target="_blank"
+              i18n="@@footer__about" >
+              회사소개|About Us
+            </a>
+          </li>
+          <li class="footer__mobile--second-floor--nav--ul--li">
+            <a
+              routerLink="/help/contact"
+              class="subtitle-2-regular u-color-white"
+              i18n="@@footer__contact">
+              고객센터|Contact
+            </a>
+          </li>
+          <li class="footer__mobile--second-floor--nav--ul--li">
+            <a
+              routerLink="/help/faq"
+              class="subtitle-2-regular u-color-white"
+              i18n="@@footer__faq">
+              FAQ|FAQ
+            </a>
+          </li>
+          <li class="footer__mobile--second-floor--nav--ul--li">
+            <a
+              routerLink="/terms/privacy"
+              class="subtitle-2-regular u-color-white"
+              i18n="@@footer__privacy">
+              개인정보취급방침|Privacy Policy
+            </a>
+          </li>
+          <li class="footer__mobile--second-floor--nav--ul--li">
+            <a
+              routerLink="/terms"
+              class="subtitle-2-regular u-color-white"
+              i18n="@@footer__termsofuse">
+              이용약관|Terms of Use
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+    <div class="footer__mobile--third-floor">
+      <div>
+        <div>
+          <a (click)="this.isShowMobileToggleBusinessInfo = !this.isShowMobileToggleBusinessInfo">
+            <span
+              [ngClass]="[ isShowMobileToggleBusinessInfo ? 'subtitle-2-bold' : 'subtitle-2-regular' ]"
+              class="u-color-white">모조스튜디오 주식회사 사업자 정보</span>
+            <svg *ngIf="!isShowMobileToggleBusinessInfo" class="footer__mobile--third-floor--triangle-svg" width="10" height="8" viewBox="0 0 10 8">
+              <polyline points="1 2 5 6 9 2" fill="none" stroke="#b3b3b3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+            </svg>
+            <svg *ngIf="isShowMobileToggleBusinessInfo" class="footer__mobile--third-floor--triangle-svg-up"  width="10" height="6" viewBox="0 0 10 6">
+              <path fill="#B3B3B3" fill-rule="evenodd" d="M9 6a.997.997 0 0 1-.707-.293L5 2.414 1.707 5.707A.999.999 0 1 1 .293 4.293l4-4a.999.999 0 0 1 1.414 0l4 4A.999.999 0 0 1 9 6"/>
+            </svg>
+          </a>
+        </div>
+        <div
+          [ngStyle]="{display : isShowMobileToggleBusinessInfo ? 'block' : 'none'}"
+          class="footer__mobile--third-floor--toggle-info subtitle-3-regular u-color-white">
+          <div>상호명 : 모조스튜디오 주식회사</div>
+          <div>대표이사: 유한태</div>
+          <div>이메일 : support@mojostudio.io</div>
+          <div>주소: 서울특별시 성동구 성수일로9길 59, 7층 805호</div>
+          <div>사업자등록번호 : 257-84-00061</div>
+          <div>통신판매업신고번호 : 제2018-서울성동-1395호</div>
+          <br>
+          <div>고객센터 : 010-8934-1067  평일 10:00 ~ 17:00</div>
+          <div>점심시간 12:00 ~ 14:00 (토/일/공휴일 휴무)</div>
+        </div>
+      </div>
+      <div
+        class="footer__desktop--copyright--copyright-text subtitle-3-regular u-color-white"
+        i18n="@@footer__copyright">
+      </div>
     </div>
   </div>
 </footer>

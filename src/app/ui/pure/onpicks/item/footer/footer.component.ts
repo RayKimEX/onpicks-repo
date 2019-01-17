@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'ui-footer',
@@ -8,9 +8,18 @@ import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 })
 export class FooterComponent implements OnInit {
 
-  constructor() { }
+
+  isShowMobileToggleBusinessInfo = false;
+  constructor(
+    private cd: ChangeDetectorRef
+  ) { }
 
   ngOnInit() {
+  }
+
+  toggleMobileBusinessInfo() {
+    this.isShowMobileToggleBusinessInfo = !this.isShowMobileToggleBusinessInfo;
+    this.cd.markForCheck();
   }
 
 }
