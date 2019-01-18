@@ -21,8 +21,18 @@ export class PDataService {
   }
 
   // 왠만하면 끝에 슬래쉬 붙임.
-  getReviewsData(productId) {
-    return this.httpClient.get<any>( this.BASE_URL + '/api/products/' + productId + '/reviews/');
+  getReviewsData(productId, xSorting) {
+
+    let requestUrl = '';
+    if (xSorting === 'all') {
+      requestUrl = '/api/products/' + productId + '/reviews/';
+    } else {
+      requestUrl = '/api/products/' + productId + '/reviews/?period=' + xSorting;
+    }
+
+    console.log(xSorting);
+
+    return this.httpClient.get<any>( this.BASE_URL + requestUrl);
   }
 
   getCommentsData(productId, reviewsId) {

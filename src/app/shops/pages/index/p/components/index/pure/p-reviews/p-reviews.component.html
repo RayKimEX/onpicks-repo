@@ -69,7 +69,11 @@
 
       <div class="p-reviews__small-header">
         <div class="subtitle-1-bold u-inline-block">구매자들의 {{data.results.length}}개 리뷰</div>
-        <onpicks-sort-box [sortList]="reviewSortList"></onpicks-sort-box>
+        <onpicks-sort-box
+          [selectedElement]="selectedElement"
+          (changeEvent)="reviewSorting($event)"
+          [sortList]="reviewSortList">
+        </onpicks-sort-box>
       </div>
 
       <div *ngFor="let item of data.results; index as i">
@@ -136,7 +140,7 @@
             <img src="http://img.onpicks.com/comments-icon.jpg" alt="">
             <span
               class="p-reviews__option--feature action-1-medium"
-              [routerLink]="'reviews/' + data.list[item].id"
+              (click)="commentReview('/shops/p/' + data.list[item].product + '/reviews/' + data.list[item].id)"
             >댓글 달기</span>
           </a>
           <a>

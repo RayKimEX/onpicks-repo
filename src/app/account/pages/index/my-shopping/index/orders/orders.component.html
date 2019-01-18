@@ -7,6 +7,8 @@
     <div class="orders__title-box">
       <h1 class="h1-bold">주문·배송조회</h1>
       <onpicks-sort-box
+        [selectedElement]="selectedElement"
+        (changeEvent)="test($event)"
         [sortList]="sortList">
       </onpicks-sort-box>
     </div>
@@ -17,8 +19,7 @@
 
       <ui-mini-list
         [setTitle]="'추천상품'"
-        [infoList]="weeklyBest$ | async"
-      >
+        [infoList]="weeklyBest$ | async">
 
       </ui-mini-list>
     </ng-container>

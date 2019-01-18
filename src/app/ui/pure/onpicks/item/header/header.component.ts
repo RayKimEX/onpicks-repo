@@ -35,8 +35,6 @@ import {BreakpointObserver, BreakpointState} from '../../../../../../../node_mod
   changeDetection : ChangeDetectionStrategy.OnPush
 })
 
-
-
 export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('deliveryBox', {read : ElementRef}) deliveryBox;
   @ViewChild('menu') menuRef;
@@ -66,7 +64,6 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
 
   clearSetTimeout;
   // TODO: 이부분에 대해서 이방식이 맞는지? ngrx로 하려면, 한번더 update를 쳐야 되서 이방식이 아닌거같음 ->
-
   clearSetTimeoutForAlert;
 
   firstLoadPreventCount = 0;
@@ -98,11 +95,10 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
           this.mobileAlertTop = '11rem';
         }
       });
+
     this.uiStore$ = this.store.pipe( select( state => state.ui.alertMessage ))
       .subscribe( updatedMessages => {
-
         if ( this.alertMessage === undefined ) { return ;};
-
         if ( updatedMessages.display ) {
           this.renderer.setStyle(this.alertMessage.nativeElement, 'opacity', 1);
           this.renderer.setProperty(this.alertMessage.nativeElement.children[0], 'innerHTML', updatedMessages.message);
@@ -111,7 +107,6 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
             this.renderer.setStyle(this.alertMessage.nativeElement, 'position', 'fixed');
             this.renderer.setStyle(this.alertMessage.nativeElement, 'top', '0');
           } else {
-            this.renderer.setStyle(this.alertMessage.nativeElement, 'position', 'absolute');
             this.renderer.setStyle(this.alertMessage.nativeElement, 'top', this.mobileAlertTop);
           }
 
@@ -182,7 +177,6 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
           this.renderer.setStyle(this.deliveryBox.nativeElement, 'position', 'fixed');
           this.renderer.setStyle(this.deliveryBox.nativeElement, 'top', '1.6rem');
         } else {
-          this.renderer.setStyle(this.deliveryBox.nativeElement, 'position', 'absolute');
           this.renderer.setStyle(this.deliveryBox.nativeElement, 'top', '12.4rem');
         }
         this.clearSetTimeout = setTimeout( v => {
@@ -202,7 +196,6 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
                 this.renderer.setStyle(this.deliveryBox.nativeElement, 'position', 'fixed');
                 this.renderer.setStyle(this.deliveryBox.nativeElement, 'top', '1.6rem');
               } else {
-                this.renderer.setStyle(this.deliveryBox.nativeElement, 'position', 'absolute');
                 this.renderer.setStyle(this.deliveryBox.nativeElement, 'top', '12.4rem');
               }
             }
@@ -239,6 +232,7 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
 
   hoverMenu() {
 
+    console.log('ddd');
     this.renderer.appendChild(document.body, this.tempDiv);
     this.renderer.setStyle(this.tempDiv, 'top', '0');
     this.renderer.setStyle(this.tempDiv, 'position', 'absolute');

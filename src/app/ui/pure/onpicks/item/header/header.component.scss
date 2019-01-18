@@ -90,7 +90,9 @@
 }
 
 .header {
-
+  z-index:11;
+  position:relative;
+  background-color : $color-white;
   &__mobile-hamburger {
     display : none;
     overflow: hidden auto;
@@ -174,15 +176,12 @@
       position: absolute;
       transform: translateX(-50%);
     }
-
-
-
   }
 
   &__alert {
     opacity : 0;
     pointer-events: none;
-    position:absolute;
+    position:fixed;
     top : 11rem;
     height: 50px;
     width : 100%;
@@ -209,9 +208,6 @@
     }
   }
 
-  position:relative;
-  z-index :100;
-  background-color : $color-white;
 
 
   onpicks-free-delivery-notibox {
@@ -302,22 +298,6 @@
       letter-spacing: 0.03rem;
       color: $color-black;
     }
-
-    //&--currency {
-    //  text-transform: uppercase;
-    //  margin-right : 3.2rem;
-    //  font-size : 1.4rem;
-    //  letter-spacing: 0.03rem;
-    //  color: $color-dark-black;
-    //}
-    //
-    //&--language {
-    //  text-transform: uppercase;
-    //  font-size : 1.4rem;
-    //  letter-spacing: 0.03rem;
-    //  color: $color-dark-black;
-    //}
-
 
     &--favorites {
       margin-right : 2.4rem;

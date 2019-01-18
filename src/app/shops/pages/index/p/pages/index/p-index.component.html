@@ -1,5 +1,9 @@
+<ng-template #loading>
+  <onpicks-loading-icon></onpicks-loading-icon>
+</ng-template>
 
-<ng-container *ngLet="(pData$ | async) as data">
+
+<ng-container *ngIf="(pData$ | async) as data; else  loading">
   <div class="current-nav" >
     <div class="row">
       <span *ngFor="let item of data?.category; index as i">
@@ -33,16 +37,8 @@
     </div>
 
 
-    <router-outlet></router-outlet>
-    <!--<onpicks-communicate-box-->
-      <!--#communicateBox-->
-      <!--[comment]="totalList[(popupReviewsUI$ | async).reviewIndex]"-->
-      <!--[commentIndex]="(popupReviewsUI$ | async).reviewIndex"-->
-      <!--[ngStyle]="{ 'display' : (popupReviewsUI$ | async).popupReviews == true ? 'block' : 'none' }"-->
-      <!--(willChangeCommentIndex)="changeCommentIndex($event)"-->
-      <!--(willAddComment)="addComment($event)">-->
+    <router-outlet style="position:fixed"></router-outlet>
 
-    <!--</onpicks-communicate-box>-->
     <div class="col-5-of-12">
       <div>
         <onpicks-p-menu [data]="data"></onpicks-p-menu>

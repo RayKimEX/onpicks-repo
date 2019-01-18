@@ -91,7 +91,7 @@ export class PEffects {
     ofType( PActions.TRY_GET_REVIEWS_PRODUCT ),
     map( payload => payload['payload']),
     switchMap( payload => {
-      return this.pDataService.getReviewsData(payload)
+      return this.pDataService.getReviewsData(payload.productSlug, payload.sorting)
         .pipe(
           map( (getReviews) => {
             return new GetReviewProductSuccess( getReviews);

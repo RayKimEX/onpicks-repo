@@ -3,19 +3,20 @@ import {
   ChangeDetectionStrategy, ChangeDetectorRef,
   Component,
   EventEmitter, Inject,
-  Input, LOCALE_ID,
-  OnChanges,
+  Input,
+  LOCALE_ID,
   Output,
-  Renderer2, SimpleChanges,
+  Renderer2,
   ViewChildren
 } from '@angular/core';
 import {select, Store} from '@ngrx/store';
 import {DOMAIN_HOST, REPORT_REASON_MAP} from '../../../../../../../../app.config';
 import {tap} from 'rxjs/operators';
 import {PDataService} from '../../../../../../../../core/service/data-pages/p/p-data.service';
-import {TryToggleVoteReview} from '../../../../store/p.actions';
+import {TryGetReviewProduct, TryToggleVoteReview} from '../../../../store/p.actions';
 import {DisplayAlertMessage} from '../../../../../../../../core/store/ui/ui.actions';
 import {APP_BASE_HREF} from '@angular/common';
+import {ActivatedRoute, Router} from '@angular/router';
 
 
 @Component({
@@ -56,22 +57,25 @@ export class PReviewsComponent implements AfterViewInit {
 
 
 
+  selectedElement = {
+    value : 'created'
+  }
   reviewSortList = [
-    {
-      title : '추천순',
-      value : 0
-    },
+    // {
+    //   title : '추천순',
+    //   value : 0
+    // },
     {
       title : '최신순',
-      value : 1
+      value : 'created'
     },
     {
       title : '별점 낮은순',
-      value : 2
+      value : '-rating'
     },
     {
       title : '별점 높은순',
-      value : 3
+      value : 'rating'
     }
   ]
 
@@ -84,7 +88,10 @@ export class PReviewsComponent implements AfterViewInit {
     private renderer: Renderer2,
     private store: Store<any>,
     private cd: ChangeDetectorRef,
+    private router: Router,
+    private route: ActivatedRoute
   ) {
+    this.store.dispatch(new TryGetReviewProduct({ productSlug : this.route.snapshot.params.id, sorting: 'created'}));
     this.reviews$ = this.store.pipe(
       select((state) => state['p']['reviews']),
       tap( v => {
@@ -132,11 +139,17 @@ export class PReviewsComponent implements AfterViewInit {
         error => {
           alert('신고 중 에러가 발생하였습니다.');
         }
-    );
+      );
+  }
+
+  commentReview( xUrl ) {
+    const const_url = xUrl + '?scroll=' + window.pageYOffset;
+
+    this.router.navigateByUrl( const_url);
   }
 
   shareReview( xUrl ) {
-    const hello = this.HOST + this.BASE_URL + xUrl;
+    const const_url = this.HOST + this.BASE_URL + xUrl + '?scroll=' + window.pageYOffset;
 
     // Create a dummy input to copy the string array inside it
     const dummy = document.createElement('input');
@@ -145,7 +158,7 @@ export class PReviewsComponent implements AfterViewInit {
     document.body.appendChild(dummy);
 
     // Output the array into it
-    dummy.value = hello;
+    dummy.value = const_url;
 
     // Select it
     dummy.select();
@@ -158,8 +171,10 @@ export class PReviewsComponent implements AfterViewInit {
     this.store.dispatch( new DisplayAlertMessage('링크가 복사되었습니다.'));
   }
 
-  shareProduct( xUrl ) {
-
+  reviewSorting( xSortingValue ) {
+    this.selectedElement.value = xSortingValue
+    console.log(xSortingValue);
+    this.store.dispatch(new TryGetReviewProduct({ productSlug : this.route.snapshot.params.id, sorting: xSortingValue}));
   }
 
 }

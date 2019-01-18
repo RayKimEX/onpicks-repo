@@ -12,7 +12,7 @@ import {TryGetAuthUser} from './core/store/auth/auth.actions';
 import {
   NavigationCancel,
   NavigationEnd,
-  NavigationError,
+  NavigationError, NavigationStart,
   Router,
   RouterEvent
 } from '@angular/router';
@@ -36,6 +36,9 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
   isCategoryLoaded = false;
   categoryLoadType = '';
   uiState$;
+
+  previousUrl = [];
+
   constructor(
     @Inject(CATEGORY_MAP) public categoryMap,
     @Inject(LOCALE_ID) public locale: string,
@@ -60,13 +63,27 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
   // Shows and hides the loading spinner during RouterEvent changes
   private _navigationInterceptor(event: RouterEvent): void {
 
+    if ( event instanceof NavigationStart ){
+      console.log('start')
+      this.previousUrl = this.router.url.split('/');
+    }
+
     if (event instanceof NavigationEnd) {
 
+      console.log(event);
+      console.log(this.router.url);
       const url = this.router.url.split('/');
       const slug =  url[url.length - 1];
 
       this.store.dispatch(new UpdateUrlActive(url));
 
+
+      if ( !((this.previousUrl.length > 4 && this.previousUrl[4] === 'reviews') || (url.length > 4 && url[4] === 'reviews'))) {
+        window.scrollTo(0, 0);
+      } else {
+
+
+      }
       // category가 /c/안에 url일경우
       if ( url[2] !== 'c' ) { return; };
 
@@ -80,24 +97,9 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
         } else {
           this.store.dispatch(new GetCategoryAll({  data: '', type : url[3], firstSortKey: this.categoryMap[url[3]], secondSortKey : url[4], thirdSortKey : url[5] }));
         }
-
-
         return ;
       }
 
-
-      // if ( url.length === 6 ||  url.length === 7) {
-      //
-      //   if ( this.isCategoryLoaded ) {
-      //     this.store.dispatch(new UpdateCategory({ secondSortKey : url[4], thirdSortKey:  url[5] }));
-      //   } else {      // threeDepth // fourDepth
-      //     // example : shops/c/pantry/house/ads
-      //     // example : shops/c/pantry/house/ads/asd
-      //     this.store.dispatch(new GetCategoryAll({  data: '', type : 'cpage', firstSortKey: this.categoryMap[url[3]], secondSortKey : url[4], thirdSortKey : url[5] }));
-      //   }
-      //
-      //   return;
-      // }
     }
 
     // Set loading state to false in both of the below events to

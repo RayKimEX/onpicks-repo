@@ -23,8 +23,16 @@ export class AccountDataService {
     return this.httpClient.get<any>( this.BASE_URL + '/api/customers//my_reviews/');
   }
 
-  getOrdersData() {
-    return this.httpClient.get<any>( this.BASE_URL + '/api/orders/');
+  getOrdersData( xPeriod ) {
+
+    let requestUrl = '';
+    if (xPeriod === 'all') {
+      requestUrl = '/api/orders/';
+    } else {
+      requestUrl = '/api/orders/?period=' + xPeriod;
+    }
+
+    return this.httpClient.get<any>( this.BASE_URL + requestUrl);
   }
 
   getOrdersNotReviewedData() {

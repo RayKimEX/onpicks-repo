@@ -51,7 +51,17 @@ export function PReducer (state = initialState, action: PActions.PActions) {
           ...state.ui,
           menuPosition : action.payload
         }
+      };
 
+    case PActions.DELETE_PRODUCT_AND_REVIEW_INFO:
+      return {
+        ...state,
+        data : null,
+        reviews : {
+          list : {
+          },
+          results : [],
+        },
       };
 
     case PActions.GET_PRODUCT_INFO_SUCCESS :

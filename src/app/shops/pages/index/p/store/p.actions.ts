@@ -15,6 +15,8 @@ export const TRY_GET_COMMENTS_PRODUCT = '[P] TRY_GET_COMMENTS_PRODUCT';
 export const GET_COMMENTS_PRODUCT_SUCCESS = '[P] GET_COMMENTS_PRODUCT_SUCCESS';
 export const GET_COMMENTS_PRODUCT_FAILURE = '[P] GET_REVIEWS_PRODUCT_FAILURE';
 
+export const DELETE_PRODUCT_AND_REVIEW_INFO = '[P] DELETE_PRODUCT_AND_REVIEW_INFO';
+
 export const TRY_ADD_COMMENT = '[P] TRY_ADD_COMMENT';
 export const ADD_COMMENT_SUCCESS = '[P] ADD_COMMENT_SUCCESS';
 export const ADD_COMMENT_FAILURE = '[P] ADD_COMMENT_FAILURE';
@@ -23,6 +25,10 @@ export const TRY_TOGGLE_VOTE_REIVEW = '[P] TRY_TOGGLE_VOTE_REVIEW';
 export const TOGGLE_VOTE_REIVEW_SUCCESS = '[P] TOGGLE_VOTE_REIVEW_SUCCESS'
 export const TOGGLE_VOTE_REIVEW_FAILURE = '[P] TOGGLE_VOTE_REIVEW_FAILURE'
 
+
+export class DeleteProductAndReviewInfo implements Action {
+  readonly type = DELETE_PRODUCT_AND_REVIEW_INFO;
+}
 
 export class TryToggleVoteReview implements Action {
   readonly type = TRY_TOGGLE_VOTE_REIVEW;
@@ -87,7 +93,7 @@ export class GetProductInfoFailure implements Action {
 export class TryGetReviewProduct implements Action {
   readonly type = TRY_GET_REVIEWS_PRODUCT;
 
-  constructor(public payload: string) {}
+  constructor(public payload: { productSlug, sorting }) {}
 }
 
 export class GetReviewProductSuccess implements Action {
@@ -175,6 +181,9 @@ export type PActions =
   TryGetCommentsProduct |
   GetCommentsProductSuccess |
   GetCommentsProductFailure |
+
+  //
+  DeleteProductAndReviewInfo |
   //
   TryAddComment |
   AddCommentSuccess|

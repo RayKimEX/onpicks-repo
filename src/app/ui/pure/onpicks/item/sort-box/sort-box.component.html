@@ -14,12 +14,12 @@
       <div>
         <div *ngFor="let item of sortList" class="onpicks-sort-box__dropdown--element">
           <div class="onpicks-sort-box__dropdown--element-outer">
-            <label
+            <div
               (click)="clickSortBoxElement(f)"
               class="onpicks-sort-box__dropdown--element-label">
               <input #f type="radio" data-value="{{item.value}}" data-name="{{item.title}}">
               <span [ngClass]="{ active : item.value == selectedElement?.value }" class="onpicks-sort-box__dropdown--element-text subtitle-2-bold u-color-dark-grey">{{item.title}}</span>
-            </label>
+            </div>
           </div>
         </div>
       </div>

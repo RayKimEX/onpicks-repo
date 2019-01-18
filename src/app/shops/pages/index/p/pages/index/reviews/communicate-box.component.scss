@@ -1,5 +1,9 @@
 @import '~src/assets/scss/abstracts/variables';
 
+
+
+:host(onpicks-communicate-box) {   z-index :8000; position:fixed }
+
 .communicate-box__outer {
   position: fixed;
   width: 100%;
@@ -7,11 +11,30 @@
   will-change: transform ;
   background-color : black;
   opacity : 0.5;
-  z-index :9998;
+  z-index :8001;
   top : 0;
   left : 0;
 }
+.modal {
+  &__title {
+    margin-bottom : 0.8rem;
+  }
 
+  &__item {
+    padding : 1.6rem 0;
+    border-bottom : 1px solid $color-light-grey;
+
+    &--check-box {
+      float : right;
+    }
+  }
+
+  &__btn {
+    display:inline-block;
+    margin-top : 2.4rem;
+  }
+
+}
 
 
 .communicate-box{
@@ -19,7 +42,7 @@
   position: fixed;
   top : 50%;
   left : 50%;
-  z-index : 9999;
+  z-index : 8002;
   width : 66rem;
   height : 64.8rem;
   background-color : $color-white;
@@ -127,6 +150,19 @@
           vertical-align: top;
         }
       }
+
+
+      &--thumbs-up-active{
+        fill : $color-green;
+      }
+      &--recommend {
+        position:relative;
+        margin-left: 0.8rem;
+        margin-right: 3.2rem;
+        &--active {
+          color : $color-green;
+        }
+      }
       &--item {
         position:relative;
         margin-left: 0.8rem;
@@ -154,6 +190,12 @@
       &--option {
         margin-bottom : 2.4rem;
       }
+
+      &--created-date{
+        position: absolute;
+        bottom: -0.5px;
+        margin-left: 0.8rem;
+      }
       figure {
 
         position:relative;
@@ -170,12 +212,6 @@
           margin-left: 1.6rem;
           top: 0;
           display: inline-block;
-        }
-
-        span {
-          position: absolute;
-          bottom: 0.1rem;
-          color: $color-dark-grey;
         }
       }
 

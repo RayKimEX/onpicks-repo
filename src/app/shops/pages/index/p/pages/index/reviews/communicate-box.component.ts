@@ -3,7 +3,7 @@
 import { ActivatedRoute, Router } from '@angular/router';
 import {
   AfterViewChecked,
-  AfterViewInit,
+  AfterViewInit, ChangeDetectorRef,
   Component,
   HostListener, Inject,
   OnDestroy,
@@ -13,7 +13,7 @@ import {
 } from '@angular/core';
 
 // NgRX & RxJS
-import { TryAddComment, TryGetCommentsProduct } from '../../../store/p.actions';
+import {TryAddComment, TryGetCommentsProduct, TryToggleVoteReview} from '../../../store/p.actions';
 import { map, shareReplay, withLatestFrom } from 'rxjs/operators';
 import { combineLatest, fromEvent } from 'rxjs';
 import { select, Store } from '@ngrx/store';
@@ -23,7 +23,7 @@ import { PDataService } from '../../../../../../../core/service/data-pages/p/p-d
 import { AppState } from '../../../../../../../core/store/app.reducer';
 import { UserState } from '../../../../../../../core/store/user.model';
 import {DisplayAlertMessage} from '../../../../../../../core/store/ui/ui.actions';
-import {DOMAIN_HOST} from '../../../../../../../app.config';
+import {DOMAIN_HOST, REPORT_REASON_MAP} from '../../../../../../../app.config';
 import {APP_BASE_HREF} from '@angular/common';
 
 @Component({
@@ -42,6 +42,13 @@ export class CommunicateBoxComponent implements AfterViewChecked, AfterViewInit,
   @ViewChild('communicateBoxOnly') communicateBoxOnly;
   @ViewChild('communicateBox') communicateBox;
   @ViewChild('scrollOuter') scrollOuter;
+
+  /***신고 Modal***/
+  objectKeys = Object.keys;
+  isShowModal = false;
+  textReportReasonForModal = null;
+  reviewIndexForModal = null;
+  productSlugForModal = null;
 
 
 
@@ -66,14 +73,18 @@ export class CommunicateBoxComponent implements AfterViewChecked, AfterViewInit,
   productId;
   combine$;
 
+
+
   constructor(
     @Inject(DOMAIN_HOST) private HOST: string,
     @Inject(APP_BASE_HREF) private BASE_URL: string,
+    @Inject(REPORT_REASON_MAP) public reasonMap: string,
     private renderer: Renderer2,
     private store: Store<AppState>,
     private router: Router,
     private route: ActivatedRoute,
-    private pData: PDataService
+    private pDataService: PDataService,
+    private cd:ChangeDetectorRef
   ) {
     const url = this.router.url.split('/');
     this.reviewsId = parseInt(url[5], 10);
@@ -86,7 +97,6 @@ export class CommunicateBoxComponent implements AfterViewChecked, AfterViewInit,
           map(([child, parent]) => {
             return { child, parent};
           })),
-
       ).subscribe(
         val => {
 
@@ -124,6 +134,7 @@ export class CommunicateBoxComponent implements AfterViewChecked, AfterViewInit,
       (val: UserState) => {
         this.signInUserInfo = val;
     });
+
   }
 
   ngOnDestroy() {
@@ -228,7 +239,8 @@ export class CommunicateBoxComponent implements AfterViewChecked, AfterViewInit,
       if (this.communicateBox.nativeElement.contains(event.target)) {
 
       } else {
-        if ( this.buttonState ) {
+        console.log(this.isShowModal);
+        if ( this.buttonState || this.isShowModal) {
           this.buttonState = false;
           return ;
         };
@@ -246,9 +258,13 @@ export class CommunicateBoxComponent implements AfterViewChecked, AfterViewInit,
       this.router.navigate( ['../../'], {relativeTo: this.route } );
     }
   }
-
+  toggleVoteReviews( xProductSlug, xReviewsId, xIsVoted) {
+    this.store.dispatch( new TryToggleVoteReview({ productSlug: xProductSlug, reviewId : xReviewsId, isVote: !xIsVoted}));
+  }
   shareReview( xUrl ) {
-    const hello = this.HOST + this.BASE_URL + xUrl;
+
+    // console.log(location.href);
+    const hello = location.href;
 
     // Create a dummy input to copy the string array inside it
     const dummy = document.createElement('input');
@@ -270,4 +286,26 @@ export class CommunicateBoxComponent implements AfterViewChecked, AfterViewInit,
     this.store.dispatch( new DisplayAlertMessage('링크가 복사되었습니다.'));
   }
 
+
+  exitShowModal(){
+    // 순간적으로 같이 체크가 되서 신고하기랑, communicate box가 나가지는걸 방지하기 위해 setTimeout을 줌.
+    setTimeout( () => {
+      this.isShowModal = false;
+      this.cd.markForCheck();
+      console.log(this.isShowModal);
+    }, 0);
+  }
+
+  reportReview( xProductSlug, xReviewId, xReportReason ) {
+    this.pDataService.reportReviewData( xProductSlug, xReviewId, xReportReason)
+      .subscribe(
+        response => {
+          this.isShowModal = false;
+          this.store.dispatch(new DisplayAlertMessage('신고가 정상적으로 접수 되었습니다.'));
+        },
+        error => {
+          alert('신고 중 에러가 발생하였습니다.');
+        }
+      );
+  }
 }

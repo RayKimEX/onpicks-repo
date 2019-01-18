@@ -69,7 +69,6 @@ export class PMenuComponent implements OnInit, OnDestroy, AfterViewInit, OnChang
               this.keyMapForSlug[mergeKey] = variantsItem.slug;
               mergeKey = '';
 
-
               test[depthKey][variantsItem.attribute_values[attributes_key]] = '';
               depthKey = '';
               cnt = 0;
@@ -296,10 +295,13 @@ export class PMenuComponent implements OnInit, OnDestroy, AfterViewInit, OnChang
     this.PStore$ = this.PStore$.subscribe( (val: { menuPosition})  => {
       menuTopValue = val;
 
+      console.log(val);
       // absolute
       if (window.pageYOffset >= (menuTopValue.menuPosition - this.titleHeight) - 32 ) {
         this.renderer.setStyle(this.pMenu.nativeElement, 'position', 'absolute');
+        this.renderer.setStyle(this.pMenu.nativeElement, 'z-index', '1');
         this.renderer.setStyle(this.pMenu.nativeElement, 'top', (menuTopValue.menuPosition - this.titleHeight) * 0.1 + 'rem');
+        // this.renderer.setStyle(this.pMenu.nativeElement, 'top', (menuTopValue.menuPosition - this.titleHeight) * 0.1 + 'rem');
       }
 
       this.cd.markForCheck();
@@ -310,18 +312,21 @@ export class PMenuComponent implements OnInit, OnDestroy, AfterViewInit, OnChang
           if ( setStatus === 'absolute') { return; }
           setStatus = 'absolute';
           this.renderer.setStyle(this.pMenu.nativeElement, 'position', 'absolute');
+          this.renderer.setStyle(this.pMenu.nativeElement, 'z-index', '1');
           this.renderer.setStyle(this.pMenu.nativeElement, 'top', (menuTopValue.menuPosition - this.titleHeight) * 0.1 + 'rem');
         } else {
           if ( setStatus === 'fixed' ) { return; }
           setStatus = 'fixed';
           this.renderer.setStyle(this.pMenu.nativeElement, 'position', 'fixed');
+          this.renderer.setStyle(this.pMenu.nativeElement, 'z-index', '1');
           this.renderer.setStyle(this.pMenu.nativeElement, 'top', '32px');
         }
       } else {
         if (setStatus === '') return;
         setStatus = '';
-        this.renderer.setStyle(this.pMenu.nativeElement, 'position', 'static');
-        this.renderer.setStyle(this.pMenu.nativeElement, 'top', '0');
+        this.renderer.setStyle(this.pMenu.nativeElement, 'position', 'absolute');
+        this.renderer.setStyle(this.pMenu.nativeElement, 'z-index', '1');
+        this.renderer.setStyle(this.pMenu.nativeElement, 'top', 'auto');
       }
 
       this.cd.markForCheck();
@@ -566,6 +571,29 @@ export class PMenuComponent implements OnInit, OnDestroy, AfterViewInit, OnChang
 
   ngOnInit() {
 
+  }
+
+  shareProductDetail() {
+    const const_url = location.href;
+
+    // Create a dummy input to copy the string array inside it
+    const dummy = document.createElement('input');
+
+    // Add it to the document
+    document.body.appendChild(dummy);
+
+    // Output the array into it
+    dummy.value = const_url;
+
+    // Select it
+    dummy.select();
+
+    // Copy its contents
+    document.execCommand('copy');
+
+    // Remove it as its not needed anymore
+    document.body.removeChild(dummy);
+    this.store.dispatch( new DisplayAlertMessage('링크가 복사되었습니다.'));
   }
 
   toFixed( data: number) {
