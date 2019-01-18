@@ -4,13 +4,8 @@
 
 <onpicks-modal
   class="modal"
-  (exit)="isShowModal = false" [isShow]="isShowModal">
-  <!--<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40">-->
-    <!--<g fill="none" fill-rule="evenodd">-->
-      <!--<path fill="#008489" d="M40 20c0 11.046-8.954 20-20 20S0 31.046 0 20 8.954 0 20 0s20 8.954 20 20"/>-->
-      <!--<path fill="#FFF" d="M18.968 23.896l.014.014-.014-.014zm-1.517.014l-.01.01.01-.01zm.767 3.313h-.013a2.573 2.573 0 0 1-1.86-.811l-4.934-5.146a1.817 1.817 0 1 1 2.623-2.517l4.185 4.367 7.737-8.007a1.818 1.818 0 0 1 2.613 2.527l-8.506 8.802a2.57 2.57 0 0 1-1.845.785z"/>-->
-    <!--</g>-->
-  <!--</svg>-->
+  (exit)="isShowModal = false"
+  [isShow]="isShowModal">
 
   <h1 class="modal__title h1-bold">신고사유를 선택해주세요.</h1>
   <div
@@ -80,34 +75,49 @@
       <div *ngFor="let item of data.results; index as i">
         <figure class="p-reviews__figure u-margin-bottom--small">
           <span class="p-reviews__figure--outer">
-            <img [drLazyLoad]="{ method : 'animation' }" src="{{data.list[item].author.avatar}}" alt="Person on a tour" class="story__img">
+            <img
+              [drLazyLoad]="{ method : 'animation' }"
+              src="{{data.list[item].author.avatar}}" alt="Person on a tour" class="story__img">
           </span>
           <div class="p-reviews__figure--caption">
-            <figcaption class="p-reviews__figure subtitle-1-bold">{{data.list[item].author.nickname}}</figcaption>
-            <ui-star-rating [star-point]="data.list[item].rating"></ui-star-rating>
-            <span class="p-reviews__figure--caption-date subtitle-2-regular u-color-dark-grey">{{data.list[item].modified | timeAgo}}</span>
+            <figcaption
+              class="p-reviews__figure subtitle-1-bold">{{data.list[item].author.nickname}}</figcaption>
+            <ui-star-rating
+              [star-point]="data.list[item].rating"></ui-star-rating>
+            <span
+              class="p-reviews__figure--caption-date subtitle-2-regular u-color-dark-grey">{{data.list[item].modified | timeAgo}}</span>
           </div>
         </figure>
-        <div class="subtitle-1-regular u-color-grey">Size: X-Large · Color: Aqua · {{data.list[item].helpful_count}}명이 추천하였습니다 </div>
+        <div
+          class="subtitle-1-regular u-color-grey">Size: X-Large · Color: Aqua · {{data.list[item].helpful_count}}명이 추천하였습니다 </div>
 
-        <div class="p-reviews__content-outer">
+        <div
+          class="p-reviews__content-outer">
 
           <!--array length가 0이거나, pictures[0]이 ''인경우 : 이미지가 없는경우-->
-          <p class="p-reviews__content body-1-regular"
+          <p
+            class="p-reviews__content body-1-regular"
              [ngStyle]="{'width' : data.list[item].pictures.length === 0 || data.list[item].pictures[0] === '' ? 'auto' : '52.8rem'}">
             {{data.list[item].text}}
           </p>
 
           <!--array length이 0이 아니면, pictures[0]도 ''가 아니어야한다. : 이미지가 있는 경우-->
-          <span class="p-reviews__image"
+          <span
+            class="p-reviews__image"
                 *ngIf="data.list[item].pictures.length !== 0 && data.list[item].pictures[0] !== ''">
-            <img [drLazyLoad]="{method:'animation'}" src="{{data.list[item].pictures[0]}}" alt="">
+            <img
+              [drLazyLoad]="{method:'animation'}"
+              src="{{data.list[item].pictures[0]}}"
+              alt="">
           </span>
         </div>
 
         <div class="p-reviews__option">
           <a>
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="20" viewBox="0 0 18 20">
+            <svg
+              width="18"
+              height="20"
+              viewBox="0 0 18 20">
               <path
                 [ngClass]="{ 'p-reviews__option--thumbs-up-active' : data.list[item].mark_as_voted}"
                 fill="#767676"
@@ -124,13 +134,18 @@
           </a>
           <a>
             <img src="http://img.onpicks.com/comments-icon.jpg" alt="">
-            <span class="p-reviews__option--feature action-1-medium"
-                  [routerLink]="'reviews/' + data.list[item].id"
+            <span
+              class="p-reviews__option--feature action-1-medium"
+              [routerLink]="'reviews/' + data.list[item].id"
             >댓글 달기</span>
           </a>
           <a>
             <img src="http://img.onpicks.com/share-icon.jpg" alt="">
-            <span class="p-reviews__option--feature action-1-medium">공유 하기</span>
+            <span
+              (click)="shareReview('/shops/p/' + data.list[item].product + '/reviews/' + data.list[item].id)"
+              class="p-reviews__option--feature action-1-medium">
+              공유 하기
+            </span>
           </a>
           <a>
             <span

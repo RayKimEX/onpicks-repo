@@ -73,17 +73,14 @@
           <a>
             <img src="http://img.onpicks.com/share-icon.jpg" alt="">
             <span class="communicate-box-only__feature--item action-1-medium"
-                  (click)="nextButton()">공유하기</span>
+                  (click)="shareReview()">공유하기</span>
           </a>
           <a>
             <span class="communicate-box-only__feature--report action-1-medium-grey">신고하기</span>
           </a>
         </div>
         <div class="communicate-box-only__input-reviews">
-          <!--{{(parseInt(reviewsId, 10) + 1)}}-->
-          <!--{{(reviewsId+1) <= (currentData$ | async).length}}-->
           <input type="text" (keypress)="commentTyping($event, f)" value="" #f placeholder="댓글 달기">
-
         </div>
       </div>
     </div>
@@ -114,7 +111,6 @@
         <path fill="none" fill-rule="evenodd" stroke="#E5E5E5" stroke-width="2" d="M1 25l12-12.098L1 1"/>
       </svg>
     </button>
-
 </div>
 </ng-container>
 <div class="communicate-box__outer">

@@ -5,7 +5,7 @@ import {
   AfterViewChecked,
   AfterViewInit,
   Component,
-  HostListener,
+  HostListener, Inject,
   OnDestroy,
   OnInit,
   Renderer2,
@@ -22,6 +22,9 @@ import { select, Store } from '@ngrx/store';
 import { PDataService } from '../../../../../../../core/service/data-pages/p/p-data.service';
 import { AppState } from '../../../../../../../core/store/app.reducer';
 import { UserState } from '../../../../../../../core/store/user.model';
+import {DisplayAlertMessage} from '../../../../../../../core/store/ui/ui.actions';
+import {DOMAIN_HOST} from '../../../../../../../app.config';
+import {APP_BASE_HREF} from '@angular/common';
 
 @Component({
   selector: 'onpicks-communicate-box',
@@ -64,6 +67,8 @@ export class CommunicateBoxComponent implements AfterViewChecked, AfterViewInit,
   combine$;
 
   constructor(
+    @Inject(DOMAIN_HOST) private HOST: string,
+    @Inject(APP_BASE_HREF) private BASE_URL: string,
     private renderer: Renderer2,
     private store: Store<AppState>,
     private router: Router,
@@ -240,6 +245,29 @@ export class CommunicateBoxComponent implements AfterViewChecked, AfterViewInit,
     if ( event.key === 'Escape' ) {
       this.router.navigate( ['../../'], {relativeTo: this.route } );
     }
+  }
+
+  shareReview( xUrl ) {
+    const hello = this.HOST + this.BASE_URL + xUrl;
+
+    // Create a dummy input to copy the string array inside it
+    const dummy = document.createElement('input');
+
+    // Add it to the document
+    document.body.appendChild(dummy);
+
+    // Output the array into it
+    dummy.value = hello;
+
+    // Select it
+    dummy.select();
+
+    // Copy its contents
+    document.execCommand('copy');
+
+    // Remove it as its not needed anymore
+    document.body.removeChild(dummy);
+    this.store.dispatch( new DisplayAlertMessage('링크가 복사되었습니다.'));
   }
 
 }

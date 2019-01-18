@@ -141,6 +141,7 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
             /* async 데이터가 들어오는데, null이라면 return을 해줌 */
             this.currentList = null;
             if (_infoList != null) {
+              console.log(_infoList);
               this.valueList = _infoList.aggregation.values;
               this.locationList = _infoList.aggregation.locations;
               this.brandList = _infoList.aggregation.brands;

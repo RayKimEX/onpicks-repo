@@ -3,18 +3,19 @@ import {
   ChangeDetectionStrategy, ChangeDetectorRef,
   Component,
   EventEmitter, Inject,
-  Input,
+  Input, LOCALE_ID,
   OnChanges,
   Output,
   Renderer2, SimpleChanges,
   ViewChildren
 } from '@angular/core';
 import {select, Store} from '@ngrx/store';
-import {REPORT_REASON_MAP} from '../../../../../../../../app.config';
+import {DOMAIN_HOST, REPORT_REASON_MAP} from '../../../../../../../../app.config';
 import {tap} from 'rxjs/operators';
 import {PDataService} from '../../../../../../../../core/service/data-pages/p/p-data.service';
 import {TryToggleVoteReview} from '../../../../store/p.actions';
 import {DisplayAlertMessage} from '../../../../../../../../core/store/ui/ui.actions';
+import {APP_BASE_HREF} from '@angular/common';
 
 
 @Component({
@@ -75,6 +76,9 @@ export class PReviewsComponent implements AfterViewInit {
   ]
 
   constructor(
+    @Inject(DOMAIN_HOST) private HOST: string,
+    @Inject(APP_BASE_HREF) private BASE_URL: string,
+    @Inject(LOCALE_ID) public locale: string,
     @Inject(REPORT_REASON_MAP) public reasonMap: string,
     private pDataService: PDataService,
     private renderer: Renderer2,
@@ -129,6 +133,33 @@ export class PReviewsComponent implements AfterViewInit {
           alert('신고 중 에러가 발생하였습니다.');
         }
     );
+  }
+
+  shareReview( xUrl ) {
+    const hello = this.HOST + this.BASE_URL + xUrl;
+
+    // Create a dummy input to copy the string array inside it
+    const dummy = document.createElement('input');
+
+    // Add it to the document
+    document.body.appendChild(dummy);
+
+    // Output the array into it
+    dummy.value = hello;
+
+    // Select it
+    dummy.select();
+
+    // Copy its contents
+    document.execCommand('copy');
+
+    // Remove it as its not needed anymore
+    document.body.removeChild(dummy);
+    this.store.dispatch( new DisplayAlertMessage('링크가 복사되었습니다.'));
+  }
+
+  shareProduct( xUrl ) {
+
   }
 
 }
