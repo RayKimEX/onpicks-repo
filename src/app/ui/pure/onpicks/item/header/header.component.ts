@@ -27,6 +27,7 @@ import {AppState} from '../../../../../core/store/app.reducer';
 import {CURRENCY, MENU_MAP, RESPONSIVE_MAP} from '../../../../../app.config';
 import {DisplayAlertMessage, RemoveAlertMessage} from '../../../../../core/store/ui/ui.actions';
 import {BreakpointObserver, BreakpointState} from '../../../../../../../node_modules/@angular/cdk/layout';
+import {TryLogout} from '../../../../../core/store/auth/auth.actions';
 
 @Component({
   selector: 'ui-header',
@@ -128,8 +129,7 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
         if ( this.scrollForAlert$ == null ) {
           this.scrollForAlert$ = fromEvent( window , 'scroll').subscribe(
             scrollValue => {
-
-              if( window.pageYOffset >= 110 ){
+              if( window.pageYOffset >= 110 ) {
                 this.renderer.setStyle(this.alertMessage.nativeElement, 'position', 'fixed');
                 this.renderer.setStyle(this.alertMessage.nativeElement, 'top', '0');
               } else {
@@ -144,7 +144,8 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
       });
 
     this.auth$ = this.store.pipe(
-      select('auth')
+      select('auth'),
+      shareReplay(1)
     );
 
     this.url$ = this.store.pipe(
@@ -286,6 +287,7 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   clickMobileSearch() {
+
     if ( this.mobileSearchBox.nativeElement.style.display === '' || this.mobileSearchBox.nativeElement.style.display === 'none' ) {
       this.renderer.setStyle( this.mobileSearchBox.nativeElement, 'display', 'inline-block');
       this.renderer.setStyle( this.mobileSearchIcon.nativeElement, 'display', 'none');
@@ -295,6 +297,7 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
       this.renderer.setStyle( this.mobileIconOuter.nativeElement, 'top', '50%');
       this.renderer.setStyle( this.mobileIconOuter.nativeElement, 'transform', 'translateY(-50%)');
       this.renderer.setStyle( this.mobileIconOuter.nativeElement, 'right', '0px');
+      this.mobileSearchBox.nativeElement.children[0].children[1].focus();
     } else {
       this.renderer.setStyle( this.mobileSearchIcon.nativeElement, 'display', 'inline-block');
       this.renderer.setStyle( this.mobileSearchBox.nativeElement, 'display', 'none');
@@ -306,6 +309,14 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
       this.renderer.setStyle( this.mobileIconOuter.nativeElement, 'transform', '');
       this.renderer.setStyle( this.mobileIconOuter.nativeElement, 'right', '');
     }
+  }
+
+  logout(xInputChecked) {
+    this.store.dispatch(new TryLogout());
+    this.renderer.setProperty(xInputChecked, 'checked', false);
+    this.renderer.setStyle(this.mobileHamburger.nativeElement, 'display', 'none');
+    this.renderer.removeClass(document.body, 'u-open-modal');
+    this.router.navigate( ['/']);
   }
 }
 

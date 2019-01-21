@@ -1,5 +1,5 @@
 
-<header class="header" (mouseleave)="outMenu()">
+<header class="header" (mouseleave)="outMenu()" *ngIf="(auth$ | async) as auth;">
   <!--<div class="header__progressive-bar">-->
     <!--<div class="header__progressive-bar&#45;&#45;inner"></div>-->
   <!--</div>-->
@@ -20,7 +20,7 @@
           {{ locale === 'ko' ? '한글' : 'ENG' }}
         </emitter-change-preference>
 
-        <div class="header__miscell--profile u-float-right" *ngIf="(auth$ | async) as auth;">
+        <div class="header__miscell--profile u-float-right" *ngIf="auth !== null">
           <ng-container *ngIf="auth.isAuthenticated === false">
             <span class="header__miscell--profile--login" ><a i18n="@@header__login" routerLink="/member/login" >로그인/login</a></span>
             <span class="header__miscell--profile--slash">&nbsp;|&nbsp;</span>
@@ -193,39 +193,55 @@
   </div>
   <div #mobileHamburger class="header__mobile-hamburger">
     <nav>
-      <ul class="header__mobile-hamburger--ul subtitle-2-regular">
-        <li class="header__mobile-hamburger--li">
-          <div>
-            <a
-              (click)="routeForMobile('/account/my-shopping/orders', inputCheckedForToggle)">
-              나의 쇼핑
-            </a>
-          </div>
-        </li>
-        <li class="header__mobile-hamburger--li">
-          <div>
-            <a
-              (click)="routeForMobile('/account/my-reviews/written', inputCheckedForToggle)">
-              나의 리뷰
-            </a>
-          </div>
-        </li>
-        <li class="header__mobile-hamburger--li">
-          <div>
-            <a
-              (click)="routeForMobile('/account/wish-list', inputCheckedForToggle)">
-              다음에 구매하기
-            </a>
-          </div>
-        </li>
-        <li class="header__mobile-hamburger--li">
-          <div>
-            <a
-              (click)="routeForMobile('/account/settings/profile', inputCheckedForToggle)">
-              설정
-            </a>
-          </div>
-        </li>
+      <ul
+        [ngClass]="[auth.isAuthenticated ? 'header__mobile-hamburger--ul' : 'header__mobile-hamburger--ul--not-login' ]"
+        class="subtitle-2-regular">
+
+        <!--<a *ngIf="!auth.isAuthenticated" (click)="routeForMobile('/member/login', inputCheckedForToggle)">로그인</a>-->
+        <ng-container *ngIf="!auth.isAuthenticated">
+          <li class="header__mobile-hamburger--li--not-login">
+            <div>
+              <a
+                (click)="routeForMobile('/member/login', inputCheckedForToggle)">
+                로그인
+              </a>
+            </div>
+          </li>
+        </ng-container>
+        <ng-container *ngIf="auth.isAuthenticated">
+          <li class="header__mobile-hamburger--li">
+            <div>
+              <a
+                (click)="routeForMobile('/account/my-shopping/orders', inputCheckedForToggle)">
+                나의 쇼핑
+              </a>
+            </div>
+          </li>
+          <li class="header__mobile-hamburger--li">
+            <div>
+              <a
+                (click)="routeForMobile('/account/my-reviews/written', inputCheckedForToggle)">
+                나의 리뷰
+              </a>
+            </div>
+          </li>
+          <li class="header__mobile-hamburger--li">
+            <div>
+              <a
+                (click)="routeForMobile('/account/wish-list', inputCheckedForToggle)">
+                다음에 구매하기
+              </a>
+            </div>
+          </li>
+          <li class="header__mobile-hamburger--li">
+            <div>
+              <a
+                (click)="routeForMobile('/account/settings/profile', inputCheckedForToggle)">
+                설정
+              </a>
+            </div>
+          </li>
+        </ng-container>
       </ul>
       <ul class="header__mobile-hamburger--ul subtitle-2-regular">
         <li
@@ -267,7 +283,7 @@
         </li>
         <li class="header__mobile-hamburger--li">
           <div>
-            <a>로그아웃</a>
+            <a *ngIf="auth.isAuthenticated" (click)="logout(inputCheckedForToggle)">로그아웃</a>
           </div>
         </li>
       </ul>

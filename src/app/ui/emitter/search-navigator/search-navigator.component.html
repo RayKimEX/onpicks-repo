@@ -313,11 +313,11 @@
       <div class="col-9-of-12 search-content">
         <div *ngIf="currentList !== null; else loading"  >
           <h1 class="search-content__title h1-bold">
-            <ng-container *ngIf="searchState == 'search'">
+            <div *ngIf="searchState == 'search'">
               <span
                 *ngIf="searchState == 'search'"
                 class="u-color-green">{{queryParams.term}}</span>에 대한 검색 결과 {{totalCount}}건
-            </ng-container>
+            </div>
 
             <ng-container  *ngIf="searchState == 'category'">
               <ng-container *ngIf="currentList.length !== 0">
@@ -330,10 +330,19 @@
               </ng-container>
               <ng-container *ngIf="currentList.length === 0">
                 해당 카테고리는 준비중 입니다.
-
               </ng-container>
             </ng-container>
           </h1>
+          <div class="search-content__mobile-filter">
+            <div class="search-content__mobile-filter--table">
+              <div class="search-content__mobile-filter--table--vertical-center">필터</div>
+            </div>
+          </div>
+          <div class="search-content__mobile-sorting">
+            <div class="search-content__mobile-sorting--table">
+              <div class="search-content__mobile-sorting--table--vertical-center">인기순</div>
+            </div>
+          </div>
           <div class="search-content__content--outer">
             <div class="search-content__content">
               <ul #container>

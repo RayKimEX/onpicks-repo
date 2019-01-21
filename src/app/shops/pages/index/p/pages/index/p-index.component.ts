@@ -38,8 +38,8 @@ export class PIndexComponent implements OnDestroy {
     private uiService: UiService,
     private router: Router
   ) {
-    // 글로벌 하게 해야되서 reviews는 갖고옴, reviews component와, communicate-box
 
+    // 글로벌 하게 해야되서 reviews는 갖고옴, reviews component와, communicate-box
     this.store.dispatch(new TryGetProductInfo(this.route.snapshot.params.id));
     this.pData$ = this.store.pipe(
       select( state => state.p.data),
@@ -47,19 +47,17 @@ export class PIndexComponent implements OnDestroy {
         // 해당 페이지에 들어 왔을때, reviews에서, scroll값이 있으면 해당 스크롤로 이동
         // TODO : 좀 가라로 한듯함
         const url = this.router.url.split('/');
-        if ( url.length > 4 && url[4] === 'reviews'){
+        if ( url.length > 4 && url[4] === 'reviews') {
           const temp = url[5].substring(url[5].indexOf('?'), url[5].length);
           const splitTemp = temp.split('=');
           window.scrollTo(0, parseInt(splitTemp[1], 10))
           setTimeout( () => window.scrollTo(0, parseInt(splitTemp[1], 10)), 500);
         }
-
       })
     );
+
     this.pPictureReviews$ = this.pDataService.getPictureReviewsData(this.route.snapshot.params.id).pipe( tap( v => console.log(v)));
     this.weeklyBest$ = this.uiService.getWeeklyBestGoods();
-
-
   }
 
   ngOnDestroy() {

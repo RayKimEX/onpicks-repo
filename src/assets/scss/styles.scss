@@ -514,6 +514,13 @@ textarea {
     padding: 0 3.2rem;
   }
 
+  @include respond(sb) {
+    padding: 0 3.2rem;
+  }
+
+  @include respond(tb) {
+    padding: 0 1.6rem;
+  }
 
 
   /* class이름이 col로 시작한다는 말임 */
