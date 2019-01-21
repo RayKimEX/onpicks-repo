@@ -553,13 +553,27 @@ onpicks-check-box {
       margin-bottom: 1.6rem;
       position: relative;
       width : 100%;
-      height : 100%;
+      height:26.4rem;
+
+      padding-top: 100%;
       img {
-        width : 100%;
-        height : 100%;
+        position: absolute;
+        margin: auto;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        max-width: 100%;
+        max-height: 100%;
         @include respond(sb){
-          width : 100%;
-          height : 100%;
+          position: absolute;
+          margin: auto;
+          top: 0;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          max-width: 100%;
+          max-height: 100%;
         }
       }
       onpicks-list-active-button {

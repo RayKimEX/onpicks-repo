@@ -10,7 +10,9 @@ export class PThumbnailComponent implements OnInit, OnDestroy {
   @Input('imagesLargeList') imagesLargeList;
   @Input('imagesSmallList') imagesSmallList;
 
-  constructor() { }
+  constructor() {
+
+  }
 
   ngOnInit() {
 

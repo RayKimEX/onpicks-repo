@@ -351,7 +351,7 @@
 
                     <div class="search-content__item--image-outer">
                       <a href="" routerLink="/shops/p/{{item.slug}}">
-                        <img drCleanLoad src="{{item.thumbnail}}" alt="">
+                        <img drLazyLoad [relativeOption]="false" src="{{item.thumbnail}}" alt="">
                       </a>
 
                       <!--카트정보가 어떤식으로 들어갈지 알아야, 대충이라도 작업할 수 있음.-->
@@ -361,8 +361,8 @@
                           [amount]="cartStore.cartList[item.slug] === undefined ? 0 : cartStore.cartList[item.slug]?.quantity"
                           *ngSwitchCase="0"
                           (addEvent)="addToCart($event, item.slug, item.ship_alone ? 'free' : locationMap[item.location.slug].sequence)"
-                          (subtractEvent)="subtractFromCart($event, item.slug, item.ship_alone ? 'free' : locationMap[item.location.slug].sequence)"
-                        ></onpicks-list-active-button>
+                          (subtractEvent)="subtractFromCart($event, item.slug, item.ship_alone ? 'free' : locationMap[item.location.slug].sequence)">
+                        </onpicks-list-active-button>
 
                         <div
                           class="search-content__item--option-product"

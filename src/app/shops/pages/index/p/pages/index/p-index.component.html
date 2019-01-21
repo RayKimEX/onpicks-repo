@@ -4,7 +4,7 @@
 
 
 <ng-container *ngIf="(pData$ | async) as data; else  loading">
-  <div class="current-nav" >
+  <div class="current-nav">
     <div class="row">
       <span *ngFor="let item of data?.category; index as i">
         <span class="current-nav__category subtitle-2-bold">{{item.name}}</span>

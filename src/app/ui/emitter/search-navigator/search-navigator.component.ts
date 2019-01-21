@@ -126,7 +126,6 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
         this.currentParamList = {
           ...val
         };
-        console.log(val);
 
         const url = this.router.url.split('/');
         if (url[2].indexOf('search') > -1) {
