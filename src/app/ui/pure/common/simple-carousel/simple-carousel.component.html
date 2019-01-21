@@ -18,7 +18,7 @@
 
     </div>
     <button
-      *ngIf="!imagesLargeList.length === 1"
+      *ngIf="!(imagesLargeList.length === 1)"
       class="ui-simple-carousel__images--large-prev-button"
       (click)="prevButton()">
       <svg width="15" height="26" viewBox="0 0 15 26">
@@ -26,7 +26,7 @@
       </svg>
     </button>
     <button
-      *ngIf="!imagesLargeList.length === 1"
+      *ngIf="!(imagesLargeList.length === 1)"
       class="ui-simple-carousel__images--large-next-button"
       (click)="nextButton()">
       <svg width="15" height="26" viewBox="0 0 15 26">
