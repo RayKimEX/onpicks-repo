@@ -24,7 +24,7 @@
 
               <div class="ui-mini-list__item--image-outer">
                 <a href="" [routerLink]="'/shops/p/' + item.slug">
-                  <img drLazyLoad src="{{item.thumbnail}}" alt="">
+                  <img drLazyLoad [relativeOption]="false" src="{{item.thumbnail}}" alt="">
                 </a>
                 <onpicks-list-active-button
                   [amount]="cartStore?.cartList[item.slug] === undefined ? 0 : cartStore?.cartList[item.slug]?.quantity"

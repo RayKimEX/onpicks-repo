@@ -1,0 +1,147 @@
+@import '../../../../../assets/scss/abstracts/variables';
+
+
+.ui-dynamic-carousel {
+
+  &__content {
+    width: 100%;
+    white-space: nowrap;
+    overflow:hidden;
+
+
+    &--ul{
+      height:inherit;
+      transition: transform .5s ease 0s;
+    }
+    &--outer {
+      height: inherit;
+      position:relative;
+    }
+    &--item {
+      width:100%;
+      height:inherit;
+      position:relative;
+      display: inline-block;
+      list-style: none;
+
+      & span {
+        display:block;
+        position: relative;
+        width : 100%;
+
+        padding-top: 100%;
+
+        img {
+          position: absolute;
+          margin: auto;
+          top: 0;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          max-width: 100%;
+          max-height: 100%;
+        }
+      }
+    }
+
+
+    &-next-button {
+      @include verticalCenter;
+      background-color:transparent;
+      border-width: 0;
+      right : 1.8rem;
+      width: 40px;
+      height: 40px;
+
+      svg{
+        cursor : pointer;
+        @include absCenter;
+        left:55%;
+      }
+    }
+
+    &-prev-button {
+      @include verticalCenter;
+      overflow: hidden;
+      border-width: 0;
+      background-color:transparent;;
+      left : 1.8rem;
+
+      width: 40px;
+      height: 40px;
+
+      svg{
+        cursor : pointer;
+        @include absCenter;
+        left : 47.5%;
+      }
+    }
+
+    &--small {
+      user-select: none;
+      white-space:nowrap;
+      //overflow-x: scroll;;
+      margin-top : 1.6rem;
+
+      @include respond(fb) {
+        display:none;
+      }
+
+      &-mobile {
+        display:none;
+        text-align: center;
+        @include respond(fb) {
+          display:block;
+        }
+        &--circle {
+          display:inline-block;
+          width:0.8rem;
+          height:0.8rem;
+          border-radius: 50%;
+          background-color:$color-grey;
+          &:not(:last-child){
+            margin-right: 0.8rem;
+          }
+
+          &--active {
+            background-color : $color-black !important;
+          }
+        }
+      }
+
+
+      &-border {
+
+        img {
+          opacity :0.5;
+        }
+        &::after {
+          content : '';
+          position:absolute;
+          top : 0;
+          left : 0;
+
+          width : 6.4rem;
+          height: 6.4rem;
+          border: 2px solid $color-black;
+          border-radius : 2px;
+        }
+      }
+
+      & > div {
+        position:relative;
+        display:inline-block;
+        margin-right : 0.8rem;
+        padding : 0;
+        width : 6.4rem;
+        height : 6.4rem;
+        img {
+          border: 1px solid $color-light-grey;
+          border-radius : 2px;
+          width:100%;
+          height:100%;
+        }
+      }
+    }
+  }
+}

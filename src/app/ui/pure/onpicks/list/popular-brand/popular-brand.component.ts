@@ -24,12 +24,6 @@ export class PopularBrandComponent implements OnInit, AfterViewInit {
   @ViewChild('container') container;
   @Input('popularBrand') popularBrand;
 
-
-
-  // SHUUEMURA 슈에무라
-  // DIPTYQUE 딥디크
-  // L’OCCITANE 록시땅
-  // DIOR 디올 (edited)
   imageIndex = 0;
   itemListArray;
   translateXWidth = 192;

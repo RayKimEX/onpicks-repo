@@ -128,7 +128,7 @@
           class="navigation__checkbox"
           id="navi-toggle">
         <label
-          (click)="naviClickedForMobile(inputCheckedForToggle)"
+          (click)="showMenuForMobile(inputCheckedForToggle)"
           for="navi-toggle"
           class="navigation__button">
           <span class="navigation__menu-icon">&nbsp;</span>
@@ -191,7 +191,12 @@
       </div>
     </div>
   </div>
-  <div #mobileHamburger class="header__mobile-hamburger">
+  <!--*ngIf="!(currentUrl[2].indexOf('search') > -1)"-->
+  <div
+    #mobileHamburger
+    [ngStyle]="{ display: inputCheckedForToggle.checked && (currentUrl.length > 2 ? !(currentUrl[2].indexOf('search') > -1) : true )? 'block' : 'none'}"
+    class="header__mobile-hamburger">
+
     <nav>
       <ul
         [ngClass]="[auth.isAuthenticated ? 'header__mobile-hamburger--ul' : 'header__mobile-hamburger--ul--not-login' ]"

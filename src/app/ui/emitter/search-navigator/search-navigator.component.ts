@@ -126,6 +126,7 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
         this.currentParamList = {
           ...val
         };
+        console.log(val);
 
         const url = this.router.url.split('/');
         if (url[2].indexOf('search') > -1) {
@@ -379,7 +380,7 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
     this.router.navigate(['/shops/search'], {queryParams: {ordering: xSortSlug}, queryParamsHandling: 'merge'});
   }
 
-  categoryClicked( xCategoryCode ){
+  categoryClicked( xCategoryCode ) {
     this.router.navigate( ['/shops/search'], {queryParams: {category: xCategoryCode}, queryParamsHandling: 'merge'});
   }
 

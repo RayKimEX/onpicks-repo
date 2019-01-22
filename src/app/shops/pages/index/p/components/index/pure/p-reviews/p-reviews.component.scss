@@ -82,7 +82,7 @@ onpicks-circle-n-button {
 
 
   &__table {
-
+    width : 100%;
     border-collapse: collapse;
     border-spacing : 0;
     &--point {
@@ -98,6 +98,9 @@ onpicks-circle-n-button {
       &:first-child {
         width : 7.2rem;
       }
+      &:nth-child(2){
+        width : auto;
+      }
       &:last-child{
         text-align : right;
         width : 6rem;
@@ -107,7 +110,6 @@ onpicks-circle-n-button {
 
     &--line {
       position:relative;
-      width : 51.6rem;
       height : 2.4rem;
       background-color : #e5e5e5;
 

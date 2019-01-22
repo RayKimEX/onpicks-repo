@@ -149,7 +149,8 @@ export class PPictureReviewComponent implements OnInit, AfterViewInit, OnDestroy
 
         };
       });
-
+      this.imageSmallOuterArray = this.imageSmallOuter.toArray();
+      this.imageLargeOuterArray = this.imageLargeOuter.toArray();
       this.cd.markForCheck();
 
 
@@ -246,8 +247,7 @@ export class PPictureReviewComponent implements OnInit, AfterViewInit, OnDestroy
   }
 
   prevButton() {
-    this.imageLargeOuterArray = this.imageLargeOuter.toArray();
-    this.imageSmallOuterArray = this.imageSmallOuter.toArray();
+    if ( this.imageIndex === 0) { return; };
     if ( this.imageIndex <= this.imageSmallOuterArray.length - 5 ) {
       this.renderer.setProperty(this.imagesSmallOuter.nativeElement,
         'scrollLeft',
@@ -269,15 +269,15 @@ export class PPictureReviewComponent implements OnInit, AfterViewInit, OnDestroy
   }
 
   nextButton() {
-    this.imageLargeOuterArray = this.imageLargeOuter.toArray();
-    this.imageSmallOuterArray = this.imageSmallOuter.toArray();
+    if ( this.imageIndex >= this.imageLargeOuterArray.length - 3) { return; };
     if ( this.imageIndex >= 4 ) {
       this.renderer.setProperty(this.imagesSmallOuter.nativeElement,
         'scrollLeft',
         this.imagesSmallOuter.nativeElement.scrollLeft + 72);
     }
 
-    // this.imageIndex === this.imageLargeOuterArray.length - 3
+    // 버튼이 사라지는 조건 this.imageIndex < this.imageLargeOuterArray.length - 3
+
     switch (this.state) {
       case 'leftAnimating' :
 
@@ -291,8 +291,6 @@ export class PPictureReviewComponent implements OnInit, AfterViewInit, OnDestroy
         this.state = 'leftAnimating';
         break;
     }
-
-
   }
 
   private animateCarousel( direction: string, startPosition: string, addClassName: string, act: string ) {

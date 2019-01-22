@@ -36,21 +36,7 @@ export class SimpleCarouselComponent implements AfterViewInit, OnDestroy {
   @Input('imagesLargeList') imagesLargeList = null;
   @Input('imagesSmallList') imagesSmallList = null;
 
-
   // TODO : 모든 subscription에 대해서 unsubscribe확실하게 정리하기
-  // imagesLargeList = [
-  //   'http://img.onpicks.com/p-customer__image--large-2.png',
-  //   'http://img.onpicks.com/p-customer__image--large-3.png',
-  //   'http://img.onpicks.com/p-customer__image--large-4.png',
-  //   'http://img.onpicks.com/p-customer__image--large-5.png',
-  // ];
-
-  // imagesSmallList = [
-  //   'http://img.onpicks.com/p-customer__image-small-1.jpg',
-  //   'http://img.onpicks.com/p-customer__image-small-2.jpg',
-  //   'http://img.onpicks.com/p-customer__image-small-3.jpg',
-  //   'http://img.onpicks.com/p-customer__image-small-4.jpg',
-  // ];
 
   imageIndex = 0;
   // 456(width) + 16 ( margin )

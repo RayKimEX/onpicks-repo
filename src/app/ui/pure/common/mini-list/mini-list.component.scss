@@ -110,8 +110,14 @@ $mini-width : 264+24px;
       width: 26.4rem;
       height: 26.4rem;
       img {
-        width: 26.4rem;
-        height: 26.4rem;
+        position: absolute;
+        margin: auto;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        max-width: 100%;
+        max-height: 100%;
       }
       onpicks-list-active-button {
         position: absolute;

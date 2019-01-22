@@ -3,9 +3,9 @@ import {DeleteProductAndReviewInfo, TryGetProductInfo, TryGetReviewProduct} from
 import {ActivatedRoute, Router} from '@angular/router';
 import {select, Store} from '@ngrx/store';
 import {
-  ChangeDetectionStrategy,
+  ChangeDetectionStrategy, ChangeDetectorRef,
   Component,
-  ElementRef, OnDestroy,
+  ElementRef, Inject, OnDestroy, OnInit,
   Renderer2,
   ViewChild
 } from '@angular/core';
@@ -15,6 +15,8 @@ import {
   tap
 } from 'rxjs/operators';
 import {UiService} from '../../../../../../core/service/ui/ui.service';
+import {BreakpointObserver, BreakpointState} from '../../../../../../../../node_modules/@angular/cdk/layout';
+import {RESPONSIVE_MAP} from '../../../../../../app.config';
 
 @Component({
   selector: 'onpicks-p',
@@ -23,14 +25,18 @@ import {UiService} from '../../../../../../core/service/ui/ui.service';
   changeDetection : ChangeDetectionStrategy.OnPush,
 })
 
-export class PIndexComponent implements OnDestroy {
+export class PIndexComponent implements OnInit, OnDestroy {
   @ViewChild('communicateBox', { read : ElementRef}) communicateBox;
 
   pData$ = null;
   pPictureReviews$;
   weeklyBest$;
+  isFB = false;
 
   constructor(
+    @Inject(RESPONSIVE_MAP) public categoryMap,
+    private breakpointObserver:  BreakpointObserver,
+    private cd: ChangeDetectorRef,
     private store: Store<any>,
     private renderer: Renderer2,
     private pDataService: PDataService,
@@ -58,6 +64,20 @@ export class PIndexComponent implements OnDestroy {
 
     this.pPictureReviews$ = this.pDataService.getPictureReviewsData(this.route.snapshot.params.id).pipe( tap( v => console.log(v)));
     this.weeklyBest$ = this.uiService.getWeeklyBestGoods();
+  }
+
+  ngOnInit() {
+    this.breakpointObserver
+      .observe([this.categoryMap['fb']])
+      .subscribe((state: BreakpointState) => {
+        if (state.matches) {
+          this.isFB = true;
+          this.cd.markForCheck();
+        } else {
+          this.isFB = false;
+          this.cd.markForCheck();
+        }
+      });
   }
 
   ngOnDestroy() {

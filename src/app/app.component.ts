@@ -64,14 +64,10 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
   private _navigationInterceptor(event: RouterEvent): void {
 
     if ( event instanceof NavigationStart ){
-      console.log('start')
       this.previousUrl = this.router.url.split('/');
     }
 
     if (event instanceof NavigationEnd) {
-
-      console.log(event);
-      console.log(this.router.url);
       const url = this.router.url.split('/');
       const slug =  url[url.length - 1];
 
@@ -84,7 +80,7 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
 
 
       }
-      // category가 /c/안에 url일경우
+      // category가 /c/안에 url이 아닐때 return;
       if ( url[2] !== 'c' ) { return; };
 
       // twoDepth

@@ -39,6 +39,7 @@ export class PMenuComponent implements OnInit, OnDestroy, AfterViewInit, OnChang
 
   @ViewChild('titleHeight') titleHeightElement;
   @ViewChild('pMenu') pMenu: ElementRef;
+  @Input('isMobile') isMobile = false;
   @Input('data')
     set data( xData) {
       console.log(xData);
@@ -56,7 +57,7 @@ export class PMenuComponent implements OnInit, OnDestroy, AfterViewInit, OnChang
       this.titleHeight = result === 0  ? this.titleHeight : result;
 
       // @ts-ignore
-      const that = this
+      const that = this;
       new ResizeSensor(this.titleHeightElement.nativeElement, function() {
         that.titleHeight = parseInt(getComputedStyle(that.titleHeightElement.nativeElement).height, 10);
       });
@@ -82,7 +83,6 @@ export class PMenuComponent implements OnInit, OnDestroy, AfterViewInit, OnChang
               cnt++;
             }
           });
-
         });
 
         const listTemp = [];
@@ -230,8 +230,6 @@ export class PMenuComponent implements OnInit, OnDestroy, AfterViewInit, OnChang
     if ( this.cartStore$ !== undefined) {
       this.cartStore$.unsubscribe();
     }
-
-
   }
   optionSelect(xValue, xIndex) {
     this.keyListForSlug[xIndex] = xValue.value;
@@ -288,49 +286,52 @@ export class PMenuComponent implements OnInit, OnDestroy, AfterViewInit, OnChang
 
     const weatherDates = []
 
-    this.scrollEvent = fromEvent(window, 'scroll');
-    this.PStore$ = this.store.pipe( select(state => state['p']['ui']));
-    let setStatus = '';
-    let menuTopValue: { menuPosition};
-    this.PStore$ = this.PStore$.subscribe( (val: { menuPosition})  => {
-      menuTopValue = val;
+    if ( !this.isMobile ) {
+      this.scrollEvent = fromEvent(window, 'scroll');
+      this.PStore$ = this.store.pipe( select(state => state['p']['ui']));
+      let setStatus = '';
+      let menuTopValue: { menuPosition};
+      this.PStore$ = this.PStore$.subscribe( (val: { menuPosition})  => {
+        menuTopValue = val;
 
-      console.log(val);
-      // absolute
-      if (window.pageYOffset >= (menuTopValue.menuPosition - this.titleHeight) - 32 ) {
-        this.renderer.setStyle(this.pMenu.nativeElement, 'position', 'absolute');
-        this.renderer.setStyle(this.pMenu.nativeElement, 'z-index', '1');
-        this.renderer.setStyle(this.pMenu.nativeElement, 'top', (menuTopValue.menuPosition - this.titleHeight) * 0.1 + 'rem');
-        // this.renderer.setStyle(this.pMenu.nativeElement, 'top', (menuTopValue.menuPosition - this.titleHeight) * 0.1 + 'rem');
-      }
-
-      this.cd.markForCheck();
-    });
-    this.scrollEvent = this.scrollEvent.subscribe(val => {
-      if (window.pageYOffset >= 172) {
-        if (window.pageYOffset >= (menuTopValue.menuPosition - this.titleHeight) - 32) {
-          if ( setStatus === 'absolute') { return; }
-          setStatus = 'absolute';
+        console.log(val);
+        // absolute
+        if (window.pageYOffset >= (menuTopValue.menuPosition - this.titleHeight) - 32 ) {
           this.renderer.setStyle(this.pMenu.nativeElement, 'position', 'absolute');
           this.renderer.setStyle(this.pMenu.nativeElement, 'z-index', '1');
           this.renderer.setStyle(this.pMenu.nativeElement, 'top', (menuTopValue.menuPosition - this.titleHeight) * 0.1 + 'rem');
-        } else {
-          if ( setStatus === 'fixed' ) { return; }
-          setStatus = 'fixed';
-          this.renderer.setStyle(this.pMenu.nativeElement, 'position', 'fixed');
-          this.renderer.setStyle(this.pMenu.nativeElement, 'z-index', '1');
-          this.renderer.setStyle(this.pMenu.nativeElement, 'top', '32px');
+          // this.renderer.setStyle(this.pMenu.nativeElement, 'top', (menuTopValue.menuPosition - this.titleHeight) * 0.1 + 'rem');
         }
-      } else {
-        if (setStatus === '') return;
-        setStatus = '';
-        this.renderer.setStyle(this.pMenu.nativeElement, 'position', 'absolute');
-        this.renderer.setStyle(this.pMenu.nativeElement, 'z-index', '1');
-        this.renderer.setStyle(this.pMenu.nativeElement, 'top', 'auto');
-      }
 
-      this.cd.markForCheck();
-    });
+        this.cd.markForCheck();
+      });
+      this.scrollEvent = this.scrollEvent.subscribe(val => {
+        if (window.pageYOffset >= 172) {
+          if (window.pageYOffset >= (menuTopValue.menuPosition - this.titleHeight) - 32) {
+            if ( setStatus === 'absolute') { return; }
+            setStatus = 'absolute';
+            this.renderer.setStyle(this.pMenu.nativeElement, 'position', 'absolute');
+            this.renderer.setStyle(this.pMenu.nativeElement, 'z-index', '1');
+            this.renderer.setStyle(this.pMenu.nativeElement, 'top', (menuTopValue.menuPosition - this.titleHeight) * 0.1 + 'rem');
+          } else {
+            if ( setStatus === 'fixed' ) { return; }
+            setStatus = 'fixed';
+            this.renderer.setStyle(this.pMenu.nativeElement, 'position', 'fixed');
+            this.renderer.setStyle(this.pMenu.nativeElement, 'z-index', '1');
+            this.renderer.setStyle(this.pMenu.nativeElement, 'top', '32px');
+          }
+        } else {
+          if (setStatus === '') return;
+          setStatus = '';
+          this.renderer.setStyle(this.pMenu.nativeElement, 'position', 'absolute');
+          this.renderer.setStyle(this.pMenu.nativeElement, 'z-index', '1');
+          this.renderer.setStyle(this.pMenu.nativeElement, 'top', 'auto');
+        }
+
+        this.cd.markForCheck();
+      });
+    }
+
     // @ts-ignore
     const that = this;
 

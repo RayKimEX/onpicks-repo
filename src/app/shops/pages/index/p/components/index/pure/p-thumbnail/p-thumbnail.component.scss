@@ -1,47 +1,30 @@
 @import '~src/assets/scss/abstracts/variables';
 
 .p-thumbnail {
+  position: relative;
+  width: 64.8rem;
 
-  &__large-outer {
-    position:relative;
+  @include respond(fb) {
+    width: 100%;
+  }
+  &__large {
 
-    a {
-      & svg {
-        top:50%;
-        display : inline-block;
-        position : absolute;
-        transform : translateY(-50%);
-        right : 2.4rem;
-      }
-
-      &:first-of-type svg {
-        left : 2.4rem;
-        transform : translateY(-50%) rotate(180deg);
+    &--share {
+      display:none;
+      position:absolute;
+      top : 1.6rem;
+      right : 1.6rem;
+      z-index:10;
+      @include respond(fb){
+        display:inline-block;
       }
     }
+
+    &--outer {
+
+
+    }
   }
-
-  img:not(:first-child){
-    margin-right:0.8rem;
-  }
-
-
-  //&__images--large {
-  //  margin : auto;
-  //  width: 56.5rem;
-  //  height:64.6rem;
-  //  background-color : $color-black;
-  //}
-  //
-  //
-  //&__images--small {
-  //  display:inline-block;
-  //  margin-top : 1.6rem;
-  //  margin-right: 0.8rem;
-  //  width:6.4rem;
-  //  height:6.4rem;
-  //  background-color:$color-grey;
-  //}
 }
 
 

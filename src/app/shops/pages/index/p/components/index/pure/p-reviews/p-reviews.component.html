@@ -76,7 +76,7 @@
         </onpicks-sort-box>
       </div>
 
-      <div *ngFor="let item of data.results; index as i">
+      <div *ngFor="let item of currentList; index as i">
         <figure class="p-reviews__figure u-margin-bottom--small">
           <span class="p-reviews__figure--outer">
             <img
@@ -101,7 +101,7 @@
           <!--array length가 0이거나, pictures[0]이 ''인경우 : 이미지가 없는경우-->
           <p
             class="p-reviews__content body-1-regular"
-             [ngStyle]="{'width' : data.list[item].pictures.length === 0 || data.list[item].pictures[0] === '' ? 'auto' : '52.8rem'}">
+             [ngStyle]="{'width' : data.list[item].pictures.length === 0 || data.list[item].pictures[0] === '' ? 'auto' : 'calc(100% - 12rem)'}">
             {{data.list[item].text}}
           </p>
 

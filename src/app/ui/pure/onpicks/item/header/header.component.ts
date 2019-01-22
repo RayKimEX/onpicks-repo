@@ -58,6 +58,20 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
   url$: Observable<any>;
   cart$;
   uiStore$;
+  uiCategoryStore$;
+  uiActiveUrl$;
+
+
+  /** mobileCategoryFilterZone**/
+  categoryList;
+  result;
+  previous;
+  currentSlug;
+  currentCode;
+  currentName;
+  currentTitle;
+  currentUrl;
+  /*****************************/
 
   scrollForDeliveryBox$ = null;
   scrollForAlert$ = null;
@@ -80,7 +94,7 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
     private renderer: Renderer2,
     private authService: AuthService,
     private store: Store<AppState>,
-    private router: Router,
+    public router: Router,
     private route: ActivatedRoute,
     private breakpointObserver:  BreakpointObserver,
     private cd: ChangeDetectorRef
@@ -95,6 +109,23 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
         } else {
           this.mobileAlertTop = '11rem';
         }
+      });
+    this.uiActiveUrl$ =  this.store.pipe(select(state => state.ui.activeUrl))
+      .subscribe(val => {
+        this.currentUrl = val;
+      });
+
+    this.uiCategoryStore$ = this.store.pipe(select(state => state.ui.currentCategoryList))
+      .subscribe(val => {
+        console.log(location.href.split('/'));
+        // this.categoryList = val;
+        this.categoryList = val.entities;
+        this.result = val.result;
+        this.previous = val.previous;
+        this.currentSlug = val.currentSlug;
+        this.currentCode = val.currentCode;
+        this.currentName = val.currentName;
+        this.currentTitle = val.currentTitle;
       });
 
     this.uiStore$ = this.store.pipe( select( state => state.ui.alertMessage ))
@@ -250,13 +281,11 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
     this.store.dispatch( new DisplayAlertMessage('준비중입니다'));
   }
 
-  naviClickedForMobile( xInputChecked ) {
+  showMenuForMobile( xInputChecked ) {
     console.log(xInputChecked.checked);
     if(xInputChecked.checked) {
-      this.renderer.setStyle(this.mobileHamburger.nativeElement, 'display', 'none');
       this.renderer.removeClass(document.body, 'u-open-modal');
     } else {
-      this.renderer.setStyle(this.mobileHamburger.nativeElement, 'display', 'block');
       this.renderer.addClass(document.body , 'u-open-modal');
     }
     // this.mobileHamburger.

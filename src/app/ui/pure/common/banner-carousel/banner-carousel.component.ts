@@ -34,14 +34,6 @@ export class BannerCarouselComponent implements OnInit, AfterViewInit, OnDestroy
   myInterval;
   scrollBarWidth;
 
-
-
-  // backLoad() {
-  //   this.itemList.forEach( (item, index ) => {
-  //     this.renderer.setStyle(item.nativeElement, 'opacity', 1);
-  //   });
-  // }
-
   // TODO : 화면이 넘어갔을때, 이미지를 안나오게 해서, resource 최적화
 
   constructor(
@@ -91,7 +83,6 @@ export class BannerCarouselComponent implements OnInit, AfterViewInit, OnDestroy
     this.capturedBrowserWidth = window.innerWidth - this.scrollBarWidth;
     console.warn(this.capturedBrowserWidth);
     this.capturedTranslateX = window.innerWidth - this.scrollBarWidth;
-
     this.imagesLargeList.splice(0, 0, this.imagesLargeList.slice(this.imagesLargeList.length - 1, this.imagesLargeList.length)[0]);
     this.imagesLargeList.push(this.imagesLargeList.slice(1, 2)[0]);
   }
@@ -111,9 +102,11 @@ export class BannerCarouselComponent implements OnInit, AfterViewInit, OnDestroy
     this.renderer.setStyle(this.container.nativeElement, 'transition', 'x');
     this.renderer.setStyle(this.container.nativeElement, 'transform', 'translateX(-' + ( (window.innerWidth - this.scrollBarWidth) * this.imageIndex ) + 'px)');
     // this.myInterval = setInterval(() => this.moveNext(), 4000);
-}
+  }
 
   nextButton() {
+    console.log(this.imageIndex )
+    console.log(this.imagesLargeList.length)
 
     clearInterval( this.myInterval );
     // this.myInterval = setInterval( () => this.moveNext(), 4000);

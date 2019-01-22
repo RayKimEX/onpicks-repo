@@ -581,16 +581,6 @@ onpicks-check-box {
         right: 0;
         max-width: 100%;
         max-height: 100%;
-        @include respond(sb){
-          position: absolute;
-          margin: auto;
-          top: 0;
-          bottom: 0;
-          left: 0;
-          right: 0;
-          max-width: 100%;
-          max-height: 100%;
-        }
       }
       onpicks-list-active-button {
         position: absolute;

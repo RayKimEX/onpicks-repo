@@ -1,22 +1,18 @@
-<ng-template #spomething>
-  hello
-</ng-template>
-
-
 <div class="ui-simple-carousel__images">
 
   <div class="ui-simple-carousel__images--large">
+    <ul>
+      <li
+        *ngFor="let item of imagesLargeList; index as i"
+        #imageLargeOuter
+        [ngClass]="{'simple-carousel-active' : i === this.imageIndex}"
+        class="ui-simple-carousel__images--large-cur">
+        <span>
+          <img [src]="item" alt="">
+        </span>
 
-    <div
-      *ngFor="let item of imagesLargeList; index as i"
-      #imageLargeOuter
-      [ngClass]="{'simple-carousel-active' : i === this.imageIndex}"
-      class="ui-simple-carousel__images--large-cur">
-      <span>
-        <img [src]="item" alt="">
-      </span>
-
-    </div>
+      </li>
+    </ul>
     <button
       *ngIf="!(imagesLargeList.length === 1)"
       class="ui-simple-carousel__images--large-prev-button"

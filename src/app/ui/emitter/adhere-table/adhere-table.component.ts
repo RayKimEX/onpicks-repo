@@ -29,7 +29,7 @@ export class AdhereTableComponent implements OnInit {
     this.viewModalEmitter.emit({ condition : xCondition, item: xItem, orderId : xOrderId });
   }
 
-  completePurchase(xOrderId, xProductSlug, index, itemIndex){
+  completePurchase(xOrderId, xProductSlug, index, itemIndex) {
     this.accountDataService.completePurchaseData( xOrderId, xProductSlug).subscribe( response => {
       this.data.results[index].items[itemIndex] = response;
       this.cd.markForCheck();
@@ -38,7 +38,7 @@ export class AdhereTableComponent implements OnInit {
     });
   }
 
-  returnPurchase(xOrderId, xProductSlug, index, itemIndex){
+  returnPurchase(xOrderId, xProductSlug, index, itemIndex) {
     this.accountDataService.returnPurchaseData( xOrderId, xProductSlug).subscribe( response => {
       this.data.results[index].items[itemIndex] = response;
       console.log('returned');
@@ -49,7 +49,7 @@ export class AdhereTableComponent implements OnInit {
     });
   }
 
-  cancelPurchase(xOrderId, xProductSlug, index, itemIndex){
+  cancelPurchase(xOrderId, xProductSlug, index, itemIndex) {
     this.accountDataService.cancelPurchaseData( xOrderId, xProductSlug).subscribe( response => {
       this.data.results[index].items[itemIndex] = response;
       console.log('canceled');

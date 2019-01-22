@@ -18,6 +18,7 @@ import { StoreModule } from '@ngrx/store';
 import { PRefundComponent } from './components/index/pure/p-refund/p-refund.component';
 import { EffectsModule } from '@ngrx/effects';
 import { PEffects } from './store/p.effects';
+import { PPictureReviewSubComponent } from './components/index/pure/p-picture-review-sub/p-picture-review-sub.component';
 
 @NgModule({
   imports: [
@@ -44,6 +45,8 @@ import { PEffects } from './store/p.effects';
     POtherSellersComponent,
 
     PRefundComponent,
+
+    PPictureReviewSubComponent,
   ]
 })
 export class PModule { }

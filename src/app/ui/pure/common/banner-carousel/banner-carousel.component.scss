@@ -29,9 +29,6 @@
       z-index : 1;
 
       position: inherit;
-      /* display: inline-block; */
-      /* z-index: 1; */
-      /* position: absolute; */
       top: 50%;
       -webkit-transform: translateY(-50%);
       transform: translateY(-50%);
@@ -135,14 +132,14 @@
     }
 
     ul{
-      padding:0;
-      transition: transform .5s ease 0s;
+      padding:0;      transition: transform .5s ease 0s;
       li {
         width:100%;
         height:inherit;
         vertical-align : top;
         display: inline-block;
         list-style: none;
+
         & > div {
           width :100%;
         }

@@ -29,10 +29,13 @@
         <ng-container *ngIf="_data !== null;">{{_data?.title}}</ng-container>
         <!--알엑스바 리얼 푸드 프로틴 에너지바 믹스드 베리 52G / RxBar Real Food Protein Bars Mixed BerryRxBar Re-->
       </h1>
-      <ui-star-rating
-        [star-point]="_data ? _data.review_avg_rating : 0">
-      </ui-star-rating>
-      <span class="p-menu__product-info--read-reviews subtitle-1-regular u-color-dark-grey">{{_data?.review_count}}개 리뷰</span>
+      <div class="p-menu__product-info--reviews">
+        <ui-star-rating
+          [star-point]="_data ? _data.review_avg_rating : 0">
+        </ui-star-rating>
+        <span class="p-menu__product-info--reviews--read-reviews subtitle-1-regular u-color-dark-grey">{{_data?.review_count}}개 리뷰</span>
+      </div>
+
       <div class="p-menu__product-info--MSRP subtitle-1-regular">
         <!--TODO: MSRP는 지역에 따라 보이고 안보이고 설정-->
         <!--<span class="p-menu__product-info&#45;&#45;MSRP-name">MSRP&nbsp;</span>-->

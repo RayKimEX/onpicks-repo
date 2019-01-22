@@ -2,6 +2,10 @@
 
 .current-nav {
   margin-top : 3.2rem;
+
+  @include respond(fb){
+    display:none;
+  }
   &__slash {
     padding: 0 2.4rem;
     color: $color-grey;
@@ -12,6 +16,34 @@
   }
 }
 
+.product-detail {
+  display:block;
+  @include respond(fb){
+
+    width:74.8rem;
+    margin : 0 auto;
+  }
+  @include respond(sb){
+    width:100%;
+    padding: 0 1.6rem
+  }
+}
+
+//
+//.product-detail-mobile {
+//  display:none;
+//  width:74.8rem;
+//  margin : 0 auto;
+//  @include respond(fb){
+//    display:block;
+//  }
+//
+//  @include respond(sb){
+//    width:100%;
+//    padding: 0 1.6rem
+//  }
+//}
+
 
 [class ^= "col-"]{
   background-color : #FFFFFF;
@@ -21,4 +53,8 @@
 onpicks-value-list{
   display:block;
   margin-bottom: 4rem;
+  @include respond(fb){
+    padding-bottom : 2.4rem;
+    border-bottom : 1px solid $color-light-grey;
+  }
 }
