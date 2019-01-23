@@ -9,6 +9,7 @@ import {AppState} from '../../../core/store/app.reducer';
 import {Store} from '@ngrx/store';
 import {TryLogin} from '../../../core/store/auth/auth.actions';
 import {AuthService} from '../../../core/service/auth/auth.service';
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -24,7 +25,8 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private store: Store<AppState>,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router,
   ) {
 
   }
@@ -70,7 +72,7 @@ export class LoginComponent implements OnInit {
   }
 
   loginWithSocial (xType) {
-    this.authService.loginWithSocial(xType).subscribe( v => console.log(v));
+    this.authService.loginWithSocial(xType).subscribe( v => this.router.navigateByUrl(v.authorization_url));
   }
 
 }
