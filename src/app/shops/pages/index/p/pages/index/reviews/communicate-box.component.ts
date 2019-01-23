@@ -52,8 +52,7 @@ export class CommunicateBoxComponent implements AfterViewChecked, AfterViewInit,
 
 
 
-  currentReviewIndex = 0;
-  signInUserInfo: UserState;
+  currentReviewIndex = 0
 
   isViewImage = false;
 
@@ -84,7 +83,7 @@ export class CommunicateBoxComponent implements AfterViewChecked, AfterViewInit,
     private router: Router,
     private route: ActivatedRoute,
     private pDataService: PDataService,
-    private cd:ChangeDetectorRef
+    private cd: ChangeDetectorRef
   ) {
     const url = this.router.url.split('/');
     this.reviewsId = parseInt(url[5], 10);
@@ -130,17 +129,13 @@ export class CommunicateBoxComponent implements AfterViewChecked, AfterViewInit,
         (state: any) => state.auth.user
       ),
 
-    ).subscribe(
-      (val: UserState) => {
-        this.signInUserInfo = val;
-    });
+    );
 
   }
 
   ngOnDestroy() {
     this.renderer.setStyle( document.body, 'overflow', '' );
     this.combine$.unsubscribe();
-    this.userState$.unsubscribe();
     this.communicateBoxTransition$.unsubscribe();
 
     // route params는 unsubscribe할 필요 없음.

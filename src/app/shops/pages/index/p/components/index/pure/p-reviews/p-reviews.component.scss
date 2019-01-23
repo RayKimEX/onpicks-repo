@@ -182,6 +182,17 @@ onpicks-circle-n-button {
       margin-left: 0.8rem;
       margin-right: 3.2rem;
       top:-0.5rem;
+      @include respond(tb){
+        display:none;
+      }
+
+      &--icon {
+        @include respond(tb){
+          &:not(:last-child){
+            margin-right:1.6rem;
+          }
+        }
+      }
     }
 
     &--report {

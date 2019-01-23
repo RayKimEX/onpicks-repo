@@ -117,8 +117,9 @@
         </div>
 
         <div class="p-reviews__option">
-          <a>
-            <svg
+          <a
+            (click)="toggleVoteReviews(data.list[item].product, data.list[item].id, data.list[item].mark_as_voted)">
+            <svg class="p-reviews__option--feature--icon"
               width="18"
               height="20"
               viewBox="0 0 18 20">
@@ -130,23 +131,26 @@
             </svg>
 
             <span
-              (click)="toggleVoteReviews(data.list[item].product, data.list[item].id, data.list[item].mark_as_voted)"
               [ngClass]="{ 'p-reviews__option--active' : data.list[item].mark_as_voted}"
               class="p-reviews__option--feature action-1-medium">
               {{data.list[item].mark_as_voted ? '추천함' : '추천하기'}}
             </span>
           </a>
-          <a>
-            <img src="http://img.onpicks.com/comments-icon.jpg" alt="">
+          <a
+            (click)="commentReview('/shops/p/' + data.list[item].product + '/reviews/' + data.list[item].id)">
+            <img
+              class="p-reviews__option--feature--icon"
+              src="http://img.onpicks.com/comments-icon.jpg" alt="">
             <span
               class="p-reviews__option--feature action-1-medium"
-              (click)="commentReview('/shops/p/' + data.list[item].product + '/reviews/' + data.list[item].id)"
             >댓글 달기</span>
           </a>
-          <a>
-            <img src="http://img.onpicks.com/share-icon.jpg" alt="">
+          <a
+            (click)="shareReview('/shops/p/' + data.list[item].product + '/reviews/' + data.list[item].id)">
+            <img
+              class="p-reviews__option--feature--icon"
+              src="http://img.onpicks.com/share-icon.jpg" alt="">
             <span
-              (click)="shareReview('/shops/p/' + data.list[item].product + '/reviews/' + data.list[item].id)"
               class="p-reviews__option--feature action-1-medium">
               공유 하기
             </span>

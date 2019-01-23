@@ -44,10 +44,12 @@
 
       <onpicks-circle-p-button
         [left]="'1.8rem'"
+        *ngIf="imageIndex !== 0"
         (click)="prevButton()" >
       </onpicks-circle-p-button>
       <onpicks-circle-n-button
         [right]="'1.8rem'"
+        *ngIf="imageIndex < imagesLargeList?.length - 3 && imagesLargeList?.length !== 0"
         (click)="nextButton()">
       </onpicks-circle-n-button>
     </div>

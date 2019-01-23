@@ -26,7 +26,6 @@ import {PDataService} from '../../../../../../../../core/service/data-pages/p/p-
 
 export class PPictureReviewComponent implements OnInit, AfterViewInit, OnDestroy {
 
-  _pictureReviewList = [];
   @ViewChildren('imageLargeOuter') imageLargeOuter;
   @ViewChild('imagesSmallOuter') imagesSmallOuter;
   @ViewChildren('imageSmallOuter') imageSmallOuter;

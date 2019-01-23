@@ -107,6 +107,8 @@
 
 }
 
+
+:host(ui-header) {z-index:9000; position:fixed; width:100%; }
 .header {
   z-index:11;
   position:relative;
