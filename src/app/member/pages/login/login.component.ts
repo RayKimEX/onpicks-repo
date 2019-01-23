@@ -40,10 +40,13 @@ export class LoginComponent implements OnInit {
   }
 
   loginClick() {
+    const url = new URL(location.href);
+    const returnURL = url.searchParams.get('return');
+    console.log(returnURL);
     this.info.email = this.inputEmail.nativeElement.value;
     this.info.password = this.inputPassword.nativeElement.value;
 
-    this.store.dispatch( new TryLogin(this.info));
+    this.store.dispatch( new TryLogin({info : this.info, returnURL: returnURL }));
   }
 
   checkBox(persistent) {
@@ -51,20 +54,22 @@ export class LoginComponent implements OnInit {
   }
   login (event: KeyboardEvent) {
 
+    const url = new URL(location.href);
+    const returnURL = url.searchParams.get('return');
+    console.log(returnURL);
     if (event === undefined) {
 
-      this.store.dispatch( new TryLogin(this.info));
+      this.store.dispatch( new TryLogin({info : this.info, returnURL: returnURL }));
     } else {
       if ( event.key === 'Enter' ) {
         this.info.email = this.inputEmail.nativeElement.value;
         this.info.password = this.inputPassword.nativeElement.value;
-        this.store.dispatch( new TryLogin(this.info));
+        this.store.dispatch( new TryLogin({info : this.info, returnURL: returnURL }));
       }
     }
   }
 
   loginWithSocial (xType) {
-    console.log(xType);
     this.authService.loginWithSocial(xType).subscribe( v => console.log(v));
   }
 

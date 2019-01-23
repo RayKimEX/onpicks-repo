@@ -83,14 +83,14 @@
       //overflow-x: scroll;;
       margin-top : 1.6rem;
 
-      @include respond(fb) {
+      @include respond(desktop) {
         display:none;
       }
 
       &-mobile {
         display:none;
         text-align: center;
-        @include respond(fb) {
+        @include respond(desktop) {
           display:block;
         }
         &--circle {

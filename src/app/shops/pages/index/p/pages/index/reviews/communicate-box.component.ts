@@ -5,7 +5,7 @@ import {
   AfterViewChecked,
   AfterViewInit, ChangeDetectorRef,
   Component,
-  HostListener, Inject,
+  HostListener, Inject, LOCALE_ID,
   OnDestroy,
   OnInit,
   Renderer2,
@@ -14,7 +14,7 @@ import {
 
 // NgRX & RxJS
 import {TryAddComment, TryGetCommentsProduct, TryToggleVoteReview} from '../../../store/p.actions';
-import { map, shareReplay, withLatestFrom } from 'rxjs/operators';
+import {map, shareReplay, tap, withLatestFrom} from 'rxjs/operators';
 import { combineLatest, fromEvent } from 'rxjs';
 import { select, Store } from '@ngrx/store';
 
@@ -23,8 +23,9 @@ import { PDataService } from '../../../../../../../core/service/data-pages/p/p-d
 import { AppState } from '../../../../../../../core/store/app.reducer';
 import { UserState } from '../../../../../../../core/store/user.model';
 import {DisplayAlertMessage} from '../../../../../../../core/store/ui/ui.actions';
-import {DOMAIN_HOST, REPORT_REASON_MAP} from '../../../../../../../app.config';
+import {DOMAIN_HOST, REPORT_REASON_MAP, RESPONSIVE_MAP} from '../../../../../../../app.config';
 import {APP_BASE_HREF} from '@angular/common';
+import {BreakpointObserver, BreakpointState} from '../../../../../../../../../node_modules/@angular/cdk/layout';
 
 @Component({
   selector: 'onpicks-communicate-box',
@@ -32,7 +33,7 @@ import {APP_BASE_HREF} from '@angular/common';
   styleUrls: ['./communicate-box.component.scss'],
   // ChangeDetection을 안준 이유가 있을거임.
 })
-export class CommunicateBoxComponent implements AfterViewChecked, AfterViewInit, OnDestroy {
+export class CommunicateBoxComponent implements OnInit, AfterViewChecked, AfterViewInit, OnDestroy {
   // @Input('comment') comment;
   // @Input('commentIndex') commentIndex;
   // Output을 넣지 않으면, consturctor에다가, service나, store같은, 것을 넣어야됨.
@@ -73,12 +74,19 @@ export class CommunicateBoxComponent implements AfterViewChecked, AfterViewInit,
   combine$;
 
 
+  isShowMobileReview = false;
+
+
+  isBlockExistForMobile = false;
+
 
   constructor(
     @Inject(DOMAIN_HOST) private HOST: string,
     @Inject(APP_BASE_HREF) private BASE_URL: string,
     @Inject(REPORT_REASON_MAP) public reasonMap: string,
+    @Inject(RESPONSIVE_MAP) public categoryMap,
     private renderer: Renderer2,
+    private breakpointObserver:  BreakpointObserver,
     private store: Store<AppState>,
     private router: Router,
     private route: ActivatedRoute,
@@ -126,11 +134,36 @@ export class CommunicateBoxComponent implements AfterViewChecked, AfterViewInit,
 
     this.userState$ = this.store.pipe(
       select(
-        (state: any) => state.auth.user
+        (state: any) => state.auth
       ),
+      tap( v => console.log(v))
 
     );
 
+  }
+
+  ngOnInit(){
+    this.breakpointObserver
+      .observe([this.categoryMap['tb']])
+      .subscribe((state: BreakpointState) => {
+        if (state.matches) {
+          this.cd.markForCheck();
+        } else {
+          this.isShowMobileReview = false;
+          console.log(this.isShowMobileReview)
+          this.cd.markForCheck();
+        }
+      });
+
+    this.breakpointObserver
+      .observe([this.categoryMap['desktop']])
+      .subscribe((state: BreakpointState) => {
+        if (state.matches) {
+          this.isBlockExistForMobile = true;
+        } else {
+          this.isBlockExistForMobile = false;
+        }
+      });
   }
 
   ngOnDestroy() {
@@ -185,7 +218,14 @@ export class CommunicateBoxComponent implements AfterViewChecked, AfterViewInit,
   }
 
 
+  isFocusForCommentTyping(xIsAuthenticated){
+    if(xIsAuthenticated) {
 
+    } else {
+      this.store.dispatch(new DisplayAlertMessage('로그인 후 이용 가능합니다'))
+      this.router.navigateByUrl('/member/login?return=' + encodeURI(location.href.split(this.BASE_URL.substring(1, this.BASE_URL.length))[1]));
+    }
+  }
 
   commentTyping(event: KeyboardEvent, f) {
 
@@ -199,6 +239,18 @@ export class CommunicateBoxComponent implements AfterViewChecked, AfterViewInit,
       this.addReviewState = true;
     }
   }
+
+
+  registrationTyping(f){
+
+    this.store.dispatch(new TryAddComment({ productId : this.productId, reviewsId : this.reviewsId, addedText : f.value }));
+    this.renderer.setProperty(f, 'value', '');
+
+    // ngAfterViewChecked가 매번 계속 발생하기 때문에,
+    // 해당 State일때만, AfterViewChecked에서 코드 실행시키기 위해, 아래와같은 변수 추가
+    this.addReviewState = true;
+  }
+
 
   prevButton(navigateArray) {
     // if ( this.currentReviewIndex > 0 ) {
@@ -230,6 +282,10 @@ export class CommunicateBoxComponent implements AfterViewChecked, AfterViewInit,
 
   @HostListener('document:click', ['$event'])
   clickout(event) {
+
+
+    // 모바일 화면에서 header클릭했을때 나가지는것 방지
+    if ( this.isBlockExistForMobile ) { return ; };
     if ( this.popupState === true) {
       if (this.communicateBox.nativeElement.contains(event.target)) {
 
@@ -253,8 +309,15 @@ export class CommunicateBoxComponent implements AfterViewChecked, AfterViewInit,
       this.router.navigate( ['../../'], {relativeTo: this.route } );
     }
   }
-  toggleVoteReviews( xProductSlug, xReviewsId, xIsVoted) {
-    this.store.dispatch( new TryToggleVoteReview({ productSlug: xProductSlug, reviewId : xReviewsId, isVote: !xIsVoted}));
+  toggleVoteReviews( xProductSlug, xReviewsId, xIsVoted, xIsAuthenticated) {
+    if(xIsAuthenticated){
+      this.store.dispatch( new TryToggleVoteReview({ productSlug: xProductSlug, reviewId : xReviewsId, isVote: !xIsVoted}));
+    } else {
+      this.store.dispatch(new DisplayAlertMessage('로그인 후 이용 가능합니다'))
+      this.router.navigateByUrl('/member/login?return=' + encodeURI(location.href.split(this.BASE_URL.substring(1, this.BASE_URL.length))[1]));
+
+    }
+
   }
   shareReview( xUrl ) {
 
@@ -302,5 +365,27 @@ export class CommunicateBoxComponent implements AfterViewChecked, AfterViewInit,
           alert('신고 중 에러가 발생하였습니다.');
         }
       );
+  }
+  showReportModal(xReviewId, xPrdocutSlug, xIsAuthenticated) {
+
+    if ( xIsAuthenticated ){
+      this.isShowModal = true;
+      this.reviewIndexForModal = xReviewId;
+      this.productSlugForModal = xPrdocutSlug;
+    } else {
+      this.store.dispatch(new DisplayAlertMessage('로그인 후 이용 가능합니다'))
+      this.router.navigateByUrl('/member/login?return=' + encodeURI(location.href.split(this.BASE_URL.substring(1, this.BASE_URL.length))[1]));
+    }
+
+  }
+  showMobileReview(xIsAuthenticated) {
+    if(xIsAuthenticated) {
+      this.isShowMobileReview = true;
+      this.cd.markForCheck();
+    } else {
+      this.store.dispatch(new DisplayAlertMessage('로그인 후 이용 가능합니다'))
+      this.router.navigateByUrl('/member/login?return=' + encodeURI(location.href.split(this.BASE_URL.substring(1, this.BASE_URL.length))[1]));
+    }
+
   }
 }

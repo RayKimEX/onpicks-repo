@@ -3,8 +3,8 @@
 .current-nav {
   margin-top : 3.2rem;
 
-  @include respond(fb){
-    display:none;
+  @include respond(desktop){
+    margin-top : 0;
   }
   &__slash {
     padding: 0 2.4rem;
@@ -18,7 +18,7 @@
 
 .product-detail {
   display:block;
-  @include respond(fb){
+  @include respond(desktop){
 
     width:74.8rem;
     margin : 0 auto;

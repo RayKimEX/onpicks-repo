@@ -93,7 +93,6 @@ export class PPictureReviewSubComponent {
   onResize(event) {
     const computedStyle = getComputedStyle(( this.itemList.first.nativeElement ), null);
     this.firstOffset = parseFloat(computedStyle.width) * 0.8245;
-    console.log(this.firstOffset);
     this.translateXWidth =  parseInt(computedStyle.width, 10 ) + parseInt(computedStyle.marginRight, 10);
     this.renderer.setStyle(this.container.nativeElement, 'transition', 'x');
     this.renderer.setStyle(this.container.nativeElement, 'transform', 'translateX(-' + (this.firstOffset + (this.imageIndex * this.translateXWidth)) + 'px');

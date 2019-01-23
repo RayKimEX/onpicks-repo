@@ -104,11 +104,14 @@
     top: 0;
     transform: rotate(-135deg);
   }
-
 }
 
 
-:host(ui-header) {z-index:9000; position:fixed; width:100%; }
+:host(ui-header) {
+  @include respond(desktop) {
+    z-index:9000; position:fixed; width:100%;
+  }
+}
 .header {
   z-index:11;
   position:relative;

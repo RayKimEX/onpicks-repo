@@ -54,6 +54,7 @@ export class PReviewsComponent implements AfterViewInit {
 
 
   reviews$;
+  userState$;
 
 
 
@@ -91,6 +92,8 @@ export class PReviewsComponent implements AfterViewInit {
     private router: Router,
     private route: ActivatedRoute
   ) {
+
+
     this.store.dispatch(new TryGetReviewProduct({ productSlug : this.route.snapshot.params.id, sorting: 'created'}));
     this.reviews$ = this.store.pipe(
       select((state) => state['p']['reviews']),
@@ -109,6 +112,17 @@ export class PReviewsComponent implements AfterViewInit {
         console.log(this.currentList);
       })
     );
+
+    this.userState$ = this.store.pipe(
+      select(
+        (state: any) => state.auth
+      ),
+      tap( v => console.log(v))
+
+    );
+
+    // this.store.dispatch(new DisplayAlertMessage('로그인 후 이용 가능합니다'))
+    // this.router.navigateByUrl('/member/login?return=' + encodeURI(location.href.split(this.BASE_URL.substring(1, this.BASE_URL.length))[1]));
   }
 
 
@@ -125,9 +139,17 @@ export class PReviewsComponent implements AfterViewInit {
     this.currentList = this.totalList.slice(  (this.currentPage - 1 ) * this.maxRow , this.currentPage * this.maxRow )
   }
 
-  toggleVoteReviews( xProductSlug, xReviewsId, xIsVoted) {
-    this.store.dispatch( new TryToggleVoteReview({ productSlug: xProductSlug, reviewId : xReviewsId, isVote: !xIsVoted}));
+  toggleVoteReviews( xProductSlug, xReviewsId, xIsVoted, xIsAuthenticated) {
+    if(xIsAuthenticated){
+      this.store.dispatch( new TryToggleVoteReview({ productSlug: xProductSlug, reviewId : xReviewsId, isVote: !xIsVoted}));
+    } else {
+      this.store.dispatch(new DisplayAlertMessage('로그인 후 이용 가능합니다'))
+      this.router.navigateByUrl('/member/login?return=' + encodeURI(location.href.split(this.BASE_URL.substring(1, this.BASE_URL.length))[1]));
+
+    }
   }
+
+
 
   reportReview( xProductSlug, xReviewId, xReportReason ) {
     this.pDataService.reportReviewData( xProductSlug, xReviewId, xReportReason)
@@ -178,6 +200,18 @@ export class PReviewsComponent implements AfterViewInit {
     this.store.dispatch(new TryGetReviewProduct({ productSlug : this.route.snapshot.params.id, sorting: xSortingValue}));
   }
 
+  showReportModal(xReviewId, xPrdocutSlug, xIsAuthenticated) {
+
+    if ( xIsAuthenticated ){
+      this.isShowModal = true;
+      this.reviewIndexForModal = xReviewId;
+      this.productSlugForModal = xPrdocutSlug;
+    } else {
+      this.store.dispatch(new DisplayAlertMessage('로그인 후 이용 가능합니다'))
+      this.router.navigateByUrl('/member/login?return=' + encodeURI(location.href.split(this.BASE_URL.substring(1, this.BASE_URL.length))[1]));
+    }
+
+  }
 }
 
 

@@ -71,10 +71,10 @@ export class AuthEffects {
     ofType( AuthActions.TRY_LOGIN ),
     map( (action: TryLogin) => action.payload ),
     switchMap( payload => {
-      return this.authService.login( payload.email, payload.password,  payload.isPersistent )
+      return this.authService.login( payload.info.email, payload.info.password,  payload.info.isPersistent )
         .pipe(
           mergeMap( (user) => {
-            this.router.navigate(['/shops']);
+            this.router.navigateByUrl(payload.returnURL);
             return [
               new LoginSuccess(user),
               new TryGetCartInfo()

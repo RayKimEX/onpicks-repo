@@ -68,7 +68,7 @@ export class PIndexComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.breakpointObserver
-      .observe([this.categoryMap['fb']])
+      .observe([this.categoryMap['desktop']])
       .subscribe((state: BreakpointState) => {
         if (state.matches) {
           this.isFB = true;

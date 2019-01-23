@@ -34,7 +34,7 @@ export class Signup implements Action {
 export class TryLogin implements Action {
   readonly type = TRY_LOGIN;
 
-  constructor(public payload: any) {}
+  constructor(public payload: {info, returnURL}) {}
 
 }
 
