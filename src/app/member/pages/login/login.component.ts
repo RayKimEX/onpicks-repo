@@ -72,7 +72,7 @@ export class LoginComponent implements OnInit {
   }
 
   loginWithSocial (xType) {
-    this.authService.loginWithSocial(xType).subscribe( v => this.router.navigateByUrl(v.authorization_url));
+    this.authService.loginWithSocial(xType).subscribe( v => location.href = v.authorization_url);
   }
 
 }
