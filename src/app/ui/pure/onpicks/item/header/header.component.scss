@@ -109,7 +109,7 @@
 
 :host(ui-header) {
   @include respond(desktop) {
-    z-index:9000; position:fixed; width:100%;
+    z-index:9000; position:fixed; width:100%; top:0;
   }
 }
 .header {

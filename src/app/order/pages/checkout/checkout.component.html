@@ -33,7 +33,7 @@
       <div class="checkout-left__info--delivery">
         <h1 class="checkout-left__info--delivery-title h1-bold">배송지 정보</h1>
 
-        <ng-container *ngLet="deliveryData$ | async as data">
+        <ng-container *ngLet="(deliveryData$ | async) as data">
 
           <ng-container *ngIf="data?.length > 0; else addDeliveryView">
             <div
@@ -300,11 +300,6 @@
     [width]="'27.8rem'"
     [placeholder]="'우편번호'">
   </onpicks-input-box>
-  <!--<input-->
-  <!--#inputZipnumber-->
-  <!--class="checkout-left__info&#45;&#45;delivery-input-address body-2-regular"-->
-  <!--type="text"-->
-  <!--placeholder="우편번호">-->
 
   <onpicks-button
     [type]="'white'"

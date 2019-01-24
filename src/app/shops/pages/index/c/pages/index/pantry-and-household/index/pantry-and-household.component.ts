@@ -44,26 +44,32 @@ export class PantryAndHouseholdComponent implements OnInit {
     {
       imgSrc : 'http://img.onpicks.com/categories/category-grocery.png',
       name : '식품',
+      href : '/shops/c/pantry-and-household/grocery'
     },
     {
       imgSrc : 'http://img.onpicks.com/categories/category-household.png',
       name : '생활용품',
+      href : '/shops/c/pantry-and-household/household-supplies'
     },
     {
       imgSrc : 'http://img.onpicks.com/categories/category-personalcare.png',
       name : '퍼스널케어',
+      href : '/shops/c/pantry-and-household/grocery'
     },
     {
       imgSrc : 'http://img.onpicks.com/categories/category-health.png',
       name : '건강',
+      href : '/shops/c/pantry-and-household/health'
     },
     {
       imgSrc : 'http://img.onpicks.com/categories/category-baby.png',
       name : '유아동',
+      href : '/shops/c/pantry-and-household/baby'
     },
     {
       imgSrc : 'http://img.onpicks.com/categories/category-pet.png',
       name : '반려용품',
+      href : '/shops/c/pantry-and-household/pet-supplies'
     }
   ]
   // Avalon Organics  아발론 오가닉스

@@ -56,6 +56,7 @@ export class CartEffects {
       return this.cartService.getWishListInfo()
         .pipe(
           map( response => {
+            console.log(response);
             return new GetWishListInfoSuccess( response );
           }),
           catchError( error => {

@@ -154,97 +154,103 @@ export class CheckoutComponent implements OnInit, AfterViewInit, OnDestroy {
     this.userStore$ = this.store.pipe( select( state => state.auth.user))
       .subscribe( v => {
         this.userStore = v;
+        console.log(v);
         if ( v ===  null ) { return ;};
-
+        console.log(v);
         // userStore정보가 usbscribe되면, 그때 다시 배송지 정보를 갖고옴
-        this.deliveryData$ = this.orderDataService.getDeliveryData(v.id)
+        this.deliveryData$ = this.orderDataService.getDeliveryData(this.userStore.id)
           .pipe(
             map( value => value['results'] ),
-            tap( v => {
-              this.deliveryData = v;
-              if ( v.length > 0 ) {
+            tap( results => {
+              console.log(results);
+              this.deliveryData = results;
+              if ( results.length > 0 ) {
                 this.isShowDeliveryView = false;
               }
-              this.searchInputFirstEvent$ = fromEvent(this.inputSearchBox.first.searchInputBox.nativeElement, 'input');
-              this.searchInputLastEvent$ = fromEvent(this.inputSearchBox.last.searchInputBox.nativeElement, 'input');
 
-              this.searchFirst$ = this.searchInputFirstEvent$.pipe(
-                debounceTime(80),
-                distinctUntilChanged(),
-                map( (val: KeyboardEvent) => val.target),
-                map( (val: HTMLInputElement) => val.value),
-                map( val => new HttpParams()
-                  .set('currentPage', '0')
-                  .set('countPerPage', '10')
-                  // onpicks-search-box에서 발생하는 이벤트는, InputEvent가 아니고 그냥 Event이기 때문에,
-                  // 같은 값이 아니므로 아래와 같이 3항 연산자를 씀
-                  // @ts-ignore
-                  .set('keyword', val === undefined ?  '' : val )
-                  .set('confmKey', 'U01TX0FVVEgyMDE4MTAwNTE1NDIxNTEwODIxNDQ=')
-                  .set('resultType', 'json')),
-                // json으로 바꿔주기 위해 flatMap 사용
-                flatMap( (val: HttpParams) =>
-                  this.httpClient.get<any>(location.protocol + '//www.juso.go.kr/addrlink/addrLinkApi.do', { params: val, responseType : 'json' }, )
-                ),
-                map( val => val['results'].juso ),
-              ).subscribe(val => {
-                if ( val !== null ) {
 
-                  if ( val.length === 0 ) {
-                    this.searchState = 2;
-                  } else {
-                    this.searchState = 1;
-                  }
-                } else {
-                  this.searchState = 0;
-                }
-
-                this.jusoList = val;
-                this.cd.markForCheck();
-              });
-
-              this.searchLast$ = this.searchInputLastEvent$.pipe(
-                debounceTime(80),
-                distinctUntilChanged(),
-                map( (val: KeyboardEvent) => val.target),
-                map( (val: HTMLInputElement) => val.value),
-                map( val => new HttpParams()
-                  .set('currentPage', '0')
-                  .set('countPerPage', '10')
-                  // onpicks-search-box에서 발생하는 이벤트는, InputEvent가 아니고 그냥 Event이기 때문에,
-                  // 같은 값이 아니므로 아래와 같이 3항 연산자를 씀
-                  // @ts-ignore
-                  .set('keyword', val === undefined ?  '' : val )
-                  .set('confmKey', 'U01TX0FVVEgyMDE4MTAwNTE1NDIxNTEwODIxNDQ=')
-                  .set('resultType', 'json')),
-                // json으로 바꿔주기 위해 flatMap 사용
-                flatMap( (val: HttpParams) =>
-                  this.httpClient.get<any>(location.protocol + '//www.juso.go.kr/addrlink/addrLinkApi.do', { params: val, responseType : 'json' }, )
-                ),
-                map( val => val['results'].juso ),
-              ).subscribe(val => {
-                if ( val !== null ) {
-
-                  if ( val.length === 0 ) {
-                    this.searchState = 2;
-                  } else {
-                    this.searchState = 1;
-                  }
-                } else {
-                  this.searchState = 0;
-                }
-
-                this.jusoList = val;
-                this.cd.markForCheck();
-              });
             }),
           );
+
+        console.log(this.deliveryData$);
       });
   }
 
 
   ngAfterViewInit() {
+    console.log(this.inputSearchBox);
+    this.searchInputFirstEvent$ = fromEvent(this.inputSearchBox.first.searchInputBox.nativeElement, 'input');
+    this.searchInputLastEvent$ = fromEvent(this.inputSearchBox.last.searchInputBox.nativeElement, 'input');
 
+    this.searchFirst$ = this.searchInputFirstEvent$.pipe(
+      debounceTime(80),
+      distinctUntilChanged(),
+      map( (val: KeyboardEvent) => val.target),
+      map( (val: HTMLInputElement) => val.value),
+      map( val => new HttpParams()
+        .set('currentPage', '0')
+        .set('countPerPage', '10')
+        // onpicks-search-box에서 발생하는 이벤트는, InputEvent가 아니고 그냥 Event이기 때문에,
+        // 같은 값이 아니므로 아래와 같이 3항 연산자를 씀
+        // @ts-ignore
+        .set('keyword', val === undefined ?  '' : val )
+        .set('confmKey', 'U01TX0FVVEgyMDE4MTAwNTE1NDIxNTEwODIxNDQ=')
+        .set('resultType', 'json')),
+      // json으로 바꿔주기 위해 flatMap 사용
+      flatMap( (val: HttpParams) =>
+        this.httpClient.get<any>(location.protocol + '//www.juso.go.kr/addrlink/addrLinkApi.do', { params: val, responseType : 'json' }, )
+      ),
+      map( val => val['results'].juso ),
+    ).subscribe(val => {
+      if ( val !== null ) {
+
+        if ( val.length === 0 ) {
+          this.searchState = 2;
+        } else {
+          this.searchState = 1;
+        }
+      } else {
+        this.searchState = 0;
+      }
+
+      this.jusoList = val;
+      this.cd.markForCheck();
+    });
+
+    this.searchLast$ = this.searchInputLastEvent$.pipe(
+      debounceTime(80),
+      distinctUntilChanged(),
+      map( (val: KeyboardEvent) => val.target),
+      map( (val: HTMLInputElement) => val.value),
+      map( val => new HttpParams()
+        .set('currentPage', '0')
+        .set('countPerPage', '10')
+        // onpicks-search-box에서 발생하는 이벤트는, InputEvent가 아니고 그냥 Event이기 때문에,
+        // 같은 값이 아니므로 아래와 같이 3항 연산자를 씀
+        // @ts-ignore
+        .set('keyword', val === undefined ?  '' : val )
+        .set('confmKey', 'U01TX0FVVEgyMDE4MTAwNTE1NDIxNTEwODIxNDQ=')
+        .set('resultType', 'json')),
+      // json으로 바꿔주기 위해 flatMap 사용
+      flatMap( (val: HttpParams) =>
+        this.httpClient.get<any>(location.protocol + '//www.juso.go.kr/addrlink/addrLinkApi.do', { params: val, responseType : 'json' }, )
+      ),
+      map( val => val['results'].juso ),
+    ).subscribe(val => {
+      if ( val !== null ) {
+
+        if ( val.length === 0 ) {
+          this.searchState = 2;
+        } else {
+          this.searchState = 1;
+        }
+      } else {
+        this.searchState = 0;
+      }
+
+      this.jusoList = val;
+      this.cd.markForCheck();
+    });
   }
 
   ngOnInit() {

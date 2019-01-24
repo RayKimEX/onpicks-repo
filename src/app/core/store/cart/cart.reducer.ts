@@ -42,8 +42,8 @@ export function CartReducer(state = initialState, action: CartActions.CartAction
       }
 
     case CartActions.GET_WISH_LIST_INFO_SUCCESS :
-
-      state.wishList = action.payload.results;
+      console.log(action.payload);
+      state.wishList = action.payload;
       // state.wishList.push(action.payload)
 
       return {
