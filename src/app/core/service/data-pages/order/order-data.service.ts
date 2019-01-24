@@ -19,23 +19,23 @@ export class OrderDataService {
   }
 
   getDeliveryData(userId) {
-    return this.httpClient.get<{}>( this.BASE_URL + '/api/customers/' + userId + '/address_book/');
+    return this.httpClient.get<{}>( this.BASE_URL + '/api/customers/address_book/');
   }
 
   addDeliveryData(userId, data) {
-    return this.httpClient.post<any>( this.BASE_URL + '/api/customers/' + userId + '/address_book/',
+    return this.httpClient.post<any>( this.BASE_URL + '/api/customers/address_book/',
       data);
   }
 
   deleteDeliveryData( userId, deliveryIndex) {
-    return this.httpClient.delete<any>( this.BASE_URL + '/api/customers/' + userId + '/address_book/' + deliveryIndex);
+    return this.httpClient.delete<any>( this.BASE_URL + '/api/customers/address_book/' + deliveryIndex);
   }
 
   updateDeliveryDataToDefault(userId, deliveryIndex) {
-    return this.httpClient.put<any>( this.BASE_URL + '/api/customers/' + userId + '/address_book/' + deliveryIndex + '/default/', {} );
+    return this.httpClient.put<any>( this.BASE_URL + '/api/customers/address_book/' + deliveryIndex + '/default/', {} );
   }
 
   updateDeliveryData( userId, deliveryIndex, data ) {
-    return this.httpClient.put<any>( this.BASE_URL + '/api/customers/' + userId + '/address_book/' + deliveryIndex + '/', data);
+    return this.httpClient.put<any>( this.BASE_URL + '/api/customers/address_book/' + deliveryIndex + '/', data);
   }
 }

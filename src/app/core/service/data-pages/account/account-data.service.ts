@@ -16,7 +16,7 @@ export class AccountDataService {
 
 
   getDeliveryData(userId) {
-    return this.httpClient.get<any>( this.BASE_URL + '/api/customers/' + userId + '/address_book/' );
+    return this.httpClient.get<any>( this.BASE_URL + '/api/customers/address_book/' );
   }
 
   getMyWrittenReviews(){
