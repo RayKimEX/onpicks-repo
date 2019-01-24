@@ -44,18 +44,22 @@ export class ShopsIndexComponent implements OnInit, AfterViewInit {
     {
       imgSrc : 'https://img.onpicks.com/categories/main/category-pantry-and-household.jpg',
       name : '식품·생활용품',
+      href : '/shops/c/pantry-and-household'
     },
     {
       imgSrc : 'https://img.onpicks.com/categories/main/category-beauty.jpg',
       name : '뷰티',
+      href : '/shops/c/beauty'
     },
     {
       imgSrc : 'https://img.onpicks.com/categories/main/category-baby.jpg',
       name : '유아동',
+      href : '/shops/c/pantry-and-household/baby'
     },
     {
       imgSrc : 'https://img.onpicks.com/categories/main/category-health.jpg',
       name : '건강',
+      href : '/shops/c/pantry-and-household/health'
     },
   ]
 
