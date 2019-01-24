@@ -321,11 +321,19 @@
           <table>
             <tr>
               <td>도로명</td>
-              <td><button (click)="getCurrentText($event)" [attr.data-zipnumber]="item.zipNo">{{item.jibunAddr}}</button></td>
+              <td>
+                <button
+                  (click)="getCurrentText($event)"
+                  [attr.data-zipnumber]="item.zipNo">{{item.jibunAddr}}</button>
+              </td>
             </tr>
             <tr>
               <td>지번</td>
-              <td><button (click)="getCurrentText($event)" [attr.data-zipnumber]="item.zipNo">{{item.roadAddrPart1}}</button></td>
+              <td>
+                <button
+                  (click)="getCurrentText($event)"
+                  [attr.data-zipnumber]="item.zipNo">{{item.roadAddrPart1}}</button>
+              </td>
             </tr>
           </table>
         </div>

@@ -12,7 +12,7 @@ import {
 } from '@angular/core';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {fromEvent, of, pipe} from 'rxjs';
-import {debounceTime, distinctUntilChanged, flatMap, map, tap} from 'rxjs/operators';
+import {catchError, debounceTime, distinctUntilChanged, flatMap, map, tap} from 'rxjs/operators';
 import {select, Store} from '@ngrx/store';
 import {Router} from '@angular/router';
 import {CartToCheckoutService} from '../../share/cart-to-checkout.service';
@@ -170,6 +170,10 @@ export class CheckoutComponent implements OnInit, AfterViewInit, OnDestroy {
 
 
             }),
+            catchError( error => {
+              this.deliveryData = [];
+              return of();
+            })
           );
 
         console.log(this.deliveryData$);
@@ -281,7 +285,6 @@ export class CheckoutComponent implements OnInit, AfterViewInit, OnDestroy {
 
 
   payment(form) {
-
     this.errorStatus = 0;
     this.validate();
 
@@ -292,12 +295,22 @@ export class CheckoutComponent implements OnInit, AfterViewInit, OnDestroy {
       // 0인 경우가 배송지 default이므로,
       // full_name 수신자 성함
       // 서버에 저장된 배송지 정보가 없을 경우
-      if( this.deliveryData.length === 0 ){
+      if ( this.deliveryData.length === 0 ) {
+        // inputRecipientName
+        // inputRecipientNumber
+        // inputZipnumber
+        // inputJuso
+        // inputDetailJuso
+        this.formData = {
+          ...this.formData,
+          ...this.setDeliveryInfo()
+        };
+
+        console.log(this.formData);
 
       } else {
         this.formData.phone_number = this.deliveryData[0].phone_number;
         this.formData.full_name = this.deliveryData[0].full_name;
-        this.formData.phone_number = this.deliveryData[0].phone_number;
         this.formData.zip_code = this.deliveryData[0].zip_code;
         this.formData.street_address_1 = this.deliveryData[0].street_address_1;
         this.formData.street_address_2 = this.deliveryData[0].street_address_2;
