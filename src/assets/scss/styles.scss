@@ -93,6 +93,7 @@ textarea {
     &:visited {
       border : solid 1px $color-black;
       color: $color-black;
+      background-color:$color-white;
     }
   }
 
@@ -274,6 +275,7 @@ textarea {
 .u-color-grey {
   color : $color-grey !important;
 }
+
 .u-color-stroke-grey {
   stroke : $color-grey !important;
 }
@@ -289,6 +291,7 @@ textarea {
 .u-color-light-grey {
   color : $color-light-grey !important;
 }
+
 .u-color-stroke-light-grey {
   stroke : $color-light-grey !important;
 }

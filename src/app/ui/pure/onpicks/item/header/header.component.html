@@ -1,351 +1,354 @@
 
-<header class="header" (mouseleave)="outMenu()" *ngIf="(auth$ | async) as auth;">
-  <!--<div class="header__progressive-bar">-->
-    <!--<div class="header__progressive-bar&#45;&#45;inner"></div>-->
-  <!--</div>-->
-  <div class="header__main-menu">
-    <div class="header__miscell u-default-site-padding">
-      <div class="header__miscell--inner">
-        <!--<emitter-change-preference class="header__miscell&#45;&#45;item">{{ region === '/kr' ? 'KOR' : 'USA' }}</emitter-change-preference>-->
-        <emitter-change-preference
-          (showEvent)="outMenu()"
-          [type]="'currency'"
-          class="header__miscell--item">
-          {{ currency === 'KRW' ? 'KRW ₩' : 'USD $' }}
-        </emitter-change-preference>
-        <emitter-change-preference
-          (showEvent)="outMenu()"
-          [type]="'locale'"
-          class="header__miscell--item">
-          {{ locale === 'ko' ? '한글' : 'ENG' }}
-        </emitter-change-preference>
+<header
+  class="header"
+  (mouseleave)="outMenu()"
+  *ngIf="(auth$ | async) as auth;">
+  <div class="header__inner" >
 
-        <div class="header__miscell--profile u-float-right" *ngIf="auth !== null">
-          <ng-container *ngIf="auth.isAuthenticated === false">
-            <span class="header__miscell--profile--login" ><a i18n="@@header__login" routerLink="/member/login" >로그인/login</a></span>
-            <span class="header__miscell--profile--slash">&nbsp;|&nbsp;</span>
-            <span class="header__miscell--profile--signup"><a i18n="@@header__signup" routerLink="/member/signup">회원가입|signup</a></span>
-          </ng-container>
+    <div class="header__main-menu">
+      <div class="header__miscell u-default-site-padding">
+        <div class="header__miscell--inner">
+          <!--<emitter-change-preference class="header__miscell&#45;&#45;item">{{ region === '/kr' ? 'KOR' : 'USA' }}</emitter-change-preference>-->
+          <emitter-change-preference
+            (showEvent)="outMenu()"
+            [type]="'currency'"
+            class="header__miscell--item">
+            {{ currency === 'KRW' ? 'KRW ₩' : 'USD $' }}
+          </emitter-change-preference>
+          <emitter-change-preference
+            (showEvent)="outMenu()"
+            [type]="'locale'"
+            class="header__miscell--item">
+            {{ locale === 'ko' ? '한글' : 'ENG' }}
+          </emitter-change-preference>
 
-          <ng-container *ngIf="auth.isAuthenticated === true">
-            <span class="header__miscell--profile--image">
-              <a routerLink="/account">
-                <img src="{{auth?.user?.avatar === ''? 'http://img.onpicks.com/assets/default_avatar.png' : auth.user.avatar}}"  alt="">
+          <div class="header__miscell--profile u-float-right" *ngIf="auth !== null">
+            <ng-container *ngIf="auth.isAuthenticated === false">
+              <span class="header__miscell--profile--login" ><a i18n="@@header__login" routerLink="/member/login" >로그인/login</a></span>
+              <span class="header__miscell--profile--slash">&nbsp;|&nbsp;</span>
+              <span class="header__miscell--profile--signup"><a i18n="@@header__signup" routerLink="/member/signup">회원가입|signup</a></span>
+            </ng-container>
+
+            <ng-container *ngIf="auth.isAuthenticated === true">
+              <span class="header__miscell--profile--image">
+                <a routerLink="/account">
+                  <img src="{{auth?.user?.avatar === ''? 'http://img.onpicks.com/assets/default_avatar.png' : auth.user.avatar}}"  alt="">
+                </a>
+              </span>
+
+              <!--<span><button (click)="logout()">로그아웃</button></span>-->
+            </ng-container>
+            <span class="header__miscell--shopping-bag">
+              <a href="" routerLink="/order/cart">
+                <svg width="24" height="24" viewBox="0 0 24 24">
+                  <path d="M19.85,9a2.18,2.18,0,0,0-.19-.48A2.83,2.83,0,0,0,17.14,7H17A5,5,0,1,0,7,7H6.86A2.83,2.83,0,0,0,4.34,8.52,2.18,2.18,0,0,0,4.15,9,2.83,2.83,0,0,0,4,9.86v9.28a2.9,2.9,0,0,0,.34,1.34A2.83,2.83,0,0,0,6.86,22H17.14a2.83,2.83,0,0,0,2.52-1.52A2.9,2.9,0,0,0,20,19.14V9.86A2.83,2.83,0,0,0,19.85,9ZM9.24,5.83a3,3,0,0,1,1.63-1.61A2.92,2.92,0,0,1,12,4a3,3,0,0,1,3,3H9A3,3,0,0,1,9.24,5.83ZM18,10v9.14a.86.86,0,0,1-.86.86H6.86A.86.86,0,0,1,6,19.14V9.86A.86.86,0,0,1,6.86,9H17.14a.86.86,0,0,1,.86.86Z" fill="#161616"/>
+                </svg>
               </a>
             </span>
 
-            <!--<span><button (click)="logout()">로그아웃</button></span>-->
-          </ng-container>
-          <span class="header__miscell--shopping-bag">
-            <a href="" routerLink="/order/cart">
-              <svg width="24" height="24" viewBox="0 0 24 24">
-                <path d="M19.85,9a2.18,2.18,0,0,0-.19-.48A2.83,2.83,0,0,0,17.14,7H17A5,5,0,1,0,7,7H6.86A2.83,2.83,0,0,0,4.34,8.52,2.18,2.18,0,0,0,4.15,9,2.83,2.83,0,0,0,4,9.86v9.28a2.9,2.9,0,0,0,.34,1.34A2.83,2.83,0,0,0,6.86,22H17.14a2.83,2.83,0,0,0,2.52-1.52A2.9,2.9,0,0,0,20,19.14V9.86A2.83,2.83,0,0,0,19.85,9ZM9.24,5.83a3,3,0,0,1,1.63-1.61A2.92,2.92,0,0,1,12,4a3,3,0,0,1,3,3H9A3,3,0,0,1,9.24,5.83ZM18,10v9.14a.86.86,0,0,1-.86.86H6.86A.86.86,0,0,1,6,19.14V9.86A.86.86,0,0,1,6.86,9H17.14a.86.86,0,0,1,.86.86Z" fill="#161616"/>
-              </svg>
-            </a>
-          </span>
+          </div>
+        </div>
 
+      </div>
+      <div class="header__main-nav u-default-site-padding">
+        <div class="header__main-nav--outer">
+          <a class="header__main-nav--logo" href="" routerLink="/shops">
+            <svg width="108.23" height="30" viewBox="0 0 108.23 30">
+              <path d="M56.63,0a2.57,2.57,0,1,1-2.57,2.6A2.57,2.57,0,0,1,56.63,0Z"/>
+              <path d="M45.18,6.73a5.92,5.92,0,0,0-4.94,2.18V7.07H35.8V30h4.45V22A5.78,5.78,0,0,0,45,24c4.66,0,7.79-3.69,7.79-8.7S50,6.73,45.18,6.73ZM44.37,20a4.08,4.08,0,0,1-4.07-3.79,6.48,6.48,0,0,1,0-1.76,4.06,4.06,0,0,1,4.07-3.76c2.29,0,4.1,1.72,4.1,4.64S46.66,20,44.37,20Z"/>
+              <path d="M8.66,6.68A8.46,8.46,0,0,0,0,15.45a8.48,8.48,0,0,0,8.66,8.76,8.48,8.48,0,0,0,8.67-8.76A8.47,8.47,0,0,0,8.66,6.68Zm0,13.55a4.53,4.53,0,0,1-4.22-4.78,4.53,4.53,0,0,1,4.22-4.79,4.53,4.53,0,0,1,4.23,4.79A4.53,4.53,0,0,1,8.66,20.23Z"/>
+              <rect x="48.29" y="13.11" width="16.69" height="4.51" transform="translate(41.2 71.97) rotate(-89.93)"/>
+              <path d="M77.26,17.32v0h-4.1a3.81,3.81,0,0,1-3.83,2.81,4.1,4.1,0,0,1-4-2.82,5.87,5.87,0,0,1-.3-1.9c0-3,1.94-4.68,4.24-4.68A3.66,3.66,0,0,1,73,13.51h4.16s0-.07,0-.11A6.55,6.55,0,0,0,77,12.16h0v0a6.76,6.76,0,0,0-2.71-4,7.8,7.8,0,0,0-3-1.35,8.65,8.65,0,0,0-2-.23h-.13a8.55,8.55,0,0,0-8.66,8.85,8.63,8.63,0,0,0,8.77,8.86h.09c3.81,0,7-2.38,7.7-5.55l0-.07h0A6.14,6.14,0,0,0,77.26,17.32Z"/>
+              <path d="M108.22,18.47A4.61,4.61,0,0,0,107,15.56l-.31-.3a7.15,7.15,0,0,0-3.39-1.59l-2.38-.52a2.36,2.36,0,0,1-1-.39,1.3,1.3,0,0,1-.44-.55,1.38,1.38,0,0,1-.11-.55c0-.95,1-1.66,2.14-1.66a2.55,2.55,0,0,1,2.74,2.21h3.83a5.8,5.8,0,0,0-.09-1,5.08,5.08,0,0,0-.52-1.52c-.81-1.54-2.59-3.09-6-3.1h-.15c-3.52.06-6.1,2.51-6.1,5.45v.17a4.62,4.62,0,0,0,.9,2.66,5.42,5.42,0,0,0,2.33,1.71,8.71,8.71,0,0,0,1.44.45l2.21.51a3.51,3.51,0,0,1,1,.33,1.62,1.62,0,0,1,.66.6,1.34,1.34,0,0,1,.19.7c0,.88-.72,1.66-2.21,1.66a2.77,2.77,0,0,1-3-2.36H94.76a4.87,4.87,0,0,0,0,.66h0a5.67,5.67,0,0,0,2.77,4.13,7,7,0,0,0,3.68,1h.5c4.37,0,6.48-2.77,6.48-5.48C108.23,18.69,108.23,18.58,108.22,18.47Z"/>
+              <path d="M87.93,14.32l7.63,9.26H89.87l-6.38-7.82v7.82H79L79,0h4.49l0,13.37,6.06-6.5h5.38Z"/><path d="M28,6.72A5.52,5.52,0,0,0,23.33,9V7.13H18.89V23.7h4.44v0h0v-9.5c0-1.92,1.14-3.43,3.09-3.43,2.15,0,3.05,1.45,3.05,3.29v9.64H34V13.27C34,9.64,32.09,6.72,28,6.72Z"/>
+            </svg>
+          </a>
+          <nav class="header__main-nav--router">
+            <ul>
+              <li>
+                <a
+                   class="h1-bold u-color-grey"
+                   #shops
+                   (mouseenter)="hoverMenu()"
+                   routerLink="/shops"
+                   [ngClass]="{ 'u-color-black' : ((url$ | async)[1] !== 'showcases') && ((url$ | async)[1] !== 'events')  && ((url$ | async)[1] !== 'reviews')}"
+                   i18n="@@header__shops">
+                   쇼핑|shops
+                </a>
+              </li>
+              <li>
+                <a
+                   class="h1-bold u-color-grey"
+
+                   (click)="showPreparingMessage()"
+                   i18n="@@header__showcases">
+                   쇼케이스|showcases
+                </a>
+                <!--routerLink="showcases"-->
+                <!--[routerLinkActive]="['u-color-black', 'u-active']"-->
+              </li>
+              <li>
+                <a
+                   class="h1-bold u-color-grey"
+
+                   (click)="showPreparingMessage()"
+                   i18n="@@header__events">
+                   이벤트|events
+                </a>
+                <!--routerLink="events"-->
+                <!--[routerLinkActive]="['u-color-black', 'u-active']"-->
+              </li>
+              <li>
+                <a
+                   class="h1-bold u-color-grey"
+
+                   (click)="showPreparingMessage()"
+                   i18n="@@header__reviews">
+                   리뷰|reviews
+                </a>
+                <!--routerLink="reviews"-->
+                <!--[routerLinkActive]="['u-color-black', 'u-active']"-->
+              </li>
+            </ul>
+          </nav>
+        </div>
+        <onpicks-search-box
+          (enter)="search($event)"
+          [top]="-1"
+          i18n-placeholder="@@header__placeholder"
+          placeholder="2018 추석선물 대전">
+        </onpicks-search-box>
+      </div>
+    </div>
+
+    <div class="header__mobile-menu">
+      <div class="navigation">
+        <div class="navigation__toggle" #mobileToggle>
+          <input
+            #inputCheckedForToggle
+            type="checkbox"
+            class="navigation__checkbox"
+            id="navi-toggle">
+          <label
+            (click)="showMenuForMobile(inputCheckedForToggle)"
+            for="navi-toggle"
+            class="navigation__button">
+            <span class="navigation__menu-icon">&nbsp;</span>
+          </label>
+        </div>
+
+
+        <onpicks-search-box
+          [placeholder]="'검색어'"
+          [isMobile]="true"
+          (enter)="search($event)"
+          #mobileSearchBox
+          (deleteText)="clickMobileSearch()"
+          class="navigation__searchbox-el">
+        </onpicks-search-box>
+        <div class="navigation__icon" #mobileIconOuter>
+          <a routerLink="/shops">
+            <svg
+              #mobileLogo
+              class="header__mobile-menu--onpicks-icon"
+              width="94"
+              height="26"
+              viewBox="0 0 94 26">
+              <g fill="#000" fill-rule="evenodd">
+                <path d="M49.513 0c1.244 0 2.217 1.005 2.217 2.255 0 1.195-.973 2.2-2.217 2.2-1.216 0-2.216-1.005-2.216-2.2 0-1.25 1-2.255 2.216-2.255M7.468 17.523c-2.01 0-3.639-1.855-3.639-4.144 0-2.288 1.63-4.144 3.639-4.144s3.638 1.856 3.638 4.144c0 2.289-1.63 4.144-3.638 4.144m0-11.736C3.213 5.787 0 8.957 0 13.38c0 4.392 3.213 7.592 7.468 7.592 4.254 0 7.467-3.2 7.467-7.592 0-4.421-3.213-7.592-7.467-7.592M38.949 17.346c-1.761 0-3.22-1.212-3.508-3.279a5.53 5.53 0 0 1 0-1.529c.288-2.062 1.747-3.25 3.508-3.25 1.968 0 3.53 1.484 3.53 4.014 0 2.56-1.562 4.044-3.53 4.044m.698-11.52c-2.027 0-3.562.861-4.26 1.89V6.122H31.56v19.864H35.393v-6.923c.694.96 2.141 1.745 4.11 1.745 4.023 0 6.715-3.2 6.715-7.534 0-4.247-2.403-7.446-6.57-7.446M47.56 20.531l.017-14.456 3.889.005-.017 14.456zM67.121 15.003v-.03l-3.528-.004-.005-.002-.001.002c-.324 1.116-1.32 2.435-3.306 2.433-1.521-.002-2.87-.864-3.418-2.44a4.979 4.979 0 0 1-.261-1.648c.003-2.615 1.67-4.053 3.659-4.05 1.93.001 2.835 1.236 3.184 2.442l2.568.003h1.021l.001-.091c0-.37-.037-.732-.11-1.084l-.003-.016c-.295-1.4-1.142-2.627-2.336-3.5a6.719 6.719 0 0 0-2.59-1.174 7.616 7.616 0 0 0-1.708-.195H60.177c-4.18-.005-7.459 3.194-7.464 7.66-.005 4.437 3.324 7.673 7.564 7.678h.078c3.28.004 6.016-2.064 6.635-4.81l.017-.06-.004-.001a5.36 5.36 0 0 0 .118-1.113M93.098 15.998a3.992 3.992 0 0 0-1.327-2.778c-.702-.64-1.678-1.122-2.927-1.382l-2.046-.444a2.006 2.006 0 0 1-.836-.34 1.17 1.17 0 0 1-.386-.479c-.06-.142-.093-.3-.092-.475 0-.823.82-1.439 1.843-1.437 1.622.001 2.238 1.069 2.363 1.917h.111l3.194.004c0-.306-.027-.604-.081-.894a4.398 4.398 0 0 0-.447-1.315c-.7-1.334-2.234-2.677-5.166-2.68l-.13.001c-3.033.056-5.252 2.174-5.255 4.723 0 .051.001.101.003.152.026.85.279 1.634.778 2.3.456.607 1.117 1.115 2 1.482.377.157.792.288 1.25.39l1.9.443c.329.07.598.166.815.283.27.145.457.323.574.524.108.184.158.388.158.605-.001.764-.616 1.44-1.902 1.438-1.617-.002-2.461-.965-2.611-2.048h-.741l-2.646-.004v.001c0 .194.013.386.036.574.111 1.062.77 2.614 2.387 3.583a6.013 6.013 0 0 0 3.362.887c.079.002.158.004.239.004 3.771.004 5.587-2.403 5.59-4.754 0-.094-.004-.188-.01-.281"/>
+                <path d="M76.135 12.404l6.576 8.017h-4.905l-5.498-6.771-.001 6.775-3.874-.005L68.457 0l3.874.005-.023 11.587 5.228-5.634h4.636zM24.478 5.823c-1.483 0-3.128.625-4.02 2.007V6.175H16.63v14.354h3.827v-.017h.027V12.28c0-1.658.984-2.967 2.663-2.967 1.852 0 2.633 1.251 2.633 2.85v8.35h3.85v-9.018c0-3.142-1.62-5.672-5.152-5.672"/>
+              </g>
+            </svg>
+          </a>
+
+          <a routerLink="/order/cart">
+            <svg class="header__mobile-menu--shopping-bag-icon"
+                 height="24"
+                 viewBox="0 0 24 24"
+                 width="24">
+              <path d="M19.85,9a2.18,2.18,0,0,0-.19-.48A2.83,2.83,0,0,0,17.14,7H17A5,5,0,1,0,7,7H6.86A2.83,2.83,0,0,0,4.34,8.52,2.18,2.18,0,0,0,4.15,9,2.83,2.83,0,0,0,4,9.86v9.28a2.9,2.9,0,0,0,.34,1.34A2.83,2.83,0,0,0,6.86,22H17.14a2.83,2.83,0,0,0,2.52-1.52A2.9,2.9,0,0,0,20,19.14V9.86A2.83,2.83,0,0,0,19.85,9ZM9.24,5.83a3,3,0,0,1,1.63-1.61A2.92,2.92,0,0,1,12,4a3,3,0,0,1,3,3H9A3,3,0,0,1,9.24,5.83ZM18,10v9.14a.86.86,0,0,1-.86.86H6.86A.86.86,0,0,1,6,19.14V9.86A.86.86,0,0,1,6.86,9H17.14a.86.86,0,0,1,.86.86Z" fill="#161616">
+              </path>
+            </svg>
+          </a>
+            <svg
+              (click)="clickMobileSearch()"
+              #mobileSearchIcon
+              class="header__mobile-menu--search-icon"
+              height="18.5"
+              viewBox="0 0 18.5 18.5"
+              width="18.5">
+              <path d="M9.75,4.5A5.25,5.25,0,1,1,4.5,9.75,5.26,5.26,0,0,1,9.75,4.5m0-2A7.25,7.25,0,1,0,17,9.75,7.26,7.26,0,0,0,9.75,2.5Z" fill="#161616" transform="translate(-2.5 -2.5)"></path>
+              <line
+                fill="none"
+                stroke="#161616"
+                stroke-linecap="round"
+                stroke-miterlimit="10"
+                stroke-width="2"
+                x1="12"
+                x2="17.5"
+                y1="12"
+                y2="17.5">
+              </line>
+            </svg>
         </div>
       </div>
-
     </div>
-    <div class="header__main-nav u-default-site-padding">
-      <div class="header__main-nav--outer">
-        <a class="header__main-nav--logo" href="" routerLink="/shops">
-          <svg width="108.23" height="30" viewBox="0 0 108.23 30">
-            <path d="M56.63,0a2.57,2.57,0,1,1-2.57,2.6A2.57,2.57,0,0,1,56.63,0Z"/>
-            <path d="M45.18,6.73a5.92,5.92,0,0,0-4.94,2.18V7.07H35.8V30h4.45V22A5.78,5.78,0,0,0,45,24c4.66,0,7.79-3.69,7.79-8.7S50,6.73,45.18,6.73ZM44.37,20a4.08,4.08,0,0,1-4.07-3.79,6.48,6.48,0,0,1,0-1.76,4.06,4.06,0,0,1,4.07-3.76c2.29,0,4.1,1.72,4.1,4.64S46.66,20,44.37,20Z"/>
-            <path d="M8.66,6.68A8.46,8.46,0,0,0,0,15.45a8.48,8.48,0,0,0,8.66,8.76,8.48,8.48,0,0,0,8.67-8.76A8.47,8.47,0,0,0,8.66,6.68Zm0,13.55a4.53,4.53,0,0,1-4.22-4.78,4.53,4.53,0,0,1,4.22-4.79,4.53,4.53,0,0,1,4.23,4.79A4.53,4.53,0,0,1,8.66,20.23Z"/>
-            <rect x="48.29" y="13.11" width="16.69" height="4.51" transform="translate(41.2 71.97) rotate(-89.93)"/>
-            <path d="M77.26,17.32v0h-4.1a3.81,3.81,0,0,1-3.83,2.81,4.1,4.1,0,0,1-4-2.82,5.87,5.87,0,0,1-.3-1.9c0-3,1.94-4.68,4.24-4.68A3.66,3.66,0,0,1,73,13.51h4.16s0-.07,0-.11A6.55,6.55,0,0,0,77,12.16h0v0a6.76,6.76,0,0,0-2.71-4,7.8,7.8,0,0,0-3-1.35,8.65,8.65,0,0,0-2-.23h-.13a8.55,8.55,0,0,0-8.66,8.85,8.63,8.63,0,0,0,8.77,8.86h.09c3.81,0,7-2.38,7.7-5.55l0-.07h0A6.14,6.14,0,0,0,77.26,17.32Z"/>
-            <path d="M108.22,18.47A4.61,4.61,0,0,0,107,15.56l-.31-.3a7.15,7.15,0,0,0-3.39-1.59l-2.38-.52a2.36,2.36,0,0,1-1-.39,1.3,1.3,0,0,1-.44-.55,1.38,1.38,0,0,1-.11-.55c0-.95,1-1.66,2.14-1.66a2.55,2.55,0,0,1,2.74,2.21h3.83a5.8,5.8,0,0,0-.09-1,5.08,5.08,0,0,0-.52-1.52c-.81-1.54-2.59-3.09-6-3.1h-.15c-3.52.06-6.1,2.51-6.1,5.45v.17a4.62,4.62,0,0,0,.9,2.66,5.42,5.42,0,0,0,2.33,1.71,8.71,8.71,0,0,0,1.44.45l2.21.51a3.51,3.51,0,0,1,1,.33,1.62,1.62,0,0,1,.66.6,1.34,1.34,0,0,1,.19.7c0,.88-.72,1.66-2.21,1.66a2.77,2.77,0,0,1-3-2.36H94.76a4.87,4.87,0,0,0,0,.66h0a5.67,5.67,0,0,0,2.77,4.13,7,7,0,0,0,3.68,1h.5c4.37,0,6.48-2.77,6.48-5.48C108.23,18.69,108.23,18.58,108.22,18.47Z"/>
-            <path d="M87.93,14.32l7.63,9.26H89.87l-6.38-7.82v7.82H79L79,0h4.49l0,13.37,6.06-6.5h5.38Z"/><path d="M28,6.72A5.52,5.52,0,0,0,23.33,9V7.13H18.89V23.7h4.44v0h0v-9.5c0-1.92,1.14-3.43,3.09-3.43,2.15,0,3.05,1.45,3.05,3.29v9.64H34V13.27C34,9.64,32.09,6.72,28,6.72Z"/>
-          </svg>
-        </a>
-        <nav class="header__main-nav--router">
-          <ul>
-            <li>
-              <a
-                 class="h1-bold u-color-grey"
-                 #shops
-                 (mouseenter)="hoverMenu()"
-                 routerLink="/shops"
-                 [ngClass]="{ 'u-color-black' : ((url$ | async)[1] !== 'showcases') && ((url$ | async)[1] !== 'events')  && ((url$ | async)[1] !== 'reviews')}"
-                 i18n="@@header__shops">
-                 쇼핑|shops
-              </a>
-            </li>
-            <li>
-              <a
-                 class="h1-bold u-color-grey"
+    <!--*ngIf="!(currentUrl[2].indexOf('search') > -1)"-->
+    <div
+      #mobileHamburger
+      [ngStyle]="{ display: inputCheckedForToggle.checked && (currentUrl.length > 2 ? !(currentUrl[2].indexOf('search') > -1) : true )? 'block' : 'none'}"
+      class="header__mobile-hamburger">
 
-                 (click)="showPreparingMessage()"
-                 i18n="@@header__showcases">
-                 쇼케이스|showcases
-              </a>
-              <!--routerLink="showcases"-->
-              <!--[routerLinkActive]="['u-color-black', 'u-active']"-->
-            </li>
-            <li>
-              <a
-                 class="h1-bold u-color-grey"
+      <nav>
+        <ul
+          [ngClass]="[auth.isAuthenticated ? 'header__mobile-hamburger--ul' : 'header__mobile-hamburger--ul--not-login' ]"
+          class="subtitle-2-regular">
 
-                 (click)="showPreparingMessage()"
-                 i18n="@@header__events">
-                 이벤트|events
-              </a>
-              <!--routerLink="events"-->
-              <!--[routerLinkActive]="['u-color-black', 'u-active']"-->
+          <!--<a *ngIf="!auth.isAuthenticated" (click)="routeForMobile('/member/login', inputCheckedForToggle)">로그인</a>-->
+          <ng-container *ngIf="!auth.isAuthenticated">
+            <li class="header__mobile-hamburger--li--not-login">
+              <div>
+                <a
+                  (click)="routeForMobile('/member/login', inputCheckedForToggle)">
+                  로그인
+                </a>
+              </div>
             </li>
-            <li>
+          </ng-container>
+          <ng-container *ngIf="auth.isAuthenticated">
+            <li class="header__mobile-hamburger--li">
+              <div>
+                <a
+                  (click)="routeForMobile('/account/my-shopping/orders', inputCheckedForToggle)">
+                  나의 쇼핑
+                </a>
+              </div>
+            </li>
+            <li class="header__mobile-hamburger--li">
+              <div>
+                <a
+                  (click)="routeForMobile('/account/my-reviews/written', inputCheckedForToggle)">
+                  나의 리뷰
+                </a>
+              </div>
+            </li>
+            <li class="header__mobile-hamburger--li">
+              <div>
+                <a
+                  (click)="routeForMobile('/account/wish-list', inputCheckedForToggle)">
+                  다음에 구매하기
+                </a>
+              </div>
+            </li>
+            <li class="header__mobile-hamburger--li">
+              <div>
+                <a
+                  (click)="routeForMobile('/account/settings/profile', inputCheckedForToggle)">
+                  설정
+                </a>
+              </div>
+            </li>
+          </ng-container>
+        </ul>
+        <ul class="header__mobile-hamburger--ul subtitle-2-regular">
+          <li
+            class="header__mobile-hamburger--li"
+            *ngFor="let item of menuMap[locale]?.main">
+            <div>
               <a
-                 class="h1-bold u-color-grey"
-
-                 (click)="showPreparingMessage()"
-                 i18n="@@header__reviews">
-                 리뷰|reviews
+                (click)="routeForMobile('/shops/c/' + item.href, inputCheckedForToggle)">
+                <img [src]="'https://img.onpicks.com/assets/' + item.slug + '.jpg?d=w80-h80'" alt="">
+                <span>{{item.name}}</span>
               </a>
-              <!--routerLink="reviews"-->
-              <!--[routerLinkActive]="['u-color-black', 'u-active']"-->
-            </li>
-          </ul>
-        </nav>
+            </div>
+          </li>
+        </ul>
+        <ul class="header__mobile-hamburger--ul subtitle-2-regular">
+          <li class="header__mobile-hamburger--li">
+            <div>
+              <a
+                (click)="showPreparingMessage()">
+                리뷰
+              </a>
+            </div>
+          </li>
+          <li class="header__mobile-hamburger--li">
+            <div>
+              <a
+                (click)="showPreparingMessage()">
+                쇼케이스
+              </a>
+            </div>
+          </li>
+          <li class="header__mobile-hamburger--li">
+            <div>
+              <a
+                (click)="showPreparingMessage()">
+                이벤트
+              </a>
+            </div>
+          </li>
+          <li class="header__mobile-hamburger--li">
+            <div>
+              <a *ngIf="auth.isAuthenticated" (click)="logout(inputCheckedForToggle)">로그아웃</a>
+            </div>
+          </li>
+        </ul>
+      </nav>
+    </div>
+
+    <onpicks-free-delivery-notibox
+      #deliveryBox
+      [setCartInfo]="cart$ | async"
+      [ngStyle]="{ opacity : '0'}">
+    </onpicks-free-delivery-notibox>
+
+    <div #menu class="header-menu__outer">
+      <nav>
+        <ul class="header-menu__item" *ngFor="let item of menuMap[locale]?.main">
+          <li>
+            <a
+              (click)="routeForDeskTop('/shops/c/' + item.href)">
+              <div
+                class="header-menu__item--title"
+                [ngClass] =
+                "[
+                  (item.slug === 'pantry-and-household')  ? 'header-menu__item--title-pantry-and-household' : '',
+                  (item.slug === 'beauty')  ? 'header-menu__item--title-beauty' : '',
+                  (item.slug === 'baby')  ? 'header-menu__item--title-baby' : '',
+                  (item.slug === 'health')  ? 'header-menu__item--title-health' : ''
+                ]">
+                <span>{{item.name}}</span>
+              </div>
+            </a>
+          </li>
+          <li class="header-menu__item--category"
+              *ngFor="let subItem of item.sub">
+            <a
+              (click)="routeForDeskTop('/shops/c/' + subItem.href)">
+              {{subItem.name}}
+            </a>
+          </li>
+          <li class="header-menu__item--category">
+            <a
+              (click)="routeForDeskTop('/shops/c/' + item.href)">
+              {{item.name}} 더보기 >
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <div class="header-menu__recommend">
+        <ul class="header-menu__recommend--ul">
+          <li class="header-menu__recommend--ul-item" i18n="@@header-menu__recommend-category"> </li>
+          <li class="header-menu__recommend--ul-item" *ngFor="let item of menuMap[locale]?.recommandCategory"><a [routerLink]="'/shops/c/' + item.href">{{item.name}}</a></li>
+        </ul>
       </div>
-      <onpicks-search-box
-        (enter)="search($event)"
-        [top]="-1"
-        i18n-placeholder="@@header__placeholder"
-        placeholder="2018 추석선물 대전">
-      </onpicks-search-box>
     </div>
-  </div>
-
-  <div class="header__mobile-menu">
-    <div class="navigation">
-      <div class="navigation__toggle" #mobileToggle>
-        <input
-          #inputCheckedForToggle
-          type="checkbox"
-          class="navigation__checkbox"
-          id="navi-toggle">
-        <label
-          (click)="showMenuForMobile(inputCheckedForToggle)"
-          for="navi-toggle"
-          class="navigation__button">
-          <span class="navigation__menu-icon">&nbsp;</span>
-        </label>
-      </div>
-
-
-      <onpicks-search-box
-        [placeholder]="'검색어'"
-        [isMobile]="true"
-        (enter)="search($event)"
-        #mobileSearchBox
-        (deleteText)="clickMobileSearch()"
-        class="navigation__searchbox-el">
-      </onpicks-search-box>
-      <div class="navigation__icon" #mobileIconOuter>
-        <a routerLink="/shops">
-          <svg
-            #mobileLogo
-            class="header__mobile-menu--onpicks-icon"
-            width="94"
-            height="26"
-            viewBox="0 0 94 26">
-            <g fill="#000" fill-rule="evenodd">
-              <path d="M49.513 0c1.244 0 2.217 1.005 2.217 2.255 0 1.195-.973 2.2-2.217 2.2-1.216 0-2.216-1.005-2.216-2.2 0-1.25 1-2.255 2.216-2.255M7.468 17.523c-2.01 0-3.639-1.855-3.639-4.144 0-2.288 1.63-4.144 3.639-4.144s3.638 1.856 3.638 4.144c0 2.289-1.63 4.144-3.638 4.144m0-11.736C3.213 5.787 0 8.957 0 13.38c0 4.392 3.213 7.592 7.468 7.592 4.254 0 7.467-3.2 7.467-7.592 0-4.421-3.213-7.592-7.467-7.592M38.949 17.346c-1.761 0-3.22-1.212-3.508-3.279a5.53 5.53 0 0 1 0-1.529c.288-2.062 1.747-3.25 3.508-3.25 1.968 0 3.53 1.484 3.53 4.014 0 2.56-1.562 4.044-3.53 4.044m.698-11.52c-2.027 0-3.562.861-4.26 1.89V6.122H31.56v19.864H35.393v-6.923c.694.96 2.141 1.745 4.11 1.745 4.023 0 6.715-3.2 6.715-7.534 0-4.247-2.403-7.446-6.57-7.446M47.56 20.531l.017-14.456 3.889.005-.017 14.456zM67.121 15.003v-.03l-3.528-.004-.005-.002-.001.002c-.324 1.116-1.32 2.435-3.306 2.433-1.521-.002-2.87-.864-3.418-2.44a4.979 4.979 0 0 1-.261-1.648c.003-2.615 1.67-4.053 3.659-4.05 1.93.001 2.835 1.236 3.184 2.442l2.568.003h1.021l.001-.091c0-.37-.037-.732-.11-1.084l-.003-.016c-.295-1.4-1.142-2.627-2.336-3.5a6.719 6.719 0 0 0-2.59-1.174 7.616 7.616 0 0 0-1.708-.195H60.177c-4.18-.005-7.459 3.194-7.464 7.66-.005 4.437 3.324 7.673 7.564 7.678h.078c3.28.004 6.016-2.064 6.635-4.81l.017-.06-.004-.001a5.36 5.36 0 0 0 .118-1.113M93.098 15.998a3.992 3.992 0 0 0-1.327-2.778c-.702-.64-1.678-1.122-2.927-1.382l-2.046-.444a2.006 2.006 0 0 1-.836-.34 1.17 1.17 0 0 1-.386-.479c-.06-.142-.093-.3-.092-.475 0-.823.82-1.439 1.843-1.437 1.622.001 2.238 1.069 2.363 1.917h.111l3.194.004c0-.306-.027-.604-.081-.894a4.398 4.398 0 0 0-.447-1.315c-.7-1.334-2.234-2.677-5.166-2.68l-.13.001c-3.033.056-5.252 2.174-5.255 4.723 0 .051.001.101.003.152.026.85.279 1.634.778 2.3.456.607 1.117 1.115 2 1.482.377.157.792.288 1.25.39l1.9.443c.329.07.598.166.815.283.27.145.457.323.574.524.108.184.158.388.158.605-.001.764-.616 1.44-1.902 1.438-1.617-.002-2.461-.965-2.611-2.048h-.741l-2.646-.004v.001c0 .194.013.386.036.574.111 1.062.77 2.614 2.387 3.583a6.013 6.013 0 0 0 3.362.887c.079.002.158.004.239.004 3.771.004 5.587-2.403 5.59-4.754 0-.094-.004-.188-.01-.281"/>
-              <path d="M76.135 12.404l6.576 8.017h-4.905l-5.498-6.771-.001 6.775-3.874-.005L68.457 0l3.874.005-.023 11.587 5.228-5.634h4.636zM24.478 5.823c-1.483 0-3.128.625-4.02 2.007V6.175H16.63v14.354h3.827v-.017h.027V12.28c0-1.658.984-2.967 2.663-2.967 1.852 0 2.633 1.251 2.633 2.85v8.35h3.85v-9.018c0-3.142-1.62-5.672-5.152-5.672"/>
-            </g>
-          </svg>
-        </a>
-
-        <a routerLink="/order/cart">
-          <svg class="header__mobile-menu--shopping-bag-icon"
-               height="24"
-               viewBox="0 0 24 24"
-               width="24">
-            <path d="M19.85,9a2.18,2.18,0,0,0-.19-.48A2.83,2.83,0,0,0,17.14,7H17A5,5,0,1,0,7,7H6.86A2.83,2.83,0,0,0,4.34,8.52,2.18,2.18,0,0,0,4.15,9,2.83,2.83,0,0,0,4,9.86v9.28a2.9,2.9,0,0,0,.34,1.34A2.83,2.83,0,0,0,6.86,22H17.14a2.83,2.83,0,0,0,2.52-1.52A2.9,2.9,0,0,0,20,19.14V9.86A2.83,2.83,0,0,0,19.85,9ZM9.24,5.83a3,3,0,0,1,1.63-1.61A2.92,2.92,0,0,1,12,4a3,3,0,0,1,3,3H9A3,3,0,0,1,9.24,5.83ZM18,10v9.14a.86.86,0,0,1-.86.86H6.86A.86.86,0,0,1,6,19.14V9.86A.86.86,0,0,1,6.86,9H17.14a.86.86,0,0,1,.86.86Z" fill="#161616">
-            </path>
-          </svg>
-        </a>
-          <svg
-            (click)="clickMobileSearch()"
-            #mobileSearchIcon
-            class="header__mobile-menu--search-icon"
-            height="18.5"
-            viewBox="0 0 18.5 18.5"
-            width="18.5">
-            <path d="M9.75,4.5A5.25,5.25,0,1,1,4.5,9.75,5.26,5.26,0,0,1,9.75,4.5m0-2A7.25,7.25,0,1,0,17,9.75,7.26,7.26,0,0,0,9.75,2.5Z" fill="#161616" transform="translate(-2.5 -2.5)"></path>
-            <line
-              fill="none"
-              stroke="#161616"
-              stroke-linecap="round"
-              stroke-miterlimit="10"
-              stroke-width="2"
-              x1="12"
-              x2="17.5"
-              y1="12"
-              y2="17.5">
-            </line>
-          </svg>
-      </div>
+    <div #alertMessage class="header__alert">
+      <span class="header__alert--message subtitle-2-regular u-color-green">언녕하세요</span>
+      <span></span>
     </div>
+
   </div>
-  <!--*ngIf="!(currentUrl[2].indexOf('search') > -1)"-->
-  <div
-    #mobileHamburger
-    [ngStyle]="{ display: inputCheckedForToggle.checked && (currentUrl.length > 2 ? !(currentUrl[2].indexOf('search') > -1) : true )? 'block' : 'none'}"
-    class="header__mobile-hamburger">
-
-    <nav>
-      <ul
-        [ngClass]="[auth.isAuthenticated ? 'header__mobile-hamburger--ul' : 'header__mobile-hamburger--ul--not-login' ]"
-        class="subtitle-2-regular">
-
-        <!--<a *ngIf="!auth.isAuthenticated" (click)="routeForMobile('/member/login', inputCheckedForToggle)">로그인</a>-->
-        <ng-container *ngIf="!auth.isAuthenticated">
-          <li class="header__mobile-hamburger--li--not-login">
-            <div>
-              <a
-                (click)="routeForMobile('/member/login', inputCheckedForToggle)">
-                로그인
-              </a>
-            </div>
-          </li>
-        </ng-container>
-        <ng-container *ngIf="auth.isAuthenticated">
-          <li class="header__mobile-hamburger--li">
-            <div>
-              <a
-                (click)="routeForMobile('/account/my-shopping/orders', inputCheckedForToggle)">
-                나의 쇼핑
-              </a>
-            </div>
-          </li>
-          <li class="header__mobile-hamburger--li">
-            <div>
-              <a
-                (click)="routeForMobile('/account/my-reviews/written', inputCheckedForToggle)">
-                나의 리뷰
-              </a>
-            </div>
-          </li>
-          <li class="header__mobile-hamburger--li">
-            <div>
-              <a
-                (click)="routeForMobile('/account/wish-list', inputCheckedForToggle)">
-                다음에 구매하기
-              </a>
-            </div>
-          </li>
-          <li class="header__mobile-hamburger--li">
-            <div>
-              <a
-                (click)="routeForMobile('/account/settings/profile', inputCheckedForToggle)">
-                설정
-              </a>
-            </div>
-          </li>
-        </ng-container>
-      </ul>
-      <ul class="header__mobile-hamburger--ul subtitle-2-regular">
-        <li
-          class="header__mobile-hamburger--li"
-          *ngFor="let item of menuMap[locale]?.main">
-          <div>
-            <a
-              (click)="routeForMobile('/shops/c/' + item.href, inputCheckedForToggle)">
-              <img [src]="'https://img.onpicks.com/assets/' + item.slug + '.jpg?d=w80-h80'" alt="">
-              <span>{{item.name}}</span>
-            </a>
-          </div>
-        </li>
-      </ul>
-      <ul class="header__mobile-hamburger--ul subtitle-2-regular">
-        <li class="header__mobile-hamburger--li">
-          <div>
-            <a
-              (click)="showPreparingMessage()">
-              리뷰
-            </a>
-          </div>
-        </li>
-        <li class="header__mobile-hamburger--li">
-          <div>
-            <a
-              (click)="showPreparingMessage()">
-              쇼케이스
-            </a>
-          </div>
-        </li>
-        <li class="header__mobile-hamburger--li">
-          <div>
-            <a
-              (click)="showPreparingMessage()">
-              이벤트
-            </a>
-          </div>
-        </li>
-        <li class="header__mobile-hamburger--li">
-          <div>
-            <a *ngIf="auth.isAuthenticated" (click)="logout(inputCheckedForToggle)">로그아웃</a>
-          </div>
-        </li>
-      </ul>
-    </nav>
-  </div>
-
-  <onpicks-free-delivery-notibox
-    #deliveryBox
-    [setCartInfo]="cart$ | async"
-    [ngStyle]="{ opacity : '0'}">
-  </onpicks-free-delivery-notibox>
-
-  <div #menu class="header-menu__outer">
-    <nav>
-      <ul class="header-menu__item" *ngFor="let item of menuMap[locale]?.main">
-        <li>
-          <a
-            (click)="routeForDeskTop('/shops/c/' + item.href)">
-            <div
-              class="header-menu__item--title"
-              [ngClass] =
-              "[
-                (item.slug === 'pantry-and-household')  ? 'header-menu__item--title-pantry-and-household' : '',
-                (item.slug === 'beauty')  ? 'header-menu__item--title-beauty' : '',
-                (item.slug === 'baby')  ? 'header-menu__item--title-baby' : '',
-                (item.slug === 'health')  ? 'header-menu__item--title-health' : ''
-              ]">
-              <span>{{item.name}}</span>
-            </div>
-          </a>
-        </li>
-        <li class="header-menu__item--category"
-            *ngFor="let subItem of item.sub">
-          <a
-            (click)="routeForDeskTop('/shops/c/' + subItem.href)">
-            {{subItem.name}}
-          </a>
-        </li>
-        <li class="header-menu__item--category">
-          <a
-            (click)="routeForDeskTop('/shops/c/' + item.href)">
-            {{item.name}} 더보기 >
-          </a>
-        </li>
-      </ul>
-    </nav>
-    <div class="header-menu__recommend">
-      <ul class="header-menu__recommend--ul">
-        <li class="header-menu__recommend--ul-item" i18n="@@header-menu__recommend-category"> </li>
-        <li class="header-menu__recommend--ul-item" *ngFor="let item of menuMap[locale]?.recommandCategory"><a [routerLink]="'/shops/c/' + item.href">{{item.name}}</a></li>
-      </ul>
-    </div>
-  </div>
-  <div #alertMessage class="header__alert">
-    <span class="header__alert--message subtitle-2-regular u-color-green">언녕하세요</span>
-    <span></span>
-  </div>
-
 </header>
 
