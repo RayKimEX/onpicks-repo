@@ -19,7 +19,8 @@ export class WrittenReviewsComponent implements OnInit {
     private accountDataService: AccountDataService,
     private uiService: UiService
   ) {
-    this.writtenReviews$ = this.accountDataService.getMyWrittenReviews().pipe( tap( v => console.log(v)));
+    this.writtenReviews$ = this.accountDataService
+      .getMyWrittenReviews().pipe( tap( v => console.log(v)));
     this.weeklyBest$ = this.uiService.getWeeklyBestGoods();
   }
 

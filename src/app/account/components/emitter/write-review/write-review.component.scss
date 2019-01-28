@@ -240,16 +240,21 @@
   }
 
 
-  &__inner {
-    width:66rem;
+  &__content {
+
     transform: translate(-50%, -50%);
     position: fixed;
     top : 50%;
     left : 50%;
     z-index : 9999;
     background-color:$color-white;
-    padding : 3.2rem;
 
+    &--inner{
+      padding : 3.2rem;
+      width:66rem;
+      height: 70rem;
+      overflow:auto;
+    }
   }
 
   &__outer{

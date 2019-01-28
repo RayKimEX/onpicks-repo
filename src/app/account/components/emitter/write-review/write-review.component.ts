@@ -39,7 +39,8 @@ export class WriteReviewComponent implements OnInit, OnChanges {
         });
       });
   }
-  @Output('exit') exitEvent = new EventEmitter()
+  @Output('exit') exitEvent = new EventEmitter();
+  @Output('publishReview') publishReviewEvent = new EventEmitter()
   @ViewChild('reviewTextView') reviewTextView;
   imageFileList: { file, blobData }[] = [];
   errorStatus = 0;
@@ -134,7 +135,7 @@ export class WriteReviewComponent implements OnInit, OnChanges {
         value => {
 
           if ( value.file !== '') {
-            this.accountDataService.uploadReviewImage(this.data.reviewData.product, this.data.reviewData.review, value.file).subscribe(
+            this.accountDataService.uploadReviewImage(this._data.reviewData.product, this._data.reviewData.review, value.file).subscribe(
               v => console.log('complete!!!')
             );
           }
@@ -156,6 +157,17 @@ export class WriteReviewComponent implements OnInit, OnChanges {
   publishReview( xProductSlug, xReviewId ){
     // xProductSlug, xReviewId, xRating, xText
 
-    this.accountDataService.publishReviewData(xProductSlug, xReviewId, this.starRating, this.reviewTextView.nativeElement.value).subscribe( v => console.log(v))
+    this.accountDataService
+      .publishReviewData(xProductSlug, xReviewId, this.starRating, this.reviewTextView.nativeElement.value)
+      .subscribe(
+        v => {
+          console.log(v);
+        },
+        error => {
+
+        }
+      )
+    this.exitEvent.emit();
+    this.publishReviewEvent.emit();
   }
 }

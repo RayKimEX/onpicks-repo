@@ -1,4 +1,5 @@
 import {AfterViewInit, ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
+import {UiService} from '../../../core/service/ui/ui.service';
 
 @Component({
   selector: 'onpicks-shops-index',
@@ -122,8 +123,12 @@ export class ShopsIndexComponent implements OnInit, AfterViewInit {
     },
 
   ]
-  constructor() {
 
+  weeklyBest$;
+  constructor(
+    private uiDataService: UiService,
+  ) {
+    this.weeklyBest$ = this.uiDataService.getWeeklyBestGoods();
   }
 
   ngOnInit() {

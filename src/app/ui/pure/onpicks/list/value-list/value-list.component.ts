@@ -7,7 +7,7 @@ import {
   ChangeDetectorRef,
   HostListener,
   AfterViewInit,
-  ViewChild, ViewChildren
+  ViewChild, ViewChildren, OnDestroy
 } from '@angular/core';
 import {RESPONSIVE_MAP} from '../../../../../app.config';
 import {BreakpointObserver, BreakpointState} from '../../../../../../../node_modules/@angular/cdk/layout';
@@ -79,6 +79,8 @@ export class ValueListComponent implements OnInit, AfterViewInit {
         }
       });
   }
+
+
   ngAfterViewInit() {
     this.itemListArray = this.itemList.toArray();
     const computedStyle = getComputedStyle(( this.itemList.first.nativeElement ), null);

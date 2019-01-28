@@ -81,13 +81,11 @@ export class OrdersComponent implements OnInit {
       this.accountDataService.createReviewData(xPassedData.item.product, xPassedData.orderId).subscribe(
         response => {
           if ( xPassedData.condition === 'write_review' ) {
-
+            xPassedData.item['review'] = response.id;
+            console.log(xPassedData);
             this.writeReview = {
               isShow : true,
-              reviewData : {
-                ...xPassedData.item,
-                review : response.id
-              }
+              reviewData : xPassedData.item
             }
             console.log(this.writeReview);
           }
@@ -100,9 +98,7 @@ export class OrdersComponent implements OnInit {
       if ( xPassedData.condition === 'write_review' ) {
         this.writeReview = {
           isShow : true,
-          reviewData : {
-            ...xPassedData.item
-          }
+          reviewData : xPassedData
         }
 
         console.log(this.writeReview)

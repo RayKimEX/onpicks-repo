@@ -21,12 +21,11 @@ export class AdhereTableComponent implements OnInit {
   }
 
   ngOnInit() {
-
   }
 
 
-  viewModal(xCondition, xItem, xOrderId) {
-    this.viewModalEmitter.emit({ condition : xCondition, item: xItem, orderId : xOrderId });
+  viewModal(xCondition, xReviewData, xOrderId) {
+    this.viewModalEmitter.emit({ condition : xCondition, item: xReviewData, orderId : xOrderId });
   }
 
   completePurchase(xOrderId, xProductSlug, index, itemIndex) {

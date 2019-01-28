@@ -1,8 +1,19 @@
 @import "~src/assets/scss/abstracts/variables";
 
+router-outlet {
+  @include respond(actb){
+    margin-top : 2.4rem;
+    display:block;
+  }
+}
+
 .account-profile {
   padding: 3.2rem 0;
   margin-bottom : 0.8rem;
+
+  @include respond(actb){
+    display:none;
+  }
   &__info {
     display : table;
     // margin-bottom : 4rem;
@@ -31,10 +42,14 @@
 
 .account-navigator {
 
-  nav{
+  nav {
     padding-bottom : 2.4rem;
     border-bottom : 1px solid $color-light-grey;
     margin-bottom: 2.4rem;
+
+    @include respond(actb){
+      display:none;
+    }
     ul {
 
       li {
@@ -42,7 +57,8 @@
         display:inline-block;
 
         &:not(:last-child){
-          margin-right : 12.5rem;
+          padding-right : 11.08%;
+          // margin-right : 12.5rem;
         }
       }
     }

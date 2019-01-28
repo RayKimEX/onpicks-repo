@@ -4,25 +4,60 @@
 
   <div class="adhere-table__sub-title-box">
     <div class="subtitle-2-regular">
-      <span>주문일자</span>
+      <span class="adhere-table__sub-title-box--order-date-title">주문일자</span>
       <span>
         <strong>{{results.created | date : 'longDate'}}</strong>
       </span>
-      <span>주문번호</span>
+      <span class="adhere-table__sub-title-box--order-number-title">주문번호</span>
       <span>
         <strong>{{results.code}}</strong>
       </span>
       <span>
-         <button
-           routerLink="/account/my-shopping/orders-detail/{{results.code}}" class="subtitle-2-bold u-color-green">상세보기 >
-         </button>
+          <a
+            routerLink="/account/my-shopping/orders-detail/{{results.code}}">
+            <ui-angle-bracket-navigator [verticalAlign]="'base-line'">상세보기</ui-angle-bracket-navigator>
+          </a>
       </span>
     </div>
   </div>
 
-  <div class="adhere-table__item" *ngFor="let item of results.items; index as itemIndex">
+  <div
+    class="adhere-table__item-mobile"
+    *ngFor="let item of results.items; index as itemIndex">
     <div class="adhere-table__item--image">
-      <img src="{{item.thumbnail}}" alt="">
+      <a [routerLink]="'/shops/p/' + item.product">
+        <div class="adhere-table__item--image-inner">
+          <img src="{{item.thumbnail}}" alt="">
+        </div>
+      </a>
+      <div class="adhere-table__item-state--btn subtitle-2-regular">
+        <onpicks-button
+          *ngIf="item.status === 'completed' && item?.review_published === false"
+          [type]="'green'"
+          (click)="viewModal('write_review', item, results.code, data)"
+          [width]="'100%'">리뷰 쓰기
+        </onpicks-button>
+
+        <onpicks-button
+          *ngIf="item.status === 'pending' || item.status === 'paid'"
+          [type]="'white'"
+          (click)="cancelPurchase( results.code, item.product, resultsIndex, itemIndex)"
+          [width]="'100%'">주문 취소
+        </onpicks-button>
+
+        <onpicks-button
+          *ngIf="item.status === 'fulfilled'"
+          [type]="'white'"
+          [width]="'100%'">배송 추적
+        </onpicks-button>
+
+        <onpicks-button
+          *ngIf="item.status === 'delivered'"
+          [type]="'white'"
+          (click)="completePurchase( results.code, item.product, resultsIndex, itemIndex )"
+          [width]="'100%'">구매 확정
+        </onpicks-button>
+      </div>
     </div>
 
     <div class="adhere-table__item-info">
@@ -30,11 +65,33 @@
       <div class="adhere-table__item-info--name body-3-regular">{{item.title}}</div>
       <div class="adhere-table__item-info--option subtitle-3-regular u-color-grey">카카오 다크 초콜릿</div>
       <div class="adhere-table__item-info--price subtitle-2-bold">{{item.sale_price | onpicksCurrency : 'KRW' }}</div>
+      <div class="adhere-table__item-state--title subtitle-2-bold">{{item.status_display}}</div>
+      <div
+        *ngIf="item.status === 'pending'"
+        class="adhere-table__item-state--date subtitle-3-regular">입금기한 {{results.deposit_until | date : 'longDate'}}
+      </div>
+      <onpicks-button
+        [type]="'white'"
+        (click)="returnPurchase( results.code, item.product, resultsIndex, itemIndex)"
+        [width]="'8.8rem'">반품 요청
+      </onpicks-button>
     </div>
 
-    <!--<div class="adhere-table__item-state">-->
-      <!---->
-    <!--</div>-->
+  </div>
+
+  <div class="adhere-table__item" *ngFor="let item of results.items; index as itemIndex">
+    <a [routerLink]="'/shops/p/' + item.product">
+      <div class="adhere-table__item--image">
+        <img src="{{item.thumbnail}}" alt="">
+      </div>
+    </a>
+
+    <div class="adhere-table__item-info">
+      <div class="adhere-table__item-info--title subtitle-2-bold">{{item.brand}}</div>
+      <div class="adhere-table__item-info--name body-3-regular">{{item.title}}</div>
+      <div class="adhere-table__item-info--option subtitle-3-regular u-color-grey">카카오 다크 초콜릿</div>
+      <div class="adhere-table__item-info--price subtitle-2-bold">{{item.sale_price | onpicksCurrency : 'KRW' }}</div>
+    </div>
 
     <div class="adhere-table__item-state">
       <div class="adhere-table__item-state--title subtitle-2-bold">{{item.status_display}}</div>
@@ -46,7 +103,7 @@
         <onpicks-button
           *ngIf="item.status === 'completed' && item?.review_published === false"
           [type]="'green'"
-          (click)="viewModal('write_review', item, results.code)"
+          (click)="viewModal('write_review', item, results.code, data)"
           [width]="'8.8rem'">리뷰 쓰기
         </onpicks-button>
 

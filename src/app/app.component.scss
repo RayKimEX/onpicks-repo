@@ -1,0 +1,9 @@
+@import '~src/assets/scss/abstracts/variables';
+
+router-outlet {
+
+  @include respond(desktop){
+    margin-top : 6rem;
+    display:block;
+  }
+}

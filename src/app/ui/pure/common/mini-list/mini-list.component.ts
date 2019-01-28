@@ -9,13 +9,8 @@ import {
   OnInit,
   Renderer2,
   ViewChild,
-  ViewChildren
 } from '@angular/core';
-import {fromEvent} from 'rxjs';
-import {map} from 'rxjs/operators';
-import {ActivatedRoute} from '@angular/router';
 import {APP_BASE_HREF} from '@angular/common';
-import {AppState} from '../../../../core/store/app.reducer';
 import {select, Store} from '@ngrx/store';
 import {TryAddOrCreateToCart, TrySubtractOrDeleteFromCart} from '../../../../core/store/cart/cart.actions';
 import {LOCATION_MAP} from '../../../../app.config';
@@ -33,7 +28,7 @@ export class MiniListComponent implements OnInit, AfterViewInit, OnDestroy {
   @Input('carouselLength') carouselLength = 4;
   @Input('setTitle') setTitle;
   @Input('infoList') infoList;
-
+  @Input('mobileType') mobileType = 'half';
   // TODO : 보이지 않는 부분에 대해서 img display : none 하는식으로, 메모리 최적화
 
   imageIndex = 0;
@@ -42,6 +37,7 @@ export class MiniListComponent implements OnInit, AfterViewInit, OnDestroy {
   cartStore$;
   cartStore;
 
+  translateXWidth = 288;
   constructor(
     private renderer: Renderer2,
     private store: Store<any>,
@@ -99,14 +95,14 @@ export class MiniListComponent implements OnInit, AfterViewInit, OnDestroy {
   nextButton() {
     this.pressedPrev = false;
     this.imageIndex++;
-    this.renderer.setStyle(this.container.nativeElement, 'transform', 'translateX(' + (-this.imageIndex) * 288 + 'px)');
+    this.renderer.setStyle(this.container.nativeElement, 'transform', 'translateX(' + (-this.imageIndex) * this.translateXWidth + 'px)');
 
   }
 
   prevButton() {
     this.pressedPrev = true;
     this.imageIndex--;
-    this.renderer.setStyle(this.container.nativeElement, 'transform', 'translateX(' + (-this.imageIndex) * 288 + 'px)');
+    this.renderer.setStyle(this.container.nativeElement, 'transform', 'translateX(' + (-this.imageIndex) * this.translateXWidth + 'px)');
   }
   round(float) {
 

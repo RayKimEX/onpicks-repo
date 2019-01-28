@@ -3,10 +3,6 @@
 ui-banner-carousel {
   height: 40rem;
   display:block;
-
-  @include respond(desktop){
-    margin-top : 6rem;
-  }
 }
 
 onpicks-category-list {

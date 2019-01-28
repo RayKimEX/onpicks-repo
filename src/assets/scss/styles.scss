@@ -423,12 +423,12 @@ textarea {
   max-width : $grid-width;
   margin: 0 auto;
   @include respond(fb) {
-    padding: 0 3.2rem;
+    margin: 0 3.2rem;
   }
 
   @include respond(tb) {
     white-space: normal;
-    padding : 0 1.6rem;
+    margin : 0 1.6rem;
   }
 
   [class *= "12-list-line-up"]{
@@ -454,11 +454,11 @@ textarea {
   max-width : $grid-width;
   margin: 0 auto;
   @include respond(fb) {
-    padding: 0 3.2rem;
+    margin: 0 3.2rem;
   }
 
   @include respond(tb) {
-    padding: 0;
+    margin: 0;
     h1 {
       padding : 0 1.6rem;
     }
@@ -475,13 +475,12 @@ textarea {
     @include respond(tb) {
       width: 40%;
       &:first-child {
-        padding-left : 1.6rem;
+        margin-left : 1.6rem;
       }
 
       &:last-child {
-        padding-right : 1.6rem;
+        margin-right : 1.6rem;
       }
-
     }
   }
 
@@ -496,11 +495,11 @@ textarea {
     @include respond(tb) {
       width: 40%;
       &:first-child {
-        padding-left : 1.6rem;
+        margin-left : 1.6rem;
       }
 
       &:last-child {
-        padding-right : 1.6rem;
+        margin-right : 1.6rem;
       }
 
     }
@@ -515,15 +514,15 @@ textarea {
   @include clearfix;
 
   @include respond(fb) {
-    padding: 0 3.2rem;
+    margin: 0 3.2rem;
   }
 
   @include respond(sb) {
-    padding: 0 3.2rem;
+    margin: 0 3.2rem;
   }
 
   @include respond(tb) {
-    padding: 0 1.6rem;
+    margin: 0 1.6rem;
   }
 
 

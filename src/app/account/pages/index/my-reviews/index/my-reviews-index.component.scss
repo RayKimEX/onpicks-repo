@@ -2,6 +2,9 @@
 
 .my-reviews-navigator {
 
+  @include respond(actb){
+    display:none;
+  }
   nav {
     ul {
       list-style: none;
@@ -9,5 +12,12 @@
         margin-bottom: 1.6rem;
       }
     }
+  }
+}
+
+
+.my-reviews-router {
+  @include respond(actb){
+    width :100%;
   }
 }

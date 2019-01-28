@@ -2,7 +2,7 @@
   <onpicks-loading-icon></onpicks-loading-icon>
 </ng-template>
 
-<div class="col-9-of-12 written-reviews">
+<div class="written-reviews">
   <ng-container *ngIf="(writtenReviews$ | async)?.results as reivewsData; else loading">
 
     <h1 class="h1-bold written-reviews__title">내가 쓴 리뷰</h1>
@@ -11,6 +11,7 @@
         작성 가능한 리뷰가 없습니다. 다양한 아이템을 최적의 가격으로 쇼핑하여 리뷰를 남겨주세요!
       </div>
       <ui-mini-list
+        [mobileType]="'full'"
         [carouselLength]="3"
         [setTitle]="'추천상품'"
         [infoList]="weeklyBest$ | async"
@@ -46,14 +47,16 @@
       </div>
 
       <div class="written-reviews__link-to-product">
-        <div class="written-reviews__link-to-product--inner">
-          <div class="written-reviews__link-to-product--image">
-            <img src="{{item.product.thumbnail}}" alt="">
+        <a [routerLink]="'/shops/p/' + item.product.slug">
+          <div class="written-reviews__link-to-product--inner">
+            <div class="written-reviews__link-to-product--image">
+              <img src="{{item.product.thumbnail}}" alt="">
+            </div>
+            <div class="written-reviews__link-to-product--description body-3-regular">
+              {{item.product.title}}
+            </div>
           </div>
-          <div class="written-reviews__link-to-product--description body-3-regular">
-            {{item.product.title}}
-          </div>
-        </div>
+        </a>
       </div>
 
     </div>

@@ -1,6 +1,6 @@
 
 
-<div class="col-9-of-12 available-reviews">
+<div class="available-reviews">
   <ng-template #loading>
     <onpicks-loading-icon></onpicks-loading-icon>
   </ng-template>
@@ -13,10 +13,10 @@
       </div>
 
       <ui-mini-list
+        [mobileType]="'full'"
         [carouselLength]="3"
         [infoList]="weeklyBest$ | async"
-        [setTitle]="'인기상품'">
-
+        [setTitle]="'추천상품'">
       </ui-mini-list>
     </ng-container>
 
