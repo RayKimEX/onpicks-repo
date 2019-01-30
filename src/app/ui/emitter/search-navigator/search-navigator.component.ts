@@ -63,8 +63,9 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
   currentList = [];
   currentPage = 1;
 
-
   searchState = '';
+
+  isShowFilterModal = false;
 
   /******* subscribe ******/
   cartStore$;
@@ -72,7 +73,7 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
   queryParams$;
   searchData$;
 
-      // subscribe ``value``
+  // subscribe ``value``
   queryParams = {term: '', brand: [], value: [], location: []};
   cartStore;
 
@@ -242,6 +243,16 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
 
+  }
+
+  showMobileFilter() {
+    this.isShowFilterModal = true;
+    this.renderer.addClass(document.body , 'u-open-modal');
+  }
+
+  hideMobileFilter() {
+    this.isShowFilterModal = false;
+    this.renderer.removeClass(document.body , 'u-open-modal');
   }
 
   addToCart(xAmount, xProductSlug, xPackIndex) {

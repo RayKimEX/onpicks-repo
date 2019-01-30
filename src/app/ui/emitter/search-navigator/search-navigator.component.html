@@ -2,6 +2,23 @@
   <onpicks-loading-icon></onpicks-loading-icon>
 </ng-template>
 
+
+
+
+<onpicks-search-navigator-mobile-filter
+  [categoryList]="categoryList"
+  [currentCategory]="currentCategory"
+  [orderedFilterList]="orderedFilterList"
+  [brandList]="brandList"
+  [brandListForCheck]="brandListForCheck"
+  [valueList]="valueList"
+  [valueListForCheck]="valueListForCheck"
+  [locationList]="locationList"
+  [locationListForCheck]="locationListForCheck"
+  (exit)="hideMobileFilter()"
+  [isShowFilterModal]="isShowFilterModal">
+
+</onpicks-search-navigator-mobile-filter>
 <div class="row">
     <ng-container
       *ngIf="currentList?.length === 0 && router.url.split('/')[2].indexOf('search') > -1">
@@ -279,11 +296,11 @@
             </div>
             <div class="subtitle-3-bold u-color-green">숨기기</div>
           </div>
-          <div class="c-forwarding-place-navigator">
-            <div class="c-forwarding-place-navigator__title">
-              <span class="c-forwarding-place-navigator__title--name subtitle-3-bold">출고지</span>
-              <span class="c-forwarding-place-navigator__title--count subtitle-3-regular u-color-dark-grey">{{locationList?.length}}</span>
-              <span class="c-forwarding-place-navigator__title--remove subtitle-3-regular u-color-grey">
+          <div class="c-ex-warehouse-navigator">
+            <div class="c-ex-warehouse-navigator__title">
+              <span class="c-ex-warehouse-navigator__title--name subtitle-3-bold">출고지</span>
+              <span class="c-ex-warehouse-navigator__title--count subtitle-3-regular u-color-dark-grey">{{locationList?.length}}</span>
+              <span class="c-ex-warehouse-navigator__title--remove subtitle-3-regular u-color-grey">
                 <a
                   class="subtitle-3-regular u-color-grey"
                   (click)="removeAllFilterLocation()">
@@ -291,10 +308,10 @@
                 </a>
               </span>
             </div>
-            <div class="c-forwarding-place-navigator__content">
-              <ul class="c-forwarding-place-navigator__content-ul">
+            <div class="c-ex-warehouse-navigator__content">
+              <ul class="c-ex-warehouse-navigator__content-ul">
                 <li
-                  class="c-forwarding-place-navigator__content-ul--item"
+                  class="c-ex-warehouse-navigator__content-ul--item"
                   *ngFor="let item of locationList">
                   <onpicks-check-box
                     (click)="locationClicked(item.slug)"
@@ -335,7 +352,9 @@
           </h1>
           <div class="search-content__mobile-filter">
             <div class="search-content__mobile-filter--table">
-              <div class="search-content__mobile-filter--table--vertical-center subtitle-2-regular">필터</div>
+              <div
+                (click)="showMobileFilter()"
+                class="search-content__mobile-filter--table--vertical-center subtitle-2-regular">필터</div>
             </div>
           </div>
           <div class="search-content__mobile-sorting">
@@ -348,13 +367,14 @@
               <ul #container>
                 <li #itemList *ngFor="let item of currentList; index as i" class="search-content__item">
                   <div>
+                    <div class="search-content__item--image">
+                      <div routerLink="/shops/p/{{item.slug}}" class="search-content__item--image-outer">
+                        <div class="search-content__item--image-inner">
+                          <img drLazyLoad [relativeOption]="false" src="{{item.thumbnail}}" alt="">
+                        <!--카트정보가 어떤식으로 들어갈지 알아야, 대충이라도 작업할 수 있음.-->
 
-                    <div class="search-content__item--image-outer">
-                      <a href="" routerLink="/shops/p/{{item.slug}}">
-                        <img drLazyLoad [relativeOption]="false" src="{{item.thumbnail}}" alt="">
-                      </a>
-
-                      <!--카트정보가 어떤식으로 들어갈지 알아야, 대충이라도 작업할 수 있음.-->
+                        </div>
+                      </div>
                       <ng-container
                         [ngSwitch]="item.attributes.length">
                         <onpicks-list-active-button

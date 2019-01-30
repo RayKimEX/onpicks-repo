@@ -34,7 +34,7 @@ export class ModalComponent implements OnInit, OnChanges, AfterViewInit, OnDestr
 
   }
 
-  ngOnChanges(changes: SimpleChanges){
+  ngOnChanges(changes: SimpleChanges) {
     this.popupState = false;
     if ( changes.isShow.currentValue === true ) {
       this.renderer.addClass(document.body , 'u-open-modal');

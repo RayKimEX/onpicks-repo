@@ -44,23 +44,34 @@
                 'ui-mini-list-halfM__item' :
                 'ui-mini-list-fullM__item'
               ]">
-
               <div
                 [ngClass]="[
-                  mobileType === 'half' ?
-                  'ui-mini-list-halfM__item--image-outer' :
-                  'ui-mini-list-fullM__item--image-outer'
-                ]">
-                <a href="" [routerLink]="'/shops/p/' + item.slug">
-                  <img drLazyLoad [relativeOption]="false" src="{{item.thumbnail}}" alt="">
-                </a>
+                    mobileType === 'half' ?
+                    'ui-mini-list-halfM__item--image' :
+                    'ui-mini-list-fullM__item--image'
+                  ]">
+                <div
+                  [routerLink]="'/shops/p/' + item.slug"
+                  [ngClass]="[
+                    mobileType === 'half' ?
+                    'ui-mini-list-halfM__item--image-outer' :
+                    'ui-mini-list-fullM__item--image-outer'
+                  ]">
+                  <div
+                    [ngClass]="[
+                    mobileType === 'half' ?
+                    'ui-mini-list-halfM__item--image-inner' :
+                    'ui-mini-list-fullM__item--image-inner'
+                  ]">
+                      <img drLazyLoad [relativeOption]="false" src="{{item.thumbnail}}" alt="">
+                  </div>
+                </div>
                 <onpicks-list-active-button
                   [amount]="cartStore?.cartList[item.slug] === undefined ? 0 : cartStore?.cartList[item.slug]?.quantity"
                   (addEvent)="addToCart($event, item.slug, item.ship_alone ? 'free' : locationMap[item.location.slug].sequence)"
                   (subtractEvent)="subtractFromCart($event, item.slug, item.ship_alone ? 'free' : locationMap[item.location.slug].sequence)">
                 </onpicks-list-active-button>
               </div>
-
               <div
                 [ngClass]="[
                   mobileType === 'half' ?
@@ -94,7 +105,8 @@
 
               <ui-star-rating
                 [star-point]="item.review_avg_rating"
-                [size]="10"></ui-star-rating>
+                [size]="10">
+              </ui-star-rating>
               <span class="subtitle-3-regular u-color-dark-grey">{{item.review_count}}</span>
               <br>
               <div

@@ -67,34 +67,57 @@
       }
     }
 
-    &--image-outer {
-      margin-bottom: 1.6rem;
+    &--image {
+      height: 26.4rem;
+      width: 100%;
       position: relative;
-      padding-top:100%;
-      img {
-        position: absolute;
-        margin: auto;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        max-width: 100%;
-        max-height: 100%;
-      }
+      margin-bottom :1.6rem;
       onpicks-list-active-button {
         position: absolute;
-        right : 0;
-        bottom : 0;
+        right: 0;
+        bottom: 0;
       }
-      svg {
-        position: absolute;
-        top: 1.6rem;
-        right: 1.6rem;
+      &-inner {
+        width:100%;
+        position: relative;
+        padding-top: 100%;
+        img {
+          position: absolute;
+          margin: auto;
+          top: 0;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          max-width: 100%;
+          max-height: 100%;
+        }
+        onpicks-list-active-button {
+          position: absolute;
+          right: 0;
+          bottom: 0;
+        }
+        svg {
+          position: absolute;
+          top: 1.6rem;
+          right: 1.6rem;
 
-        path {
-          fill: $color-grey;
+          path {
+            fill: $color-grey;
+          }
         }
       }
+
+      &-outer {
+        width: 100%;
+        height:100%;
+
+        padding : 2.4rem;
+        &:hover {
+          opacity: 0.5;
+          cursor: pointer;
+        }
+      }
+
     }
   }
 
