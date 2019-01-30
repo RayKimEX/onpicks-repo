@@ -577,7 +577,8 @@ onpicks-check-box {
         bottom: 0;
       }
       &-inner {
-        position: relative;
+        width: 100%;
+        position:relative;
         padding-top: 100%;
         img {
           position: absolute;
