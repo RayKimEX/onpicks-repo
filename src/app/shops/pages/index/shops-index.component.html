@@ -11,10 +11,9 @@
 <onpicks-popular-brand [popularBrand]="popularBrand"></onpicks-popular-brand>
 
 
-<div class="row">
+
   <ui-mini-list
     [mobileType]="'half'"
     [setTitle]="'추천상품'"
     [infoList]="weeklyBest$ | async">
   </ui-mini-list>
-</div>

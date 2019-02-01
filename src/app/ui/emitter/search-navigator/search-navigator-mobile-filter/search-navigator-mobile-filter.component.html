@@ -11,11 +11,8 @@
           <svg xmlns="http://www.w3.org/2000/svg" width="8" height="14" viewBox="0 0 8 14">
             <path fill="#292929" fill-rule="evenodd" d="M7 14a.997.997 0 0 1-.707-.293l-6-6a.999.999 0 0 1 0-1.414l6-6a.999.999 0 1 1 1.414 1.414L2.414 7l5.293 5.293A.999.999 0 0 1 7 14"/>
           </svg>
-
         </div>
-        <div
-          (click)="exitEvent.emit()"
-          *ngIf="state === 'menu'"
+        <div (click)="exitEvent.emit()" *ngIf="state === 'menu'"
           class="search-content-mobile__filter--delete">
         </div>
         <div class="search-content-mobile__filter--title subtitle-1-regular">
@@ -25,13 +22,89 @@
           <span *ngIf="state === 'value'">식품인증</span>
           <span *ngIf="state === 'ex-warehouse'">출고지</span>
         </div>
-        <div class="search-content-mobile__filter--remove-all subtitle-1-regular u-color-dark-grey">모두 제거</div>
+        <div
+          class="search-content-mobile__filter--remove-all">
+          <a class="subtitle-1-regular u-color-dark-grey"
+            (click)="removeFilter(state)">모두 제거</a>
+        </div>
       </div>
     </div>
 
-    <div
-      *ngIf="state === 'category'"
-      class="category-content">
+    <div *ngIf="state === 'category'" class="category-content">
+      <ng-container *ngIf="categoryList?.length !== 0">
+        <div
+          class="category-content__one-depth"
+          [ngStyle]="{marginLeft : currentCategory == undefined || currentCategory / category?.code <= 1 ? '10px' : ''}"
+          *ngFor="let category of categoryList">
+          <div class="c-category-navigator__item subtitle-3-bold">
+            <span
+              class="c-category-navigator__category-indicator"
+              *ngIf="category?.code / currentCategory  < 1">
+              <!--<svg width="6" height="10" viewBox="0 0 6 10">-->
+                <!--<path fill="#B3B3B3" d="M5 10a.997.997 0 0 1-.707-.293l-4-4a.999.999 0 0 1 0-1.414l4-4a.999.999 0 1 1 1.414 1.414L2.414 5l3.293 3.293A.999.999 0 0 1 5 10" />-->
+              <!--</svg>-->
+            </span>
+            <span>
+              <a
+                [ngClass]="{'u-color-dark-grey' : (category?.code / currentCategory < 1)}"
+                (click)="categoryClicked(category?.code)">{{ category.name }}
+              </a>
+            </span>
+          </div>
+          <div
+            [ngStyle]="{marginLeft : currentCategory / twoCat?.code <= 1 ? '10px' : ''}"
+            class="c-category-navigator__item subtitle-3-bold" *ngFor="let twoCat of category?.children">
+            <span
+              class="c-category-navigator__category-indicator"
+              *ngIf="twoCat?.code / currentCategory < 1">
+              <svg width="6" height="10" viewBox="0 0 6 10">
+                <path fill="#B3B3B3" d="M5 10a.997.997 0 0 1-.707-.293l-4-4a.999.999 0 0 1 0-1.414l4-4a.999.999 0 1 1 1.414 1.414L2.414 5l3.293 3.293A.999.999 0 0 1 5 10" />
+              </svg>
+            </span>
+            <span>
+              <a
+                [ngClass]="[
+                  (twoCat?.code / currentCategory < 1) ? 'u-color-dark-grey' : '',
+                  (twoCat?.code / currentCategory < 1 || currentCategory == twoCat?.code ) ? 'subtitle-3-bold' : 'subtitle-3-regular'
+                ]"
+                (click)="categoryClicked(twoCat?.code)">{{ twoCat.name }}
+              </a>
+            </span>
+            <div
+              [ngStyle]="{marginLeft : currentCategory / threeCat?.code <= 1 ? '10px' : ''}"
+              class="c-category-navigator__item subtitle-3-bold"
+              *ngFor="let threeCat of twoCat?.children">
+              <span
+                class="c-category-navigator__category-indicator"
+                *ngIf="threeCat?.code / currentCategory < 1">
+                <svg width="6" height="10" viewBox="0 0 6 10">
+                  <path fill="#B3B3B3" d="M5 10a.997.997 0 0 1-.707-.293l-4-4a.999.999 0 0 1 0-1.414l4-4a.999.999 0 1 1 1.414 1.414L2.414 5l3.293 3.293A.999.999 0 0 1 5 10" />
+                </svg>
+              </span>
+              <span>
+                <a
+                  [ngClass]="[
+                    (threeCat?.code / currentCategory < 1) ? 'u-color-dark-grey' : '',
+                    (threeCat?.code / currentCategory < 1 || currentCategory == threeCat?.code ) ? 'subtitle-3-bold' : 'subtitle-3-regular'
+                    ]"
+                  (click)="categoryClicked(threeCat?.code)">
+                  {{ threeCat.name }}
+                </a>
+              </span>
+              <div
+                style="margin-left: 10px"
+                class="c-category-navigator__item"
+                *ngFor="let fourthCat of threeCat?.children">
+                <a
+                  [ngClass]="[(currentCategory == fourthCat?.code ) ? 'subtitle-3-bold' : 'subtitle-3-regular']"
+                  (click)="categoryClicked(fourthCat?.code)">
+                  {{ fourthCat?.name }}
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+    </ng-container>
     </div>
 
     <div
@@ -50,15 +123,23 @@
         <li
           class="brand-content__ul--item"
           *ngFor="let item of brandList">
-          <onpicks-check-box
-            [isChecked]="brandListForCheck[item.slug] !== true ? false : true"
-            (click)="brandClicked(item.slug)"
-            [type]="'checkbox'">
-            <span class="subtitle-3-regular">{{item.slug}}</span>
-            <span class="subtitle-3-regular u-color-dark-grey">{{item.count}}</span>
-          </onpicks-check-box>
+          <div class="brand-content__ul--item--vertical-center">
+            <onpicks-check-box
+              [isChecked]="brandListForCheck[item.slug] !== true ? false : true"
+              (click)="brandClicked(item.slug)"
+              [type]="'checkbox'">
+              <span class="subtitle-3-regular">{{item.slug}}</span>
+              <span class="subtitle-3-regular u-color-dark-grey">{{item.count}}</span>
+            </onpicks-check-box>
+          </div>
         </li>
       </ul>
+      <!--<div class="value-content__apply">-->
+        <!--<onpicks-button-->
+          <!--[width]="'100%'"-->
+          <!--[size]="'big'"-->
+          <!--[type]="'black'">적용하기</onpicks-button>-->
+      <!--</div>-->
     </div>
 
     <div
@@ -79,12 +160,12 @@
           </div>
         </li>
       </ul>
-      <div class="value-content__apply">
-        <onpicks-button
-          [width]="'100%'"
-          [size]="'big'"
-          [type]="'black'">적용하기</onpicks-button>
-      </div>
+      <!--<div class="value-content__apply">-->
+        <!--<onpicks-button-->
+          <!--[width]="'100%'"-->
+          <!--[size]="'big'"-->
+          <!--[type]="'black'">적용하기</onpicks-button>-->
+      <!--</div>-->
     </div>
 
     <div
@@ -105,9 +186,12 @@
           </div>
         </li>
       </ul>
-      <div>
-        <onpicks-button [size]="'big'" [type]="'black'">적용하기</onpicks-button>
-      </div>
+      <!--<div class="value-content__apply">-->
+        <!--<onpicks-button-->
+          <!--[width]="'100%'"-->
+          <!--[size]="'big'"-->
+          <!--[type]="'black'">적용하기</onpicks-button>-->
+      <!--</div>-->
     </div>
 
     <div

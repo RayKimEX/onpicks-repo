@@ -32,11 +32,14 @@
       </button>
     </div>
   </div>
-  <div #imagesSmallOuter class="ui-dynamic-carousel__content--small">
+  <div
+    #imagesSmallOuter
+    class="ui-dynamic-carousel__content--small">
     <div #imageSmallOuter
          (click)="clickImageSmall(imageSmallOuter)"
          *ngFor="let item of imagesSmallList; index as i;"
          [attr.data-index]="(i + 1)"
+         class="ui-dynamic-carousel__content--small-item"
          [ngClass]="{'ui-dynamic-carousel__content--small-border' : (i + 1) == this.imageIndex }" >
       {{index}}
       <img drLazyLoad [src]="item">
@@ -48,10 +51,8 @@
       *ngFor="let item of imagesSmallList; index as i;"
       [ngClass]="{'ui-dynamic-carousel__content--small-mobile--circle--active' : (i + 1) == this.imageIndex }"
       class="ui-dynamic-carousel__content--small-mobile--circle">
-
     </span>
   </div>
-
 </div>
 
 

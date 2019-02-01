@@ -48,7 +48,53 @@
     }
   }
 
+  &__content {
+    position: relative;
+    overflow: hidden;
+    width: inherit;
+    white-space: nowrap;
+
+
+    @include respond(tb){
+      overflow : auto;
+    }
+
+    &--outer {
+      position: relative;
+    }
+
+    &-ul {
+      transition: transform .5s ease 0s;
+    }
+
+    &-li{
+      vertical-align: top;
+      display: inline-block;
+      list-style: none;
+      width: 26.4rem;
+      &:not(:last-child){
+        margin-right: 2.4rem;
+      }
+      @include respond(fb){
+        width: 25%;
+        margin-right : 0 !important;
+        padding : 0 1.2rem;
+      }
+
+      @include respond(tb){
+        width: 40%;
+        margin-right : 0 !important;
+        padding : 0 1.2rem;
+      }
+
+
+    }
+  }
+
   &__item {
+
+
+
 
     ui-star-rating {
       margin-right : 0.4rem;
@@ -72,6 +118,10 @@
       width: 100%;
       position: relative;
       margin-bottom :1.6rem;
+      @include respond(sb){
+        height:auto;
+      }
+
       onpicks-list-active-button {
         position: absolute;
         right: 0;
@@ -96,6 +146,7 @@
           right: 0;
           bottom: 0;
         }
+
         svg {
           position: absolute;
           top: 1.6rem;
@@ -121,44 +172,7 @@
     }
   }
 
-  &__content {
-    position: relative;
-    overflow: hidden;
-    width: inherit;;
-    white-space: nowrap;
 
-    &--outer {
-      position: relative;
-    }
-
-    ul {
-
-      transition: transform .5s ease 0s;
-      li {
-        width: 28.8rem;
-        @include respond(fb){
-          width : 25%;
-        }
-        vertical-align: top;
-        display: inline-block;
-        list-style: none;
-        & > div {
-          width: 26.4rem;
-          @include respond(fb){
-            width: auto;
-          }
-        }
-
-        &:not(:last-child) > div {
-          margin-right: 2.4rem;
-          @include respond(fb){
-            margin-right : 0;
-            padding-right: 2.4rem;
-          }
-        }
-      }
-    }
-  }
 }
 
 

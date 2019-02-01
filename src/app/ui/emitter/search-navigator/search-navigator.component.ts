@@ -267,6 +267,7 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
       packIndex: xPackIndex,
       increaseOrCreate: xProductSlug in this.cartStore.cartList
     }));
+
   }
 
   subtractFromCart(xAmount, xProductSlug, xPackIndex, isShipAlone) {
@@ -369,7 +370,7 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
   }
 
   locationClicked(xLocationSlug) {
-    if (this.locationListForCheck[xLocationSlug] === true) {
+    if ( this.locationListForCheck[xLocationSlug] === true ) {
       this.locationListForCheck[xLocationSlug] = false;
       const index = this.queryParams.location.indexOf(xLocationSlug);
       this.queryParams.location.splice(index, 1);
@@ -383,16 +384,14 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
     });
   }
 
-
-
   sortClicked(xSortSlug) {
     this.currentSortSlug = xSortSlug;
     // this.orderedFilterListForCheck[]
-    this.router.navigate(['/shops/search'], {queryParams: {ordering: xSortSlug}, queryParamsHandling: 'merge'});
+    this.router.navigate(['/shops/search'], { queryParams: {ordering: xSortSlug}, queryParamsHandling: 'merge'} );
   }
 
   categoryClicked( xCategoryCode ) {
-    this.router.navigate( ['/shops/search'], {queryParams: {category: xCategoryCode}, queryParamsHandling: 'merge'});
+    this.router.navigate( ['/shops/search'], { queryParams: {category: xCategoryCode}, queryParamsHandling: 'merge'} );
   }
 
   removeSpecificFilter(xValue) {
@@ -400,6 +399,7 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
     let temp = {
       ...this.currentParamList
     };
+
     Object.keys(this.currentParamList).forEach( key => {
       if ( Array.isArray(this.currentParamList[key])) {
         this.currentParamList[key].forEach( (innerValue, innerIndex) => {
@@ -439,19 +439,19 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
     this.router.navigate(['/shops/search'], {queryParams: {brand: null, value: null, location : null}, queryParamsHandling: 'merge'});
   }
 
-  removeAllFilterCategory(){
+  removeAllFilterCategory() {
     this.router.navigate(['/shops/search'], {queryParams: {category: null}, queryParamsHandling: 'merge'});
   }
 
-  removeAllFilterBrand(){
+  removeAllFilterBrand() {
     this.router.navigate(['/shops/search'], {queryParams: {brand: null}, queryParamsHandling: 'merge'});
   }
 
-  removeAllFilterValue(){
+  removeAllFilterValue() {
     this.router.navigate(['/shops/search'], {queryParams: {value: null}, queryParamsHandling: 'merge'});
   }
 
-  removeAllFilterLocation(){
+  removeAllFilterLocation() {
     this.router.navigate(['/shops/search'], {queryParams: {location: null}, queryParamsHandling: 'merge'});
   }
 

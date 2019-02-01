@@ -14,7 +14,8 @@
             #inputOrderName
             class="checkout-order-info__input"
             [width]="'40.8rem'"
-            [placeholder]="'주문자 성함'"></onpicks-input-box>
+            [placeholder]="'주문자 성함'">
+          </onpicks-input-box>
           <div *ngIf="checkBitWise(EMPTY_ORDER_NAME)" class="checkout_warning subtitle-2-regular u-color-orange">주문자 성함을 입력해주세요</div>
         </div>
 
@@ -24,7 +25,8 @@
             #inputOrderNumber
             class="checkout-order-info__input"
             [width]="'40.8rem'"
-            [placeholder]="'주문자 연락처'"></onpicks-input-box>
+            [placeholder]="'주문자 연락처'">
+          </onpicks-input-box>
           <div *ngIf="checkBitWise(EMPTY_ORDER_NUMBER)" class="checkout_warning subtitle-2-regular u-color-orange">주문자 연락처를 입력해주세요</div>
           <div *ngIf="checkBitWise(INVALID_ORDER_NUMBER)" class="checkout_warning subtitle-2-regular u-color-orange">숫자만 입력가능합니다</div>
         </div>

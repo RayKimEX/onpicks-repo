@@ -423,12 +423,15 @@ textarea {
   max-width : $grid-width;
   margin: 0 auto;
   @include respond(fb) {
-    margin: 0 3.2rem;
+    padding: 0 3.2rem;
+    margin : 0;
   }
 
   @include respond(tb) {
     white-space: normal;
-    margin : 0 1.6rem;
+    padding : 0 1.6rem;
+    margin : 0;
+
   }
 
   [class *= "12-list-line-up"]{

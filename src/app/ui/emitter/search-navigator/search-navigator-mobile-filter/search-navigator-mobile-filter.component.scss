@@ -1,13 +1,17 @@
 @import '~src/assets/scss/abstracts/variables';
 
 .category-content {
-
+  &__one-depth {
+    margin-left: 10px;
+  }
 }
 
 .brand-content {
-  position:relative;
   overflow-y: auto;
-  height : 100vh;
+  height: calc(100vh - 6rem);
+  padding-left: 1.6rem;
+  padding-right: 1.6rem;
+  padding-bottom : 7.8rem;
 
   &__search {
     padding-top : 2.4rem;
@@ -42,17 +46,13 @@
     }
 
     &--item {
+      height: 6rem;
+      display:table;
 
-      &:first-child {
-        padding-top : 1.6rem;
+      &--vertical-center {
+        display:table-cell;
+        vertical-align: middle;
       }
-
-      &:last-child {
-        padding-bottom : 1.6rem;
-      }
-      padding-top : 0.8rem;
-
-
     }
   }
 }
@@ -91,17 +91,20 @@
 }
 
 .ex-warehouse-content {
+  overflow-y: auto;
+  height: calc(100vh - 6rem);
+  padding-left: 1.6rem;
+  padding-right: 1.6rem;
+  padding-bottom : 7.8rem;
   &__ul {
     list-style: none;
     &--item {
       height: 6rem;
       display:table;
-      &:first-child {
-        padding-top : 1.6rem;
-      }
 
-      &:last-child {
-        padding-bottom : 1.6rem;
+      &--vertical-center {
+        display:table-cell;
+        vertical-align: middle;
       }
     }
   }
