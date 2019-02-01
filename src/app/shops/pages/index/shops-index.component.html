@@ -12,8 +12,14 @@
 
 
 
-  <ui-mini-list
-    [mobileType]="'half'"
-    [setTitle]="'추천상품'"
-    [infoList]="weeklyBest$ | async">
-  </ui-mini-list>
+<ui-mini-list
+  [mobileType]="'half'"
+  [setTitle]="'추천상품'"
+  [infoList]="weeklyBest$ | async">
+</ui-mini-list>
+
+<ui-mini-list
+  [mobileType]="'half'"
+  [setTitle]="'최근 본 상품'"
+  [infoList]="(recentlyViewed$ | async)?.results">
+</ui-mini-list>

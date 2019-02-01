@@ -1,7 +1,8 @@
 
 <ng-container [ngSwitch]="type">
 
-  <label for="{{uuid}}" *ngSwitchDefault class="radio-checkbox" [ngStyle]="{ 'margin-right' : marginRight }">
+
+  <label for="{{uuid}}" *ngSwitchDefault [ngClass]="[ radioType === 'normal' ? 'radio-checkbox' : 'radio-checkbox--radius' ]" [ngStyle]="{ 'margin-right' : marginRight }">
     <input
       id="{{uuid}}"
       [checked]="isChecked"
@@ -11,9 +12,9 @@
       name="radio"
       #radioBoxView
     >
-    <span class="radio-checkbox__checkmark">
+    <span [ngStyle]="{ display : radioType === 'normal' ? 'inline-block' : 'none'}" class="radio-checkbox__checkmark">
     </span>
-    <span class="radio-checkbox__content">
+    <span [ngClass]="[ radioType === 'normal' ? 'radio-checkbox__content' : 'radio-checkbox__content--radius' ]" >
       <ng-container *ngTemplateOutlet="tempOutlet" ></ng-container>
     </span>
   </label>

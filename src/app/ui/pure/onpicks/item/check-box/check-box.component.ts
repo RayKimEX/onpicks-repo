@@ -18,6 +18,7 @@ import {v4 as uuid} from 'uuid';
 })
 export class CheckBoxComponent implements AfterViewInit {
   @Input('type') type;
+  @Input('radioType') radioType = 'normal';
   @Input('value') value;
   @Input('fontSize') fontSize;
   @Input('marginRight') marginRight;
@@ -42,6 +43,7 @@ export class CheckBoxComponent implements AfterViewInit {
   }
 
   handleChangeForRadio(evt) {
+    console.log(this.value);
     this.boxEvent.emit(this.value);
   }
 

@@ -3,20 +3,77 @@
 </div>
 
 <div class="row checkout">
-  <div class="col-6-of-12 checkout-left">
+  <div class="checkout-mobile" *ngIf="(checkoutStore$ | async) as data;">
+    <div class="checkout-mobile__final-price">
+      <h1 class="checkout-mobile__final-price--title h1-bold">최종결제금액</h1>
+      <div class="checkout-mobile__table">
+        <div
+          class="checkout-mobile__table--item"
+          *ngFor="let item of data.items; index as itemIndex">
+          <div class="checkout-mobile__table--item--image-and-font-line-fixed">
+
+            <div class="checkout-mobile__table--item--image">
+              <div class="checkout-mobile__table--item--image-inner">
+                <img drLazyLoad src="{{item.thumbnail}}" alt="">
+              </div>
+            </div>
+
+            <div class="checkout-mobile__table--item-info">
+
+              <div class="checkout-mobile__table--item-info--title subtitle-3-bold">
+                {{item.brand}}
+              </div>
+              <div class="checkout-mobile__table--item-info--description body-3-regular">
+                {{item.title}}
+              </div>
+              <div class="checkout-mobile__table--item-info--price subtitle-2-bold">
+                {{item.price | onpicksCurrency : 'KRW'}} / {{item.quantity}}개
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="checkout-mobile__price">
+      <div class="checkout-mobile__price--description">
+        <div class="checkout-mobile__price--all-product">
+          <span class="subtitle-2-regular u-color-dark-grey">총 상품금액</span>
+          <span class="subtitle-2-regular u-float-right">{{data.total_items | onpicksCurrency : 'KRW'}}</span>
+        </div>
+        <div class="checkout-mobile__price--delivery">
+          <span class="subtitle-2-regular u-color-dark-grey">배송비</span>
+          <span
+            class="subtitle-2-regular u-float-right"
+            [ngClass]="{ 'u-color-green' : data.total_shipping_fee === 0 }">{{data.total_shipping_fee === 0 ? ('무료') : (data.total_shipping_fee | onpicksCurrency : 'KRW')}}</span>
+        </div>
+        <div class="checkout-mobile__price--discount">
+          <span class="subtitle-2-regular u-color-dark-grey">할인금액</span>
+          <span class="subtitle-2-regular u-float-right">{{data.total_discounts | onpicksCurrency : 'KRW'}}</span>
+        </div>
+      </div>
+      <div class="checkout-mobile__price--all">
+        <span class="subtitle-2-regular u-color-dark-grey">총 결제금액</span>
+        <span class="subtitle-2-bold u-float-right">{{data.grand_total | onpicksCurrency : 'KRW'}}</span>
+      </div>
+    </div>
+  </div>
+
+  <div
+    [ngClass]="[ isThirdBreakPoint ? 'col-6-of-12 checkout-left' : 'checkout-left'] ">
     <div class="checkout-left__info">
       <div class="checkout-order-info">
         <h1 class="checkout-order-info__title h1-bold">주문자 정보</h1>
-
         <div class="checkout-order-info__sub-title--outer">
           <div class="checkout-order-info__sub-title subtitle-2-regular">주문자</div>
           <onpicks-input-box
             #inputOrderName
             class="checkout-order-info__input"
-            [width]="'40.8rem'"
             [placeholder]="'주문자 성함'">
           </onpicks-input-box>
-          <div *ngIf="checkBitWise(EMPTY_ORDER_NAME)" class="checkout_warning subtitle-2-regular u-color-orange">주문자 성함을 입력해주세요</div>
+          <div
+            *ngIf="checkBitWise(EMPTY_ORDER_NAME)"
+            class="checkout_warning subtitle-2-regular u-color-orange">주문자 성함을 입력해주세요</div>
         </div>
 
         <div class="checkout-order-info__sub-title--outer">
@@ -24,11 +81,14 @@
           <onpicks-input-box
             #inputOrderNumber
             class="checkout-order-info__input"
-            [width]="'40.8rem'"
             [placeholder]="'주문자 연락처'">
           </onpicks-input-box>
-          <div *ngIf="checkBitWise(EMPTY_ORDER_NUMBER)" class="checkout_warning subtitle-2-regular u-color-orange">주문자 연락처를 입력해주세요</div>
-          <div *ngIf="checkBitWise(INVALID_ORDER_NUMBER)" class="checkout_warning subtitle-2-regular u-color-orange">숫자만 입력가능합니다</div>
+          <div
+            *ngIf="checkBitWise(EMPTY_ORDER_NUMBER)"
+            class="checkout_warning subtitle-2-regular u-color-orange">주문자 연락처를 입력해주세요</div>
+          <div
+            *ngIf="checkBitWise(INVALID_ORDER_NUMBER)"
+            class="checkout_warning subtitle-2-regular u-color-orange">숫자만 입력가능합니다</div>
         </div>
       </div>
 
@@ -43,9 +103,9 @@
               <!--TODO : use a method : propotionally increase or decrease size https://stackoverflow.com/questions/8894506/can-i-scale-a-divs-height-proportionally-to-its-width-using-css-->
               <div
                 *ngFor="let item of data; index as i"
-                [ngClass]="item.default ? 'isActive' : 'isNotActive'"
-                class="col-4-of-12 checkout-left__info--delivery__col">
-                <div class="checkout-left__info--delivery__col--padding">
+
+                class="checkout-left__info--delivery__col">
+                <div class="checkout-left__info--delivery__col--padding" [ngClass]="item.default ? 'isActive' : 'isNotActive'">
                   <div class="checkout-left__info--delivery__col--name subtitle-2-bold">{{item.full_name}}</div>
                   <div class="checkout-left__info--delivery__col--address subtitle-2-regular">{{item.zip_code}}, {{item.street_address_1}}, {{item.street_address_2}}</div>
                   <div class="checkout-left__info--delivery__col--phoneNumber subtitle-2-regular">{{item.phone_number}}</div>
@@ -78,7 +138,6 @@
               </div>
             </div>
 
-            <hr>
             <onpicks-button
               *ngIf="data?.length < 6"
               (click)="isShowDeliveryView = !isShowDeliveryView"
@@ -125,7 +184,6 @@
           <onpicks-input-box
             #checkoutAdditionNumber
             class="checkout-addition-info__input"
-            [width]="'40.8rem'"
             [placeholder]="'P로 시작하는 13자리를 입력하세요'"></onpicks-input-box>
 
           <div *ngIf="!checkBitWise(EMPTY_CUSTOMS_ID_NUMBER) && !checkBitWise(INVALID_CUSTOMS_ID_NUMBER)" class="subtitle-2-regular u-color-dark-grey checkout-addition-info__description">상품을 받는분의 개인통관고유부호를 입력해주세요</div>
@@ -168,28 +226,40 @@
         <onpicks-button
           [type]="'white'"
           [width]="'8.5rem'"
-          class="checkout-left__info--checkout-btn"
+          class="checkout-left__info--coupon-btn"
           >사용하기</onpicks-button>
 
         <div class="checkout-left__info--checkout-tag">결제방법 선택</div>
 
         <onpicks-check-box
+          class="checkout-left__info--checkout-btn"
+          [isChecked]="true"
+          [radioType]="isThirdBreakPoint ? 'normal' :'radius'"
           #isCard
           (boxEvent)="changePaymentMethod($event, isCard)"
           [value]="'card'"
           [type]="'radio'">신용/체크카드</onpicks-check-box>
+
         <onpicks-check-box
+          class="checkout-left__info--checkout-btn"
+          [radioType]="isThirdBreakPoint ? 'normal' :'radius'"
           #isTransfer
           (boxEvent)="changePaymentMethod($event, isTransfer)"
           [value]="'transfer'"
           [type]="'radio'">실시간계좌이체</onpicks-check-box>
+
         <onpicks-check-box
+          class="checkout-left__info--checkout-btn"
+          [radioType]="isThirdBreakPoint ? 'normal' :'radius'"
           #isVaccount
           (boxEvent)="changePaymentMethod($event, isVaccount)"
           [value]="'vaccount'"
           [type]="'radio'">무통장입금(가상계좌)</onpicks-check-box>
+
         <onpicks-check-box
+          class="checkout-left__info--checkout-btn"
           #isMobile
+          [radioType]="isThirdBreakPoint ? 'normal' :'radius'"
           (boxEvent)="changePaymentMethod($event, isMobile)"
           [value]="'mobile'"
           [type]="'radio'">휴대폰결제</onpicks-check-box>
@@ -200,8 +270,11 @@
     </div>
   </div>
 
-  <div class="col-6-of-12 checkout-right">
-    <div class="checkout-right__menu" *ngIf="(checkoutStore$ | async) as data; ">
+  <div
+    [ngClass]="[ isThirdBreakPoint ? 'col-6-of-12 checkout-right' : 'checkout-right'] ">
+    <div
+      class="checkout-right__menu"
+      *ngIf="(checkoutStore$ | async) as data; ">
       <h3 class="checkout-right__menu--title subtitle-1-bold">최종결제금액</h3>
       <div class="checkout-right__menu--item" *ngFor="let item of data.items">
         <div class="checkout-right__menu--item-image">
@@ -211,7 +284,6 @@
           <div class="checkout-right__menu--item-info-brand subtitle-3-bold">{{item.brand}}</div>
           <div class="checkout-right__menu--item-info-name body-3-regular">{{item.title}}</div>
           <div *ngIf="item.infoOption !== ''" class="checkout-right__menu--item-info-option subtitle-3-regular u-color-grey">{{item.infoOption}}</div>
-
           <div class="checkout-right__menu--item-info-price subtitle-2-bold">{{item.sale_price | onpicksCurrency: 'KRW'}} / {{item.quantity}}개</div>
         </div>
       </div>
@@ -224,6 +296,10 @@
         <div class="checkout-right__menu--price-delivery">
           <span class="checkout-right__menu--price-delivery-tag subtitle-1-regular">배송비</span>
           <span class="checkout-right__menu--price-delivery-value subtitle-1-regular">{{data.total_shipping_fee === 0 ? ('무료') : (data.total_shipping_fee | onpicksCurrency : 'KRW')}}</span>
+        </div>
+        <div class="checkout-right__menu--price-discount">
+          <span class="checkout-right__menu--price-delivery-tag subtitle-1-regular">할인금액</span>
+          <span class="checkout-right__menu--price-delivery-value subtitle-1-regular">{{data.total_discounts | onpicksCurrency : 'KRW'}}</span>
         </div>
         <div class="checkout-right__menu--price-all">
           <span class="checkout-right__menu--price-all-tag h1-bold">총 결제금액</span>
@@ -276,7 +352,6 @@
     <onpicks-input-box
       #inputRecipientName
       class="checkout-left__info--delivery-input body-2-regular"
-      [width]="'40.8rem'"
       [placeholder]="'받는분 성함'">
     </onpicks-input-box>
     <div *ngIf="checkBitWise(EMPTY_RECIPIENT_NAME)" class="checkout_warning subtitle-2-regular u-color-orange">받는분 성함을 입력해주세요</div>
@@ -287,7 +362,6 @@
     <onpicks-input-box
       #inputRecipientNumber
       class="checkout-left__info--delivery-input body-2-regular"
-      [width]="'40.8rem'"
       [placeholder]="'받는분 연락처'"></onpicks-input-box>
     <div *ngIf="checkBitWise(EMPTY_RECIPIENT_NUMBER)" class="checkout_warning subtitle-2-regular u-color-orange">받는분 연락처를 입력해주세요</div>
     <div *ngIf="checkBitWise(INVALID_RECIPIENT_NUMBER)" class="checkout_warning subtitle-2-regular u-color-orange">숫자만 입력가능합니다</div>
@@ -300,7 +374,6 @@
     (click)="showSearchBox('input')"
     [readonly]="true"
     class="checkout-left__info--delivery-input-address  body-2-regular"
-    [width]="'27.8rem'"
     [placeholder]="'우편번호'">
   </onpicks-input-box>
 
@@ -382,14 +455,12 @@
     (click)="showSearchBox('input')"
     [readonly]="true"
     class="checkout-left__info--delivery-input  body-2-regular"
-    [width]="'40.8rem'"
     [placeholder]="''">
   </onpicks-input-box>
 
   <onpicks-input-box
     #inputDetailJuso
     class="checkout-left__info--delivery-input  body-2-regular"
-    [width]="'40.8rem'"
     [placeholder]="'상세주소를 입력하세요'">
   </onpicks-input-box>
 

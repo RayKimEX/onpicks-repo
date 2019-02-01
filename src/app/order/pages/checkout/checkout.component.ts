@@ -16,9 +16,10 @@ import {catchError, debounceTime, distinctUntilChanged, flatMap, map, tap} from 
 import {select, Store} from '@ngrx/store';
 import {Router} from '@angular/router';
 import {CartToCheckoutService} from '../../share/cart-to-checkout.service';
-import {DOMAIN_HOST} from '../../../app.config';
+import {DOMAIN_HOST, RESPONSIVE_MAP} from '../../../app.config';
 import {FormControl, FormGroup} from '@angular/forms';
 import {OrderDataService} from '../../../core/service/data-pages/order/order-data.service';
+import {BreakpointObserver, BreakpointState} from '../../../../../node_modules/@angular/cdk/layout';
 
 @Component({
   selector: 'onpicks-checkout',
@@ -31,7 +32,6 @@ export class CheckoutComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChildren('inputSearchBoxOuter') inputSearchBoxOuter;
   @ViewChild('inputSearchBox', {read: ElementRef}) inputSearchBoxEL;
   @ViewChildren('inputSearchBox') inputSearchBox;
-
 
   ////
   @ViewChild('inputOrderName', { read : ElementRef }) inputOrderName;
@@ -137,6 +137,8 @@ export class CheckoutComponent implements OnInit, AfterViewInit, OnDestroy {
     'payment_method': null
   };
 
+  isThirdBreakPoint = false;
+
   constructor(
     @Inject(DOMAIN_HOST) private BASE_URL: string,
     private orderDataService: OrderDataService,
@@ -144,7 +146,9 @@ export class CheckoutComponent implements OnInit, AfterViewInit, OnDestroy {
     private httpClient: HttpClient,
     private store: Store<any>,
     private router: Router,
-    private cd: ChangeDetectorRef
+    private cd: ChangeDetectorRef,
+    @Inject(RESPONSIVE_MAP) public categoryMap,
+    private breakpointObserver:  BreakpointObserver,
   ) {
 
     this.checkoutStore$ = this.orderDataService.getCheckoutData().pipe(
@@ -261,6 +265,18 @@ export class CheckoutComponent implements OnInit, AfterViewInit, OnDestroy {
     this.initialGroup = new FormGroup({
       dummy: new FormControl( null),
     });
+
+    this.breakpointObserver
+      .observe([this.categoryMap['tb']])
+      .subscribe((state: BreakpointState) => {
+        if (state.matches) {
+          this.isThirdBreakPoint = false;
+          this.cd.markForCheck();
+        } else {
+          this.isThirdBreakPoint = true;
+          this.cd.markForCheck();
+        }
+      });
   }
 
 

@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve --configuration=ko --public-host http://localhost:4200",
-    "proxystart": "ng serve --configuration=ko --proxy-config proxy.conf.json --public-host http://localhost:4200    ",
+    "proxystart": "ng serve --configuration=ko --proxy-config proxy.conf.json --public-host http://localhost:4200",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",

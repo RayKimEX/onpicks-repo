@@ -8,6 +8,92 @@
   }
 }
 
+onpicks-input-box {
+  width : 40.8rem;
+  @include respond(sb){
+    width:100%;
+  }
+}
+
+.checkout-mobile {
+  display:none;
+  @include respond(tb){
+    display:block;
+  }
+
+  &__price {
+    &--description {
+      padding : 1.6rem 0;
+      border-bottom : 1px solid $color-light-grey;
+
+      & > div:not(:last-child){
+        margin-bottom : 0.8rem;
+      }
+    }
+
+    &--all {
+      padding : 1.6rem 0;
+      border-bottom : 1px solid $color-light-grey;
+      margin-bottom : 1.6rem;
+    }
+  }
+
+
+  &__final-price {
+    &--title {
+      margin-bottom : 2.4rem;
+    }
+  }
+  &__table {
+    clear:both;
+    &--item {
+      padding: 1.6rem 0;
+      border-top: 1px solid $color-light-grey;
+      &:last-child{
+        border-bottom : 1px solid $color-light-grey;
+      }
+      &-info{
+        &--title {
+          margin-bottom : 4px;
+        }
+        &-description {
+          margin-bottom : 4px;
+
+        }
+
+        &--price {
+
+        }
+        width : calc(100% - ( 11.2rem + 1.6rem ) );
+        display:inline-block;
+        vertical-align: top;
+      }
+
+
+      &--image-and-font-line-fixed{
+
+      }
+      &--image {
+        padding : 0.8rem;
+        height :11.2rem;
+        width : 11.2rem;
+        display:inline-block;
+        margin-right : 1.6rem;
+        &-inner {
+          width : 100%;
+          padding-top : 100%;
+
+          img {
+            @include imageAspactRatio;
+          }
+        }
+
+      }
+
+    }
+  }
+}
+
 .checkout {
   margin-top : 3.2rem;
 
@@ -20,6 +106,10 @@
 
     &__title {
       margin-bottom : 2.4rem;
+
+      @include respond(tb){
+        margin-top : 3.2rem;
+      }
     }
 
     &__sub-title {
@@ -80,21 +170,35 @@
       onpicks-select-box {
         display:block;
         width: 40.8rem;
+        @include respond(sb){
+          width : 100%;
+        }
         margin-bottom : 8px;
+      }
+
+      &--coupon-btn{
+        margin-left : 1.6rem;
       }
 
       &--checkout {
         margin-top : 2.4rem;
         margin-bottom : 4rem;
-
-        onpicks-check-box:not(:last-child) {
-          display:block;
-          margin-bottom : 1.6rem;
-        }
-
         &-btn {
-          margin-left : 1.6rem;
+          display:block;
+
+
+          &:not(:last-child){
+            margin-bottom : 1.6rem;
+          }
+
+          @include respond(tb){
+            display:inline-block;
+            width : 50%;
+            padding : 0 0.8rem;
+            margin-bottom : 1.6rem;
+          }
         }
+
 
         &-title{
           font-size : 1.8rem;
@@ -118,12 +222,13 @@
         &-input {
           display: inline-block;
           height: 4rem;
-          width: 40.8rem;
           font-size: 1.4rem;
           line-height: 1.43;
           letter-spacing: 0.3px;
           padding: 1rem 1.6rem;
           margin-bottom: 2.4rem;
+
+          width : calc(100% - 10.1rem);
 
           &::placeholder {
             color: #b3b3b3;
@@ -135,24 +240,38 @@
         padding-bottom : 3rem;
         border-bottom: 1px solid #e5e5e5;
 
-        hr {
-          margin-bottom : 2.4rem;
-        }
-
         &__col {
           border-radius : 4px;
-          width : 26.4rem;
-          height : 26.4rem;
-          padding:2.4rem;
-          margin-bottom : 0.8rem;
+          //width : 26.4rem;
+          //height : 26.4rem;
+          // padding:2.4rem;
+          margin-bottom : 2.4rem;
+          float:left;
 
-          &:nth-child(2n) {
-            margin-right : 0;
+          width : 50%;
+          padding : 0 1.2rem;
+          @include respond(tb){
+            padding : 0 0.8rem;
+            margin-bottom : 1.6rem;
           }
+          //&:not(:nth-child(2n)) {
+          //  margin-right : 2.4rem;
+          //}
+
+          //@include respond(fb){
+          //  width : 50%;
+          //  padding : 0 1.2rem;
+          //}
           &--padding {
+            display:table;
+            padding:2.4rem;
             position:relative;
-            height : 100%;
+            height : 26.4rem;
             width : 100%;
+
+            @include respond(tb){
+              padding : 1.6rem;
+            }
           }
 
           &--name {
@@ -166,8 +285,8 @@
 
           &-bottom {
             width : 100%;
-            position: absolute;
-            bottom : 0;
+            display:table-row;
+            height: 1px;
             &--isDefault {
               margin-bottom : 0.8rem;
             }
@@ -188,6 +307,8 @@
 
           @include clearfix;
           margin-bottom: 2.4rem;
+          padding-bottom : 1.6rem;
+          border-bottom : 1px solid $color-light-grey;
         }
 
         .isActive {
@@ -344,8 +465,6 @@
         &-input {
           display : block;
           height : 4rem;
-          width : 40.8rem;
-
           &:last-of-type {
             margin-top: 1.6rem;
           }
@@ -359,6 +478,10 @@
             height : 4rem;
             width : 27.8rem;
             margin-bottom : 1.6rem;
+
+            @media only screen and (max-width: 56.4375em) { //1127px
+              width : calc(100% - 13rem);
+            };
 
             &::placeholder {
               color : #b3b3b3;
@@ -374,6 +497,9 @@
   &-right {
 
     &__menu {
+      @include respond(tb){
+        display:none;
+      }
 
       border : 1px solid #e5e5e5;
       padding : 2.4rem;
@@ -406,7 +532,7 @@
         }
 
         &-delivery {
-          margin-bottom : 16px;
+          margin-bottom : 4px;
           &-tag {
 
           }
@@ -414,9 +540,16 @@
             float : right;
           }
         }
+        &-discount {
+          margin-bottom : 1.6rem;
+
+          &-value {
+            falot : right;
+          }
+        }
 
         &-all {
-          margin-bottom : 25px;
+          margin-bottom : 2.5rem;
           &-value {
             float : right;
           }
@@ -432,13 +565,17 @@
         &-image {
 
           display: inline-block;
-          img{
-            width: 11.2rem;
-            height: 11.2rem;
+          width: 11.2rem;
+          height: 11.2rem;
+          img {
+            @include imageAspactRatio;
           }
         }
 
         &-info {
+          margin-left : 2.4rem;
+          display : inline-block;
+          width : calc(100% - 13.6rem);
           &-brand {
             margin-bottom : 4px;
           }
@@ -452,12 +589,8 @@
           }
 
           &-price {
-          }
 
-          position : absolute;
-          margin-left : 2.4rem;
-          display : inline-block;
-          width: 33.8rem;
+          }
         }
       }
     }

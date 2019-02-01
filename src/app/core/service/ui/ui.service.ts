@@ -20,6 +20,10 @@ export class UiService {
     return this.httpClient.get<any>(this.BASE_URL + '/api/home/weekly_best/');
   }
 
+  getRecentlyViewed() {
+    return this.httpClient.get<any>(this.BASE_URL + '/api/home/recently_viewed/');
+  }
+
   getCategoryAll(oneDepthCode) {
     //
     // return this.httpClient.get<any>(this.BASE_URL + '/api/categories/' + oneDepthCode + '/descendants/' );
