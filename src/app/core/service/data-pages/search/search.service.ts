@@ -19,8 +19,10 @@ export class SearchService {
     return this.httpClient.get<any>( this.BASE_URL + '/api/products/search/' + param);
   }
 
-  categorySearch(xCategoryCode) {
-    return this.httpClient.get<any>( this.BASE_URL + '/api/products/search/?category=' + xCategoryCode);
+  categorySearch(xCategoryCode, xSortCode) {
+    console.log(xCategoryCode);
+    console.log(xSortCode);
+    return this.httpClient.get<any>( this.BASE_URL + '/api/products/search/?category=' + xCategoryCode + '&ordering=' + xSortCode);
   }
 
   getChildrenCategory(categoryCode) {

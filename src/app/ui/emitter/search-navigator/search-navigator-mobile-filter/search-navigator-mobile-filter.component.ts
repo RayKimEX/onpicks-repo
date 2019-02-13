@@ -1,5 +1,5 @@
 import {Component, OnInit, ChangeDetectionStrategy, Input, Output, EventEmitter} from '@angular/core';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'onpicks-search-navigator-mobile-filter',
@@ -18,8 +18,12 @@ export class SearchNavigatorMobileFilterComponent implements OnInit {
   @Input('valueListForCheck') valueListForCheck;
   @Input('locationList') locationList;
   @Input('locationListForCheck') locationListForCheck;
-  @Input('isShowFilterModal') isShowFilterModal = false;
+  @Input('isShowMobileFilter') isShowMobileFilter = false;
   @Input('queryParams') queryParams;
+  @Input('state') state = 'menu';
+  @Input('sortList') sortList;
+  @Input('currentSortSlug') currentSortSlug;
+  @Input('searchState') searchState;
   @Output('exit') exitEvent = new EventEmitter();
 
   // 'menu'
@@ -27,10 +31,11 @@ export class SearchNavigatorMobileFilterComponent implements OnInit {
   // 'brand'
   // 'value'
   // 'ex-warehouse'
-  state = 'menu';
 
   constructor(
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
+
   ) { }
 
   ngOnInit() {
@@ -51,6 +56,18 @@ export class SearchNavigatorMobileFilterComponent implements OnInit {
       queryParams: {value: this.queryParams.value.length === 0 ? null : this.queryParams.value},
       queryParamsHandling: 'merge'
     });
+  }
+
+  sortClicked(xSortSlug) {
+    this.currentSortSlug = xSortSlug;
+    this.exitEvent.emit();
+    // this.orderedFilterListForCheck[]
+    if( this.searchState === 'search') {
+      this.router.navigate(['/shops/search'], { queryParams: {ordering: xSortSlug}, queryParamsHandling: 'merge'} );
+    } else {
+      this.router.navigate(['./'], { relativeTo: this.route, queryParams: {ordering: xSortSlug}, queryParamsHandling: 'merge'} );
+    }
+
   }
 
   brandClicked(xBrandSlug) {
@@ -107,7 +124,15 @@ export class SearchNavigatorMobileFilterComponent implements OnInit {
   }
 
 
-  categoryClicked( xCategoryCode ) {
-    this.router.navigate( ['/shops/search'], {queryParams: {category: xCategoryCode}, queryParamsHandling: 'merge'});
+  categoryClicked( navigateUrlForCategory, xCategoryCode ) {
+    if( this.searchState === 'search') {
+      this.router.navigate( ['/shops/search'], {queryParams: {category: xCategoryCode}, queryParamsHandling: 'merge'});
+    } else {
+      console.log(navigateUrlForCategory);
+
+      this.router.navigateByUrl(navigateUrlForCategory);
+      this.exitEvent.emit();
+    }
+
   }
 }

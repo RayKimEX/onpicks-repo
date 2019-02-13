@@ -346,6 +346,12 @@ onpicks-check-box {
     width :100%;
   }
 
+  &__sort-box {
+    @include respond(sb){
+      display:none;
+    }
+  }
+
   &__mobile-filter {
 
     display:none;

@@ -77,7 +77,6 @@ export class CheckoutComponent implements OnInit, AfterViewInit, OnDestroy {
   readonly EMPTY_CUSTOMS_ID_NUMBER   = 0b00010000000;
   readonly INVALID_CUSTOMS_ID_NUMBER = 0b00100000000;
 
-  readonly EMPTY_PAYMENT_METHOD      = 0b01000000000;
   readonly EMPTY_AGREEMENT_DIRECT_BUYING = 0b10000000000;
 
 
@@ -159,7 +158,7 @@ export class CheckoutComponent implements OnInit, AfterViewInit, OnDestroy {
       .subscribe( v => {
         this.userStore = v;
         console.log(v);
-        if ( v ===  null ) { return ;};
+        if ( v ===  null ) { return; };
         console.log(v);
         // userStore정보가 usbscribe되면, 그때 다시 배송지 정보를 갖고옴
         this.deliveryData$ = this.orderDataService.getDeliveryData(this.userStore.id)
@@ -681,11 +680,6 @@ export class CheckoutComponent implements OnInit, AfterViewInit, OnDestroy {
         if ( this.errorStatus === 0 ) {this.checkoutAdditionNumber.nativeElement.children[0].focus();}
         this.errorStatus |= this.INVALID_CUSTOMS_ID_NUMBER;
       }
-    }
-
-    // 결제 모듈 선택 안한 상태
-    if ( this.formData.payment_method === null ) {
-      this.errorStatus |= this.EMPTY_PAYMENT_METHOD;
     }
 
     if ( this.isAgreementDirectBuyingInfo === false ) {

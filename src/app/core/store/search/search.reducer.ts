@@ -1,4 +1,4 @@
-import { Action } from '@ngrx/store';
+
 import {
   GET_FIRST_CATEGORY,
   GET_FIRST_CATEGORY_SUCCESS,

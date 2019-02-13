@@ -46,6 +46,7 @@ const sortFourthInfo = {};
 // exactly SortValue
 let getSecondSortValue;
 let getThirdSortValue;
+let getFourthSortValue;
 let currentSlug;
 let currentName;
 
@@ -84,6 +85,7 @@ export function UiReducer(state = initialState, action: UiActions): UiState {
 
       getSecondSortValue = 0;
       getThirdSortValue = 0;
+      getFourthSortValue = 0;
       sortedSecondList = [];
       sortedThirdList = [];
       currentSlug = '';
@@ -108,6 +110,9 @@ export function UiReducer(state = initialState, action: UiActions): UiState {
         sortThirdInfo[thirdCategoryData[key].slug] = parseInt(key, 10 );
       });
 
+
+      getThirdSortValue = sortThirdInfo[action.payload.thirdSortKey];
+
       // fourth category info에 관한것을, 정리
       Object.keys(fourthCategoryData).forEach(function (key) {
         sortFourthInfo[fourthCategoryData[key].slug] = parseInt(key, 10 );
@@ -116,7 +121,9 @@ export function UiReducer(state = initialState, action: UiActions): UiState {
 
       // 초기값을 새로운 전역 변수에 넣어준다.
       secondResultList = normalizedCategoryData.result;
-      getThirdSortValue = sortThirdInfo[action.payload.thirdSortKey];
+      getFourthSortValue = sortFourthInfo[action.payload.fourthSortKey];
+
+
 
       // 실제로 순서를 보여주게 하는것 순서 변환
       secondResultList.forEach( item => {
@@ -140,6 +147,11 @@ export function UiReducer(state = initialState, action: UiActions): UiState {
       if (getThirdSortValue !== undefined ) {
         currentSlug = thirdCategoryData[getThirdSortValue].slug;
         currentName = thirdCategoryData[getThirdSortValue].name;
+      }
+
+      if (getFourthSortValue !== undefined ) {
+        currentSlug = fourthCategoryData[getFourthSortValue].slug;
+        currentName = fourthCategoryData[getFourthSortValue].name;
       }
 
 
@@ -195,12 +207,14 @@ export function UiReducer(state = initialState, action: UiActions): UiState {
       notChangeThirdPrevious = false;
       getSecondSortValue = 0;
       getThirdSortValue = 0;
+      getFourthSortValue = 0;
       sortedSecondList = [];
       sortedThirdList = [];
       currentSlug = '';
 
       getSecondSortValue = sortSecondInfo[action.payload.secondSortKey];
       getThirdSortValue = sortThirdInfo[action.payload.thirdSortKey];
+      getFourthSortValue = sortFourthInfo[action.payload.fourthSortKey];
 
       // 전역 변수에 넣은 초기값 (현재 값이아닌 ) 기준으로, 새로 가져와서 변화시킴
       // state에 있는값은 바뀐 값을 다시 가져오기 때문에 의미가 없음.
@@ -227,6 +241,11 @@ export function UiReducer(state = initialState, action: UiActions): UiState {
       if (getThirdSortValue !== undefined ) {
         currentSlug = state.currentCategoryList.entities.thirdCategory[getThirdSortValue].slug;
         currentName = state.currentCategoryList.entities.thirdCategory[getThirdSortValue].name;
+      }
+
+      if (getFourthSortValue !== undefined ) {
+        currentSlug = state.currentCategoryList.entities.fourthCategory[getFourthSortValue].slug;
+        currentName = state.currentCategoryList.entities.fourthCategory[getFourthSortValue].name;
       }
 
 

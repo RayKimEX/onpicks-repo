@@ -3,6 +3,7 @@ import {select, Store} from '@ngrx/store';
 import {AccountDataService} from '../../../../../../core/service/data-pages/account/account-data.service';
 import {DisplayAlertMessage } from '../../../../../../core/store/ui/ui.actions';
 import {tap} from 'rxjs/operators';
+import {BreakpointState} from '../../../../../../../../node_modules/@angular/cdk/layout';
 
 @Component({
   selector: 'onpicks-profile',
@@ -10,6 +11,7 @@ import {tap} from 'rxjs/operators';
   styleUrls: ['./profile.component.scss'],
   changeDetection : ChangeDetectionStrategy.OnPush,
 })
+
 export class ProfileComponent implements OnInit, OnDestroy {
 
   // sortList = [
@@ -75,19 +77,22 @@ export class ProfileComponent implements OnInit, OnDestroy {
     private cd: ChangeDetectorRef,
   ) {
 
-    for ( let i = 0 ; i < 80 ; i ++) {
-      this.yearList.list.push({ title : ((2005 - i) + '년'), value : (2005 - i) });
-    }
+    setTimeout(() => {
+        for ( let i = 0 ; i < 80 ; i ++) {
+          this.yearList.list.push({ title : ((2005 - i) + '년'), value : (2005 - i) });
+        }
 
-    for ( let i = 1 ; i < 32 ; i ++) {
-      const formattedNumber = ('0' + i).slice(-2);
-      this.dayList.list.push({ title : ((i) + '일'), value : (formattedNumber) });
-    }
+        for ( let i = 1 ; i < 32 ; i ++) {
+          const formattedNumber = ('0' + i).slice(-2);
+          this.dayList.list.push({ title : ((i) + '일'), value : (formattedNumber) });
+        }
 
-    for ( let i = 1 ; i < 13 ; i ++ ) {
-      const formattedNumber = ('0' + i).slice(-2);
-      this.monthList.list.push({ title : (i) + '월', value : (formattedNumber) });
-    }
+        for ( let i = 1 ; i < 13 ; i ++ ) {
+          const formattedNumber = ('0' + i).slice(-2);
+          this.monthList.list.push({ title : (i) + '월', value : (formattedNumber) });
+        }
+    }, 0)
+
 
     this.userStore$ = this.store.pipe(select( state => state.auth.user))
       .subscribe( v => {
@@ -195,7 +200,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
     this.cd.markForCheck();
   }
 
-  parseInt( data ){
+  parseInt( data ) {
     return parseInt( data , 10);
   }
 

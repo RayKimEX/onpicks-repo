@@ -105,7 +105,8 @@
                 *ngFor="let item of data; index as i"
 
                 class="checkout-left__info--delivery__col">
-                <div class="checkout-left__info--delivery__col--padding" [ngClass]="item.default ? 'isActive' : 'isNotActive'">
+                <div class="checkout-left__info--delivery__col--padding"
+                     [ngClass]="item.default ? 'isActive' : 'isNotActive'">
                   <div class="checkout-left__info--delivery__col--name subtitle-2-bold">{{item.full_name}}</div>
                   <div class="checkout-left__info--delivery__col--address subtitle-2-regular">{{item.zip_code}}, {{item.street_address_1}}, {{item.street_address_2}}</div>
                   <div class="checkout-left__info--delivery__col--phoneNumber subtitle-2-regular">{{item.phone_number}}</div>
@@ -126,7 +127,7 @@
                         수정하기
                       </a>
                     </div>
-                    <div class="checkout-left__info--delivery__col-bottom--remove subtitle-2-regular u-color-grey">
+                    <div class="checkout-left__info--delivery__col-bottom--remove">
                       <a
                         (click)="removeDeliveryInfo(i)"
                         class="subtitle-2-regular u-color-grey">
@@ -264,7 +265,18 @@
           [value]="'mobile'"
           [type]="'radio'">휴대폰결제</onpicks-check-box>
         <!--<onpicks-check-box [type]="'radio'">네이버페이</onpicks-check-box>-->
-        <div *ngIf="checkBitWise(EMPTY_PAYMENT_METHOD)" class="write-review__photo--description subtitle-2-regular u-color-orange">결제방법을 선택해주세요.</div>
+        <!--<div *ngIf="checkBitWise(EMPTY_PAYMENT_METHOD)" class="write-review__photo&#45;&#45;description subtitle-2-regular u-color-orange">결제방법을 선택해주세요.</div>-->
+
+        <div
+          *ngIf="!isThirdBreakPoint" class="checkout-right__menu--checkout">
+          <onpicks-button
+            (click)="payment(form)"
+            [type]="'black'"
+            [width]="'100%'"
+            [size]="'big'">
+            결제하기
+          </onpicks-button>
+        </div>
       </div>
 
     </div>

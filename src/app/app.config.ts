@@ -87,7 +87,7 @@ export const REPORT_REASON_MAP_CONST = {
 
 export const RESPONSIVE_MAP = new InjectionToken<any>('app.config');
 export const RESPONSIVE_MAP_CONST = {
-  // 650 / 16
+  // 640 / 16
   // third-break-point : popularCategory, collection, popularBrands
   'tb' : '(max-width: 40em)',
   // 950 / 16
@@ -95,6 +95,7 @@ export const RESPONSIVE_MAP_CONST = {
   'sb' : '(max-width: 55.625em)',
   // 1192 / 16
   // first-break-point
+  'actb' : '(max-width: 57em)',
   'fb' : '(max-width: 74.5em)',
   'desktop' : '(max-width: 80em)'
 }

@@ -10,7 +10,7 @@ import {
 import {
   Location
 } from '@angular/common';
-import {ActivatedRoute, ActivatedRouteSnapshot, Router} from '@angular/router';
+import {ActivatedRoute, ActivatedRouteSnapshot, NavigationEnd, Router, RouterEvent} from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import {
   TryAddOrCreateToCart,
@@ -21,6 +21,7 @@ import {LOCATION_MAP} from '../../../app.config';
 import {UiService} from '../../../core/service/ui/ui.service';
 import {normalize, schema} from 'normalizr';
 import {DisplayAlertMessage} from '../../../core/store/ui/ui.actions';
+import {combineLatest, merge} from 'rxjs';
 @Component({
   selector: 'emitter-search-navigator',
   templateUrl: './search-navigator.component.html',
@@ -39,10 +40,11 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
   infoList;
   orderedFilterList = [];
 
-  currentSortSlug;
+  currentSortSlug = 'most_popular';
 
   result;
   categoryList;
+  normalizedCategoryList;
   previous;
   currentSlug;
   currentCode;
@@ -65,7 +67,10 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
 
   searchState = '';
 
-  isShowFilterModal = false;
+
+  /***** filter modal For Mobile ****/
+  isShowMobileFilter = false;
+  mobileFilterState = 'menu'
 
   /******* subscribe ******/
   cartStore$;
@@ -88,6 +93,14 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
     {title: '가격 낮은순', value: 'price_low'}
   ]
 
+  sortMap = {
+    'most_popular' : '인기순',
+    'most_reviewed' : '리뷰 많은순',
+    'top_rated' : '평점순',
+    'price_high' : '가격 높은순',
+    'price_low' : '가격 낮은순'
+  }
+
   constructor(
     @Inject( LOCATION_MAP ) public locationMap: any,
     private uiService: UiService,
@@ -103,7 +116,7 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
     this.uiStore$ = this.store.pipe(select(state => state.ui.currentCategoryList))
       .subscribe(val => {
         // this.categoryList = val;
-        this.categoryList = val.entities;
+        this.normalizedCategoryList = val.entities;
         this.result = val.result;
         this.previous = val.previous;
         this.currentSlug = val.currentSlug;
@@ -120,17 +133,57 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
 
     this.weeklyBest$ = this.uiService.getWeeklyBestGoods();
 
-    this.queryParams$ = this.route.queryParams
-      .subscribe((val: { term, brand, value, location, category }) => {
-        this.currentList = null;
-        this.orderedFilterList = [];
-        this.currentParamList = {
-          ...val
-        };
-        console.log(val);
+    // this.router.events.pipe( merge(this.route.queryParams) )
+      // this.router.events.pipe(concat(this.route.queryParams))
+    this.router.events.subscribe( (event: RouterEvent) => {
 
-        const url = this.router.url.split('/');
-        if (url[2].indexOf('search') > -1) {
+
+      if (event instanceof NavigationEnd ) {
+        let url = this.router.url;
+        if ( url.indexOf('/search') > -1 || url.indexOf('/c/') > -1) {
+
+        } else {
+          return ;
+        }
+
+        this.currentList = null;
+        // category main페이지 일때
+        if (this.router.url.indexOf('&') < 0) {
+          const temp = this.router.url.substring(this.router.url.indexOf('&') + 1, this.router.url.length);
+          const tempArray = temp.split('&');
+          tempArray.forEach(item => {
+            const paramTemp = item.split('=');
+            this.currentSortSlug = paramTemp[1] === undefined ? 'most_popular' : paramTemp[1];
+            // const paramTemp = item.split('=');
+            // console.log(paramTemp);
+            // if ( paramTemp[0] !== 'ordering' && paramTemp[0] !== 'category'  ) {
+            //   this.orderedFilterList.push(paramTemp[1]);
+            // } else {
+            //   if ( paramTemp[0] === 'ordering' ){
+            //     this.currentSortSlug = paramTemp[1];
+            //     console.log(this.currentSortSlug);
+            //             //   }
+            //             // }
+          });
+        } else {
+          // search 화면일때
+          const temp = this.router.url.substring(this.router.url.indexOf('&') + 1, this.router.url.length);
+          const tempArray = temp.split('&');
+          tempArray.forEach(item => {
+            const paramTemp = item.split('=');
+            if (paramTemp[0] !== 'ordering' && paramTemp[0] !== 'category') {
+              this.orderedFilterList.push(paramTemp[1]);
+            } else {
+              if (paramTemp[0] === 'ordering') {
+                this.currentSortSlug = paramTemp[1];
+                console.log(this.currentSortSlug);
+              }
+            }
+          });
+        }
+
+
+        if (url.indexOf('/search') > -1) {
           this.searchState = 'search';
           this.result = null;
           this.previous = null;
@@ -140,14 +193,13 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
 
           this.searchData$ = this.searchService.search(param).subscribe(_infoList => {
             /* async 데이터가 들어오는데, null이라면 return을 해줌 */
-            this.currentList = null;
             if (_infoList != null) {
               console.log(_infoList);
               this.valueList = _infoList.aggregation.values;
               this.locationList = _infoList.aggregation.locations;
               this.brandList = _infoList.aggregation.brands;
-              this.categoryList =  _infoList.aggregation.categories;
-              this.currentCategory = val.category;
+              this.categoryList = _infoList.aggregation.categories;
+
               console.log(this.categoryList);
               this.infoList = _infoList.results;
 
@@ -163,18 +215,18 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
           });
 
         } else {
-
-          this.searchData$ = this.searchService.categorySearch(this.sortInfo[url[url.length - 1]]).subscribe(_infoList => {
+          url = this.router.url.split('/');
+          this.searchData$ = this.searchService.categorySearch(this.sortInfo[url[url.length - 1].indexOf('?') > -1 ? url[url.length - 1].substring(0, url[url.length - 1].indexOf('?')) : url[url.length - 1]], this.currentSortSlug).subscribe(_infoList => {
             this.searchState = 'category';
 
             /* async 데이터가 들어오는데, null이라면 return을 해줌 */
-            this.currentList = null;
+
             if (_infoList != null) {
               this.valueList = _infoList.aggregation.values;
               this.locationList = _infoList.aggregation.locations;
               this.brandList = _infoList.aggregation.brands;
               this.infoList = _infoList.results;
-
+              this.categoryList = _infoList.aggregation.categories;
               this.totalCount = this.infoList.length;
               this.totalPage = this.totalCount / this.maxRow;
 
@@ -187,20 +239,21 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
           });
         }
 
-        if (this.router.url.indexOf('&') < 0) {
+      }
 
-        } else {
-          const temp = this.router.url.substring(this.router.url.indexOf('&') + 1, this.router.url.length);
-          const tempArray = temp.split('&');
-          tempArray.forEach(item => {
-            const paramTemp = item.split('=');
-            if ( paramTemp[0] !== 'ordering' && paramTemp[0] !== 'category'  ) {
-              this.orderedFilterList.push(paramTemp[1]);
-            } else {
-              this.currentSortSlug = paramTemp[1];
-            }
-          });
-        }
+    })
+    this.queryParams$ = this.route.queryParams
+      .subscribe((val: { term, brand, value, location, category }) => {
+        this.currentList = null;
+        this.orderedFilterList = [];
+        this.currentParamList = {
+          ...val
+        };
+        console.log(val);
+        this.currentCategory = val.category;
+
+
+
 
         this.brandListForCheck = {};
         this.valueListForCheck = {};
@@ -245,13 +298,14 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
 
   }
 
-  showMobileFilter() {
-    this.isShowFilterModal = true;
+  showMobileFilter(xMenuState) {
+    this.mobileFilterState = xMenuState;
+    this.isShowMobileFilter = true;
     this.renderer.addClass(document.body , 'u-open-modal');
   }
 
   hideMobileFilter() {
-    this.isShowFilterModal = false;
+    this.isShowMobileFilter = false;
     this.renderer.removeClass(document.body , 'u-open-modal');
   }
 
@@ -387,7 +441,11 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
   sortClicked(xSortSlug) {
     this.currentSortSlug = xSortSlug;
     // this.orderedFilterListForCheck[]
-    this.router.navigate(['/shops/search'], { queryParams: {ordering: xSortSlug}, queryParamsHandling: 'merge'} );
+    if( this.searchState === 'search') {
+      this.router.navigate(['/shops/search'], { queryParams: {ordering: xSortSlug}, queryParamsHandling: 'merge'} );
+    } else {
+      this.router.navigate(['./'], { relativeTo: this.route, queryParams: {ordering: xSortSlug}, queryParamsHandling: 'merge'} );
+    }
   }
 
   categoryClicked( xCategoryCode ) {

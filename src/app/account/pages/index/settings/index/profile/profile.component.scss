@@ -1,13 +1,63 @@
+@import '~src/assets/scss/abstracts/variables';
+
+
 .settings-profile {
   margin-bottom : 4rem;
 
   &__normal-info {
     margin-bottom : 2.8rem;
   }
+
   &__row {
 
     &--title {
       margin-bottom : 1.2rem;
+    }
+
+    &--input {
+
+      &--nickname {
+        display:inline-block;
+        width : 64.5rem;
+        @include respond(tb){
+          width : 100%;
+        }
+      }
+
+      &--tel {
+        display:inline-block;
+        width : 31.2rem;
+
+        @include respond(tb){
+          width : calc(100% - 10.1rem);
+        }
+      }
+
+      &--password {
+        display:inline-block;
+        width : 31.2rem;
+        margin-right: 1.6rem;
+
+        @include respond(tb){
+          width : calc(100% - 10.1rem);
+        }
+      }
+
+      &--height {
+        display:inline-block;
+        width : 31.2rem;
+        @include respond(tb){
+          width : calc(100%);
+        }
+      }
+
+      &--weight {
+        display:inline-block;
+        width : 31.2rem;
+        @include respond(tb){
+          width : calc(100%);
+        }
+      }
     }
 
     &--description {
@@ -17,17 +67,23 @@
     &--select-box-month {
       display:inline-block;
       width : 13.5rem;
+      @include respond(tb){
+        margin-bottom : 0.8rem;
+      }
     }
+
     &--select-box-day {
       margin-left: 1.6rem;
       margin-right: 1.6rem;
       display:inline-block;
       width : 10.1rem;
     }
+
     &--select-box-year {
       display:inline-block;
       width : 13.5rem;
     }
+
     &:not(:last-of-type) {
       margin-bottom : 1.6rem;
     }

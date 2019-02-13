@@ -29,6 +29,7 @@ html, body {
   box-shadow: 0 6px 12px 0 rgba(227, 227, 227, 0.5);
   border: solid 1px $color-light-grey;
   background-color :$color-white;
+  overflow : auto;
 
   @include respond(tb){
     width:100%;

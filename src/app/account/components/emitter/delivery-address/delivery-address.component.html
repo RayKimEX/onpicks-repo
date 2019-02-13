@@ -7,8 +7,10 @@
         <!--TODO : use a method : propotionally increase or decrease size https://stackoverflow.com/questions/8894506/can-i-scale-a-divs-height-proportionally-to-its-width-using-css-->
         <div
           *ngFor="let item of data; index as i"
-          [ngClass]="item.default ? 'isActive' : 'isNotActive'" class="col-4-of-12 delivery-address__col">
-          <div class="delivery-address__col--padding">
+          class="delivery-address__col">
+          <div
+            [ngClass]="item.default ? 'isActive' : 'isNotActive'"
+            class="delivery-address__col--padding">
             <div class="delivery-address__col--name subtitle-2-bold">{{item.full_name}}</div>
             <div class="delivery-address__col--address subtitle-2-regular">{{item.zip_code}}, {{item.street_address_1}}, {{item.street_address_2}}</div>
             <div class="delivery-address__col--phoneNumber subtitle-2-regular">{{item.phone_number}}</div>
@@ -29,6 +31,13 @@
                   수정하기
                 </a>
               </div>
+              <div class="delivery-address__col-bottom--remove">
+                <a
+                  (click)="removeDeliveryInfo(i)"
+                  class="subtitle-2-regular u-color-grey">
+                  삭제하기
+                </a>
+              </div>
             </div>
           </div>
         </div>
@@ -44,7 +53,7 @@
         [size]="'small'">{{isShowDeliveryView ? '배송지 추가 닫기' : '+배송지 추가'}}
       </onpicks-button>
     </ng-container>
-    <div  [ngStyle]="{ 'display' : isShowDeliveryView ? 'none' : 'block' }">
+    <div  [ngStyle]="{ 'display' : isShowDeliveryView ? 'block' : 'none' }">
       <ng-container *ngTemplateOutlet="templateRef"></ng-container>
       <onpicks-button
         (click)="addDeliveryInfo()"
@@ -80,27 +89,26 @@
       <div class="subtitle-2-regular">받는분</div>
       <onpicks-input-box
         #inputRecipientName
-        [placeholder]="'받는분 성함'"
-        [width]="'40.8rem'">
+        class="delivery-address__insert-box--input--recipient"
+        [placeholder]="'받는분 성함'">
       </onpicks-input-box>
     </div>
     <div class="delivery-address__insert-box--row">
       <div class="subtitle-2-regular">받는분 연락처</div>
       <onpicks-input-box
         #inputRecipientNumber
-        [placeholder]="'받는분 연락처'"
-        [width]="'40.8rem'">
+        class="delivery-address__insert-box--input--recipient-tel"
+        [placeholder]="'받는분 연락처'">
       </onpicks-input-box>
     </div>
     <div class="delivery-address__insert-box--row">
       <div class="subtitle-2-regular">주소</div>
       <onpicks-input-box
         #inputZipnumber
+        class="delivery-address__insert-box--input--zip-number"
         (click)="showSearchBox('input')"
         [readonly]="true"
-        [marginRight]="'1.6rem'"
-        [placeholder]="'우편번호'"
-        [width]="'27.8rem'">
+        [placeholder]="'우편번호'">
       </onpicks-input-box>
       <onpicks-button
         (click)="showSearchBox()"
@@ -117,7 +125,7 @@
         [placeholder]="'검색할 주소를 입력해주세요'" >
       </onpicks-search-box>
       <div class="delivery-address__info--delivery-searchBox-option"
-           [ngStyle]="{width : isShowDeliveryModal ? '50.2rem' : '55.2rem'}">
+           [ngClass]="isShowDeliveryModal ? 'delivery-address__modal-width--active' : 'delivery-address__modal-width'">
         <!-- TODO : list형식 관련 스타일 가이드 의견 교류 필요, 1. padding을 일괄적으로 주면서, 이쁘게 디자인 안나오는지,  -->
         <div *ngIf="searchState === 1" class="delivery-address__info--delivery-searchBox-option-list" >
           <div class="delivery-address__info--delivery-searchBox-option-list-outer" *ngFor="let item of jusoList ">
@@ -173,17 +181,17 @@
     <div class="delivery-address__insert-box--row">
       <onpicks-input-box
         #inputJuso
+        class="delivery-address__insert-box--input--juso"
         (click)="showSearchBox('input')"
         [readonly]="true"
-        [placeholder]="''"
-        [width]="'40.8rem'">
+        [placeholder]="''">
       </onpicks-input-box>
     </div>
     <div class="delivery-address__insert-box--row">
       <onpicks-input-box
         #inputDetailJuso
-        [placeholder]="'상세주소를 입력하세요'"
-        [width]="'40.8rem'">
+        class="delivery-address__insert-box--input--juso-detail"
+        [placeholder]="'상세주소를 입력하세요'">
       </onpicks-input-box>
     </div>
   </div>

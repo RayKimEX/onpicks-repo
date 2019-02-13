@@ -1,5 +1,6 @@
-<div class="row account-settings-navigator">
-  <div class="col-3-of-12">
+<div class="row account-settings">
+  <div
+    [ngClass]="isACTBreakPoint ? 'col-3-of-12 account-settings-navigator' : 'account-settings-navigator'">
     <div class="account-settings-navigator__item">
       <button class="subtitle-2-bold u-color-grey" routerLinkActive="u-color-black" routerLink="profile">
         프로필
@@ -20,7 +21,8 @@
 
 
   <!--이렇게 한 이유 : 공통적으로 적용할 수 있는 부분은 최대한 적용하자는 의미에서 적용-->
-  <div class="col-9-of-12">
+  <div
+    [ngClass]="isACTBreakPoint ? 'col-9-of-12 account-settings-router' : 'account-settings-router'">
     <router-outlet></router-outlet>
   </div>
 

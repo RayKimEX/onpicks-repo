@@ -1,3 +1,5 @@
+@import '~src/assets/scss/abstracts/variables';
+
 .settings-refund {
   margin-bottom: 4rem;
 
@@ -7,6 +9,26 @@
 
   &__row {
 
+
+    &--input {
+      &--account {
+        display:inline-block;
+        width : 40.8rem;
+
+        @include respond(actb){
+          width : 100%;
+        }
+      }
+
+      &--account-name {
+        display:inline-block;
+        width: 30.4rem;
+        margin-right : 1.6rem;
+        @include respond(actb){
+          width : calc(100% - 10.4rem);
+        }
+      }
+    }
     &--title {
       margin-bottom: 8px;
     }
