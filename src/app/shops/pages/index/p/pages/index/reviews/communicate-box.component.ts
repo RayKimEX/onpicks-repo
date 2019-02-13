@@ -315,9 +315,7 @@ export class CommunicateBoxComponent implements OnInit, AfterViewChecked, AfterV
     } else {
       this.store.dispatch(new DisplayAlertMessage('로그인 후 이용 가능합니다'))
       this.router.navigateByUrl('/member/login?return=' + encodeURI(location.href.split(this.BASE_URL.substring(1, this.BASE_URL.length))[1]));
-
     }
-
   }
   shareReview( xUrl ) {
 

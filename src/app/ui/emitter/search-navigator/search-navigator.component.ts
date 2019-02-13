@@ -215,8 +215,8 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
           });
 
         } else {
-          url = this.router.url.split('/');
-          this.searchData$ = this.searchService.categorySearch(this.sortInfo[url[url.length - 1].indexOf('?') > -1 ? url[url.length - 1].substring(0, url[url.length - 1].indexOf('?')) : url[url.length - 1]], this.currentSortSlug).subscribe(_infoList => {
+          const categoryUrl = this.router.url.split('/');
+          this.searchData$ = this.searchService.categorySearch(this.sortInfo[categoryUrl[categoryUrl.length - 1].indexOf('?') > -1 ? categoryUrl[categoryUrl.length - 1].substring(0, categoryUrl[categoryUrl.length - 1].indexOf('?')) : categoryUrl[categoryUrl.length - 1]], this.currentSortSlug).subscribe(_infoList => {
             this.searchState = 'category';
 
             /* async 데이터가 들어오는데, null이라면 return을 해줌 */

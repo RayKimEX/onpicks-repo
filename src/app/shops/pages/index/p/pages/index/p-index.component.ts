@@ -5,7 +5,7 @@ import {select, Store} from '@ngrx/store';
 import {
   ChangeDetectionStrategy, ChangeDetectorRef,
   Component,
-  ElementRef, Inject, OnDestroy, OnInit,
+  ElementRef, HostListener, Inject, OnDestroy, OnInit,
   Renderer2,
   ViewChild
 } from '@angular/core';
@@ -32,6 +32,8 @@ export class PIndexComponent implements OnInit, OnDestroy {
   pPictureReviews$;
   weeklyBest$;
   isFB = false;
+  previousYOffset = 0;
+  isShowMobileMenu = true;
 
   constructor(
     @Inject(RESPONSIVE_MAP) public categoryMap,
@@ -64,6 +66,21 @@ export class PIndexComponent implements OnInit, OnDestroy {
 
     this.pPictureReviews$ = this.pDataService.getPictureReviewsData(this.route.snapshot.params.id).pipe( tap( v => console.log(v)));
     this.weeklyBest$ = this.uiService.getWeeklyBestGoods();
+  }
+
+  @HostListener('window:scroll', ['$event']) private onScroll($event: Event): void {
+    const delta = window.pageYOffset - this.previousYOffset;
+    if ( delta < -1 ) {
+      console.log('is open!')
+      this.isShowMobileMenu = true;
+    } else if( delta > 1 ) {
+      console.log('is close!')
+      this.isShowMobileMenu = false;
+    }
+    this.previousYOffset = window.pageYOffset;
+    console.log(delta);
+    // this.previousYOffset = window.pageYOffset;
+    // console.log(window.pageYOffset);
   }
 
   ngOnInit() {

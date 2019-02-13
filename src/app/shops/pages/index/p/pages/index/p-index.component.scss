@@ -1,8 +1,52 @@
 @import "~src/assets/scss/abstracts/variables";
 
+
+
+.mobile-menu {
+  padding : 1.6rem;
+  position : fixed;
+  bottom : 0;
+  width : 100%;
+  z-index : 9999;
+  border-top : 1px solid $color-light-grey;
+  background-color : $color-white;
+  transition : transform .5s;
+  transition-delay : .2s;
+
+  display : none;
+  @include respond(desktop){
+    display : block;
+  }
+  &__button {
+    float:right;
+    vertical-align: top;
+  }
+  &__product-info {
+    display:inline-block;
+    &--price {
+    }
+
+    &--reviews {
+    }
+  }
+
+  &--hide {
+    transform: translateY(100%);
+  }
+}
+
 .current-nav {
   margin-top : 3.2rem;
 
+  @include respond(desktop){
+    display : none;
+  }
+
+  &__border-bottom{
+    border-bottom : 1px solid $color-light-grey;
+    padding-bottom : 1.6rem;
+    margin-bottom : 3rem;
+  }
   @include respond(desktop){
     margin-top : 0;
   }
