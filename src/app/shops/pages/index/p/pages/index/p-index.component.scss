@@ -13,6 +13,24 @@
   transition : transform .5s;
   transition-delay : .2s;
 
+
+  &--outer {
+    z-index:9001;
+    position:fixed;
+    top : 0;
+
+    height : 100%;
+    width :100%;
+    background-color : $color-black;
+    opacity : .5;
+  }
+  &__options {
+    margin-top : 1.6rem;
+  }
+  &__add-to-cart-button {
+    float : right;
+  }
+
   display : none;
   @include respond(desktop){
     display : block;
@@ -25,6 +43,15 @@
     display:inline-block;
     &--price {
     }
+
+    &--MSRP {
+      margin-bottom : 0.4rem;
+      &-discount {
+        text-decoration: line-through;
+        margin-right : 0.8rem;
+      }
+    }
+
 
     &--reviews {
     }

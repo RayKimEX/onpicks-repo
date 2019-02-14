@@ -236,14 +236,64 @@
               class="cart__delivery-multi-purchase--btn"
               [type]="'white'"
               [size]="'big'"
-              [width]="'16.1rem'"
             >묶음배송 구매하기</onpicks-button>
           </div>
+
+
+          <div class="cart-mobile">
+            <div class="cart-mobile__table">
+              <div
+                class="cart-mobile__table--item"
+                *ngFor="let itemChild of item.items; index as itemForFreeIndex">
+                <div class="cart-mobile__table--item--image-and-font-line-fixed">
+
+                  <div class="cart-mobile__table--item--image">
+                    <div class="cart-mobile__table--item--image-inner">
+                      <img drLazyLoad src="{{itemChild.thumbnail}}" alt="">
+                    </div>
+                  </div>
+
+                  <div class="cart-mobile__table--item-info">
+
+                    <div class="cart-mobile__table--item-info--title subtitle-3-bold">
+                      {{itemChild.brand}}
+                    </div>
+                    <div class="cart-mobile__table--item-info--description body-3-regular">
+                      {{itemChild.title}}
+                    </div>
+                    <div class="cart-mobile__table--item-info--price subtitle-2-bold">
+                      {{itemChild.price | onpicksCurrency : 'KRW'}}
+                    </div>
+                  </div>
+                </div>
+                <div class="cart-mobile__table--item-option">
+                  <div class="cart-mobile__table--item-option--vertical-center">
+                    <div
+                      class="cart-mobile__table--item-option--add-to-wish subtitle-2-regular u-color-grey">
+                      다음에 구매하기
+                    </div>
+                    <div class="cart-mobile__table--item-option--delete subtitle-2-regular u-color-grey">
+                      삭제하기
+                    </div>
+                  </div>
+                  <div class="cart-mobile__table--item-option--manage-amount">
+                    <onpicks-list-active-button
+                      (addEvent)="addToCart(syncedData?.cartList[itemChild.product]?.quantity, itemChild.product, locationMap[item.location.slug].sequence)"
+                      (subtractEvent)="subtractFromCart(syncedData?.cartList[itemChild.product]?.quantity, itemChild.product, locationMap[item.location.slug].sequence)"
+                      [amount]="syncedData?.cartList[itemChild.product]?.quantity"
+                      [isFixExtend]="true">
+                    </onpicks-list-active-button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
           <table class="cart__multi-table">
             <tr *ngFor="let itemChild of item.items; index as itemIndex">
               <td>
                 <div class="cart__multi-table--image">
-                  <img src="{{itemChild.thumbnail}}" alt="">
+                  <img drLazyLoad src="{{itemChild.thumbnail}}" alt="">
                 </div>
                 <div class="cart__multi-table--info">
                   <div class="cart__multi-table--info-title subtitle-3-bold">{{itemChild.brand}}</div>
@@ -262,8 +312,6 @@
                     </ng-container>
                   </div>
                   <div class="cart__multi-table--info-price subtitle-2-bold">{{itemChild.sale_price | onpicksCurrency: 'KRW'}}</div>
-
-
                 </div>
               </td>
               <td>
@@ -367,7 +415,9 @@
                 >쇼핑백에 담기</button>
               <button
                 class="btn btn--white btn--small cart__wishlist-table--btn"
-                (click)="deleteWishList(item.id, i)">삭제하기</button>
+                (click)="deleteWishList(item.id, i)">
+                삭제하기
+              </button>
             </td>
           </tr>
         </table>
@@ -414,6 +464,10 @@
     </div>
   </ng-container>
 
-  <ui-mini-list [infoList]="weeklyBest$ | async" [setTitle]="'추천상품'"></ui-mini-list>
+  <ui-mini-list
+    [mobileType]="'full'"
+    [infoList]="weeklyBest$ | async"
+    [setTitle]="'추천상품'">
+  </ui-mini-list>
 </div>
 

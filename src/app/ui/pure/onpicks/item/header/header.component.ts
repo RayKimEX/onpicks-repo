@@ -83,7 +83,9 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
 
   firstLoadPreventCount = 0;
 
+  /**mobileZone**/
   mobileAlertTop = '11rem';
+  isShowSettingMenu = false;
 
   constructor(
     @Inject(LOCALE_ID) public locale: string,
@@ -110,6 +112,7 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
           this.mobileAlertTop = '11rem';
         }
       });
+
     this.uiActiveUrl$ =  this.store.pipe(select(state => state.ui.activeUrl))
       .subscribe(val => {
         this.currentUrl = val;
@@ -170,8 +173,6 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
             }
           );
         }
-
-
       });
 
     this.auth$ = this.store.pipe(

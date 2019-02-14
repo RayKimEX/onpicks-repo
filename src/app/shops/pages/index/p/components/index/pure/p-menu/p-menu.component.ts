@@ -204,7 +204,6 @@ export class PMenuComponent implements OnInit, OnDestroy, AfterViewInit, OnChang
 
   cartStore$;
   cartStore;
-
   constructor(
     @Inject(LOCATION_MAP) public locationMap: any,
     private renderer: Renderer2,
@@ -260,7 +259,6 @@ export class PMenuComponent implements OnInit, OnDestroy, AfterViewInit, OnChang
     } else {
       currentProductSlug = this.keyMapForSlug[keyForSlug];
     }
-
 
     if ( currentProductSlug === undefined ){
       this.store.dispatch(new DisplayAlertMessage('옵션을 정확히 선택해주세요.'));

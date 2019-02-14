@@ -67,12 +67,10 @@ export class CheckoutComponent implements OnInit, AfterViewInit, OnDestroy {
   readonly EMPTY_ORDER_NUMBER        = 0b00000000010;
   readonly INVALID_ORDER_NUMBER      = 0b00000100000;
 
-
   readonly EMPTY_RECIPIENT_NAME      = 0b00000000100;
   readonly EMPTY_RECIPIENT_NUMBER    = 0b00000001000;
   readonly INVALID_RECIPIENT_NUMBER  = 0b00001000000;
   readonly EMPTY_DELIVERY_ADDRESS    = 0b00000010000;
-
 
   readonly EMPTY_CUSTOMS_ID_NUMBER   = 0b00010000000;
   readonly INVALID_CUSTOMS_ID_NUMBER = 0b00100000000;
@@ -94,16 +92,12 @@ export class CheckoutComponent implements OnInit, AfterViewInit, OnDestroy {
   isShowDeliveryView = true;
   updateDeliveryIndex = 0;
 
-
-
   // 0 : init
   // 1 : result
   // 2 : not searched
   searchState = 0;
 
-
   //
-
   checkoutStore$;
   userStore$;
   userStore;
@@ -133,7 +127,8 @@ export class CheckoutComponent implements OnInit, AfterViewInit, OnDestroy {
     'shipping_message': '',
     'customs_id_owner': '',
     'customs_id_number': '',
-    'payment_method': null
+    'payment_method': 'card',
+    'is_mobile' : true,
   };
 
   isThirdBreakPoint = false;
@@ -343,43 +338,55 @@ export class CheckoutComponent implements OnInit, AfterViewInit, OnDestroy {
       this.httpClient.post<any>( this.BASE_URL + '/api/orders/', this.formData )
         .subscribe( response => {
 
+          if ( response.is_mobile ) {
+            console.log('hello');
+            Object.keys(response.form_data).forEach(key => {
+              const input = document.createElement('input');
+              input.type = 'text';
+              input.hidden = true;
+              input.name = key;
+              input.value = response.form_data[key];
+              form.appendChild(input);
+            });
+            form.action = response.action_url;
+            form.submit();
+          } else {
+            if ( this.paymentScript === null ) {
+              this.paymentScript = document.createElement('script');
+              this.paymentScript.src = response.pay_script;
+              this.paymentScript.async = true;
+              this.paymentScript.onload = function() {
 
-          if ( this.paymentScript === null ){
-            this.paymentScript = document.createElement('script');
-            this.paymentScript.src = response.pay_script;
-            this.paymentScript.async = true;
-            this.paymentScript.onload = function() {
+                // @ts-ignore
+                INIStdPay.pay(form);
+              };
+              document.head.appendChild(this.paymentScript);
 
+              Object.keys(response.form_data).forEach(key => {
+                const input = document.createElement('input');
+                input.type = 'text';
+                input.hidden = true;
+                input.name = key;
+                input.value = response.form_data[key];
+                form.appendChild(input);
+              });
+            } else {
+              form.innerHTML = '';
+
+              Object.keys(response.form_data).forEach(key => {
+                const input = document.createElement('input');
+                input.type = 'text';
+                input.hidden = true;
+                input.name = key;
+                input.value = response.form_data[key];
+                form.appendChild(input);
+              });
               // @ts-ignore
               INIStdPay.pay(form);
-            };
-            document.head.appendChild(this.paymentScript);
+            }
 
-            Object.keys(response.form_data).forEach(key => {
-              const input = document.createElement('input');
-              input.type = 'text';
-              input.hidden = true;
-              input.name = key;
-              input.value = response.form_data[key];
-              form.appendChild(input);
-            });
-          } else {
-            form.innerHTML = '';
-
-            Object.keys(response.form_data).forEach(key => {
-              const input = document.createElement('input');
-              input.type = 'text';
-              input.hidden = true;
-              input.name = key;
-              input.value = response.form_data[key];
-              form.appendChild(input);
-            });
-            // @ts-ignore
-            INIStdPay.pay(form);
           }
-
         });
-
     }
 
   }
@@ -569,10 +576,6 @@ export class CheckoutComponent implements OnInit, AfterViewInit, OnDestroy {
       }
     );
   }
-
-
-
-
 
   validateDeliveryInfo(){
 

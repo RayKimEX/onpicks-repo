@@ -101,7 +101,6 @@
               <li>
                 <a
                    class="h1-bold u-color-grey"
-
                    (click)="showPreparingMessage()"
                    i18n="@@header__reviews">
                    리뷰|reviews
@@ -200,7 +199,46 @@
       [ngStyle]="{ display: inputCheckedForToggle.checked ? 'block' : 'none'}"
       class="header__mobile-hamburger">
 
-      <nav>
+      <nav *ngIf="isShowSettingMenu">
+        <ul
+          class="header__mobile-hamburger--ul subtitle-2-regular">
+          <li class="header__mobile-hamburger--li">
+            <div (click)="isShowSettingMenu= false">
+              <svg xmlns="http://www.w3.org/2000/svg" width="8" height="14" viewBox="0 0 8 14">
+                <path fill="#B3B3B3" fill-rule="evenodd" d="M7 14a.997.997 0 0 1-.707-.293l-6-6a.999.999 0 0 1 0-1.414l6-6a.999.999 0 1 1 1.414 1.414L2.414 7l5.293 5.293A.999.999 0 0 1 7 14"/>
+              </svg>
+              <a class="u-color-dark-grey header__mobile-hamburger--return-menu">
+                돌아가기
+              </a>
+            </div>
+          </li>
+          <li class="header__mobile-hamburger--li">
+            <div
+              (click)="routeForMobile('/account/settings/profile', inputCheckedForToggle)">
+              <a>
+                프로필
+              </a>
+            </div>
+          </li>
+          <li class="header__mobile-hamburger--li">
+            <div
+              (click)="routeForMobile('/account/settings/delivery-address', inputCheckedForToggle)">
+              <a>
+                배송비
+              </a>
+            </div>
+          </li>
+          <li class="header__mobile-hamburger--li">
+            <div
+              (click)="routeForMobile('/account/settings/refund', inputCheckedForToggle)">
+              <a>
+                환불정보
+              </a>
+            </div>
+          </li>
+        </ul>
+      </nav>
+      <nav *ngIf="!isShowSettingMenu">
         <ul
           [ngClass]="[auth.isAuthenticated ? 'header__mobile-hamburger--ul' : 'header__mobile-hamburger--ul--not-login' ]"
           class="subtitle-2-regular">
@@ -208,9 +246,9 @@
           <!--<a *ngIf="!auth.isAuthenticated" (click)="routeForMobile('/member/login', inputCheckedForToggle)">로그인</a>-->
           <ng-container *ngIf="!auth.isAuthenticated">
             <li class="header__mobile-hamburger--li--not-login">
-              <div>
-                <a
-                  (click)="routeForMobile('/member/login', inputCheckedForToggle)">
+              <div
+                (click)="routeForMobile('/member/login', inputCheckedForToggle)">
+                <a>
                   로그인
                 </a>
               </div>
@@ -218,35 +256,38 @@
           </ng-container>
           <ng-container *ngIf="auth.isAuthenticated">
             <li class="header__mobile-hamburger--li">
-              <div>
-                <a
-                  (click)="routeForMobile('/account/my-shopping/orders', inputCheckedForToggle)">
+              <div
+                (click)="routeForMobile('/account/my-shopping/orders', inputCheckedForToggle)">
+                <a>
                   나의 쇼핑
                 </a>
               </div>
             </li>
             <li class="header__mobile-hamburger--li">
-              <div>
-                <a
-                  (click)="routeForMobile('/account/my-reviews/written', inputCheckedForToggle)">
+              <div
+                (click)="routeForMobile('/account/my-reviews/written', inputCheckedForToggle)">
+                <a>
                   나의 리뷰
                 </a>
               </div>
             </li>
             <li class="header__mobile-hamburger--li">
-              <div>
-                <a
-                  (click)="routeForMobile('/account/wish-list', inputCheckedForToggle)">
+              <div
+                (click)="routeForMobile('/account/wish-list', inputCheckedForToggle)">
+                <a>
                   다음에 구매하기
                 </a>
               </div>
             </li>
             <li class="header__mobile-hamburger--li">
-              <div>
-                <a
-                  (click)="routeForMobile('/account/settings/profile', inputCheckedForToggle)">
+              <div
+                (click)="isShowSettingMenu = true">
+                <a>
                   설정
                 </a>
+                <svg class="u-float-right" xmlns="http://www.w3.org/2000/svg" width="8" height="14" viewBox="0 0 8 14">
+                  <path fill="#292929" fill-rule="evenodd" d="M1 14a.999.999 0 0 1-.707-1.707L5.586 7 .293 1.707A.999.999 0 1 1 1.707.293l6 6a.999.999 0 0 1 0 1.414l-6 6A.997.997 0 0 1 1 14"/>
+                </svg>
               </div>
             </li>
           </ng-container>
@@ -255,9 +296,9 @@
           <li
             class="header__mobile-hamburger--li"
             *ngFor="let item of menuMap[locale]?.main">
-            <div>
-              <a
-                (click)="routeForMobile('/shops/c/' + item.href, inputCheckedForToggle)">
+            <div
+              (click)="routeForMobile('/shops/c/' + item.href, inputCheckedForToggle)">
+              <a>
                 <img [src]="'https://img.onpicks.com/assets/' + item.slug + '.jpg?d=w80-h80'" alt="">
                 <span>{{item.name}}</span>
               </a>
@@ -266,32 +307,33 @@
         </ul>
         <ul class="header__mobile-hamburger--ul subtitle-2-regular">
           <li class="header__mobile-hamburger--li">
-            <div>
-              <a
-                (click)="showPreparingMessage()">
+            <div
+              (click)="showPreparingMessage()">
+              <a>
                 리뷰
               </a>
             </div>
           </li>
           <li class="header__mobile-hamburger--li">
-            <div>
-              <a
-                (click)="showPreparingMessage()">
+            <div
+              (click)="showPreparingMessage()">
+              <a>
                 쇼케이스
               </a>
             </div>
           </li>
           <li class="header__mobile-hamburger--li">
-            <div>
-              <a
-                (click)="showPreparingMessage()">
+            <div
+              (click)="showPreparingMessage()">
+              <a>
                 이벤트
               </a>
             </div>
           </li>
           <li class="header__mobile-hamburger--li">
-            <div>
-              <a *ngIf="auth.isAuthenticated" (click)="logout(inputCheckedForToggle)">로그아웃</a>
+            <div
+              (click)="logout(inputCheckedForToggle)">
+              <a *ngIf="auth.isAuthenticated">로그아웃</a>
             </div>
           </li>
         </ul>

@@ -49,13 +49,19 @@
   </div>
 
   <div
+    *ngIf="isExpendMobileMenu"
+    (click)="isExpendMobileMenu = false"
+    class="mobile-menu--outer">
+
+  </div>
+  <div
     class="mobile-menu" [ngClass]="isShowMobileMenu ? '' : 'mobile-menu--hide'">
-    <!--<div class="p-menu__product-info&#45;&#45;MSRP subtitle-1-regular">-->
-      <!--&lt;!&ndash;TODO: MSRP는 지역에 따라 보이고 안보이고 설정&ndash;&gt;-->
-      <!--&lt;!&ndash;<span class="p-menu__product-info&#45;&#45;MSRP-name">MSRP&nbsp;</span>&ndash;&gt;-->
-      <!--<span class="mobile-menu__product-info&#45;&#45;MSRP-discount u-color-grey">{{data?.msrp | onpicksCurrency:'KRW'}}</span>-->
-      <!--<span class="mobile-menu__product-info&#45;&#45;MSRP-description u-color-green">담을수록 추가 할인</span>-->
-    <!--</div>-->
+    <div *ngIf="isExpendMobileMenu" class="mobile-menu__product-info--MSRP subtitle-1-regular">
+      <!--TODO: MSRP는 지역에 따라 보이고 안보이고 설정-->
+      <!--<span class="p-menu__product-info--MSRP-name">MSRP&nbsp;</span>-->
+      <span class="mobile-menu__product-info--MSRP-discount u-color-grey">{{data?.msrp | onpicksCurrency:'KRW'}}</span>
+      <span class="mobile-menu__product-info--MSRP-description u-color-green">담을수록 추가 할인</span>
+    </div>
     <div class="mobile-menu__product-info">
       <div class="mobile-menu__product-info--price">
         <svg width="18" height="16" viewBox="0 0 18 16">
@@ -68,7 +74,7 @@
         <span class="mobile-menu__product-info--price-discount price-bold u-color-green">{{discountPercent}}%</span>
         <span class="mobile-menu__product-info--price-realprice price-bold">{{data?.price | onpicksCurrency:'KRW'}}</span>
       </div>
-      <div class="mobile-menu__product-info--reviews">
+      <div *ngIf="!isExpendMobileMenu" class="mobile-menu__product-info--reviews">
         <ui-star-rating
           [star-point]="data ? data.review_avg_rating : 0">
         </ui-star-rating>
@@ -77,12 +83,51 @@
     </div>
 
     <onpicks-button
+      *ngIf="!isExpendMobileMenu"
+      (click)="isExpendMobileMenu = true"
       class="mobile-menu__button"
       [width]="'13.4rem'"
       [type]="'black'"
       [size]="'big'" >
       옵션 선택하기
     </onpicks-button>
+
+    <div *ngIf="isExpendMobileMenu" class="mobile-menu__options">
+      <div
+        *ngIf="data?.attributes.length !== 0"
+        class="mobile-menu__options--title subtitle-2-regular">
+        상세옵션을 선택해 주세요
+      </div>
+
+      <onpicks-select-box
+        *ngIf="data?.attributes[0] !== undefined"
+        (changeEvent)="optionSelect($event, 0)"
+        [sortList]="optionObject">
+      </onpicks-select-box>
+      <onpicks-select-box
+        *ngIf="data?.attributes[1] !== undefined"
+        (changeEvent)="optionSelect($event, 1)"
+        [sortList]="selectedFirstOptionIndex === null ? { title : data?.attributes[1] } : optionObject.list[selectedFirstOptionIndex].children">
+      </onpicks-select-box>
+
+      <!--<onpicks-select-box [sortList]="twoOptionList"></onpicks-select-box>-->
+
+      <onpicks-select-box
+        [isNativeSelectBox]="true"
+        (changeEvent)="amountSelect($event)"
+        [sortList]="numberOptionList">
+      </onpicks-select-box>
+
+      <onpicks-button
+        class="mobile-menu__add-to-cart-button"
+        (click)="addToCart(data?.ship_alone ? 'free' : locationMap[data?.location.slug].sequence, data)"
+        [type]="'black'"
+        [marginLeft]="'1.2rem'"
+        [size]="'big'"
+        [width]="'23.7rem'">
+        쇼핑백에 담기
+      </onpicks-button>
+    </div>
   </div>
 
   <!--<div class="product-detail-mobile">-->

@@ -6,6 +6,7 @@ import { SignupComponent } from './pages/signup/signup.component';
 import { LoginComponent } from './pages/login/login.component';
 import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
 import {UiModule} from '../ui/ui.module';
+import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
 
 @NgModule({
   imports: [
@@ -16,7 +17,8 @@ import {UiModule} from '../ui/ui.module';
   declarations: [
     SignupComponent,
     LoginComponent,
-    ForgotPasswordComponent
+    ForgotPasswordComponent,
+    ResetPasswordComponent
   ]
 })
 export class MemberModule { }

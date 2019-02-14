@@ -21,6 +21,7 @@ import {
 })
 export class SelectBoxComponent implements OnInit, OnChanges {
   @Input('scrollMin') scrollMin;
+  @Input('isNativeSelectBox') isNativeSelectBox = false;
   @Input('selectedElement') set selectedElement (xSelectedElement) {
 
     this._selectedElement = xSelectedElement;
@@ -80,7 +81,8 @@ export class SelectBoxComponent implements OnInit, OnChanges {
 
   @HostListener('document:click', ['$event'])
   clickout(event) {
-    if ( this.eRef.nativeElement.contains(event.target)) {
+    if ( this.isNativeSelectBox) { return; }
+    if ( this.eRef.nativeElement.contains(event.target) ) {
       // console.log('clicked inside');
     } else {
       this.isOpen = false;

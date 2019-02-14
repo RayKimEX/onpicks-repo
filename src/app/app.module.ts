@@ -97,8 +97,8 @@ function getCookie(cname) {
   providers: [
     AuthInterceptorService,
     {
-      provide: HTTP_INTERCEPTORS, useExisting: AuthInterceptorService, multi: true },
-
+      provide: HTTP_INTERCEPTORS, useExisting: AuthInterceptorService, multi: true,
+    },
     {
       provide: APP_BASE_HREF,
       useValue: '/' + (window.location.pathname.split('/')[1] || '')

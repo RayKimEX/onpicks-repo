@@ -15,13 +15,30 @@
 //<label for="">
 
 
-
-.onpicks-select-box{
+.onpicks-select-box {
   position:relative;
   display:inherit;
   width : inherit;
   height:100%;
   background-color: $color-white !important;
+
+  &__select-box {
+
+    -webkit-appearance: none;
+    background : transparent;
+    border : 0;
+    width: 100%;
+    padding : 1.1rem 1.6rem;
+    &--outer {
+      display:inline-block;
+      width : 8.3rem;
+      background:url(https://img.onpicks.com/assets/arrow_for_select_box_png.png) no-repeat right;
+      background-size : 18px 10px;
+      background-position : 80%;
+      border-radius : 2px;
+      border : 1px solid $color-light-grey;
+    }
+  }
 
   &__fore-button {
     border-radius: 2px;

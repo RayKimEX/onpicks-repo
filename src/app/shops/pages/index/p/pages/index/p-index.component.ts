@@ -16,7 +16,9 @@ import {
 } from 'rxjs/operators';
 import {UiService} from '../../../../../../core/service/ui/ui.service';
 import {BreakpointObserver, BreakpointState} from '../../../../../../../../node_modules/@angular/cdk/layout';
-import {RESPONSIVE_MAP} from '../../../../../../app.config';
+import {LOCATION_MAP, RESPONSIVE_MAP} from '../../../../../../app.config';
+import {DisplayAlertMessage} from '../../../../../../core/store/ui/ui.actions';
+import {TryAddOrCreateToCart} from '../../../../../../core/store/cart/cart.actions';
 
 @Component({
   selector: 'onpicks-p',
@@ -34,8 +36,66 @@ export class PIndexComponent implements OnInit, OnDestroy {
   isFB = false;
   previousYOffset = 0;
   isShowMobileMenu = true;
+  isExpendMobileMenu = false;
 
+
+  numberOptionList = {
+    list : [
+      {
+        title : '1',
+        value : 1,
+      },
+      {
+        title : '2',
+        value : 2,
+      },
+      {
+        title : '3',
+        value : 3,
+      },
+      {
+        title : '4',
+        value : 4,
+      },
+      {
+        title : '5',
+        value : 5,
+      },
+      {
+        title : '6',
+        value : 6,
+      },
+      {
+        title : '7',
+        value : 7,
+      },
+      {
+        title : '8',
+        value : 8,
+      },
+      {
+        title : '9',
+        value : 9,
+      },
+      {
+        title : '10',
+        value : 10,
+      }
+    ]
+  }
+
+  currentSelectOption = {
+    amount : 1,
+    slug : ''
+  }
+
+  keyListForSlug = [];
+  keyMapForSlug = {};
+
+  cartStore$;
+  cartStore;
   constructor(
+    @Inject(LOCATION_MAP) public locationMap: any,
     @Inject(RESPONSIVE_MAP) public categoryMap,
     private breakpointObserver:  BreakpointObserver,
     private cd: ChangeDetectorRef,
@@ -64,6 +124,10 @@ export class PIndexComponent implements OnInit, OnDestroy {
       })
     );
 
+    this.cartStore$ = this.store.pipe(select(state => state.cart))
+      .subscribe(val => {
+        this.cartStore = val;
+      });
     this.pPictureReviews$ = this.pDataService.getPictureReviewsData(this.route.snapshot.params.id).pipe( tap( v => console.log(v)));
     this.weeklyBest$ = this.uiService.getWeeklyBestGoods();
   }
@@ -73,7 +137,7 @@ export class PIndexComponent implements OnInit, OnDestroy {
     if ( delta < -1 ) {
       console.log('is open!')
       this.isShowMobileMenu = true;
-    } else if( delta > 1 ) {
+    } else if ( delta > 1 ) {
       console.log('is close!')
       this.isShowMobileMenu = false;
     }
@@ -95,6 +159,37 @@ export class PIndexComponent implements OnInit, OnDestroy {
           this.cd.markForCheck();
         }
       });
+  }
+
+  addToCart(xPackIndex, data) {
+    let keyForSlug = '';
+    this.keyListForSlug.forEach( (value, index) => {
+      if ( (this.keyListForSlug.length - 1) === index ){
+        keyForSlug += value;
+      } else {
+        keyForSlug += value + '_';
+      }
+    })
+
+    let currentProductSlug = undefined;
+    if ( data.attributes.length === 0 ) {
+      currentProductSlug = data.slug;
+    } else {
+      currentProductSlug = this.keyMapForSlug[keyForSlug];
+    }
+
+
+    if ( currentProductSlug === undefined ){
+      this.store.dispatch(new DisplayAlertMessage('옵션을 정확히 선택해주세요.'));
+    }
+
+    this.store.dispatch(new TryAddOrCreateToCart({
+      isPopUp : true,
+      productSlug: currentProductSlug,
+      amount: this.currentSelectOption.amount,
+      packIndex: xPackIndex,
+      increaseOrCreate: currentProductSlug in this.cartStore.cartList
+    }));
   }
 
   ngOnDestroy() {
