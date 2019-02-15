@@ -1,7 +1,7 @@
 <ng-template #loading>
 </ng-template>
 
-<div #pMenu class="p-menu">
+<div #pMenu class="p-menu" *ngLet="(currency| async) as currencyInfo">
   <div class="p-menu__inner-margin">
     <div class="p-menu__title subtitle-1-bold">
       <!--이것은 전체를 기준으로 처리하려고 했으나, ViewChild를 가져오는 기준은, template이 시작될때 가져오는것 같음따라서,
@@ -39,7 +39,7 @@
       <div class="p-menu__product-info--MSRP subtitle-1-regular">
         <!--TODO: MSRP는 지역에 따라 보이고 안보이고 설정-->
         <!--<span class="p-menu__product-info&#45;&#45;MSRP-name">MSRP&nbsp;</span>-->
-        <span class="p-menu__product-info--MSRP-discount u-color-grey">{{_data?.msrp | onpicksCurrency:(currency| async)}}</span>
+        <span class="p-menu__product-info--MSRP-discount u-color-grey">{{_data?.msrp | onpicksCurrency:currencyInfo}}</span>
         <span class="p-menu__product-info--MSRP-description u-color-green">담을수록 추가 할인</span>
       </div>
       <div class="p-menu__product-info--price">
@@ -51,7 +51,7 @@
 
         <!--소수점 떨어지는거 관련해서 약간 이슈가 있음-->
         <span class="p-menu__product-info--price-discount price-bold u-color-green">{{discountPercent}}%</span>
-        <span class="p-menu__product-info--price-realprice price-bold">{{_data?.price | onpicksCurrency:(currency| async)}}</span>
+        <span class="p-menu__product-info--price-realprice price-bold">{{_data?.price | onpicksCurrency:currencyInfo}}</span>
         <onpicks-sort-box
           [sortList]="chartSortList">
         </onpicks-sort-box>
@@ -79,11 +79,11 @@
           <span class="p-menu__delivery--first-spot subtitle-2-bold">
             {{_data?.location?.name}}
           </span>
-          <span class="p-menu__delivery--first-info subtitle-2-regular">출고, 묶음배송, {{9000| onpicksCurrency: (currency| async)}}</span>
+          <span class="p-menu__delivery--first-info subtitle-2-regular">출고, 묶음배송, {{9000| onpicksCurrency: currencyInfo}}</span>
 
         </div>
 
-        <div class="p-menu__delivery--second subtitle-2-regular u-color-dark-grey">{{_data?.location?.name}} 묶음배송 상품 {{80000| onpicksCurrency:(currency| async)}} 이상 배송료 무료</div>
+        <div class="p-menu__delivery--second subtitle-2-regular u-color-dark-grey">{{_data?.location?.name}} 묶음배송 상품 {{80000| onpicksCurrency:currencyInfo}} 이상 배송료 무료</div>
       </div>
     </div>
 

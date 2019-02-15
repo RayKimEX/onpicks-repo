@@ -11,14 +11,14 @@ import {
   SimpleChanges,
   ViewChild
 } from '@angular/core';
-import {fromEvent, interval} from 'rxjs';
+import {BehaviorSubject, fromEvent, interval} from 'rxjs';
 import Chart from 'chart.js';
 import {select, Store} from '@ngrx/store';
 import {PState} from '../../../../store/p.reducer';
 import ResizeSensor from 'css-element-queries/src/ResizeSensor';
 import {TryAddOrCreateToCart} from '../../../../../../../../core/store/cart/cart.actions';
 import {DisplayAlertMessage} from '../../../../../../../../core/store/ui/ui.actions';
-import {LOCATION_MAP} from '../../../../../../../../app.config';
+import {CURRENCY, LOCATION_MAP} from '../../../../../../../../app.config';
 
 @Component({
   selector: 'onpicks-p-menu',
@@ -205,6 +205,7 @@ export class PMenuComponent implements OnInit, OnDestroy, AfterViewInit, OnChang
   cartStore$;
   cartStore;
   constructor(
+    @Inject( CURRENCY ) public currency: BehaviorSubject<any>,
     @Inject(LOCATION_MAP) public locationMap: any,
     private renderer: Renderer2,
     private store: Store<any>,

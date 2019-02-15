@@ -11,10 +11,12 @@ import {
   Renderer2,
   ChangeDetectorRef,
   OnDestroy,
-  ViewChild
+  ViewChild, Inject
 } from '@angular/core';
 import {AccountDataService} from '../../../../core/service/data-pages/account/account-data.service';
 import {UiService} from '../../../../core/service/ui/ui.service';
+import {BehaviorSubject} from 'rxjs';
+import {CURRENCY} from '../../../../app.config';
 
 @Component({
   selector: 'onpicks-write-review',
@@ -53,6 +55,7 @@ export class WriteReviewComponent implements OnInit, OnChanges {
   weeklyBest$;
 
   constructor(
+    @Inject(CURRENCY) public currency: BehaviorSubject<any>,
     private renderer: Renderer2,
     private accountDataService: AccountDataService,
     private cd: ChangeDetectorRef,

@@ -1,13 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import {ChangeDetectionStrategy, Component, Inject, OnInit} from '@angular/core';
+import {CURRENCY} from '../../../../../../../../app.config';
+import {BehaviorSubject} from 'rxjs';
 
 @Component({
   selector: 'onpicks-p-other-sellers',
   templateUrl: './p-other-sellers.component.html',
-  styleUrls: ['./p-other-sellers.component.scss']
+  styleUrls: ['./p-other-sellers.component.scss'],
+  changeDetection : ChangeDetectionStrategy.OnPush
 })
 export class POtherSellersComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    @Inject(CURRENCY) public currency: BehaviorSubject<any>,
+  ) { }
 
   ngOnInit() {
   }
