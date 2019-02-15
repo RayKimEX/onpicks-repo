@@ -1,6 +1,6 @@
 import {
   AfterViewInit,
-  Component,
+  Component, DoCheck,
   Inject,
   LOCALE_ID,
   OnDestroy,
@@ -31,11 +31,13 @@ import {CATEGORY_MAP} from './app.config';
 })
 
 
-export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
+export class AppComponent implements OnInit, OnDestroy, AfterViewInit, DoCheck {
   title = 'onpicks';
   isCategoryLoaded = false;
   categoryLoadType = '';
   uiState$;
+
+  deltaHeight = 0;
 
   previousUrl = [];
 
@@ -60,6 +62,9 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
     });
   }
 
+  ngDoCheck() {
+
+  }
   // Shows and hides the loading spinner during RouterEvent changes
   private _navigationInterceptor(event: RouterEvent): void {
 
@@ -68,18 +73,18 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
     }
 
     if (event instanceof NavigationEnd) {
+
       const url = this.router.url.split('/');
       const slug =  url[url.length - 1];
 
       this.store.dispatch(new UpdateUrlActive(url));
 
-
       if ( !((this.previousUrl.length > 4 && this.previousUrl[4] === 'reviews') || (url.length > 4 && url[4] === 'reviews'))) {
         window.scrollTo(0, 0);
       } else {
 
-
       }
+
       // category가 /c/안에 url이 아닐때 return;
       if ( url[2] !== 'c' ) { return; };
 

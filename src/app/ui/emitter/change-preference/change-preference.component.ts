@@ -1,6 +1,9 @@
-import {ChangeDetectionStrategy, Component, ElementRef, EventEmitter, HostListener, Input, OnInit, Output} from '@angular/core';
+import {ChangeDetectionStrategy, Component, ElementRef, EventEmitter, HostListener, Inject, Input, OnInit, Output} from '@angular/core';
 import {Store} from '@ngrx/store';
 import {UiService} from '../../../core/service/ui/ui.service';
+import {HttpClient} from '@angular/common/http';
+import {CATEGORY_MAP, CURRENCY} from '../../../app.config';
+import {BehaviorSubject} from 'rxjs';
 
 @Component({
   selector: 'emitter-change-preference',
@@ -27,8 +30,8 @@ export class ChangePreferenceComponent implements OnInit {
     currency : {
       title : '통화를 선택해주세요',
       list : {
-        dollar : '미국 달러 - $',
-        won : '한국 원 - ₩',
+        USD : '미국 달러 - $',
+        KRW : '한국 원 - ₩',
       }
     }
   }
@@ -37,9 +40,11 @@ export class ChangePreferenceComponent implements OnInit {
 
 
   constructor(
+    @Inject(CURRENCY) public currency: BehaviorSubject<any>,
     private store: Store<any>,
     private eRef: ElementRef,
-    private uiService: UiService
+    private uiService: UiService,
+    private httpClient: HttpClient
   ) {
 
   }
@@ -52,8 +57,22 @@ export class ChangePreferenceComponent implements OnInit {
     }
   }
 
-  changeLanguage(xLanguageCode) {
-    console.log(xLanguageCode);
+  changePreference(xPreferenceCode) {
+    switch (this.type) {
+      case 'currency' :
+        this.httpClient.post('/api/preferences/currency/', {currency : xPreferenceCode})
+          .subscribe( (response) => {
+              console.log(xPreferenceCode);
+              this.currency.next(xPreferenceCode);
+            }
+          );
+        this.isShowModal = false;
+        break;
+
+      case 'locale' :
+        this.isShowModal = false;
+        break;
+    }
   }
 
   nonCompareFunction( a, b ) {
@@ -61,10 +80,14 @@ export class ChangePreferenceComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    this.currency.subscribe( value => {
+      console.log(value);
+    });
   }
+
   showModal() {
     this.isShowModal = !this.isShowModal;
     this.showEvent.emit();
   }
+
 }

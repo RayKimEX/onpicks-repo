@@ -35,6 +35,7 @@ import {CartEffects} from './core/store/cart/cart.effects';
 import {SearchEffects} from './core/store/search/search.effects';
 import {LayoutModule} from '@angular/cdk/layout';
 import 'hammerjs';
+import {BehaviorSubject} from 'rxjs';
 // export function getBaseHref(platformLocation: PlatformLocation): string {
 //   return platformLocation.getBaseHrefFromDOM();
 // }
@@ -52,6 +53,15 @@ function getCookie(cname) {
     }
   }
   return '';
+}
+
+function setCookie(cname, cvalue ) {
+  // const d = new Date();
+  // d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+  // const expires = 'expires=' + d.toUTCString();
+  document.cookie = cname + '=' + cvalue + ';path=/';
+
+  return 'KRW';
 }
 
 
@@ -113,7 +123,7 @@ function getCookie(cname) {
     },
     {
       provide: CURRENCY,
-      useValue : getCookie('currency'),
+      useValue : getCookie('onpicks-currency') === '' ? setCookie('onpicks-currency', 'KRW' ) : new BehaviorSubject(getCookie('onpicks-currency')),
     },
     {
       provide: LOCATION_MAP,

@@ -16,7 +16,7 @@ import {
 
 // NgRX & RxJS
 import {select, Store} from '@ngrx/store';
-import {fromEvent, Observable} from 'rxjs';
+import {BehaviorSubject, fromEvent, Observable} from 'rxjs';
 import {shareReplay, tap} from 'rxjs/operators';
 
 // Custom
@@ -90,7 +90,7 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
   constructor(
     @Inject(LOCALE_ID) public locale: string,
     @Inject(APP_BASE_HREF) public region: string,
-    @Inject(CURRENCY) public currency: string,
+    @Inject(CURRENCY) public currency: BehaviorSubject<any>,
     @Inject(MENU_MAP) public menuMap,
     @Inject(RESPONSIVE_MAP) public categoryMap,
     private renderer: Renderer2,

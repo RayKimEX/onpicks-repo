@@ -19,8 +19,8 @@ export class AccountDataService {
     return this.httpClient.get<any>( this.BASE_URL + '/api/customers/address_book/' );
   }
 
-  getMyWrittenReviews(){
-    return this.httpClient.get<any>( this.BASE_URL + '/api/customers//my_reviews/');
+  getMyWrittenReviews() {
+    return this.httpClient.get<any>( this.BASE_URL + '/api/customers/my_reviews/');
   }
 
   getOrdersData( xPeriod ) {

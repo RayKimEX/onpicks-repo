@@ -17,11 +17,8 @@
         <span>
           {{preferenceList[type].title}}
         </span>
-
-
-
       </div>
-      <div (click)="changeLanguage(item.key)"
+      <div (click)="changePreference(item.key)"
         class="preference-modal__item" *ngFor="let item of preferenceList[type].list | keyvalue: nonCompareFunction">
         <div
              class="preference-modal__item--inner">

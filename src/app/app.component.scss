@@ -1,5 +1,9 @@
 @import '~src/assets/scss/abstracts/variables';
 
+ui-footer {
+  display: block;
+}
+
 router-outlet {
 
   @include respond(desktop){

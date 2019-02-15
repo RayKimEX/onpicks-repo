@@ -22,23 +22,35 @@ export class TodayCollectionComponent implements OnInit, AfterViewInit {
 
   todayCollection = [
     {
-      imgSrc : 'http://img.onpicks.com/index-collections-paleo.jpg',
+      imgSrc : 'http://img.onpicks.com/collections/collections-paleo.jpg',
       todayCategoryName : '식품·생활용품',
       todayTitle : '팔레오 다이어트',
       todayDiscription: '건강&체중을 한 번에! 수천년 전에 인간 사냥꾼 조상이 먹은 것과 유사하도록 고안된 구석기 다이어트...',
     },
     {
-      imgSrc : 'http://img.onpicks.com/index-collections-USDA.jpg',
+      imgSrc : 'http://img.onpicks.com/collections/collections-USDA.jpg',
       todayCategoryName : '식품·생활용품',
       todayTitle : 'USDA 인증',
       todayDiscription: '미국 유기농 인증마크 USDA',
     },
     {
-      imgSrc : 'http://img.onpicks.com/index-collections-gluten.jpg',
+      imgSrc : 'http://img.onpicks.com/collections/collections-gluten.jpg',
       todayCategoryName : '식품·생활용품',
       todayTitle : '글루텐프리',
       todayDiscription: '밀가루 무첨가 영양만점 글루텐프리',
     },
+    {
+      imgSrc : 'https://img.onpicks.com/collections/collection-flower.jpg?d=w528-h352',
+      todayCategoryName : '뷰티',
+      todayTitle : '봄을 맞이하는 아이템!',
+      todayDiscription : '인간 벚꽃이 되어 당신 주변에 이른 봄을 선물하는 건 어떨까요?'
+    },
+    {
+      imgSrc : 'https://img.onpicks.com/collections/collection-byredo.jpg?d=w528-h352',
+      todayCategoryName : '뷰티',
+      todayTitle : '페피들의 잇 아이템',
+      todayDiscription : '바이레도의 감성으로 북유럽의 서정적인 향기를 입어보세요'
+    }
     // {
     //   imgSrc : 'http://img.onpicks.com/index-collections-vesitable.jpg',
     //   todayCategoryName : '식품·생활용품',
@@ -92,6 +104,7 @@ export class TodayCollectionComponent implements OnInit, AfterViewInit {
         }
       });
   }
+
   ngAfterViewInit() {
     this.itemListArray = this.itemList.toArray();
     const computedStyle = getComputedStyle(( this.itemList.first.nativeElement ), null);

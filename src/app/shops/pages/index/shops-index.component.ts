@@ -43,25 +43,35 @@ export class ShopsIndexComponent implements OnInit, AfterViewInit {
 
   popularCategory = [
     {
-      imgSrc : 'https://img.onpicks.com/categories/main/category-pantry-and-household.jpg',
-      name : '식품·생활용품',
-      href : '/shops/c/pantry-and-household'
+      imgSrc : 'http://img.onpicks.com/categories/category-grocery.png',
+      name : '식품',
+      href : '/shops/c/pantry-and-household/grocery'
     },
     {
-      imgSrc : 'https://img.onpicks.com/categories/main/category-beauty.jpg',
-      name : '뷰티',
-      href : '/shops/c/beauty'
+      imgSrc : 'http://img.onpicks.com/categories/category-household.png',
+      name : '생활용품',
+      href : '/shops/c/pantry-and-household/household-supplies'
     },
     {
-      imgSrc : 'https://img.onpicks.com/categories/main/category-baby.jpg',
+      imgSrc : 'http://img.onpicks.com/categories/category-baby.png',
       name : '유아동',
       href : '/shops/c/pantry-and-household/baby'
     },
     {
-      imgSrc : 'https://img.onpicks.com/categories/main/category-health.jpg',
+      imgSrc : 'http://img.onpicks.com/categories/category-health.png',
       name : '건강',
       href : '/shops/c/pantry-and-household/health'
     },
+    {
+      imgSrc : 'http://img.onpicks.com/categories/category-skincare.png',
+      name : '스킨케어',
+      href : '/shops/c/beauty/skincare'
+    },
+    {
+      imgSrc : 'http://img.onpicks.com/categories/category-fragrance.png',
+      name : '향수',
+      href : '/shops/c/beauty/fragrance'
+    }
   ]
 
   popularBrand = [

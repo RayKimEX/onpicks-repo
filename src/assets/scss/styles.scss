@@ -27,6 +27,14 @@ html {
   // This defines what 1rem is
   font-size: 62.5%; //1 rem = 10px; 10px/16px = 62.5%
   color: $color-black;
+  @include respond(sb){
+    font-size : 58%;
+  }
+  @include respond(tb){
+    font-size : 52%;
+  }
+
+
 }
 
 body {
