@@ -3,7 +3,8 @@
   <ng-container *ngIf="{
     cartList:   (cartStore$ | async)?.cartList,
     cartInfo:   (cartStore$ | async)?.cartInfo,
-    wishList:   (cartStore$ | async)?.wishList
+    wishList:   (cartStore$ | async)?.wishList,
+    currencyInfo:   (currency | async)
   } as syncedData">
   <div class="row">
     <ng-container *ngIf="lengthCheckForFree !== 0 || lengthCheckForPack !== 0">
@@ -13,20 +14,20 @@
           <div class="cart-mobile__price--description">
             <div class="cart-mobile__price--all-product">
               <span class="subtitle-2-regular u-color-dark-grey">총 상품금액</span>
-              <span class="subtitle-2-regular u-float-right">{{syncedData?.cartInfo?.total?.total_items | onpicksCurrency: 'KRW'}}</span>
+              <span class="subtitle-2-regular u-float-right">{{syncedData?.cartInfo?.total?.total_items | onpicksCurrency: syncedData.currencyInfo}}</span>
             </div>
             <div class="cart-mobile__price--delivery">
               <span class="subtitle-2-regular u-color-dark-grey">배송비</span>
-              <span class="subtitle-2-regular u-float-right" [ngClass]="{ 'u-color-green' : syncedData?.cartInfo?.total?.total_shipping_fee === 0 }">{{syncedData?.cartInfo?.total?.total_shipping_fee === 0 ? '무료' : (syncedData?.cartInfo?.total?.total_shipping_fee  | onpicksCurrency: 'KRW')}}</span>
+              <span class="subtitle-2-regular u-float-right" [ngClass]="{ 'u-color-green' : syncedData?.cartInfo?.total?.total_shipping_fee === 0 }">{{syncedData?.cartInfo?.total?.total_shipping_fee === 0 ? '무료' : (syncedData?.cartInfo?.total?.total_shipping_fee  | onpicksCurrency: syncedData.currencyInfo)}}</span>
             </div>
             <div class="cart-mobile__price--discount">
               <span class="subtitle-2-regular u-color-dark-grey">할인금액</span>
-              <span class="subtitle-2-regular u-float-right">{{syncedData?.cartInfo?.total?.total_discounts | onpicksCurrency: 'KRW'}}</span>
+              <span class="subtitle-2-regular u-float-right">{{syncedData?.cartInfo?.total?.total_discounts | onpicksCurrency: syncedData.currencyInfo}}</span>
             </div>
           </div>
           <div class="cart-mobile__price--all">
             <span class="subtitle-2-regular u-color-dark-grey">총 결제금액</span>
-            <span class="subtitle-2-bold u-float-right">{{syncedData?.cartInfo?.total?.total_items + syncedData?.cartInfo?.total?.total_shipping_fee | onpicksCurrency : 'KRW'}}</span>
+            <span class="subtitle-2-bold u-float-right">{{syncedData?.cartInfo?.total?.total_items + syncedData?.cartInfo?.total?.total_shipping_fee | onpicksCurrency : syncedData.currencyInfo}}</span>
           </div>
         </div>
         <onpicks-button
@@ -66,7 +67,7 @@
           </span>
           <span class="cart__delivery-free-total-count">
             <span class="cart__delivery-free-total-count--title subtitle-2-regular u-color-dark-grey">총 결제금액</span>
-            <span class="subtitle-2-bold u-color-black">{{syncedData?.cartInfo?.free?.subtotal | onpicksCurrency : 'KRW'}}</span>
+            <span class="subtitle-2-bold u-color-black">{{syncedData?.cartInfo?.free?.subtotal | onpicksCurrency : syncedData.currencyInfo}}</span>
           </span>
         </div>
       </div>
@@ -99,7 +100,7 @@
                   {{itemForFree.title}}
                 </div>
                 <div class="cart-mobile__table--item-info--price subtitle-2-bold">
-                  {{itemForFree.price | onpicksCurrency : 'KRW'}}
+                  {{itemForFree.price | onpicksCurrency : syncedData.currencyInfo}}
                 </div>
               </div>
             </div>
@@ -149,7 +150,8 @@
                     class="cart__multi-table--info-option--spliter-margin subtitle-3-regular u-color-grey">·</span>
                 </ng-container>
               </div>
-              <div class="cart__free-table--info-price subtitle-2-bold">{{itemForFree.price | onpicksCurrency : 'KRW'}}</div>
+              <div class="cart__free-table--info-price subtitle-2-bold">{{itemForFree.price | onpicksCurrency : syncedData.currencyInfo
+                }}</div>
             </div>
           </td>
           <td>
@@ -218,14 +220,14 @@
               </span>
               <span class="cart__delivery-multi-total-count">
                 <span class="subtitle-2-regular u-color-dark-grey">총 결제금액</span>
-                <span class="subtitle-2-bold">{{item.subtotal | onpicksCurrency: 'KRW'}}</span>
+                <span class="subtitle-2-bold">{{item.subtotal | onpicksCurrency : syncedData.currencyInfo}}</span>
               </span>
             </div>
           </div>
 
           <div class="cart__delivery-multi-purchase">
             <div class="cart__delivery-multi-purchase--remain">
-              <div *ngIf="((item.free_shipping_threshold - (item.subtotal - item.shipping_fee)) > 0)" class="cart__delivery-multi-purchase--remain-description subtitle-2-regular">{{item.location.name}} 무료배송까지 {{item.free_shipping_threshold - (item.subtotal - item.shipping_fee) | onpicksCurrency:'KRW'}} 남았습니다</div>
+              <div *ngIf="((item.free_shipping_threshold - (item.subtotal - item.shipping_fee)) > 0)" class="cart__delivery-multi-purchase--remain-description subtitle-2-regular">{{item.location.name}} 무료배송까지 {{item.free_shipping_threshold - (item.subtotal - item.shipping_fee) | onpicksCurrency : syncedData.currencyInfo}} 남았습니다</div>
               <div *ngIf="!((item.free_shipping_threshold - (item.subtotal - item.shipping_fee)) > 0)"class="cart__delivery-multi-purchase--remain-description subtitle-2-bold">{{item.location.name}} 무료배송 조건이 충족되었습니다</div>
               <ui-progressive-bar [progressWidth]="
               ((((item.subtotal - item.shipping_fee) / item.free_shipping_threshold) * 100) > 100 ? 100 :  ((((item.subtotal - item.shipping_fee) / item.free_shipping_threshold) * 100))) + '%'"></ui-progressive-bar>
@@ -262,7 +264,7 @@
                       {{itemChild.title}}
                     </div>
                     <div class="cart-mobile__table--item-info--price subtitle-2-bold">
-                      {{itemChild.price | onpicksCurrency : 'KRW'}}
+                      {{itemChild.price | onpicksCurrency : syncedData.currencyInfo}}
                     </div>
                   </div>
                 </div>
@@ -311,7 +313,7 @@
                         class="cart__multi-table--info-option--spliter-margin subtitle-3-regular u-color-grey">·</span>
                     </ng-container>
                   </div>
-                  <div class="cart__multi-table--info-price subtitle-2-bold">{{itemChild.sale_price | onpicksCurrency: 'KRW'}}</div>
+                  <div class="cart__multi-table--info-price subtitle-2-bold">{{itemChild.sale_price | onpicksCurrency: syncedData.currencyInfo}}</div>
                 </div>
               </td>
               <td>
@@ -342,10 +344,10 @@
               <td *ngIf="itemIndex === 0" [attr.rowspan]="item?.items.length">
                 <div class="cart__multi-table--delivery-info">
                   <div class="cart__multi-table--delivery-info-price" [ngSwitch]="(item.subtotal - item.shipping_fee) < item.free_shipping_threshold">
-                    <span class="subtitle-2-regular" *ngSwitchCase="true">{{item.shipping_fee | onpicksCurrency: 'KRW'}}</span>
+                    <span class="subtitle-2-regular" *ngSwitchCase="true">{{item.shipping_fee | onpicksCurrency: syncedData.currencyInfo}}</span>
                     <span class="subtitle-2-bold u-color-green" *ngSwitchDefault>무료</span>
                   </div>
-                  <div class="cart__multi-table--delivery-info-description subtitle-2-regular u-color-dark-grey">뉴저지 단독 배송 상품 {{item.free_shipping_threshold | onpicksCurrency: 'KRW'}} 이상 주문시 무료 배송</div>
+                  <div class="cart__multi-table--delivery-info-description subtitle-2-regular u-color-dark-grey">뉴저지 단독 배송 상품 {{item.free_shipping_threshold | onpicksCurrency: syncedData.currencyInfo}} 이상 주문시 무료 배송</div>
                 </div>
               </td>
             </tr>
@@ -378,7 +380,7 @@
               <div class="cart__wishlist-table--info">
                 <div class="cart__wishlist-table--info-title subtitle-3-bold">{{item.brand}}</div>
                 <div class="cart__wishlist-table--info-name subtitle-3-regular">{{item.title}}</div>
-                <div class="cart__wishlist-table--info-price subtitle-2-bold">{{item.price | onpicksCurrency: 'KRW'}}</div>
+                <div class="cart__wishlist-table--info-price subtitle-2-bold">{{item.price | onpicksCurrency: syncedData.currencyInfo}}</div>
               </div>
             </td>
             <td>
@@ -399,8 +401,8 @@
                   <span class="u-bold">{{item.location.name}}</span>&nbsp;출고&nbsp;·</div>
                 <div class="cart__wishlist-table--delivery-info-price subtitle-2-bold" *ngIf="item.ship_alone">&nbsp;무료배송</div>
                 <div class="cart__wishlist-table--delivery-info-price subtitle-2-regular"
-                     *ngIf="!item.ship_alone">묶음배송 · {{item.location.base_shipping_fee | onpicksCurrency:'KRW'}}</div>
-                <div class="cart__wishlist-table--delivery-info-description subtitle-2-regular u-color-dark-grey">뉴저지 묶음배송 상품으로 {{item.location.free_shipping_threshold | onpicksCurrency: 'KRW'}} 이상 주문시 배송료 무료</div>
+                     *ngIf="!item.ship_alone">묶음배송 · {{item.location.base_shipping_fee | onpicksCurrency:syncedData.currencyInfo}}</div>
+                <div class="cart__wishlist-table--delivery-info-description subtitle-2-regular u-color-dark-grey">뉴저지 묶음배송 상품으로 {{item.location.free_shipping_threshold | onpicksCurrency: syncedData.currencyInfo}} 이상 주문시 배송료 무료</div>
               </div>
             </td>
             <td>
@@ -437,13 +439,13 @@
             <td>총 결제금액</td>
           </tr>
           <tr class="h1-bold">
-            <td>{{syncedData?.cartInfo?.total?.total_items | onpicksCurrency: 'KRW'}}</td>
+            <td>{{syncedData?.cartInfo?.total?.total_items | onpicksCurrency: syncedData.currencyInfo}}</td>
             <td>+</td>
             <td [ngClass]="{ 'u-color-green' : syncedData?.cartInfo?.total?.total_shipping_fee == 0}">{{syncedData?.cartInfo?.total?.total_shipping_fee === 0 ? '무료' : (syncedData?.cartInfo?.total?.total_shipping_fee  | onpicksCurrency: 'KRW')}}</td>
             <td>-</td>
-            <td>{{syncedData?.cartInfo?.total?.total_discounts | onpicksCurrency: 'KRW'}}</td>
+            <td>{{syncedData?.cartInfo?.total?.total_discounts | onpicksCurrency: syncedData.currencyInfo}}</td>
             <td>=</td>
-            <td>{{syncedData?.cartInfo?.total?.total_items + syncedData?.cartInfo?.total?.total_shipping_fee | onpicksCurrency : 'KRW'}}</td>
+            <td>{{syncedData?.cartInfo?.total?.total_items + syncedData?.cartInfo?.total?.total_shipping_fee | onpicksCurrency : syncedData.currencyInfo}}</td>
           </tr>
         </table>
         <onpicks-button

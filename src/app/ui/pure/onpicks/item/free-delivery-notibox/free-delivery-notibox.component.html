@@ -17,7 +17,7 @@
           <span
             *ngIf="(item.free_shipping_threshold - (item.subtotal - item.shipping_fee)) >= 0"
             class="subtitle-2-regular">
-            {{item.location.name}} 무료배송까지 {{item.free_shipping_threshold - (item.subtotal - item.shipping_fee) | onpicksCurrency: 'KRW'}} 남았습니다.
+            {{item.location.name}} 무료배송까지 {{item.free_shipping_threshold - (item.subtotal - item.shipping_fee) | onpicksCurrency: (currency| async)}} 남았습니다.
           </span>
           <span
             class="subtitle-2-regular"
@@ -33,7 +33,7 @@
   </ul>
   <div class="free-delivery-notibox__amount-box">
     <span class="free-delivery-notibox__amount-box--title subtitle-2-regular u-color-grey">총 상품금액</span>
-    <span class="free-delivery-notibox__amount-box--price subtitle-2-bold">{{totalItems | onpicksCurrency: 'KRW'}}</span>
+    <span class="free-delivery-notibox__amount-box--price subtitle-2-bold">{{totalItems | onpicksCurrency: (currency| async)}}</span>
     <onpicks-button
       routerLink="/order/cart"
       class="free-delivery-notibox__amount-box--button"

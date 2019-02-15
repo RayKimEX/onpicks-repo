@@ -2,7 +2,7 @@
   <onpicks-order-navigator></onpicks-order-navigator>
 </div>
 
-<div class="row checkout">
+<div class="row checkout" *ngLet="(currency| async) as currencyInfo">
   <div class="checkout-mobile" *ngIf="(checkoutStore$ | async) as data;">
     <div class="checkout-mobile__final-price">
       <h1 class="checkout-mobile__final-price--title h1-bold">최종결제금액</h1>
@@ -27,7 +27,7 @@
                 {{item.title}}
               </div>
               <div class="checkout-mobile__table--item-info--price subtitle-2-bold">
-                {{item.price | onpicksCurrency : 'KRW'}} / {{item.quantity}}개
+                {{item.price | onpicksCurrency : currencyInfo}} / {{item.quantity}}개
               </div>
             </div>
           </div>
@@ -39,22 +39,22 @@
       <div class="checkout-mobile__price--description">
         <div class="checkout-mobile__price--all-product">
           <span class="subtitle-2-regular u-color-dark-grey">총 상품금액</span>
-          <span class="subtitle-2-regular u-float-right">{{data.total_items | onpicksCurrency : 'KRW'}}</span>
+          <span class="subtitle-2-regular u-float-right">{{data.total_items | onpicksCurrency : currencyInfo}}</span>
         </div>
         <div class="checkout-mobile__price--delivery">
           <span class="subtitle-2-regular u-color-dark-grey">배송비</span>
           <span
             class="subtitle-2-regular u-float-right"
-            [ngClass]="{ 'u-color-green' : data.total_shipping_fee === 0 }">{{data.total_shipping_fee === 0 ? ('무료') : (data.total_shipping_fee | onpicksCurrency : 'KRW')}}</span>
+            [ngClass]="{ 'u-color-green' : data.total_shipping_fee === 0 }">{{data.total_shipping_fee === 0 ? ('무료') : (data.total_shipping_fee | onpicksCurrency : currencyInfo)}}</span>
         </div>
         <div class="checkout-mobile__price--discount">
           <span class="subtitle-2-regular u-color-dark-grey">할인금액</span>
-          <span class="subtitle-2-regular u-float-right">{{data.total_discounts | onpicksCurrency : 'KRW'}}</span>
+          <span class="subtitle-2-regular u-float-right">{{data.total_discounts | onpicksCurrency : currencyInfo}}</span>
         </div>
       </div>
       <div class="checkout-mobile__price--all">
         <span class="subtitle-2-regular u-color-dark-grey">총 결제금액</span>
-        <span class="subtitle-2-bold u-float-right">{{data.grand_total | onpicksCurrency : 'KRW'}}</span>
+        <span class="subtitle-2-bold u-float-right">{{data.grand_total | onpicksCurrency : currencyInfo}}</span>
       </div>
     </div>
   </div>
@@ -296,26 +296,26 @@
           <div class="checkout-right__menu--item-info-brand subtitle-3-bold">{{item.brand}}</div>
           <div class="checkout-right__menu--item-info-name body-3-regular">{{item.title}}</div>
           <div *ngIf="item.infoOption !== ''" class="checkout-right__menu--item-info-option subtitle-3-regular u-color-grey">{{item.infoOption}}</div>
-          <div class="checkout-right__menu--item-info-price subtitle-2-bold">{{item.sale_price | onpicksCurrency: 'KRW'}} / {{item.quantity}}개</div>
+          <div class="checkout-right__menu--item-info-price subtitle-2-bold">{{item.sale_price | onpicksCurrency: currencyInfo}} / {{item.quantity}}개</div>
         </div>
       </div>
 
       <div class="checkout-right__menu--price">
         <div class="checkout-right__menu--price-productall">
           <span class="checkout-right__menu--price-productall-tag subtitle-1-regular">총 상품금액</span>
-          <span class="checkout-right__menu--price-productall-value subtitle-1-regular">{{data.total_items | onpicksCurrency : 'KRW'}}</span>
+          <span class="checkout-right__menu--price-productall-value subtitle-1-regular">{{data.total_items | onpicksCurrency : currencyInfo}}</span>
         </div>
         <div class="checkout-right__menu--price-delivery">
           <span class="checkout-right__menu--price-delivery-tag subtitle-1-regular">배송비</span>
-          <span class="checkout-right__menu--price-delivery-value subtitle-1-regular">{{data.total_shipping_fee === 0 ? ('무료') : (data.total_shipping_fee | onpicksCurrency : 'KRW')}}</span>
+          <span class="checkout-right__menu--price-delivery-value subtitle-1-regular">{{data.total_shipping_fee === 0 ? ('무료') : (data.total_shipping_fee | onpicksCurrency : currencyInfo)}}</span>
         </div>
         <div class="checkout-right__menu--price-discount">
           <span class="checkout-right__menu--price-delivery-tag subtitle-1-regular">할인금액</span>
-          <span class="checkout-right__menu--price-delivery-value subtitle-1-regular">{{data.total_discounts | onpicksCurrency : 'KRW'}}</span>
+          <span class="checkout-right__menu--price-delivery-value subtitle-1-regular">{{data.total_discounts | onpicksCurrency : currencyInfo}}</span>
         </div>
         <div class="checkout-right__menu--price-all">
           <span class="checkout-right__menu--price-all-tag h1-bold">총 결제금액</span>
-          <span class="checkout-right__menu--price-all-value h1-bold">{{data.grand_total | onpicksCurrency : 'KRW'}}</span>
+          <span class="checkout-right__menu--price-all-value h1-bold">{{data.grand_total | onpicksCurrency : currencyInfo}}</span>
         </div>
       </div>
 

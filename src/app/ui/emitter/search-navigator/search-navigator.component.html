@@ -426,9 +426,9 @@
                     <br>
                     <div class="search-content__price-info">
                       <span class="search-content__price-info--discount subtitle-1-bold u-color-orange">{{item.discount_rate | percentPipe}}%</span>
-                      <span class="search-content__price-info--price subtitle-1-bold">{{item.price | onpicksCurrency:'KRW'}}</span>
+                      <span class="search-content__price-info--price subtitle-1-bold">{{item.price | onpicksCurrency : (currency| async)}}</span>
                       <span class="search-content__price-info--MSRP" *ngIf="locale == 'en'">MSRP</span>
-                      <span class="search-content__price-info--MSRP-discount subtitle-3-regular u-color-grey">{{item.msrp | onpicksCurrency:'KRW'}}</span>
+                      <span class="search-content__price-info--MSRP-discount subtitle-3-regular u-color-grey">{{item.msrp | onpicksCurrency : (currency| async)}}</span>
                     </div>
                     <div class="search-content__delivery-point">
                       <ng-container [ngSwitch]="item.location?.slug">

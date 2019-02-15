@@ -64,6 +64,7 @@ export class ChangePreferenceComponent implements OnInit {
           .subscribe( (response) => {
               console.log(xPreferenceCode);
               this.currency.next(xPreferenceCode);
+              window.location.reload();
             }
           );
         this.isShowModal = false;

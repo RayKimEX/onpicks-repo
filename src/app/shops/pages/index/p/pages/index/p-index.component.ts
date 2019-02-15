@@ -135,14 +135,11 @@ export class PIndexComponent implements OnInit, OnDestroy {
   @HostListener('window:scroll', ['$event']) private onScroll($event: Event): void {
     const delta = window.pageYOffset - this.previousYOffset;
     if ( delta < -1 ) {
-      console.log('is open!')
       this.isShowMobileMenu = true;
     } else if ( delta > 1 ) {
-      console.log('is close!')
       this.isShowMobileMenu = false;
     }
     this.previousYOffset = window.pageYOffset;
-    console.log(delta);
     // this.previousYOffset = window.pageYOffset;
     // console.log(window.pageYOffset);
   }

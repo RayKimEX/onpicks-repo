@@ -11,12 +11,12 @@ import {
   ViewChildren
 } from '@angular/core';
 import {HttpClient, HttpParams} from '@angular/common/http';
-import {fromEvent, of, pipe} from 'rxjs';
+import {BehaviorSubject, fromEvent, of, pipe} from 'rxjs';
 import {catchError, debounceTime, distinctUntilChanged, flatMap, map, tap} from 'rxjs/operators';
 import {select, Store} from '@ngrx/store';
 import {Router} from '@angular/router';
 import {CartToCheckoutService} from '../../share/cart-to-checkout.service';
-import {DOMAIN_HOST, RESPONSIVE_MAP} from '../../../app.config';
+import {CURRENCY, DOMAIN_HOST, RESPONSIVE_MAP} from '../../../app.config';
 import {FormControl, FormGroup} from '@angular/forms';
 import {OrderDataService} from '../../../core/service/data-pages/order/order-data.service';
 import {BreakpointObserver, BreakpointState} from '../../../../../node_modules/@angular/cdk/layout';
@@ -134,6 +134,7 @@ export class CheckoutComponent implements OnInit, AfterViewInit, OnDestroy {
   isThirdBreakPoint = false;
 
   constructor(
+    @Inject(CURRENCY) public currency: BehaviorSubject<any>,
     @Inject(DOMAIN_HOST) private BASE_URL: string,
     private orderDataService: OrderDataService,
     private renderer: Renderer2,

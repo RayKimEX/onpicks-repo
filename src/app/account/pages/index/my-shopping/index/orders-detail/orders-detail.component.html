@@ -11,19 +11,19 @@
     <div class="checkout-section__outer">
       <div class="checkout-section__item">
         <span class="subtitle-1-regular">총 상품금액</span>
-        <span class="subtitle-1-regular" >{{data.total_items | onpicksCurrency: 'KRW'}}</span>
+        <span class="subtitle-1-regular" >{{data.total_items | onpicksCurrency: (currency| async)}}</span>
       </div>
       <div class="checkout-section__item">
         <span class="subtitle-1-regular">배송비</span>
-        <span class="subtitle-1-regular">{{data.total_shipping_fee | onpicksCurrency: 'KRW'}}</span>
+        <span class="subtitle-1-regular">{{data.total_shipping_fee | onpicksCurrency: (currency| async)}}</span>
       </div>
       <div class="checkout-section__item">
         <span class="subtitle-1-regular">할인금액</span>
-        <span class="subtitle-1-regular">{{data.total_discounts | onpicksCurrency: 'KRW'}}</span>
+        <span class="subtitle-1-regular">{{data.total_discounts | onpicksCurrency: (currency| async)}}</span>
       </div>
       <div class="checkout-section__item">
         <span class="subtitle-1-bold">총 결제금액</span>
-        <span class="subtitle-1-bold">{{data.grand_total | onpicksCurrency: 'KRW'}}</span>
+        <span class="subtitle-1-bold">{{data.grand_total | onpicksCurrency: (currency| async)}}</span>
       </div>
       <div class="checkout-section__item-method">
         <span class="checkout-section__item-method--title subtitle-1-regular">결제방법</span>

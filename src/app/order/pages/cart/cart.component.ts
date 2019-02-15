@@ -7,7 +7,7 @@ import {
 } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import {share, shareReplay, tap} from 'rxjs/operators';
-import {DOMAIN_HOST, LOCATION_MAP} from '../../../app.config';
+import {CURRENCY, DOMAIN_HOST, LOCATION_MAP} from '../../../app.config';
 import {
   TryAddOrCreateToCart,
   TryAddToWishList,
@@ -18,6 +18,7 @@ import {Router} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
 import {UiService} from '../../../core/service/ui/ui.service';
 import {DisplayAlertMessage} from '../../../core/store/ui/ui.actions';
+import {BehaviorSubject} from 'rxjs';
 
 @Component({
   selector: 'onpicks-cart',
@@ -38,6 +39,7 @@ export class CartComponent {
   weeklyBest$;
   constructor(
     // TODO: 나중에 locale정보같은거는 모두 ngrx에 넣어서 처리하기
+    @Inject( CURRENCY ) public currency: BehaviorSubject<any>,
     @Inject( LOCATION_MAP ) public locationMap: any,
     @Inject(LOCALE_ID) public locale: string,
     @Inject(DOMAIN_HOST) private BASE_URL: string,

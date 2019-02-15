@@ -17,11 +17,11 @@ import {
   TrySubtractOrDeleteFromCart
 } from '../../../core/store/cart/cart.actions';
 import {SearchService} from '../../../core/service/data-pages/search/search.service';
-import {LOCATION_MAP} from '../../../app.config';
+import {CURRENCY, LOCATION_MAP} from '../../../app.config';
 import {UiService} from '../../../core/service/ui/ui.service';
 import {normalize, schema} from 'normalizr';
 import {DisplayAlertMessage} from '../../../core/store/ui/ui.actions';
-import {combineLatest, merge} from 'rxjs';
+import {BehaviorSubject, combineLatest, merge} from 'rxjs';
 @Component({
   selector: 'emitter-search-navigator',
   templateUrl: './search-navigator.component.html',
@@ -102,6 +102,7 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
   }
 
   constructor(
+    @Inject(CURRENCY) public currency: BehaviorSubject<any>,
     @Inject( LOCATION_MAP ) public locationMap: any,
     private uiService: UiService,
     private renderer: Renderer2,

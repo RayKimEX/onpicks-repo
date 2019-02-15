@@ -132,7 +132,7 @@
                       'ui-mini-list-halfM__price-info--price' :
                       'ui-mini-list-fullM__price-info--price'
                     ]"
-                    class="subtitle-1-bold">{{item.price | onpicksCurrency:'KRW'}}</span>
+                    class="subtitle-1-bold">{{item.price | onpicksCurrency:(currency| async)}}</span>
                   <span
                     [ngClass]="[
                       mobileType === 'half' ?
@@ -146,7 +146,7 @@
                       'ui-mini-list-halfM__price-info--MSRP-discount' :
                       'ui-mini-list-fullM__price-info--MSRP-discount'
                     ]"
-                    class="subtitle-3-regular u-color-grey">{{item.msrp | onpicksCurrency:'KRW'}}</span>
+                    class="subtitle-3-regular u-color-grey">{{item.msrp | onpicksCurrency:(currency| async)}}</span>
                 </div>
                 <div
                   [ngClass]="[

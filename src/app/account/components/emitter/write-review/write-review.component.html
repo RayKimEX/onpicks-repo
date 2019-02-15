@@ -21,7 +21,7 @@
             <div class="write-review__info--product-div subtitle-3-bold">{{_data?.reviewData?.brand}}</div>
             <div class="write-review__info--product-div body-3-regular">{{_data?.reviewData?.title}}</div>
             <div class="write-review__info--product-div subtitle-3-regular u-color-dark-grey">사이즈: 라지 · 컬러: 블랙</div>
-            <div class="write-review__info--product-div subtitle-2-bold">{{_data?.reviewData?.sale_price | onpicksCurrency:'KRW'}}</div>
+            <div class="write-review__info--product-div subtitle-2-bold">{{_data?.reviewData?.sale_price | onpicksCurrency:(currency| async)}}</div>
           </div>
         </div>
 

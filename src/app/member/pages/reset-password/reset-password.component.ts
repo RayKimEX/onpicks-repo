@@ -37,7 +37,7 @@ export class ResetPasswordComponent implements OnInit {
 
   }
 
-  passwordReset(origin, confirm) {
+  passwordReset() {
     console.log(this.inputPasswordOrigin);
     if ( this.inputPasswordOrigin.nativeElement.children[0].value !== this.inputPasswordConfirm.nativeElement.children[0].value){
       this.store.dispatch(new DisplayAlertMessage('비밀번호가 같지 않습니다.'));
