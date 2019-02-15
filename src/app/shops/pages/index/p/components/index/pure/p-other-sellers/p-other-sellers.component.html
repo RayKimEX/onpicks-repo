@@ -1,4 +1,4 @@
-<div class="p-other-sellers u-margin-bottom" *ngLet="(currency| async) as currencyInfo">
+<div class="p-other-sellers u-margin-bottom">
   <h1 class="h1-bold p-other-sellers__title">
     그외 셀러<span class="subtitle-2-regular u-color-dark-grey">2018년 8월 11일 07:39 AM 기준</span>
   </h1>
@@ -11,25 +11,25 @@
     </div>
     <div class="p-other-sellers__table--row">
       <div><span class="subtitle-1-regular">11번가</span></div>
-      <div><span class="subtitle-1-bold">{{28700 | onpicksCurrency:currencyInfo}}</span></div>
+      <div><span class="subtitle-1-bold">{{28700 | onpicksCurrency: (currency| async)}}</span></div>
       <div>
-        <span class="subtitle-1-bold u-color-green">+{{999999 | onpicksCurrency: currencyInfo}}</span>
+        <span class="subtitle-1-bold u-color-green">+{{999999 | onpicksCurrency: (currency| async)}}</span>
       </div>
     </div>
     <div class="p-other-sellers__table--row">
       <div><span class="subtitle-1-regular">메이시스코리아 메이시스코리아 메이시스코리아 메이…</span></div>
-      <div><span class="subtitle-1-bold">{{30000 | onpicksCurrency:currencyInfo}}</span></div>
+      <div><span class="subtitle-1-bold">{{30000 | onpicksCurrency:(currency| async)}}</span></div>
       <div>
-        <span class="subtitle-1-bold u-color-orange">-{{999999 | onpicksCurrency: currencyInfo}}</span>
+        <span class="subtitle-1-bold u-color-orange">-{{999999 | onpicksCurrency: (currency| async)}}</span>
       </div>
     </div>
     <div class="p-other-sellers__table--row">
       <div><span class="subtitle-1-regular">위메프</span></div>
-      <div><span class="subtitle-1-bold">{{35000 | onpicksCurrency:currencyInfo}}</span></div>
+      <div><span class="subtitle-1-bold">{{35000 | onpicksCurrency:(currency| async)}}</span></div>
       <div>
-        <span class="subtitle-1-bold u-color-green">+{{999999 | onpicksCurrency: currencyInfo}}</span>
+        <span class="subtitle-1-bold u-color-green">+{{999999 | onpicksCurrency: (currency| async)}}</span>
         <br>
-        <span class="subtitle-2-regular u-color-dark-grey">Onpicks {{9000000 | onpicksCurrency: currencyInfo}}</span>
+        <span class="subtitle-2-regular u-color-dark-grey">Onpicks {{9000000 | onpicksCurrency: (currency| async)}}</span>
       </div>
     </div>
   </div>
@@ -46,12 +46,12 @@
       <div class="subtitle-1-regular">11번가</div>
     </div>
     <div class="p-other-sellers-mobile__item--other-price">
-      <span class="subtitle-1-bold">{{9000000 | onpicksCurrency: currencyInfo}}</span>
-      <span class="subtitle-1-bold u-color-green u-float-right">+{{999999 | onpicksCurrency: currencyInfo}}</span>
+      <span class="subtitle-1-bold">{{9000000 | onpicksCurrency: (currency| async)}}</span>
+      <span class="subtitle-1-bold u-color-green u-float-right">+{{999999 | onpicksCurrency: (currency| async)}}</span>
     </div>
     <div class="p-other-sellers-mobile__item--onpicks-price">
-      <span class="subtitle-2-regular u-color-dark-grey">+배송비 {{999999 | onpicksCurrency: currencyInfo}}</span>
-      <span class="subtitle-2-regular u-color-dark-grey u-float-right">Onpicks {{999999 | onpicksCurrency : currencyInfo}}</span>
+      <span class="subtitle-2-regular u-color-dark-grey">+배송비 {{999999 | onpicksCurrency: (currency| async)}}</span>
+      <span class="subtitle-2-regular u-color-dark-grey u-float-right">Onpicks {{999999 | onpicksCurrency : (currency| async)}}</span>
     </div>
   </div>
   <div class="p-other-sellers-mobile__item">
@@ -59,12 +59,12 @@
       <div class="subtitle-1-regular">11번가</div>
     </div>
     <div class="p-other-sellers-mobile__item--other-price">
-      <span class="subtitle-1-bold">{{9000000 | onpicksCurrency: currencyInfo}}</span>
-      <span class="subtitle-1-bold u-color-green u-float-right">+{{999999 | onpicksCurrency: currencyInfo}}</span>
+      <span class="subtitle-1-bold">{{9000000 | onpicksCurrency: (currency| async)}}</span>
+      <span class="subtitle-1-bold u-color-green u-float-right">+{{999999 | onpicksCurrency: (currency| async)}}</span>
     </div>
     <div class="p-other-sellers-mobile__item--onpicks-price">
-      <span class="subtitle-2-regular u-color-dark-grey">+배송비 {{999999 | onpicksCurrency: currencyInfo}}</span>
-      <span class="subtitle-2-regular u-color-dark-grey u-float-right">Onpicks {{999999 | onpicksCurrency : currencyInfo}}</span>
+      <span class="subtitle-2-regular u-color-dark-grey">+배송비 {{999999 | onpicksCurrency: (currency| async)}}</span>
+      <span class="subtitle-2-regular u-color-dark-grey u-float-right">Onpicks {{999999 | onpicksCurrency : (currency| async)}}</span>
     </div>
   </div>
   <div class="p-other-sellers-mobile__item">
@@ -72,12 +72,12 @@
       <div class="subtitle-1-regular">11번가</div>
     </div>
     <div class="p-other-sellers-mobile__item--other-price">
-      <span class="subtitle-1-bold">{{9000000 | onpicksCurrency: currencyInfo}}</span>
-      <span class="subtitle-1-bold u-color-green u-float-right">+{{999999 | onpicksCurrency: currencyInfo}}</span>
+      <span class="subtitle-1-bold">{{9000000 | onpicksCurrency: (currency| async)}}</span>
+      <span class="subtitle-1-bold u-color-green u-float-right">+{{999999 | onpicksCurrency: (currency| async)}}</span>
     </div>
     <div class="p-other-sellers-mobile__item--onpicks-price">
-      <span class="subtitle-2-regular u-color-dark-grey">+배송비 {{999999 | onpicksCurrency: currencyInfo}}</span>
-      <span class="subtitle-2-regular u-color-dark-grey u-float-right">Onpicks {{999999 | onpicksCurrency : currencyInfo}}</span>
+      <span class="subtitle-2-regular u-color-dark-grey">+배송비 {{999999 | onpicksCurrency: (currency| async)}}</span>
+      <span class="subtitle-2-regular u-color-dark-grey u-float-right">Onpicks {{999999 | onpicksCurrency : (currency| async)}}</span>
     </div>
   </div>
 </div>
