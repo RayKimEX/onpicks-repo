@@ -19,8 +19,7 @@
       width : 4.8rem;
       height : 4.8rem;
       img {
-        width : 4.8rem;
-        height : 4.8rem;
+        @include imageAspactRatio;
       }
     }
     &--description {

@@ -54,11 +54,11 @@ export class LoginComponent implements OnInit {
   checkBox(persistent) {
     this.info.isPersistent = persistent.view.nativeElement.checked;
   }
+
   login (event: KeyboardEvent) {
 
     const url = new URL(location.href);
     const returnURL = url.searchParams.get('return');
-    console.log(returnURL);
     if (event === undefined) {
 
       this.store.dispatch( new TryLogin({info : this.info, returnURL: returnURL }));

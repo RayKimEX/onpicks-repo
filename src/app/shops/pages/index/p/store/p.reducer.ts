@@ -6,6 +6,7 @@ import {TOGGLE_VOTE_REIVEW_SUCCESS} from './p.actions';
 export interface PState {
   ui: {
     menuPosition: number;
+    isShowCommunicateBox: boolean;
   };
   reviews: {
     list: {};
@@ -16,6 +17,7 @@ export interface PState {
 const initialState: PState = {
   ui: {
     menuPosition : 0,
+    isShowCommunicateBox : false,
   },
   reviews : {
     list : {
@@ -43,6 +45,26 @@ export function PReducer (state = initialState, action: PActions.PActions) {
 
         }
       };
+
+    case PActions.SHOW_COMMUNICATE_BOX :
+      return {
+        ...state,
+        ui: {
+          ...state.ui,
+          isShowCommunicateBox : true
+        }
+      }
+      break;
+
+    case PActions.HIDE_COMMUNICATE_BOX :
+      return  {
+        ...state,
+        ui: {
+          ...state.ui,
+          isShowCommunicateBox : false
+        }
+      }
+      break;
 
     case PActions.UPDATE_MENUPOSITION:
       return {

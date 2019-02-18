@@ -30,9 +30,13 @@ import {TryAddOrCreateToCart} from '../../../../../../core/store/cart/cart.actio
 export class PIndexComponent implements OnInit, OnDestroy {
   @ViewChild('communicateBox', { read : ElementRef}) communicateBox;
 
+  /** async data **/
   pData$ = null;
+  pUI$;
+  pUI;
   pPictureReviews$;
   weeklyBest$;
+  /****************/
   isFB = false;
   previousYOffset = 0;
   isShowMobileMenu = true;
@@ -124,6 +128,15 @@ export class PIndexComponent implements OnInit, OnDestroy {
       })
     );
 
+    this.pUI$ = this.store.pipe(
+      select( state => state.p.ui)
+    ).subscribe( xPUI => {
+      this.pUI = xPUI;
+      if(this.pUI.isShowCommunicateBox === true ){
+        this.isShowMobileMenu = false;
+      };
+    })
+
     this.cartStore$ = this.store.pipe(select(state => state.cart))
       .subscribe(val => {
         this.cartStore = val;
@@ -134,6 +147,11 @@ export class PIndexComponent implements OnInit, OnDestroy {
 
   @HostListener('window:scroll', ['$event']) private onScroll($event: Event): void {
     const delta = window.pageYOffset - this.previousYOffset;
+    // console.log(this.router.url);
+    if(this.pUI.isShowCommunicateBox === true ){
+      this.isShowMobileMenu = false;
+      return ;
+    };
     if ( delta < -1 ) {
       this.isShowMobileMenu = true;
     } else if ( delta > 1 ) {
@@ -191,6 +209,7 @@ export class PIndexComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.store.dispatch(new DeleteProductAndReviewInfo());
+    this.cartStore$.unsubscribe();
   }
 
 }

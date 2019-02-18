@@ -3,6 +3,9 @@ import { Action } from '@ngrx/store';
 export const UPDATE_MENUPOSITION    = '[P] UPDATE_MENUPOSITION';
 export const UPDATE_PRODUCT_INDEX = '[P] UPDATE_PRODUCT_INDEX';
 
+export const SHOW_COMMUNICATE_BOX = '[P] SHOW_COMMUNICATE_BOX';
+export const HIDE_COMMUNICATE_BOX = '[P] HIDE_COMMUNICATE_BOX';
+
 export const TRY_GET_PRODUCT_INFO = '[P] TRY_GET_PRODUCT_INFO';
 export const GET_PRODUCT_INFO_SUCCESS = '[P] GET_PRODUCT_INFO_SUCCESS';
 export const GET_PRODUCT_INFO_FAILURE = '[P] GET_PRODUCT_INFO_FAILURE';
@@ -66,8 +69,20 @@ export class UpdateProductIndex implements Action {
   readonly type = UPDATE_PRODUCT_INDEX;
 
   constructor(public payload: any) {}
+}
+
+export class ShowCommunicateBox implements Action {
+  readonly type = SHOW_COMMUNICATE_BOX;
 
 }
+
+export class HideCommunicateBox implements Action {
+  readonly type = HIDE_COMMUNICATE_BOX;
+
+}
+
+// export const SHOW_COMMUNICATE_BOX = '[P] SHOW_COMMUNICATE_BOX';
+// export const HIDE_COMMUNICATE_BOX = '[P] HIDE_COMMUNICATE_BOX';
 
 /* GET_PRODUCT_INFO */
 export class TryGetProductInfo implements Action {
@@ -169,6 +184,8 @@ export type PActions =
   //
   UpdateMenuPosition |
   UpdateProductIndex |
+  ShowCommunicateBox |
+  HideCommunicateBox |
   //
   TryGetProductInfo |
   GetProductInfoSuccess |

@@ -50,7 +50,7 @@
         <a [routerLink]="'/shops/p/' + item.product.slug">
           <div class="written-reviews__link-to-product--inner">
             <div class="written-reviews__link-to-product--image">
-              <img src="{{item.product.thumbnail}}" alt="">
+              <img drLazyLoad src="{{item.product.thumbnail}}" alt="">
             </div>
             <div class="written-reviews__link-to-product--description body-3-regular">
               {{item.product.title}}

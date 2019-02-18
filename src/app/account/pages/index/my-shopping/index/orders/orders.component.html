@@ -31,8 +31,9 @@
     </emitter-adhere-table>
 
     <onpicks-write-review
-      [data]="writeReview"
-      (exit)="writeReview.isShow = false;"
+      (publishReview)="publishedReview()"
+      [writeReview]="writeReview"
+      (exit)="exitWriteReview()"
       [isShow]="writeReview.isShow">
     </onpicks-write-review>
   </ng-container>

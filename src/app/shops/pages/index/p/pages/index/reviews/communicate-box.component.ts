@@ -13,7 +13,7 @@ import {
 } from '@angular/core';
 
 // NgRX & RxJS
-import {TryAddComment, TryGetCommentsProduct, TryToggleVoteReview} from '../../../store/p.actions';
+import {HideCommunicateBox, ShowCommunicateBox, TryAddComment, TryGetCommentsProduct, TryToggleVoteReview} from '../../../store/p.actions';
 import {map, shareReplay, tap, withLatestFrom} from 'rxjs/operators';
 import { combineLatest, fromEvent } from 'rxjs';
 import { select, Store } from '@ngrx/store';
@@ -143,6 +143,8 @@ export class CommunicateBoxComponent implements OnInit, AfterViewChecked, AfterV
   }
 
   ngOnInit(){
+
+    this.store.dispatch(new ShowCommunicateBox());
     this.breakpointObserver
       .observe([this.categoryMap['tb']])
       .subscribe((state: BreakpointState) => {
@@ -167,6 +169,7 @@ export class CommunicateBoxComponent implements OnInit, AfterViewChecked, AfterV
   }
 
   ngOnDestroy() {
+    this.store.dispatch(new HideCommunicateBox());
     this.renderer.setStyle( document.body, 'overflow', '' );
     this.combine$.unsubscribe();
     this.communicateBoxTransition$.unsubscribe();

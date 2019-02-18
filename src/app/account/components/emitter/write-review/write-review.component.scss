@@ -224,8 +224,7 @@
       margin-right :2.4rem;
 
       img {
-        width : 11.2rem;
-        height : 11.2rem;
+        @include imageAspactRatio;
       }
     }
 

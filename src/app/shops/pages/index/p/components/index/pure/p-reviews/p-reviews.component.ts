@@ -167,7 +167,6 @@ export class PReviewsComponent implements AfterViewInit {
 
   commentReview( xUrl ) {
     const const_url = xUrl + '?scroll=' + window.pageYOffset;
-
     this.router.navigateByUrl( const_url);
   }
 

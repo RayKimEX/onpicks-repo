@@ -17,6 +17,8 @@ import {AccountDataService} from '../../../../core/service/data-pages/account/ac
 import {UiService} from '../../../../core/service/ui/ui.service';
 import {BehaviorSubject} from 'rxjs';
 import {CURRENCY} from '../../../../app.config';
+import {Store} from '@ngrx/store';
+import {DisplayAlertMessage} from '../../../../core/store/ui/ui.actions';
 
 @Component({
   selector: 'onpicks-write-review',
@@ -25,13 +27,14 @@ import {CURRENCY} from '../../../../app.config';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 
-export class WriteReviewComponent implements OnInit, OnChanges {
+export class WriteReviewComponent implements OnInit, OnChanges, OnDestroy {
   @Input('isShow') isShow = false;
-  @Input('data') set data(xData) {
+  @Input('writeReview') set data(xWriteReview) {
 
-    if ( xData === undefined || xData.reviewData === undefined ) { return; }
+    if ( xWriteReview === undefined || xWriteReview.reviewData === undefined ) { return; }
 
-    this._data = xData;
+    this._data = xWriteReview;
+    this.imageFileList = [];
     console.log(this._data.reviewData);
     this.accountDataService.getPendingReviewData(this._data.reviewData['product'], this._data.reviewData['review'])
       .subscribe( v => {
@@ -59,9 +62,15 @@ export class WriteReviewComponent implements OnInit, OnChanges {
     private renderer: Renderer2,
     private accountDataService: AccountDataService,
     private cd: ChangeDetectorRef,
-    private uiService: UiService
+    private uiService: UiService,
+    private store: Store<any>
   ) {
   }
+
+  ngOnDestroy() {
+    this.imageFileList = [];
+  }
+
 
   ngOnChanges(changes: SimpleChanges) {
 
@@ -165,12 +174,20 @@ export class WriteReviewComponent implements OnInit, OnChanges {
       .subscribe(
         v => {
           console.log(v);
-        },
-        error => {
 
+          this.store.dispatch(new DisplayAlertMessage('리뷰가 정상적으로 등록되었습니다.'));
+          this.publishReviewEvent.emit();
+        },
+        response => {
+          //
+          Object.keys(response.error).forEach( (item, index ) => {
+            // console.log(response.error[item]);
+            this.store.dispatch(new DisplayAlertMessage(response.error[item]));
+          });
         }
-      )
+      );
     this.exitEvent.emit();
-    this.publishReviewEvent.emit();
+
+
   }
 }

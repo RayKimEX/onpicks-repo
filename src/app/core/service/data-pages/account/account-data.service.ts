@@ -67,11 +67,14 @@ export class AccountDataService {
 
 
   createReviewData( xProductSlug, orderId ) {
+    console.log(xProductSlug);
+    console.log(xProductSlug);
     return this.httpClient.post<any>(
       this.BASE_URL + '/api/products/' + xProductSlug + '/reviews/', {order : orderId});
   }
 
   publishReviewData( xProductSlug, xReviewId, xRating, xText ) {
+
     return this.httpClient.patch<any>(
       this.BASE_URL + '/api/products/' + xProductSlug + '/reviews/' + xReviewId + '/', { rating : xRating, text : xText }
     );

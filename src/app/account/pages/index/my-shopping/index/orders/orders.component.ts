@@ -56,6 +56,8 @@ export class OrdersComponent implements OnInit {
 
   weeklyBest$;
 
+  reviewData;
+
   constructor(
     private uiDataService: UiService,
     private accountDataService: AccountDataService,
@@ -76,8 +78,8 @@ export class OrdersComponent implements OnInit {
   }
 
   viewModal(xPassedData) {
-    console.log(xPassedData.item);
     if (xPassedData.item.review === null ) {
+      console.log('create_review condition');
       this.accountDataService.createReviewData(xPassedData.item.product, xPassedData.orderId).subscribe(
         response => {
           if ( xPassedData.condition === 'write_review' ) {
@@ -87,6 +89,7 @@ export class OrdersComponent implements OnInit {
               isShow : true,
               reviewData : xPassedData.item
             }
+            this.reviewData = xPassedData.item;
             console.log(this.writeReview);
           }
           this.cd.markForCheck();
@@ -98,9 +101,10 @@ export class OrdersComponent implements OnInit {
       if ( xPassedData.condition === 'write_review' ) {
         this.writeReview = {
           isShow : true,
-          reviewData : xPassedData
+          reviewData : xPassedData.item
         }
-
+        this.reviewData = xPassedData.item;
+        console.log('write_review condition');
         console.log(this.writeReview)
         this.cd.markForCheck();;
       }
@@ -120,5 +124,24 @@ export class OrdersComponent implements OnInit {
           console.log(v);
         })
       );
+  }
+
+  exitWriteReview() {
+    this.writeReview.isShow = false;
+    this.cd.markForCheck();
+  }
+
+  publishedReview() {
+    // MUST TODO : 이 부분은 여러가지로 꼬여있어서, 그냥 처음부터 다시 로딩하는거로 바꿈, 새로 다시 만들어야함. 여러가지로 설계까 잘못된 코딩.
+    // 이코드가 있는 이유는, 리뷰를 작성한 다음에 리뷰 버튼이 사라져야 하기 때문
+
+    this.orderData$ = this.accountDataService
+      .getOrdersData('3m')
+      .pipe(
+        tap( v => {
+          console.log(v);
+        })
+      );
+
   }
 }

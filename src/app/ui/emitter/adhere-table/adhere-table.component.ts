@@ -25,6 +25,9 @@ export class AdhereTableComponent implements OnInit {
 
 
   viewModal(xCondition, xReviewData, xOrderId) {
+    console.log(xCondition);
+    console.log(xReviewData);
+    console.log(xOrderId);
     this.viewModalEmitter.emit({ condition : xCondition, item: xReviewData, orderId : xOrderId });
   }
 

@@ -1,7 +1,9 @@
-import {ChangeDetectionStrategy, Component, OnDestroy, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Inject, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {AccountDataService} from '../../../../../../core/service/data-pages/account/account-data.service';
 import {tap} from 'rxjs/operators';
+import {CURRENCY} from '../../../../../../app.config';
+import {BehaviorSubject} from 'rxjs';
 
 @Component({
   selector: 'onpicks-orders-detail',
@@ -20,6 +22,7 @@ export class OrdersDetailComponent implements OnInit, OnDestroy {
   isShowDeliveryModal = false;
 
   constructor(
+    @Inject(CURRENCY) public currency: BehaviorSubject<any>,
     private route: ActivatedRoute,
     private accountDataService: AccountDataService
   ) {

@@ -1,5 +1,6 @@
 import {ChangeDetectionStrategy, ChangeDetectorRef, Component, Inject, Input, LOCALE_ID, OnInit} from '@angular/core';
-import {LOCATION_MAP} from '../../../../../app.config';
+import {CURRENCY, LOCATION_MAP} from '../../../../../app.config';
+import {BehaviorSubject} from 'rxjs';
 
 @Component({
   selector: 'onpicks-free-delivery-notibox',
@@ -20,6 +21,7 @@ export class FreeDeliveryNotiboxComponent implements OnInit {
   totalItems = 0;
 
   constructor(
+    @Inject(CURRENCY) public currency: BehaviorSubject<any>,
     @Inject(LOCATION_MAP) public locationMap: any,
   ) {
 

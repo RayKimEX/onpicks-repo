@@ -69,11 +69,11 @@
           </span>
         <figcaption class="communicate-box-only__caption subtitle-1-bold">{{data.review?.author?.nickname}}</figcaption>
 
-        <ui-star-rating [star-point]="data.review?.rating"></ui-star-rating>
+        <ui-star-rating [star-point]="data?.review?.rating"></ui-star-rating>
         <span class="communicate-box-only__figure--created-date subtitle-2-regular u-color-dark-grey">{{data.review?.modified | timeAgo}}</span>
       </figure>
     </div>
-    <div *ngIf="isViewImage && data.pictures as asPictures;"
+    <div *ngIf="isViewImage && data?.pictures?.length > 0 as asPictures;"
          class="communicate-box__image">
       <img
         [drLazyLoad]="{ method : 'pure-transition'}" src="{{data.pictures[0]}}" alt="">

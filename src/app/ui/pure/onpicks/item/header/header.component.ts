@@ -346,6 +346,7 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
     this.renderer.setProperty(xInputChecked, 'checked', false);
     this.renderer.setStyle(this.mobileHamburger.nativeElement, 'display', 'none');
     this.renderer.removeClass(document.body, 'u-open-modal');
+    location.href = '/shops';
   }
 }
 

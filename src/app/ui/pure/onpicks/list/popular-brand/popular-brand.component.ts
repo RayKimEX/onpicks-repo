@@ -80,8 +80,8 @@ export class PopularBrandComponent implements OnInit, AfterViewInit {
     this.renderer.setStyle(this.container.nativeElement, 'transform', 'translateX(' + this.imageIndex * this.translateXWidth + 'px)');
   }
 
-  navigate() {
-    this.router.navigateByUrl('/shops/search?ordering=most_popular&brand=rxbar');
+  navigate(xSlug) {
+    this.router.navigateByUrl('/shops/search?ordering=most_popular&brand=' + xSlug);
   }
 
 }
