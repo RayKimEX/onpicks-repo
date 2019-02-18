@@ -20,6 +20,10 @@ export class UiService {
     return this.httpClient.get<any>(this.BASE_URL + '/api/home/weekly_best/');
   }
 
+  getPopularBrands() {
+    return this.httpClient.get<any>( this.BASE_URL + '/api/home/popular_brands/');
+  }
+
   getRecentlyViewed() {
     return this.httpClient.get<any>(this.BASE_URL + '/api/home/recently_viewed/');
   }

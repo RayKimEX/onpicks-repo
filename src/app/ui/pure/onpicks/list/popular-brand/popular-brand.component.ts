@@ -12,6 +12,7 @@ import {
 import {BreakpointObserver, BreakpointState} from '../../../../../../../node_modules/@angular/cdk/layout';
 import {RESPONSIVE_MAP} from '../../../../../app.config';
 import {Router} from '@angular/router';
+import {HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'onpicks-popular-brand',
@@ -23,8 +24,13 @@ import {Router} from '@angular/router';
 export class PopularBrandComponent implements OnInit, AfterViewInit {
   @ViewChildren('itemList') itemList;
   @ViewChild('container') container;
-  @Input('popularBrand') popularBrand;
+  @Input('popularBrand') set _popularBrand(xPopularBrand) {
+    if ( xPopularBrand == null ) { return; }
+    this.popularBrand = xPopularBrand;
+    console.log(this.popularBrand);
+  }
 
+  popularBrand;
   imageIndex = 0;
   itemListArray;
   translateXWidth = 192;
@@ -34,8 +40,10 @@ export class PopularBrandComponent implements OnInit, AfterViewInit {
     private renderer: Renderer2,
     private breakpointObserver:  BreakpointObserver,
     private router: Router,
-    private cd: ChangeDetectorRef
-  ) { }
+    private cd: ChangeDetectorRef,
+  ) {
+
+  }
 
   ngOnInit() {
     this.breakpointObserver
@@ -51,9 +59,9 @@ export class PopularBrandComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.itemListArray = this.itemList.toArray();
-    const computedStyle = getComputedStyle(( this.itemList.first.nativeElement ), null);
-    this.translateXWidth =  parseInt(computedStyle.width, 10 ) + parseInt(computedStyle.marginRight, 10);
+    // this.itemListArray = this.itemList.toArray();
+    // const computedStyle = getComputedStyle(( this.itemList.first.nativeElement ), null);
+    // this.translateXWidth =  parseInt(computedStyle.width, 10 ) + parseInt(computedStyle.marginRight, 10);
   }
 
   @HostListener('window:resize', ['$event'])

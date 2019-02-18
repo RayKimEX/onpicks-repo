@@ -61,6 +61,7 @@ export function CartReducer(state = initialState, action: CartActions.CartAction
       let object = {}
 
       const cartObjectItems = [];
+
       action.payload.results.forEach( (value, index) => {
 
          if ( value.items.length === 0 ) { return; };
@@ -69,14 +70,10 @@ export function CartReducer(state = initialState, action: CartActions.CartAction
            xItem['itemIndex'] = ii;
            cartObjectItems.push(xItem);
          });
-
-
-
-
       })
+
       const tempForInfo = Object.assign({}, ...cartObjectItems.map( k => ({ [k.product] : k})));
       object = { ...object, ...tempForInfo };
-
 
       return {
         ...state,
@@ -94,8 +91,7 @@ export function CartReducer(state = initialState, action: CartActions.CartAction
       }
 
     case CartActions.CREATE_TO_CART_SUCCESS :
-      console.log(action.payload);
-      console.log(action.payload.packIndex);
+
       if ( action.payload.packIndex !== 'free' ){
         const createTemp = state.cartInfo.pack[action.payload.packIndex];
         createTemp.subtotal = action.payload.cartInfo.results.slice(1, action.payload.cartInfo.results.length)[action.payload.packIndex].subtotal;
@@ -115,7 +111,8 @@ export function CartReducer(state = initialState, action: CartActions.CartAction
           ...state.cartList,
           [action.payload.productSlug]: {
             ...state.cartList[action.payload.productSlug],
-            quantity: 1,
+            product : action.payload.productSlug,
+            quantity : 1,
           }
         },
         cartInfo : {

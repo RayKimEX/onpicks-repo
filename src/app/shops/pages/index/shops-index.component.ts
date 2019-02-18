@@ -136,12 +136,14 @@ export class ShopsIndexComponent implements OnInit, AfterViewInit {
 
   weeklyBest$;
   recentlyViewed$;
+  popularBrands$;
+
   constructor(
     private uiDataService: UiService,
   ) {
     this.weeklyBest$ = this.uiDataService.getWeeklyBestGoods();
     this.recentlyViewed$ = this.uiDataService.getRecentlyViewed();
-
+    this.popularBrands$ = this.uiDataService.getPopularBrands();
   }
 
   ngOnInit() {

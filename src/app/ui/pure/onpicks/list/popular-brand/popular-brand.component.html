@@ -2,7 +2,7 @@
   <h1 class="popular-brand__title h1-bold" i18n="@@onpicks__popular-brand">인기 브랜드|Popular Brand</h1>
   <div class="popular-brand__content--outer">
     <onpicks-circle-n-button
-      *ngIf="isShowButton && -imageIndex < (popularBrand.length - 6)"
+      *ngIf="isShowButton && -imageIndex < (popularBrand?.results.length - 6)"
       (click)="nextButton()"
       [right]="'-2rem'">
     </onpicks-circle-n-button>
@@ -17,19 +17,19 @@
         class="popular-brand__ul" >
         <li
           #itemList
-          *ngFor="let item of popularBrand"
+          *ngFor="let item of popularBrand?.results"
           class="col-2-of-12-list-scroll popular-brand__item">
           <div
             class="popular-brand__image--outer">
             <a (click)="navigate()">
               <img
                 drCleanLoad
-                src="{{item.imgSrc}}" alt="">
+                src="{{item?.icon}}" alt="">
             </a>
           </div>
           <div
             class="popular-brand__item--name subtitle-2-bold">
-            {{item.name}}
+            {{item?.brand?.name}}
           </div>
         </li>
       </ul>
