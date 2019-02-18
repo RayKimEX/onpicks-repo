@@ -77,35 +77,35 @@ export class ShopsIndexComponent implements OnInit, AfterViewInit {
   popularBrand = [
     {
       imgSrc : 'http://img.onpicks.com/brands/brand-hyredo.jpg',
-      name : '바이레도'
+      name : '바이레도',
     },
     {
       imgSrc : 'http://img.onpicks.com/brands/brand-aveda.jpg',
-      name : '아베다'
+      name : '아베다',
     },
     {
       imgSrc : 'http://img.onpicks.com/brands/brand-mac.jpg',
-      name : '맥'
+      name : '맥',
     },
     {
       imgSrc : 'http://img.onpicks.com/brands/brand-natures-way.jpg',
-      name : '네이처스 웨이'
+      name : '네이처스 웨이',
     },
     {
       imgSrc : 'http://img.onpicks.com/brands/brand-thayers.jpg',
-      name : '세이어스'
+      name : '세이어스',
     },
     {
       imgSrc : 'http://img.onpicks.com/brands/brand-polum-organics.jpg',
-      name : '플럼 오가닉스'
+      name : '플럼 오가닉스',
     },
     {
       imgSrc : 'http://img.onpicks.com/brands/brand-4th-and-heart.jpg',
-      name : '4Th & Heart'
+      name : '4Th & Heart',
     },
     {
       imgSrc : 'http://img.onpicks.com/brands/brand-avalon-organics.jpg',
-      name : '아발론 오가닉스'
+      name : '아발론 오가닉스',
     },
     {
       imgSrc : 'http://img.onpicks.com/brands/brand-simply-organic.jpg',

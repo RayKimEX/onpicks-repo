@@ -11,7 +11,7 @@ export class CheckoutSuccessComponent implements OnInit, OnDestroy {
 
   queryParams$;
 
-  orderCode;
+  orderCode = 0;
 
   constructor(
     private route: ActivatedRoute

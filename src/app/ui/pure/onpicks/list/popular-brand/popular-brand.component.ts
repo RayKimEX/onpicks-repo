@@ -11,6 +11,7 @@ import {
 } from '@angular/core';
 import {BreakpointObserver, BreakpointState} from '../../../../../../../node_modules/@angular/cdk/layout';
 import {RESPONSIVE_MAP} from '../../../../../app.config';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'onpicks-popular-brand',
@@ -32,6 +33,7 @@ export class PopularBrandComponent implements OnInit, AfterViewInit {
     @Inject(RESPONSIVE_MAP) public categoryMap,
     private renderer: Renderer2,
     private breakpointObserver:  BreakpointObserver,
+    private router: Router,
     private cd: ChangeDetectorRef
   ) { }
 
@@ -68,6 +70,10 @@ export class PopularBrandComponent implements OnInit, AfterViewInit {
   prevButton() {
     this.imageIndex++;
     this.renderer.setStyle(this.container.nativeElement, 'transform', 'translateX(' + this.imageIndex * this.translateXWidth + 'px)');
+  }
+
+  navigate() {
+    this.router.navigateByUrl('/shops/search?ordering=most_popular&brand=rxbar');
   }
 
 }

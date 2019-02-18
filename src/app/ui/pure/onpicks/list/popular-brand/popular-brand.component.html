@@ -21,9 +21,11 @@
           class="col-2-of-12-list-scroll popular-brand__item">
           <div
             class="popular-brand__image--outer">
-            <img
-              drCleanLoad
-              src="{{item.imgSrc}}" alt="">
+            <a (click)="navigate()">
+              <img
+                drCleanLoad
+                src="{{item.imgSrc}}" alt="">
+            </a>
           </div>
           <div
             class="popular-brand__item--name subtitle-2-bold">

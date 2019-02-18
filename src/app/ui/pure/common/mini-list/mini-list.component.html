@@ -89,12 +89,12 @@
                       'ui-mini-list-fullM__item--name-outer-brand'
                     ]"
                     class="subtitle-2-bold">
-                    <a routerLink="/shops/p/method-foaming-hand-soap-waterfall">
+                    <a [routerLink]="'/shops/p/' + item.slug">
                       {{item.brand}}
                     </a>
                   </div>
 
-                  <a routerLink="/shops/p/method-foaming-hand-soap-waterfall">
+                  <a [routerLink]="'/shops/p/' + item.slug">
                     <span
                       [ngClass]="[
                         mobileType === 'half' ?

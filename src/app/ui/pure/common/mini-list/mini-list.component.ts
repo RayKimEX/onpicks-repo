@@ -13,7 +13,8 @@ import {
 import {APP_BASE_HREF} from '@angular/common';
 import {select, Store} from '@ngrx/store';
 import {TryAddOrCreateToCart, TrySubtractOrDeleteFromCart} from '../../../../core/store/cart/cart.actions';
-import {LOCATION_MAP} from '../../../../app.config';
+import {CURRENCY, LOCATION_MAP} from '../../../../app.config';
+import {BehaviorSubject} from 'rxjs';
 
 @Component({
   selector: 'ui-mini-list',
@@ -39,6 +40,7 @@ export class MiniListComponent implements OnInit, AfterViewInit, OnDestroy {
 
   translateXWidth = 288;
   constructor(
+    @Inject(CURRENCY) public currency: BehaviorSubject<any>,
     private renderer: Renderer2,
     private store: Store<any>,
     private cd: ChangeDetectorRef,

@@ -1,7 +1,7 @@
 <div class="checkout-success">
-  <onpicks-order-navigator></onpicks-order-navigator>
+  <!--<onpicks-order-navigator></onpicks-order-navigator>-->
   <div class="checkout-success__icon">
-    <svg width="40" height="40" viewBox="0 0 40 40"\>
+    <svg width="40" height="40" viewBox="0 0 40 40">
       <g fill="none" fill-rule="evenodd">
         <path fill="#008489" d="M40 20c0 11.046-8.954 20-20 20S0 31.046 0 20 8.954 0 20 0s20 8.954 20 20"/>
         <path fill="#FFF" d="M18.968 23.896l.014.014-.014-.014zm-1.517.014l-.01.01.01-.01zm.767 3.313h-.013a2.573 2.573 0 0 1-1.86-.811l-4.934-5.146a1.817 1.817 0 1 1 2.623-2.517l4.185 4.367 7.737-8.007a1.818 1.818 0 0 1 2.613 2.527l-8.506 8.802a2.57 2.57 0 0 1-1.845.785z"/>
@@ -9,7 +9,9 @@
     </svg>
   </div>
   <div class="checkout-success__title">주문이 완료되었습니다</div>
-  <div class="checkout-success__order-num">주문번호 <span class="u-color-green">{{this.orderCode}}</span></div>
+  <div class="checkout-success__order-num">주문번호
+    <span class="u-color-green">{{ orderCode}}</span>
+  </div>
   <div class="checkout-success__description">
     <div class="checkout-success__description--1">- 해외직구상품의 경우는 세법상 현금영수증 발급대상 거래가 아닙니다.</div>
     <div class="checkout-success__description--2">- 휴대폰결제관련 문의는 LGU+전자결제 고객센터 1544-7772 로 연락해주시기 바랍니다.</div>
