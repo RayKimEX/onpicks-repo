@@ -49,18 +49,19 @@
         </ul>
       </nav>
       <div class="footer__desktop--miscell u-float-right">
-        <span
-          class="footer__desktop--miscell--nation subtitle-2-regular u-color-white">
-          usa
-        </span>
-        <span
-          class="footer__desktop--miscell--currency subtitle-2-regular u-color-white">
-          usd&nbsp;$
-        </span>
-        <span
-          class="footer__desktop--miscell--language subtitle-2-regular u-color-white">
-          eng
-        </span>
+        <!--<emitter-change-preference class="header__miscell&#45;&#45;item">{{ region === '/kr' ? 'KOR' : 'USA' }}</emitter-change-preference>-->
+        <emitter-change-preference
+          [color]="'white'"
+          [type]="'currency'"
+          class="footer__desktop--miscell--item">
+          {{ (currency | async) === 'KRW' ? 'KRW ₩' : 'USD $' }}
+        </emitter-change-preference>
+        <emitter-change-preference
+          [color]="'white'"
+          [type]="'locale'"
+          class="footer__desktop--miscell--item">
+          {{ locale === 'ko' ? '한글' : 'ENG' }}
+        </emitter-change-preference>
       </div>
       <hr>
     </div>
@@ -98,9 +99,23 @@
   <div class="footer__mobile">
     <div class="footer__mobile--first-floor">
       <div class="footer__mobile--first-floor--miscell u-float-left">
-        <span class="footer__mobile--first-floor--miscell--nation subtitle-2-regular u-color-white">usa</span>
-        <span class="footer__mobile--first-floor--miscell--currency subtitle-2-regular u-color-white">usd&nbsp;$</span>
-        <span class="footer__mobile--first-floor--miscell--language subtitle-2-regular u-color-white">eng</span>
+        <emitter-change-preference
+          [color]="'white'"
+          (showEvent)="outMenu()"
+          [type]="'currency'"
+          class="header__miscell--item">
+          {{ (currency | async) === 'KRW' ? 'KRW ₩' : 'USD $' }}
+        </emitter-change-preference>
+        <emitter-change-preference
+          [color]="'white'"
+          (showEvent)="outMenu()"
+          [type]="'locale'"
+          class="header__miscell--item">
+          {{ locale === 'ko' ? '한글' : 'ENG' }}
+        </emitter-change-preference>
+        <!--<span class="footer__mobile&#45;&#45;first-floor&#45;&#45;miscell&#45;&#45;nation subtitle-2-regular u-color-white">usa</span>-->
+        <!--<span class="footer__mobile&#45;&#45;first-floor&#45;&#45;miscell&#45;&#45;currency subtitle-2-regular u-color-white">usd&nbsp;$</span>-->
+        <!--<span class="footer__mobile&#45;&#45;first-floor&#45;&#45;miscell&#45;&#45;language subtitle-2-regular u-color-white">eng</span>-->
       </div>
       <div class="footer__share u-float-right">
         <a class="footer__share--instargram" href="">

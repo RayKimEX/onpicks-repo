@@ -36,11 +36,21 @@
       display: inline-block;
       text-transform: uppercase;
 
+      &--item {
+        display: inline-block;
+        padding: 3px 0px;
+        text-transform: uppercase;
+        margin-right: 0.8rem;
+        font-size: 1.4rem;
+        letter-spacing: 0.03rem;
+        color: $color-white;
+      }
       span:not(:last-of-type) {
         margin-right: 3.2rem;
-      }
-    }
 
+      }
+
+    }
     &--nav {
 
       @include verticalCenter;

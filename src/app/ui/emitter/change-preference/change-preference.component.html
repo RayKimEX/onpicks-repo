@@ -1,6 +1,6 @@
 <div class="preference">
   <div (click)="showModal()" class="preference-item">
-    <a>
+    <a [ngStyle]="{ color : color === 'white' ? '#FFF' : '#000'}">
       <span>
         <ng-content></ng-content>
       </span>
@@ -10,7 +10,7 @@
     </a>
   </div>
 
-  <div [ngStyle]="{ display : isShowModal ? 'block' : 'none'}"
+  <div [ngStyle]="{ display : isShowModal ? 'block' : 'none', color : '#000'}"
        class="preference-modal">
     <div class="preference-modal__inner">
       <div class="preference-modal__title">

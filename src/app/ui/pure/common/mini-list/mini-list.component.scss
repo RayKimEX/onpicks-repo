@@ -2,6 +2,13 @@
 
 
 .ui-mini-list-halfM {
+
+  onpicks-circle-n-button {
+
+    @include respond(tb){
+      display:none;
+    }
+  }
   &__title {
     margin-bottom : 2.4rem;
   }

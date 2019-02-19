@@ -15,6 +15,7 @@ import {BehaviorSubject} from 'rxjs';
 export class ChangePreferenceComponent implements OnInit {
 
   @Input('type') type;
+  @Input('color') color;
   @Output('showEvent') showEvent = new EventEmitter();
 
   isShowModal = false;
@@ -54,7 +55,6 @@ export class ChangePreferenceComponent implements OnInit {
     if ( this.eRef.nativeElement.contains(event.target)) {
     } else {
       this.isShowModal = false;
-      console.log('55555555555');
     }
   }
 
@@ -69,13 +69,11 @@ export class ChangePreferenceComponent implements OnInit {
             }
           );
         this.isShowModal = false;
-        console.log('44444444444');
 
         break;
 
       case 'locale' :
         this.isShowModal = false;
-        console.log('3333333333333');
         break;
     }
   }

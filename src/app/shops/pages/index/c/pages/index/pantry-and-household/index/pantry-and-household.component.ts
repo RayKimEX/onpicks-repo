@@ -123,8 +123,6 @@ export class PantryAndHouseholdComponent implements OnInit {
       imgSrc : 'http://img.onpicks.com/brands/brand-quest-nutrition.jpg',
       name : '퀘스트 뉴트리션'
     },
-
-
   ]
 
   constructor(

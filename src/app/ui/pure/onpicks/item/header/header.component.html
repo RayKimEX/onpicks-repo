@@ -195,7 +195,7 @@
     <div
       #mobileHamburger
       [ngStyle]="{ display: inputCheckedForToggle.checked ? 'block' : 'none'}"
-      class="header__mobile-hamburger">
+      class="header__mobile-hamburger" [attr.value]="inputCheckedForToggle.checked ">
 
       <nav *ngIf="isShowSettingMenu">
         <ul
@@ -328,10 +328,32 @@
               </a>
             </div>
           </li>
+          <!--<li class="header__mobile-hamburger&#45;&#45;li">-->
+            <!--<div-->
+              <!--(click)="logout(inputCheckedForToggle)">-->
+              <!--<a *ngIf="auth.isAuthenticated">로그아웃</a>-->
+            <!--</div>-->
+          <!--</li>-->
+        </ul>
+        <ul class="header__mobile-hamburger--ul subtitle-2-regular">
           <li class="header__mobile-hamburger--li">
-            <div
-              (click)="logout(inputCheckedForToggle)">
-              <a *ngIf="auth.isAuthenticated">로그아웃</a>
+            <div>
+              <a>한국어</a>
+            </div>
+          </li>
+          <li class="header__mobile-hamburger--li">
+            <div>
+              <a>한국 원</a>
+            </div>
+          </li>
+          <li class="header__mobile-hamburger--li">
+            <div>
+              <a>한국</a>
+            </div>
+          </li>
+          <li class="header__mobile-hamburger--li">
+            <div>
+              <a>로그아웃</a>
             </div>
           </li>
         </ul>

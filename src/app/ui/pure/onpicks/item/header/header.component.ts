@@ -294,7 +294,6 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
       this.renderer.removeClass(document.body, 'u-open-modal');
     } else {
       this.renderer.addClass(document.body , 'u-open-modal');
-      console.log('@@@@@@@@@@@@@@@@remove modal 2');
     }
     // this.mobileHamburger.
     // console.log(xElement.value);
