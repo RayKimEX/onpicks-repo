@@ -38,6 +38,7 @@ import { AngleBracketNavigatorComponent } from './pure/onpicks/item/angle-bracke
 import { ValueListComponent } from './pure/onpicks/list/value-list/value-list.component';
 import { DynamicCarouselComponent } from './pure/common/dynamic-carousel/dynamic-carousel.component';
 import { SearchNavigatorMobileFilterComponent } from './emitter/search-navigator/search-navigator-mobile-filter/search-navigator-mobile-filter.component';
+import { BannerComponent } from './pure/common/banner/banner.component';
 
 @NgModule({
 
@@ -82,7 +83,8 @@ import { SearchNavigatorMobileFilterComponent } from './emitter/search-navigator
     WellBeingLabelListComponent,
     ValueListComponent,
     DynamicCarouselComponent,
-    SearchNavigatorMobileFilterComponent
+    SearchNavigatorMobileFilterComponent,
+    BannerComponent
 
   ],
   exports: [
@@ -118,7 +120,8 @@ import { SearchNavigatorMobileFilterComponent } from './emitter/search-navigator
     AngleBracketNavigatorComponent,
     WellBeingLabelListComponent,
     ValueListComponent,
-    DynamicCarouselComponent
+    DynamicCarouselComponent,
+    BannerComponent
 
   ]
 })

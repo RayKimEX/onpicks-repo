@@ -10,21 +10,24 @@ import {UiService} from '../../../core/service/ui/ui.service';
 
 export class ShopsIndexComponent implements OnInit, AfterViewInit {
 
+  
 
-  shopsBannerImages = [
-    {
-      imgSrc : 'https://img.onpicks.com/assets/beauty_banner1.jpg',
-      // marginLeftForText : '6.2%',
-      title : [
-        '세이어스'
-      ],
-      titleFontType : 'h2-regular',
-      description : [
-        '170년 전통의 위치하젤 토너 전문 브랜드.',
-        '피부타입과 취향에 따라 골라쓰는 재미가 있는 토너.'
-      ],
-      descriptionFontType : 'subtitle-1-regular'
-    },
+  shopsBannerImage =     {
+    imgSrc : 'https://img.onpicks.com/assets/beauty_banner1.jpg',
+    // marginLeftForText : '6.2%',
+    title : [
+      '모든 피부에 적합한',
+      '마법같은 토너 세이어스'
+    ],
+    titleFontType : 'h2-regular',
+    description : [
+      '170년 전통의 미국 오리지널 위치하젤 토너 전문 브랜드',
+      '피부타입과 취향에 따라 골라쓰는 재미를 느껴보세요.'
+    ],
+    descriptionFontType : 'subtitle-1-regular'
+  },
+
+  shopsCarouselBannerImages = [
     {
       imgSrc : 'https://img.onpicks.com/assets/beauty_banner2.jpg',
       // marginLeftForText : '6.2%',
@@ -38,7 +41,20 @@ export class ShopsIndexComponent implements OnInit, AfterViewInit {
         '피부 자극 걱정없는 클렌징으로 안심하고 사용하세요.'
       ],
       descriptionFontType : 'subtitle-1-regular'
-    }
+    },
+    {
+      imgSrc : 'https://img.onpicks.com/assets/beauty_banner1.jpg',
+      // marginLeftForText : '6.2%',
+      title : [
+        '세이어스'
+      ],
+      titleFontType : 'h2-regular',
+      description : [
+        '170년 전통의 위치하젤 토너 전문 브랜드.',
+        '피부타입과 취향에 따라 골라쓰는 재미가 있는 토너.'
+      ],
+      descriptionFontType : 'subtitle-1-regular'
+    },
   ]
 
   popularCategory = [

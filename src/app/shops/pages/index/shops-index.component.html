@@ -1,5 +1,5 @@
 <ui-banner-carousel
-  [imagesLargeList]="shopsBannerImages"
+  [imagesLargeList]="shopsCarouselBannerImages"
   [height]="40">
 </ui-banner-carousel>
 
@@ -10,7 +10,11 @@
 <onpicks-today-collection></onpicks-today-collection>
 <onpicks-popular-brand [popularBrand]="popularBrands$ | async"></onpicks-popular-brand>
 
+<ui-banner [bannerInfo]="shopsBannerImage"> </ui-banner>
 
+<ui-mini-list>
+
+</ui-mini-list>
 
 <ui-mini-list
   [mobileType]="'half'"
