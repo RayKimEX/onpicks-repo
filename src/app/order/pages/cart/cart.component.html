@@ -18,7 +18,7 @@
             </div>
             <div class="cart-mobile__price--delivery">
               <span class="subtitle-2-regular u-color-dark-grey">배송비</span>
-              <span class="subtitle-2-regular u-float-right" [ngClass]="{ 'u-color-green' : syncedData?.cartInfo?.total?.total_shipping_fee === 0 }">{{syncedData?.cartInfo?.total?.total_shipping_fee === 0 ? '무료' : (syncedData?.cartInfo?.total?.total_shipping_fee  | onpicksCurrency: syncedData.currencyInfo)}}</span>
+              <span class="subtitle-2-regular u-float-right" [ngClass]="{ 'u-color-green' : syncedData?.cartInfo?.total?.total_shipping_costs === 0 }">{{syncedData?.cartInfo?.total?.total_shipping_costs === 0 ? '무료' : (syncedData?.cartInfo?.total?.total_shipping_costs | onpicksCurrency: syncedData.currencyInfo)}}</span>
             </div>
             <div class="cart-mobile__price--discount">
               <span class="subtitle-2-regular u-color-dark-grey">할인금액</span>
@@ -27,7 +27,7 @@
           </div>
           <div class="cart-mobile__price--all">
             <span class="subtitle-2-regular u-color-dark-grey">총 결제금액</span>
-            <span class="subtitle-2-bold u-float-right">{{syncedData?.cartInfo?.total?.total_items + syncedData?.cartInfo?.total?.total_shipping_fee | onpicksCurrency : syncedData.currencyInfo}}</span>
+            <span class="subtitle-2-bold u-float-right">{{syncedData?.cartInfo?.total?.total_items + syncedData?.cartInfo?.total?.total_shipping_costs | onpicksCurrency : syncedData.currencyInfo}}</span>
           </div>
         </div>
         <onpicks-button
@@ -313,7 +313,8 @@
                         class="cart__multi-table--info-option--spliter-margin subtitle-3-regular u-color-grey">·</span>
                     </ng-container>
                   </div>
-                  <div class="cart__multi-table--info-price subtitle-2-bold">{{itemChild.sale_price | onpicksCurrency: syncedData.currencyInfo}}</div>
+                  <!-- 현재는 판매가에 할인액을 적용하여 표현한다. zepplin 디자인은 판매가 옆에 할인액을 별도 표시하도록 되어 있다.-->
+                  <div class="cart__multi-table--info-price subtitle-2-bold">{{itemChild.price + itemChild.discount | onpicksCurrency: syncedData.currencyInfo}}</div>
                 </div>
               </td>
               <td>
@@ -441,11 +442,11 @@
           <tr class="h1-bold">
             <td>{{syncedData?.cartInfo?.total?.total_items | onpicksCurrency: syncedData.currencyInfo}}</td>
             <td>+</td>
-            <td [ngClass]="{ 'u-color-green' : syncedData?.cartInfo?.total?.total_shipping_fee == 0}">{{syncedData?.cartInfo?.total?.total_shipping_fee === 0 ? '무료' : (syncedData?.cartInfo?.total?.total_shipping_fee  | onpicksCurrency: 'KRW')}}</td>
+            <td [ngClass]="{ 'u-color-green' : syncedData?.cartInfo?.total?.total_shipping_costs == 0}">{{syncedData?.cartInfo?.total?.total_shipping_costs === 0 ? '무료' : (syncedData?.cartInfo?.total?.total_shipping_costs | onpicksCurrency: 'KRW')}}</td>
             <td>-</td>
             <td>{{syncedData?.cartInfo?.total?.total_discounts | onpicksCurrency: syncedData.currencyInfo}}</td>
             <td>=</td>
-            <td>{{syncedData?.cartInfo?.total?.total_items + syncedData?.cartInfo?.total?.total_shipping_fee | onpicksCurrency : syncedData.currencyInfo}}</td>
+            <td>{{syncedData?.cartInfo?.total?.total_items + syncedData?.cartInfo?.total?.total_shipping_costs | onpicksCurrency : syncedData.currencyInfo}}</td>
           </tr>
         </table>
         <onpicks-button

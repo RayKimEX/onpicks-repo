@@ -15,7 +15,7 @@ export class CartToCheckoutService {
   getCheckoutList() {
 
     Object.keys(this.checkoutList).forEach( key => {
-      this.totalProductPrice += this.checkoutList[key].sale_price;
+      this.totalProductPrice += (this.checkoutList[key].price + this.checkoutList[key].discount);
     });
     return of(this.checkoutList);
   }

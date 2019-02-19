@@ -45,7 +45,7 @@
           <span class="subtitle-2-regular u-color-dark-grey">배송비</span>
           <span
             class="subtitle-2-regular u-float-right"
-            [ngClass]="{ 'u-color-green' : data.total_shipping_fee === 0 }">{{data.total_shipping_fee === 0 ? ('무료') : (data.total_shipping_fee | onpicksCurrency : currencyInfo)}}</span>
+            [ngClass]="{ 'u-color-green' : data.total_shipping_costs === 0 }">{{data.total_shipping_costs === 0 ? ('무료') : (data.total_shipping_costs | onpicksCurrency : currencyInfo)}}</span>
         </div>
         <div class="checkout-mobile__price--discount">
           <span class="subtitle-2-regular u-color-dark-grey">할인금액</span>
@@ -296,7 +296,7 @@
           <div class="checkout-right__menu--item-info-brand subtitle-3-bold">{{item.brand}}</div>
           <div class="checkout-right__menu--item-info-name body-3-regular">{{item.title}}</div>
           <div *ngIf="item.infoOption !== ''" class="checkout-right__menu--item-info-option subtitle-3-regular u-color-grey">{{item.infoOption}}</div>
-          <div class="checkout-right__menu--item-info-price subtitle-2-bold">{{item.sale_price | onpicksCurrency: currencyInfo}} / {{item.quantity}}개</div>
+          <div class="checkout-right__menu--item-info-price subtitle-2-bold">{{item.price + item.discount | onpicksCurrency: currencyInfo}} / {{item.quantity}}개</div>
         </div>
       </div>
 
@@ -307,7 +307,7 @@
         </div>
         <div class="checkout-right__menu--price-delivery">
           <span class="checkout-right__menu--price-delivery-tag subtitle-1-regular">배송비</span>
-          <span class="checkout-right__menu--price-delivery-value subtitle-1-regular">{{data.total_shipping_fee === 0 ? ('무료') : (data.total_shipping_fee | onpicksCurrency : currencyInfo)}}</span>
+          <span class="checkout-right__menu--price-delivery-value subtitle-1-regular">{{data.total_shipping_costs === 0 ? ('무료') : (data.total_shipping_costs | onpicksCurrency : currencyInfo)}}</span>
         </div>
         <div class="checkout-right__menu--price-discount">
           <span class="checkout-right__menu--price-delivery-tag subtitle-1-regular">할인금액</span>
