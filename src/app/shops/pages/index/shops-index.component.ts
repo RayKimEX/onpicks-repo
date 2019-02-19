@@ -16,7 +16,7 @@ export class ShopsIndexComponent implements OnInit, AfterViewInit {
   //
   // }
 
-  shopsBannerImage =     {
+  shopsBannerImage = {
     imgSrc : 'https://img.onpicks.com/assets/beauty_banner1.jpg',
     // marginLeftForText : '6.2%',
     title : [
@@ -97,6 +97,7 @@ export class ShopsIndexComponent implements OnInit, AfterViewInit {
   weeklyBest$;
   recentlyViewed$;
   popularBrands$;
+  valueList$;
 
   constructor(
     private uiDataService: UiService,
@@ -104,6 +105,7 @@ export class ShopsIndexComponent implements OnInit, AfterViewInit {
     this.weeklyBest$ = this.uiDataService.getWeeklyBestGoods();
     this.recentlyViewed$ = this.uiDataService.getRecentlyViewed();
     this.popularBrands$ = this.uiDataService.getPopularBrands();
+    this.valueList$ = this.uiDataService.getValueList();
   }
 
   ngOnInit() {

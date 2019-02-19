@@ -28,6 +28,10 @@ export class UiService {
     return this.httpClient.get<any>(this.BASE_URL + '/api/home/recently_viewed/');
   }
 
+  getValueList() {
+    return this.httpClient.get<any>(this.BASE_URL + '/api/values/');
+  }
+
   getCategoryAll(oneDepthCode) {
     //
     // return this.httpClient.get<any>(this.BASE_URL + '/api/categories/' + oneDepthCode + '/descendants/' );

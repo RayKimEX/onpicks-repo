@@ -1,5 +1,5 @@
 
-<div class="row-list-scroll">
+<div class="row-list-scroll" *ngIf="infoList?.length !== 0">
 
   <div
     [ngClass]=
@@ -18,7 +18,7 @@
           'ui-mini-list-fullM__content--outer'
         ]">
         <onpicks-circle-n-button
-          *ngIf="imageIndex !== (infoList?.length - carouselLength) "
+          *ngIf="imageIndex  < (infoList?.length - carouselLength) "
           [top]="'12.6rem'"
           [right]="'-2.2rem'"
           (click)="nextButton()" >

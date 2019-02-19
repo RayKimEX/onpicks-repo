@@ -7,10 +7,11 @@ import {
   ChangeDetectorRef,
   HostListener,
   AfterViewInit,
-  ViewChild, ViewChildren, OnDestroy
+  ViewChild, ViewChildren, OnDestroy, Input
 } from '@angular/core';
 import {RESPONSIVE_MAP} from '../../../../../app.config';
 import {BreakpointObserver, BreakpointState} from '../../../../../../../node_modules/@angular/cdk/layout';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'onpicks-value-list',
@@ -22,40 +23,54 @@ export class ValueListComponent implements OnInit, AfterViewInit {
   @ViewChild('container') container;
   @ViewChildren('itemList') itemList;
   @ViewChild('shaveDiscription') shaveDiscription;
+  @Input('type') type; // product, main
+  @Input('valueList') set _popularBrand(xValueList) {
+    if ( xValueList == null ) { return; }
+    this.valueList = xValueList;
+    // console.log(this.popularBrand);
+  }
 
   imageIndex = 0;
   itemListArray;
-  translateXWidth = 288;
+  translateXWidth = 188;
   isShowButton = true;
   currentX = 0;
   currentPanVelocityX = 0;
   panInterval = null;
 
-  valueList = [
-    {
-      imgSrc : 'https:///img.onpicks.com/values/value-alcohol-free.png',
-      title : 'Gluten Free',
-      description : 'GMO는 유전자 변형 유기체를 의미한다. 유전자 변형 유기체(GMO)는 유전자 변형/엔지니어링 기법을 사용해 실험실에서 만들어진 새로운 유기물이다. 과학자들과 소비자와 환경 단체들은 유전자변형농산물을 함유한 식품에 대한 많은 건강 및 환경 위험들을 언급했다.'
-    },
-    {
-      imgSrc : 'https:///img.onpicks.com/values/value-alcohol-free.png',
-      title : 'Gluten Free',
-      description : 'GMO는 유전자 변형 유기체를 의미한다. 유전자 변형 유기체(GMO)는 유전자 변형/엔지니어링 기법을 사용해 실험실에서 만들어진 새로운 유기물이다. 과학자들과 소비자와 환경 단체들은 유전자변형농산물을 함유한 식품에 대한 많은 건강 및 환경 위험들을 언급했다.'
-    },
-    {
-      imgSrc : 'https:///img.onpicks.com/values/value-alcohol-free.png',
-      title : 'Gluten Free',
-      description : 'GMO는 유전자 변형 유기체를 의미한다. 유전자 변형 유기체(GMO)는 유전자 변형/엔지니어링 기법을 사용해 실험실에서 만들어진 새로운 유기물이다. 과학자들과 소비자와 환경 단체들은 유전자변형농산물을 함유한 식품에 대한 많은 건강 및 환경 위험들을 언급했다.'
-    },
-    {
-      imgSrc : 'https:///img.onpicks.com/values/value-alcohol-free.png',
-      title : 'Gluten Free',
-      description : 'GMO는 유전자 변형 유기체를 의미한다. 유전자 변형 유기체(GMO)는 유전자 변형/엔지니어링 기법을 사용해 실험실에서 만들어진 새로운 유기물이다. 과학자들과 소비자와 환경 단체들은 유전자변형농산물을 함유한 식품에 대한 많은 건강 및 환경 위험들을 언급했다.'
-    }
-  ]
+  isShowDescription = false;
+  currentDescriptionIndex = 0;
+  currentDescription = '';
+  currentDescriptionTitle = '';
+
+  pressedPrev = false;
+  valueList = [];
+  // valueList = [
+  //   {
+  //     imgSrc : 'https:///img.onpicks.com/values/zero-calories.png',
+  //     title : 'Zero Calories',
+  //     description : '1회 제공량(per serving)에 칼로리가 0.5 Calorie 미만정도로 적게 포함.',
+  //   },
+  //   {
+  //     imgSrc : 'https:///img.onpicks.com/values/alcohol-free.png',
+  //     title : 'Big 8 Allergen Free',
+  //     description : 'FDA (미국 식품 의약국)에서 정한 음식 알러지 원인의 90 %를 차지하는 식품군인 우유, 계란, 생선, 조개류, 견과류, 땅콩, 밀 및 콩이 포함되지 않음.',
+  //   },
+  //   {
+  //     imgSrc : 'https:///img.onpicks.com/values/value-alcohol-free.png',
+  //     title : 'Alcohol Free',
+  //     description : '알코올 성분이 첨가되어 있지 않음.',
+  //   },
+  //   {
+  //     imgSrc : 'https:///img.onpicks.com/values/value-alcohol-free.png',
+  //     title : 'Gluten Free',
+  //     description : 'Cras congue hendrerit eleifend. Nunc in lacinia leo. Quisque a dolor quis nulla laoreet elementum. In porttitor urna enim, eu rutrum neque porttitor commodo. Interdum et malesuada fames ac ante ipsum primis in faucibus.',
+  //   }
+  // ]
 
   constructor(
     @Inject(RESPONSIVE_MAP) public categoryMap,
+    private router: Router,
     private renderer: Renderer2,
     private breakpointObserver:  BreakpointObserver,
     private cd: ChangeDetectorRef
@@ -83,23 +98,30 @@ export class ValueListComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     this.itemListArray = this.itemList.toArray();
-    const computedStyle = getComputedStyle(( this.itemList.first.nativeElement ), null);
-    this.translateXWidth =  parseInt(computedStyle.width, 10 ) + parseInt(computedStyle.marginRight, 10);
+
   }
 
   @HostListener('window:resize', ['$event'])
   onResize(event) {
+    console.log(this.itemList.first);
     const computedStyle = getComputedStyle(( this.itemList.first.nativeElement ), null);
     this.translateXWidth =  parseInt(computedStyle.width, 10 ) + parseInt(computedStyle.marginRight, 10);
+    console.log(computedStyle.width);
   }
 
   nextButton() {
-    this.imageIndex--;
-    this.renderer.setStyle(this.container.nativeElement, 'transform', 'translateX(' + this.imageIndex * this.translateXWidth  + 'px)');
+    this.pressedPrev = false;
+    this.imageIndex++;
+    this.renderer.setStyle(this.container.nativeElement, 'transform', 'translateX(' + (-this.imageIndex) * this.translateXWidth  + 'px)');
   }
 
   prevButton() {
-    this.imageIndex++;
-    this.renderer.setStyle(this.container.nativeElement, 'transform', 'translateX(' + this.imageIndex * this.translateXWidth  + 'px)');
+    this.pressedPrev = true;
+    this.imageIndex--;
+    this.renderer.setStyle(this.container.nativeElement, 'transform', 'translateX(' + (-this.imageIndex) * this.translateXWidth  + 'px)');
+  }
+
+  navigate(xSlug) {
+    this.router.navigateByUrl('/shops/search?ordering=most_popular&value=' + xSlug);
   }
 }

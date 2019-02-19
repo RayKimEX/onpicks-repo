@@ -4,9 +4,28 @@
 .value-list{
   width : 100%;
 
+
+  &__description {
+
+
+    z-index:3;
+    position:absolute;
+    top: 25%;
+    width : 36rem;
+    white-space : pre-line;
+    padding : 1.6rem;
+    background-color : $color-white;
+    box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.15);
+
+    &--title {
+      margin-bottom : 0.8rem;
+    }
+  }
   &__content {
     white-space: nowrap;
     overflow: hidden;
+
+
     &::after {
       position:absolute;
       top:0;
@@ -47,29 +66,48 @@
   &__image--outer {
     display:inline-block;
     width: 100%;
-    height : 10.8rem;
-    margin-bottom: 1.6rem;
+    padding-top: 66.666%;
 
-    @include respond(fb){
-      height: auto;
-    }
+
+
+    //@include respond(fb){
+    //  height: auto;
+    //}
 
     img {
-      width:100%;
-      height:100%;
+      @include imageAspactRatio;
 
     }
   }
 
   &__item {
-    width : 25.928%;
     float : none !important;
-    vertical-align: top;
     display:inline-block;
+    position:relative;
     border-radius:4px;
-    background-color : #fafafa;
-    height : 18rem;
-    margin-right : 2.4rem;
+
+    margin-right : 0 !important;
+
+    &--inner {
+      width : 100%;
+      display:inline-block;
+      background-color : #fafafa;
+      position:relative;
+    }
+
+    &--description-icon {
+      cursor: pointer;
+      text-align: center;
+
+      display: inline-block;
+      width : 2.4rem;
+      height : 2.4rem;
+      top: 1.6rem;
+      right: 1.6rem;
+      position:absolute;
+      border-radius : 50%;
+      background-color:$color-white;
+    }
 
     @include respond(tb){
       width : 34.44%;
@@ -80,8 +118,84 @@
     }
 
     &--title {
+      padding : 2.4rem 0;
       width :100%;
       text-align: center;
     }
   }
 }
+
+.popular-brand {
+  width: 100%;
+
+
+  &__content {
+
+    white-space: nowrap;
+    overflow: hidden;
+    @include respond(tb){
+      overflow : auto;
+      &::-webkit-scrollbar{
+        display :none;
+      }
+    }
+    &--outer {
+      position:relative;
+    }
+  }
+
+  &__ul {
+
+    transition: transform .5s ease 0s;
+
+    @include respond(tb){
+      transition : none;
+    }
+  }
+
+  &__title {
+    margin-bottom : 2.4rem;
+
+    @include respond(tb){
+      margin-bottom : 1.6rem;
+    }
+
+  }
+
+  &__image--outer {
+    display:inline-block;
+    width: 100%;
+    padding-top: 66.666%;
+    margin-bottom : 2.4rem;
+
+    @include respond(tb){
+      margin-bottom : 1.6rem;
+    }
+
+    @include respond(fb){
+      height: 100%;
+    }
+
+    img {
+      width:100%;
+      height:100%;
+      border-radius : 50%;
+    }
+  }
+
+  &__item {
+    float : none !important;
+    display:inline-block;
+    position:relative;
+    img {
+      user-select: none;
+    }
+    &--name {
+      text-align: center;
+      width:9rem;
+      margin : 0 auto;
+      display:block;
+    }
+  }
+}
+

@@ -98,7 +98,6 @@ export class MiniListComponent implements OnInit, AfterViewInit, OnDestroy {
     this.pressedPrev = false;
     this.imageIndex++;
     this.renderer.setStyle(this.container.nativeElement, 'transform', 'translateX(' + (-this.imageIndex) * this.translateXWidth + 'px)');
-
   }
 
   prevButton() {

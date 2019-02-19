@@ -20,12 +20,13 @@ onpicks-today-collection {
   @include respond(tb){
     margin-top : 4rem;
   }
+  margin-bottom : 5.6rem;
 }
 
 onpicks-popular-brand {
   display : block;
   margin-top : 5.6rem;
-  margin-bottom :5.6rem;
+  margin-bottom : 5.6rem;
 
   @include respond(tb){
     margin-top : 4rem;

@@ -8,13 +8,12 @@
 </onpicks-category-list>
 
 <onpicks-today-collection></onpicks-today-collection>
+<onpicks-value-list [valueList]="valueList$ | async"></onpicks-value-list>
 <onpicks-popular-brand [popularBrand]="popularBrands$ | async"></onpicks-popular-brand>
 
 <ui-banner [bannerInfo]="shopsBannerImage"> </ui-banner>
 
-<ui-mini-list>
 
-</ui-mini-list>
 
 <ui-mini-list
   [mobileType]="'half'"
