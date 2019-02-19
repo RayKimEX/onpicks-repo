@@ -84,7 +84,7 @@ export function CartReducer(state = initialState, action: CartActions.CartAction
           total : {
             total_discounts :  action.payload.total_discounts,
             total_items : action.payload.total_items,
-            total_shipping_fee : action.payload.total_shipping_fee
+            total_shipping_costs : action.payload.total_shipping_costs
           }
         },
         cartList : object,
@@ -124,7 +124,7 @@ export function CartReducer(state = initialState, action: CartActions.CartAction
           total : {
             total_discounts :  action.payload.cartInfo.total_discounts,
             total_items : action.payload.cartInfo.total_items,
-            total_shipping_fee : action.payload.cartInfo.total_shipping_fee
+            total_shipping_costs : action.payload.cartInfo.total_shipping_costs
           },
           isPopUp : action.payload.isPopUp,
         },
@@ -159,7 +159,7 @@ export function CartReducer(state = initialState, action: CartActions.CartAction
           total : {
             total_discounts :  action.payload.cartInfo.total_discounts,
             total_items : action.payload.cartInfo.total_items,
-            total_shipping_fee : action.payload.cartInfo.total_shipping_fee
+            total_shipping_costs : action.payload.cartInfo.total_shipping_costs
           },
           isPopUp : action.payload.isPopUp,
         },
@@ -195,7 +195,7 @@ export function CartReducer(state = initialState, action: CartActions.CartAction
           total : {
             total_discounts :  action.payload.cartInfo.total_discounts,
             total_items : action.payload.cartInfo.total_items,
-            total_shipping_fee : action.payload.cartInfo.total_shipping_fee
+            total_shipping_costs : action.payload.cartInfo.total_shipping_costs
           },
           isPopUp : action.payload.isPopUp,
         }
@@ -236,7 +236,7 @@ export function CartReducer(state = initialState, action: CartActions.CartAction
           total : {
             total_discounts :  action.payload.cartInfo.total_discounts,
             total_items : action.payload.cartInfo.total_items,
-            total_shipping_fee : action.payload.cartInfo.total_shipping_fee
+            total_shipping_costs : action.payload.cartInfo.total_shipping_costs
           },
           isPopUp : action.payload.isPopUp,
         }
