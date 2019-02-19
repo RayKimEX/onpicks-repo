@@ -25,7 +25,7 @@ html {
   //height: 100%;
   //overflow:hidden;
   // This defines what 1rem is
-  font-size: 62.5%; //1 rem = 10px; 10px/16px = 62.5%
+  font-size: 62.5%; //1 rem = 10px; 10px/1.6rem = 62.5%
   color: $color-black;
   @include respond(sb){
     font-size : 58%;
@@ -88,6 +88,7 @@ textarea {
       opacity : 0.7;
     }
   }
+
   &--white {
     &:active,
     &:hover{
@@ -339,76 +340,76 @@ textarea {
 /*************icon*********/
 .icon-small-la {
   display:inline-block;
-  width:16px;
-  height:16px;
-  background-size: 200px 56px;
+  width:1.6rem;
+  height:1.6rem;
+  background-size: 20rem 5.6rem;
   background-image: url(http://img.onpicks.com/icon-etc.png);
-  background-position : -16px -40px;
+  background-position : -1.6rem -4rem;
 }
 
 .icon-small-new {
   display:inline-block;
-  width:16px;
-  height:16px;
-  background-size: 200px 56px;
+  width:1.6rem;
+  height:1.6rem;
+  background-size: 20rem 5.6rem;
   background-image: url(http://img.onpicks.com/icon-etc.png);
-  background-position : 0px -40px;
+  background-position : 0px -4rem;
 }
 
 .icon-small-osaka {
   display:inline-block;
-  width:16px;
-  height:16px;
-  background-size: 200px 56px;
+  width:1.6rem;
+  height:1.6rem;
+  background-size: 20rem 5.6rem;
   background-image: url(http://img.onpicks.com/icon-etc.png);
-  background-position : -48px -40px;
+  background-position : -4.8rem -4rem;
 }
 
 .icon-small-gorgia {
   display:inline-block;
-  width:16px;
-  height:16px;
-  background-size: 200px 56px;
+  width:1.6rem;
+  height:1.6rem;
+  background-size: 20rem 5.6rem;
   background-image: url(http://img.onpicks.com/icon-etc.png);
-  background-position : -32px -40px;
+  background-position : -3.2rem -4rem;
 }
 
 .icon-small-hong {
   display:inline-block;
-  width:16px;
-  height:16px;
-  background-size: 200px 56px;
+  width:1.6rem;
+  height:1.6rem;
+  background-size: 20rem 5.6rem;
   background-image: url(http://img.onpicks.com/icon-etc.png);
-  background-position: -64px -40px;
+  background-position: -6.4rem -4rem;
 }
 
 .icon-la {
-  background-size: 200px 56px;
+  background-size: 20rem 5.6rem;
   background-image: url(http://img.onpicks.com/icon-etc.png);
-  background-position : -40px 0px;
+  background-position : -4rem 0px;
 }
 
 .icon-new {
-  background-size: 200px 56px;
+  background-size: 20rem 5.6rem;
   background-image: url(http://img.onpicks.com/icon-etc.png);
 }
 
 .icon-osaka {
-  background-size: 200px 56px;
+  background-size: 20rem 5.6rem;
   background-image: url(http://img.onpicks.com/icon-etc.png);
-  background-position : -120px 0px;
+  background-position : -12rem 0px;
 }
 
 .icon-gorgia {
-  background-size: 200px 56px;
+  background-size: 20rem 5.6rem;
   background-image: url(http://img.onpicks.com/icon-etc.png);
-  background-position : -80px 0px;
+  background-position : -8rem 0px;
 }
 
 .icon-hong {
-  background-size: 200px 56px;
+  background-size: 20rem 5.6rem;
   background-image: url(http://img.onpicks.com/icon-etc.png);
-  background-position : -160px 0px;
+  background-position : -16rem 0px;
 }
 /**************************/
 

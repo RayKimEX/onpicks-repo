@@ -132,7 +132,7 @@ export class PIndexComponent implements OnInit, OnDestroy {
       select( state => state.p.ui)
     ).subscribe( xPUI => {
       this.pUI = xPUI;
-      if(this.pUI.isShowCommunicateBox === true ){
+      if ( this.pUI.isShowCommunicateBox === true ) {
         this.isShowMobileMenu = false;
       };
     })

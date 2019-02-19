@@ -145,6 +145,8 @@ export class CommunicateBoxComponent implements OnInit, AfterViewChecked, AfterV
   ngOnInit(){
 
     this.store.dispatch(new ShowCommunicateBox());
+
+
     this.breakpointObserver
       .observe([this.categoryMap['tb']])
       .subscribe((state: BreakpointState) => {
@@ -170,6 +172,7 @@ export class CommunicateBoxComponent implements OnInit, AfterViewChecked, AfterV
 
   ngOnDestroy() {
     this.store.dispatch(new HideCommunicateBox());
+    this.renderer.removeClass(document.body , 'u-open-modal');
     this.renderer.setStyle( document.body, 'overflow', '' );
     this.combine$.unsubscribe();
     this.communicateBoxTransition$.unsubscribe();
@@ -208,7 +211,8 @@ export class CommunicateBoxComponent implements OnInit, AfterViewChecked, AfterV
   }
 
   ngAfterViewInit() {
-    this.renderer.setStyle( document.body, 'overflow', 'hidden' );
+    this.renderer.addClass(document.body , 'u-open-modal');
+    console.log('@@@@@@@@@@@@@@@@@@@@@@@@@@');
     this.communicateBoxTransition$ =
       fromEvent(this.communicateBox.nativeElement, 'transitionend').subscribe( val => {
         this.isViewImage = true;
@@ -350,6 +354,7 @@ export class CommunicateBoxComponent implements OnInit, AfterViewChecked, AfterV
     // 순간적으로 같이 체크가 되서 신고하기랑, communicate box가 나가지는걸 방지하기 위해 setTimeout을 줌.
     setTimeout( () => {
       this.isShowModal = false;
+      console.log('99999999999999999');
       this.cd.markForCheck();
       console.log(this.isShowModal);
     }, 0);
@@ -360,6 +365,7 @@ export class CommunicateBoxComponent implements OnInit, AfterViewChecked, AfterV
       .subscribe(
         response => {
           this.isShowModal = false;
+          console.log('88888888888888888');
           this.store.dispatch(new DisplayAlertMessage('신고가 정상적으로 접수 되었습니다.'));
         },
         error => {

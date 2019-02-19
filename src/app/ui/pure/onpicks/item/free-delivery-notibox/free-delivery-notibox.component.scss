@@ -3,15 +3,19 @@
 .free-delivery-notibox {
   background-color : $color-white;
   width : 42rem;
+
+
   border : solid 1px $color-light-grey;
 
   border-radius: 4px;
   box-shadow: 0 6px 12px 0 rgba(227, 227, 227, 0.5);
 
 
+  @media only screen and (max-width: 28.25em) {
+    width:100%;
+  };
 
   &__innerBox {
-    padding : 2.4rem;
     list-style: none;
   }
 
@@ -48,7 +52,7 @@
       position:relative;
       display:inline-block;
       // height :
-      width:31.2rem;
+      width: calc(100% - 10.4rem);
       height : 4rem;
       vertical-align: top;
       span {

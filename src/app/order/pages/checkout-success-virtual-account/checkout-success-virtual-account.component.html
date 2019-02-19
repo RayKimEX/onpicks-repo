@@ -41,8 +41,21 @@
     <div class="checkout-no-bank__description--4">- 해외직구상품의 경우는 세법상 현금영수증 발급대상 거래가 아닙니다.</div>
   </div>
 
-  <button class="btn btn--white">계속 쇼핑하기</button>
-  <button class="btn btn--black">주문 현황보기</button>
+  <onpicks-button
+    [routerLink]="'/shops'"
+    [width]="'13.4rem'"
+    [type]="'white'"
+    [size]="'big'">
+    계속 쇼핑하기
+  </onpicks-button>
+  <onpicks-button
+    [routerLink]="'/account/my-shopping/orders'"
+    [width]="'13.4rem'"
+    [marginLeft]="'1.6rem'"
+    [size]="'big'"
+    [type]="'black'">
+    주문 현황보기
+  </onpicks-button>
 
 </div>
 

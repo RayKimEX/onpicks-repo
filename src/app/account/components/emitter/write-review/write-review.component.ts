@@ -78,6 +78,7 @@ export class WriteReviewComponent implements OnInit, OnChanges, OnDestroy {
       this.renderer.addClass(document.body , 'u-open-modal');
     } else {
       this.renderer.removeClass(document.body, 'u-open-modal');
+      console.log('@@@@@@@@@@@@@@@@remove modal 7');
     }
 
   }

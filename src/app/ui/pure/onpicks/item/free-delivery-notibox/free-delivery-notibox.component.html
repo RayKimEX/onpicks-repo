@@ -1,7 +1,7 @@
 <div class="free-delivery-notibox" *ngLet="cartInfo as data;">
-  <ul class="free-delivery-notibox__innerBox">
+  <ul  class="free-delivery-notibox__innerBox">
     <ng-container *ngFor="let item of cartInfo">
-      <li class="free-delivery-notibox__item" *ngIf="item.subtotal !== 0">
+      <li class="free-delivery-notibox__item" [ngStyle]="{ padding : cartInfo.length === 0 ? 0 : '2.4rem'}" *ngIf="item.subtotal !== 0">
         <span
           class="free-delivery-notibox__item--region-icon"
           [ngClass]=

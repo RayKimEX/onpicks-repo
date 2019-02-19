@@ -85,6 +85,7 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
 
   /**mobileZone**/
   mobileAlertTop = '11rem';
+  isDesktopBreakPoint = false;
   isShowSettingMenu = false;
 
   constructor(
@@ -107,9 +108,11 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
       .subscribe((state: BreakpointState) => {
         if (state.matches) {
           this.mobileAlertTop = '6rem';
+          this.isDesktopBreakPoint = true;
           this.cd.markForCheck();
         } else {
           this.mobileAlertTop = '11rem';
+          this.isDesktopBreakPoint = false;
         }
       });
 
@@ -163,7 +166,7 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
         if ( this.scrollForAlert$ == null ) {
           this.scrollForAlert$ = fromEvent( window , 'scroll').subscribe(
             scrollValue => {
-              if( window.pageYOffset >= 110 ) {
+              if( window.pageYOffset >= 108 ) {
                 this.renderer.setStyle(this.alertMessage.nativeElement, 'position', 'fixed');
                 this.renderer.setStyle(this.alertMessage.nativeElement, 'top', '0');
               } else {
@@ -208,9 +211,10 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
         this.renderer.setStyle(this.deliveryBox.nativeElement, 'opacity', '1');
         if ( window.pageYOffset >= 108 ){
           this.renderer.setStyle(this.deliveryBox.nativeElement, 'position', 'fixed');
-          this.renderer.setStyle(this.deliveryBox.nativeElement, 'top', '1.6rem');
+          this.renderer.setStyle(this.deliveryBox.nativeElement, 'top', this.isDesktopBreakPoint ? '7.6rem' : '1.6rem');
         } else {
-          this.renderer.setStyle(this.deliveryBox.nativeElement, 'top', '12.4rem');
+          this.renderer.setStyle(this.deliveryBox.nativeElement, 'position', 'absolute');
+          this.renderer.setStyle(this.deliveryBox.nativeElement, 'top', this.isDesktopBreakPoint ? '7.6rem' : '12.4rem');
         }
         this.clearSetTimeout = setTimeout( v => {
           this.renderer.setStyle(this.deliveryBox.nativeElement, 'opacity', '0');
@@ -220,16 +224,18 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
             this.scrollForDeliveryBox$.unsubscribe();
             this.scrollForDeliveryBox$ = null;
           }
-        }, 3000);
+        }, 100000);
 
         if ( this.scrollForDeliveryBox$ == null ) {
           this.scrollForDeliveryBox$ = fromEvent( window , 'scroll').subscribe(
             scrollValue => {
+              console.log(this.isDesktopBreakPoint);
               if ( window.pageYOffset >= 108 ) {
                 this.renderer.setStyle(this.deliveryBox.nativeElement, 'position', 'fixed');
-                this.renderer.setStyle(this.deliveryBox.nativeElement, 'top', '1.6rem');
+                this.renderer.setStyle(this.deliveryBox.nativeElement, 'top', this.isDesktopBreakPoint ? '7.6rem' : '1.6rem');
               } else {
-                this.renderer.setStyle(this.deliveryBox.nativeElement, 'top', '12.4rem');
+                this.renderer.setStyle(this.deliveryBox.nativeElement, 'position', 'absolute');
+                this.renderer.setStyle(this.deliveryBox.nativeElement, 'top', this.isDesktopBreakPoint ? '7.6rem' : '12.4rem');
               }
             }
           );
@@ -288,6 +294,7 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
       this.renderer.removeClass(document.body, 'u-open-modal');
     } else {
       this.renderer.addClass(document.body , 'u-open-modal');
+      console.log('@@@@@@@@@@@@@@@@remove modal 2');
     }
     // this.mobileHamburger.
     // console.log(xElement.value);
@@ -304,6 +311,7 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
     // this.renderer.setAttribute(xInputChecked, 'checked', 'false');
     if(xInputChecked.checked){
       this.renderer.removeClass(document.body, 'u-open-modal');
+      console.log('@@@@@@@@@@@@@@@@remove modal 3');
       this.renderer.setStyle(this.mobileHamburger.nativeElement, 'display', 'none');
       this.renderer.setProperty(xInputChecked, 'checked', false);
     } else {
@@ -346,6 +354,7 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
     this.renderer.setProperty(xInputChecked, 'checked', false);
     this.renderer.setStyle(this.mobileHamburger.nativeElement, 'display', 'none');
     this.renderer.removeClass(document.body, 'u-open-modal');
+    console.log('@@@@@@@@@@@@@@@@remove modal 4');
     location.href = '/shops';
   }
 }

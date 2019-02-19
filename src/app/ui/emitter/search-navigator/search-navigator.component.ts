@@ -308,6 +308,7 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
   hideMobileFilter() {
     this.isShowMobileFilter = false;
     this.renderer.removeClass(document.body , 'u-open-modal');
+    console.log('@@@@@@@@@@@@@@@@remove modal 6');
   }
 
   addToCart(xAmount, xProductSlug, xPackIndex) {
