@@ -9,8 +9,12 @@ import {UiService} from '../../../core/service/ui/ui.service';
 })
 
 export class ShopsIndexComponent implements OnInit, AfterViewInit {
-
-  
+  //
+  // shopsValueImages = {
+  //   imgSrc : '',
+  //   title : 'Zero Calories',
+  //
+  // }
 
   shopsBannerImage =     {
     imgSrc : 'https://img.onpicks.com/assets/beauty_banner1.jpg',
