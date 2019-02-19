@@ -2,7 +2,6 @@
 
 .preference {
 
-  position:relative;
   &-item {
     padding : 0 2px;
     -webkit-user-select: none;
@@ -30,21 +29,35 @@
     z-index : 105;
     background-color  : white;
 
-    //&__inner {
-    //  padding : 0 2.4rem;
-    //}
+    @include respond(sb){
+      position:fixed;
+      top : 0;
+      left : 0;
+      width:100%;
+      height:100%;
+      margin-top: 6rem;
+      border : 0;
+    }
 
 
     &__title {
-      // margin-left : 2.4rem;
       margin : 0 2.4rem;
-      // padding-left : 2.4rem;
-      @include subtitle-2-bold;
+
       height : 4.8rem;
+      @include respond(sb){
+        height: auto;
+      }
       span {
         display:inline-block;
         margin-top : 1.6rem;
         margin-bottom : 1rem;
+
+        @include respond(sb){
+          margin : 0;
+          display:block;
+          padding : 2.4rem 0;
+          border-bottom : 1px solid $color-light-grey;
+        }
       }
     }
     &__item {
@@ -54,20 +67,30 @@
       -moz-user-select: none;
       -ms-user-select: none;
       user-select: none;
+
+      &--check-svg {
+        display : none;
+        @include respond(sb){
+          display : inline-block;
+        }
+      }
       &:nth-of-type(2) > div{
         border-top : 1px solid $color-light-grey;
+
+        @include respond(sb){
+          border-top: 0;
+        }
       }
 
-      height : 4rem;
       width: 100%;
-      span {
-        @include verticalCenter;
 
-      }
 
 
       &--inner {
 
+        @include respond(sb){
+          padding : 1.6rem 0;
+        }
 
         position:relative;
         margin : 0 2.4rem;

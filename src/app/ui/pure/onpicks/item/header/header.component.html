@@ -15,12 +15,12 @@
             class="header__miscell--item">
             {{ (currency | async) === 'KRW' ? 'KRW ₩' : 'USD $' }}
           </emitter-change-preference>
-          <emitter-change-preference
-            (showEvent)="outMenu()"
-            [type]="'locale'"
-            class="header__miscell--item">
-            {{ locale === 'ko' ? '한글' : 'ENG' }}
-          </emitter-change-preference>
+          <!--<emitter-change-preference-->
+            <!--(showEvent)="outMenu()"-->
+            <!--[type]="'locale'"-->
+            <!--class="header__miscell&#45;&#45;item">-->
+            <!--{{ locale === 'ko' ? '한글' : 'ENG' }}-->
+          <!--</emitter-change-preference>-->
 
           <div class="header__miscell--profile u-float-right" *ngIf="auth !== null">
             <ng-container *ngIf="auth.isAuthenticated === false">
@@ -338,19 +338,19 @@
         <ul class="header__mobile-hamburger--ul subtitle-2-regular">
           <li class="header__mobile-hamburger--li">
             <div>
-              <a>한국어</a>
+              <a>{{ (currency | async) === 'KRW' ? 'KRW ₩' : 'USD $' }}</a>
             </div>
           </li>
-          <li class="header__mobile-hamburger--li">
-            <div>
-              <a>한국 원</a>
-            </div>
-          </li>
-          <li class="header__mobile-hamburger--li">
-            <div>
-              <a>한국</a>
-            </div>
-          </li>
+          <!--<li class="header__mobile-hamburger&#45;&#45;li">-->
+            <!--<div>-->
+              <!--<a>한국 원</a>-->
+            <!--</div>-->
+          <!--</li>-->
+          <!--<li class="header__mobile-hamburger&#45;&#45;li">-->
+            <!--<div>-->
+              <!--<a>한국</a>-->
+            <!--</div>-->
+          <!--</li>-->
           <li class="header__mobile-hamburger--li">
             <div>
               <a>로그아웃</a>

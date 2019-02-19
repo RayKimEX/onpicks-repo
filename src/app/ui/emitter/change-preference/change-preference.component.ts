@@ -1,9 +1,21 @@
-import {ChangeDetectionStrategy, Component, ElementRef, EventEmitter, HostListener, Inject, Input, OnInit, Output} from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  EventEmitter,
+  HostListener,
+  Inject,
+  Input,
+  OnInit,
+  Output,
+  Renderer2
+} from '@angular/core';
 import {Store} from '@ngrx/store';
 import {UiService} from '../../../core/service/ui/ui.service';
 import {HttpClient} from '@angular/common/http';
-import {CATEGORY_MAP, CURRENCY} from '../../../app.config';
+import {CATEGORY_MAP, CURRENCY, RESPONSIVE_MAP} from '../../../app.config';
 import {BehaviorSubject} from 'rxjs';
+import {BreakpointObserver, BreakpointState} from '../../../../../node_modules/@angular/cdk/layout';
 
 @Component({
   selector: 'emitter-change-preference',
@@ -16,6 +28,7 @@ export class ChangePreferenceComponent implements OnInit {
 
   @Input('type') type;
   @Input('color') color;
+  @Input('position') position; // footer or header
   @Output('showEvent') showEvent = new EventEmitter();
 
   isShowModal = false;
@@ -37,21 +50,44 @@ export class ChangePreferenceComponent implements OnInit {
     }
   }
 
+  isSecondBreakPoint = false;
+
 
 
 
   constructor(
     @Inject(CURRENCY) public currency: BehaviorSubject<any>,
+    @Inject(RESPONSIVE_MAP) public categoryMap,
+    private breakpointObserver:  BreakpointObserver,
     private store: Store<any>,
     private eRef: ElementRef,
     private uiService: UiService,
-    private httpClient: HttpClient
+    private httpClient: HttpClient,
+    private renderer: Renderer2
   ) {
 
   }
 
+  ngOnInit() {
+    this.currency.subscribe( value => {
+      console.log(value);
+    });
+
+
+    this.breakpointObserver
+      .observe([this.categoryMap['sb']])
+      .subscribe((state: BreakpointState) => {
+        if (state.matches) {
+          this.isSecondBreakPoint = true;
+        } else {
+          this.isSecondBreakPoint = false;
+        }
+      });
+
+  }
   @HostListener('document:click', ['$event'])
   clickout(event) {
+    if ( this.isSecondBreakPoint ) { return; }
     if ( this.eRef.nativeElement.contains(event.target)) {
     } else {
       this.isShowModal = false;
@@ -59,6 +95,11 @@ export class ChangePreferenceComponent implements OnInit {
   }
 
   changePreference(xPreferenceCode) {
+
+    if ( this.isSecondBreakPoint ) {
+      this.renderer.removeClass(document.body, 'u-open-modal');
+    }
+
     switch (this.type) {
       case 'currency' :
         this.httpClient.post('/api/preferences/currency/', {currency : xPreferenceCode})
@@ -70,10 +111,13 @@ export class ChangePreferenceComponent implements OnInit {
           );
         this.isShowModal = false;
 
+
+
         break;
 
       case 'locale' :
         this.isShowModal = false;
+
         break;
     }
   }
@@ -82,15 +126,13 @@ export class ChangePreferenceComponent implements OnInit {
     return 0;
   }
 
-  ngOnInit() {
-    this.currency.subscribe( value => {
-      console.log(value);
-    });
-  }
 
   showModal() {
     this.isShowModal = !this.isShowModal;
     this.showEvent.emit();
+    if ( this.isSecondBreakPoint ) {
+      this.renderer.addClass(document.body, 'u-open-modal');
+    }
   }
 
 }

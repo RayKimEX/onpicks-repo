@@ -19,6 +19,7 @@
     &--first-floor {
       height : 6.8rem;
       position:relative;
+      z-index:9;
       hr {
         width:100%;
         position:absolute;
@@ -41,8 +42,6 @@
         padding: 3px 0px;
         text-transform: uppercase;
         margin-right: 0.8rem;
-        font-size: 1.4rem;
-        letter-spacing: 0.03rem;
         color: $color-white;
       }
       span:not(:last-of-type) {
@@ -94,20 +93,31 @@
       display:block;
     }
 
+    emitter-\-preference {
+      display: inline-block;
+    }
+
     &--first-floor {
       position: relative;
+      display:table;
       height: 5.2rem;
       width : 100%;
       border-bottom : 1px solid rgba(255, 255, 255, .5);
 
       &--miscell {
-        @include verticalCenter;
-        left : 0;
-        display: inline-block;
+        display:table-cell;
+        vertical-align: middle;
         text-transform: uppercase;
 
         span:not(:last-of-type) {
           margin-right: 3.2rem;
+        }
+
+        &--item {
+          display:inline-block;
+          &:first-child {
+            margin-right : 1.6rem;
+          }
         }
       }
     }
