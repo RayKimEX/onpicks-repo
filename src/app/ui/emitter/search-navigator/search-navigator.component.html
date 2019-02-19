@@ -343,7 +343,7 @@
 
             <ng-container  *ngIf="searchState == 'category'">
               <ng-container *ngIf="currentList.length !== 0">
-               <span>{{currentName}} {{currentList.length}}</span>건
+               <span>{{currentName}} {{totalCount}}</span>건
                 <onpicks-sort-box
                   class="search-content__sort-box"
                   [selectedElement]="{ value : currentSortSlug}"
