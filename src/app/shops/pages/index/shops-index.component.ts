@@ -29,7 +29,7 @@ export class ShopsIndexComponent implements OnInit, AfterViewInit {
       '피부타입과 취향에 따라 골라쓰는 재미를 느껴보세요.'
     ],
     descriptionFontType : 'subtitle-1-regular'
-  },
+  }
 
   shopsCarouselBannerImages = [
     {
