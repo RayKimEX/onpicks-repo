@@ -327,11 +327,7 @@ export class CheckoutComponent implements OnInit, AfterViewInit, OnDestroy {
         this.formData.street_address_2 = this.deliveryData[0].street_address_2;
       }
 
-
-
-
       this.formData.customs_id_number = this.checkoutAdditionNumber.nativeElement.children[0].value;
-
 
       this.formData.city = 'helloCity';
       this.formData.country = 'helloCountry';

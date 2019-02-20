@@ -90,7 +90,7 @@
                     currentDescriptionTitle = item.name;
                     currentDescriptionIndex = valueIndex;
                     isShowDescription = true"
-                (mouseleave)="isThirdBreakPoint ? '' : isShowDescription = true "
+                (mouseleave)="isThirdBreakPoint ? '' : (isShowDescription = false)"
                 class="value-list__item--description-icon subtitle-2-bold">!</div>
             </div>
           </li>
@@ -103,7 +103,7 @@
         display : isShowDescription ? 'block' : 'none'}"
       class="value-list__description">
       <div class="value-list__description--title subtitle-2-bold">
-        {{currentDescriptionTitle}}란? {{isThirdBreakPoint}} {{(isThirdBreakPoint ? ((currentDescriptionIndex - imageIndex) >= 2 ? 1 : (currentDescriptionIndex - imageIndex)) : ((currentDescriptionIndex - imageIndex) === 5 ? 4 : (currentDescriptionIndex - imageIndex)))}}
+        {{currentDescriptionTitle}}란?
       </div>
       <div class="value-list__description--content body-2-regular">
         {{currentDescription}}

@@ -64,6 +64,7 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
 
   currentList = [];
   currentPage = 1;
+  currentUrl = '';
 
   searchState = '';
 
@@ -141,6 +142,7 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
 
       if (event instanceof NavigationEnd ) {
         let url = this.router.url;
+        this.currentUrl = url;
         if ( url.indexOf('/search') > -1 || url.indexOf('/c/') > -1) {
 
         } else {
@@ -154,7 +156,6 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
           const tempArray = temp.split('&');
           tempArray.forEach(item => {
             const paramTemp = item.split('=');
-            this.currentSortSlug = paramTemp[1] === undefined ? 'most_popular' : paramTemp[1];
             // const paramTemp = item.split('=');
             // console.log(paramTemp);
             // if ( paramTemp[0] !== 'ordering' && paramTemp[0] !== 'category'  ) {
@@ -204,7 +205,7 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
               console.log(this.categoryList);
               this.infoList = _infoList.results;
 
-              this.totalCount = this.infoList.length;
+              this.totalCount = _infoList.count;
               this.totalPage = this.totalCount / this.maxRow;
 
               this.totalPageArray = Array(parseInt(this.totalPage, 10));
@@ -214,10 +215,9 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
               this.cd.markForCheck();
             }
           });
-
         } else {
           const categoryUrl = this.router.url.split('/');
-          this.searchData$ = this.searchService.categorySearch(this.sortInfo[categoryUrl[categoryUrl.length - 1].indexOf('?') > -1 ? categoryUrl[categoryUrl.length - 1].substring(0, categoryUrl[categoryUrl.length - 1].indexOf('?')) : categoryUrl[categoryUrl.length - 1]], this.currentSortSlug).subscribe(_infoList => {
+          this.searchData$ = this.searchService.categorySearch(this.sortInfo[categoryUrl[categoryUrl.length - 1].indexOf('?') > -1 ? categoryUrl[categoryUrl.length - 1].substring(0, categoryUrl[categoryUrl.length - 1].indexOf('?')) : categoryUrl[categoryUrl.length - 1]], this.currentSortSlug, this.currentPage).subscribe(_infoList => {
             this.searchState = 'category';
 
             /* async 데이터가 들어오는데, null이라면 return을 해줌 */
@@ -228,7 +228,7 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
               this.brandList = _infoList.aggregation.brands;
               this.infoList = _infoList.results;
               this.categoryList = _infoList.aggregation.categories;
-              this.totalCount = this.infoList.length;
+              this.totalCount = _infoList.count;
               this.totalPage = this.totalCount / this.maxRow;
 
               this.totalPageArray = Array(parseInt(this.totalPage, 10));
@@ -239,18 +239,16 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
             }
           });
         }
-
       }
-
     })
     this.queryParams$ = this.route.queryParams
-      .subscribe((val: { term, brand, value, location, category }) => {
+      .subscribe((val: { term, brand, value, location, category, page }) => {
         this.currentList = null;
         this.orderedFilterList = [];
         this.currentParamList = {
           ...val
         };
-        console.log(val);
+        this.currentPage = val.page === undefined ? 1 : parseInt(val.page, 10);
         this.currentCategory = val.category;
 
 
@@ -339,6 +337,14 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
 
   paginate(pageIndex) {
     this.currentPage = pageIndex;
+    this.currentParamList['page'] = this.currentPage;
+
+    if ( this.currentUrl.indexOf('/search') > -1 ) {
+      this.router.navigate( ['/shops/search'], { relativeTo: this.route, queryParams: this.currentParamList , queryParamsHandling : 'merge' } );
+    } else {
+      this.router.navigate( [], { relativeTo: this.route, queryParams: this.currentParamList , queryParamsHandling : 'merge' } );
+    }
+
     this.currentList = this.infoList.slice((this.currentPage - 1) * this.maxRow, this.currentPage * this.maxRow);
   }
 

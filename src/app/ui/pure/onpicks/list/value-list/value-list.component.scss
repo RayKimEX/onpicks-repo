@@ -72,7 +72,7 @@
     display:inline-block;
     width: 100%;
     padding-top: 66.666%;
-
+    cursor : pointer;
 
 
     //@include respond(fb){
@@ -123,6 +123,7 @@
     }
 
     &--title {
+      cursor: pointer;
       padding : 2.4rem 0;
       width :100%;
       text-align: center;
