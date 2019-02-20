@@ -32,7 +32,7 @@ export class PopularBrandComponent implements OnInit, AfterViewInit {
     console.log(this.popularBrand);
   }
 
-  popularBrand = [];
+  popularBrand;
   imageIndex = 0;
   itemListArray;
   translateXWidth = 192;
