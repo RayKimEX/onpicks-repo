@@ -49,6 +49,8 @@ export class ValueListComponent implements OnInit, AfterViewInit {
 
   pressedPrev = false;
   valueList = [];
+
+  isThirdBreakPoint = false;
   // valueList = [
   //   {
   //     imgSrc : 'https:///img.onpicks.com/values/zero-calories.png',
@@ -91,9 +93,11 @@ export class ValueListComponent implements OnInit, AfterViewInit {
       .observe([this.categoryMap['tb']])
       .subscribe((state: BreakpointState) => {
         if (state.matches) {
+          this.isThirdBreakPoint = true;
           this.isShowButton = false;
           this.cd.markForCheck();
         } else {
+          this.isThirdBreakPoint = false;
           this.isShowButton = true;
         }
       });
@@ -111,6 +115,15 @@ export class ValueListComponent implements OnInit, AfterViewInit {
     const computedStyle = getComputedStyle(( this.itemList.first.nativeElement ), null);
     this.translateXWidth =  parseInt(computedStyle.width, 10 ) + parseInt(computedStyle.marginRight, 10);
     console.log(computedStyle.width);
+  }
+
+  @HostListener('document:click', ['$event'])
+  clickout(event) {
+    if (this.container.nativeElement.contains(event.target)) {
+
+    } else {
+      this.isShowDescription = false;
+    }
   }
 
   nextButton() {

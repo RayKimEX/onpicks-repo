@@ -9,7 +9,7 @@
     white-space: nowrap;
     overflow: hidden;
     @include respond(tb){
-      overflow : auto;
+      overflow-x : auto;
       &::-webkit-scrollbar{
         display :none;
       }

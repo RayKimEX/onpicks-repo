@@ -11,11 +11,16 @@
     z-index:3;
     position:absolute;
     top: 25%;
-    width : 36rem;
+    width : 31.91%;
     white-space : pre-line;
     padding : 1.6rem;
     background-color : $color-white;
     box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.15);
+
+    @include respond(tb){
+      width :80%;
+      left: 10%;
+    }
 
     &--title {
       margin-bottom : 0.8rem;
@@ -134,7 +139,7 @@
     white-space: nowrap;
     overflow: hidden;
     @include respond(tb){
-      overflow : auto;
+      overflow-x : auto;
       &::-webkit-scrollbar{
         display :none;
       }

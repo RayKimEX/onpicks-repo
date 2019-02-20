@@ -65,15 +65,18 @@
             #itemList
             [ngClass]="type === 'product' ? 'col-3-of-12-list-scroll value-list__item' : 'col-2-of-12-list-scroll value-list__item' "
             [ngStyle]="{ marginLeft : type === 'product' ? 0 : '' }"
-            *ngIf="pressedPrev ? valueIndex < imageIndex + 7 : valueIndex < imageIndex + 6"
+            *ngIf="isThirdBreakPoint ? true : pressedPrev ? valueIndex < imageIndex + 7 : valueIndex < imageIndex + 6"
             class="col-2-of-12-list-scroll value-list__item">
-            <div (click)="navigate(item.slug)" class="value-list__item--inner">
+            <div class="value-list__item--inner">
               <!--(click)="navigate(item?.brand?.slug)"-->
               <div
+                (click)="navigate(item.slug)"
                 class="value-list__image--outer">
                 <img drCleanLoad src="{{item.icon}}" alt="">
               </div>
-              <div class="value-list__item--title subtitle-2-bold">
+              <div
+                (click)="navigate(item.slug)"
+                class="value-list__item--title subtitle-2-bold">
                 {{item.name}}
               </div>
               <div
@@ -82,25 +85,29 @@
                     currentDescriptionTitle = item.name;
                     currentDescriptionIndex = valueIndex;
                     isShowDescription = true"
-                (mouseleave)="isShowDescription = false"
+                (click)=
+                  "currentDescription = item.about;
+                    currentDescriptionTitle = item.name;
+                    currentDescriptionIndex = valueIndex;
+                    isShowDescription = true"
+                (mouseleave)="isThirdBreakPoint ? '' : isShowDescription = true "
                 class="value-list__item--description-icon subtitle-2-bold">!</div>
-              <div
-                class="popular-brand__item--name subtitle-2-bold">
-                {{item?.brand?.name}}
-              </div>
             </div>
           </li>
         </ng-container>
       </ul>
     </div>
-    <div [ngStyle]="{ left : ((currentDescriptionIndex - imageIndex === 5 ? 4 : currentDescriptionIndex - imageIndex) * translateXWidth) + 'px'  , display : isShowDescription ? 'block' : 'none'}"class="value-list__description">
+    <div
+      [ngStyle]="{
+        left : ((isThirdBreakPoint ? '10%' : ((currentDescriptionIndex - imageIndex) === 5 ? 4 : (currentDescriptionIndex - imageIndex))) * translateXWidth) + 'px',
+        display : isShowDescription ? 'block' : 'none'}"
+      class="value-list__description">
       <div class="value-list__description--title subtitle-2-bold">
-        {{currentDescriptionTitle}}란?
+        {{currentDescriptionTitle}}란? {{isThirdBreakPoint}} {{(isThirdBreakPoint ? ((currentDescriptionIndex - imageIndex) >= 2 ? 1 : (currentDescriptionIndex - imageIndex)) : ((currentDescriptionIndex - imageIndex) === 5 ? 4 : (currentDescriptionIndex - imageIndex)))}}
       </div>
       <div class="value-list__description--content body-2-regular">
         {{currentDescription}}
       </div>
-
     </div>
   </div>
 

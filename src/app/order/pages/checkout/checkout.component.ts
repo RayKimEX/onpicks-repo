@@ -350,6 +350,7 @@ export class CheckoutComponent implements OnInit, AfterViewInit, OnDestroy {
               form.appendChild(input);
             });
             form.action = response.action_url;
+            form.acceptCharset = 'euc-kr';
             form.submit();
           } else {
             if ( this.paymentScript === null ) {
