@@ -7,7 +7,7 @@
   <input
     #inputTag
     [(ngModel)] = "insertedValue"
-    (keypress)="keypressEvent($event)"
+    (keydown)="keypressEvent($event)"
     class="p-reviews__search-reviews--input subtitle-2-regular" type="text" >
 
   <span *ngIf="insertedValue !== '' || isMobile"

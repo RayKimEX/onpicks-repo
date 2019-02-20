@@ -26,11 +26,7 @@ export class ValueListComponent implements OnInit, AfterViewInit {
   @Input('type') type; // product, main
   @Input('valueList') set _popularBrand(xValueList) {
     if ( xValueList == null ) { return; }
-    console.log('@@@@@@@@@valueLIst!!!')
-
-    console.log(this.valueList);
     this.valueList = xValueList;
-    console.log(this.valueList);
     // console.log(this.popularBrand);
   }
 
@@ -111,7 +107,6 @@ export class ValueListComponent implements OnInit, AfterViewInit {
 
   @HostListener('window:resize', ['$event'])
   onResize(event) {
-    console.log(this.itemList.first);
     const computedStyle = getComputedStyle(( this.itemList.first.nativeElement ), null);
     this.translateXWidth =  parseInt(computedStyle.width, 10 ) + parseInt(computedStyle.marginRight, 10);
     console.log(computedStyle.width);
