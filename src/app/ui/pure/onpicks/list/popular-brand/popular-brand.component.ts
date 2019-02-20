@@ -26,11 +26,13 @@ export class PopularBrandComponent implements OnInit, AfterViewInit {
   @ViewChild('container') container;
   @Input('popularBrand') set _popularBrand(xPopularBrand) {
     if ( xPopularBrand == null ) { return; }
+    console.log('@@@@@@@@@popular brand!')
+    console.log(this.popularBrand);
     this.popularBrand = xPopularBrand;
     console.log(this.popularBrand);
   }
 
-  popularBrand;
+  popularBrand = [];
   imageIndex = 0;
   itemListArray;
   translateXWidth = 192;

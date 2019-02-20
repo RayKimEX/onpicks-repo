@@ -26,7 +26,11 @@ export class ValueListComponent implements OnInit, AfterViewInit {
   @Input('type') type; // product, main
   @Input('valueList') set _popularBrand(xValueList) {
     if ( xValueList == null ) { return; }
+    console.log('@@@@@@@@@valueLIst!!!')
+
+    console.log(this.valueList);
     this.valueList = xValueList;
+    console.log(this.valueList);
     // console.log(this.popularBrand);
   }
 
