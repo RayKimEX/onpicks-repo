@@ -1,7 +1,7 @@
 import {Inject, Injectable} from '@angular/core';
 import {DOMAIN_HOST} from '../../../app.config';
 import {of} from 'rxjs';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 import {map} from 'rxjs/operators';
 
 @Injectable({
@@ -29,7 +29,8 @@ export class UiService {
   }
 
   getValueList() {
-    return this.httpClient.get<any>(this.BASE_URL + '/api/values/');
+    const params = new HttpParams().set('ordering', 'random');
+    return this.httpClient.get<any>(this.BASE_URL + '/api/values/', { params });
   }
 
   getCategoryAll(oneDepthCode) {
