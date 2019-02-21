@@ -112,8 +112,11 @@ export class ValueListComponent implements OnInit, AfterViewInit {
     console.log(computedStyle.width);
   }
 
-  @HostListener('document:click', ['$event'])
-  clickout(event) {
+  @HostListener('document:touchend', ['$event'])
+  @HostListener('document:click', ['$event', '$event.target'])
+  onClick(event: MouseEvent, targetElement: HTMLElement): void {
+    console.log(event);
+    console.log(targetElement);
     if (this.container.nativeElement.contains(event.target)) {
 
     } else {
@@ -136,4 +139,5 @@ export class ValueListComponent implements OnInit, AfterViewInit {
   navigate(xSlug) {
     this.router.navigateByUrl('/shops/search?ordering=most_popular&value=' + xSlug);
   }
+
 }

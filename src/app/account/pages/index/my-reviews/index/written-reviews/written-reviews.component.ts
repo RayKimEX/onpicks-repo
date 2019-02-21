@@ -15,6 +15,8 @@ export class WrittenReviewsComponent implements OnInit {
   writtenReviews;
 
   weeklyBest$;
+
+  contentHeight = '';
   constructor(
     private accountDataService: AccountDataService,
     private uiService: UiService
@@ -25,6 +27,7 @@ export class WrittenReviewsComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.contentHeight = (window.screen.height - 400) < 300 ? '' : (window.screen.height - 400) + 'px';
   }
 
 }

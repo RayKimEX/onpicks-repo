@@ -46,7 +46,7 @@ export class OrdersComponent implements OnInit {
   selectedElement = {
     value : '3m'
   }
-  orderData$;
+
 
   writeReview = {
     isShow : false,
@@ -54,9 +54,13 @@ export class OrdersComponent implements OnInit {
   }
   isShowWriteReview = false;
 
+  /*******data********/
+  orderData$;
   weeklyBest$;
-
   reviewData;
+
+  /*******ui********/
+  contentHeight = '';
 
   constructor(
     private uiDataService: UiService,
@@ -104,15 +108,15 @@ export class OrdersComponent implements OnInit {
           reviewData : xPassedData.item
         }
         this.reviewData = xPassedData.item;
-        console.log('write_review condition');
-        console.log(this.writeReview)
+        console.log( 'write_review condition' );
+        console.log( this.writeReview )
         this.cd.markForCheck();;
       }
     }
   }
 
   ngOnInit() {
-
+    this.contentHeight = (window.screen.height - 400) < 300 ? '' : (window.screen.height - 400) + 'px';
   }
 
   test(vv) {

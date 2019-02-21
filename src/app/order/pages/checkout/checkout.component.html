@@ -12,61 +12,68 @@
       <h1 class="checkout-mobile__final-price--title h1-bold">최종결제금액</h1>
       <div class="checkout-mobile__final-price--price subtitle-2-bold">
         {{data.grand_total | onpicksCurrency : currencyInfo}}
-        <svg class="checkout-mobile__final-price--svg" width="10" height="6" viewBox="0 0 10 6">
+        <svg
+          *ngIf="isShowMobilePriceInfo"
+          class="checkout-mobile__final-price--svg" width="10" height="6" viewBox="0 0 10 6">
           <path fill="#B3B3B3" fill-rule="evenodd" d="M9 6a.997.997 0 0 1-.707-.293L5 2.414 1.707 5.707A.999.999 0 1 1 .293 4.293l4-4a.999.999 0 0 1 1.414 0l4 4A.999.999 0 0 1 9 6"/>
         </svg>
+        <svg
+          *ngIf="!isShowMobilePriceInfo"
+          class="checkout-mobile__final-price--svg" width="10" height="6" viewBox="0 0 10 6">
+          <path fill="#292929" fill-rule="evenodd" d="M5 6a.997.997 0 0 1-.707-.293l-4-4A.999.999 0 1 1 1.707.293L5 3.586 8.293.293a.999.999 0 1 1 1.414 1.414l-4 4A.997.997 0 0 1 5 6"/>
+        </svg>
       </div>
+    </div>
+    <div
+      *ngIf="isShowMobilePriceInfo"
+      class="checkout-mobile__price-info">
+      <div class="checkout-mobile__price-info--items">
         <div
-          [ngStyle]="{ display : isShowMobilePriceInfo ? 'block' : 'none'  }"
-          class="checkout-mobile__price-info">
-          <div class="checkout-mobile__price-info--items">
-          <div
-            class="checkout-mobile__price-info--items--item"
-            *ngFor="let item of data.items; index as itemIndex">
-            <div class="checkout-mobile__price-info--items--item--image-and-font-line-fixed">
+          class="checkout-mobile__price-info--items--item"
+          *ngFor="let item of data.items; index as itemIndex">
+          <div class="checkout-mobile__price-info--items--item--image-and-font-line-fixed">
 
-              <div class="checkout-mobile__price-info--items--item--image">
-                <div class="checkout-mobile__price-info--items--item--image-inner">
-                  <img drLazyLoad src="{{item.thumbnail}}" alt="">
-                </div>
+            <div class="checkout-mobile__price-info--items--item--image">
+              <div class="checkout-mobile__price-info--items--item--image-inner">
+                <img drLazyLoad src="{{item.thumbnail}}" alt="">
               </div>
+            </div>
 
-              <div class="checkout-mobile__price-info--items--item-info">
+            <div class="checkout-mobile__price-info--items--item-info">
 
-                <div class="checkout-mobile__price-info--items--item-info--title subtitle-3-bold">
-                  {{item.brand}}
-                </div>
-                <div class="checkout-mobile__price-info--items--item-info--description body-3-regular">
-                  {{item.title}}
-                </div>
-                <div class="checkout-mobile__price-info--items--item-info--price subtitle-2-bold">
-                  {{item.price | onpicksCurrency : currencyInfo}} / {{item.quantity}}개
-                </div>
+              <div class="checkout-mobile__price-info--items--item-info--title subtitle-3-bold">
+                {{item.brand}}
+              </div>
+              <div class="checkout-mobile__price-info--items--item-info--description body-3-regular">
+                {{item.title}}
+              </div>
+              <div class="checkout-mobile__price-info--items--item-info--price subtitle-2-bold">
+                {{item.price | onpicksCurrency : currencyInfo}} / {{item.quantity}}개
               </div>
             </div>
           </div>
         </div>
-        <div class="checkout-mobile__price">
-          <div class="checkout-mobile__price--description">
-            <div class="checkout-mobile__price--all-product">
-              <span class="subtitle-2-regular u-color-dark-grey">총 상품금액</span>
-              <span class="subtitle-2-regular u-float-right">{{data.total_items | onpicksCurrency : currencyInfo}}</span>
-            </div>
-            <div class="checkout-mobile__price--delivery">
-              <span class="subtitle-2-regular u-color-dark-grey">배송비</span>
-              <span
-                class="subtitle-2-regular u-float-right"
-                [ngClass]="{ 'u-color-green' : data.total_shipping_costs === 0 }">{{data.total_shipping_costs === 0 ? ('무료') : (data.total_shipping_costs | onpicksCurrency : currencyInfo)}}</span>
-            </div>
-            <div class="checkout-mobile__price--discount">
-              <span class="subtitle-2-regular u-color-dark-grey">할인금액</span>
-              <span class="subtitle-2-regular u-float-right">{{data.total_discounts | onpicksCurrency : currencyInfo}}</span>
-            </div>
+      </div>
+      <div class="checkout-mobile__price">
+        <div class="checkout-mobile__price--description">
+          <div class="checkout-mobile__price--all-product">
+            <span class="subtitle-2-regular u-color-dark-grey">총 상품금액</span>
+            <span class="subtitle-2-regular u-float-right">{{data.total_items | onpicksCurrency : currencyInfo}}</span>
           </div>
-          <div class="checkout-mobile__price--all">
-            <span class="subtitle-2-regular u-color-dark-grey">총 결제금액</span>
-            <span class="subtitle-2-bold u-float-right">{{data.grand_total | onpicksCurrency : currencyInfo}}</span>
+          <div class="checkout-mobile__price--delivery">
+            <span class="subtitle-2-regular u-color-dark-grey">배송비</span>
+            <span
+              class="subtitle-2-regular u-float-right"
+              [ngClass]="{ 'u-color-green' : data.total_shipping_costs === 0 }">{{data.total_shipping_costs === 0 ? ('무료') : (data.total_shipping_costs | onpicksCurrency : currencyInfo)}}</span>
           </div>
+          <div class="checkout-mobile__price--discount">
+            <span class="subtitle-2-regular u-color-dark-grey">할인금액</span>
+            <span class="subtitle-2-regular u-float-right">{{data.total_discounts | onpicksCurrency : currencyInfo}}</span>
+          </div>
+        </div>
+        <div class="checkout-mobile__price--all">
+          <span class="subtitle-2-regular u-color-dark-grey">총 결제금액</span>
+          <span class="subtitle-2-bold u-float-right">{{data.grand_total | onpicksCurrency : currencyInfo}}</span>
         </div>
       </div>
     </div>

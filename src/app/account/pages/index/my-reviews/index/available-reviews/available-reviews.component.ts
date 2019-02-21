@@ -19,6 +19,8 @@ export class AvailableReviewsComponent implements OnInit {
 
   weeklyBest$;
   weeklyBest;
+
+  contentHeight = '';
   constructor(
     private accountDataService: AccountDataService,
     private uiDataService: UiService,
@@ -34,7 +36,7 @@ export class AvailableReviewsComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    this.contentHeight = (window.screen.height - 400) < 300 ? '' : (window.screen.height - 400) + 'px';
   }
 
   viewModal(xPassedData) {

@@ -57,6 +57,8 @@ export class DeliveryAddressComponent implements OnInit, AfterViewInit, OnDestro
   userStore$;
   userStore;
 
+  contentHeight = '';
+
   readonly EMPTY_ORDER_NUMBER        = 0b00000000010;
   readonly INVALID_ORDER_NUMBER      = 0b00000100000;
 
@@ -100,7 +102,7 @@ export class DeliveryAddressComponent implements OnInit, AfterViewInit, OnDestro
   }
 
   ngOnInit() {
-
+    this.contentHeight = (window.screen.height - 400) < 300 ? '' : (window.screen.height - 400) + 'px';
   }
 
   ngOnDestroy() {

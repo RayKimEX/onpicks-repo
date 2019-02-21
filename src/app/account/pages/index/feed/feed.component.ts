@@ -7,7 +7,7 @@ import {select, Store} from '@ngrx/store';
   selector: 'onpicks-feed',
   templateUrl: './feed.component.html',
   styleUrls: ['./feed.component.scss'],
-  changeDetection :ChangeDetectionStrategy.OnPush
+  changeDetection : ChangeDetectionStrategy.OnPush
 })
 export class FeedComponent implements OnInit, OnDestroy {
 
@@ -22,6 +22,8 @@ export class FeedComponent implements OnInit, OnDestroy {
   willLoadData = false;
 
   userState$;
+
+  contentHeight = '';
   constructor(
     private store: Store<any>,
   ) {
@@ -46,13 +48,15 @@ export class FeedComponent implements OnInit, OnDestroy {
 
   }
 
+  ngOnInit() {
+    this.contentHeight = (window.screen.height - 400) < 300 ? '' : (window.screen.height - 400) + 'px';
+  }
+
   ngOnDestroy() {
     this.scroll$.unsubscribe();
   }
 
-  ngOnInit() {
 
-  }
 
   exceptionDatabase = {
     920 : true,

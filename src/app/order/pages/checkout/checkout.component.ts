@@ -133,7 +133,7 @@ export class CheckoutComponent implements OnInit, AfterViewInit, OnDestroy {
 
   /*********checkout-mobile*******/
   isThirdBreakPoint = false;
-  isShowMobilePriceInfo = false;
+  isShowMobilePriceInfo = true;
   isShowMobileOrderInfo = false;
   isShowMobileDeliveryInfo = false;
   isShowMobileAdditionInfo = false;

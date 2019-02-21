@@ -21,6 +21,8 @@ export class WishListComponent implements OnInit, OnDestroy {
 
   weeklyBest$;
 
+  contentHeight = '';
+
   constructor(
     @Inject( LOCATION_MAP ) public locationMap: any,
     private store: Store<any>,
@@ -35,6 +37,11 @@ export class WishListComponent implements OnInit, OnDestroy {
       stateCart => this.cartStore = stateCart
     );
     this.weeklyBest$ = this.uiService.getWeeklyBestGoods();
+  }
+
+
+  ngOnInit() {
+    this.contentHeight = (window.screen.height - 400) < 300 ? '' : (window.screen.height - 400) + 'px';
   }
 
   ngOnDestroy() {
@@ -54,9 +61,6 @@ export class WishListComponent implements OnInit, OnDestroy {
     this.store.dispatch( new TryDeleteWishList( { wishListId : xWishListId, index : xIndex}));
   }
 
-  ngOnInit() {
-
-  }
 
 
   deleteWishList( xWishListId, xIndex ) {
