@@ -2,7 +2,7 @@
   <onpicks-loading-icon></onpicks-loading-icon>
 </ng-template>
 
-<div class="orders" [ngStyle]="{ height : contentHeight }">
+<div class="orders" [ngStyle]="{ minHeight : contentHeight }">
   <ng-container *ngIf="orderData$ | async as orderData; else loading">
     <div class="orders__title-box">
       <h1 class="h1-bold">주문·배송조회</h1>

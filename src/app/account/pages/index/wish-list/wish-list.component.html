@@ -1,4 +1,4 @@
-<div #f class="row wish-list" [ngStyle]="{ height : contentHeight }" *ngIf="wishList$ | async as data">
+<div #f class="row wish-list" [ngStyle]="{ minHeight : contentHeight }" *ngIf="wishList$ | async as data">
   <div class="wish-list__title h1-bold">다음에 구매하기</div>
   <ng-container *ngIf="data.length === 0">
     <div class="u-margin-bottom subtitle-1-regular u-color-dark-grey">다음에 구매할 상품이 없습니다. 다음에 구매할 상품을 담아주세요!</div>

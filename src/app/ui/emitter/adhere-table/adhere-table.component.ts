@@ -62,6 +62,14 @@ export class AdhereTableComponent implements OnInit {
     });
   }
 
+  openTraceDelivery(xTracingUrl) {
+
+    const temp = xTracingUrl.indexOf('test') > -1 ? 'http://' + xTracingUrl.substring(xTracingUrl.indexOf('test') + 5, xTracingUrl.length) :  xTracingUrl;
+
+    window.open( temp, '_blank', 'width:750, height:500');
+  }
+
+
 
 
 }

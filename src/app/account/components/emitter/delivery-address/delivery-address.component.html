@@ -1,5 +1,5 @@
 
-<div class="delivery-address" [ngStyle]="{ height : contentHeight }">
+<div class="delivery-address" [ngStyle]="{ minHeight : contentHeight }">
   <h1 class="h1-bold">배송지</h1>
   <ng-container *ngLet="deliveryData$ | async as data">
     <ng-container *ngIf="data?.length != 0">

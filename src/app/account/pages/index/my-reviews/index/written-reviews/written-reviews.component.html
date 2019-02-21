@@ -2,7 +2,7 @@
   <onpicks-loading-icon></onpicks-loading-icon>
 </ng-template>
 
-<div class="written-reviews" [ngStyle]="{ height : contentHeight }">
+<div class="written-reviews" [ngStyle]="{ minHeight : contentHeight }">
   <ng-container *ngIf="(writtenReviews$ | async)?.results as reivewsData; else loading">
 
     <h1 class="h1-bold written-reviews__title">내가 쓴 리뷰</h1>

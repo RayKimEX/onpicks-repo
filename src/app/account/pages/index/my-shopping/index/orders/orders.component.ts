@@ -12,7 +12,6 @@ import {
   tap
 } from 'rxjs/operators';
 import {UiService} from '../../../../../../core/service/ui/ui.service';
-import {TryGetReviewProduct} from '../../../../../../shops/pages/index/p/store/p.actions';
 import {Store} from '@ngrx/store';
 import {ActivatedRoute} from '@angular/router';
 
@@ -52,6 +51,7 @@ export class OrdersComponent implements OnInit {
     isShow : false,
     reviewData : undefined,
   }
+
   isShowWriteReview = false;
 
   /*******data********/

@@ -48,6 +48,7 @@
         <onpicks-button
           *ngIf="item.status === 'fulfilled'"
           [type]="'white'"
+          (click)="openTraceDelivery(item.tracking_url)"
           [width]="'100%'">배송 추적
         </onpicks-button>
 
@@ -116,6 +117,7 @@
         <onpicks-button
           *ngIf="item.status === 'fulfilled'"
           [type]="'white'"
+          (click)="openTraceDelivery(item.tracking_url)"
           [width]="'8.8rem'">배송 추적
         </onpicks-button>
 
@@ -135,7 +137,6 @@
         </onpicks-button>
       </div>
     </div>
-
   </div>
 </div>
 
