@@ -173,7 +173,7 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
           const tempArray = temp.split('&');
           tempArray.forEach(item => {
             const paramTemp = item.split('=');
-            if (paramTemp[0] !== 'ordering' && paramTemp[0] !== 'category' && paramTemp[0] !== 'page') {
+            if (paramTemp[0] !== 'ordering' && paramTemp[0] !== 'category' && paramTemp[0] !== 'page' && paramTemp[0] !== 'page_size') {
               this.orderedFilterList.push(paramTemp[1]);
             } else {
               if (paramTemp[0] === 'ordering') {

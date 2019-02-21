@@ -236,6 +236,7 @@ export class CommunicateBoxComponent implements OnInit, AfterViewChecked, AfterV
 
   commentTyping(event: KeyboardEvent, f) {
 
+    console.log(f.value)
     if ( event.key === 'Enter' ) {
 
       this.store.dispatch(new TryAddComment({ productId : this.productId, reviewsId : this.reviewsId, addedText : f.value }));
@@ -321,7 +322,7 @@ export class CommunicateBoxComponent implements OnInit, AfterViewChecked, AfterV
       this.store.dispatch( new TryToggleVoteReview({ productSlug: xProductSlug, reviewId : xReviewsId, isVote: !xIsVoted}));
     } else {
       this.store.dispatch(new DisplayAlertMessage('로그인 후 이용 가능합니다'))
-      this.router.navigateByUrl('/member/login?return=' + encodeURI(location.href.split(this.BASE_URL.substring(1, this.BASE_URL.length))[1]));
+      this.router.navigateByUrl('/member/login?return=' + encodeURI(location.href.substring(this.BASE_URL.length + 3, location.href.length)));
     }
   }
   shareReview( xUrl ) {
@@ -381,7 +382,7 @@ export class CommunicateBoxComponent implements OnInit, AfterViewChecked, AfterV
       this.productSlugForModal = xPrdocutSlug;
     } else {
       this.store.dispatch(new DisplayAlertMessage('로그인 후 이용 가능합니다'))
-      this.router.navigateByUrl('/member/login?return=' + encodeURI(location.href.split(this.BASE_URL.substring(1, this.BASE_URL.length))[1]));
+      this.router.navigateByUrl('/member/login?return=' + encodeURI(location.href.substring(this.BASE_URL.length + 3, location.href.length)));
     }
 
   }
@@ -391,7 +392,7 @@ export class CommunicateBoxComponent implements OnInit, AfterViewChecked, AfterV
       this.cd.markForCheck();
     } else {
       this.store.dispatch(new DisplayAlertMessage('로그인 후 이용 가능합니다'))
-      this.router.navigateByUrl('/member/login?return=' + encodeURI(location.href.split(this.BASE_URL.substring(1, this.BASE_URL.length))[1]));
+      this.router.navigateByUrl('/member/login?return=' + encodeURI(location.href.substring(this.BASE_URL.length + 3, location.href.length)));
     }
 
   }

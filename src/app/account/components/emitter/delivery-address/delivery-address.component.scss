@@ -205,6 +205,10 @@
         display:block;
         padding : 0;
         border : 0;
+
+        @include respond(actb){
+          width : 100% !important;
+        }
         &-outer {
           display:none;
 

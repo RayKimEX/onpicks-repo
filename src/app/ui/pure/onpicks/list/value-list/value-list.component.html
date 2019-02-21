@@ -74,11 +74,14 @@
                 class="value-list__image--outer">
                 <img drCleanLoad src="{{item.icon}}" alt="">
               </div>
-              <div
-                (click)="navigate(item.slug)"
-                class="value-list__item--title subtitle-2-bold">
-                {{item.name}}
+              <div class="value-list__item--title">
+                <div
+                  (click)="navigate(item.slug)"
+                  class="value-list__item--title--middle subtitle-2-bold">
+                  {{item.name}}
+                </div>
               </div>
+
               <div
                 (mouseover)=
                   "currentDescription = item.about;

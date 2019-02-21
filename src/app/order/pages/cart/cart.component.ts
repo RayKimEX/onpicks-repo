@@ -91,7 +91,11 @@ export class CartComponent {
         if ( error.status === 502 ) {
           this.store.dispatch(new DisplayAlertMessage('서버에 상태가 불안정합니다.'));
         } else if ( error.status === 403 ) {
-          this.router.navigate(['/member/login']);
+          // this.router.navigate(['/member/login']);
+          console.log(this.BASE_URL);
+          console.log(this.BASE_URL.substring(1, this.BASE_URL.length));
+          this.router.navigateByUrl('/member/login?return=' + encodeURI(location.href.substring(this.BASE_URL.length + 3, location.href.length)));
+
           this.store.dispatch(new DisplayAlertMessage('로그인이 필요합니다.'));
         } else {
           this.store.dispatch(new DisplayAlertMessage('error code : ' + error.status));

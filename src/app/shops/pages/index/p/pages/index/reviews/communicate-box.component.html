@@ -159,9 +159,9 @@
           <input
             type="text"
             (focus)="isFocusForCommentTyping(data?.isAuthenticated)"
-            (keypress)="commentTyping($event, f)"
+            (keypress)="commentTyping($event, fDesktop)"
             value=""
-            #f
+            #fDesktop
             [placeholder]="data?.isAuthenticated ? '댓글 달기': '로그인 후 이용 가능합니다.'">
         </div>
       </div>
@@ -171,9 +171,9 @@
       class="communicate-box-only__input-reviews--mobile">
       <input
         type="text"
-        (keypress)="commentTyping($event, f)"
+        (keypress)="commentTyping($event, fMobile)"
         value=""
-        #f
+        #fMobile
         placeholder="댓글 달기">
       <a (click)="registrationTyping(f)">
         <div class="communicate-box-only__input-reviews--mobile--registration">

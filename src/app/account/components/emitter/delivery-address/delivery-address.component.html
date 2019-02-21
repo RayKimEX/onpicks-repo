@@ -53,7 +53,8 @@
         [size]="'small'">{{isShowDeliveryView ? '배송지 추가 닫기' : '+배송지 추가'}}
       </onpicks-button>
     </ng-container>
-    <div  [ngStyle]="{ 'display' : isShowDeliveryView ? 'block' : 'none' }">
+
+    <div  [ngStyle]="{ 'display' : data?.length === 0 || isShowDeliveryView ? 'block' : 'none' }">
       <ng-container *ngTemplateOutlet="templateRef"></ng-container>
       <onpicks-button
         (click)="addDeliveryInfo()"
@@ -121,6 +122,7 @@
       #inputSearchBoxOuter [ngStyle]="{ display : isShowSearchBox ? 'block' : 'none' }" class="delivery-address__info--delivery-searchBox-outer">
       <onpicks-search-box
         #inputSearchBox
+        [ngStyle]="{ width : isShowDeliveryModal ? '100%' :  '55.2rem' }"
         class="delivery-address__info--delivery-searchBox"
         [placeholder]="'검색할 주소를 입력해주세요'" >
       </onpicks-search-box>

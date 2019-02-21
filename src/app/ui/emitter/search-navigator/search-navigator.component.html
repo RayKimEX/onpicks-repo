@@ -261,7 +261,7 @@
                     [isChecked]="brandListForCheck[item.slug] !== true ? false : true"
                     (click)="brandClicked(item.slug)"
                     [type]="'checkbox'">
-                    <span class="subtitle-3-regular">{{item.slug}}</span>
+                    <span class="subtitle-3-regular">{{item.name}}</span>
                     <span class="subtitle-3-regular u-color-dark-grey">{{item.count}}</span>
                   </onpicks-check-box>
                 </li>
@@ -293,7 +293,7 @@
                     [isChecked]="valueListForCheck[item.slug] !== true ? false : true"
                     (click)="valueClicked(item.slug)"
                     [type]="'checkbox'">
-                    <span class="subtitle-3-regular">{{item.slug}}</span>
+                    <span class="subtitle-3-regular">{{item.name}}</span>
                     <span class="subtitle-3-regular u-color-dark-grey">{{item.count}}</span>
                   </onpicks-check-box>
                 </li>

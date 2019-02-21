@@ -40,11 +40,22 @@ onpicks-input-box {
 
 
   &__final-price {
+    padding : 2.4rem 0;
+    border-bottom : 1px solid $color-light-grey;
     &--title {
-      margin-bottom : 2.4rem;
+      display:inline-block;
+    }
+
+    &--price {
+      display:inline-block;
+      float : right;
+    }
+
+    &--svg {
+      margin-left : 0.5rem;
     }
   }
-  &__table {
+  &__price-info--items {
     clear:both;
     &--item {
       padding: 1.6rem 0;
@@ -96,6 +107,10 @@ onpicks-input-box {
 
 .checkout {
   margin-top : 3.2rem;
+
+  @include respond(tb){
+    margin-top : 0;
+  }
 
   &_warning {
     margin-top : 0.8rem;

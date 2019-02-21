@@ -131,7 +131,12 @@ export class CheckoutComponent implements OnInit, AfterViewInit, OnDestroy {
     'is_mobile' : true,
   };
 
+  /*********checkout-mobile*******/
   isThirdBreakPoint = false;
+  isShowMobilePriceInfo = false;
+  isShowMobileOrderInfo = false;
+  isShowMobileDeliveryInfo = false;
+  isShowMobileAdditionInfo = false;
 
   constructor(
     @Inject(CURRENCY) public currency: BehaviorSubject<any>,

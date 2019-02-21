@@ -123,10 +123,18 @@
     }
 
     &--title {
-      cursor: pointer;
-      padding : 2.4rem 0;
-      width :100%;
-      text-align: center;
+
+      display:table;
+      height : 6.4rem;
+      width : 100%;
+      &--middle {
+        cursor: pointer;
+        display: table-cell;
+        vertical-align: middle;
+        white-space : pre-line;
+        width :100%;
+        text-align: center;
+      }
     }
   }
 }

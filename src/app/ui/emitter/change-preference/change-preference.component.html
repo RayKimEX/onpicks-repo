@@ -13,7 +13,8 @@
   <div [ngStyle]="{
           display : isShowModal ? 'block' : 'none',
           color : '#000',
-          right : position === 'footer' ? 0 : 'auto'
+          top : position === 'footer' ? '0' : 'auto',
+          right : position === 'footer' ? '80px' : 'auto'
         }"
        class="preference-modal"><!---->
     <div class="preference-modal__inner">
