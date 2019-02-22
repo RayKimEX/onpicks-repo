@@ -71,12 +71,18 @@
 
 
 
+    &--inicis-icon {
+      width : 5rem;
+      height : 5rem;
+    }
+
     &--second-floor {
       position:relative;
       padding: 2.4rem 0;
     }
 
     &--copyright {
+      display : inline-block;
       width : 83.3rem;
 
       &--copyright-text {
@@ -131,12 +137,25 @@
 
       
 
-      &--nav {
+      &--outer {
         display:table-cell;
+        position:relative;
         vertical-align: middle;
-        &--ul {
+        &--inicis-icon {
+          float:right;
+          width:3rem;
+          height:3rem;
+          display:inline-block;
+          img {
+            width :100%;
+            height : 100%;
+          }
+        }
+        &--inner {
+          @include verticalCenter;
+          display:inline-block;
           list-style: none;
-          &--li {
+          &--item {
             display:inline-block;
 
             &:not(:last-child){
@@ -178,19 +197,28 @@
 
   }
 
-  &__share {
+  &__miscell {
+    float:right;
     display: inline-block;
-
     right: 0;
     top: 0;
-    margin-top: 2.4rem;
-    position: absolute;
+
+    &--share {
+      margin-left: 5.6rem;
+      vertical-align: top;
+      display:inline-block;
+    }
+    //margin-top: 2.4rem;
+    //position: absolute;
     @include respond(fb){
       @include verticalCenter;
       margin-top: 0;
     }
     &--instargram {
       margin-right: 1.6rem;
+    }
+
+    &--facebook {
     }
   }
 }

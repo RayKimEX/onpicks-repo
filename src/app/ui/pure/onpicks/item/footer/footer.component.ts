@@ -27,5 +27,9 @@ export class FooterComponent implements OnInit {
     this.isShowMobileToggleBusinessInfo = !this.isShowMobileToggleBusinessInfo;
     this.cd.markForCheck();
   }
+  
+  inicisOpen() {
+    window.open('https://mark.inicis.com/mark/popup_v1.php?mid=onpicks001', 'mark', 'scrollbars=no,resizable=no,width=565,height=683');
+  }
 
 }
