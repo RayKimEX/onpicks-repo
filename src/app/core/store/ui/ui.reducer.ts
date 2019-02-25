@@ -155,11 +155,14 @@ export function UiReducer(state = initialState, action: UiActions): UiState {
       }
 
 
+
       sortAllInfo = {
         ...sortSecondInfo,
         ...sortThirdInfo,
         ...sortFourthInfo
       };
+
+      console.log(sortAllInfo);
 
 
       // 초기값에, 식품을 검은색으로

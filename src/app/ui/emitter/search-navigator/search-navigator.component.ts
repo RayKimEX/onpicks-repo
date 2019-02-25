@@ -217,7 +217,25 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
           });
         } else {
           const categoryUrl = this.router.url.split('/');
-          this.searchData$ = this.searchService.categorySearch(this.sortInfo[categoryUrl[categoryUrl.length - 1].indexOf('?') > -1 ? categoryUrl[categoryUrl.length - 1].substring(0, categoryUrl[categoryUrl.length - 1].indexOf('?')) : categoryUrl[categoryUrl.length - 1]], this.currentSortSlug, this.currentPage).subscribe(_infoList => {
+          let categoryCurrentCode = 0;
+          if ( categoryUrl[categoryUrl.length - 1].indexOf('?') > -1){
+            categoryUrl[categoryUrl.length - 1] = categoryUrl[categoryUrl.length - 1].substring(0, categoryUrl[categoryUrl.length - 1].indexOf('?'));
+          }
+
+          switch ( categoryUrl.length ) {
+            case 5 :
+              categoryCurrentCode = this.sortInfo[categoryUrl[3]][categoryUrl[4]].code;
+              break;
+            case 6 :
+              categoryCurrentCode = this.sortInfo[categoryUrl[3]][categoryUrl[4]][categoryUrl[5]].code;
+              break;
+            case 7 :
+              categoryCurrentCode = this.sortInfo[categoryUrl[3]][categoryUrl[4]][categoryUrl[5]][categoryUrl[6]].code;
+              break;
+          }
+
+
+          this.searchData$ = this.searchService.categorySearch(categoryCurrentCode, this.currentSortSlug, this.currentPage).subscribe(_infoList => {
             this.searchState = 'category';
 
             /* async 데이터가 들어오는데, null이라면 return을 해줌 */
@@ -549,544 +567,3369 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
 
   // @ts-ignore
   sortInfo = {
-    grocery: 1010000,
-    'household-supplies': 1020000,
-    'personal-care': 1030000,
-    health: 1040000,
-    baby: 1050000,
-    'pet-supplies': 1060000,
-    'office-supplies': 1070000,
-    beverages: 1010100,
-    'candy-gum-and-chocolate': 1010300,
-    'breakfast-foods': 1010400,
-    'soups-meals-and-side-dishes': 1010500,
-    pantry: 1010600,
-    'pasta-and-pasta-sauce': 1010700,
-    'canned-and-jarred-food': 1010800,
-    'cooking-and-baking-supplies': 1010900,
-    'rice-beans-and-grains': 1011000,
-    'international-food': 1011100,
-    'paper-and-plastic-products': 1020100,
-    laundry: 1020200,
-    'cleaning-products': 1020300,
-    'cleaning-tools': 1020400,
-    'food-storage-and-trash-bags': 1020500,
-    'home-fragrance': 1020600,
-    'light-bulbs': 1020700,
-    'insect-and-pest-control': 1020800,
-    'oral-and-personal-care': 1030100,
-    'tools-and-accessories': 1030200,
-    'hair-care-products': 1030300,
-    'hair-tools-and-accessories': 1030400,
-    makeup: 1030500,
-    'nail-care': 1030600,
-    'skin-care': 1030700,
-    'mens-essentials': 1030800,
-    'medicine-cabinet': 1040100,
-    'medical-supplies-and-equipment': 1040200,
-    'sports-nutrition-and-diet': 1040300,
-    'vitamins-and-dietary-supplements': 1040400,
-    'baby-food-and-formula': 1050100,
-    diapering: 1050200,
-    'baby-gear': 1050300,
-    'baby-gear-accessories': 1050400,
-    'feeding-and-nursing': 1050500,
-    babyproofing: 1050600,
-    'baby-care': 1050700,
-    'potty-training': 1050800,
-    'baby-bathing': 1050900,
-    'baby-gifts': 1051000,
-    'dog-supplies': 1060100,
-    'cat-supplies': 1060200,
-    'pens-pencils-and-markers': 1070100,
-    'tape-and-adhesives': 1070200,
-    'office-paper': 1070300,
-    'presentation-boards': 1070400,
-    'workspace-organizers': 1070500,
-    'staplers-and-punches': 1070600,
-    'labels-indexes-and-stamps': 1070700,
-    'filing-products': 1070800,
-    'binders-and-binding-systems': 1070900,
-    'scissors-cutters-and-measuring-devices': 1071000,
-    'envelopes-and-shipping-supplies': 1071100,
-    'calendars-and-planners': 1071200,
-    stationary: 1071300,
-    water: 1010101,
-    'sports-and-energy-drinks': 1010102,
-    'soft-drinks': 1010103,
-    coffee: 1010104,
-    tea: 1010105,
-    milk: 1010106,
-    'non-dairy-milk': 1010107,
-    juice: 1010108,
-    'applesauce-fruit-cups-and-squeezes': 1010201,
-    'chips-and-pretzels': 1010202,
-    cookies: 1010203,
-    'bread-and-crackers': 1010204,
-    'fruit-and-vegetable-snacks': 1010205,
-    'protein-and-granola-bars': 1010206,
-    'ice-cream-cones-and-toppings': 1010207,
-    'jerky-and-dried-meats': 1010208,
-    'nuts-seeds-and-trail-mix': 1010209,
-    'popcorn-and-puffed-snacks': 1010210,
-    'pudding-and-gelatin': 1010211,
-    chocolate: 1010301,
-    'chewing-gum': 1010302,
-    candy: 1010303,
-    'other-sweets': 1010304,
-    'cold-cereals': 1010401,
-    'hot-cereals-and-oats': 1010402,
-    'toaster-pastries': 1010403,
-    'granola-and-museli': 1010404,
-    'meal-replacement-proein-and-granola-bars': 1010405,
-    'macaroni-and-cheese': 1010501,
-    soups: 1010502,
-    broth: 1010503,
-    'chilis-and-stews': 1010504,
-    'asian-meals': 1010505,
-    'italian-meals': 1010506,
-    'mexican-meals-and-taco-kits': 1010507,
-    'indian-meals': 1010508,
-    'potatoes-and-stuffings': 1010509,
-    'spices-and-seasonings': 1010601,
-    'salt-and-pepper': 1010602,
-    condiments: 1010603,
-    oils: 1010604,
-    vinegars: 1010605,
-    'salad-dressings': 1010606,
-    'salad-toppings': 1010607,
-    'sauces-and-marinades': 1010608,
-    'salsas-and-dips': 1010609,
-    butters: 1010610,
-    'jams-jellies-and-preserves': 1010611,
-    'sweet-spreads': 1010612,
-    'flours-and-meals': 1010906,
-    'sugar-and-other-sweeteners': 1010909,
-    'baking-ingredients': 1010902,
-    'baking-mixes': 1010901,
-    'honey-and-syrups': 1010910,
-    'pasta-and-noodles': 1010701,
-    'pasta-sauces': 1010702,
-    'canned-beans': 1010801,
-    'canned-fruit': 1010802,
-    'canned-meat-and-seafood': 1010803,
-    'canned-vegetables': 1010804,
-    'canned-tomatoes-and-paste': 1010805,
-    'pickled-vegetables-and-olives': 1010806,
-    breadcrumbs: 1010903,
-    'doughs-shells-and-crusts': 1010904,
-    extracts: 1010905,
-    'frosting-and-decoration': 1010907,
-    marshmallows: 1010908,
-    'dry-beans': 1011001,
-    grains: 1011002,
-    quinoa: 1011003,
-    rice: 1011004,
-    couscous: 1011005,
-    'indian-cuisine': 1011101,
-    'chinese-cuisine': 1011102,
-    'japanese-cuisine': 1011103,
-    'korean-cuisine': 1011104,
-    'asian-cuisine': 1011105,
-    'mexican-cuisine': 1011106,
-    'latin-american-cuisine': 1011107,
-    'australian-cuisine': 1011108,
-    'european-cuisine': 1011109,
-    'paper-towels': 1020101,
-    'toilet-paper': 1020102,
-    'facial-tissues': 1030208,
-    'disposable-tableware': 1020104,
-    'paper-napkins': 1020105,
-    'disposable-coffee-filters': 1020106,
-    'laundry-detergent': 1020201,
-    'fabric-softener': 1020202,
-    'dryer-sheets-and-balls': 1020203,
-    'stain-removers': 1020204,
-    'scent-boosters': 1020205,
-    bleach: 1020303,
-    'washing-machine-cleaners': 1020207,
-    'other-laundry-care': 1020208,
-    'all-purpose-cleaners': 1020301,
-    'cleaning-wipes': 1020302,
-    'sponges-and-brushes': 1020401,
-    'dishwashing-detergent': 1020305,
-    'dish-soap': 1020306,
-    'bathroom-cleaners': 1020307,
-    'kitchen-cleaners': 1020308,
-    'produce-wash': 1020309,
-    'drain-cleaners': 1020310,
-    'floor-cleaners': 1020311,
-    'specialty-cleaners': 1020312,
-    'glass-cleaners': 1020313,
-    'mops-and-accessories': 1020402,
-    'dusting-tools-and-cloths': 1020403,
-    'cleaning-gloves': 1020404,
-    brooms: 1020405,
-    'bowl-brushes-and-plungers': 1020406,
-    dustbins: 1020407,
-    'food-storage-bags': 1020501,
-    foil: 1020502,
-    'food-storage-containers': 1020503,
-    'plastic-wrap': 1020504,
-    'wax-and-parchment-paper': 1020505,
-    'trash-bags': 1020506,
-    'air-fresheners': 1020601,
-    candles: 1020602,
-    'fragrance-diffusers': 1020603,
-    'indoor-pest-control': 1020801,
-    'outdoor-pest-control': 1020802,
-    'insect-repellent': 1020803,
-    deodorant: 1030101,
-    'ear-care': 1040114,
-    'eye-care': 1040115,
-    'feminine-care': 1030104,
-    toothbrushes: 1030105,
-    toothpaste: 1030106,
-    mouthwash: 1030107,
-    'dental-floss': 1030108,
-    'manual-toothbrushes': 1030109,
-    'electric-toothbrushes': 1030110,
-    'other-oral-care': 1030111,
-    razors: 1030112,
-    'shaving-cream': 1030714,
-    'waxing-and-hair-removal': 1030114,
-    'safer-sex-and-contraceptives': 1030115,
-    'cotton-balls-and-rounds': 1030204,
-    incontinence: 1040108,
-    'wet-shave': 1030118,
-    'electric-shavers': 1030119,
-    'bath-sponges-and-tools': 1030201,
-    'eye-masks': 1030202,
-    'beauty-and-spa-tools': 1030203,
-    mirrors: 1030205,
-    'toiletry-kits-and-cases': 1030206,
-    tweezers: 1030207,
-    'nail-care-tools': 1030602,
-    'top-beauty-tools-and-accessories': 1030210,
-    shampoos: 1030301,
-    conditioners: 1030302,
-    'styling-products': 1030303,
-    'scalp-treatments': 1030304,
-    'hair-color': 1030305,
-    'hair-loss-products': 1030306,
-    'hair-perms-and-texturizers': 1030307,
-    'hair-relaxers-and-treatments': 1030308,
-    'multicultural-hair-care-products': 1030309,
-    'innovative-hair-care': 1030310,
-    brushes: 1030401,
-    'dryers-irons-and-diffusers': 1030402,
-    'hair-rollers': 1030403,
-    'hair-accessories': 1030404,
-    'haircutting-tools': 1030405,
-    combs: 1030406,
-    'body-art-and-makeup': 1030501,
-    'makeup-brushes': 1030502,
-    'face-makeup': 1030503,
-    'lip-makeup': 1030504,
-    'makeup-sets': 1030505,
-    'eyeliner-and-brow-pencils': 1030506,
-    'mascara-and-lashes': 1030507,
-    'eye-shadow': 1030508,
-    'makeup-sponges': 1030509,
-    'makeup-tools': 1030510,
-    'cuticle-care': 1030601,
-    'nail-polish': 1030603,
-    'nail-polish-remover': 1030604,
-    'bath-salts-and-bubbles': 1030701,
-    'makeup-remover': 1030702,
-    'hand-soap': 1030703,
-    'lip-care': 1030704,
-    suncare: 1030705,
-    'toners-and-astringents': 1030706,
-    'body-powder': 1030707,
-    'body-moisturizers': 1030708,
-    'massage-oil-and-aromatherapy': 1030709,
-    'hand-sanitizers-and-wipes': 1030710,
-    'facial-cleansers': 1030711,
-    'facial-moisturizers-and-treatment': 1030712,
-    'soap-and-body-wash': 1030713,
-    'beard-and-shave': 1030801,
-    body: 1030802,
-    face: 1030803,
-    hair: 1030804,
-    cologne: 1030805,
-    wellness: 1030806,
-    'allergy-sinus-and-asthma': 1040101,
-    'childrens-medicine': 1040102,
-    'cold-sore-and-blister-treatments': 1040103,
-    'cough-and-cold': 1040104,
-    diabetes: 1040105,
-    'digestion-and-nausea': 1040106,
-    'foot-healthcare': 1040107,
-    'pain-relievers': 1040109,
-    'sleep-and-snoring': 1040110,
-    'smoking-cessation': 1040111,
-    'therapeutic-ointments-and-powders': 1040112,
-    thermometers: 1040113,
-    'pills-cases-and-splitters': 1040201,
-    'bathroom-aids-and-safety': 1040202,
-    'beds-and-accessories': 1040203,
-    'braces-splints-and-slings': 1040204,
-    'daily-living-aids': 1040205,
-    'mobility-aids-and-equipment': 1040206,
-    'occupational-and-physical-therapy-aids': 1040207,
-    'pen-lights': 1040208,
-    tests: 1040209,
-    'first-aid': 1040210,
-    dehumidifiers: 1040211,
-    humidifiers: 1040212,
-    'health-monitors': 1040213,
-    'protein-and-meal-replacement': 1040301,
-    'energy-and-endurance': 1040302,
-    'weight-loss-supplements-and-cleanses': 1040303,
-    'mass-gainers': 1040304,
-    'amino-acids-and-creatine': 1040409,
-    'on-the-go-nutrition': 1040306,
-    'slimfast-campaign': 1040307,
-    minerals: 1040401,
-    supplements: 1040402,
-    'letter-vitamins': 1040403,
-    'fish-oils-and-omegas': 1040404,
-    probiotics: 1040405,
-    multivitamins: 1040406,
-    'protein-and-meal-replacements': 1040407,
-    'pill-cases-and-splitters': 1040408,
-    'weight-loss-supplements': 1040410,
-    'new-and-noteworthy-vitamins-and-supplements': 1040411,
-    'herbs-and-homeopathy': 1040412,
-    'baby-and-toddler-snacks': 1050101,
-    'baby-food': 1050502,
-    'baby-formula': 1050503,
-    'toddler-juices-and-milk': 1050104,
-    diapers: 1050201,
-    'baby-wipes': 1050202,
-    'baby-wipe-holders-and-warmers': 1050203,
-    'changing-table-accessories': 1050204,
-    'cloth-diapers': 1050205,
-    'cloth-diaper-accessories': 1050206,
-    'diaper-bags': 1050207,
-    'diaper-cakes': 1050208,
-    'diaper-changing-pads': 1050209,
-    'diaper-creams-and-ointments': 1050210,
-    'diaper-pails-and-refills': 1050211,
-    'diaper-stackers-and-caddies': 1050212,
-    'baby-monitors': 1050601,
-    'baby-seats': 1050302,
-    'bouncers-and-walkers': 1050303,
-    'car-seats': 1050304,
-    carriers: 1060202,
-    'harnesses-and-leashes': 1050306,
-    'play-mats-and-activity-gyms': 1050307,
-    'playards-and-travel-beds': 1050308,
-    strollers: 1050309,
-    'car-seat-and-stroller-toys': 1050401,
-    'car-seat-accessories': 1050402,
-    'carrier-accessories': 1050403,
-    'crib-netting': 1050404,
-    'shopping-cart-covers': 1050405,
-    'stroller-accessories': 1050406,
-    'baby-bottles-and-accessories': 1050501,
-    'bibs-and-burp-cloths': 1050504,
-    'breast-pump': 1050505,
-    'breast-pump-accessories': 1050506,
-    'food-and-formula-prep': 1050507,
-    'food-storage-and-on-the-go': 1050508,
-    'highchairs-and-boosters': 1050509,
-    'kids-tabletop': 1050510,
-    'lunch-bags': 1050511,
-    'nursing-accessories': 1050512,
-    'pacifiers-and-teethers': 1050513,
-    'sippys-and-cups': 1050514,
-    'bath-safety': 1050602,
-    'edge-and-corner-guards': 1050603,
-    'electrical-safety': 1050604,
-    'gates-and-rails': 1050605,
-    'kitchen-safety': 1050606,
-    'outdoor-safety': 1050607,
-    'rails-and-rail-guards': 1050608,
-    'sleep-positioners': 1050609,
-    'baby-bubble-bath': 1050701,
-    'baby-oil-and-lotion': 1050702,
-    'baby-powder': 1050703,
-    'baby-shampoo-and-wash': 1050704,
-    potties: 1050801,
-    'potty-training-aids': 1050802,
-    'seat-covers': 1050803,
-    'step-stools': 1050804,
-    'training-pants': 1050805,
-    'baby-bath-accessories': 1050901,
-    'baby-grooming': 1050902,
-    'baby-tubs': 1050903,
-    'baby-washcloths-and-towels': 1050904,
-    'bath-toys': 1050905,
-    'baby-gift-sets-and-baskets': 1051001,
-    'keepsakes-and-albums': 1051002,
-    'new-mom-gifts': 1051003,
-    'toy-banks': 1051004,
-    'collars-harnesses-and-leashes': 1060215,
-    'dog-apparel': 1060102,
-    'dog-beds': 1060103,
-    'dog-bowls-and-feeders': 1060104,
-    'travel-supplies': 1060105,
-    'cleaning-supplies': 1060203,
-    'crates-and-kennels': 1060107,
-    'flea-and-tick-control': 1060204,
-    'dog-food': 1060109,
-    grooming: 1060110,
-    'dog-houses': 1060111,
-    'medication-and-health-supplies': 1060112,
-    'modern-furniture': 1060113,
-    'dog-technology': 1060114,
-    toys: 1060115,
-    'training-and-behavior': 1060116,
-    treats: 1060117,
-    'gates-and-ramps': 1060118,
-    'poop-bags-and-housebreaking': 1060119,
-    'cat-beds': 1060201,
-    'cat-food': 1060205,
-    'cat-grooming': 1060206,
-    'health-supplies': 1060207,
-    litter: 1060208,
-    'litter-boxes': 1060209,
-    scratchers: 1060210,
-    'cat-toys': 1060211,
-    'training-and-behavior-aids': 1060212,
-    'cat-treats': 1060213,
-    'cat-trees-and-condos': 1060214,
-    'feeding-and-watering-supplies': 1060216,
-    skincare: 4010000,
-    // @ts-ignore
-    // makeup: 4020000,
-    'bath-and-body': 4060600,
-    // @ts-ignore
-    // hair: 4060800,
-    fragrance: 4050000,
-    men: 4050200,
-    'k-beauty': 4070000,
-    'face-cleansers': 4010100,
-    'face-moisturizers-and-treatments': 4060200,
-    'exfoliators-and-scrubs': 4010300,
-    'face-mask': 4010400,
-    'eye-cream-and-treatments': 4010500,
-    // @ts-ignore
-    // 'lip-care': 4010600,
-    'toners-and-mists': 4010700,
-    'sun-care-and-sunscreens': 4010800,
-    'tools-and-devices': 4010900,
-    'gift-sets': 4040600,
-    'top-brands': 4060900,
-    // @ts-ignore
-    // face: 4020100,
-    cheek: 4020200,
-    eyes: 4020300,
-    lip: 4020400,
-    'makeup-brushes-and-applicators': 4020500,
-    'lash-bar': 4020600,
-    'body-wash-and-shower-gels': 4030100,
-    'body-lotions-and-creams': 4030200,
-    'body-oils': 4030300,
-    'body-scrubs-and-exfoliants': 4030400,
-    'hand-and-foot': 4030500,
-    'bubble-bath': 4030600,
-    'body-sun-care-and-sunscreens': 4030700,
-    // @ts-ignore
-    // shampoos: 4040100,
-    // @ts-ignore
-    // conditioners: 4040200,
-    'hair-treatments': 4040300,
-    'hair-styling': 4040400,
-    // @ts-ignore
-    // 'hair-tools-and-accessories': 4040500,
-    women: 4050100,
-    // @ts-ignore
-    // candles: 4050300,
-    'fragrance-sets': 4050400,
-    'travel-size': 4050500,
-    'face-wash': 4060100,
-    'eye-creams': 4060300,
-    sunscreens: 4060400,
-    shaving: 4060500,
-    'deodorant-for-men': 4060700,
-    combination: 4010101,
-    dry: 4010102,
-    normal: 4010103,
-    moisturizers: 4010201,
-    'night-creams': 4010202,
-    serums: 4010203,
-    'face-masks': 4010401,
-    'sheet-masks': 4010402,
-    'simply-moisture': 4010501,
-    'fine-lines-wrinkles': 4010502,
-    'dark-circles-puffness': 4010503,
-    'lip-balms-and-treatments': 4010601,
-    'lip-sunscreen': 4010602,
-    toners: 4010701,
-    mists: 4010702,
-    foundation: 4020101,
-    'face-primers': 4020102,
-    'bb-and-cc-cream': 4020103,
-    'tinted-moisturizer': 4020104,
-    'setting-powder': 4020105,
-    concealer: 4020106,
-    blush: 4020201,
-    bronzer: 4020202,
-    contour: 4020203,
-    highlighter: 4020204,
-    'cheek-palettes': 4020205,
-    eyeshadows: 4020301,
-    mascara: 4020302,
-    eyeliner: 4020303,
-    eyebrow: 4020304,
-    'eye-palettes': 4020305,
-    'eye-sets': 4020306,
-    lipstick: 4020401,
-    'lip-gloss': 4020402,
-    'lip-stain': 4020403,
-    'lip-liner': 4020404,
-    'lip-palettes': 4020405,
-    'lip-sets': 4020406,
-    'face-brushes': 4020501,
-    'cheek-brushes': 4020502,
-    'eye-brushes': 4020503,
-    'lip-brushes': 4020504,
-    'sponges-and-applicators': 4020505,
-    'brush-cleaners': 4020506,
-    'brush-sets': 4020507,
-    'eyelash-curler': 4020601,
-    'false-lashes': 4020602,
-    'body-wash': 4030101,
-    'shower-gels': 4030102,
-    'bar-soaps': 4030103,
-    'body-lotions': 4030201,
-    'body-creams': 4030202,
-    'hand-cream-and-lotion': 4030501,
-    'foot-cream-and-lotion': 4030502,
-    'hand-soaps': 4030503,
-    moisturizing: 4040201,
-    volumizing: 4040202,
-    damaged: 4040203,
-    thickening: 4040204,
-    'dry-shampoos': 4040105,
-    'leave-in-conditioners': 4040205,
-    'hair-masques': 4040301,
-    'hair-oils': 4040302,
-    'hair-sprays-and-mousses': 4040401,
-    'hair-creams-gels-and-oils': 4040402,
-    'hair-waxes-and-pomades': 4040403,
-    'hair-dryers-and-irons': 4040501,
-    'hair-brushes-and-combs': 4040502,
-    edp: 4050201,
-    edt: 4050202,
-    // @ts-ignore
-    // cologne: 4050203,
-    citrus: 4050501,
-    floral: 4050502,
-    woody: 4050503,
-    spicy: 4050504,
-    'pre-shave': 4060501,
-    'shaving-creams-gels': 4060502,
-    'after-shave': 4060503,
-    tools: 4060504
+    'pantry-and-household': {
+      'code': 1000000,
+      'grocery': {
+        'code': 1010000,
+        'beverages': {
+          'code': 1010100,
+          'water': {
+            'code': 1010101
+          },
+          'sports-and-energy-drinks': {
+            'code': 1010102
+          },
+          'soft-drinks': {
+            'code': 1010103
+          },
+          'coffee': {
+            'code': 1010104
+          },
+          'tea': {
+            'code': 1010105
+          },
+          'milk': {
+            'code': 1010106
+          },
+          'non-dairy-milk': {
+            'code': 1010107
+          },
+          'juice': {
+            'code': 1010108
+          },
+          'applesauce-fruit-cups-and-squeezes': {
+            'code': 1010201
+          },
+          'chips-and-pretzels': {
+            'code': 1010202
+          },
+          'cookies': {
+            'code': 1010203
+          },
+          'bread-and-crackers': {
+            'code': 1010204
+          },
+          'fruit-and-vegetable-snacks': {
+            'code': 1010205
+          },
+          'protein-and-granola-bars': {
+            'code': 1010206
+          },
+          'ice-cream-cones-and-toppings': {
+            'code': 1010207
+          },
+          'jerky-and-dried-meats': {
+            'code': 1010208
+          },
+          'nuts-seeds-and-trail-mix': {
+            'code': 1010209
+          },
+          'popcorn-and-puffed-snacks': {
+            'code': 1010210
+          },
+          'pudding-and-gelatin': {
+            'code': 1010211
+          }
+        },
+        'candy-gum-and-chocolate': {
+          'code': 1010300,
+          'chocolate': {
+            'code': 1010301
+          },
+          'chewing-gum': {
+            'code': 1010302
+          },
+          'candy': {
+            'code': 1010303
+          },
+          'other-sweets': {
+            'code': 1010304
+          }
+        },
+        'breakfast-foods': {
+          'code': 1010400,
+          'cold-cereals': {
+            'code': 1010401
+          },
+          'hot-cereals-and-oats': {
+            'code': 1010402
+          },
+          'toaster-pastries': {
+            'code': 1010403
+          },
+          'granola-and-museli': {
+            'code': 1010404
+          },
+          'meal-replacement-proein-and-granola-bars': {
+            'code': 1010405
+          }
+        },
+        'soups-meals-and-side-dishes': {
+          'code': 1010500,
+          'macaroni-and-cheese': {
+            'code': 1010501
+          },
+          'soups': {
+            'code': 1010502
+          },
+          'broth': {
+            'code': 1010503
+          },
+          'chilis-and-stews': {
+            'code': 1010504
+          },
+          'asian-meals': {
+            'code': 1010505
+          },
+          'italian-meals': {
+            'code': 1010506
+          },
+          'mexican-meals-and-taco-kits': {
+            'code': 1010507
+          },
+          'indian-meals': {
+            'code': 1010508
+          },
+          'potatoes-and-stuffings': {
+            'code': 1010509
+          }
+        },
+        'pantry': {
+          'code': 1010600,
+          'spices-and-seasonings': {
+            'code': 1010601
+          },
+          'salt-and-pepper': {
+            'code': 1010602
+          },
+          'condiments': {
+            'code': 1010603
+          },
+          'oils': {
+            'code': 1010604
+          },
+          'vinegars': {
+            'code': 1010605
+          },
+          'salad-dressings': {
+            'code': 1010606
+          },
+          'salad-toppings': {
+            'code': 1010607
+          },
+          'sauces-and-marinades': {
+            'code': 1010608
+          },
+          'salsas-and-dips': {
+            'code': 1010609
+          },
+          'butters': {
+            'code': 1010610
+          },
+          'jams-jellies-and-preserves': {
+            'code': 1010611
+          },
+          'sweet-spreads': {
+            'code': 1010612
+          },
+          'flours-and-meals': {
+            'code': 1010613
+          },
+          'sugar-and-other-sweeteners': {
+            'code': 1010614
+          },
+          'baking-ingredients': {
+            'code': 1010615
+          },
+          'baking-mixes': {
+            'code': 1010616
+          },
+          'honey-and-syrups': {
+            'code': 1010617
+          }
+        },
+        'pasta-and-pasta-sauce': {
+          'code': 1010700,
+          'pasta-and-noodles': {
+            'code': 1010701
+          },
+          'pasta-sauces': {
+            'code': 1010702
+          }
+        },
+        'canned-and-jarred-food': {
+          'code': 1010800,
+          'canned-beans': {
+            'code': 1010801
+          },
+          'canned-fruit': {
+            'code': 1010802
+          },
+          'canned-meat-and-seafood': {
+            'code': 1010803
+          },
+          'canned-vegetables': {
+            'code': 1010804
+          },
+          'canned-tomatoes-and-paste': {
+            'code': 1010805
+          },
+          'pickled-vegetables-and-olives': {
+            'code': 1010806
+          }
+        },
+        'cooking-and-baking-supplies': {
+          'code': 1010900,
+          'baking-mixes': {
+            'code': 1010901
+          },
+          'baking-ingredients': {
+            'code': 1010902
+          },
+          'breadcrumbs': {
+            'code': 1010903
+          },
+          'doughs-shells-and-crusts': {
+            'code': 1010904
+          },
+          'extracts': {
+            'code': 1010905
+          },
+          'flours-and-meals': {
+            'code': 1010906
+          },
+          'frosting-and-decoration': {
+            'code': 1010907
+          },
+          'marshmallows': {
+            'code': 1010908
+          },
+          'sugar-and-other-sweeteners': {
+            'code': 1010909
+          },
+          'honey-and-syrups': {
+            'code': 1010910
+          }
+        },
+        'rice-beans-and-grains': {
+          'code': 1011000,
+          'dry-beans': {
+            'code': 1011001
+          },
+          'grains': {
+            'code': 1011002
+          },
+          'quinoa': {
+            'code': 1011003
+          },
+          'rice': {
+            'code': 1011004
+          },
+          'couscous': {
+            'code': 1011005
+          }
+        },
+        'international-food': {
+          'code': 1011100,
+          'indian-cuisine': {
+            'code': 1011101
+          },
+          'chinese-cuisine': {
+            'code': 1011102
+          },
+          'japanese-cuisine': {
+            'code': 1011103
+          },
+          'korean-cuisine': {
+            'code': 1011104
+          },
+          'asian-cuisine': {
+            'code': 1011105
+          },
+          'mexican-cuisine': {
+            'code': 1011106
+          },
+          'latin-american-cuisine': {
+            'code': 1011107
+          },
+          'european-cuisine': {
+            'code': 1011108
+          }
+        }
+      },
+      'household-supplies': {
+        'code': 1020000,
+        'paper-and-plastic-products': {
+          'code': 1020100,
+          'paper-towels': {
+            'code': 1020101
+          },
+          'toilet-paper': {
+            'code': 1020102
+          },
+          'facial-tissues': {
+            'code': 1020103
+          },
+          'disposable-tableware': {
+            'code': 1020104
+          },
+          'paper-napkins': {
+            'code': 1020105
+          },
+          'disposable-coffee-filters': {
+            'code': 1020106
+          }
+        },
+        'laundry': {
+          'code': 1020200,
+          'laundry-detergent': {
+            'code': 1020201
+          },
+          'fabric-softener': {
+            'code': 1020202
+          },
+          'dryer-sheets-and-balls': {
+            'code': 1020203
+          },
+          'stain-removers': {
+            'code': 1020204
+          },
+          'scent-boosters': {
+            'code': 1020205
+          },
+          'bleach': {
+            'code': 1020206
+          },
+          'washing-machine-cleaners': {
+            'code': 1020207
+          },
+          'other-laundry-care': {
+            'code': 1020208
+          }
+        },
+        'cleaning-products': {
+          'code': 1020300,
+          'all-purpose-cleaners': {
+            'code': 1020301
+          },
+          'cleaning-wipes': {
+            'code': 1020302
+          },
+          'bleach': {
+            'code': 1020303
+          },
+          'sponges-and-brushes': {
+            'code': 1020304
+          },
+          'dishwashing-detergent': {
+            'code': 1020305
+          },
+          'dish-soap': {
+            'code': 1020306
+          },
+          'bathroom-cleaners': {
+            'code': 1020307
+          },
+          'kitchen-cleaners': {
+            'code': 1020308
+          },
+          'produce-wash': {
+            'code': 1020309
+          },
+          'drain-cleaners': {
+            'code': 1020310
+          },
+          'floor-cleaners': {
+            'code': 1020311
+          },
+          'specialty-cleaners': {
+            'code': 1020312
+          },
+          'glass-cleaners': {
+            'code': 1020313
+          }
+        },
+        'cleaning-tools': {
+          'code': 1020400,
+          'sponges-and-brushes': {
+            'code': 1020401
+          },
+          'mops-and-accessories': {
+            'code': 1020402
+          },
+          'dusting-tools-and-cloths': {
+            'code': 1020403
+          },
+          'cleaning-gloves': {
+            'code': 1020404
+          },
+          'brooms': {
+            'code': 1020405
+          },
+          'bowl-brushes-and-plungers': {
+            'code': 1020406
+          },
+          'dustbins': {
+            'code': 1020407
+          }
+        },
+        'food-storage-and-trash-bags': {
+          'code': 1020500,
+          'food-storage-bags': {
+            'code': 1020501
+          },
+          'foil': {
+            'code': 1020502
+          },
+          'food-storage-containers': {
+            'code': 1020503
+          },
+          'plastic-wrap': {
+            'code': 1020504
+          },
+          'wax-and-parchment-paper': {
+            'code': 1020505
+          },
+          'trash-bags': {
+            'code': 1020506
+          }
+        },
+        'home-fragrance': {
+          'code': 1020600,
+          'air-fresheners': {
+            'code': 1020601
+          },
+          'candles': {
+            'code': 1020602
+          },
+          'fragrance-diffusers': {
+            'code': 1020603
+          }
+        },
+        'light-bulbs': {
+          'code': 1020700
+        },
+        'insect-and-pest-control': {
+          'code': 1020800,
+          'indoor-pest-control': {
+            'code': 1020801
+          },
+          'outdoor-pest-control': {
+            'code': 1020802
+          },
+          'insect-repellent': {
+            'code': 1020803
+          }
+        }
+      },
+      'personal-care': {
+        'code': 1030000,
+        'oral-and-personal-care': {
+          'code': 1030100,
+          'deodorant': {
+            'code': 1030101
+          },
+          'ear-care': {
+            'code': 1030102
+          },
+          'eye-care': {
+            'code': 1030103
+          },
+          'feminine-care': {
+            'code': 1030104
+          },
+          'toothbrushes': {
+            'code': 1030105
+          },
+          'toothpaste': {
+            'code': 1030106
+          },
+          'mouthwash': {
+            'code': 1030107
+          },
+          'dental-floss': {
+            'code': 1030108
+          },
+          'manual-toothbrushes': {
+            'code': 1030109
+          },
+          'electric-toothbrushes': {
+            'code': 1030110
+          },
+          'other-oral-care': {
+            'code': 1030111
+          },
+          'razors': {
+            'code': 1030112
+          },
+          'shaving-cream': {
+            'code': 1030113
+          },
+          'waxing-and-hair-removal': {
+            'code': 1030114
+          },
+          'safer-sex-and-contraceptives': {
+            'code': 1030115
+          },
+          'cotton-balls-and-rounds': {
+            'code': 1030116
+          },
+          'incontinence': {
+            'code': 1030117
+          },
+          'wet-shave': {
+            'code': 1030118
+          },
+          'electric-shavers': {
+            'code': 1030119
+          }
+        },
+        'tools-and-accessories': {
+          'code': 1030200,
+          'bath-sponges-and-tools': {
+            'code': 1030201
+          },
+          'eye-masks': {
+            'code': 1030202
+          },
+          'beauty-and-spa-tools': {
+            'code': 1030203
+          },
+          'cotton-balls-and-rounds': {
+            'code': 1030204
+          },
+          'mirrors': {
+            'code': 1030205
+          },
+          'toiletry-kits-and-cases': {
+            'code': 1030206
+          },
+          'tweezers': {
+            'code': 1030207
+          },
+          'facial-tissues': {
+            'code': 1030208
+          },
+          'nail-care-tools': {
+            'code': 1030209
+          },
+          'top-beauty-tools-and-accessories': {
+            'code': 1030210
+          }
+        },
+        'hair-care-products': {
+          'code': 1030300,
+          'shampoos': {
+            'code': 1030301
+          },
+          'conditioners': {
+            'code': 1030302
+          },
+          'styling-products': {
+            'code': 1030303
+          },
+          'scalp-treatments': {
+            'code': 1030304
+          },
+          'hair-color': {
+            'code': 1030305
+          },
+          'hair-loss-products': {
+            'code': 1030306
+          },
+          'hair-perms-and-texturizers': {
+            'code': 1030307
+          },
+          'hair-relaxers-and-treatments': {
+            'code': 1030308
+          },
+          'multicultural-hair-care-products': {
+            'code': 1030309
+          },
+          'innovative-hair-care': {
+            'code': 1030310
+          }
+        },
+        'hair-tools-and-accessories': {
+          'code': 1030400,
+          'brushes': {
+            'code': 1030401
+          },
+          'dryers-irons-and-diffusers': {
+            'code': 1030402
+          },
+          'hair-rollers': {
+            'code': 1030403
+          },
+          'hair-accessories': {
+            'code': 1030404
+          },
+          'haircutting-tools': {
+            'code': 1030405
+          },
+          'combs': {
+            'code': 1030406
+          }
+        },
+        'makeup': {
+          'code': 1030500,
+          'body-art-and-makeup': {
+            'code': 1030501
+          },
+          'makeup-brushes': {
+            'code': 1030502
+          },
+          'face-makeup': {
+            'code': 1030503
+          },
+          'lip-makeup': {
+            'code': 1030504
+          },
+          'makeup-sets': {
+            'code': 1030505
+          },
+          'eyeliner-and-brow-pencils': {
+            'code': 1030506
+          },
+          'mascara-and-lashes': {
+            'code': 1030507
+          },
+          'eye-shadow': {
+            'code': 1030508
+          },
+          'makeup-sponges': {
+            'code': 1030509
+          },
+          'makeup-tools': {
+            'code': 1030510
+          }
+        },
+        'nail-care': {
+          'code': 1030600,
+          'cuticle-care': {
+            'code': 1030601
+          },
+          'nail-care-tools': {
+            'code': 1030602
+          },
+          'nail-polish': {
+            'code': 1030603
+          },
+          'nail-polish-remover': {
+            'code': 1030604
+          }
+        },
+        'skin-care': {
+          'code': 1030700,
+          'bath-salts-and-bubbles': {
+            'code': 1030701
+          },
+          'makeup-remover': {
+            'code': 1030702
+          },
+          'hand-soap': {
+            'code': 1030703
+          },
+          'lip-care': {
+            'code': 1030704
+          },
+          'suncare': {
+            'code': 1030705
+          },
+          'toners-and-astringents': {
+            'code': 1030706
+          },
+          'body-powder': {
+            'code': 1030707
+          },
+          'body-moisturizers': {
+            'code': 1030708
+          },
+          'massage-oil-and-aromatherapy': {
+            'code': 1030709
+          },
+          'hand-sanitizers-and-wipes': {
+            'code': 1030710
+          },
+          'facial-cleansers': {
+            'code': 1030711
+          },
+          'facial-moisturizers-and-treatment': {
+            'code': 1030712
+          },
+          'soap-and-body-wash': {
+            'code': 1030713
+          },
+          'shaving-cream': {
+            'code': 1030714
+          }
+        },
+        'mens-essentials': {
+          'code': 1030800,
+          'beard-and-shave': {
+            'code': 1030801
+          },
+          'body': {
+            'code': 1030802
+          },
+          'face': {
+            'code': 1030803
+          },
+          'hair': {
+            'code': 1030804
+          },
+          'cologne': {
+            'code': 1030805
+          },
+          'wellness': {
+            'code': 1030806
+          }
+        }
+      },
+      'health': {
+        'code': 1040000,
+        'medicine-cabinet': {
+          'code': 1040100,
+          'allergy-sinus-and-asthma': {
+            'code': 1040101
+          },
+          'childrens-medicine': {
+            'code': 1040102
+          },
+          'cold-sore-and-blister-treatments': {
+            'code': 1040103
+          },
+          'cough-and-cold': {
+            'code': 1040104
+          },
+          'diabetes': {
+            'code': 1040105
+          },
+          'digestion-and-nausea': {
+            'code': 1040106
+          },
+          'foot-healthcare': {
+            'code': 1040107
+          },
+          'incontinence': {
+            'code': 1040108
+          },
+          'pain-relievers': {
+            'code': 1040109
+          },
+          'sleep-and-snoring': {
+            'code': 1040110
+          },
+          'smoking-cessation': {
+            'code': 1040111
+          },
+          'therapeutic-ointments-and-powders': {
+            'code': 1040112
+          },
+          'thermometers': {
+            'code': 1040113
+          },
+          'ear-care': {
+            'code': 1040114
+          },
+          'eye-care': {
+            'code': 1040115
+          }
+        },
+        'medical-supplies-and-equipment': {
+          'code': 1040200,
+          'pills-cases-and-splitters': {
+            'code': 1040201
+          },
+          'bathroom-aids-and-safety': {
+            'code': 1040202
+          },
+          'beds-and-accessories': {
+            'code': 1040203
+          },
+          'braces-splints-and-slings': {
+            'code': 1040204
+          },
+          'daily-living-aids': {
+            'code': 1040205
+          },
+          'mobility-aids-and-equipment': {
+            'code': 1040206
+          },
+          'occupational-and-physical-therapy-aids': {
+            'code': 1040207
+          },
+          'pen-lights': {
+            'code': 1040208
+          },
+          'tests': {
+            'code': 1040209
+          },
+          'first-aid': {
+            'code': 1040210
+          },
+          'dehumidifiers': {
+            'code': 1040211
+          },
+          'humidifiers': {
+            'code': 1040212
+          },
+          'health-monitors': {
+            'code': 1040213
+          }
+        },
+        'sports-nutrition-and-diet': {
+          'code': 1040300,
+          'protein-and-meal-replacement': {
+            'code': 1040301
+          },
+          'energy-and-endurance': {
+            'code': 1040302
+          },
+          'weight-loss-supplements-and-cleanses': {
+            'code': 1040303
+          },
+          'mass-gainers': {
+            'code': 1040304
+          },
+          'amino-acids-and-creatine': {
+            'code': 1040305
+          },
+          'on-the-go-nutrition': {
+            'code': 1040306
+          },
+          'slimfast-campaign': {
+            'code': 1040307
+          }
+        },
+        'vitamins-and-dietary-supplements': {
+          'code': 1040400,
+          'minerals': {
+            'code': 1040401
+          },
+          'supplements': {
+            'code': 1040402
+          },
+          'letter-vitamins': {
+            'code': 1040403
+          },
+          'fish-oils-and-omegas': {
+            'code': 1040404
+          },
+          'probiotics': {
+            'code': 1040405
+          },
+          'multivitamins': {
+            'code': 1040406
+          },
+          'protein-and-meal-replacements': {
+            'code': 1040407
+          },
+          'pill-cases-and-splitters': {
+            'code': 1040408
+          },
+          'amino-acids-and-creatine': {
+            'code': 1040409
+          },
+          'weight-loss-supplements': {
+            'code': 1040410
+          },
+          'new-and-noteworthy-vitamins-and-supplements': {
+            'code': 1040411
+          },
+          'herbs-and-homeopathy': {
+            'code': 1040412
+          }
+        }
+      },
+      'baby': {
+        'code': 1050000,
+        'baby-food-and-formula': {
+          'code': 1050100,
+          'baby-and-toddler-snacks': {
+            'code': 1050101
+          },
+          'baby-food': {
+            'code': 1050102
+          },
+          'baby-formula': {
+            'code': 1050103
+          },
+          'toddler-juices-and-milk': {
+            'code': 1050104
+          }
+        },
+        'diapering': {
+          'code': 1050200,
+          'diapers': {
+            'code': 1050201
+          },
+          'baby-wipes': {
+            'code': 1050202
+          },
+          'baby-wipe-holders-and-warmers': {
+            'code': 1050203
+          },
+          'changing-table-accessories': {
+            'code': 1050204
+          },
+          'cloth-diapers': {
+            'code': 1050205
+          },
+          'cloth-diaper-accessories': {
+            'code': 1050206
+          },
+          'diaper-bags': {
+            'code': 1050207
+          },
+          'diaper-cakes': {
+            'code': 1050208
+          },
+          'diaper-changing-pads': {
+            'code': 1050209
+          },
+          'diaper-creams-and-ointments': {
+            'code': 1050210
+          },
+          'diaper-pails-and-refills': {
+            'code': 1050211
+          },
+          'diaper-stackers-and-caddies': {
+            'code': 1050212
+          }
+        },
+        'baby-gear': {
+          'code': 1050300,
+          'baby-monitors': {
+            'code': 1050301
+          },
+          'baby-seats': {
+            'code': 1050302
+          },
+          'bouncers-and-walkers': {
+            'code': 1050303
+          },
+          'car-seats': {
+            'code': 1050304
+          },
+          'carriers': {
+            'code': 1050305
+          },
+          'harnesses-and-leashes': {
+            'code': 1050306
+          },
+          'play-mats-and-activity-gyms': {
+            'code': 1050307
+          },
+          'playards-and-travel-beds': {
+            'code': 1050308
+          },
+          'strollers': {
+            'code': 1050309
+          }
+        },
+        'baby-gear-accessories': {
+          'code': 1050400,
+          'car-seat-and-stroller-toys': {
+            'code': 1050401
+          },
+          'car-seat-accessories': {
+            'code': 1050402
+          },
+          'carrier-accessories': {
+            'code': 1050403
+          },
+          'crib-netting': {
+            'code': 1050404
+          },
+          'shopping-cart-covers': {
+            'code': 1050405
+          },
+          'stroller-accessories': {
+            'code': 1050406
+          }
+        },
+        'feeding-and-nursing': {
+          'code': 1050500,
+          'baby-bottles-and-accessories': {
+            'code': 1050501
+          },
+          'baby-food': {
+            'code': 1050502
+          },
+          'baby-formula': {
+            'code': 1050503
+          },
+          'bibs-and-burp-cloths': {
+            'code': 1050504
+          },
+          'breast-pump': {
+            'code': 1050505
+          },
+          'breast-pump-accessories': {
+            'code': 1050506
+          },
+          'food-and-formula-prep': {
+            'code': 1050507
+          },
+          'food-storage-and-on-the-go': {
+            'code': 1050508
+          },
+          'highchairs-and-boosters': {
+            'code': 1050509
+          },
+          'kids-tabletop': {
+            'code': 1050510
+          },
+          'lunch-bags': {
+            'code': 1050511
+          },
+          'nursing-accessories': {
+            'code': 1050512
+          },
+          'pacifiers-and-teethers': {
+            'code': 1050513
+          },
+          'sippys-and-cups': {
+            'code': 1050514
+          }
+        },
+        'babyproofing': {
+          'code': 1050600,
+          'baby-monitors': {
+            'code': 1050601
+          },
+          'bath-safety': {
+            'code': 1050602
+          },
+          'edge-and-corner-guards': {
+            'code': 1050603
+          },
+          'electrical-safety': {
+            'code': 1050604
+          },
+          'gates-and-rails': {
+            'code': 1050605
+          },
+          'kitchen-safety': {
+            'code': 1050606
+          },
+          'outdoor-safety': {
+            'code': 1050607
+          },
+          'rails-and-rail-guards': {
+            'code': 1050608
+          },
+          'sleep-positioners': {
+            'code': 1050609
+          }
+        },
+        'baby-care': {
+          'code': 1050700,
+          'baby-bubble-bath': {
+            'code': 1050701
+          },
+          'baby-oil-and-lotion': {
+            'code': 1050702
+          },
+          'baby-powder': {
+            'code': 1050703
+          },
+          'baby-shampoo-and-wash': {
+            'code': 1050704
+          }
+        },
+        'potty-training': {
+          'code': 1050800,
+          'potties': {
+            'code': 1050801
+          },
+          'potty-training-aids': {
+            'code': 1050802
+          },
+          'seat-covers': {
+            'code': 1050803
+          },
+          'step-stools': {
+            'code': 1050804
+          },
+          'training-pants': {
+            'code': 1050805
+          }
+        },
+        'baby-bathing': {
+          'code': 1050900,
+          'baby-bath-accessories': {
+            'code': 1050901
+          },
+          'baby-grooming': {
+            'code': 1050902
+          },
+          'baby-tubs': {
+            'code': 1050903
+          },
+          'baby-washcloths-and-towels': {
+            'code': 1050904
+          },
+          'bath-toys': {
+            'code': 1050905
+          }
+        },
+        'baby-gifts': {
+          'code': 1051000,
+          'baby-gift-sets-and-baskets': {
+            'code': 1051001
+          },
+          'keepsakes-and-albums': {
+            'code': 1051002
+          },
+          'new-mom-gifts': {
+            'code': 1051003
+          },
+          'toy-banks': {
+            'code': 1051004
+          }
+        }
+      },
+      'pet-supplies': {
+        'code': 1060000,
+        'dog-supplies': {
+          'code': 1060100,
+          'collars-harnesses-and-leashes': {
+            'code': 1060101
+          },
+          'dog-apparel': {
+            'code': 1060102
+          },
+          'dog-beds': {
+            'code': 1060103
+          },
+          'dog-bowls-and-feeders': {
+            'code': 1060104
+          },
+          'travel-supplies': {
+            'code': 1060105
+          },
+          'cleaning-supplies': {
+            'code': 1060106
+          },
+          'crates-and-kennels': {
+            'code': 1060107
+          },
+          'flea-and-tick-control': {
+            'code': 1060108
+          },
+          'dog-food': {
+            'code': 1060109
+          },
+          'grooming': {
+            'code': 1060110
+          },
+          'dog-houses': {
+            'code': 1060111
+          },
+          'medication-and-health-supplies': {
+            'code': 1060112
+          },
+          'modern-furniture': {
+            'code': 1060113
+          },
+          'dog-technology': {
+            'code': 1060114
+          },
+          'toys': {
+            'code': 1060115
+          },
+          'training-and-behavior': {
+            'code': 1060116
+          },
+          'treats': {
+            'code': 1060117
+          },
+          'gates-and-ramps': {
+            'code': 1060118
+          },
+          'poop-bags-and-housebreaking': {
+            'code': 1060119
+          }
+        },
+        'cat-supplies': {
+          'code': 1060200,
+          'cat-beds': {
+            'code': 1060201
+          },
+          'carriers': {
+            'code': 1060202
+          },
+          'cleaning-supplies': {
+            'code': 1060203
+          },
+          'flea-and-tick-control': {
+            'code': 1060204
+          },
+          'cat-food': {
+            'code': 1060205
+          },
+          'cat-grooming': {
+            'code': 1060206
+          },
+          'health-supplies': {
+            'code': 1060207
+          },
+          'litter': {
+            'code': 1060208
+          },
+          'litter-boxes': {
+            'code': 1060209
+          },
+          'scratchers': {
+            'code': 1060210
+          },
+          'cat-toys': {
+            'code': 1060211
+          },
+          'training-and-behavior-aids': {
+            'code': 1060212
+          },
+          'cat-treats': {
+            'code': 1060213
+          },
+          'cat-trees-and-condos': {
+            'code': 1060214
+          },
+          'collars-harnesses-and-leashes': {
+            'code': 1060215
+          },
+          'feeding-and-watering-supplies': {
+            'code': 1060216
+          }
+        }
+      },
+      'office-supplies': {
+        'code': 1070000,
+        'pens-pencils-and-markers': {
+          'code': 1070100
+        },
+        'tape-and-adhesives': {
+          'code': 1070200
+        },
+        'office-paper': {
+          'code': 1070300
+        },
+        'presentation-boards': {
+          'code': 1070400
+        },
+        'workspace-organizers': {
+          'code': 1070500
+        },
+        'staplers-and-punches': {
+          'code': 1070600
+        },
+        'labels-indexes-and-stamps': {
+          'code': 1070700
+        },
+        'filing-products': {
+          'code': 1070800
+        },
+        'binders-and-binding-systems': {
+          'code': 1070900
+        },
+        'scissors-cutters-and-measuring-devices': {
+          'code': 1071000
+        },
+        'envelopes-and-shipping-supplies': {
+          'code': 1071100
+        },
+        'calendars-and-planners': {
+          'code': 1071200
+        },
+        'stationary': {
+          'code': 1071300
+        }
+      }
+    },
+    'electronics': {
+      'code': 2000000,
+      'tv-and-home-theater': {
+        'code': 2010000,
+        'televisions': {
+          'code': 2010100,
+          '4k-tvs': {
+            'code': 2010101
+          },
+          'smart-tvs': {
+            'code': 2010102
+          }
+        },
+        'media-streaming-devices': {
+          'code': 2010200
+        },
+        'blu-ray-players': {
+          'code': 2010300
+        },
+        'home-theater-systems': {
+          'code': 2010400
+        },
+        'speakers': {
+          'code': 2010500,
+          'wireless-and-bluetooth-speakers': {
+            'code': 2010501
+          },
+          'bookshelf-speakers': {
+            'code': 2010502
+          },
+          'floor-speakers': {
+            'code': 2010503
+          },
+          'in-wall-and-in-ceiling-speakers': {
+            'code': 2010504
+          },
+          'center-channel-speakers': {
+            'code': 2010505
+          },
+          'subwoofer': {
+            'code': 2010506
+          }
+        },
+        'sound-bars': {
+          'code': 2010600,
+          'smart-sound-bars': {
+            'code': 2010601
+          }
+        },
+        'receivers-and-amplifiers': {
+          'code': 2010700
+        },
+        'accessories': {
+          'code': 2010800,
+          'cables': {
+            'code': 2010801
+          },
+          'speaker-accessories': {
+            'code': 2010802
+          },
+          'remote-controls': {
+            'code': 2010803
+          },
+          'tv-mounts': {
+            'code': 2010804
+          },
+          'hdtv-antennas': {
+            'code': 2010805
+          },
+          'cleaning-accessories': {
+            'code': 2010806
+          }
+        },
+        'projectors-and-screens': {
+          'code': 2010900
+        }
+      },
+      'computers-and-tablets': {
+        'code': 2020000,
+        'laptops': {
+          'code': 2020100,
+          'apple-macbook': {
+            'code': 2020101
+          },
+          'windows-laptops': {
+            'code': 2020102
+          },
+          'chromebooks': {
+            'code': 2020103
+          },
+          '2-in-1-laptops': {
+            'code': 2020104
+          }
+        },
+        'all-in-one-desktop-computers': {
+          'code': 2020200,
+          'apple-imac': {
+            'code': 2020201
+          },
+          'windows-desktops': {
+            'code': 2020202
+          }
+        },
+        'computer-accessories': {
+          'code': 2020300,
+          'wireless-mice': {
+            'code': 2020301
+          },
+          'wireless-keyboards': {
+            'code': 2020302
+          },
+          'printers-and-ink': {
+            'code': 2020303
+          },
+          'external-hard-drives': {
+            'code': 2020304
+          },
+          'usb-flash-drives': {
+            'code': 2020305
+          },
+          'laptop-bags-and-cases': {
+            'code': 2020306
+          }
+        },
+        'tablets': {
+          'code': 2020400,
+          'apple-ipad': {
+            'code': 2020401
+          },
+          'samsung-galaxy-tablets': {
+            'code': 2020402
+          },
+          'android-tablets': {
+            'code': 2020403
+          },
+          '4g-lte-tablets': {
+            'code': 2020404
+          }
+        },
+        'tablet-accessories': {
+          'code': 2020500,
+          'cases-covers-and-keyboard-folios': {
+            'code': 2020501
+          },
+          'stands-and-mounts': {
+            'code': 2020502
+          },
+          'chargers-cables-and-adapters': {
+            'code': 2020503
+          },
+          'tablet-stylus-pens': {
+            'code': 2020504
+          },
+          'tablet-keyboards': {
+            'code': 2020505
+          },
+          'tablet-docking-stations': {
+            'code': 2020506
+          },
+          'tablet-screen-protectors': {
+            'code': 2020507
+          },
+          'portable-chargers-and-power-packs': {
+            'code': 2020508
+          }
+        }
+      },
+      'audio': {
+        'code': 2030000,
+        'headphones': {
+          'code': 2030100,
+          'noise-cancelling': {
+            'code': 2030101
+          },
+          'true-wireless-earbuds': {
+            'code': 2030102
+          },
+          'wireless-headphones': {
+            'code': 2030103
+          },
+          'over-ear-headphones': {
+            'code': 2030104
+          },
+          'in-ear-headphones': {
+            'code': 2030105
+          },
+          'sports-headphones': {
+            'code': 2030106
+          }
+        },
+        'bluetooth-speakers': {
+          'code': 2030200
+        },
+        'speakers': {
+          'code': 2030300,
+          'wireless-and-bluetooth-speakers': {
+            'code': 2030301
+          },
+          'bookshelf-speakers': {
+            'code': 2030302
+          },
+          'floor-speakers': {
+            'code': 2030303
+          },
+          'subwoofer': {
+            'code': 2030304
+          }
+        },
+        'sound-bars': {
+          'code': 2030400
+        },
+        'home-theater-systems': {
+          'code': 2030500
+        },
+        'receivers-and-amplifiers': {
+          'code': 2030600
+        },
+        'dolby-atmos-sound': {
+          'code': 2030700
+        }
+      },
+      'smart-home': {
+        'code': 2040000,
+        'voice-assistants': {
+          'code': 2040100,
+          'google-home': {
+            'code': 2040101
+          },
+          'apple-homepod': {
+            'code': 2040102
+          }
+        },
+        'smart-accessories': {
+          'code': 2040200,
+          'dimmers-and-switches': {
+            'code': 2040201
+          },
+          'sensors-and-motion-detectors': {
+            'code': 2040202
+          },
+          'security-cameras': {
+            'code': 2040203
+          },
+          'smart-lighting': {
+            'code': 2040204
+          },
+          'smart-plugs': {
+            'code': 2040205
+          }
+        },
+        'wi-fi-and-networking': {
+          'code': 2040300,
+          'wireless-routers': {
+            'code': 2040301
+          },
+          'modems': {
+            'code': 2040302
+          },
+          'mesh-wi-fi-systems': {
+            'code': 2040303
+          },
+          'wi-fi-range-extenders': {
+            'code': 2040304
+          },
+          'networking-cables': {
+            'code': 2040305
+          }
+        }
+      },
+      'wearable-tech': {
+        'code': 2050000,
+        'activity-trackers': {
+          'code': 2050100
+        },
+        'smart-watches': {
+          'code': 2050200
+        },
+        'wearable-cameras': {
+          'code': 2050300
+        },
+        'wearable-tech-accessories': {
+          'code': 2050400
+        },
+        'featured-brands': {
+          'code': 2050500
+        }
+      },
+      'cameras': {
+        'code': 2060000,
+        'cameras-and-lenses': {
+          'code': 2060100,
+          'dslr-cameras': {
+            'code': 2060101
+          },
+          'mirrorless-cameras': {
+            'code': 2060102
+          },
+          'instant-print-cameras': {
+            'code': 2060103
+          },
+          'camera-lenses': {
+            'code': 2060104
+          }
+        },
+        'camera-accessories': {
+          'code': 2060200,
+          'memory-cards': {
+            'code': 2060201
+          },
+          'camera-bags-cases-and-straps': {
+            'code': 2060202
+          },
+          'camera-batteries-and-power': {
+            'code': 2060203
+          },
+          'flashes-and-lighting': {
+            'code': 2060204
+          },
+          'lens-filters': {
+            'code': 2060205
+          },
+          'camera-cleaning-equipment': {
+            'code': 2060206
+          },
+          'film': {
+            'code': 2060207
+          },
+          'tripods-and-monopods': {
+            'code': 2060208
+          }
+        },
+        'featured-brands': {
+          'code': 2060300
+        }
+      },
+      'toys-and-games': {
+        'code': 2070000,
+        'consoles-and-accessories': {
+          'code': 2070100,
+          'nintendo': {
+            'code': 2070101
+          },
+          'playstation': {
+            'code': 2070102
+          },
+          'xbox': {
+            'code': 2070103
+          }
+        },
+        'pc-gaming': {
+          'code': 2070200,
+          'laptops': {
+            'code': 2070201
+          },
+          'desktops': {
+            'code': 2070202
+          },
+          'gaming-keyboards': {
+            'code': 2070203
+          },
+          'gaming-mice': {
+            'code': 2070204
+          }
+        },
+        'arvr': {
+          'code': 2070300
+        },
+        'smart-toys': {
+          'code': 2070400
+        },
+        'drones': {
+          'code': 2070500
+        }
+      },
+      'cellphone': {
+        'code': 2080000,
+        'cases-and-covers': {
+          'code': 2080100
+        },
+        'cables': {
+          'code': 2080200
+        },
+        'portable-chargers-and-power-packs': {
+          'code': 2080300
+        }
+      }
+    },
+    'home-and-living': {
+      'code': 3000000,
+      'furniture': {
+        'code': 3010000,
+        'bedding-basics': {
+          'code': 3010100
+        },
+        'bedding': {
+          'code': 3010200
+        },
+        'kids-bedding': {
+          'code': 3010300
+        }
+      },
+      'bath': {
+        'code': 3020000,
+        'bath-towels': {
+          'code': 3020100
+        },
+        'bath-rugs-and-mats': {
+          'code': 3020200
+        },
+        'beach-towels': {
+          'code': 3020300
+        },
+        'shower-curtains-and-liners': {
+          'code': 3020400
+        },
+        'shower-curtain-rods-and-hardware': {
+          'code': 3020500
+        },
+        'shower-and-bathtub-caddies': {
+          'code': 3020600
+        },
+        'bath-accessories': {
+          'code': 3020700
+        },
+        'bathroom-storage-and-organization': {
+          'code': 3020800
+        },
+        'bathroom-racks-and-shelves': {
+          'code': 3020900
+        },
+        'bathroom-cabinets': {
+          'code': 3021000
+        },
+        'bathroom-waste-baskets': {
+          'code': 3021100
+        },
+        'bathroom-mirrors': {
+          'code': 3021200
+        }
+      },
+      'kitchen': {
+        'code': 3030000,
+        'kitchen-appliances': {
+          'code': 3030100,
+          'coffee-makers': {
+            'code': 3030101
+          },
+          'blenders': {
+            'code': 3030102
+          },
+          'toaster-ovens': {
+            'code': 3030103
+          },
+          'mixers': {
+            'code': 3030104
+          },
+          'food-processors': {
+            'code': 3030105
+          },
+          'slow-cookers': {
+            'code': 3030106
+          },
+          'microwaves': {
+            'code': 3030107
+          }
+        },
+        'specialty-appliances': {
+          'code': 3030200,
+          'rice-cookers': {
+            'code': 3030201
+          },
+          'juicers': {
+            'code': 3030202
+          },
+          'bread-machines': {
+            'code': 3030203
+          },
+          'waffle-irons': {
+            'code': 3030204
+          },
+          'ice-cream-machines': {
+            'code': 3030205
+          }
+        },
+        'cookware': {
+          'code': 3030300,
+          'skillets-and-frying-pans': {
+            'code': 3030301
+          },
+          'cookware-sets': {
+            'code': 3030302
+          },
+          'dutch-ovens': {
+            'code': 3030303
+          },
+          'pressure-cookers': {
+            'code': 3030304
+          },
+          'specialty-cookware': {
+            'code': 3030305
+          },
+          'grill-pans': {
+            'code': 3030306
+          },
+          'roasting-pans': {
+            'code': 3030307
+          }
+        },
+        'bakeware': {
+          'code': 3030400,
+          'baking-sheets-and-mats': {
+            'code': 3030401
+          },
+          'cupcake-and-muffin-pans': {
+            'code': 3030402
+          },
+          'cake-pans': {
+            'code': 3030403
+          },
+          'pie-dishes-and-tart-pans': {
+            'code': 3030404
+          },
+          'loaf-and-bread-pans': {
+            'code': 3030405
+          }
+        },
+        'utensils-and-gadgets': {
+          'code': 3030500,
+          'utensils-tongs-and-whisks': {
+            'code': 3030501
+          },
+          'choppers-graters-and-slicers': {
+            'code': 3030502
+          },
+          'measurers-and-timing-tools': {
+            'code': 3030503
+          },
+          'kitchen-knives': {
+            'code': 3030504
+          },
+          'cutting-boards-and-chopping-blocks': {
+            'code': 3030505
+          },
+          'strainers-and-colanders': {
+            'code': 3030506
+          },
+          'ice-cube-trays-and-molds': {
+            'code': 3030507
+          },
+          'can-openers': {
+            'code': 3030508
+          },
+          'mixing-and-prep-bowls': {
+            'code': 3030509
+          }
+        },
+        'kitchen-storage': {
+          'code': 3030600
+        },
+        'dish-towels-and-aprons': {
+          'code': 3030700
+        },
+        'oven-mitts-and-pot-holders': {
+          'code': 3030800,
+          'dinnerware': {
+            'code': 3030801
+          },
+          'flatware': {
+            'code': 3030802
+          },
+          'glassware-and-drinkware': {
+            'code': 3030803
+          },
+          'coffee-mugs-and-tea-cups': {
+            'code': 3030804
+          },
+          'table-linens': {
+            'code': 3030805
+          },
+          'steak-knives': {
+            'code': 3030806
+          },
+          'home-bar-tools': {
+            'code': 3030807
+          },
+          'cheese-boards-and-knives': {
+            'code': 3030808
+          },
+          'salt-and-pepper-shakers': {
+            'code': 3030809
+          }
+        }
+      },
+      'decor': {
+        'code': 3040000,
+        'home-accents': {
+          'code': 3040100,
+          'picture-frames': {
+            'code': 3040101
+          },
+          'decorative-pillows': {
+            'code': 3040102
+          },
+          'throw-blankets': {
+            'code': 3040103
+          },
+          'vases': {
+            'code': 3040104
+          },
+          'faux-flowers-and-plants': {
+            'code': 3040105
+          },
+          'candles': {
+            'code': 3040106
+          },
+          'candle-holders-and-lanterns': {
+            'code': 3040107
+          },
+          'clocks': {
+            'code': 3040108
+          },
+          'decorative-trays': {
+            'code': 3040109
+          }
+        },
+        'wall-decor': {
+          'code': 3040200,
+          'decorative-mirrors': {
+            'code': 3040201
+          },
+          'canvas-art': {
+            'code': 3040202
+          },
+          'wall-accents': {
+            'code': 3040203
+          },
+          'framed-art': {
+            'code': 3040204
+          },
+          'decorative-shelves': {
+            'code': 3040205
+          }
+        },
+        'rugs': {
+          'code': 3040300
+        },
+        'window-treatments': {
+          'code': 3040400
+        },
+        'lighting-and-ceiling-fans': {
+          'code': 3040500,
+          'floor-lamps': {
+            'code': 3040501
+          },
+          'table-lamps': {
+            'code': 3040502
+          },
+          'desk-lamps': {
+            'code': 3040503
+          },
+          'chandeliers-and-pendants': {
+            'code': 3040504
+          },
+          'flush-mount-lighting': {
+            'code': 3040505
+          },
+          'sconces': {
+            'code': 3040506
+          },
+          'swing-arm-lamps': {
+            'code': 3040507
+          },
+          'ceiling-fans': {
+            'code': 3040508
+          }
+        }
+      },
+      'outdoor': {
+        'code': 3050000,
+        'outdoor-furniture': {
+          'code': 3050100,
+          'bistro-sets': {
+            'code': 3050101
+          },
+          'patio-lounge-seating': {
+            'code': 3050102
+          },
+          'garden-stools': {
+            'code': 3050103
+          }
+        },
+        'outdoor-decor': {
+          'code': 3050200,
+          'string-lights': {
+            'code': 3050201
+          },
+          'outdoor-cushions-and-pillows': {
+            'code': 3050202
+          }
+        },
+        'outdoor-appliances': {
+          'code': 3050300,
+          'grills': {
+            'code': 3050301
+          },
+          'smokers': {
+            'code': 3050302
+          }
+        },
+        'planters': {
+          'code': 3050400,
+          'planter-pots': {
+            'code': 3050401
+          },
+          'hanging-planters': {
+            'code': 3050402
+          },
+          'rail-planters': {
+            'code': 3050403
+          },
+          'window-boxes': {
+            'code': 3050404
+          }
+        },
+        'gardening': {
+          'code': 3050500,
+          'gardening-tools': {
+            'code': 3050501
+          },
+          'house-plants': {
+            'code': 3050502
+          },
+          'garden-flowers': {
+            'code': 3050503
+          },
+          'grow-kits': {
+            'code': 3050504
+          },
+          'seeds': {
+            'code': 3050505
+          }
+        }
+      },
+      'storage-and-organization': {
+        'code': 3060000,
+        'closet-organization': {
+          'code': 3060100,
+          'hangers': {
+            'code': 3060101
+          },
+          'shoe-racks-and-organizers': {
+            'code': 3060102
+          },
+          'closet-systems': {
+            'code': 3060103
+          }
+        },
+        'laundry-essentials': {
+          'code': 3060200,
+          'garment-racks': {
+            'code': 3060201
+          },
+          'drying-racks': {
+            'code': 3060202
+          },
+          'laundry-baskets': {
+            'code': 3060203
+          },
+          'hampers': {
+            'code': 3060204
+          }
+        },
+        'jewelry-organization': {
+          'code': 3060300,
+          'jewelry-armoires': {
+            'code': 3060301
+          },
+          'jewelry-boxes-and-organizers': {
+            'code': 3060302
+          }
+        },
+        'racks-and-shelves': {
+          'code': 3060400
+        },
+        'storage-containers-and-drawers': {
+          'code': 3060500
+        },
+        'seasonal-storage': {
+          'code': 3060600
+        },
+        'trash-cans-and-recycling-bins': {
+          'code': 3060700
+        }
+      },
+      'kids': {
+        'code': 3070000,
+        'beds': {
+          'code': 3070100
+        },
+        'bunk-bed': {
+          'code': 3070200
+        },
+        'mattresses-and-box-springs': {
+          'code': 3070300
+        },
+        'nightstands': {
+          'code': 3070400
+        },
+        'dressers-and-chests': {
+          'code': 3070500
+        },
+        'seating': {
+          'code': 3070600
+        },
+        'tables-and-desks': {
+          'code': 3070700
+        },
+        'table-and-chair-sets': {
+          'code': 3070800
+        },
+        'step-stools': {
+          'code': 3070900
+        },
+        'toy-storage': {
+          'code': 3071000
+        },
+        'room-decor': {
+          'code': 3071100
+        }
+      },
+      'appliiance': {
+        'code': 3080000,
+        'heating-and-cooling': {
+          'code': 3080100,
+          'air-conditioners': {
+            'code': 3080101
+          },
+          'household-fans': {
+            'code': 3080102
+          },
+          'ceiling-fans': {
+            'code': 3080103
+          },
+          'air-purifiers': {
+            'code': 3080104
+          },
+          'dehumidifiers': {
+            'code': 3080105
+          },
+          'space-heaters': {
+            'code': 3080106
+          }
+        },
+        'household-appliances': {
+          'code': 3080200,
+          'refrigerators': {
+            'code': 3080201
+          },
+          'mini-refrigerators': {
+            'code': 3080202
+          },
+          'wine-refrigerators': {
+            'code': 3080203
+          },
+          'washers-and-dryers': {
+            'code': 3080204
+          },
+          'dishwashers': {
+            'code': 3080205
+          }
+        },
+        'kitchen-appliances': {
+          'code': 3080300,
+          'coffee-makers': {
+            'code': 3080301
+          },
+          'blenders': {
+            'code': 3080302
+          },
+          'toaster-ovens': {
+            'code': 3080303
+          },
+          'mixers': {
+            'code': 3080304
+          },
+          'food-processors': {
+            'code': 3080305
+          },
+          'slow-cookers': {
+            'code': 3080306
+          },
+          'microwaves': {
+            'code': 3080307
+          },
+          'rice-cookers': {
+            'code': 3080308
+          },
+          'juicers': {
+            'code': 3080309
+          },
+          'bread-machines': {
+            'code': 3080310
+          },
+          'waffle-irons': {
+            'code': 3080311
+          },
+          'ice-cream-machines': {
+            'code': 3080312
+          },
+          'specialty-appliances': {
+            'code': 3080313
+          }
+        },
+        'vacuums-and-floor-care': {
+          'code': 3080400,
+          'vacuums': {
+            'code': 3080401
+          },
+          'carpet-cleaners': {
+            'code': 3080402
+          },
+          'steam-cleaners': {
+            'code': 3080403
+          },
+          'carpet-sweepers': {
+            'code': 3080404
+          }
+        }
+      }
+    },
+    'beauty': {
+      'code': 4000000,
+      'skincare': {
+        'code': 4010000,
+        'face-cleansers': {
+          'code': 4010100,
+          'combination': {
+            'code': 4010101
+          },
+          'dry': {
+            'code': 4010102
+          },
+          'normal': {
+            'code': 4010103
+          }
+        },
+        'face-moisturizers-and-treatments': {
+          'code': 4010200,
+          'moisturizers': {
+            'code': 4010201
+          },
+          'night-creams': {
+            'code': 4010202
+          },
+          'serums': {
+            'code': 4010203
+          }
+        },
+        'exfoliators-and-scrubs': {
+          'code': 4010300
+        },
+        'face-mask': {
+          'code': 4010400,
+          'face-masks': {
+            'code': 4010401
+          },
+          'sheet-masks': {
+            'code': 4010402
+          }
+        },
+        'eye-cream-and-treatments': {
+          'code': 4010500,
+          'simply-moisture': {
+            'code': 4010501
+          },
+          'fine-lines-wrinkles': {
+            'code': 4010502
+          },
+          'dark-circles-puffness': {
+            'code': 4010503
+          }
+        },
+        'lip-care': {
+          'code': 4010600,
+          'lip-balms-and-treatments': {
+            'code': 4010601
+          },
+          'lip-sunscreen': {
+            'code': 4010602
+          }
+        },
+        'toners-and-mists': {
+          'code': 4010700,
+          'toners': {
+            'code': 4010701
+          },
+          'mists': {
+            'code': 4010702
+          }
+        },
+        'sun-care-and-sunscreens': {
+          'code': 4010800
+        },
+        'tools-and-devices': {
+          'code': 4010900
+        },
+        'gift-sets': {
+          'code': 4011000
+        },
+        'top-brands': {
+          'code': 4011100
+        }
+      },
+      'makeup': {
+        'code': 4020000,
+        'face': {
+          'code': 4020100,
+          'foundation': {
+            'code': 4020101
+          },
+          'face-primers': {
+            'code': 4020102
+          },
+          'bb-and-cc-cream': {
+            'code': 4020103
+          },
+          'tinted-moisturizer': {
+            'code': 4020104
+          },
+          'setting-powder': {
+            'code': 4020105
+          },
+          'concealer': {
+            'code': 4020106
+          }
+        },
+        'cheek': {
+          'code': 4020200,
+          'blush': {
+            'code': 4020201
+          },
+          'bronzer': {
+            'code': 4020202
+          },
+          'contour': {
+            'code': 4020203
+          },
+          'highlighter': {
+            'code': 4020204
+          },
+          'cheek-palettes': {
+            'code': 4020205
+          }
+        },
+        'eyes': {
+          'code': 4020300,
+          'eyeshadows': {
+            'code': 4020301
+          },
+          'mascara': {
+            'code': 4020302
+          },
+          'eyeliner': {
+            'code': 4020303
+          },
+          'eyebrow': {
+            'code': 4020304
+          },
+          'eye-palettes': {
+            'code': 4020305
+          },
+          'eye-sets': {
+            'code': 4020306
+          }
+        },
+        'lip': {
+          'code': 4020400,
+          'lipstick': {
+            'code': 4020401
+          },
+          'lip-gloss': {
+            'code': 4020402
+          },
+          'lip-stain': {
+            'code': 4020403
+          },
+          'lip-liner': {
+            'code': 4020404
+          },
+          'lip-palettes': {
+            'code': 4020405
+          },
+          'lip-sets': {
+            'code': 4020406
+          }
+        },
+        'makeup-brushes-and-applicators': {
+          'code': 4020500,
+          'face-brushes': {
+            'code': 4020501
+          },
+          'cheek-brushes': {
+            'code': 4020502
+          },
+          'eye-brushes': {
+            'code': 4020503
+          },
+          'lip-brushes': {
+            'code': 4020504
+          },
+          'sponges-and-applicators': {
+            'code': 4020505
+          },
+          'brush-cleaners': {
+            'code': 4020506
+          },
+          'brush-sets': {
+            'code': 4020507
+          }
+        },
+        'lash-bar': {
+          'code': 4020600,
+          'eyelash-curler': {
+            'code': 4020601
+          },
+          'false-lashes': {
+            'code': 4020602
+          }
+        },
+        'top-brands': {
+          'code': 4020700
+        }
+      },
+      'bath-and-body': {
+        'code': 4030000,
+        'body-wash-and-shower-gels': {
+          'code': 4030100,
+          'body-wash': {
+            'code': 4030101
+          },
+          'shower-gels': {
+            'code': 4030102
+          },
+          'bar-soaps': {
+            'code': 4030103
+          }
+        },
+        'body-lotions-and-creams': {
+          'code': 4030200,
+          'body-lotions': {
+            'code': 4030201
+          },
+          'body-creams': {
+            'code': 4030202
+          }
+        },
+        'body-oils': {
+          'code': 4030300
+        },
+        'body-scrubs-and-exfoliants': {
+          'code': 4030400
+        },
+        'hand-and-foot': {
+          'code': 4030500,
+          'hand-cream-and-lotion': {
+            'code': 4030501
+          },
+          'foot-cream-and-lotion': {
+            'code': 4030502
+          },
+          'hand-soaps': {
+            'code': 4030503
+          }
+        },
+        'bubble-bath': {
+          'code': 4030600
+        },
+        'body-sun-care-and-sunscreens': {
+          'code': 4030700
+        },
+        'gift-sets': {
+          'code': 4030800
+        },
+        'top-brands': {
+          'code': 4030900
+        }
+      },
+      'hair': {
+        'code': 4040000,
+        'shampoos': {
+          'code': 4040100,
+          'moisturizing': {
+            'code': 4040101
+          },
+          'volumizing': {
+            'code': 4040102
+          },
+          'damaged': {
+            'code': 4040103
+          },
+          'thickening': {
+            'code': 4040104
+          },
+          'dry-shampoos': {
+            'code': 4040105
+          }
+        },
+        'conditioners': {
+          'code': 4040200,
+          'moisturizing': {
+            'code': 4040201
+          },
+          'volumizing': {
+            'code': 4040202
+          },
+          'damaged': {
+            'code': 4040203
+          },
+          'thickening': {
+            'code': 4040204
+          },
+          'leave-in-conditioners': {
+            'code': 4040205
+          }
+        },
+        'hair-treatments': {
+          'code': 4040300,
+          'hair-masques': {
+            'code': 4040301
+          },
+          'hair-oils': {
+            'code': 4040302
+          }
+        },
+        'hair-styling': {
+          'code': 4040400,
+          'hair-sprays-and-mousses': {
+            'code': 4040401
+          },
+          'hair-creams-gels-and-oils': {
+            'code': 4040402
+          },
+          'hair-waxes-and-pomades': {
+            'code': 4040403
+          }
+        },
+        'hair-tools-and-accessories': {
+          'code': 4040500,
+          'hair-dryers-and-irons': {
+            'code': 4040501
+          },
+          'hair-brushes-and-combs': {
+            'code': 4040502
+          }
+        },
+        'gift-sets': {
+          'code': 4040600
+        },
+        'top-brands': {
+          'code': 4040700
+        }
+      },
+      'fragrance': {
+        'code': 4050000,
+        'women': {
+          'code': 4050100,
+          'edp': {
+            'code': 4050101
+          },
+          'edt': {
+            'code': 4050102
+          },
+          'cologne': {
+            'code': 4050103
+          }
+        },
+        'men': {
+          'code': 4050200,
+          'edp': {
+            'code': 4050201
+          },
+          'edt': {
+            'code': 4050202
+          },
+          'cologne': {
+            'code': 4050203
+          }
+        },
+        'candles': {
+          'code': 4050300
+        },
+        'fragrance-sets': {
+          'code': 4050400
+        },
+        'travel-size': {
+          'code': 4050500,
+          'citrus': {
+            'code': 4050501
+          },
+          'floral': {
+            'code': 4050502
+          },
+          'woody': {
+            'code': 4050503
+          },
+          'spicy': {
+            'code': 4050504
+          }
+        },
+        'top-brands': {
+          'code': 4050600
+        }
+      },
+      'men': {
+        'code': 4060000,
+        'face-wash': {
+          'code': 4060100
+        },
+        'face-moisturizers-and-treatments': {
+          'code': 4060200
+        },
+        'eye-creams': {
+          'code': 4060300
+        },
+        'sunscreens': {
+          'code': 4060400
+        },
+        'shaving': {
+          'code': 4060500,
+          'pre-shave': {
+            'code': 4060501
+          },
+          'shaving-creams-gels': {
+            'code': 4060502
+          },
+          'after-shave': {
+            'code': 4060503
+          },
+          'tools': {
+            'code': 4060504
+          }
+        },
+        'bath-and-body': {
+          'code': 4060600
+        },
+        'deodorant-for-men': {
+          'code': 4060700
+        },
+        'hair': {
+          'code': 4060800
+        },
+        'top-brands': {
+          'code': 4060900
+        }
+      },
+      'k-beauty': {
+        'code': 4070000
+      }
+    },
+    'sports-fitness-outdoor': {
+      'code': 5000000,
+      'exercise-and-fitness': {
+        'code': 5010000,
+        'cardio-equipment': {
+          'code': 5010100
+        },
+        'strength-training-equipment': {
+          'code': 5010200
+        },
+        'training-apparel': {
+          'code': 5010300,
+          'towels': {
+            'code': 5010301
+          },
+          'cross-training-shoes': {
+            'code': 5010302
+          },
+          'compression-shorts': {
+            'code': 5010303
+          },
+          'compression-tops': {
+            'code': 5010304
+          },
+          'socks': {
+            'code': 5010305
+          },
+          'sports-bras': {
+            'code': 5010306
+          },
+          'wristbands-and-sweatbands': {
+            'code': 5010307
+          }
+        },
+        'training-and-recovery': {
+          'code': 5010400
+        },
+        'yoga-and-studio': {
+          'code': 5010500,
+          'yoga-and-studio-accessories': {
+            'code': 5010501
+          },
+          'foam-blocks': {
+            'code': 5010502
+          },
+          'mat-bags': {
+            'code': 5010503
+          },
+          'pilates-reformers': {
+            'code': 5010504
+          },
+          'resistance-bands': {
+            'code': 5010505
+          },
+          'yoga-blankets-and-cushions': {
+            'code': 5010506
+          },
+          'yoga-mats': {
+            'code': 5010507
+          },
+          'yoga-straps': {
+            'code': 5010508
+          },
+          'yoga-towels': {
+            'code': 5010509
+          }
+        },
+        'sporting-good-accessories': {
+          'code': 5010600,
+          'water-bottles': {
+            'code': 5010601
+          },
+          'sports-sunglasses': {
+            'code': 5010602
+          },
+          'trophies-medals-and-awards': {
+            'code': 5010603
+          },
+          'wristbands-and-sweatbands': {
+            'code': 5010604
+          },
+          'air-pumps': {
+            'code': 5010605
+          },
+          'ball-carts-and-racks': {
+            'code': 5010606
+          },
+          'flashlights-and-headlamps': {
+            'code': 5010607
+          },
+          'hand-and-foot-warmers': {
+            'code': 5010608
+          },
+          'hydration': {
+            'code': 5010609
+          },
+          'mouthguards': {
+            'code': 5010610
+          },
+          'pads-guards-and-protective-gear': {
+            'code': 5010611
+          },
+          'whristle-and-megaphones': {
+            'code': 5010612
+          },
+          'inflation-devices-and-accessories': {
+            'code': 5010613
+          },
+          'car-sports-racks': {
+            'code': 5010614
+          },
+          'coach-and-referee-gear': {
+            'code': 5010615
+          },
+          'reflective-gear': {
+            'code': 5010616
+          }
+        }
+      },
+      'adventure-and-outdoor-fun': {
+        'code': 5020000,
+        'bikes': {
+          'code': 5020100,
+          'bike-racks-and-bags': {
+            'code': 5020101
+          },
+          'bike-tools-and-maintenance': {
+            'code': 5020102
+          },
+          'bike-trainers-and-accessories': {
+            'code': 5020103
+          },
+          'complete-bikes': {
+            'code': 5020104
+          },
+          'child-seats-and-cargo-trailers': {
+            'code': 5020105
+          },
+          'helmets': {
+            'code': 5020106
+          },
+          'bike-hydration': {
+            'code': 5020107
+          },
+          'kids-bikes-and-accessories': {
+            'code': 5020108
+          },
+          'kids-helmets': {
+            'code': 5020109
+          },
+          'kids-tricycles': {
+            'code': 5020110
+          },
+          'bike-lights-and-reflectors': {
+            'code': 5020111
+          },
+          'bike-parts-and-components': {
+            'code': 5020112
+          },
+          'bike-pedals-and-cleats': {
+            'code': 5020113
+          },
+          'bicycle-tires-and-tubes': {
+            'code': 5020114
+          },
+          'bike-transportation-and-storage': {
+            'code': 5020115
+          },
+          'unicycles': {
+            'code': 5020116
+          },
+          'triathlon-gear': {
+            'code': 5020117
+          },
+          'bike-brakes': {
+            'code': 5020118
+          },
+          'bike-chains-and-cassettes': {
+            'code': 5020119
+          },
+          'bike-cranksets-chainrings-and-bottom-brackets': {
+            'code': 5020120
+          },
+          'bike-derailleurs-and-shifters': {
+            'code': 5020121
+          },
+          'bike-forks-headsets-and-stems': {
+            'code': 5020122
+          },
+          'bike-handlebars-wraps-and-grips': {
+            'code': 5020123
+          },
+          'bike-saddles-seats-and-seat-posts': {
+            'code': 5020124
+          },
+          'bike-wheels': {
+            'code': 5020125
+          },
+          'cycling-shorts-jerseys-and-accessories': {
+            'code': 5020126
+          },
+          'car-bike-racks': {
+            'code': 5020127
+          },
+          'pads-guards-and-protective-gear': {
+            'code': 5020128
+          }
+        },
+        'snowboard-shop': {
+          'code': 5020200
+        },
+        'skateboards-skates-and-scooters': {
+          'code': 5020300
+        },
+        'ski-shop': {
+          'code': 5020400
+        },
+        'boating': {
+          'code': 5020500
+        },
+        'camping-and-hiking': {
+          'code': 5020600
+        },
+        'water-sports': {
+          'code': 5020700
+        }
+      },
+      'hunting-fishing-and-tactical': {
+        'code': 5030000,
+        'fishing': {
+          'code': 5030100
+        },
+        'binoculars-and-scopes': {
+          'code': 5030200
+        }
+      },
+      'team-sports': {
+        'code': 5040000,
+        'baseball': {
+          'code': 5040100
+        },
+        'basketball': {
+          'code': 5040200
+        },
+        'field-hockey': {
+          'code': 5040300
+        },
+        'football': {
+          'code': 5040400
+        },
+        'lacrosse': {
+          'code': 5040500
+        },
+        'soccer': {
+          'code': 5040600
+        },
+        'softball': {
+          'code': 5040700
+        },
+        'hockey-and-ice-skating': {
+          'code': 5040800
+        },
+        'gymnastics-and-dance': {
+          'code': 5040900
+        }
+      },
+      'individual-sports': {
+        'code': 5050000,
+        'golf': {
+          'code': 5050100,
+          'golf-club-sets': {
+            'code': 5050101
+          },
+          'drivers': {
+            'code': 5050102
+          },
+          'woods': {
+            'code': 5050103
+          },
+          'hybrids': {
+            'code': 5050104
+          },
+          'irons': {
+            'code': 5050105
+          },
+          'wedges': {
+            'code': 5050106
+          },
+          'putters': {
+            'code': 5050107
+          },
+          'golf-apparel': {
+            'code': 5050108
+          },
+          'golf-shoes': {
+            'code': 5050109
+          },
+          'golf-balls': {
+            'code': 5050110
+          },
+          'golf-club-bags': {
+            'code': 5050111
+          },
+          'golf-rangefinders-and-shot-trackers': {
+            'code': 5050112
+          },
+          'golf-training-equipment': {
+            'code': 5050113
+          },
+          'head-covers': {
+            'code': 5050114
+          },
+          'golf-tees': {
+            'code': 5050115
+          },
+          'golf-club-parts': {
+            'code': 5050116
+          },
+          'golf-gloves': {
+            'code': 5050117
+          },
+          'golf-club-cleaning-brush': {
+            'code': 5050118
+          },
+          'golf-towels': {
+            'code': 5050119
+          },
+          'golf-umbrella': {
+            'code': 5050120
+          },
+          'golf-markers-and-divot-repair-tools': {
+            'code': 5050121
+          },
+          'golf-cart-accessories': {
+            'code': 5050122
+          },
+          'golf-accessories': {
+            'code': 5050123
+          }
+        },
+        'tennis': {
+          'code': 5050200
+        },
+        'boxing': {
+          'code': 5050300
+        },
+        'martial-arts': {
+          'code': 5050400
+        },
+        'track-and-field': {
+          'code': 5050500
+        },
+        'racquetball': {
+          'code': 5050600
+        },
+        'equestrian-sports': {
+          'code': 5050700
+        }
+      }
+    },
+    'fashion': {
+      'code': 6000000,
+      'women': {
+        'code': 6010000,
+        'featured-shops': {
+          'code': 6010100
+        },
+        'clothing': {
+          'code': 6010200,
+          'activewear': {
+            'code': 6010201
+          },
+          'coats-and-jackets': {
+            'code': 6010202
+          },
+          'dresses': {
+            'code': 6010203
+          },
+          'jeans': {
+            'code': 6010204
+          },
+          'jumpsuits-and-rompers': {
+            'code': 6010205
+          },
+          'lingerie-and-shapewear': {
+            'code': 6010206
+          },
+          'pants-and-leggings': {
+            'code': 6010207
+          },
+          'shorts': {
+            'code': 6010208
+          },
+          'skirts': {
+            'code': 6010209
+          },
+          'sleepwear-and-loungewear': {
+            'code': 6010210
+          },
+          'sweaters': {
+            'code': 6010211
+          },
+          'sweatshirts-and-hoodies': {
+            'code': 6010212
+          },
+          'swimwear': {
+            'code': 6010213
+          },
+          'tops-and-t-shirts': {
+            'code': 6010214
+          }
+        },
+        'shoes': {
+          'code': 6010300,
+          'booties': {
+            'code': 6010301
+          },
+          'boots': {
+            'code': 6010302
+          },
+          'espadrilles': {
+            'code': 6010303
+          },
+          'flats': {
+            'code': 6010304
+          },
+          'heels-and-pumps': {
+            'code': 6010305
+          },
+          'mules-and-slides': {
+            'code': 6010306
+          },
+          'loafers-and-slip-ons': {
+            'code': 6010307
+          },
+          'sandals-and-flip-flops': {
+            'code': 6010308
+          },
+          'slippers': {
+            'code': 6010309
+          },
+          'sneakers-and-athletic': {
+            'code': 6010310
+          },
+          'wedges': {
+            'code': 6010311
+          }
+        },
+        'handbags': {
+          'code': 6010400,
+          'backpacks': {
+            'code': 6010401
+          },
+          'belt-bags': {
+            'code': 6010402
+          },
+          'cosmetic-bags': {
+            'code': 6010403
+          },
+          'clutches-and-pouches': {
+            'code': 6010404
+          },
+          'crossbody-bags': {
+            'code': 6010405
+          },
+          'hobo-bags': {
+            'code': 6010406
+          },
+          'laptops-bags-and-briefcases': {
+            'code': 6010407
+          },
+          'satchels': {
+            'code': 6010408
+          },
+          'shoulder-bags': {
+            'code': 6010409
+          },
+          'tote-bags': {
+            'code': 6010410
+          },
+          'weekenders-and-duffels': {
+            'code': 6010411
+          }
+        },
+        'accessories': {
+          'code': 6010500,
+          'belts': {
+            'code': 6010501
+          },
+          'gloves': {
+            'code': 6010502
+          },
+          'hats': {
+            'code': 6010503
+          },
+          'scarves-and-wraps': {
+            'code': 6010504
+          },
+          'sunglasses-and-eyewear': {
+            'code': 6010505
+          },
+          'tech-accessories-and-cases': {
+            'code': 6010506
+          },
+          'umbrellas': {
+            'code': 6010507
+          },
+          'wallet-and-card-cases': {
+            'code': 6010508
+          }
+        },
+        'jewelry-and-watches': {
+          'code': 6010600,
+          'anklets': {
+            'code': 6010601
+          },
+          'bracelets-and-charms': {
+            'code': 6010602
+          },
+          'earrings': {
+            'code': 6010603
+          },
+          'necklaces': {
+            'code': 6010604
+          },
+          'rings': {
+            'code': 6010605
+          },
+          'watches': {
+            'code': 6010606
+          }
+        }
+      },
+      'men': {
+        'code': 6020000,
+        'active-and-workout': {
+          'code': 6020100
+        },
+        'coats-and-jackets': {
+          'code': 6020200
+        },
+        'shirts': {
+          'code': 6020300
+        },
+        'jeans': {
+          'code': 6020400
+        },
+        'pajamas-and-robes': {
+          'code': 6020500
+        },
+        'pants': {
+          'code': 6020600
+        },
+        'shorts': {
+          'code': 6020700
+        },
+        'suits-and-suit-separates': {
+          'code': 6020800
+        },
+        'sweaters': {
+          'code': 6020900
+        },
+        'sweatshirts-and-hoodies': {
+          'code': 6021000
+        },
+        'swimwear-and-boardshorts': {
+          'code': 6021100
+        },
+        't-shirts-and-tank-tops': {
+          'code': 6021200
+        },
+        'underwear-and-socks': {
+          'code': 6021300
+        }
+      },
+      'kids-and-baby': {
+        'code': 6030000,
+        'baby': {
+          'code': 6030100,
+          'girls-clothing': {
+            'code': 6030101
+          },
+          'boys-clothing': {
+            'code': 6030102
+          },
+          'girls-shoes': {
+            'code': 6030103
+          },
+          'boys-shoes': {
+            'code': 6030104
+          },
+          'girls-accessories': {
+            'code': 6030105
+          },
+          'boys-accessories': {
+            'code': 6030106
+          }
+        },
+        'toddler': {
+          'code': 6030200,
+          'girls-clothing': {
+            'code': 6030201
+          },
+          'boys-clothing': {
+            'code': 6030202
+          },
+          'girls-shoes': {
+            'code': 6030203
+          },
+          'boys-shoes': {
+            'code': 6030204
+          },
+          'girls-accessories': {
+            'code': 6030205
+          },
+          'boys-accessories': {
+            'code': 6030206
+          }
+        },
+        'little-kid': {
+          'code': 6030300,
+          'girls-clothing': {
+            'code': 6030301
+          },
+          'boys-clothing': {
+            'code': 6030302
+          },
+          'girls-shoes': {
+            'code': 6030303
+          },
+          'boys-shoes': {
+            'code': 6030304
+          },
+          'girls-accessories': {
+            'code': 6030305
+          },
+          'boys-accessories': {
+            'code': 6030306
+          }
+        },
+        'big-kid': {
+          'code': 6030400,
+          'girls-clothing': {
+            'code': 6030401
+          },
+          'boys-clothing': {
+            'code': 6030402
+          },
+          'girls-shoes': {
+            'code': 6030403
+          },
+          'boys-shoes': {
+            'code': 6030404
+          },
+          'girls-accessories': {
+            'code': 6030405
+          },
+          'boys-accessories': {
+            'code': 6030406
+          }
+        }
+      },
+      'travel': {
+        'code': 6040000,
+        'luggage': {
+          'code': 6040100,
+          'carry-on': {
+            'code': 6040101
+          },
+          'check-in': {
+            'code': 6040102
+          },
+          'fashion': {
+            'code': 6040103
+          },
+          'hardside': {
+            'code': 6040104
+          },
+          'kids': {
+            'code': 6040105
+          },
+          'luggage-sets': {
+            'code': 6040106
+          },
+          'underseat-luggage': {
+            'code': 6040107
+          }
+        },
+        'bags': {
+          'code': 6040200,
+          'backpacks': {
+            'code': 6040201
+          },
+          'belt-bags': {
+            'code': 6040202
+          },
+          'garment-bags': {
+            'code': 6040203
+          },
+          'laptop-bags-and-briefcases': {
+            'code': 6040204
+          },
+          'weekenders-and-duffels': {
+            'code': 6040205
+          }
+        },
+        'travel-accessories': {
+          'code': 6040300,
+          'eyemasks-pillows-and-blankets': {
+            'code': 6040301
+          },
+          'packing-cubes-and-organization': {
+            'code': 6040302
+          },
+          'passport-cases-and-travel-wallets': {
+            'code': 6040303
+          },
+          'kits-and-cases': {
+            'code': 6040304
+          }
+        }
+      }
+    }
   }
 }
 

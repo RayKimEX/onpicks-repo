@@ -1,8 +1,21 @@
 @import '~src/assets/scss/abstracts/variables';
 
 
+onpicks-terms-navigator {
+  @include respond(actb){
+    display:none;
+  }
+}
+
 .terms {
   margin-top : 3.2rem;
+
+  &__contents {
+    @include respond(actb){
+      width : 100%;
+    }
+  }
+
   h3 {
     margin-bottom: 2.4rem;
   }

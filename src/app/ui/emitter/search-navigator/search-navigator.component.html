@@ -339,6 +339,13 @@
               <span
                 *ngIf="searchState == 'search'"
                 class="u-color-green">{{queryParams.term}}</span>에 대한 검색 결과 {{totalCount}}건
+
+              <onpicks-sort-box
+                class="search-content__sort-box"
+                [selectedElement]="{ value : currentSortSlug}"
+                (changeEvent)="sortClicked($event)"
+                [sortList]="sortList">
+              </onpicks-sort-box>
             </div>
 
             <ng-container  *ngIf="searchState == 'category'">

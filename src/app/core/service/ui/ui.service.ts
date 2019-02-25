@@ -48,6 +48,21 @@ export class UiService {
     return this.httpClient.post<any>( this.BASE_URL + '/api/preferences/language/', { language : xLanguageCode } );
   }
 
+  hello = {
+    'pantry-and-household': {
+      'id' : 1000000,
+      'grocery' : {
+        'id' : 1010000,
+      },
+      'pantry' : {
+        'id' : 1020000,
+      },
+      'household' : {
+        'id' : 1030000,
+      }
+    }
+  };
+
   dataCategory = {
     '1000000': {
       'id': 1000000,
@@ -469,7 +484,7 @@ export class UiService {
                 {
                   'id': 1010609,
                   'slug': 'salsas-and-dips',
-                  'name': '샐러드·딥스',
+                  'name': '살사·딥스',
                   'depth': 4,
                   'parent': 1010600,
                   'children': []

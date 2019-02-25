@@ -99,10 +99,10 @@
     vertical-align: top;
     border-radius : 4px;
     height : 26.4rem;
-
+    padding-right : 1.6rem;
     margin-bottom : 2.4rem;
 
-    width : 25%;
+    width : 33%;
 
     @include respond(actb){
       width : 33%;
