@@ -7,9 +7,10 @@
   [popularCategory]="popularCategory">
 </onpicks-category-list>
 
-<onpicks-today-collection></onpicks-today-collection>
+<onpicks-today-collection [todayCollection]="todayCollection"></onpicks-today-collection>
 <onpicks-value-list [valueList]="valueList$ | async"></onpicks-value-list>
-<onpicks-popular-brand [popularBrand]="popularBrands$ | async"></onpicks-popular-brand>
+<onpicks-popular-brand [popularBrand]="(popularBrands$ | async).results"></onpicks-popular-brand>
+
 
 <ui-banner [bannerInfo]="shopsBannerImage"> </ui-banner>
 

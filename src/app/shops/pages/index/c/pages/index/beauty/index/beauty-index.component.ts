@@ -45,38 +45,55 @@ export class BeautyIndexComponent implements OnInit {
   ]
   popularBeautyBrand = [
     {
-      imgSrc : 'http://img.onpicks.com/brands/brand-jomalone.jpg',
+      icon : 'http://img.onpicks.com/brands/brand-jomalone.jpg',
       name : '조 말론'
     },
     {
-      imgSrc : 'http://img.onpicks.com/brands/brand-hyredo.jpg',
+      icon : 'http://img.onpicks.com/brands/brand-hyredo.jpg',
       name : '바이레도'
     },
     {
-      imgSrc : 'http://img.onpicks.com/brands/brand-aveda.jpg',
+      icon : 'http://img.onpicks.com/brands/brand-aveda.jpg',
       name : '아베다'
     },
     {
-      imgSrc : 'http://img.onpicks.com/brands/brand-mac.jpg',
+      icon : 'http://img.onpicks.com/brands/brand-mac.jpg',
       name : '맥'
     },
     {
-      imgSrc : 'http://img.onpicks.com/brands/brand-shu-uemura.jpg',
+      icon : 'http://img.onpicks.com/brands/brand-shu-uemura.jpg',
       name : '슈에무라'
     },
     {
-      imgSrc : 'http://img.onpicks.com/brands/brand-diptqyue.jpg',
+      icon : 'http://img.onpicks.com/brands/brand-diptqyue.jpg',
       name : '딥디크'
     },
     {
-      imgSrc : 'http://img.onpicks.com/brands/brand-looccitane.jpg',
+      icon : 'http://img.onpicks.com/brands/brand-looccitane.jpg',
       name : '록시땅'
     },
     {
-      imgSrc : 'http://img.onpicks.com/brands/brand-dior.jpg',
+      icon : 'http://img.onpicks.com/brands/brand-dior.jpg',
       name : '디올'
     },
 
+  ]
+
+
+
+  todayCollection = [
+    {
+      imgSrc : 'https://img.onpicks.com/collections/collection-flower.jpg?d=w528-h352',
+      todayCategoryName : '뷰티',
+      todayTitle : '봄을 맞이하는 아이템!',
+      todayDiscription : '인간 벚꽃이 되어 당신 주변에 이른 봄을 선물하는 건 어떨까요?'
+    },
+    {
+      imgSrc : 'https://img.onpicks.com/collections/collection-byredo.jpg?d=w528-h352',
+      todayCategoryName : '뷰티',
+      todayTitle : '페피들의 잇 아이템',
+      todayDiscription : '바이레도의 감성으로 북유럽의 서정적인 향기를 입어보세요'
+    }
   ]
 
   constructor() { }
