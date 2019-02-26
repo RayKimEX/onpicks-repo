@@ -20,8 +20,9 @@ export class UiService {
     return this.httpClient.get<any>(this.BASE_URL + '/api/home/weekly_best/');
   }
 
-  getPopularBrands() {
-    return this.httpClient.get<any>( this.BASE_URL + '/api/home/popular_brands/');
+  getPopularBrands(category = '') {
+    const params = new HttpParams().set('category', category);
+    return this.httpClient.get<any>( this.BASE_URL + '/api/home/popular_brands/', { params });
   }
 
   getRecentlyViewed() {

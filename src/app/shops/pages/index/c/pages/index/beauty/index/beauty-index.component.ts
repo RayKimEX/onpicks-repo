@@ -1,4 +1,5 @@
 import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
+import {UiService} from '../../../../../../../../core/service/ui/ui.service';
 
 @Component({
   selector: 'onpicks-beauty',
@@ -43,43 +44,6 @@ export class BeautyIndexComponent implements OnInit {
       href : '/shops/c/beauty/bath-and-body'
     },
   ]
-  popularBeautyBrand = [
-    {
-      icon : 'http://img.onpicks.com/brands/brand-jomalone.jpg',
-      name : '조 말론'
-    },
-    {
-      icon : 'http://img.onpicks.com/brands/brand-hyredo.jpg',
-      name : '바이레도'
-    },
-    {
-      icon : 'http://img.onpicks.com/brands/brand-aveda.jpg',
-      name : '아베다'
-    },
-    {
-      icon : 'http://img.onpicks.com/brands/brand-mac.jpg',
-      name : '맥'
-    },
-    {
-      icon : 'http://img.onpicks.com/brands/brand-shu-uemura.jpg',
-      name : '슈에무라'
-    },
-    {
-      icon : 'http://img.onpicks.com/brands/brand-diptqyue.jpg',
-      name : '딥디크'
-    },
-    {
-      icon : 'http://img.onpicks.com/brands/brand-looccitane.jpg',
-      name : '록시땅'
-    },
-    {
-      icon : 'http://img.onpicks.com/brands/brand-dior.jpg',
-      name : '디올'
-    },
-
-  ]
-
-
 
   todayCollection = [
     {
@@ -96,7 +60,13 @@ export class BeautyIndexComponent implements OnInit {
     }
   ]
 
-  constructor() { }
+  popularBrand$;
+
+  constructor(
+    private uiDataService: UiService
+  ) {
+    this.popularBrand$ = this.uiDataService.getPopularBrands('beauty');
+  }
 
   ngOnInit() {
   }
