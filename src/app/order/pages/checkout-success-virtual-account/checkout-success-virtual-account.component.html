@@ -13,24 +13,24 @@
   </div>
 
   <div class="checkout-no-bank__title">주문이 완료되었습니다</div>
-  <div class="checkout-no-bank__order-num">주문번호 <span class="u-color-green">{{orderCode}}</span></div>
+  <div class="checkout-no-bank__order-num">주문번호 <span class="u-color-green">{{}}</span></div>
 
   <table>
     <tr>
       <td>입금은행</td>
-      <td>{{data.bank}}</td>
+      <td>{{data.payment_detail.bank}}</td>
     </tr>
     <tr>
       <td>입금계좌</td>
-      <td>{{data.account_number}}({{data.recipient}})</td>
+      <td>{{data.payment_detail.account_number}}({{data.payment_detail.recipient}})</td>
     </tr>
     <tr>
       <td>입금금액</td>
-      <td><b>28,700원</b></td>
+      <td><b>{{data.grand_total | onpicksCurrency : (currency | async) }}</b></td>
     </tr>
     <tr>
       <td>입금기한</td>
-      <td>{{data.deposit_until | date : 'medium'}}</td>
+      <td>{{data.payment_detail.deposit_until | date : 'medium'}}</td>
     </tr>
   </table>
 

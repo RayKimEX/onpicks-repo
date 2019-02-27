@@ -1,6 +1,8 @@
-import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Inject, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {OrderDataService} from '../../../core/service/data-pages/order/order-data.service';
+import {CURRENCY} from '../../../app.config';
+import {BehaviorSubject} from 'rxjs';
 
 @Component({
   selector: 'onpicks-checkout-success-no-bank',
@@ -17,8 +19,9 @@ export class CheckoutSuccessVirtualAccountComponent implements OnInit {
   orderInfo$;
 
   constructor(
+    @Inject( CURRENCY ) public currency: BehaviorSubject<any>,
     private route: ActivatedRoute,
-    private orderDataService: OrderDataService
+    private orderDataService: OrderDataService,
   ) {
     this.queryParams$ = this.route.queryParams
       .subscribe((val: {order_code}) => {
