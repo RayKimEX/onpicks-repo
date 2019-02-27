@@ -15,17 +15,17 @@
         </span>
         <div class="free-delivery-notibox__item--info">
           <span
-            *ngIf="(item.free_shipping_threshold - (item.subtotal - item.shipping_fee)) >= 0"
+            *ngIf="(item.location.free_shipping_threshold - (item.subtotal - item.shipping_fee)) >= 0"
             class="subtitle-2-regular">
-            {{item.location.name}} 무료배송까지 {{item.free_shipping_threshold - (item.subtotal - item.shipping_fee) | onpicksCurrency: (currency| async)}} 남았습니다.
+            {{item.location.name}} 무료배송까지 {{item.location.free_shipping_threshold - (item.subtotal - item.shipping_fee) | onpicksCurrency: (currency| async)}} 남았습니다.
           </span>
           <span
             class="subtitle-2-regular"
-            *ngIf="(item.free_shipping_threshold - (item.subtotal - item.shipping_fee)) < 0">
+            *ngIf="(item.location.free_shipping_threshold - (item.subtotal - item.shipping_fee)) < 0">
             무료배송 조건이 충족되었습니다.
           </span>
           <ui-progressive-bar
-            [progressWidth]="((((item.subtotal - item.shipping_fee) / item.free_shipping_threshold) * 100) <= 100 ? (((item.subtotal - item.shipping_fee) / item.free_shipping_threshold) * 100) : 100)   + '%'">
+            [progressWidth]="((((item.subtotal - item.shipping_fee) / item.location.free_shipping_threshold) * 100) <= 100 ? (((item.subtotal - item.shipping_fee) / item.location.free_shipping_threshold) * 100) : 100)   + '%'">
           </ui-progressive-bar>
         </div>
       </li>

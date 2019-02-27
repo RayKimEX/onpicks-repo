@@ -48,810 +48,593 @@ export class UiService {
     return this.httpClient.post<any>( this.BASE_URL + '/api/preferences/language/', { language : xLanguageCode } );
   }
 
-  hello = {
-    'pantry-and-household': {
-      'id' : 1000000,
-      'grocery' : {
-        'id' : 1010000,
-      },
-      'pantry' : {
-        'id' : 1020000,
-      },
-      'household' : {
-        'id' : 1030000,
-      }
-    }
-  };
-
   dataCategory = {
     '1000000': {
-      'id': 1000000,
       'slug': 'pantry-and-household',
+      'id': 1000000,
       'name': '식품·생활용품',
-      'depth': 1,
-      'parent': null,
       'children': [
         {
-          'id': 1010000,
           'slug': 'grocery',
+          'id': 1010000,
           'name': '식품',
-          'depth': 2,
-          'parent': 1000000,
           'children': [
             {
-              'id': 1010100,
               'slug': 'beverages',
+              'id': 1010100,
               'name': '음료',
-              'depth': 3,
-              'parent': 1010000,
               'children': [
                 {
-                  'id': 1010101,
                   'slug': 'water',
+                  'id': 1010101,
                   'name': '물',
-                  'depth': 5,
-                  'parent': 1010100,
                   'children': []
                 },
                 {
-                  'id': 1010102,
                   'slug': 'sports-and-energy-drinks',
+                  'id': 1010102,
                   'name': '스포츠음료',
-                  'depth': 4,
-                  'parent': 1010100,
                   'children': []
                 },
                 {
-                  'id': 1010103,
                   'slug': 'soft-drinks',
+                  'id': 1010103,
                   'name': '청량음료',
-                  'depth': 4,
-                  'parent': 1010100,
                   'children': []
                 },
                 {
-                  'id': 1010104,
                   'slug': 'coffee',
+                  'id': 1010104,
                   'name': '커피',
-                  'depth': 4,
-                  'parent': 1010100,
                   'children': []
                 },
                 {
-                  'id': 1010105,
                   'slug': 'tea',
+                  'id': 1010105,
                   'name': '차',
-                  'depth': 4,
-                  'parent': 1010100,
                   'children': []
                 },
                 {
-                  'id': 1010106,
                   'slug': 'milk',
+                  'id': 1010106,
                   'name': '우유',
-                  'depth': 4,
-                  'parent': 1010100,
                   'children': []
                 },
                 {
-                  'id': 1010107,
                   'slug': 'non-dairy-milk',
+                  'id': 1010107,
                   'name': 'Non-Dairy Milk',
-                  'depth': 4,
-                  'parent': 1010100,
                   'children': []
                 },
                 {
-                  'id': 1010108,
                   'slug': 'juice',
+                  'id': 1010108,
                   'name': '주스',
-                  'depth': 4,
-                  'parent': 1010100,
                   'children': []
                 },
                 {
-                  'id': 1010201,
                   'slug': 'applesauce-fruit-cups-and-squeezes',
+                  'id': 1010201,
                   'name': '프루츠컵·스퀴즈',
-                  'depth': 4,
-                  'parent': 1010100,
                   'children': []
                 },
                 {
-                  'id': 1010202,
                   'slug': 'chips-and-pretzels',
+                  'id': 1010202,
                   'name': '칩·프레첼',
-                  'depth': 4,
-                  'parent': 1010100,
                   'children': []
                 },
                 {
-                  'id': 1010203,
                   'slug': 'cookies',
+                  'id': 1010203,
                   'name': '쿠키',
-                  'depth': 4,
-                  'parent': 1010100,
                   'children': []
                 },
                 {
-                  'id': 1010204,
                   'slug': 'bread-and-crackers',
+                  'id': 1010204,
                   'name': '빵·크래커',
-                  'depth': 4,
-                  'parent': 1010100,
                   'children': []
                 },
                 {
-                  'id': 1010205,
                   'slug': 'fruit-and-vegetable-snacks',
+                  'id': 1010205,
                   'name': '과일·야채스낵',
-                  'depth': 4,
-                  'parent': 1010100,
                   'children': []
                 },
                 {
-                  'id': 1010206,
                   'slug': 'protein-and-granola-bars',
+                  'id': 1010206,
                   'name': '프로틴·곡물바',
-                  'depth': 4,
-                  'parent': 1010100,
                   'children': []
                 },
                 {
-                  'id': 1010207,
                   'slug': 'ice-cream-cones-and-toppings',
+                  'id': 1010207,
                   'name': '아이스크림콘·토핑',
-                  'depth': 4,
-                  'parent': 1010100,
                   'children': []
                 },
                 {
-                  'id': 1010208,
                   'slug': 'jerky-and-dried-meats',
+                  'id': 1010208,
                   'name': '육포·건어물',
-                  'depth': 4,
-                  'parent': 1010100,
                   'children': []
                 },
                 {
-                  'id': 1010209,
                   'slug': 'nuts-seeds-and-trail-mix',
+                  'id': 1010209,
                   'name': '견과류·믹스',
-                  'depth': 4,
-                  'parent': 1010100,
                   'children': []
                 },
                 {
-                  'id': 1010210,
                   'slug': 'popcorn-and-puffed-snacks',
+                  'id': 1010210,
                   'name': '팝콘',
-                  'depth': 4,
-                  'parent': 1010100,
                   'children': []
                 },
                 {
-                  'id': 1010211,
                   'slug': 'pudding-and-gelatin',
+                  'id': 1010211,
                   'name': '푸딩·젤라틴',
-                  'depth': 4,
-                  'parent': 1010100,
                   'children': []
                 }
               ]
             },
             {
-              'id': 1010300,
               'slug': 'candy-gum-and-chocolate',
+              'id': 1010300,
               'name': '캔디·껌·초콜릿',
-              'depth': 3,
-              'parent': 1010000,
               'children': [
                 {
-                  'id': 1010301,
                   'slug': 'chocolate',
+                  'id': 1010301,
                   'name': ' ',
-                  'depth': 4,
-                  'parent': 1010300,
                   'children': []
                 },
                 {
-                  'id': 1010302,
                   'slug': 'chewing-gum',
+                  'id': 1010302,
                   'name': '껌',
-                  'depth': 4,
-                  'parent': 1010300,
                   'children': []
                 },
                 {
-                  'id': 1010303,
                   'slug': 'candy',
+                  'id': 1010303,
                   'name': '캔디',
-                  'depth': 4,
-                  'parent': 1010300,
                   'children': []
                 },
                 {
-                  'id': 1010304,
                   'slug': 'other-sweets',
+                  'id': 1010304,
                   'name': '디저트',
-                  'depth': 4,
-                  'parent': 1010300,
                   'children': []
                 }
               ]
             },
             {
-              'id': 1010400,
               'slug': 'breakfast-foods',
+              'id': 1010400,
               'name': '아침식사',
-              'depth': 3,
-              'parent': 1010000,
               'children': [
                 {
-                  'id': 1010401,
                   'slug': 'cold-cereals',
+                  'id': 1010401,
                   'name': '콜드시리얼',
-                  'depth': 4,
-                  'parent': 1010400,
                   'children': []
                 },
                 {
-                  'id': 1010402,
                   'slug': 'hot-cereals-and-oats',
+                  'id': 1010402,
                   'name': '핫시리얼·오트밀',
-                  'depth': 4,
-                  'parent': 1010400,
                   'children': []
                 },
                 {
-                  'id': 1010403,
                   'slug': 'toaster-pastries',
+                  'id': 1010403,
                   'name': '토스터페이스트리',
-                  'depth': 4,
-                  'parent': 1010400,
                   'children': []
                 },
                 {
-                  'id': 1010404,
                   'slug': 'granola-and-museli',
+                  'id': 1010404,
                   'name': '그래놀라·무슬리',
-                  'depth': 4,
-                  'parent': 1010400,
                   'children': []
                 },
                 {
-                  'id': 1010405,
                   'slug': 'meal-replacement-proein-and-granola-bars',
-                  'name': '식다대용프로틴바·그래놀라바',
-                  'depth': 4,
-                  'parent': 1010400,
+                  'id': 1010405,
+                  'name': '식사대용프로틴바·그래놀라바',
                   'children': []
                 }
               ]
             },
             {
-              'id': 1010500,
               'slug': 'soups-meals-and-side-dishes',
+              'id': 1010500,
               'name': '식사·후식',
-              'depth': 3,
-              'parent': 1010000,
               'children': [
                 {
-                  'id': 1010501,
                   'slug': 'macaroni-and-cheese',
+                  'id': 1010501,
                   'name': '마카로니·치즈',
-                  'depth': 4,
-                  'parent': 1010500,
                   'children': []
                 },
                 {
-                  'id': 1010502,
                   'slug': 'soups',
+                  'id': 1010502,
                   'name': '수프',
-                  'depth': 4,
-                  'parent': 1010500,
                   'children': []
                 },
                 {
-                  'id': 1010503,
                   'slug': 'broth',
+                  'id': 1010503,
                   'name': '죽',
-                  'depth': 4,
-                  'parent': 1010500,
                   'children': []
                 },
                 {
-                  'id': 1010504,
                   'slug': 'chilis-and-stews',
+                  'id': 1010504,
                   'name': '칠리·스튜',
-                  'depth': 4,
-                  'parent': 1010500,
                   'children': []
                 },
                 {
-                  'id': 1010505,
                   'slug': 'asian-meals',
+                  'id': 1010505,
                   'name': '아시아식사',
-                  'depth': 4,
-                  'parent': 1010500,
                   'children': []
                 },
                 {
-                  'id': 1010506,
                   'slug': 'italian-meals',
+                  'id': 1010506,
                   'name': '이탈리아식사',
-                  'depth': 4,
-                  'parent': 1010500,
                   'children': []
                 },
                 {
-                  'id': 1010507,
                   'slug': 'mexican-meals-and-taco-kits',
+                  'id': 1010507,
                   'name': '멕시코식사·타코',
-                  'depth': 4,
-                  'parent': 1010500,
                   'children': []
                 },
                 {
-                  'id': 1010508,
                   'slug': 'indian-meals',
+                  'id': 1010508,
                   'name': '인도식사',
-                  'depth': 4,
-                  'parent': 1010500,
                   'children': []
                 },
                 {
-                  'id': 1010509,
                   'slug': 'potatoes-and-stuffings',
+                  'id': 1010509,
                   'name': '감자·속재료',
-                  'depth': 4,
-                  'parent': 1010500,
                   'children': []
                 }
               ]
             },
             {
-              'id': 1010600,
               'slug': 'pantry',
+              'id': 1010600,
               'name': '주방',
-              'depth': 3,
-              'parent': 1010000,
               'children': [
                 {
-                  'id': 1010601,
                   'slug': 'spices-and-seasonings',
+                  'id': 1010601,
                   'name': '양념·향신료',
-                  'depth': 4,
-                  'parent': 1010600,
                   'children': []
                 },
                 {
-                  'id': 1010602,
                   'slug': 'salt-and-pepper',
+                  'id': 1010602,
                   'name': '소금·후추',
-                  'depth': 4,
-                  'parent': 1010600,
                   'children': []
                 },
                 {
-                  'id': 1010603,
                   'slug': 'condiments',
+                  'id': 1010603,
                   'name': '조미료',
-                  'depth': 4,
-                  'parent': 1010600,
                   'children': []
                 },
                 {
-                  'id': 1010604,
                   'slug': 'oils',
+                  'id': 1010604,
                   'name': '오일',
-                  'depth': 4,
-                  'parent': 1010600,
                   'children': []
                 },
                 {
-                  'id': 1010605,
                   'slug': 'vinegars',
+                  'id': 1010605,
                   'name': '식초',
-                  'depth': 4,
-                  'parent': 1010600,
                   'children': []
                 },
                 {
-                  'id': 1010606,
                   'slug': 'salad-dressings',
+                  'id': 1010606,
                   'name': '샐러드드레싱',
-                  'depth': 4,
-                  'parent': 1010600,
                   'children': []
                 },
                 {
-                  'id': 1010607,
                   'slug': 'salad-toppings',
+                  'id': 1010607,
                   'name': '샐러드토핑',
-                  'depth': 4,
-                  'parent': 1010600,
                   'children': []
                 },
                 {
-                  'id': 1010608,
                   'slug': 'sauces-and-marinades',
+                  'id': 1010608,
                   'name': '소스·마리네이드',
-                  'depth': 4,
-                  'parent': 1010600,
                   'children': []
                 },
                 {
-                  'id': 1010609,
                   'slug': 'salsas-and-dips',
-                  'name': '살사·딥스',
-                  'depth': 4,
-                  'parent': 1010600,
+                  'id': 1010609,
+                  'name': '샐러드·딥스',
                   'children': []
                 },
                 {
-                  'id': 1010610,
                   'slug': 'butters',
+                  'id': 1010610,
                   'name': '버터',
-                  'depth': 4,
-                  'parent': 1010600,
                   'children': []
                 },
                 {
-                  'id': 1010611,
                   'slug': 'jams-jellies-and-preserves',
+                  'id': 1010611,
                   'name': '잼·젤리',
-                  'depth': 4,
-                  'parent': 1010600,
                   'children': []
                 },
                 {
-                  'id': 1010612,
                   'slug': 'sweet-spreads',
+                  'id': 1010612,
                   'name': '스위트스프레드',
-                  'depth': 4,
-                  'parent': 1010600,
                   'children': []
                 },
                 {
+                  'slug': 'flours-and-meals',
                   'id': 1010613,
-                  'slug': 'flours-and-meals',
                   'name': '곡물분말',
-                  'depth': 4,
-                  'parent': 1010600,
                   'children': []
                 },
                 {
+                  'slug': 'sugar-and-other-sweeteners',
                   'id': 1010614,
-                  'slug': 'sugar-and-other-sweeteners',
                   'name': '설탕·감미료',
-                  'depth': 4,
-                  'parent': 1010600,
                   'children': []
                 },
                 {
+                  'slug': 'baking-ingredients',
                   'id': 1010615,
-                  'slug': 'baking-ingredients',
                   'name': '제빵재료',
-                  'depth': 4,
-                  'parent': 1010600,
                   'children': []
                 },
                 {
+                  'slug': 'baking-mixes',
                   'id': 1010616,
-                  'slug': 'baking-mixes',
                   'name': '제빵분말',
-                  'depth': 4,
-                  'parent': 1010600,
                   'children': []
                 },
                 {
+                  'slug': 'honey-and-syrups',
                   'id': 1010617,
-                  'slug': 'honey-and-syrups',
                   'name': '꿀·시럽',
-                  'depth': 4,
-                  'parent': 1010600,
                   'children': []
                 }
               ]
             },
             {
-              'id': 1010700,
               'slug': 'pasta-and-pasta-sauce',
+              'id': 1010700,
               'name': '파스타·파스타소스',
-              'depth': 3,
-              'parent': 1010000,
               'children': [
                 {
-                  'id': 1010701,
                   'slug': 'pasta-and-noodles',
+                  'id': 1010701,
                   'name': '파스타',
-                  'depth': 4,
-                  'parent': 1010700,
                   'children': []
                 },
                 {
-                  'id': 1010702,
                   'slug': 'pasta-sauces',
+                  'id': 1010702,
                   'name': '파스타소스',
-                  'depth': 4,
-                  'parent': 1010700,
                   'children': []
                 }
               ]
             },
             {
-              'id': 1010800,
               'slug': 'canned-and-jarred-food',
+              'id': 1010800,
               'name': '통조림',
-              'depth': 3,
-              'parent': 1010000,
               'children': [
                 {
-                  'id': 1010801,
                   'slug': 'canned-beans',
+                  'id': 1010801,
                   'name': '콩통조림',
-                  'depth': 4,
-                  'parent': 1010800,
                   'children': []
                 },
                 {
-                  'id': 1010802,
                   'slug': 'canned-fruit',
+                  'id': 1010802,
                   'name': '과일통조림',
-                  'depth': 4,
-                  'parent': 1010800,
                   'children': []
                 },
                 {
-                  'id': 1010803,
                   'slug': 'canned-meat-and-seafood',
+                  'id': 1010803,
                   'name': '해산물·육류통조림',
-                  'depth': 4,
-                  'parent': 1010800,
                   'children': []
                 },
                 {
-                  'id': 1010804,
                   'slug': 'canned-vegetables',
+                  'id': 1010804,
                   'name': '야채통조림',
-                  'depth': 4,
-                  'parent': 1010800,
                   'children': []
                 },
                 {
-                  'id': 1010805,
                   'slug': 'canned-tomatoes-and-paste',
+                  'id': 1010805,
                   'name': '토마토통조림',
-                  'depth': 4,
-                  'parent': 1010800,
                   'children': []
                 },
                 {
-                  'id': 1010806,
                   'slug': 'pickled-vegetables-and-olives',
+                  'id': 1010806,
                   'name': '피클·올리브통조림',
-                  'depth': 4,
-                  'parent': 1010800,
                   'children': []
                 }
               ]
             },
             {
-              'id': 1010900,
               'slug': 'cooking-and-baking-supplies',
+              'id': 1010900,
               'name': '제과제빵',
-              'depth': 3,
-              'parent': 1010000,
               'children': [
                 {
-                  'id': 1010901,
                   'slug': 'baking-mixes',
+                  'id': 1010901,
                   'name': '제빵분말',
-                  'depth': 4,
-                  'parent': 1010900,
                   'children': []
                 },
                 {
-                  'id': 1010902,
                   'slug': 'baking-ingredients',
+                  'id': 1010902,
                   'name': '제빵재료',
-                  'depth': 4,
-                  'parent': 1010900,
                   'children': []
                 },
                 {
-                  'id': 1010903,
                   'slug': 'breadcrumbs',
+                  'id': 1010903,
                   'name': '빵가루',
-                  'depth': 4,
-                  'parent': 1010900,
                   'children': []
                 },
                 {
-                  'id': 1010904,
                   'slug': 'doughs-shells-and-crusts',
+                  'id': 1010904,
                   'name': '도우·크러스트',
-                  'depth': 4,
-                  'parent': 1010900,
                   'children': []
                 },
                 {
-                  'id': 1010905,
                   'slug': 'extracts',
+                  'id': 1010905,
                   'name': '추출물',
-                  'depth': 4,
-                  'parent': 1010900,
                   'children': []
                 },
                 {
-                  'id': 1010906,
                   'slug': 'flours-and-meals',
+                  'id': 1010906,
                   'name': '곡물 분말',
-                  'depth': 4,
-                  'parent': 1010900,
                   'children': []
                 },
                 {
-                  'id': 1010907,
                   'slug': 'frosting-and-decoration',
+                  'id': 1010907,
                   'name': '데코레이션',
-                  'depth': 4,
-                  'parent': 1010900,
                   'children': []
                 },
                 {
-                  'id': 1010908,
                   'slug': 'marshmallows',
+                  'id': 1010908,
                   'name': '마시멜로우',
-                  'depth': 4,
-                  'parent': 1010900,
                   'children': []
                 },
                 {
-                  'id': 1010909,
                   'slug': 'sugar-and-other-sweeteners',
+                  'id': 1010909,
                   'name': '설탕·감미료',
-                  'depth': 4,
-                  'parent': 1010900,
                   'children': []
                 },
                 {
-                  'id': 1010910,
                   'slug': 'honey-and-syrups',
+                  'id': 1010910,
                   'name': '꿀·시럽',
-                  'depth': 4,
-                  'parent': 1010900,
                   'children': []
                 }
               ]
             },
             {
-              'id': 1011000,
               'slug': 'rice-beans-and-grains',
+              'id': 1011000,
               'name': '쌀·콩·곡물',
-              'depth': 3,
-              'parent': 1010000,
               'children': [
                 {
-                  'id': 1011001,
                   'slug': 'dry-beans',
+                  'id': 1011001,
                   'name': '콩',
-                  'depth': 4,
-                  'parent': 1011000,
                   'children': []
                 },
                 {
-                  'id': 1011002,
                   'slug': 'grains',
+                  'id': 1011002,
                   'name': '곡물',
-                  'depth': 4,
-                  'parent': 1011000,
                   'children': []
                 },
                 {
-                  'id': 1011003,
                   'slug': 'quinoa',
+                  'id': 1011003,
                   'name': '퀴노아',
-                  'depth': 4,
-                  'parent': 1011000,
                   'children': []
                 },
                 {
-                  'id': 1011004,
                   'slug': 'rice',
+                  'id': 1011004,
                   'name': '쌀',
-                  'depth': 4,
-                  'parent': 1011000,
                   'children': []
                 },
                 {
-                  'id': 1011005,
                   'slug': 'couscous',
+                  'id': 1011005,
                   'name': '쿠스쿠스',
-                  'depth': 4,
-                  'parent': 1011000,
                   'children': []
                 }
               ]
             },
             {
-              'id': 1011100,
               'slug': 'international-food',
+              'id': 1011100,
               'name': '해외식품',
-              'depth': 3,
-              'parent': 1010000,
               'children': [
                 {
-                  'id': 1011101,
                   'slug': 'indian-cuisine',
+                  'id': 1011101,
                   'name': '인도요리',
-                  'depth': 4,
-                  'parent': 1011100,
                   'children': []
                 },
                 {
-                  'id': 1011102,
                   'slug': 'chinese-cuisine',
+                  'id': 1011102,
                   'name': '중식',
-                  'depth': 4,
-                  'parent': 1011100,
                   'children': []
                 },
                 {
-                  'id': 1011103,
                   'slug': 'japanese-cuisine',
+                  'id': 1011103,
                   'name': '일식',
-                  'depth': 4,
-                  'parent': 1011100,
                   'children': []
                 },
                 {
-                  'id': 1011104,
                   'slug': 'korean-cuisine',
+                  'id': 1011104,
                   'name': '한식',
-                  'depth': 4,
-                  'parent': 1011100,
                   'children': []
                 },
                 {
-                  'id': 1011105,
                   'slug': 'asian-cuisine',
+                  'id': 1011105,
                   'name': '아시아요리',
-                  'depth': 4,
-                  'parent': 1011100,
                   'children': []
                 },
                 {
-                  'id': 1011106,
                   'slug': 'mexican-cuisine',
+                  'id': 1011106,
                   'name': '멕시코요리',
-                  'depth': 4,
-                  'parent': 1011100,
                   'children': []
                 },
                 {
-                  'id': 1011107,
                   'slug': 'latin-american-cuisine',
+                  'id': 1011107,
                   'name': '라틴요리',
-                  'depth': 4,
-                  'parent': 1011100,
                   'children': []
                 },
                 {
-                  'id': 1011108,
-                  'slug': 'australian-cuisine',
-                  'name': '호주요리',
-                  'depth': 4,
-                  'parent': 1011100,
-                  'children': []
-                },
-                {
-                  'id': 1011109,
                   'slug': 'european-cuisine',
-                  'name': '유럽요리',
-                  'depth': 4,
-                  'parent': 1011100,
+                  'id': 1011108,
+                  'name': '호주요리',
                   'children': []
                 }
               ]
@@ -859,447 +642,337 @@ export class UiService {
           ]
         },
         {
-          'id': 1020000,
           'slug': 'household-supplies',
+          'id': 1020000,
           'name': '생활용품',
-          'depth': 2,
-          'parent': 1000000,
           'children': [
             {
-              'id': 1020100,
               'slug': 'paper-and-plastic-products',
+              'id': 1020100,
               'name': '화장지·일회용품',
-              'depth': 3,
-              'parent': 1020000,
               'children': [
                 {
-                  'id': 1020101,
                   'slug': 'paper-towels',
+                  'id': 1020101,
                   'name': '종이타월',
-                  'depth': 4,
-                  'parent': 1020100,
                   'children': []
                 },
                 {
-                  'id': 1020102,
                   'slug': 'toilet-paper',
+                  'id': 1020102,
                   'name': '화장지',
-                  'depth': 4,
-                  'parent': 1020100,
                   'children': []
                 },
                 {
+                  'slug': 'facial-tissues',
                   'id': 1020103,
-                  'slug': 'facial-tissues',
                   'name': '미용티슈',
-                  'depth': 4,
-                  'parent': 1020100,
                   'children': []
                 },
                 {
-                  'id': 1020104,
                   'slug': 'disposable-tableware',
+                  'id': 1020104,
                   'name': '일회용식탁용품',
-                  'depth': 4,
-                  'parent': 1020100,
                   'children': []
                 },
                 {
-                  'id': 1020105,
                   'slug': 'paper-napkins',
+                  'id': 1020105,
                   'name': '넵킨',
-                  'depth': 4,
-                  'parent': 1020100,
                   'children': []
                 },
                 {
-                  'id': 1020106,
                   'slug': 'disposable-coffee-filters',
+                  'id': 1020106,
                   'name': '일회용커피필터',
-                  'depth': 4,
-                  'parent': 1020100,
                   'children': []
                 }
               ]
             },
             {
-              'id': 1020200,
               'slug': 'laundry',
+              'id': 1020200,
               'name': '세탁',
-              'depth': 3,
-              'parent': 1020000,
               'children': [
                 {
-                  'id': 1020201,
                   'slug': 'laundry-detergent',
+                  'id': 1020201,
                   'name': '세제',
-                  'depth': 4,
-                  'parent': 1020200,
                   'children': []
                 },
                 {
-                  'id': 1020202,
                   'slug': 'fabric-softener',
+                  'id': 1020202,
                   'name': '섬유유연제',
-                  'depth': 4,
-                  'parent': 1020200,
                   'children': []
                 },
                 {
-                  'id': 1020203,
                   'slug': 'dryer-sheets-and-balls',
+                  'id': 1020203,
                   'name': '건조시트·볼',
-                  'depth': 4,
-                  'parent': 1020200,
                   'children': []
                 },
                 {
-                  'id': 1020204,
                   'slug': 'stain-removers',
+                  'id': 1020204,
                   'name': '얼룩제거제',
-                  'depth': 4,
-                  'parent': 1020200,
                   'children': []
                 },
                 {
-                  'id': 1020205,
                   'slug': 'scent-boosters',
+                  'id': 1020205,
                   'name': '세탁방향제',
-                  'depth': 4,
-                  'parent': 1020200,
                   'children': []
                 },
                 {
+                  'slug': 'bleach',
                   'id': 1020206,
-                  'slug': 'bleach',
                   'name': '표백제',
-                  'depth': 4,
-                  'parent': 1020200,
                   'children': []
                 },
                 {
-                  'id': 1020207,
                   'slug': 'washing-machine-cleaners',
+                  'id': 1020207,
                   'name': '세탁조청소',
-                  'depth': 4,
-                  'parent': 1020200,
                   'children': []
                 },
                 {
-                  'id': 1020208,
                   'slug': 'other-laundry-care',
+                  'id': 1020208,
                   'name': '기타세탁용품',
-                  'depth': 4,
-                  'parent': 1020200,
                   'children': []
                 }
               ]
             },
             {
-              'id': 1020300,
               'slug': 'cleaning-products',
+              'id': 1020300,
               'name': '청소용품',
-              'depth': 3,
-              'parent': 1020000,
               'children': [
                 {
-                  'id': 1020301,
                   'slug': 'all-purpose-cleaners',
+                  'id': 1020301,
                   'name': '다목적클리너',
-                  'depth': 4,
-                  'parent': 1020300,
                   'children': []
                 },
                 {
-                  'id': 1020302,
                   'slug': 'cleaning-wipes',
+                  'id': 1020302,
                   'name': '청소용티슈',
-                  'depth': 4,
-                  'parent': 1020300,
                   'children': []
                 },
                 {
-                  'id': 1020303,
                   'slug': 'bleach',
+                  'id': 1020303,
                   'name': '표백제',
-                  'depth': 4,
-                  'parent': 1020300,
                   'children': []
                 },
                 {
+                  'slug': 'sponges-and-brushes',
                   'id': 1020304,
-                  'slug': 'sponges-and-brushes',
                   'name': '스펀지·브러쉬',
-                  'depth': 4,
-                  'parent': 1020300,
                   'children': []
                 },
                 {
-                  'id': 1020305,
                   'slug': 'dishwashing-detergent',
+                  'id': 1020305,
                   'name': '주방세제',
-                  'depth': 4,
-                  'parent': 1020300,
                   'children': []
                 },
                 {
-                  'id': 1020306,
                   'slug': 'dish-soap',
+                  'id': 1020306,
                   'name': '주방비누',
-                  'depth': 4,
-                  'parent': 1020300,
                   'children': []
                 },
                 {
-                  'id': 1020307,
                   'slug': 'bathroom-cleaners',
+                  'id': 1020307,
                   'name': '욕실청소',
-                  'depth': 4,
-                  'parent': 1020300,
                   'children': []
                 },
                 {
-                  'id': 1020308,
                   'slug': 'kitchen-cleaners',
+                  'id': 1020308,
                   'name': '주방청소',
-                  'depth': 4,
-                  'parent': 1020300,
                   'children': []
                 },
                 {
-                  'id': 1020309,
                   'slug': 'produce-wash',
+                  'id': 1020309,
                   'name': '식품세척',
-                  'depth': 4,
-                  'parent': 1020300,
                   'children': []
                 },
                 {
-                  'id': 1020310,
                   'slug': 'drain-cleaners',
+                  'id': 1020310,
                   'name': '배수관청소',
-                  'depth': 4,
-                  'parent': 1020300,
                   'children': []
                 },
                 {
-                  'id': 1020311,
                   'slug': 'floor-cleaners',
+                  'id': 1020311,
                   'name': '거실청소',
-                  'depth': 4,
-                  'parent': 1020300,
                   'children': []
                 },
                 {
-                  'id': 1020312,
                   'slug': 'specialty-cleaners',
+                  'id': 1020312,
                   'name': '특수청소',
-                  'depth': 4,
-                  'parent': 1020300,
                   'children': []
                 },
                 {
-                  'id': 1020313,
                   'slug': 'glass-cleaners',
+                  'id': 1020313,
                   'name': '유리청소',
-                  'depth': 4,
-                  'parent': 1020300,
                   'children': []
                 }
               ]
             },
             {
-              'id': 1020400,
               'slug': 'cleaning-tools',
-              'name': '유리청소',
-              'depth': 3,
-              'parent': 1020000,
+              'id': 1020400,
+              'name': 'Cleaning Tools',
               'children': [
                 {
-                  'id': 1020401,
                   'slug': 'sponges-and-brushes',
+                  'id': 1020401,
                   'name': '스펀지·브러쉬',
-                  'depth': 4,
-                  'parent': 1020400,
                   'children': []
                 },
                 {
-                  'id': 1020402,
                   'slug': 'mops-and-accessories',
+                  'id': 1020402,
                   'name': '대걸레·액세서리',
-                  'depth': 4,
-                  'parent': 1020400,
                   'children': []
                 },
                 {
-                  'id': 1020403,
                   'slug': 'dusting-tools-and-cloths',
+                  'id': 1020403,
                   'name': '먼지청소',
-                  'depth': 4,
-                  'parent': 1020400,
                   'children': []
                 },
                 {
-                  'id': 1020404,
                   'slug': 'cleaning-gloves',
+                  'id': 1020404,
                   'name': '청소용장갑',
-                  'depth': 4,
-                  'parent': 1020400,
                   'children': []
                 },
                 {
-                  'id': 1020405,
                   'slug': 'brooms',
+                  'id': 1020405,
                   'name': '빗자루',
-                  'depth': 4,
-                  'parent': 1020400,
                   'children': []
                 },
                 {
-                  'id': 1020406,
                   'slug': 'bowl-brushes-and-plungers',
+                  'id': 1020406,
                   'name': '볼브러쉬·플런저',
-                  'depth': 4,
-                  'parent': 1020400,
                   'children': []
                 },
                 {
-                  'id': 1020407,
                   'slug': 'dustbins',
+                  'id': 1020407,
                   'name': '휴지통',
-                  'depth': 4,
-                  'parent': 1020400,
                   'children': []
                 }
               ]
             },
             {
-              'id': 1020500,
               'slug': 'food-storage-and-trash-bags',
+              'id': 1020500,
               'name': '보관용기·팩',
-              'depth': 3,
-              'parent': 1020000,
               'children': [
                 {
-                  'id': 1020501,
                   'slug': 'food-storage-bags',
+                  'id': 1020501,
                   'name': '비닐팩',
-                  'depth': 4,
-                  'parent': 1020500,
                   'children': []
                 },
                 {
-                  'id': 1020502,
                   'slug': 'foil',
+                  'id': 1020502,
                   'name': '호일',
-                  'depth': 4,
-                  'parent': 1020500,
                   'children': []
                 },
                 {
-                  'id': 1020503,
                   'slug': 'food-storage-containers',
+                  'id': 1020503,
                   'name': '음식보관용기',
-                  'depth': 4,
-                  'parent': 1020500,
                   'children': []
                 },
                 {
-                  'id': 1020504,
                   'slug': 'plastic-wrap',
+                  'id': 1020504,
                   'name': '비닐랩',
-                  'depth': 4,
-                  'parent': 1020500,
                   'children': []
                 },
                 {
-                  'id': 1020505,
                   'slug': 'wax-and-parchment-paper',
+                  'id': 1020505,
                   'name': '왁스·파치먼트페이퍼',
-                  'depth': 4,
-                  'parent': 1020500,
                   'children': []
                 },
                 {
-                  'id': 1020506,
                   'slug': 'trash-bags',
-                  'name': '왁스·파치먼트페이퍼',
-                  'depth': 4,
-                  'parent': 1020500,
+                  'id': 1020506,
+                  'name': 'Trash Bags',
                   'children': []
                 }
               ]
             },
             {
-              'id': 1020600,
               'slug': 'home-fragrance',
+              'id': 1020600,
               'name': '방향',
-              'depth': 3,
-              'parent': 1020000,
               'children': [
                 {
-                  'id': 1020601,
                   'slug': 'air-fresheners',
+                  'id': 1020601,
                   'name': '방향제',
-                  'depth': 4,
-                  'parent': 1020600,
                   'children': []
                 },
                 {
-                  'id': 1020602,
                   'slug': 'candles',
+                  'id': 1020602,
                   'name': '향초',
-                  'depth': 4,
-                  'parent': 1020600,
                   'children': []
                 },
                 {
-                  'id': 1020603,
                   'slug': 'fragrance-diffusers',
+                  'id': 1020603,
                   'name': '디퓨저',
-                  'depth': 4,
-                  'parent': 1020600,
                   'children': []
                 }
               ]
             },
             {
-              'id': 1020700,
               'slug': 'light-bulbs',
+              'id': 1020700,
               'name': '백열전구',
-              'depth': 3,
-              'parent': 1020000,
               'children': []
             },
             {
-              'id': 1020800,
               'slug': 'insect-and-pest-control',
+              'id': 1020800,
               'name': '방충용품',
-              'depth': 3,
-              'parent': 1020000,
               'children': [
                 {
-                  'id': 1020801,
                   'slug': 'indoor-pest-control',
+                  'id': 1020801,
                   'name': '실내용해충',
-                  'depth': 4,
-                  'parent': 1020800,
                   'children': []
                 },
                 {
-                  'id': 1020802,
                   'slug': 'outdoor-pest-control',
+                  'id': 1020802,
                   'name': '야외용해충',
-                  'depth': 4,
-                  'parent': 1020800,
                   'children': []
                 },
                 {
-                  'id': 1020803,
                   'slug': 'insect-repellent',
+                  'id': 1020803,
                   'name': '방충제',
-                  'depth': 4,
-                  'parent': 1020800,
                   'children': []
                 }
               ]
@@ -1307,712 +980,536 @@ export class UiService {
           ]
         },
         {
-          'id': 1030000,
           'slug': 'personal-care',
+          'id': 1030000,
           'name': '퍼스날케어',
-          'depth': 2,
-          'parent': 1000000,
           'children': [
             {
-              'id': 1030100,
               'slug': 'oral-and-personal-care',
+              'id': 1030100,
               'name': '위생용품',
-              'depth': 3,
-              'parent': 1030000,
               'children': [
                 {
-                  'id': 1030101,
                   'slug': 'deodorant',
+                  'id': 1030101,
                   'name': '데오드란트',
-                  'depth': 4,
-                  'parent': 1030100,
                   'children': []
                 },
                 {
+                  'slug': 'ear-care',
                   'id': 1030102,
-                  'slug': 'ear-care',
                   'name': '귀건강',
-                  'depth': 4,
-                  'parent': 1030100,
                   'children': []
                 },
                 {
+                  'slug': 'eye-care',
                   'id': 1030103,
-                  'slug': 'eye-care',
                   'name': '눈건강',
-                  'depth': 4,
-                  'parent': 1030100,
                   'children': []
                 },
                 {
-                  'id': 1030104,
                   'slug': 'feminine-care',
+                  'id': 1030104,
                   'name': '여성청결제',
-                  'depth': 4,
-                  'parent': 1030100,
                   'children': []
                 },
                 {
-                  'id': 1030105,
                   'slug': 'toothbrushes',
-                  'name': '여성청결제',
-                  'depth': 4,
-                  'parent': 1030100,
+                  'id': 1030105,
+                  'name': 'Toothbrushes',
                   'children': []
                 },
                 {
-                  'id': 1030106,
                   'slug': 'toothpaste',
+                  'id': 1030106,
                   'name': '치약',
-                  'depth': 4,
-                  'parent': 1030100,
                   'children': []
                 },
                 {
-                  'id': 1030107,
                   'slug': 'mouthwash',
+                  'id': 1030107,
                   'name': '구강청결제',
-                  'depth': 4,
-                  'parent': 1030100,
                   'children': []
                 },
                 {
-                  'id': 1030108,
                   'slug': 'dental-floss',
+                  'id': 1030108,
                   'name': '치실',
-                  'depth': 4,
-                  'parent': 1030100,
                   'children': []
                 },
                 {
-                  'id': 1030109,
                   'slug': 'manual-toothbrushes',
+                  'id': 1030109,
                   'name': '칫솔',
-                  'depth': 4,
-                  'parent': 1030100,
                   'children': []
                 },
                 {
-                  'id': 1030110,
                   'slug': 'electric-toothbrushes',
+                  'id': 1030110,
                   'name': '전동칫솔',
-                  'depth': 4,
-                  'parent': 1030100,
                   'children': []
                 },
                 {
-                  'id': 1030111,
                   'slug': 'other-oral-care',
+                  'id': 1030111,
                   'name': '구강관리',
-                  'depth': 4,
-                  'parent': 1030100,
                   'children': []
                 },
                 {
-                  'id': 1030112,
                   'slug': 'razors',
+                  'id': 1030112,
                   'name': '면도기',
-                  'depth': 4,
-                  'parent': 1030100,
                   'children': []
                 },
                 {
+                  'slug': 'shaving-cream',
                   'id': 1030113,
-                  'slug': 'shaving-cream',
                   'name': '면도크림',
-                  'depth': 4,
-                  'parent': 1030100,
                   'children': []
                 },
                 {
-                  'id': 1030114,
                   'slug': 'waxing-and-hair-removal',
+                  'id': 1030114,
                   'name': '왁싱·제모',
-                  'depth': 4,
-                  'parent': 1030100,
                   'children': []
                 },
                 {
-                  'id': 1030115,
                   'slug': 'safer-sex-and-contraceptives',
+                  'id': 1030115,
                   'name': '피임기구',
-                  'depth': 4,
-                  'parent': 1030100,
                   'children': []
                 },
                 {
+                  'slug': 'cotton-balls-and-rounds',
                   'id': 1030116,
-                  'slug': 'cotton-balls-and-rounds',
                   'name': '코튼볼',
-                  'depth': 4,
-                  'parent': 1030100,
                   'children': []
                 },
                 {
+                  'slug': 'incontinence',
                   'id': 1030117,
-                  'slug': 'incontinence',
                   'name': '요실금',
-                  'depth': 4,
-                  'parent': 1030100,
                   'children': []
                 },
                 {
-                  'id': 1030118,
                   'slug': 'wet-shave',
+                  'id': 1030118,
                   'name': '면도',
-                  'depth': 4,
-                  'parent': 1030100,
                   'children': []
                 },
                 {
-                  'id': 1030119,
                   'slug': 'electric-shavers',
+                  'id': 1030119,
                   'name': '전기면도',
-                  'depth': 4,
-                  'parent': 1030100,
                   'children': []
                 }
               ]
             },
             {
-              'id': 1030200,
               'slug': 'tools-and-accessories',
+              'id': 1030200,
               'name': '뷰티액세서리',
-              'depth': 3,
-              'parent': 1030000,
               'children': [
                 {
-                  'id': 1030201,
                   'slug': 'bath-sponges-and-tools',
+                  'id': 1030201,
                   'name': '목욕용품·스펀지',
-                  'depth': 4,
-                  'parent': 1030200,
                   'children': []
                 },
                 {
-                  'id': 1030202,
                   'slug': 'eye-masks',
+                  'id': 1030202,
                   'name': '아이마스크',
-                  'depth': 4,
-                  'parent': 1030200,
                   'children': []
                 },
                 {
-                  'id': 1030203,
                   'slug': 'beauty-and-spa-tools',
+                  'id': 1030203,
                   'name': '스파용품',
-                  'depth': 4,
-                  'parent': 1030200,
                   'children': []
                 },
                 {
-                  'id': 1030204,
                   'slug': 'cotton-balls-and-rounds',
+                  'id': 1030204,
                   'name': '화장솜',
-                  'depth': 4,
-                  'parent': 1030200,
                   'children': []
                 },
                 {
-                  'id': 1030205,
                   'slug': 'mirrors',
+                  'id': 1030205,
                   'name': '거울',
-                  'depth': 4,
-                  'parent': 1030200,
                   'children': []
                 },
                 {
-                  'id': 1030206,
                   'slug': 'toiletry-kits-and-cases',
+                  'id': 1030206,
                   'name': '화장품주머니',
-                  'depth': 4,
-                  'parent': 1030200,
                   'children': []
                 },
                 {
-                  'id': 1030207,
                   'slug': 'tweezers',
+                  'id': 1030207,
                   'name': '핀셋',
-                  'depth': 4,
-                  'parent': 1030200,
                   'children': []
                 },
                 {
-                  'id': 1030208,
                   'slug': 'facial-tissues',
+                  'id': 1030208,
                   'name': '미용티슈',
-                  'depth': 4,
-                  'parent': 1030200,
                   'children': []
                 },
                 {
+                  'slug': 'nail-care-tools',
                   'id': 1030209,
-                  'slug': 'nail-care-tools',
                   'name': '네일케어',
-                  'depth': 4,
-                  'parent': 1030200,
                   'children': []
                 },
                 {
-                  'id': 1030210,
                   'slug': 'top-beauty-tools-and-accessories',
+                  'id': 1030210,
                   'name': '뷰티베스트',
-                  'depth': 4,
-                  'parent': 1030200,
                   'children': []
                 }
               ]
             },
             {
-              'id': 1030300,
               'slug': 'hair-care-products',
+              'id': 1030300,
               'name': '헤어케어',
-              'depth': 3,
-              'parent': 1030000,
               'children': [
                 {
-                  'id': 1030301,
                   'slug': 'shampoos',
+                  'id': 1030301,
                   'name': '샴푸',
-                  'depth': 4,
-                  'parent': 1030300,
                   'children': []
                 },
                 {
-                  'id': 1030302,
                   'slug': 'conditioners',
+                  'id': 1030302,
                   'name': '컨디셔너',
-                  'depth': 4,
-                  'parent': 1030300,
                   'children': []
                 },
                 {
-                  'id': 1030303,
                   'slug': 'styling-products',
+                  'id': 1030303,
                   'name': '스타일링',
-                  'depth': 4,
-                  'parent': 1030300,
                   'children': []
                 },
                 {
-                  'id': 1030304,
                   'slug': 'scalp-treatments',
+                  'id': 1030304,
                   'name': '두피관리',
-                  'depth': 4,
-                  'parent': 1030300,
                   'children': []
                 },
                 {
-                  'id': 1030305,
                   'slug': 'hair-color',
+                  'id': 1030305,
                   'name': '염색',
-                  'depth': 4,
-                  'parent': 1030300,
                   'children': []
                 },
                 {
-                  'id': 1030306,
                   'slug': 'hair-loss-products',
+                  'id': 1030306,
                   'name': '탈모관리',
-                  'depth': 4,
-                  'parent': 1030300,
                   'children': []
                 },
                 {
-                  'id': 1030307,
                   'slug': 'hair-perms-and-texturizers',
+                  'id': 1030307,
                   'name': '펌·텍스처',
-                  'depth': 4,
-                  'parent': 1030300,
                   'children': []
                 },
                 {
-                  'id': 1030308,
                   'slug': 'hair-relaxers-and-treatments',
+                  'id': 1030308,
                   'name': '트리트먼트',
-                  'depth': 4,
-                  'parent': 1030300,
                   'children': []
                 },
                 {
-                  'id': 1030309,
                   'slug': 'multicultural-hair-care-products',
-                  'name': '트리트먼트',
-                  'depth': 4,
-                  'parent': 1030300,
+                  'id': 1030309,
+                  'name': 'Multicultural Hair Care Products',
                   'children': []
                 },
                 {
-                  'id': 1030310,
                   'slug': 'innovative-hair-care',
+                  'id': 1030310,
                   'name': '집중관리',
-                  'depth': 4,
-                  'parent': 1030300,
                   'children': []
                 }
               ]
             },
             {
-              'id': 1030400,
               'slug': 'hair-tools-and-accessories',
+              'id': 1030400,
               'name': '헤어액세서리',
-              'depth': 3,
-              'parent': 1030000,
               'children': [
                 {
-                  'id': 1030401,
                   'slug': 'brushes',
+                  'id': 1030401,
                   'name': '브러쉬',
-                  'depth': 4,
-                  'parent': 1030400,
                   'children': []
                 },
                 {
-                  'id': 1030402,
                   'slug': 'dryers-irons-and-diffusers',
+                  'id': 1030402,
                   'name': '드라이어·고데기',
-                  'depth': 4,
-                  'parent': 1030400,
                   'children': []
                 },
                 {
-                  'id': 1030403,
                   'slug': 'hair-rollers',
+                  'id': 1030403,
                   'name': '롤러',
-                  'depth': 4,
-                  'parent': 1030400,
                   'children': []
                 },
                 {
-                  'id': 1030404,
                   'slug': 'hair-accessories',
+                  'id': 1030404,
                   'name': '액세서리',
-                  'depth': 4,
-                  'parent': 1030400,
                   'children': []
                 },
                 {
-                  'id': 1030405,
                   'slug': 'haircutting-tools',
+                  'id': 1030405,
                   'name': '이발용품',
-                  'depth': 4,
-                  'parent': 1030400,
                   'children': []
                 },
                 {
-                  'id': 1030406,
                   'slug': 'combs',
+                  'id': 1030406,
                   'name': '빗',
-                  'depth': 4,
-                  'parent': 1030400,
                   'children': []
                 }
               ]
             },
             {
-              'id': 1030500,
               'slug': 'makeup',
+              'id': 1030500,
               'name': '메이크업',
-              'depth': 3,
-              'parent': 1030000,
               'children': [
                 {
-                  'id': 1030501,
                   'slug': 'body-art-and-makeup',
+                  'id': 1030501,
                   'name': '바디아트',
-                  'depth': 4,
-                  'parent': 1030500,
                   'children': []
                 },
                 {
-                  'id': 1030502,
                   'slug': 'makeup-brushes',
+                  'id': 1030502,
                   'name': '메이크업브러쉬',
-                  'depth': 4,
-                  'parent': 1030500,
                   'children': []
                 },
                 {
-                  'id': 1030503,
                   'slug': 'face-makeup',
+                  'id': 1030503,
                   'name': '페이스메이크업',
-                  'depth': 4,
-                  'parent': 1030500,
                   'children': []
                 },
                 {
-                  'id': 1030504,
                   'slug': 'lip-makeup',
+                  'id': 1030504,
                   'name': '립메이크업',
-                  'depth': 4,
-                  'parent': 1030500,
                   'children': []
                 },
                 {
-                  'id': 1030505,
                   'slug': 'makeup-sets',
+                  'id': 1030505,
                   'name': '메이크업세트',
-                  'depth': 4,
-                  'parent': 1030500,
                   'children': []
                 },
                 {
-                  'id': 1030506,
                   'slug': 'eyeliner-and-brow-pencils',
+                  'id': 1030506,
                   'name': '아이라이너·브로우펜슬',
-                  'depth': 4,
-                  'parent': 1030500,
                   'children': []
                 },
                 {
-                  'id': 1030507,
                   'slug': 'mascara-and-lashes',
+                  'id': 1030507,
                   'name': '마스카라·래쉬',
-                  'depth': 4,
-                  'parent': 1030500,
                   'children': []
                 },
                 {
-                  'id': 1030508,
                   'slug': 'eye-shadow',
+                  'id': 1030508,
                   'name': '아이섀도',
-                  'depth': 4,
-                  'parent': 1030500,
                   'children': []
                 },
                 {
-                  'id': 1030509,
                   'slug': 'makeup-sponges',
+                  'id': 1030509,
                   'name': '메이크업스펀지',
-                  'depth': 4,
-                  'parent': 1030500,
                   'children': []
                 },
                 {
-                  'id': 1030510,
                   'slug': 'makeup-tools',
+                  'id': 1030510,
                   'name': '메이크업용품',
-                  'depth': 4,
-                  'parent': 1030500,
                   'children': []
                 }
               ]
             },
             {
-              'id': 1030600,
               'slug': 'nail-care',
+              'id': 1030600,
               'name': '네일케어',
-              'depth': 3,
-              'parent': 1030000,
               'children': [
                 {
-                  'id': 1030601,
                   'slug': 'cuticle-care',
+                  'id': 1030601,
                   'name': '큐티클케어',
-                  'depth': 4,
-                  'parent': 1030600,
                   'children': []
                 },
                 {
-                  'id': 1030602,
                   'slug': 'nail-care-tools',
+                  'id': 1030602,
                   'name': '네일케어용품',
-                  'depth': 4,
-                  'parent': 1030600,
                   'children': []
                 },
                 {
-                  'id': 1030603,
                   'slug': 'nail-polish',
+                  'id': 1030603,
                   'name': '매니큐어',
-                  'depth': 4,
-                  'parent': 1030600,
                   'children': []
                 },
                 {
-                  'id': 1030604,
                   'slug': 'nail-polish-remover',
+                  'id': 1030604,
                   'name': '매니큐어리무버',
-                  'depth': 4,
-                  'parent': 1030600,
                   'children': []
                 }
               ]
             },
             {
-              'id': 1030700,
               'slug': 'skin-care',
+              'id': 1030700,
               'name': '스킨케어',
-              'depth': 3,
-              'parent': 1030000,
               'children': [
                 {
-                  'id': 1030701,
                   'slug': 'bath-salts-and-bubbles',
+                  'id': 1030701,
                   'name': '입욕제',
-                  'depth': 4,
-                  'parent': 1030700,
                   'children': []
                 },
                 {
-                  'id': 1030702,
                   'slug': 'makeup-remover',
+                  'id': 1030702,
                   'name': '메이크업리무버',
-                  'depth': 4,
-                  'parent': 1030700,
                   'children': []
                 },
                 {
-                  'id': 1030703,
                   'slug': 'hand-soap',
+                  'id': 1030703,
                   'name': '핸드워시',
-                  'depth': 4,
-                  'parent': 1030700,
                   'children': []
                 },
                 {
-                  'id': 1030704,
                   'slug': 'lip-care',
+                  'id': 1030704,
                   'name': '립케어',
-                  'depth': 4,
-                  'parent': 1030700,
                   'children': []
                 },
                 {
-                  'id': 1030705,
                   'slug': 'suncare',
+                  'id': 1030705,
                   'name': '선케어',
-                  'depth': 4,
-                  'parent': 1030700,
                   'children': []
                 },
                 {
-                  'id': 1030706,
                   'slug': 'toners-and-astringents',
+                  'id': 1030706,
                   'name': '스킨토너',
-                  'depth': 4,
-                  'parent': 1030700,
                   'children': []
                 },
                 {
-                  'id': 1030707,
                   'slug': 'body-powder',
+                  'id': 1030707,
                   'name': '바디파우더',
-                  'depth': 4,
-                  'parent': 1030700,
                   'children': []
                 },
                 {
-                  'id': 1030708,
                   'slug': 'body-moisturizers',
+                  'id': 1030708,
                   'name': '바디모이스처',
-                  'depth': 4,
-                  'parent': 1030700,
                   'children': []
                 },
                 {
-                  'id': 1030709,
                   'slug': 'massage-oil-and-aromatherapy',
+                  'id': 1030709,
                   'name': '마사지오일·아로마',
-                  'depth': 4,
-                  'parent': 1030700,
                   'children': []
                 },
                 {
-                  'id': 1030710,
                   'slug': 'hand-sanitizers-and-wipes',
+                  'id': 1030710,
                   'name': '손세정제',
-                  'depth': 4,
-                  'parent': 1030700,
                   'children': []
                 },
                 {
-                  'id': 1030711,
                   'slug': 'facial-cleansers',
+                  'id': 1030711,
                   'name': '클랜저',
-                  'depth': 4,
-                  'parent': 1030700,
                   'children': []
                 },
                 {
-                  'id': 1030712,
                   'slug': 'facial-moisturizers-and-treatment',
+                  'id': 1030712,
                   'name': '보습·미백',
-                  'depth': 4,
-                  'parent': 1030700,
                   'children': []
                 },
                 {
-                  'id': 1030713,
                   'slug': 'soap-and-body-wash',
+                  'id': 1030713,
                   'name': '바디워시',
-                  'depth': 4,
-                  'parent': 1030700,
                   'children': []
                 },
                 {
-                  'id': 1030714,
                   'slug': 'shaving-cream',
+                  'id': 1030714,
                   'name': '쉐이빙크림',
-                  'depth': 4,
-                  'parent': 1030700,
                   'children': []
                 }
               ]
             },
             {
-              'id': 1030800,
               'slug': 'mens-essentials',
+              'id': 1030800,
               'name': '남성용품',
-              'depth': 3,
-              'parent': 1030000,
               'children': [
                 {
-                  'id': 1030801,
                   'slug': 'beard-and-shave',
+                  'id': 1030801,
                   'name': '면도',
-                  'depth': 4,
-                  'parent': 1030800,
                   'children': []
                 },
                 {
-                  'id': 1030802,
                   'slug': 'body',
+                  'id': 1030802,
                   'name': '바디',
-                  'depth': 4,
-                  'parent': 1030800,
                   'children': []
                 },
                 {
-                  'id': 1030803,
                   'slug': 'face',
+                  'id': 1030803,
                   'name': '페이스',
-                  'depth': 4,
-                  'parent': 1030800,
                   'children': []
                 },
                 {
-                  'id': 1030804,
                   'slug': 'hair',
+                  'id': 1030804,
                   'name': '헤어',
-                  'depth': 4,
-                  'parent': 1030800,
                   'children': []
                 },
                 {
-                  'id': 1030805,
                   'slug': 'cologne',
+                  'id': 1030805,
                   'name': '향수',
-                  'depth': 4,
-                  'parent': 1030800,
                   'children': []
                 },
                 {
-                  'id': 1030806,
                   'slug': 'wellness',
+                  'id': 1030806,
                   'name': '건강',
-                  'depth': 4,
-                  'parent': 1030800,
                   'children': []
                 }
               ]
@@ -2020,420 +1517,316 @@ export class UiService {
           ]
         },
         {
-          'id': 1040000,
           'slug': 'health',
+          'id': 1040000,
           'name': '건강',
-          'depth': 2,
-          'parent': 1000000,
           'children': [
             {
-              'id': 1040100,
               'slug': 'medicine-cabinet',
+              'id': 1040100,
               'name': '의약품',
-              'depth': 3,
-              'parent': 1040000,
               'children': [
                 {
-                  'id': 1040101,
                   'slug': 'allergy-sinus-and-asthma',
+                  'id': 1040101,
                   'name': '알러지·천식',
-                  'depth': 4,
-                  'parent': 1040100,
                   'children': []
                 },
                 {
-                  'id': 1040102,
                   'slug': 'childrens-medicine',
+                  'id': 1040102,
                   'name': '어린이용약품',
-                  'depth': 4,
-                  'parent': 1040100,
                   'children': []
                 },
                 {
-                  'id': 1040103,
                   'slug': 'cold-sore-and-blister-treatments',
+                  'id': 1040103,
                   'name': '물집·발진',
-                  'depth': 4,
-                  'parent': 1040100,
                   'children': []
                 },
                 {
-                  'id': 1040104,
                   'slug': 'cough-and-cold',
+                  'id': 1040104,
                   'name': '감기',
-                  'depth': 4,
-                  'parent': 1040100,
                   'children': []
                 },
                 {
-                  'id': 1040105,
                   'slug': 'diabetes',
+                  'id': 1040105,
                   'name': '당뇨',
-                  'depth': 4,
-                  'parent': 1040100,
                   'children': []
                 },
                 {
-                  'id': 1040106,
                   'slug': 'digestion-and-nausea',
+                  'id': 1040106,
                   'name': '소화불량',
-                  'depth': 4,
-                  'parent': 1040100,
                   'children': []
                 },
                 {
-                  'id': 1040107,
                   'slug': 'foot-healthcare',
+                  'id': 1040107,
                   'name': '발건강',
-                  'depth': 4,
-                  'parent': 1040100,
                   'children': []
                 },
                 {
-                  'id': 1040108,
                   'slug': 'incontinence',
+                  'id': 1040108,
                   'name': '요실금',
-                  'depth': 4,
-                  'parent': 1040100,
                   'children': []
                 },
                 {
-                  'id': 1040109,
                   'slug': 'pain-relievers',
+                  'id': 1040109,
                   'name': '진통제',
-                  'depth': 4,
-                  'parent': 1040100,
                   'children': []
                 },
                 {
-                  'id': 1040110,
                   'slug': 'sleep-and-snoring',
+                  'id': 1040110,
                   'name': '수면·코골이',
-                  'depth': 4,
-                  'parent': 1040100,
                   'children': []
                 },
                 {
-                  'id': 1040111,
                   'slug': 'smoking-cessation',
+                  'id': 1040111,
                   'name': '금연용품',
-                  'depth': 4,
-                  'parent': 1040100,
                   'children': []
                 },
                 {
-                  'id': 1040112,
                   'slug': 'therapeutic-ointments-and-powders',
+                  'id': 1040112,
                   'name': '연고',
-                  'depth': 4,
-                  'parent': 1040100,
                   'children': []
                 },
                 {
-                  'id': 1040113,
                   'slug': 'thermometers',
+                  'id': 1040113,
                   'name': '체온계',
-                  'depth': 4,
-                  'parent': 1040100,
                   'children': []
                 },
                 {
-                  'id': 1040114,
                   'slug': 'ear-care',
+                  'id': 1040114,
                   'name': '귀건강',
-                  'depth': 4,
-                  'parent': 1040100,
                   'children': []
                 },
                 {
-                  'id': 1040115,
                   'slug': 'eye-care',
+                  'id': 1040115,
                   'name': '눈건강',
-                  'depth': 4,
-                  'parent': 1040100,
                   'children': []
                 }
               ]
             },
             {
-              'id': 1040200,
               'slug': 'medical-supplies-and-equipment',
+              'id': 1040200,
               'name': '의료용품',
-              'depth': 3,
-              'parent': 1040000,
               'children': [
                 {
-                  'id': 1040201,
                   'slug': 'pills-cases-and-splitters',
+                  'id': 1040201,
                   'name': '약케이스',
-                  'depth': 4,
-                  'parent': 1040200,
                   'children': []
                 },
                 {
-                  'id': 1040202,
                   'slug': 'bathroom-aids-and-safety',
+                  'id': 1040202,
                   'name': '욕실안전',
-                  'depth': 4,
-                  'parent': 1040200,
                   'children': []
                 },
                 {
-                  'id': 1040203,
                   'slug': 'beds-and-accessories',
+                  'id': 1040203,
                   'name': '침대·액세서리',
-                  'depth': 4,
-                  'parent': 1040200,
                   'children': []
                 },
                 {
-                  'id': 1040204,
                   'slug': 'braces-splints-and-slings',
+                  'id': 1040204,
                   'name': '보조기',
-                  'depth': 4,
-                  'parent': 1040200,
                   'children': []
                 },
                 {
-                  'id': 1040205,
                   'slug': 'daily-living-aids',
+                  'id': 1040205,
                   'name': '상비약품',
-                  'depth': 4,
-                  'parent': 1040200,
                   'children': []
                 },
                 {
-                  'id': 1040206,
                   'slug': 'mobility-aids-and-equipment',
+                  'id': 1040206,
                   'name': '이동장비',
-                  'depth': 4,
-                  'parent': 1040200,
                   'children': []
                 },
                 {
-                  'id': 1040207,
                   'slug': 'occupational-and-physical-therapy-aids',
+                  'id': 1040207,
                   'name': '치료장비',
-                  'depth': 4,
-                  'parent': 1040200,
                   'children': []
                 },
                 {
-                  'id': 1040208,
                   'slug': 'pen-lights',
+                  'id': 1040208,
                   'name': '손전등',
-                  'depth': 4,
-                  'parent': 1040200,
                   'children': []
                 },
                 {
-                  'id': 1040209,
                   'slug': 'tests',
+                  'id': 1040209,
                   'name': '테스터',
-                  'depth': 4,
-                  'parent': 1040200,
                   'children': []
                 },
                 {
-                  'id': 1040210,
                   'slug': 'first-aid',
+                  'id': 1040210,
                   'name': '구급약품',
-                  'depth': 4,
-                  'parent': 1040200,
                   'children': []
                 },
                 {
-                  'id': 1040211,
                   'slug': 'dehumidifiers',
+                  'id': 1040211,
                   'name': '제습기',
-                  'depth': 4,
-                  'parent': 1040200,
                   'children': []
                 },
                 {
-                  'id': 1040212,
                   'slug': 'humidifiers',
+                  'id': 1040212,
                   'name': '가습기',
-                  'depth': 4,
-                  'parent': 1040200,
                   'children': []
                 },
                 {
-                  'id': 1040213,
                   'slug': 'health-monitors',
+                  'id': 1040213,
                   'name': '헬스모니터',
-                  'depth': 4,
-                  'parent': 1040200,
                   'children': []
                 }
               ]
             },
             {
-              'id': 1040300,
               'slug': 'sports-nutrition-and-diet',
+              'id': 1040300,
               'name': '헬스·다이어트',
-              'depth': 3,
-              'parent': 1040000,
               'children': [
                 {
-                  'id': 1040301,
                   'slug': 'protein-and-meal-replacement',
+                  'id': 1040301,
                   'name': '프로틴·식사대용',
-                  'depth': 4,
-                  'parent': 1040300,
                   'children': []
                 },
                 {
-                  'id': 1040302,
                   'slug': 'energy-and-endurance',
+                  'id': 1040302,
                   'name': '에너지·지구력',
-                  'depth': 4,
-                  'parent': 1040300,
                   'children': []
                 },
                 {
-                  'id': 1040303,
                   'slug': 'weight-loss-supplements-and-cleanses',
+                  'id': 1040303,
                   'name': '체중감량',
-                  'depth': 4,
-                  'parent': 1040300,
                   'children': []
                 },
                 {
-                  'id': 1040304,
                   'slug': 'mass-gainers',
+                  'id': 1040304,
                   'name': '체중증가',
-                  'depth': 4,
-                  'parent': 1040300,
                   'children': []
                 },
                 {
+                  'slug': 'amino-acids-and-creatine',
                   'id': 1040305,
-                  'slug': 'amino-acids-and-creatine',
                   'name': '크레아틴·아미노산',
-                  'depth': 4,
-                  'parent': 1040300,
                   'children': []
                 },
                 {
-                  'id': 1040306,
                   'slug': 'on-the-go-nutrition',
+                  'id': 1040306,
                   'name': '테이크아웃',
-                  'depth': 4,
-                  'parent': 1040300,
                   'children': []
                 },
                 {
-                  'id': 1040307,
                   'slug': 'slimfast-campaign',
+                  'id': 1040307,
                   'name': '슬림패스트캠페인',
-                  'depth': 4,
-                  'parent': 1040300,
                   'children': []
                 }
               ]
             },
             {
-              'id': 1040400,
               'slug': 'vitamins-and-dietary-supplements',
+              'id': 1040400,
               'name': '건강기능식품',
-              'depth': 3,
-              'parent': 1040000,
               'children': [
                 {
-                  'id': 1040401,
                   'slug': 'minerals',
+                  'id': 1040401,
                   'name': '미네랄',
-                  'depth': 4,
-                  'parent': 1040400,
                   'children': []
                 },
                 {
-                  'id': 1040402,
                   'slug': 'supplements',
+                  'id': 1040402,
                   'name': '영양제',
-                  'depth': 4,
-                  'parent': 1040400,
                   'children': []
                 },
                 {
-                  'id': 1040403,
                   'slug': 'letter-vitamins',
+                  'id': 1040403,
                   'name': '비타민',
-                  'depth': 4,
-                  'parent': 1040400,
                   'children': []
                 },
                 {
-                  'id': 1040404,
                   'slug': 'fish-oils-and-omegas',
+                  'id': 1040404,
                   'name': '오메가3·피쉬오일',
-                  'depth': 4,
-                  'parent': 1040400,
                   'children': []
                 },
                 {
-                  'id': 1040405,
                   'slug': 'probiotics',
+                  'id': 1040405,
                   'name': '프로바이오틱스',
-                  'depth': 4,
-                  'parent': 1040400,
                   'children': []
                 },
                 {
-                  'id': 1040406,
                   'slug': 'multivitamins',
+                  'id': 1040406,
                   'name': '종합비타민',
-                  'depth': 4,
-                  'parent': 1040400,
                   'children': []
                 },
                 {
-                  'id': 1040407,
                   'slug': 'protein-and-meal-replacements',
+                  'id': 1040407,
                   'name': '프로틴·식사대용',
-                  'depth': 4,
-                  'parent': 1040400,
                   'children': []
                 },
                 {
-                  'id': 1040408,
                   'slug': 'pill-cases-and-splitters',
+                  'id': 1040408,
                   'name': '약케이스',
-                  'depth': 4,
-                  'parent': 1040400,
                   'children': []
                 },
                 {
-                  'id': 1040409,
                   'slug': 'amino-acids-and-creatine',
+                  'id': 1040409,
                   'name': '크레아틴·아미노산',
-                  'depth': 4,
-                  'parent': 1040400,
                   'children': []
                 },
                 {
-                  'id': 1040410,
                   'slug': 'weight-loss-supplements',
+                  'id': 1040410,
                   'name': '체중감량',
-                  'depth': 4,
-                  'parent': 1040400,
                   'children': []
                 },
                 {
-                  'id': 1040411,
                   'slug': 'new-and-noteworthy-vitamins-and-supplements',
+                  'id': 1040411,
                   'name': '베스트·추천',
-                  'depth': 4,
-                  'parent': 1040400,
                   'children': []
                 },
                 {
-                  'id': 1040412,
                   'slug': 'herbs-and-homeopathy',
+                  'id': 1040412,
                   'name': '허브',
-                  'depth': 4,
-                  'parent': 1040400,
                   'children': []
                 }
               ]
@@ -2441,674 +1834,508 @@ export class UiService {
           ]
         },
         {
-          'id': 1050000,
           'slug': 'baby',
+          'id': 1050000,
           'name': '유아동',
-          'depth': 2,
-          'parent': 1000000,
           'children': [
             {
-              'id': 1050100,
               'slug': 'baby-food-and-formula',
+              'id': 1050100,
               'name': '이유식·분유',
-              'depth': 3,
-              'parent': 1050000,
               'children': [
                 {
-                  'id': 1050101,
                   'slug': 'baby-and-toddler-snacks',
+                  'id': 1050101,
                   'name': '유아스낵',
-                  'depth': 4,
-                  'parent': 1050100,
                   'children': []
                 },
                 {
+                  'slug': 'baby-food',
                   'id': 1050102,
-                  'slug': 'baby-food',
                   'name': '이유식',
-                  'depth': 4,
-                  'parent': 1050100,
                   'children': []
                 },
                 {
+                  'slug': 'baby-formula',
                   'id': 1050103,
-                  'slug': 'baby-formula',
                   'name': '분유',
-                  'depth': 4,
-                  'parent': 1050100,
                   'children': []
                 },
                 {
-                  'id': 1050104,
                   'slug': 'toddler-juices-and-milk',
+                  'id': 1050104,
                   'name': '유아주스·우유',
-                  'depth': 4,
-                  'parent': 1050100,
                   'children': []
                 }
               ]
             },
             {
-              'id': 1050200,
               'slug': 'diapering',
+              'id': 1050200,
               'name': '기저귀·교체용품',
-              'depth': 3,
-              'parent': 1050000,
               'children': [
                 {
-                  'id': 1050201,
                   'slug': 'diapers',
+                  'id': 1050201,
                   'name': '기저귀',
-                  'depth': 4,
-                  'parent': 1050200,
                   'children': []
                 },
                 {
-                  'id': 1050202,
                   'slug': 'baby-wipes',
+                  'id': 1050202,
                   'name': '아기티슈',
-                  'depth': 4,
-                  'parent': 1050200,
                   'children': []
                 },
                 {
-                  'id': 1050203,
                   'slug': 'baby-wipe-holders-and-warmers',
+                  'id': 1050203,
                   'name': '아기티슈워머',
-                  'depth': 4,
-                  'parent': 1050200,
                   'children': []
                 },
                 {
-                  'id': 1050204,
                   'slug': 'changing-table-accessories',
+                  'id': 1050204,
                   'name': '아기탁자',
-                  'depth': 4,
-                  'parent': 1050200,
                   'children': []
                 },
                 {
-                  'id': 1050205,
                   'slug': 'cloth-diapers',
+                  'id': 1050205,
                   'name': '천기저귀',
-                  'depth': 4,
-                  'parent': 1050200,
                   'children': []
                 },
                 {
-                  'id': 1050206,
                   'slug': 'cloth-diaper-accessories',
+                  'id': 1050206,
                   'name': '천기저귀액세서리',
-                  'depth': 4,
-                  'parent': 1050200,
                   'children': []
                 },
                 {
-                  'id': 1050207,
                   'slug': 'diaper-bags',
+                  'id': 1050207,
                   'name': '기저귀가방',
-                  'depth': 4,
-                  'parent': 1050200,
                   'children': []
                 },
                 {
-                  'id': 1050208,
                   'slug': 'diaper-cakes',
+                  'id': 1050208,
                   'name': '기저귀케이크',
-                  'depth': 4,
-                  'parent': 1050200,
                   'children': []
                 },
                 {
-                  'id': 1050209,
                   'slug': 'diaper-changing-pads',
+                  'id': 1050209,
                   'name': '기저귀교체패드',
-                  'depth': 4,
-                  'parent': 1050200,
                   'children': []
                 },
                 {
-                  'id': 1050210,
                   'slug': 'diaper-creams-and-ointments',
+                  'id': 1050210,
                   'name': '기저귀크림',
-                  'depth': 4,
-                  'parent': 1050200,
                   'children': []
                 },
                 {
-                  'id': 1050211,
                   'slug': 'diaper-pails-and-refills',
+                  'id': 1050211,
                   'name': '기저귀휴지통',
-                  'depth': 4,
-                  'parent': 1050200,
                   'children': []
                 },
                 {
-                  'id': 1050212,
                   'slug': 'diaper-stackers-and-caddies',
+                  'id': 1050212,
                   'name': '기저귀정리함',
-                  'depth': 4,
-                  'parent': 1050200,
                   'children': []
                 }
               ]
             },
             {
-              'id': 1050300,
               'slug': 'baby-gear',
+              'id': 1050300,
               'name': '유아용품',
-              'depth': 3,
-              'parent': 1050000,
               'children': [
                 {
+                  'slug': 'baby-monitors',
                   'id': 1050301,
-                  'slug': 'baby-monitors',
                   'name': '아기모니터',
-                  'depth': 4,
-                  'parent': 1050300,
                   'children': []
                 },
                 {
-                  'id': 1050302,
                   'slug': 'baby-seats',
+                  'id': 1050302,
                   'name': '아기의자',
-                  'depth': 4,
-                  'parent': 1050300,
                   'children': []
                 },
                 {
-                  'id': 1050303,
                   'slug': 'bouncers-and-walkers',
+                  'id': 1050303,
                   'name': '보행기',
-                  'depth': 4,
-                  'parent': 1050300,
                   'children': []
                 },
                 {
-                  'id': 1050304,
                   'slug': 'car-seats',
+                  'id': 1050304,
                   'name': '카시트',
-                  'depth': 4,
-                  'parent': 1050300,
                   'children': []
                 },
                 {
+                  'slug': 'carriers',
                   'id': 1050305,
-                  'slug': 'carriers',
                   'name': '캐리어',
-                  'depth': 4,
-                  'parent': 1050300,
                   'children': []
                 },
                 {
-                  'id': 1050306,
                   'slug': 'harnesses-and-leashes',
+                  'id': 1050306,
                   'name': '아기띠',
-                  'depth': 4,
-                  'parent': 1050300,
                   'children': []
                 },
                 {
-                  'id': 1050307,
                   'slug': 'play-mats-and-activity-gyms',
+                  'id': 1050307,
                   'name': '아기매트',
-                  'depth': 4,
-                  'parent': 1050300,
                   'children': []
                 },
                 {
-                  'id': 1050308,
                   'slug': 'playards-and-travel-beds',
+                  'id': 1050308,
                   'name': '아기침대',
-                  'depth': 4,
-                  'parent': 1050300,
                   'children': []
                 },
                 {
-                  'id': 1050309,
                   'slug': 'strollers',
+                  'id': 1050309,
                   'name': '유모차',
-                  'depth': 4,
-                  'parent': 1050300,
                   'children': []
                 }
               ]
             },
             {
-              'id': 1050400,
               'slug': 'baby-gear-accessories',
+              'id': 1050400,
               'name': '유아액세서리',
-              'depth': 3,
-              'parent': 1050000,
               'children': [
                 {
-                  'id': 1050401,
                   'slug': 'car-seat-and-stroller-toys',
+                  'id': 1050401,
                   'name': '카시트·유모차 장난감',
-                  'depth': 4,
-                  'parent': 1050400,
                   'children': []
                 },
                 {
-                  'id': 1050402,
                   'slug': 'car-seat-accessories',
+                  'id': 1050402,
                   'name': '카시트액세서리',
-                  'depth': 4,
-                  'parent': 1050400,
                   'children': []
                 },
                 {
-                  'id': 1050403,
                   'slug': 'carrier-accessories',
+                  'id': 1050403,
                   'name': '캐리어액세서리',
-                  'depth': 4,
-                  'parent': 1050400,
                   'children': []
                 },
                 {
-                  'id': 1050404,
                   'slug': 'crib-netting',
+                  'id': 1050404,
                   'name': '침대커튼',
-                  'depth': 4,
-                  'parent': 1050400,
                   'children': []
                 },
                 {
-                  'id': 1050405,
                   'slug': 'shopping-cart-covers',
+                  'id': 1050405,
                   'name': '쇼핑카트덮개',
-                  'depth': 4,
-                  'parent': 1050400,
                   'children': []
                 },
                 {
-                  'id': 1050406,
                   'slug': 'stroller-accessories',
+                  'id': 1050406,
                   'name': '유모차액세서리',
-                  'depth': 4,
-                  'parent': 1050400,
                   'children': []
                 }
               ]
             },
             {
-              'id': 1050500,
               'slug': 'feeding-and-nursing',
+              'id': 1050500,
               'name': '수유·이유용품',
-              'depth': 3,
-              'parent': 1050000,
               'children': [
                 {
-                  'id': 1050501,
                   'slug': 'baby-bottles-and-accessories',
+                  'id': 1050501,
                   'name': '젖병·액세서리',
-                  'depth': 4,
-                  'parent': 1050500,
                   'children': []
                 },
                 {
-                  'id': 1050502,
                   'slug': 'baby-food',
+                  'id': 1050502,
                   'name': '이유식',
-                  'depth': 4,
-                  'parent': 1050500,
                   'children': []
                 },
                 {
-                  'id': 1050503,
                   'slug': 'baby-formula',
+                  'id': 1050503,
                   'name': '분유',
-                  'depth': 4,
-                  'parent': 1050500,
                   'children': []
                 },
                 {
-                  'id': 1050504,
                   'slug': 'bibs-and-burp-cloths',
+                  'id': 1050504,
                   'name': '턱받이',
-                  'depth': 4,
-                  'parent': 1050500,
                   'children': []
                 },
                 {
-                  'id': 1050505,
                   'slug': 'breast-pump',
+                  'id': 1050505,
                   'name': '유축기',
-                  'depth': 4,
-                  'parent': 1050500,
                   'children': []
                 },
                 {
-                  'id': 1050506,
                   'slug': 'breast-pump-accessories',
+                  'id': 1050506,
                   'name': '유축기액세서리',
-                  'depth': 4,
-                  'parent': 1050500,
                   'children': []
                 },
                 {
-                  'id': 1050507,
                   'slug': 'food-and-formula-prep',
+                  'id': 1050507,
                   'name': '유아용식기',
-                  'depth': 4,
-                  'parent': 1050500,
                   'children': []
                 },
                 {
-                  'id': 1050508,
                   'slug': 'food-storage-and-on-the-go',
+                  'id': 1050508,
                   'name': '보관용기',
-                  'depth': 4,
-                  'parent': 1050500,
                   'children': []
                 },
                 {
-                  'id': 1050509,
                   'slug': 'highchairs-and-boosters',
+                  'id': 1050509,
                   'name': '보조의자',
-                  'depth': 4,
-                  'parent': 1050500,
                   'children': []
                 },
                 {
-                  'id': 1050510,
                   'slug': 'kids-tabletop',
+                  'id': 1050510,
                   'name': '아기식탁',
-                  'depth': 4,
-                  'parent': 1050500,
                   'children': []
                 },
                 {
-                  'id': 1050511,
                   'slug': 'lunch-bags',
+                  'id': 1050511,
                   'name': '런치백',
-                  'depth': 4,
-                  'parent': 1050500,
                   'children': []
                 },
                 {
-                  'id': 1050512,
                   'slug': 'nursing-accessories',
+                  'id': 1050512,
                   'name': '식기액세서리',
-                  'depth': 4,
-                  'parent': 1050500,
                   'children': []
                 },
                 {
-                  'id': 1050513,
                   'slug': 'pacifiers-and-teethers',
+                  'id': 1050513,
                   'name': '젖꼭지',
-                  'depth': 4,
-                  'parent': 1050500,
                   'children': []
                 },
                 {
-                  'id': 1050514,
                   'slug': 'sippys-and-cups',
+                  'id': 1050514,
                   'name': '역류방지컵',
-                  'depth': 4,
-                  'parent': 1050500,
                   'children': []
                 }
               ]
             },
             {
-              'id': 1050600,
               'slug': 'babyproofing',
+              'id': 1050600,
               'name': '아기안전',
-              'depth': 3,
-              'parent': 1050000,
               'children': [
                 {
-                  'id': 1050601,
                   'slug': 'baby-monitors',
+                  'id': 1050601,
                   'name': '아기모니터',
-                  'depth': 4,
-                  'parent': 1050600,
                   'children': []
                 },
                 {
-                  'id': 1050602,
                   'slug': 'bath-safety',
+                  'id': 1050602,
                   'name': '욕실안전',
-                  'depth': 4,
-                  'parent': 1050600,
                   'children': []
                 },
                 {
-                  'id': 1050603,
                   'slug': 'edge-and-corner-guards',
+                  'id': 1050603,
                   'name': '모서리안전',
-                  'depth': 4,
-                  'parent': 1050600,
                   'children': []
                 },
                 {
-                  'id': 1050604,
                   'slug': 'electrical-safety',
+                  'id': 1050604,
                   'name': '전기안전',
-                  'depth': 4,
-                  'parent': 1050600,
                   'children': []
                 },
                 {
-                  'id': 1050605,
                   'slug': 'gates-and-rails',
+                  'id': 1050605,
                   'name': '문·난간',
-                  'depth': 4,
-                  'parent': 1050600,
                   'children': []
                 },
                 {
-                  'id': 1050606,
                   'slug': 'kitchen-safety',
+                  'id': 1050606,
                   'name': '주방안전',
-                  'depth': 4,
-                  'parent': 1050600,
                   'children': []
                 },
                 {
-                  'id': 1050607,
                   'slug': 'outdoor-safety',
+                  'id': 1050607,
                   'name': '실외안전',
-                  'depth': 4,
-                  'parent': 1050600,
                   'children': []
                 },
                 {
-                  'id': 1050608,
                   'slug': 'rails-and-rail-guards',
+                  'id': 1050608,
                   'name': '난간안전',
-                  'depth': 4,
-                  'parent': 1050600,
                   'children': []
                 },
                 {
-                  'id': 1050609,
                   'slug': 'sleep-positioners',
-                  'name': '난간안전',
-                  'depth': 4,
-                  'parent': 1050600,
+                  'id': 1050609,
+                  'name': 'Sleep Positioners',
                   'children': []
                 }
               ]
             },
             {
-              'id': 1050700,
               'slug': 'baby-care',
+              'id': 1050700,
               'name': '아기스킨케어',
-              'depth': 3,
-              'parent': 1050000,
               'children': [
                 {
-                  'id': 1050701,
                   'slug': 'baby-bubble-bath',
+                  'id': 1050701,
                   'name': '아기거품목욕',
-                  'depth': 4,
-                  'parent': 1050700,
                   'children': []
                 },
                 {
-                  'id': 1050702,
                   'slug': 'baby-oil-and-lotion',
+                  'id': 1050702,
                   'name': '베이비로션·오일',
-                  'depth': 4,
-                  'parent': 1050700,
                   'children': []
                 },
                 {
-                  'id': 1050703,
                   'slug': 'baby-powder',
+                  'id': 1050703,
                   'name': '베이비파우더',
-                  'depth': 4,
-                  'parent': 1050700,
                   'children': []
                 },
                 {
-                  'id': 1050704,
                   'slug': 'baby-shampoo-and-wash',
+                  'id': 1050704,
                   'name': '아기샴푸',
-                  'depth': 4,
-                  'parent': 1050700,
                   'children': []
                 }
               ]
             },
             {
-              'id': 1050800,
               'slug': 'potty-training',
+              'id': 1050800,
               'name': '배변훈련',
-              'depth': 3,
-              'parent': 1050000,
               'children': [
                 {
-                  'id': 1050801,
                   'slug': 'potties',
+                  'id': 1050801,
                   'name': '유아용변기',
-                  'depth': 4,
-                  'parent': 1050800,
                   'children': []
                 },
                 {
-                  'id': 1050802,
                   'slug': 'potty-training-aids',
+                  'id': 1050802,
                   'name': '배변훈련용품',
-                  'depth': 4,
-                  'parent': 1050800,
                   'children': []
                 },
                 {
-                  'id': 1050803,
                   'slug': 'seat-covers',
+                  'id': 1050803,
                   'name': '변기커버',
-                  'depth': 4,
-                  'parent': 1050800,
                   'children': []
                 },
                 {
-                  'id': 1050804,
                   'slug': 'step-stools',
+                  'id': 1050804,
                   'name': '발판',
-                  'depth': 4,
-                  'parent': 1050800,
                   'children': []
                 },
                 {
-                  'id': 1050805,
                   'slug': 'training-pants',
+                  'id': 1050805,
                   'name': '트레이닝팬츠',
-                  'depth': 4,
-                  'parent': 1050800,
                   'children': []
                 }
               ]
             },
             {
-              'id': 1050900,
               'slug': 'baby-bathing',
+              'id': 1050900,
               'name': '아기목욕',
-              'depth': 3,
-              'parent': 1050000,
               'children': [
                 {
-                  'id': 1050901,
                   'slug': 'baby-bath-accessories',
+                  'id': 1050901,
                   'name': '아기목욕액세서리',
-                  'depth': 4,
-                  'parent': 1050900,
                   'children': []
                 },
                 {
-                  'id': 1050902,
                   'slug': 'baby-grooming',
+                  'id': 1050902,
                   'name': '아기단장',
-                  'depth': 4,
-                  'parent': 1050900,
                   'children': []
                 },
                 {
-                  'id': 1050903,
                   'slug': 'baby-tubs',
+                  'id': 1050903,
                   'name': '아기욕조',
-                  'depth': 4,
-                  'parent': 1050900,
                   'children': []
                 },
                 {
-                  'id': 1050904,
                   'slug': 'baby-washcloths-and-towels',
+                  'id': 1050904,
                   'name': '목욕가운·타월',
-                  'depth': 4,
-                  'parent': 1050900,
                   'children': []
                 },
                 {
-                  'id': 1050905,
                   'slug': 'bath-toys',
+                  'id': 1050905,
                   'name': '욕조장난감',
-                  'depth': 4,
-                  'parent': 1050900,
                   'children': []
                 }
               ]
             },
             {
-              'id': 1051000,
               'slug': 'baby-gifts',
+              'id': 1051000,
               'name': '아기선물',
-              'depth': 3,
-              'parent': 1050000,
               'children': [
                 {
-                  'id': 1051001,
                   'slug': 'baby-gift-sets-and-baskets',
+                  'id': 1051001,
                   'name': '유아선물세트',
-                  'depth': 4,
-                  'parent': 1051000,
                   'children': []
                 },
                 {
-                  'id': 1051002,
                   'slug': 'keepsakes-and-albums',
+                  'id': 1051002,
                   'name': '기념품·앨범',
-                  'depth': 4,
-                  'parent': 1051000,
                   'children': []
                 },
                 {
-                  'id': 1051003,
                   'slug': 'new-mom-gifts',
-                  'name': '기념품·앨범',
-                  'depth': 4,
-                  'parent': 1051000,
+                  'id': 1051003,
+                  'name': 'New Mom Gifts',
                   'children': []
                 },
                 {
-                  'id': 1051004,
                   'slug': 'toy-banks',
+                  'id': 1051004,
                   'name': '장난감은행',
-                  'depth': 4,
-                  'parent': 1051000,
                   'children': []
                 }
               ]
@@ -3116,306 +2343,230 @@ export class UiService {
           ]
         },
         {
-          'id': 1060000,
           'slug': 'pet-supplies',
+          'id': 1060000,
           'name': '반려용품',
-          'depth': 2,
-          'parent': 1000000,
           'children': [
             {
-              'id': 1060100,
               'slug': 'dog-supplies',
+              'id': 1060100,
               'name': '강아지',
-              'depth': 3,
-              'parent': 1060000,
               'children': [
                 {
-                  'id': 1060101,
                   'slug': 'collars-harnesses-and-leashes',
+                  'id': 1060101,
                   'name': '강아지끈',
-                  'depth': 4,
-                  'parent': 1060100,
                   'children': []
                 },
                 {
-                  'id': 1060102,
                   'slug': 'dog-apparel',
+                  'id': 1060102,
                   'name': '강아지옷',
-                  'depth': 4,
-                  'parent': 1060100,
                   'children': []
                 },
                 {
-                  'id': 1060103,
                   'slug': 'dog-beds',
+                  'id': 1060103,
                   'name': '강아지침구',
-                  'depth': 4,
-                  'parent': 1060100,
                   'children': []
                 },
                 {
-                  'id': 1060104,
                   'slug': 'dog-bowls-and-feeders',
+                  'id': 1060104,
                   'name': '강아지식기',
-                  'depth': 4,
-                  'parent': 1060100,
                   'children': []
                 },
                 {
-                  'id': 1060105,
                   'slug': 'travel-supplies',
+                  'id': 1060105,
                   'name': '강아지여행용품',
-                  'depth': 4,
-                  'parent': 1060100,
                   'children': []
                 },
                 {
-                  'id': 1060106,
                   'slug': 'cleaning-supplies',
+                  'id': 1060106,
                   'name': '강아지목욕용품',
-                  'depth': 4,
-                  'parent': 1060100,
                   'children': []
                 },
                 {
-                  'id': 1060107,
                   'slug': 'crates-and-kennels',
+                  'id': 1060107,
                   'name': '강아지집',
-                  'depth': 4,
-                  'parent': 1060100,
                   'children': []
                 },
                 {
-                  'id': 1060108,
                   'slug': 'flea-and-tick-control',
+                  'id': 1060108,
                   'name': '벼룩·진드기관리',
-                  'depth': 4,
-                  'parent': 1060100,
                   'children': []
                 },
                 {
-                  'id': 1060109,
                   'slug': 'dog-food',
+                  'id': 1060109,
                   'name': '강아지사료',
-                  'depth': 4,
-                  'parent': 1060100,
                   'children': []
                 },
                 {
-                  'id': 1060110,
                   'slug': 'grooming',
+                  'id': 1060110,
                   'name': '강아지단장',
-                  'depth': 4,
-                  'parent': 1060100,
                   'children': []
                 },
                 {
-                  'id': 1060111,
                   'slug': 'dog-houses',
-                  'name': '강아지단장',
-                  'depth': 4,
-                  'parent': 1060100,
+                  'id': 1060111,
+                  'name': 'Dog Houses',
                   'children': []
                 },
                 {
-                  'id': 1060112,
                   'slug': 'medication-and-health-supplies',
+                  'id': 1060112,
                   'name': '강아지건강용품',
-                  'depth': 4,
-                  'parent': 1060100,
                   'children': []
                 },
                 {
-                  'id': 1060113,
                   'slug': 'modern-furniture',
+                  'id': 1060113,
                   'name': '강아지가구',
-                  'depth': 4,
-                  'parent': 1060100,
                   'children': []
                 },
                 {
-                  'id': 1060114,
                   'slug': 'dog-technology',
+                  'id': 1060114,
                   'name': '강아지기술용품',
-                  'depth': 4,
-                  'parent': 1060100,
                   'children': []
                 },
                 {
-                  'id': 1060115,
                   'slug': 'toys',
+                  'id': 1060115,
                   'name': '장난감',
-                  'depth': 4,
-                  'parent': 1060100,
                   'children': []
                 },
                 {
-                  'id': 1060116,
                   'slug': 'training-and-behavior',
+                  'id': 1060116,
                   'name': '훈련',
-                  'depth': 4,
-                  'parent': 1060100,
                   'children': []
                 },
                 {
-                  'id': 1060117,
                   'slug': 'treats',
+                  'id': 1060117,
                   'name': '강아지치료',
-                  'depth': 4,
-                  'parent': 1060100,
                   'children': []
                 },
                 {
-                  'id': 1060118,
                   'slug': 'gates-and-ramps',
+                  'id': 1060118,
                   'name': '문·통로',
-                  'depth': 4,
-                  'parent': 1060100,
                   'children': []
                 },
                 {
-                  'id': 1060119,
                   'slug': 'poop-bags-and-housebreaking',
+                  'id': 1060119,
                   'name': '배변봉지',
-                  'depth': 4,
-                  'parent': 1060100,
                   'children': []
                 }
               ]
             },
             {
-              'id': 1060200,
               'slug': 'cat-supplies',
+              'id': 1060200,
               'name': '고양이',
-              'depth': 3,
-              'parent': 1060000,
               'children': [
                 {
-                  'id': 1060201,
                   'slug': 'cat-beds',
+                  'id': 1060201,
                   'name': '고양이침대',
-                  'depth': 4,
-                  'parent': 1060200,
                   'children': []
                 },
                 {
-                  'id': 1060202,
                   'slug': 'carriers',
+                  'id': 1060202,
                   'name': '캐리어',
-                  'depth': 4,
-                  'parent': 1060200,
                   'children': []
                 },
                 {
-                  'id': 1060203,
                   'slug': 'cleaning-supplies',
+                  'id': 1060203,
                   'name': '목욕용품',
-                  'depth': 4,
-                  'parent': 1060200,
                   'children': []
                 },
                 {
-                  'id': 1060204,
                   'slug': 'flea-and-tick-control',
+                  'id': 1060204,
                   'name': '벼룩·진드기관리',
-                  'depth': 4,
-                  'parent': 1060200,
                   'children': []
                 },
                 {
-                  'id': 1060205,
                   'slug': 'cat-food',
+                  'id': 1060205,
                   'name': '고양이사료',
-                  'depth': 4,
-                  'parent': 1060200,
                   'children': []
                 },
                 {
-                  'id': 1060206,
                   'slug': 'cat-grooming',
+                  'id': 1060206,
                   'name': '고양이단장',
-                  'depth': 4,
-                  'parent': 1060200,
                   'children': []
                 },
                 {
-                  'id': 1060207,
                   'slug': 'health-supplies',
+                  'id': 1060207,
                   'name': '건강용품',
-                  'depth': 4,
-                  'parent': 1060200,
                   'children': []
                 },
                 {
-                  'id': 1060208,
                   'slug': 'litter',
+                  'id': 1060208,
                   'name': '고양이배변',
-                  'depth': 4,
-                  'parent': 1060200,
                   'children': []
                 },
                 {
-                  'id': 1060209,
                   'slug': 'litter-boxes',
+                  'id': 1060209,
                   'name': '배변박스',
-                  'depth': 4,
-                  'parent': 1060200,
                   'children': []
                 },
                 {
-                  'id': 1060210,
                   'slug': 'scratchers',
+                  'id': 1060210,
                   'name': '스크래쳐',
-                  'depth': 4,
-                  'parent': 1060200,
                   'children': []
                 },
                 {
-                  'id': 1060211,
                   'slug': 'cat-toys',
+                  'id': 1060211,
                   'name': '고양이장난감',
-                  'depth': 4,
-                  'parent': 1060200,
                   'children': []
                 },
                 {
-                  'id': 1060212,
                   'slug': 'training-and-behavior-aids',
+                  'id': 1060212,
                   'name': '고양이훈련',
-                  'depth': 4,
-                  'parent': 1060200,
                   'children': []
                 },
                 {
-                  'id': 1060213,
                   'slug': 'cat-treats',
+                  'id': 1060213,
                   'name': '고양이치료',
-                  'depth': 4,
-                  'parent': 1060200,
                   'children': []
                 },
                 {
-                  'id': 1060214,
                   'slug': 'cat-trees-and-condos',
+                  'id': 1060214,
                   'name': '캣타워',
-                  'depth': 4,
-                  'parent': 1060200,
                   'children': []
                 },
                 {
-                  'id': 1060215,
                   'slug': 'collars-harnesses-and-leashes',
+                  'id': 1060215,
                   'name': '고양이끈',
-                  'depth': 4,
-                  'parent': 1060200,
                   'children': []
                 },
                 {
-                  'id': 1060216,
                   'slug': 'feeding-and-watering-supplies',
+                  'id': 1060216,
                   'name': '고양이식기',
-                  'depth': 4,
-                  'parent': 1060200,
                   'children': []
                 }
               ]
@@ -3423,1008 +2574,655 @@ export class UiService {
           ]
         },
         {
-          'id': 1070000,
           'slug': 'office-supplies',
+          'id': 1070000,
           'name': '사무용품',
-          'depth': 2,
-          'parent': 1000000,
           'children': [
             {
-              'id': 1070100,
               'slug': 'pens-pencils-and-markers',
+              'id': 1070100,
               'name': '필기구',
-              'depth': 3,
-              'parent': 1070000,
               'children': []
             },
             {
-              'id': 1070200,
               'slug': 'tape-and-adhesives',
+              'id': 1070200,
               'name': '테이프·접착제',
-              'depth': 3,
-              'parent': 1070000,
               'children': []
             },
             {
-              'id': 1070300,
               'slug': 'office-paper',
+              'id': 1070300,
               'name': '종이',
-              'depth': 3,
-              'parent': 1070000,
               'children': []
             },
             {
-              'id': 1070400,
               'slug': 'presentation-boards',
+              'id': 1070400,
               'name': '프레젠테이션보드',
-              'depth': 3,
-              'parent': 1070000,
               'children': []
             },
             {
-              'id': 1070500,
               'slug': 'workspace-organizers',
+              'id': 1070500,
               'name': '정리함',
-              'depth': 3,
-              'parent': 1070000,
               'children': []
             },
             {
-              'id': 1070600,
               'slug': 'staplers-and-punches',
+              'id': 1070600,
               'name': '스테이플러',
-              'depth': 3,
-              'parent': 1070000,
               'children': []
             },
             {
-              'id': 1070700,
               'slug': 'labels-indexes-and-stamps',
+              'id': 1070700,
               'name': '라벨·인덱스',
-              'depth': 3,
-              'parent': 1070000,
               'children': []
             },
             {
-              'id': 1070800,
               'slug': 'filing-products',
+              'id': 1070800,
               'name': '서류철',
-              'depth': 3,
-              'parent': 1070000,
               'children': []
             },
             {
-              'id': 1070900,
               'slug': 'binders-and-binding-systems',
+              'id': 1070900,
               'name': '바인더',
-              'depth': 3,
-              'parent': 1070000,
               'children': []
             },
             {
-              'id': 1071000,
               'slug': 'scissors-cutters-and-measuring-devices',
+              'id': 1071000,
               'name': '문구용품',
-              'depth': 3,
-              'parent': 1070000,
               'children': []
             },
             {
-              'id': 1071100,
               'slug': 'envelopes-and-shipping-supplies',
+              'id': 1071100,
               'name': '봉투',
-              'depth': 3,
-              'parent': 1070000,
               'children': []
             },
             {
-              'id': 1071200,
               'slug': 'calendars-and-planners',
+              'id': 1071200,
               'name': '캘린더·플래너',
-              'depth': 3,
-              'parent': 1070000,
               'children': []
             },
             {
-              'id': 1071300,
               'slug': 'stationary',
-              'name': '캘린더·플래너',
-              'depth': 3,
-              'parent': 1070000,
+              'id': 1071300,
+              'name': 'Stationary',
               'children': []
             }
           ]
         }
       ]
     },
-    '4000000' : {
+    '2000000' : {
       'slug': 'beauty',
-      'id': 4000000,
-      'name': 'BEAUTY',
+      'id': 2000000,
+      'name': '뷰티',
       'children': [
         {
-          'slug': 'skincare',
-          'id': 4010000,
-          'name': 'SKINCARE',
+          'slug': 'skin-care',
+          'id': 2010000,
+          'name': '스킨케어',
           'children': [
             {
-              'slug': 'face-cleansers',
-              'id': 4010100,
-              'name': 'Face Cleansers',
+              'slug': 'skin-and-toner',
+              'id': 2010100,
+              'name': '스킨·토너',
               'children': [
                 {
-                  'slug': 'combination',
-                  'id': 4010101,
-                  'name': 'Combination',
+                  'slug': 'skin',
+                  'id': 2010101,
+                  'name': '스킨',
                   'children': []
                 },
                 {
-                  'slug': 'dry',
-                  'id': 4010102,
-                  'name': 'Dry',
-                  'children': []
-                },
-                {
-                  'slug': 'normal',
-                  'id': 4010103,
-                  'name': 'Normal',
+                  'slug': 'toner',
+                  'id': 2010102,
+                  'name': '토너',
                   'children': []
                 }
-                ]
+              ]
             },
             {
-              'slug': 'face-moisturizers-and-treatments',
-              'id': 4010200,
-              'name': 'Face Moisturizers & Treatments',
-              'children': [
-                {
-                  'slug': 'moisturizers',
-                  'id': 4010201,
-                  'name': 'Moisturizers',
-                  'children': []
-                },
-                {
-                  'slug': 'night-creams',
-                  'id': 4010202,
-                  'name': 'Night Creams',
-                  'children': []
-                },
-                {
-                  'slug': 'serums',
-                  'id': 4010203,
-                  'name': 'Serums',
-                  'children': []
-                }
-                ]
-            },
-            {
-              'slug': 'exfoliators-and-scrubs',
-              'id': 4010300,
-              'name': 'Exfoliators & Scrubs',
+              'slug': 'mist',
+              'id': 2010200,
+              'name': '미스트',
               'children': []
             },
             {
-              'slug': 'face-mask',
-              'id': 4010400,
-              'name': 'Face Mask',
+              'slug': 'face-moisturizer-and-treatment',
+              'id': 2010300,
+              'name': '페이스 모이스쳐·트리트먼트',
               'children': [
                 {
-                  'slug': 'face-masks',
-                  'id': 4010401,
-                  'name': 'Face Masks',
+                  'slug': 'lotion',
+                  'id': 2010301,
+                  'name': '로션',
                   'children': []
                 },
                 {
-                  'slug': 'sheet-masks',
-                  'id': 4010402,
-                  'name': 'Sheet Masks',
+                  'slug': 'emulsion',
+                  'id': 2010302,
+                  'name': '에멀젼',
+                  'children': []
+                },
+                {
+                  'slug': 'oil',
+                  'id': 2010303,
+                  'name': '오일',
+                  'children': []
+                },
+                {
+                  'slug': 'essence',
+                  'id': 2010304,
+                  'name': '에센스',
+                  'children': []
+                },
+                {
+                  'slug': 'ample',
+                  'id': 2010305,
+                  'name': '엠플',
+                  'children': []
+                },
+                {
+                  'slug': 'serum',
+                  'id': 2010306,
+                  'name': '세럼',
                   'children': []
                 }
-                ]
+              ]
             },
             {
-              'slug': 'eye-cream-and-treatments',
-              'id': 4010500,
-              'name': 'Eye Cream & Treatments',
-              'children': [
-                {
-                  'slug': 'simply-moisture',
-                  'id': 4010501,
-                  'name': 'Simply Moisture',
-                  'children': []
-                },
-                {
-                  'slug': 'fine-lines-wrinkles',
-                  'id': 4010502,
-                  'name': 'Fine Lines · Wrinkles',
-                  'children': []
-                },
-                {
-                  'slug': 'dark-circles-puffness',
-                  'id': 4010503,
-                  'name': 'Dark Circles · Puffness',
-                  'children': []
-                }
-                ]
+              'slug': 'cream-and-gel',
+              'id': 2010400,
+              'name': '크림·젤',
+              'children': []
+            },
+            {
+              'slug': 'mask-and-pack',
+              'id': 2010500,
+              'name': '마스크·팩',
+              'children': []
+            },
+            {
+              'slug': 'eye-care',
+              'id': 2010600,
+              'name': '아이케어',
+              'children': []
             },
             {
               'slug': 'lip-care',
-              'id': 4010600,
-              'name': 'Lip Care',
+              'id': 2010700,
+              'name': '립케어',
+              'children': []
+            },
+            {
+              'slug': 'sun-care',
+              'id': 2010800,
+              'name': '선케어',
               'children': [
                 {
-                  'slug': 'lip-balms-and-treatments',
-                  'id': 4010601,
-                  'name': 'Lip Balms & Treatments',
+                  'slug': 'stick-and-balm',
+                  'id': 2010801,
+                  'name': '스틱·밤',
                   'children': []
                 },
                 {
-                  'slug': 'lip-sunscreen',
-                  'id': 4010602,
-                  'name': 'Lip Sunscreen',
+                  'slug': 'cream-and-gel',
+                  'id': 2010802,
+                  'name': '크림·젤',
                   'children': []
                 }
-                ]
-            },
-            {
-              'slug': 'toners-and-mists',
-              'id': 4010700,
-              'name': 'Toners and Mists',
-              'children': [
-                {
-                  'slug': 'toners',
-                  'id': 4010701,
-                  'name': 'Toners',
-                  'children': []
-                },
-                {
-                  'slug': 'mists',
-                  'id': 4010702,
-                  'name': 'Mists',
-                  'children': []
-                }
-                ]
-            },
-            {
-              'slug': 'sun-care-and-sunscreens',
-              'id': 4010800,
-              'name': 'Sun Care & Sunscreens',
-              'children': []
-            },
-            {
-              'slug': 'tools-and-devices',
-              'id': 4010900,
-              'name': 'Tools & Devices',
-              'children': []
-            },
-            {
-              'slug': 'gift-sets',
-              'id': 4011000,
-              'name': 'Gift Sets',
-              'children': []
-            },
-            {
-              'slug': 'top-brands',
-              'id': 4011100,
-              'name': 'Top Brands',
-              'children': []
+              ]
             }
-            ]
+          ]
         },
         {
-          'slug': 'makeup',
-          'id': 4020000,
-          'name': 'MAKEUP',
+          'slug': 'cleansing-and-peeling',
+          'id': 2020000,
+          'name': '클렌징/필링',
+          'children': [
+            {
+              'slug': 'cleansing-foam-and-gel',
+              'id': 2020100,
+              'name': '클렌징 폼·젤',
+              'children': []
+            },
+            {
+              'slug': 'cleansing-water',
+              'id': 2020200,
+              'name': '클렌징 워터',
+              'children': []
+            },
+            {
+              'slug': 'cleansing-oil',
+              'id': 2020300,
+              'name': '클렌징 오일',
+              'children': []
+            },
+            {
+              'slug': 'cleansing-lotion-and-cream',
+              'id': 2020400,
+              'name': '클렌징 로션·크림',
+              'children': []
+            },
+            {
+              'slug': 'cleansing-soap',
+              'id': 2020500,
+              'name': '클렌징 비누',
+              'children': []
+            },
+            {
+              'slug': 'cleansing-wipe',
+              'id': 2020600,
+              'name': '클렌징 티슈',
+              'children': []
+            },
+            {
+              'slug': 'lip-and-eye-cleanser',
+              'id': 2020700,
+              'name': '립·아이 리무버',
+              'children': []
+            },
+            {
+              'slug': 'scrubs-and-peeling',
+              'id': 2020800,
+              'name': '스크럽·필링',
+              'children': []
+            }
+          ]
+        },
+        {
+          'slug': 'sun-care',
+          'id': 2030000,
+          'name': '선케어',
           'children': [
             {
               'slug': 'face',
-              'id': 4020100,
-              'name': 'Face',
+              'id': 2030100,
+              'name': '페이스',
               'children': [
                 {
-                  'slug': 'foundation',
-                  'id': 4020101,
-                  'name': 'Foundation',
+                  'slug': 'stick-and-balm',
+                  'id': 2030101,
+                  'name': '스틱·밤',
                   'children': []
                 },
                 {
-                  'slug': 'face-primers',
-                  'id': 4020102,
-                  'name': 'Face Primers',
+                  'slug': 'cream-and-gel',
+                  'id': 2030102,
+                  'name': '크림·젤',
+                  'children': []
+                }
+              ]
+            },
+            {
+              'slug': 'body',
+              'id': 2030200,
+              'name': '바디',
+              'children': [
+                {
+                  'slug': 'stick-and-balm',
+                  'id': 2030201,
+                  'name': '스틱·밤',
+                  'children': []
+                },
+                {
+                  'slug': 'cream-and-gel',
+                  'id': 2030202,
+                  'name': '크림·젤',
+                  'children': []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          'slug': 'makeup',
+          'id': 2040000,
+          'name': '메이크업',
+          'children': [
+            {
+              'slug': 'face',
+              'id': 2040100,
+              'name': '페이스',
+              'children': [
+                {
+                  'slug': 'makeup-base',
+                  'id': 2040101,
+                  'name': '메이크업 베이스',
+                  'children': []
+                },
+                {
+                  'slug': 'primer',
+                  'id': 2040102,
+                  'name': '프라이머',
                   'children': []
                 },
                 {
                   'slug': 'bb-and-cc-cream',
-                  'id': 4020103,
-                  'name': 'BB & CC Cream',
+                  'id': 2040103,
+                  'name': 'BB·CC 크림',
                   'children': []
                 },
                 {
-                  'slug': 'tinted-moisturizer',
-                  'id': 4020104,
-                  'name': 'Tinted Moisturizer',
+                  'slug': 'foundation',
+                  'id': 2040104,
+                  'name': '파운데이션',
                   'children': []
                 },
                 {
-                  'slug': 'setting-powder',
-                  'id': 4020105,
-                  'name': 'Setting Powder',
+                  'slug': 'cushion-and-powder-and-pact',
+                  'id': 2040105,
+                  'name': '쿠션·파우더·팩트',
                   'children': []
                 },
                 {
                   'slug': 'concealer',
-                  'id': 4020106,
-                  'name': 'Concealer',
+                  'id': 2040106,
+                  'name': '컨실러',
+                  'children': []
+                },
+                {
+                  'slug': 'blusher',
+                  'id': 2040107,
+                  'name': '블러셔',
+                  'children': []
+                },
+                {
+                  'slug': 'highlighter-and-shading',
+                  'id': 2040108,
+                  'name': '하이라이터·셰이딩',
                   'children': []
                 }
-                ]
+              ]
             },
             {
-              'slug': 'cheek',
-              'id': 4020200,
-              'name': 'Cheek',
+              'slug': 'eye',
+              'id': 2040200,
+              'name': '아이 ',
               'children': [
                 {
-                  'slug': 'blush',
-                  'id': 4020201,
-                  'name': 'Blush',
-                  'children': []
-                },
-                {
-                  'slug': 'bronzer',
-                  'id': 4020202,
-                  'name': 'Bronzer',
-                  'children': []
-                },
-                {
-                  'slug': 'contour',
-                  'id': 4020203,
-                  'name': 'Contour',
-                  'children': []
-                },
-                {
-                  'slug': 'highlighter',
-                  'id': 4020204,
-                  'name': 'Highlighter',
-                  'children': []
-                },
-                {
-                  'slug': 'cheek-palettes',
-                  'id': 4020205,
-                  'name': 'Cheek Palettes',
-                  'children': []
-                }
-                ]
-            },
-            {
-              'slug': 'eyes',
-              'id': 4020300,
-              'name': 'Eyes',
-              'children': [
-                {
-                  'slug': 'eyeshadows',
-                  'id': 4020301,
-                  'name': 'Eyeshadows',
-                  'children': []
-                },
-                {
-                  'slug': 'mascara',
-                  'id': 4020302,
-                  'name': 'Mascara',
+                  'slug': 'eyeshadow',
+                  'id': 2040201,
+                  'name': '아이섀도',
                   'children': []
                 },
                 {
                   'slug': 'eyeliner',
-                  'id': 4020303,
-                  'name': 'Eyeliner',
+                  'id': 2040202,
+                  'name': '아이라이너',
                   'children': []
                 },
                 {
                   'slug': 'eyebrow',
-                  'id': 4020304,
-                  'name': 'Eyebrow',
+                  'id': 2040203,
+                  'name': '아이브로우',
                   'children': []
                 },
                 {
-                  'slug': 'eye-palettes',
-                  'id': 4020305,
-                  'name': 'Eye Palettes',
-                  'children': []
-                },
-                {
-                  'slug': 'eye-sets',
-                  'id': 4020306,
-                  'name': 'Eye Sets',
+                  'slug': 'mascara',
+                  'id': 2040204,
+                  'name': '마스카라',
                   'children': []
                 }
-                ]
+              ]
             },
             {
               'slug': 'lip',
-              'id': 4020400,
-              'name': 'Lip',
+              'id': 2040300,
+              'name': '립 ',
               'children': [
                 {
                   'slug': 'lipstick',
-                  'id': 4020401,
-                  'name': 'Lipstick',
+                  'id': 2040301,
+                  'name': '립스틱',
                   'children': []
                 },
                 {
-                  'slug': 'lip-gloss',
-                  'id': 4020402,
-                  'name': 'Lip Gloss',
+                  'slug': 'lip-tint',
+                  'id': 2040302,
+                  'name': '립틴트',
                   'children': []
                 },
                 {
-                  'slug': 'lip-stain',
-                  'id': 4020403,
-                  'name': 'Lip Stain',
+                  'slug': 'lip-glosse',
+                  'id': 2040303,
+                  'name': '립글로스',
                   'children': []
                 },
                 {
-                  'slug': 'lip-liner',
-                  'id': 4020404,
-                  'name': 'Lip Liner',
-                  'children': []
-                },
-                {
-                  'slug': 'lip-palettes',
-                  'id': 4020405,
-                  'name': 'Lip Palettes',
-                  'children': []
-                },
-                {
-                  'slug': 'lip-sets',
-                  'id': 4020406,
-                  'name': 'Lip Sets',
+                  'slug': 'lip-treatment-and-balm',
+                  'id': 2040304,
+                  'name': '립케어·립밤',
                   'children': []
                 }
-                ]
+              ]
             },
             {
-              'slug': 'makeup-brushes-and-applicators',
-              'id': 4020500,
-              'name': 'Makeup Brushes & Applicators',
-              'children': [
-                {
-                  'slug': 'face-brushes',
-                  'id': 4020501,
-                  'name': 'Face Brushes',
-                  'children': []
-                },
-                {
-                  'slug': 'cheek-brushes',
-                  'id': 4020502,
-                  'name': 'Cheek Brushes',
-                  'children': []
-                },
-                {
-                  'slug': 'eye-brushes',
-                  'id': 4020503,
-                  'name': 'Eye Brushes',
-                  'children': []
-                },
-                {
-                  'slug': 'lip-brushes',
-                  'id': 4020504,
-                  'name': 'Lip Brushes',
-                  'children': []
-                },
-                {
-                  'slug': 'sponges-and-applicators',
-                  'id': 4020505,
-                  'name': 'Sponges & Applicators',
-                  'children': []
-                },
-                {
-                  'slug': 'brush-cleaners',
-                  'id': 4020506,
-                  'name': 'Brush Cleaners',
-                  'children': []
-                },
-                {
-                  'slug': 'brush-sets',
-                  'id': 4020507,
-                  'name': 'Brush Sets',
-                  'children': []
-                }
-                ]
-            },
-            {
-              'slug': 'lash-bar',
-              'id': 4020600,
-              'name': 'Lash Bar',
-              'children': [
-                {
-                  'slug': 'eyelash-curler',
-                  'id': 4020601,
-                  'name': 'Eyelash Curler',
-                  'children': []
-                },
-                {
-                  'slug': 'false-lashes',
-                  'id': 4020602,
-                  'name': 'False Lashes',
-                  'children': []
-                }
-                ]
-            },
-            {
-              'slug': 'top-brands',
-              'id': 4020700,
-              'name': 'Top Brands',
+              'slug': 'makeup-brush-and-applicator',
+              'id': 2040400,
+              'name': '메이크업 브러쉬·도구',
               'children': []
             }
-            ]
+          ]
         },
         {
-          'slug': 'bath-and-body',
-          'id': 4030000,
-          'name': 'BATH & BODY',
+          'slug': 'body-care',
+          'id': 2050000,
+          'name': '바디케어',
           'children': [
             {
-              'slug': 'body-wash-and-shower-gels',
-              'id': 4030100,
-              'name': 'Body Wash & Shower Gels',
-              'children': [
-                {
-                  'slug': 'body-wash',
-                  'id': 4030101,
-                  'name': 'Body Wash',
-                  'children': []
-                },
-                {
-                  'slug': 'shower-gels',
-                  'id': 4030102,
-                  'name': 'Shower Gels',
-                  'children': []
-                },
-                {
-                  'slug': 'bar-soaps',
-                  'id': 4030103,
-                  'name': 'Bar Soaps',
-                  'children': []
-                }
-                ]
-            },
-            {
-              'slug': 'body-lotions-and-creams',
-              'id': 4030200,
-              'name': 'Body Lotions & Creams',
-              'children': [
-                {
-                  'slug': 'body-lotions',
-                  'id': 4030201,
-                  'name': 'Body Lotions',
-                  'children': []
-                },
-                {
-                  'slug': 'body-creams',
-                  'id': 4030202,
-                  'name': 'Body Creams',
-                  'children': []
-                }
-                ]
-            },
-            {
-              'slug': 'body-oils',
-              'id': 4030300,
-              'name': 'Body Oils',
+              'slug': 'body-wash',
+              'id': 2050100,
+              'name': '바디워시',
               'children': []
             },
             {
-              'slug': 'body-scrubs-and-exfoliants',
-              'id': 4030400,
-              'name': 'Body Scrubs & Exfoliants',
+              'slug': 'body-lotion',
+              'id': 2050200,
+              'name': '바디로션',
               'children': []
             },
             {
-              'slug': 'hand-and-foot',
-              'id': 4030500,
-              'name': 'Hand & Foot',
-              'children': [
-                {
-                  'slug': 'hand-cream-and-lotion',
-                  'id': 4030501,
-                  'name': 'Hand Cream & Lotion',
-                  'children': []
-                },
-                {
-                  'slug': 'foot-cream-and-lotion',
-                  'id': 4030502,
-                  'name': 'Foot Cream & Lotion',
-                  'children': []
-                },
-                {
-                  'slug': 'hand-soaps',
-                  'id': 4030503,
-                  'name': 'Hand Soaps',
-                  'children': []
-                }
-                ]
-            },
-            {
-              'slug': 'bubble-bath',
-              'id': 4030600,
-              'name': 'Bubble Bath',
+              'slug': 'body-cream-and-gel',
+              'id': 2050300,
+              'name': '바디크림·젤',
               'children': []
             },
             {
-              'slug': 'body-sun-care-and-sunscreens',
-              'id': 4030700,
-              'name': 'Body Sun Care & Sunscreens',
+              'slug': 'body-oil-and-essence',
+              'id': 2050400,
+              'name': '바디오일·에센스',
               'children': []
             },
             {
-              'slug': 'gift-sets',
-              'id': 4030800,
-              'name': 'Gift Sets',
+              'slug': 'body-scrub',
+              'id': 2050500,
+              'name': '바디스크럽',
               'children': []
             },
             {
-              'slug': 'top-brands',
-              'id': 4030900,
-              'name': 'Top Brands',
+              'slug': 'body-mist',
+              'id': 2050600,
+              'name': '바디미스트',
+              'children': []
+            },
+            {
+              'slug': 'hand-and-foot-treatment',
+              'id': 2050700,
+              'name': '핸드·풋케어',
+              'children': []
+            },
+            {
+              'slug': 'bath-salt-and-bubble',
+              'id': 2050800,
+              'name': '입욕제',
+              'children': []
+            },
+            {
+              'slug': 'feminine-care',
+              'id': 2050900,
+              'name': '여성청결제',
+              'children': []
+            },
+            {
+              'slug': 'deodorant',
+              'id': 2051000,
+              'name': '데오드란트',
+              'children': []
+            },
+            {
+              'slug': 'other-body-product',
+              'id': 2051100,
+              'name': '바디 기타',
               'children': []
             }
-            ]
+          ]
         },
         {
-          'slug': 'hair',
-          'id': 4040000,
-          'name': 'HAIR',
+          'slug': 'hair-care',
+          'id': 2060000,
+          'name': '헤어케어',
           'children': [
             {
-              'slug': 'shampoos',
-              'id': 4040100,
-              'name': 'Shampoos',
-              'children': [
-                {
-                  'slug': 'moisturizing',
-                  'id': 4040101,
-                  'name': 'Moisturizing',
-                  'children': []
-                },
-                {
-                  'slug': 'volumizing',
-                  'id': 4040102,
-                  'name': 'Volumizing',
-                  'children': []
-                },
-                {
-                  'slug': 'damaged',
-                  'id': 4040103,
-                  'name': 'Damaged',
-                  'children': []
-                },
-                {
-                  'slug': 'thickening',
-                  'id': 4040104,
-                  'name': 'Thickening',
-                  'children': []
-                },
-                {
-                  'slug': 'dry-shampoos',
-                  'id': 4040105,
-                  'name': 'Dry Shampoos',
-                  'children': []
-                }
-                ]
-            },
-            {
-              'slug': 'conditioners',
-              'id': 4040200,
-              'name': 'Conditioners',
-              'children': [
-                {
-                  'slug': 'moisturizing',
-                  'id': 4040201,
-                  'name': 'Moisturizing',
-                  'children': []
-                },
-                {
-                  'slug': 'volumizing',
-                  'id': 4040202,
-                  'name': 'Volumizing',
-                  'children': []
-                },
-                {
-                  'slug': 'damaged',
-                  'id': 4040203,
-                  'name': 'Damaged',
-                  'children': []
-                },
-                {
-                  'slug': 'thickening',
-                  'id': 4040204,
-                  'name': 'Thickening',
-                  'children': []
-                },
-                {
-                  'slug': 'leave-in-conditioners',
-                  'id': 4040205,
-                  'name': 'Leave-in Conditioners',
-                  'children': []
-                }
-                ]
-            },
-            {
-              'slug': 'hair-treatments',
-              'id': 4040300,
-              'name': 'Hair Treatments',
-              'children': [
-                {
-                  'slug': 'hair-masques',
-                  'id': 4040301,
-                  'name': 'Hair Masques',
-                  'children': []
-                },
-                {
-                  'slug': 'hair-oils',
-                  'id': 4040302,
-                  'name': 'Hair Oils',
-                  'children': []
-                }
-                ]
-            },
-            {
-              'slug': 'hair-styling',
-              'id': 4040400,
-              'name': 'Hair Styling',
-              'children': [
-                {
-                  'slug': 'hair-sprays-and-mousses',
-                  'id': 4040401,
-                  'name': 'Hair Sprays & Mousses',
-                  'children': []
-                },
-                {
-                  'slug': 'hair-creams-gels-and-oils',
-                  'id': 4040402,
-                  'name': 'Hair Creams, Gels & Oils',
-                  'children': []
-                },
-                {
-                  'slug': 'hair-waxes-and-pomades',
-                  'id': 4040403,
-                  'name': 'Hair Waxes & Pomades',
-                  'children': []
-                }
-                ]
-            },
-            {
-              'slug': 'hair-tools-and-accessories',
-              'id': 4040500,
-              'name': 'Hair Tools & Accessories',
-              'children': [
-                {
-                  'slug': 'hair-dryers-and-irons',
-                  'id': 4040501,
-                  'name': 'Hair Dryers & Irons',
-                  'children': []
-                },
-                {
-                  'slug': 'hair-brushes-and-combs',
-                  'id': 4040502,
-                  'name': 'Hair brushes & Combs',
-                  'children': []
-                }
-                ]
-            },
-            {
-              'slug': 'gift-sets',
-              'id': 4040600,
-              'name': 'Gift Sets',
+              'slug': 'shampoo',
+              'id': 2060100,
+              'name': '샴푸',
               'children': []
             },
             {
-              'slug': 'top-brands',
-              'id': 4040700,
-              'name': 'Top Brands',
+              'slug': 'conditioner-and-treatment',
+              'id': 2060200,
+              'name': '린스·트리트먼트',
+              'children': []
+            },
+            {
+              'slug': 'essence-and-oil',
+              'id': 2060300,
+              'name': '에센스·오일',
+              'children': []
+            },
+            {
+              'slug': 'mist',
+              'id': 2060400,
+              'name': '미스트',
+              'children': []
+            },
+            {
+              'slug': 'styling-product',
+              'id': 2060500,
+              'name': '스타일링',
+              'children': []
+            },
+            {
+              'slug': 'other-hair-product',
+              'id': 2060600,
+              'name': '헤어기타',
               'children': []
             }
-            ]
+          ]
         },
         {
           'slug': 'fragrance',
-          'id': 4050000,
-          'name': 'FRAGRANCE',
+          'id': 2070000,
+          'name': '향수',
           'children': [
             {
               'slug': 'women',
-              'id': 4050100,
-              'name': 'Women',
-              'children': [
-                {
-                  'slug': 'edp',
-                  'id': 4050101,
-                  'name': 'edp',
-                  'children': []
-                },
-                {
-                  'slug': 'edt',
-                  'id': 4050102,
-                  'name': 'edt',
-                  'children': []
-                },
-                {
-                  'slug': 'cologne',
-                  'id': 4050103,
-                  'name': 'cologne',
-                  'children': []
-                }
-                ]
+              'id': 2070100,
+              'name': '여자향수',
+              'children': []
             },
             {
               'slug': 'men',
-              'id': 4050200,
-              'name': 'Men',
-              'children': [
-                {
-                  'slug': 'edp',
-                  'id': 4050201,
-                  'name': 'edp',
-                  'children': []
-                },
-                {
-                  'slug': 'edt',
-                  'id': 4050202,
-                  'name': 'edt',
-                  'children': []
-                },
-                {
-                  'slug': 'cologne',
-                  'id': 4050203,
-                  'name': 'cologne',
-                  'children': []
-                }
-                ]
-            },
-            {
-              'slug': 'candles',
-              'id': 4050300,
-              'name': 'Candles',
+              'id': 2070200,
+              'name': '남자향수',
               'children': []
             },
             {
-              'slug': 'fragrance-sets',
-              'id': 4050400,
-              'name': 'Fragrance Sets',
-              'children': []
-            },
-            {
-              'slug': 'travel-size',
-              'id': 4050500,
-              'name': 'Travel Size',
-              'children': [
-                {
-                  'slug': 'citrus',
-                  'id': 4050501,
-                  'name': 'Citrus',
-                  'children': []
-                },
-                {
-                  'slug': 'floral',
-                  'id': 4050502,
-                  'name': 'Floral',
-                  'children': []
-                },
-                {
-                  'slug': 'woody',
-                  'id': 4050503,
-                  'name': 'Woody',
-                  'children': []
-                },
-                {
-                  'slug': 'spicy',
-                  'id': 4050504,
-                  'name': 'Spicy',
-                  'children': []
-                }
-                ]
-            },
-            {
-              'slug': 'top-brands',
-              'id': 4050600,
-              'name': 'Top Brands',
+              'slug': 'fragrance-set',
+              'id': 2070300,
+              'name': '향수세트',
               'children': []
             }
-            ]
+          ]
         },
         {
-          'slug': 'men',
-          'id': 4060000,
-          'name': 'MEN',
+          'slug': 'candle-and-diffuser',
+          'id': 2080000,
+          'name': '캔들·디퓨저',
           'children': [
             {
-              'slug': 'face-wash',
-              'id': 4060100,
-              'name': 'Face Wash',
+              'slug': 'candle',
+              'id': 2080100,
+              'name': '캔들',
               'children': []
             },
             {
-              'slug': 'face-moisturizers-and-treatments',
-              'id': 4060200,
-              'name': 'Face Moisturizers & Treatments',
+              'slug': 'diffuser',
+              'id': 2080200,
+              'name': '디퓨저',
+              'children': []
+            }
+          ]
+        },
+        {
+          'slug': 'mens-grooming',
+          'id': 2090000,
+          'name': '남성',
+          'children': [
+            {
+              'slug': 'skin',
+              'id': 2090100,
+              'name': '스킨케어',
               'children': []
             },
             {
-              'slug': 'eye-creams',
-              'id': 4060300,
-              'name': 'Eye Creams',
-              'children': []
-            },
-            {
-              'slug': 'sunscreens',
-              'id': 4060400,
-              'name': 'Sunscreens',
-              'children': []
-            },
-            {
-              'slug': 'shaving',
-              'id': 4060500,
-              'name': 'Shaving',
-              'children': [
-                {
-                  'slug': 'pre-shave',
-                  'id': 4060501,
-                  'name': 'Pre-Shave',
-                  'children': []
-                },
-                {
-                  'slug': 'shaving-creams-gels',
-                  'id': 4060502,
-                  'name': 'Shaving Creams · Gels',
-                  'children': []
-                },
-                {
-                  'slug': 'after-shave',
-                  'id': 4060503,
-                  'name': 'After-Shave',
-                  'children': []
-                },
-                {
-                  'slug': 'tools',
-                  'id': 4060504,
-                  'name': 'Tools',
-                  'children': []
-                }
-                ]
-            },
-            {
-              'slug': 'bath-and-body',
-              'id': 4060600,
-              'name': 'Bath & Body',
-              'children': []
-            },
-            {
-              'slug': 'deodorant-for-men',
-              'id': 4060700,
-              'name': 'Deodorant for Men',
+              'slug': 'body',
+              'id': 2090200,
+              'name': '바디케어',
               'children': []
             },
             {
               'slug': 'hair',
-              'id': 4060800,
-              'name': 'Hair',
+              'id': 2090300,
+              'name': '헤어케어',
               'children': []
             },
             {
-              'slug': 'top-brands',
-              'id': 4060900,
-              'name': 'Top Brands',
+              'slug': 'makeup',
+              'id': 2090400,
+              'name': '메이크업 ',
+              'children': []
+            },
+            {
+              'slug': 'cologne-and-deodorant',
+              'id': 2090500,
+              'name': '향수·데오드란트',
+              'children': []
+            },
+            {
+              'slug': 'shave',
+              'id': 2090600,
+              'name': '쉐이빙·잡화',
               'children': []
             }
-            ]
+          ]
         },
         {
           'slug': 'k-beauty',
-          'id': 4070000,
-          'name': 'K-BEAUTY',
+          'id': 2100000,
+          'name': 'K BEAUTY',
           'children': []
         }
-        ]
+      ]
     }
   };
 }

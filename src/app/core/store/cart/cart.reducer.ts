@@ -20,7 +20,6 @@ export const initialState: CartState = {
       {
         location : {},
         items : [],
-        free_shipping_threshold : 0,
         shipping_fee : 0,
         subtotal : 0
       }

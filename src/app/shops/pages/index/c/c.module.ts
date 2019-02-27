@@ -20,11 +20,11 @@ import {PipeModule} from '../../../../core/pipe/pipe.module';
 import {HomeComponent} from './pages/index/home/home.component';
 import {StoreModule} from '@ngrx/store';
 import {CReducer} from './store/c.reducer';
-import { PageSkincareComponent } from './pages/index/beauty/index/skincare/page-skincare.component';
-import {PageHairComponent} from './pages/index/beauty/index/hair/page-hair.component';
+import { PageSkinCareComponent } from './pages/index/beauty/index/skin-care/page-skin-care.component';
+import {PageHairCareComponent} from './pages/index/beauty/index/hair-care/page-hair-care.component';
 import {PageFragranceComponent} from './pages/index/beauty/index/fragrance/page-fragrance.component';
-import {PageMenComponent} from './pages/index/beauty/index/men/page-men.component';
-import {PageBathAndBodyComponent} from './pages/index/beauty/index/bath-and-body/page-bath-and-body.component';
+import {PageMenGroomingComponent} from './pages/index/beauty/index/mens-grooming/page-mens-grooming.component';
+import {PageBodyCareComponent} from './pages/index/beauty/index/body-care/page-body-care.component';
 import {PageMakeupComponent} from './pages/index/beauty/index/makeup/page-makeup.component';
 
 @NgModule({
@@ -52,11 +52,11 @@ import {PageMakeupComponent} from './pages/index/beauty/index/makeup/page-makeup
     PagePetSuppliesComponent,
     PageOfficeSuppliesComponent,
 
-    PageSkincareComponent,
-    PageHairComponent,
+    PageSkinCareComponent,
+    PageHairCareComponent,
     PageFragranceComponent,
-    PageMenComponent,
-    PageBathAndBodyComponent,
+    PageMenGroomingComponent,
+    PageBodyCareComponent,
     PageMakeupComponent,
   ]
 })

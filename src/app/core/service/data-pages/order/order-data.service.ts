@@ -14,6 +14,10 @@ export class OrderDataService {
 
   }
 
+  getOrderInfo( xCode ) {
+    return this.httpClient.get(this.BASE_URL + '/api/orders/' + xCode );
+  }
+
   getCheckoutData() {
     return this.httpClient.get<{}>( this.BASE_URL + '/api/cart/checkout/');
   }

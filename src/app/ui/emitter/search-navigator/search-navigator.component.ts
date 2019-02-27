@@ -221,6 +221,8 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
           if ( categoryUrl[categoryUrl.length - 1].indexOf('?') > -1){
             categoryUrl[categoryUrl.length - 1] = categoryUrl[categoryUrl.length - 1].substring(0, categoryUrl[categoryUrl.length - 1].indexOf('?'));
           }
+          console.log(categoryUrl[3]);
+          console.log(categoryUrl[4]);
 
           switch ( categoryUrl.length ) {
             case 5 :
@@ -428,7 +430,7 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
     }
 
     this.router.navigate(['/shops/search'], {
-      queryParams: {value: this.queryParams.value.length === 0 ? null : this.queryParams.value},
+      queryParams: { page: null, value: this.queryParams.value.length === 0 ? null : this.queryParams.value},
       queryParamsHandling: 'merge'
     });
   }
@@ -444,12 +446,13 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
     }
 
     this.router.navigate(['/shops/search'], {
-      queryParams: {brand: this.queryParams.brand.length === 0 ? null : this.queryParams.brand},
+      queryParams: {page: null, brand: this.queryParams.brand.length === 0 ? null : this.queryParams.brand},
       queryParamsHandling: 'merge'
     });
   }
 
   locationClicked(xLocationSlug) {
+
     if ( this.locationListForCheck[xLocationSlug] === true ) {
       this.locationListForCheck[xLocationSlug] = false;
       const index = this.queryParams.location.indexOf(xLocationSlug);
@@ -459,7 +462,7 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
     }
 
     this.router.navigate(['/shops/search'], {
-      queryParams: {location: this.queryParams.location.length === 0 ? null : this.queryParams.location},
+      queryParams: {page: null, location: this.queryParams.location.length === 0 ? null : this.queryParams.location},
       queryParamsHandling: 'merge'
     });
   }
@@ -564,6 +567,7 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
 
     return normalize(data, object);
   }
+
 
   // @ts-ignore
   sortInfo = {
@@ -1848,391 +1852,277 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
         }
       }
     },
-    'electronics': {
+    'beauty': {
       'code': 2000000,
-      'tv-and-home-theater': {
+      'skin-care': {
         'code': 2010000,
-        'televisions': {
+        'skin-and-toner': {
           'code': 2010100,
-          '4k-tvs': {
+          'skin': {
             'code': 2010101
           },
-          'smart-tvs': {
+          'toner': {
             'code': 2010102
           }
         },
-        'media-streaming-devices': {
+        'mist': {
           'code': 2010200
         },
-        'blu-ray-players': {
-          'code': 2010300
+        'face-moisturizer-and-treatment': {
+          'code': 2010300,
+          'lotion': {
+            'code': 2010301
+          },
+          'emulsion': {
+            'code': 2010302
+          },
+          'oil': {
+            'code': 2010303
+          },
+          'essence': {
+            'code': 2010304
+          },
+          'ample': {
+            'code': 2010305
+          },
+          'serum': {
+            'code': 2010306
+          }
         },
-        'home-theater-systems': {
+        'cream-and-gel': {
           'code': 2010400
         },
-        'speakers': {
-          'code': 2010500,
-          'wireless-and-bluetooth-speakers': {
-            'code': 2010501
-          },
-          'bookshelf-speakers': {
-            'code': 2010502
-          },
-          'floor-speakers': {
-            'code': 2010503
-          },
-          'in-wall-and-in-ceiling-speakers': {
-            'code': 2010504
-          },
-          'center-channel-speakers': {
-            'code': 2010505
-          },
-          'subwoofer': {
-            'code': 2010506
-          }
+        'mask-and-pack': {
+          'code': 2010500
         },
-        'sound-bars': {
-          'code': 2010600,
-          'smart-sound-bars': {
-            'code': 2010601
-          }
+        'eye-care': {
+          'code': 2010600
         },
-        'receivers-and-amplifiers': {
+        'lip-care': {
           'code': 2010700
         },
-        'accessories': {
+        'sun-care': {
           'code': 2010800,
-          'cables': {
+          'stick-and-balm': {
             'code': 2010801
           },
-          'speaker-accessories': {
+          'cream-and-gel': {
             'code': 2010802
-          },
-          'remote-controls': {
-            'code': 2010803
-          },
-          'tv-mounts': {
-            'code': 2010804
-          },
-          'hdtv-antennas': {
-            'code': 2010805
-          },
-          'cleaning-accessories': {
-            'code': 2010806
           }
-        },
-        'projectors-and-screens': {
-          'code': 2010900
         }
       },
-      'computers-and-tablets': {
+      'cleansing-and-peeling': {
         'code': 2020000,
-        'laptops': {
-          'code': 2020100,
-          'apple-macbook': {
-            'code': 2020101
-          },
-          'windows-laptops': {
-            'code': 2020102
-          },
-          'chromebooks': {
-            'code': 2020103
-          },
-          '2-in-1-laptops': {
-            'code': 2020104
-          }
+        'cleansing-foam-and-gel': {
+          'code': 2020100
         },
-        'all-in-one-desktop-computers': {
-          'code': 2020200,
-          'apple-imac': {
-            'code': 2020201
-          },
-          'windows-desktops': {
-            'code': 2020202
-          }
+        'cleansing-water': {
+          'code': 2020200
         },
-        'computer-accessories': {
-          'code': 2020300,
-          'wireless-mice': {
-            'code': 2020301
-          },
-          'wireless-keyboards': {
-            'code': 2020302
-          },
-          'printers-and-ink': {
-            'code': 2020303
-          },
-          'external-hard-drives': {
-            'code': 2020304
-          },
-          'usb-flash-drives': {
-            'code': 2020305
-          },
-          'laptop-bags-and-cases': {
-            'code': 2020306
-          }
+        'cleansing-oil': {
+          'code': 2020300
         },
-        'tablets': {
-          'code': 2020400,
-          'apple-ipad': {
-            'code': 2020401
-          },
-          'samsung-galaxy-tablets': {
-            'code': 2020402
-          },
-          'android-tablets': {
-            'code': 2020403
-          },
-          '4g-lte-tablets': {
-            'code': 2020404
-          }
+        'cleansing-lotion-and-cream': {
+          'code': 2020400
         },
-        'tablet-accessories': {
-          'code': 2020500,
-          'cases-covers-and-keyboard-folios': {
-            'code': 2020501
-          },
-          'stands-and-mounts': {
-            'code': 2020502
-          },
-          'chargers-cables-and-adapters': {
-            'code': 2020503
-          },
-          'tablet-stylus-pens': {
-            'code': 2020504
-          },
-          'tablet-keyboards': {
-            'code': 2020505
-          },
-          'tablet-docking-stations': {
-            'code': 2020506
-          },
-          'tablet-screen-protectors': {
-            'code': 2020507
-          },
-          'portable-chargers-and-power-packs': {
-            'code': 2020508
-          }
+        'cleansing-soap': {
+          'code': 2020500
+        },
+        'cleansing-wipe': {
+          'code': 2020600
+        },
+        'lip-and-eye-cleanser': {
+          'code': 2020700
+        },
+        'scrubs-and-peeling': {
+          'code': 2020800
         }
       },
-      'audio': {
+      'sun-care': {
         'code': 2030000,
-        'headphones': {
+        'face': {
           'code': 2030100,
-          'noise-cancelling': {
+          'stick-and-balm': {
             'code': 2030101
           },
-          'true-wireless-earbuds': {
+          'cream-and-gel': {
             'code': 2030102
-          },
-          'wireless-headphones': {
-            'code': 2030103
-          },
-          'over-ear-headphones': {
-            'code': 2030104
-          },
-          'in-ear-headphones': {
-            'code': 2030105
-          },
-          'sports-headphones': {
-            'code': 2030106
           }
         },
-        'bluetooth-speakers': {
-          'code': 2030200
-        },
-        'speakers': {
-          'code': 2030300,
-          'wireless-and-bluetooth-speakers': {
-            'code': 2030301
+        'body': {
+          'code': 2030200,
+          'stick-and-balm': {
+            'code': 2030201
           },
-          'bookshelf-speakers': {
-            'code': 2030302
-          },
-          'floor-speakers': {
-            'code': 2030303
-          },
-          'subwoofer': {
-            'code': 2030304
+          'cream-and-gel': {
+            'code': 2030202
           }
-        },
-        'sound-bars': {
-          'code': 2030400
-        },
-        'home-theater-systems': {
-          'code': 2030500
-        },
-        'receivers-and-amplifiers': {
-          'code': 2030600
-        },
-        'dolby-atmos-sound': {
-          'code': 2030700
         }
       },
-      'smart-home': {
+      'makeup': {
         'code': 2040000,
-        'voice-assistants': {
+        'face': {
           'code': 2040100,
-          'google-home': {
+          'makeup-base': {
             'code': 2040101
           },
-          'apple-homepod': {
+          'primer': {
             'code': 2040102
+          },
+          'bb-and-cc-cream': {
+            'code': 2040103
+          },
+          'foundation': {
+            'code': 2040104
+          },
+          'cushion-and-powder-and-pact': {
+            'code': 2040105
+          },
+          'concealer': {
+            'code': 2040106
+          },
+          'blusher': {
+            'code': 2040107
+          },
+          'highlighter-and-shading': {
+            'code': 2040108
           }
         },
-        'smart-accessories': {
+        'eye': {
           'code': 2040200,
-          'dimmers-and-switches': {
+          'eyeshadow': {
             'code': 2040201
           },
-          'sensors-and-motion-detectors': {
+          'eyeliner': {
             'code': 2040202
           },
-          'security-cameras': {
+          'eyebrow': {
             'code': 2040203
           },
-          'smart-lighting': {
+          'mascara': {
             'code': 2040204
-          },
-          'smart-plugs': {
-            'code': 2040205
           }
         },
-        'wi-fi-and-networking': {
+        'lip': {
           'code': 2040300,
-          'wireless-routers': {
+          'lipstick': {
             'code': 2040301
           },
-          'modems': {
+          'lip-tint': {
             'code': 2040302
           },
-          'mesh-wi-fi-systems': {
+          'lip-glosse': {
             'code': 2040303
           },
-          'wi-fi-range-extenders': {
+          'lip-treatment-and-balm': {
             'code': 2040304
-          },
-          'networking-cables': {
-            'code': 2040305
           }
+        },
+        'makeup-brush-and-applicator': {
+          'code': 2040400
         }
       },
-      'wearable-tech': {
+      'body-care': {
         'code': 2050000,
-        'activity-trackers': {
+        'body-wash': {
           'code': 2050100
         },
-        'smart-watches': {
+        'body-lotion': {
           'code': 2050200
         },
-        'wearable-cameras': {
+        'body-cream-and-gel': {
           'code': 2050300
         },
-        'wearable-tech-accessories': {
+        'body-oil-and-essence': {
           'code': 2050400
         },
-        'featured-brands': {
+        'body-scrub': {
           'code': 2050500
+        },
+        'body-mist': {
+          'code': 2050600
+        },
+        'hand-and-foot-treatment': {
+          'code': 2050700
+        },
+        'bath-salt-and-bubble': {
+          'code': 2050800
+        },
+        'feminine-care': {
+          'code': 2050900
+        },
+        'deodorant': {
+          'code': 2051000
+        },
+        'other-body-product': {
+          'code': 2051100
         }
       },
-      'cameras': {
+      'hair-care': {
         'code': 2060000,
-        'cameras-and-lenses': {
-          'code': 2060100,
-          'dslr-cameras': {
-            'code': 2060101
-          },
-          'mirrorless-cameras': {
-            'code': 2060102
-          },
-          'instant-print-cameras': {
-            'code': 2060103
-          },
-          'camera-lenses': {
-            'code': 2060104
-          }
+        'shampoo': {
+          'code': 2060100
         },
-        'camera-accessories': {
-          'code': 2060200,
-          'memory-cards': {
-            'code': 2060201
-          },
-          'camera-bags-cases-and-straps': {
-            'code': 2060202
-          },
-          'camera-batteries-and-power': {
-            'code': 2060203
-          },
-          'flashes-and-lighting': {
-            'code': 2060204
-          },
-          'lens-filters': {
-            'code': 2060205
-          },
-          'camera-cleaning-equipment': {
-            'code': 2060206
-          },
-          'film': {
-            'code': 2060207
-          },
-          'tripods-and-monopods': {
-            'code': 2060208
-          }
+        'conditioner-and-treatment': {
+          'code': 2060200
         },
-        'featured-brands': {
+        'essence-and-oil': {
           'code': 2060300
+        },
+        'mist': {
+          'code': 2060400
+        },
+        'styling-product': {
+          'code': 2060500
+        },
+        'other-hair-product': {
+          'code': 2060600
         }
       },
-      'toys-and-games': {
+      'fragrance': {
         'code': 2070000,
-        'consoles-and-accessories': {
-          'code': 2070100,
-          'nintendo': {
-            'code': 2070101
-          },
-          'playstation': {
-            'code': 2070102
-          },
-          'xbox': {
-            'code': 2070103
-          }
+        'women': {
+          'code': 2070100
         },
-        'pc-gaming': {
-          'code': 2070200,
-          'laptops': {
-            'code': 2070201
-          },
-          'desktops': {
-            'code': 2070202
-          },
-          'gaming-keyboards': {
-            'code': 2070203
-          },
-          'gaming-mice': {
-            'code': 2070204
-          }
+        'men': {
+          'code': 2070200
         },
-        'arvr': {
+        'fragrance-set': {
           'code': 2070300
-        },
-        'smart-toys': {
-          'code': 2070400
-        },
-        'drones': {
-          'code': 2070500
         }
       },
-      'cellphone': {
+      'candle-and-diffuser': {
         'code': 2080000,
-        'cases-and-covers': {
+        'candle': {
           'code': 2080100
         },
-        'cables': {
+        'diffuser': {
           'code': 2080200
-        },
-        'portable-chargers-and-power-packs': {
-          'code': 2080300
         }
+      },
+      'mens-grooming': {
+        'code': 2090000,
+        'skin': {
+          'code': 2090100
+        },
+        'body': {
+          'code': 2090200
+        },
+        'hair': {
+          'code': 2090300
+        },
+        'makeup': {
+          'code': 2090400
+        },
+        'cologne-and-deodorant': {
+          'code': 2090500
+        },
+        'shave': {
+          'code': 2090600
+        }
+      },
+      'k-beauty': {
+        'code': 2100000
       }
     },
     'home-and-living': {
@@ -2778,433 +2668,391 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
         }
       }
     },
-    'beauty': {
+    'electronics': {
       'code': 4000000,
-      'skincare': {
+      'tv-and-home-theater': {
         'code': 4010000,
-        'face-cleansers': {
+        'televisions': {
           'code': 4010100,
-          'combination': {
+          '4k-tvs': {
             'code': 4010101
           },
-          'dry': {
+          'smart-tvs': {
             'code': 4010102
-          },
-          'normal': {
-            'code': 4010103
           }
         },
-        'face-moisturizers-and-treatments': {
-          'code': 4010200,
-          'moisturizers': {
-            'code': 4010201
-          },
-          'night-creams': {
-            'code': 4010202
-          },
-          'serums': {
-            'code': 4010203
-          }
+        'media-streaming-devices': {
+          'code': 4010200
         },
-        'exfoliators-and-scrubs': {
+        'blu-ray-players': {
           'code': 4010300
         },
-        'face-mask': {
-          'code': 4010400,
-          'face-masks': {
-            'code': 4010401
-          },
-          'sheet-masks': {
-            'code': 4010402
-          }
+        'home-theater-systems': {
+          'code': 4010400
         },
-        'eye-cream-and-treatments': {
+        'speakers': {
           'code': 4010500,
-          'simply-moisture': {
+          'wireless-and-bluetooth-speakers': {
             'code': 4010501
           },
-          'fine-lines-wrinkles': {
+          'bookshelf-speakers': {
             'code': 4010502
           },
-          'dark-circles-puffness': {
+          'floor-speakers': {
             'code': 4010503
+          },
+          'in-wall-and-in-ceiling-speakers': {
+            'code': 4010504
+          },
+          'center-channel-speakers': {
+            'code': 4010505
+          },
+          'subwoofer': {
+            'code': 4010506
           }
         },
-        'lip-care': {
+        'sound-bars': {
           'code': 4010600,
-          'lip-balms-and-treatments': {
+          'smart-sound-bars': {
             'code': 4010601
-          },
-          'lip-sunscreen': {
-            'code': 4010602
           }
         },
-        'toners-and-mists': {
-          'code': 4010700,
-          'toners': {
-            'code': 4010701
+        'receivers-and-amplifiers': {
+          'code': 4010700
+        },
+        'accessories': {
+          'code': 4010800,
+          'cables': {
+            'code': 4010801
           },
-          'mists': {
-            'code': 4010702
+          'speaker-accessories': {
+            'code': 4010802
+          },
+          'remote-controls': {
+            'code': 4010803
+          },
+          'tv-mounts': {
+            'code': 4010804
+          },
+          'hdtv-antennas': {
+            'code': 4010805
+          },
+          'cleaning-accessories': {
+            'code': 4010806
           }
         },
-        'sun-care-and-sunscreens': {
-          'code': 4010800
-        },
-        'tools-and-devices': {
+        'projectors-and-screens': {
           'code': 4010900
-        },
-        'gift-sets': {
-          'code': 4011000
-        },
-        'top-brands': {
-          'code': 4011100
         }
       },
-      'makeup': {
+      'computers-and-tablets': {
         'code': 4020000,
-        'face': {
+        'laptops': {
           'code': 4020100,
-          'foundation': {
+          'apple-macbook': {
             'code': 4020101
           },
-          'face-primers': {
+          'windows-laptops': {
             'code': 4020102
           },
-          'bb-and-cc-cream': {
+          'chromebooks': {
             'code': 4020103
           },
-          'tinted-moisturizer': {
+          '2-in-1-laptops': {
             'code': 4020104
-          },
-          'setting-powder': {
-            'code': 4020105
-          },
-          'concealer': {
-            'code': 4020106
           }
         },
-        'cheek': {
+        'all-in-one-desktop-computers': {
           'code': 4020200,
-          'blush': {
+          'apple-imac': {
             'code': 4020201
           },
-          'bronzer': {
+          'windows-desktops': {
             'code': 4020202
-          },
-          'contour': {
-            'code': 4020203
-          },
-          'highlighter': {
-            'code': 4020204
-          },
-          'cheek-palettes': {
-            'code': 4020205
           }
         },
-        'eyes': {
+        'computer-accessories': {
           'code': 4020300,
-          'eyeshadows': {
+          'wireless-mice': {
             'code': 4020301
           },
-          'mascara': {
+          'wireless-keyboards': {
             'code': 4020302
           },
-          'eyeliner': {
+          'printers-and-ink': {
             'code': 4020303
           },
-          'eyebrow': {
+          'external-hard-drives': {
             'code': 4020304
           },
-          'eye-palettes': {
+          'usb-flash-drives': {
             'code': 4020305
           },
-          'eye-sets': {
+          'laptop-bags-and-cases': {
             'code': 4020306
           }
         },
-        'lip': {
+        'tablets': {
           'code': 4020400,
-          'lipstick': {
+          'apple-ipad': {
             'code': 4020401
           },
-          'lip-gloss': {
+          'samsung-galaxy-tablets': {
             'code': 4020402
           },
-          'lip-stain': {
+          'android-tablets': {
             'code': 4020403
           },
-          'lip-liner': {
+          '4g-lte-tablets': {
             'code': 4020404
-          },
-          'lip-palettes': {
-            'code': 4020405
-          },
-          'lip-sets': {
-            'code': 4020406
           }
         },
-        'makeup-brushes-and-applicators': {
+        'tablet-accessories': {
           'code': 4020500,
-          'face-brushes': {
+          'cases-covers-and-keyboard-folios': {
             'code': 4020501
           },
-          'cheek-brushes': {
+          'stands-and-mounts': {
             'code': 4020502
           },
-          'eye-brushes': {
+          'chargers-cables-and-adapters': {
             'code': 4020503
           },
-          'lip-brushes': {
+          'tablet-stylus-pens': {
             'code': 4020504
           },
-          'sponges-and-applicators': {
+          'tablet-keyboards': {
             'code': 4020505
           },
-          'brush-cleaners': {
+          'tablet-docking-stations': {
             'code': 4020506
           },
-          'brush-sets': {
+          'tablet-screen-protectors': {
             'code': 4020507
-          }
-        },
-        'lash-bar': {
-          'code': 4020600,
-          'eyelash-curler': {
-            'code': 4020601
           },
-          'false-lashes': {
-            'code': 4020602
+          'portable-chargers-and-power-packs': {
+            'code': 4020508
           }
-        },
-        'top-brands': {
-          'code': 4020700
         }
       },
-      'bath-and-body': {
+      'audio': {
         'code': 4030000,
-        'body-wash-and-shower-gels': {
+        'headphones': {
           'code': 4030100,
-          'body-wash': {
+          'noise-cancelling': {
             'code': 4030101
           },
-          'shower-gels': {
+          'true-wireless-earbuds': {
             'code': 4030102
           },
-          'bar-soaps': {
+          'wireless-headphones': {
             'code': 4030103
-          }
-        },
-        'body-lotions-and-creams': {
-          'code': 4030200,
-          'body-lotions': {
-            'code': 4030201
           },
-          'body-creams': {
-            'code': 4030202
+          'over-ear-headphones': {
+            'code': 4030104
+          },
+          'in-ear-headphones': {
+            'code': 4030105
+          },
+          'sports-headphones': {
+            'code': 4030106
           }
         },
-        'body-oils': {
-          'code': 4030300
+        'bluetooth-speakers': {
+          'code': 4030200
         },
-        'body-scrubs-and-exfoliants': {
+        'speakers': {
+          'code': 4030300,
+          'wireless-and-bluetooth-speakers': {
+            'code': 4030301
+          },
+          'bookshelf-speakers': {
+            'code': 4030302
+          },
+          'floor-speakers': {
+            'code': 4030303
+          },
+          'subwoofer': {
+            'code': 4030304
+          }
+        },
+        'sound-bars': {
           'code': 4030400
         },
-        'hand-and-foot': {
-          'code': 4030500,
-          'hand-cream-and-lotion': {
-            'code': 4030501
-          },
-          'foot-cream-and-lotion': {
-            'code': 4030502
-          },
-          'hand-soaps': {
-            'code': 4030503
-          }
+        'home-theater-systems': {
+          'code': 4030500
         },
-        'bubble-bath': {
+        'receivers-and-amplifiers': {
           'code': 4030600
         },
-        'body-sun-care-and-sunscreens': {
+        'dolby-atmos-sound': {
           'code': 4030700
-        },
-        'gift-sets': {
-          'code': 4030800
-        },
-        'top-brands': {
-          'code': 4030900
         }
       },
-      'hair': {
+      'smart-home': {
         'code': 4040000,
-        'shampoos': {
+        'voice-assistants': {
           'code': 4040100,
-          'moisturizing': {
+          'google-home': {
             'code': 4040101
           },
-          'volumizing': {
+          'apple-homepod': {
             'code': 4040102
-          },
-          'damaged': {
-            'code': 4040103
-          },
-          'thickening': {
-            'code': 4040104
-          },
-          'dry-shampoos': {
-            'code': 4040105
           }
         },
-        'conditioners': {
+        'smart-accessories': {
           'code': 4040200,
-          'moisturizing': {
+          'dimmers-and-switches': {
             'code': 4040201
           },
-          'volumizing': {
+          'sensors-and-motion-detectors': {
             'code': 4040202
           },
-          'damaged': {
+          'security-cameras': {
             'code': 4040203
           },
-          'thickening': {
+          'smart-lighting': {
             'code': 4040204
           },
-          'leave-in-conditioners': {
+          'smart-plugs': {
             'code': 4040205
           }
         },
-        'hair-treatments': {
+        'wi-fi-and-networking': {
           'code': 4040300,
-          'hair-masques': {
+          'wireless-routers': {
             'code': 4040301
           },
-          'hair-oils': {
+          'modems': {
             'code': 4040302
-          }
-        },
-        'hair-styling': {
-          'code': 4040400,
-          'hair-sprays-and-mousses': {
-            'code': 4040401
           },
-          'hair-creams-gels-and-oils': {
-            'code': 4040402
+          'mesh-wi-fi-systems': {
+            'code': 4040303
           },
-          'hair-waxes-and-pomades': {
-            'code': 4040403
-          }
-        },
-        'hair-tools-and-accessories': {
-          'code': 4040500,
-          'hair-dryers-and-irons': {
-            'code': 4040501
+          'wi-fi-range-extenders': {
+            'code': 4040304
           },
-          'hair-brushes-and-combs': {
-            'code': 4040502
+          'networking-cables': {
+            'code': 4040305
           }
-        },
-        'gift-sets': {
-          'code': 4040600
-        },
-        'top-brands': {
-          'code': 4040700
         }
       },
-      'fragrance': {
+      'wearable-tech': {
         'code': 4050000,
-        'women': {
-          'code': 4050100,
-          'edp': {
-            'code': 4050101
-          },
-          'edt': {
-            'code': 4050102
-          },
-          'cologne': {
-            'code': 4050103
-          }
+        'activity-trackers': {
+          'code': 4050100
         },
-        'men': {
-          'code': 4050200,
-          'edp': {
-            'code': 4050201
-          },
-          'edt': {
-            'code': 4050202
-          },
-          'cologne': {
-            'code': 4050203
-          }
+        'smart-watches': {
+          'code': 4050200
         },
-        'candles': {
+        'wearable-cameras': {
           'code': 4050300
         },
-        'fragrance-sets': {
+        'wearable-tech-accessories': {
           'code': 4050400
         },
-        'travel-size': {
-          'code': 4050500,
-          'citrus': {
-            'code': 4050501
-          },
-          'floral': {
-            'code': 4050502
-          },
-          'woody': {
-            'code': 4050503
-          },
-          'spicy': {
-            'code': 4050504
-          }
-        },
-        'top-brands': {
-          'code': 4050600
+        'featured-brands': {
+          'code': 4050500
         }
       },
-      'men': {
+      'cameras': {
         'code': 4060000,
-        'face-wash': {
-          'code': 4060100
-        },
-        'face-moisturizers-and-treatments': {
-          'code': 4060200
-        },
-        'eye-creams': {
-          'code': 4060300
-        },
-        'sunscreens': {
-          'code': 4060400
-        },
-        'shaving': {
-          'code': 4060500,
-          'pre-shave': {
-            'code': 4060501
+        'cameras-and-lenses': {
+          'code': 4060100,
+          'dslr-cameras': {
+            'code': 4060101
           },
-          'shaving-creams-gels': {
-            'code': 4060502
+          'mirrorless-cameras': {
+            'code': 4060102
           },
-          'after-shave': {
-            'code': 4060503
+          'instant-print-cameras': {
+            'code': 4060103
           },
-          'tools': {
-            'code': 4060504
+          'camera-lenses': {
+            'code': 4060104
           }
         },
-        'bath-and-body': {
-          'code': 4060600
+        'camera-accessories': {
+          'code': 4060200,
+          'memory-cards': {
+            'code': 4060201
+          },
+          'camera-bags-cases-and-straps': {
+            'code': 4060202
+          },
+          'camera-batteries-and-power': {
+            'code': 4060203
+          },
+          'flashes-and-lighting': {
+            'code': 4060204
+          },
+          'lens-filters': {
+            'code': 4060205
+          },
+          'camera-cleaning-equipment': {
+            'code': 4060206
+          },
+          'film': {
+            'code': 4060207
+          },
+          'tripods-and-monopods': {
+            'code': 4060208
+          }
         },
-        'deodorant-for-men': {
-          'code': 4060700
-        },
-        'hair': {
-          'code': 4060800
-        },
-        'top-brands': {
-          'code': 4060900
+        'featured-brands': {
+          'code': 4060300
         }
       },
-      'k-beauty': {
-        'code': 4070000
+      'toys-and-games': {
+        'code': 4070000,
+        'consoles-and-accessories': {
+          'code': 4070100,
+          'nintendo': {
+            'code': 4070101
+          },
+          'playstation': {
+            'code': 4070102
+          },
+          'xbox': {
+            'code': 4070103
+          }
+        },
+        'pc-gaming': {
+          'code': 4070200,
+          'laptops': {
+            'code': 4070201
+          },
+          'desktops': {
+            'code': 4070202
+          },
+          'gaming-keyboards': {
+            'code': 4070203
+          },
+          'gaming-mice': {
+            'code': 4070204
+          }
+        },
+        'arvr': {
+          'code': 4070300
+        },
+        'smart-toys': {
+          'code': 4070400
+        },
+        'drones': {
+          'code': 4070500
+        }
+      },
+      'cellphone': {
+        'code': 4080000,
+        'cases-and-covers': {
+          'code': 4080100
+        },
+        'cables': {
+          'code': 4080200
+        },
+        'portable-chargers-and-power-packs': {
+          'code': 4080300
+        }
       }
     },
     'sports-fitness-outdoor': {

@@ -366,8 +366,8 @@ export class CommunicateBoxComponent implements OnInit, AfterViewChecked, AfterV
       .subscribe(
         response => {
           this.isShowModal = false;
-          console.log('88888888888888888');
           this.store.dispatch(new DisplayAlertMessage('신고가 정상적으로 접수 되었습니다.'));
+          this.cd.markForCheck();
         },
         error => {
           alert('신고 중 에러가 발생하였습니다.');

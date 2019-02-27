@@ -2,11 +2,11 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'onpicks-bath-and-body',
-  templateUrl: './page-bath-and-body.component.html',
-  styleUrls: ['./page-bath-and-body.component.scss'],
+  templateUrl: './page-body-care.component.html',
+  styleUrls: ['./page-body-care.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class PageBathAndBodyComponent implements OnInit {
+export class PageBodyCareComponent implements OnInit {
 
   constructor() { }
 

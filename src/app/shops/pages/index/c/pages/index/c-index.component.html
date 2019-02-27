@@ -9,10 +9,10 @@
   <div class="c-header__category">
     <ul class="c-header__category--ul">
       <li
-        *ngFor="let item of objectKeys(secondCategoryMap[this.router.url.split('/')[3]])"
+        *ngFor="let key of objectKeys(secondCategoryMap[this.router.url.split('/')[3]])"
         class="c-header__category--li subtitle-2-bold u-color-white">
-        <a class="u-color-white" [routerLink]="'/shops/c/' + this.router.url.split('/')[3] + '/' + item">
-          {{secondCategoryMap[this.router.url.split('/')[3]][item]}}
+        <a class="u-color-white" [routerLink]="'/shops/c/' + this.router.url.split('/')[3] + '/' + key">
+          {{ secondCategoryMap[this.router.url.split('/')[3]][key].name }}
         </a>
       </li>
     </ul>

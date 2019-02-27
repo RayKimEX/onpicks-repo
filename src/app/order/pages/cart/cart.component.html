@@ -227,18 +227,17 @@
 
           <div class="cart__delivery-multi-purchase">
             <div class="cart__delivery-multi-purchase--remain">
-              <div *ngIf="((item.free_shipping_threshold - (item.subtotal - item.shipping_fee)) > 0)" class="cart__delivery-multi-purchase--remain-description subtitle-2-regular">{{item.location.name}} 무료배송까지 {{item.free_shipping_threshold - (item.subtotal - item.shipping_fee) | onpicksCurrency : syncedData.currencyInfo}} 남았습니다</div>
-              <div *ngIf="!((item.free_shipping_threshold - (item.subtotal - item.shipping_fee)) > 0)"class="cart__delivery-multi-purchase--remain-description subtitle-2-bold">{{item.location.name}} 무료배송 조건이 충족되었습니다</div>
-              <ui-progressive-bar [progressWidth]="
-              ((((item.subtotal - item.shipping_fee) / item.free_shipping_threshold) * 100) > 100 ? 100 :  ((((item.subtotal - item.shipping_fee) / item.free_shipping_threshold) * 100))) + '%'"></ui-progressive-bar>
+              <div *ngIf="((item.location.free_shipping_threshold - (item.subtotal - item.shipping_fee)) > 0)" class="cart__delivery-multi-purchase--remain-description subtitle-2-regular">{{item.location.name}} 무료배송까지 {{item.location.free_shipping_threshold - (item.subtotal - item.shipping_fee) | onpicksCurrency : syncedData.currencyInfo}} 남았습니다</div>
+              <div *ngIf="!((item.location.free_shipping_threshold - (item.subtotal - item.shipping_fee)) > 0)"class="cart__delivery-multi-purchase--remain-description subtitle-2-bold">{{item.location.name}} 무료배송 조건이 충족되었습니다</div>
+              <ui-progressive-bar
+                [progressWidth]="((((item.subtotal - item.shipping_fee) / item.location.free_shipping_threshold) * 100) > 100 ? 100 :  ((((item.subtotal - item.shipping_fee) / item.location.free_shipping_threshold) * 100))) + '%'"></ui-progressive-bar>
             </div>
 
             <onpicks-button
               (click)="setCheckoutList(item.items)"
               class="cart__delivery-multi-purchase--btn"
               [type]="'white'"
-              [size]="'big'"
-            >묶음배송 구매하기</onpicks-button>
+              [size]="'big'">묶음배송 구매하기</onpicks-button>
           </div>
 
 
@@ -344,11 +343,11 @@
               </td>
               <td *ngIf="itemIndex === 0" [attr.rowspan]="item?.items.length">
                 <div class="cart__multi-table--delivery-info">
-                  <div class="cart__multi-table--delivery-info-price" [ngSwitch]="(item.subtotal - item.shipping_fee) < item.free_shipping_threshold">
+                  <div class="cart__multi-table--delivery-info-price" [ngSwitch]="(item.subtotal - item.shipping_fee) < item.location.free_shipping_threshold">
                     <span class="subtitle-2-regular" *ngSwitchCase="true">{{item.shipping_fee | onpicksCurrency: syncedData.currencyInfo}}</span>
                     <span class="subtitle-2-bold u-color-green" *ngSwitchDefault>무료</span>
                   </div>
-                  <div class="cart__multi-table--delivery-info-description subtitle-2-regular u-color-dark-grey">뉴저지 단독 배송 상품 {{item.free_shipping_threshold | onpicksCurrency: syncedData.currencyInfo}} 이상 주문시 무료 배송</div>
+                  <div class="cart__multi-table--delivery-info-description subtitle-2-regular u-color-dark-grey">뉴저지 단독 배송 상품 {{item.location.free_shipping_threshold | onpicksCurrency: syncedData.currencyInfo}} 이상 주문시 무료 배송</div>
                 </div>
               </td>
             </tr>

@@ -13,12 +13,12 @@ import {FashionComponent} from './pages/index/fashion/fashion.component';
 import {HomeComponent} from './pages/index/home/home.component';
 import {ElectronicsComponent} from './pages/index/electronics/electronics.component';
 import {BeautyIndexComponent} from './pages/index/beauty/index/beauty-index.component';
-import {PageSkincareComponent} from './pages/index/beauty/index/skincare/page-skincare.component';
-import {PageHairComponent} from './pages/index/beauty/index/hair/page-hair.component';
+import {PageSkinCareComponent} from './pages/index/beauty/index/skin-care/page-skin-care.component';
+import {PageHairCareComponent} from './pages/index/beauty/index/hair-care/page-hair-care.component';
 import {PageFragranceComponent} from './pages/index/beauty/index/fragrance/page-fragrance.component';
 import {PageMakeupComponent} from './pages/index/beauty/index/makeup/page-makeup.component';
-import {PageBathAndBodyComponent} from './pages/index/beauty/index/bath-and-body/page-bath-and-body.component';
-import {PageMenComponent} from './pages/index/beauty/index/men/page-men.component';
+import {PageBodyCareComponent} from './pages/index/beauty/index/body-care/page-body-care.component';
+import {PageMenGroomingComponent} from './pages/index/beauty/index/mens-grooming/page-mens-grooming.component';
 
 const routes: Routes = [
   {
@@ -173,36 +173,36 @@ const routes: Routes = [
             component : BeautyIndexComponent,
           },
           {
-            path : 'skincare',
+            path : 'skin-care',
             children : [
               {
                 path : '',
-                component : PageSkincareComponent,
+                component : PageSkinCareComponent,
               },
               {
                 path : ':id',
-                component : PageSkincareComponent,
+                component : PageSkinCareComponent,
               },
               {
                 path : ':id/:id',
-                component : PageSkincareComponent,
+                component : PageSkinCareComponent,
               }
             ]
           },
           {
-            path : 'hair',
+            path : 'hair-care',
             children : [
               {
                 path : '',
-                component : PageHairComponent,
+                component : PageHairCareComponent,
               },
               {
                 path : ':id',
-                component : PageHairComponent,
+                component : PageHairCareComponent,
               },
               {
                 path : ':id/:id',
-                component : PageHairComponent,
+                component : PageHairCareComponent,
               }
             ]
           },
@@ -241,36 +241,36 @@ const routes: Routes = [
             ]
           },
           {
-            path : 'bath-and-body',
+            path : 'body-care',
             children : [
               {
                 path : '',
-                component : PageBathAndBodyComponent,
+                component : PageBodyCareComponent,
               },
               {
                 path : ':id',
-                component : PageBathAndBodyComponent,
+                component : PageBodyCareComponent,
               },
               {
                 path : ':id/:id',
-                component : PageBathAndBodyComponent,
+                component : PageBodyCareComponent,
               }
             ]
           },
           {
-            path : 'men',
+            path : 'mens-grooming',
             children : [
               {
                 path : '',
-                component : PageMenComponent,
+                component : PageMenGroomingComponent,
               },
               {
                 path : ':id',
-                component : PageMenComponent,
+                component : PageMenGroomingComponent,
               },
               {
                 path : ':id/:id',
-                component : PageMenComponent,
+                component : PageMenGroomingComponent,
               }
             ]
           },

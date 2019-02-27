@@ -41,35 +41,62 @@ export const LOCATION_MAP_CONST = {
 export const CATEGORY_MAP = new InjectionToken<any>( 'app.config');
 export const CATEGORY_MAP_CONST = {
   'pantry-and-household' : 1000000,
-  'electronics' : 2000000,
+  'beauty' : 2000000,
   'home-living' : 3000000,
-  'beauty' : 4000000,
+  'electronics' : 4000000,
   'sports-fitness-outdoor' : 5000000,
   'fashion' : 6000000
 }
 
+export const CATEGORY_SECOND_MAP = new InjectionToken<any>( 'app.config');
+
 export const CATEGORY_SECOND_MAP_CONST = {
 
   'pantry-and-household' : {
-    'grocery' : '식품',
-    'household-supplies' : '생활용품',
-    'health' : '건강',
-    'personal-care' : '퍼스널케어',
-    'baby' : '유아동',
-    'pet-supplies': '반려용품',
-    'office-supplies' : '사무용품'
+    'grocery' : {
+      name : '식품'
+    },
+    'household-supplies' : {
+      name : '생활용품'
+    },
+    'health' : {
+      name : '건강'
+    },
+    'personal-care' : {
+      name : '퍼스널케어'
+    },
+    'baby' : {
+      name : '유아동'
+    },
+    'pet-supplies': {
+      name : '반려용품'
+    },
+    'office-supplies' : {
+      name : '사무용품'
+    }
   },
   'beauty' : {
-    'skincare' : '스킨케어',
-    'hair' : '헤어',
-    'fragrance' : '향수',
-    'makeup' : '메이크업',
-    'bath-and-body' : '바디',
-    'men' : '남성화장품'
+    'skin-care' : {
+      name : '스킨케어'
+    },
+    'hair-care' : {
+      name : '헤어케어'
+    },
+    'fragrance' : {
+      name : '향수'
+    },
+    'makeup' : {
+      name : '메이크업'
+    },
+    'body-care' : {
+      name : '바디'
+    },
+    'mens-grooming' : {
+      name : '남성'
+    }
   }
-
 }
-export const CATEGORY_SECOND_MAP = new InjectionToken<any>( 'app.config');
+
 
 export const REPORT_REASON_MAP = new InjectionToken<any>( 'app.config');
 export const REPORT_REASON_MAP_CONST = {

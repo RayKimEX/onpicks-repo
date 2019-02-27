@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PageBathAndBodyComponent } from './page-bath-and-body.component';
+import { PageBodyCareComponent } from './page-body-care.component';
 
 describe('BathAndBodyComponent', () => {
-  let component: PageBathAndBodyComponent;
-  let fixture: ComponentFixture<PageBathAndBodyComponent>;
+  let component: PageBodyCareComponent;
+  let fixture: ComponentFixture<PageBodyCareComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PageBathAndBodyComponent ]
+      declarations: [ PageBodyCareComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PageBathAndBodyComponent);
+    fixture = TestBed.createComponent(PageBodyCareComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

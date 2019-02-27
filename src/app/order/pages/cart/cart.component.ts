@@ -64,7 +64,6 @@ export class CartComponent {
           this.lengthCheckForPack += pack.items.length;
         });
 
-
         // this.cd.markForCheck();
       }),
       shareReplay(1)

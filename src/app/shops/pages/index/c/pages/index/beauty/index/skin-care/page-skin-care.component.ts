@@ -2,11 +2,11 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'onpicks-skincare',
-  templateUrl: './page-skincare.component.html',
-  styleUrls: ['./page-skincare.component.scss'],
+  templateUrl: './page-skin-care.component.html',
+  styleUrls: ['./page-skin-care.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class PageSkincareComponent implements OnInit {
+export class PageSkinCareComponent implements OnInit {
 
   constructor() { }
 

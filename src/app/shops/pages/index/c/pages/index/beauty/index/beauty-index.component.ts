@@ -20,12 +20,12 @@ export class BeautyIndexComponent implements OnInit {
     {
       imgSrc : 'http://img.onpicks.com/categories/category-skincare.png',
       name : '스킨케어',
-      href : '/shops/c/beauty/skincare'
+      href : '/shops/c/beauty/skin-care'
     },
     {
       imgSrc : 'http://img.onpicks.com/categories/category-hair.png',
-      name : '헤어',
-      href : '/shops/c/beauty/hair'
+      name : '헤어케어',
+      href : '/shops/c/beauty/hair-care'
     },
     {
       imgSrc : 'http://img.onpicks.com/categories/category-fragrance.png',
@@ -39,10 +39,11 @@ export class BeautyIndexComponent implements OnInit {
     },
     {
       imgSrc : 'http://img.onpicks.com/categories/category-body.png',
-      name : '바디',
-      href : '/shops/c/beauty/bath-and-body'
+      name : '바디케어',
+      href : '/shops/c/beauty/body-care'
     },
-  ]
+  ];
+
   popularBeautyBrand = [
     {
       icon : 'http://img.onpicks.com/brands/brand-jomalone.jpg',
