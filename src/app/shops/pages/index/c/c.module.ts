@@ -26,6 +26,10 @@ import {PageFragranceComponent} from './pages/index/beauty/index/fragrance/page-
 import {PageMenGroomingComponent} from './pages/index/beauty/index/mens-grooming/page-mens-grooming.component';
 import {PageBodyCareComponent} from './pages/index/beauty/index/body-care/page-body-care.component';
 import {PageMakeupComponent} from './pages/index/beauty/index/makeup/page-makeup.component';
+import { PageCleansingAndPeelingComponent } from './pages/index/beauty/index/cleansing-and-peeling/page-cleansing-and-peeling.component';
+import { PageSunCareComponent } from './pages/index/beauty/index/sun-care/page-sun-care.component';
+import { PageCandleAndDiffuserComponent } from './pages/index/beauty/index/candle-and-diffuser/page-candle-and-diffuser.component';
+import { PageKBeautyComponent } from './pages/index/beauty/index/k-beauty/page-k-beauty.component';
 
 @NgModule({
   imports: [
@@ -58,6 +62,10 @@ import {PageMakeupComponent} from './pages/index/beauty/index/makeup/page-makeup
     PageMenGroomingComponent,
     PageBodyCareComponent,
     PageMakeupComponent,
+    PageCleansingAndPeelingComponent,
+    PageSunCareComponent,
+    PageCandleAndDiffuserComponent,
+    PageKBeautyComponent,
   ]
 })
 export class CModule { }

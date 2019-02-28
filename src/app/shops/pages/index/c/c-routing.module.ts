@@ -19,6 +19,10 @@ import {PageFragranceComponent} from './pages/index/beauty/index/fragrance/page-
 import {PageMakeupComponent} from './pages/index/beauty/index/makeup/page-makeup.component';
 import {PageBodyCareComponent} from './pages/index/beauty/index/body-care/page-body-care.component';
 import {PageMenGroomingComponent} from './pages/index/beauty/index/mens-grooming/page-mens-grooming.component';
+import {PageCleansingAndPeelingComponent} from './pages/index/beauty/index/cleansing-and-peeling/page-cleansing-and-peeling.component';
+import {PageSunCareComponent} from './pages/index/beauty/index/sun-care/page-sun-care.component';
+import {PageCandleAndDiffuserComponent} from './pages/index/beauty/index/candle-and-diffuser/page-candle-and-diffuser.component';
+import {PageKBeautyComponent} from './pages/index/beauty/index/k-beauty/page-k-beauty.component';
 
 const routes: Routes = [
   {
@@ -171,6 +175,74 @@ const routes: Routes = [
           {
             path : '',
             component : BeautyIndexComponent,
+          },
+          {
+            path : 'cleansing-and-peeling',
+            children : [
+              {
+                path : '',
+                component : PageCleansingAndPeelingComponent,
+              },
+              {
+                path : ':id',
+                component : PageCleansingAndPeelingComponent,
+              },
+              {
+                path : ':id/:id',
+                component : PageCleansingAndPeelingComponent,
+              }
+            ]
+          },
+          {
+            path : 'sun-care',
+            children : [
+              {
+                path : '',
+                component : PageSunCareComponent,
+              },
+              {
+                path : ':id',
+                component : PageSunCareComponent,
+              },
+              {
+                path : ':id/:id',
+                component : PageSunCareComponent,
+              }
+            ]
+          },
+          {
+            path : 'candle-and-diffuser',
+            children : [
+              {
+                path : '',
+                component : PageCandleAndDiffuserComponent,
+              },
+              {
+                path : ':id',
+                component : PageCandleAndDiffuserComponent,
+              },
+              {
+                path : ':id/:id',
+                component : PageCandleAndDiffuserComponent,
+              }
+            ]
+          },
+          {
+            path : 'k-beauty',
+            children : [
+              {
+                path : '',
+                component : PageKBeautyComponent,
+              },
+              {
+                path : ':id',
+                component : PageKBeautyComponent,
+              },
+              {
+                path : ':id/:id',
+                component : PageKBeautyComponent,
+              }
+            ]
           },
           {
             path : 'skin-care',
