@@ -20,6 +20,7 @@ import {CURRENCY, DOMAIN_HOST, RESPONSIVE_MAP} from '../../../app.config';
 import {FormControl, FormGroup} from '@angular/forms';
 import {OrderDataService} from '../../../core/service/data-pages/order/order-data.service';
 import {BreakpointObserver, BreakpointState} from '../../../../../node_modules/@angular/cdk/layout';
+import {DisplayAlertMessage} from '../../../core/store/ui/ui.actions';
 
 @Component({
   selector: 'onpicks-checkout',
@@ -68,10 +69,10 @@ export class CheckoutComponent implements OnInit, AfterViewInit, OnDestroy {
         title : '배송전에 연락 주세요',
         value : '배송전에 연락 주세요'
       },
-      {
-        title : '직접 입력[선택 시 100자정도 텍스트 입력],[이전 입력내용 남아있음]',
-        value : '직접 입력[선택 시 100자정도 텍스트 입력],[이전 입력내용 남아있음]'
-      },
+      // {
+      //   title : '직접 입력[선택 시 100자정도 텍스트 입력],[이전 입력내용 남아있음]',
+      //   value : '직접 입력[선택 시 100자정도 텍스트 입력],[이전 입력내용 남아있음]'
+      // },
   ]};
 
   readonly
@@ -558,6 +559,16 @@ export class CheckoutComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   }
 
+  // Personal Custom Clearance Code, PCC Code, PCCC
+  addCustomIdNumber() {
+    this.orderDataService.addCustomIdNumber(this.userStore.id, { customs_id_number :  this.checkoutAdditionNumber.nativeElement.children[0].value })
+      .subscribe( response => {
+        this.store.dispatch(new DisplayAlertMessage('저장되었습니다.'));
+      }, error => {
+        this.store.dispatch(new DisplayAlertMessage('서버에서 에러가 발생하여 제대로 저장되지 않았습니다.'));
+      });
+  }
+
 
 
 
@@ -633,6 +644,8 @@ export class CheckoutComponent implements OnInit, AfterViewInit, OnDestroy {
       this.renderer.setStyle( this.inputSearchBoxOuter.last.nativeElement, 'display', 'none' );
     }
   }
+
+
 
   checkBitWise( data ) {
     return ((this.errorStatus & data) > 0);

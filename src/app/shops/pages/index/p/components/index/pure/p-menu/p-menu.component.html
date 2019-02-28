@@ -6,7 +6,9 @@
     <div class="p-menu__title subtitle-1-bold">
       <!--이것은 전체를 기준으로 처리하려고 했으나, ViewChild를 가져오는 기준은, template이 시작될때 가져오는것 같음따라서,
           중간에 데이터 들어오는것과 처리가 잘 안맞음. 그래서 각각 element에다가 ngIf를 따로 설정하여줌.-->
-      <ng-container *ngIf="_data !== null;">{{_data?.brand?.name}}</ng-container>
+      <ng-container *ngIf="_data !== null;">
+        <a (click)="goBrandFilter(_data?.brand?.slug)">{{_data?.brand?.name}}</a>
+      </ng-container>
     </div>
     <div class="p-menu__icon-list">
       <span>
@@ -20,7 +22,6 @@
             <line x1="13.57" y1="14.81" x2="7.31" y2="11.66" fill="none" stroke="#000" stroke-miterlimit="10" stroke-width="2"/>
           </svg>
         </a>
-
       </span>
     </div>
 

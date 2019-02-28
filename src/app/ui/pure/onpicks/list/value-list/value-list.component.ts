@@ -115,6 +115,7 @@ export class ValueListComponent implements OnInit, AfterViewInit {
   @HostListener('document:touchend', ['$event'])
   @HostListener('document:click', ['$event', '$event.target'])
   onClick(event: MouseEvent, targetElement: HTMLElement): void {
+    if ( this.container === undefined ) { return; }
     if (this.container.nativeElement.contains(event.target)) {
 
     } else {

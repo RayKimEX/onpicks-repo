@@ -355,9 +355,7 @@ export class CommunicateBoxComponent implements OnInit, AfterViewChecked, AfterV
     // 순간적으로 같이 체크가 되서 신고하기랑, communicate box가 나가지는걸 방지하기 위해 setTimeout을 줌.
     setTimeout( () => {
       this.isShowModal = false;
-      console.log('99999999999999999');
       this.cd.markForCheck();
-      console.log(this.isShowModal);
     }, 0);
   }
 
@@ -365,6 +363,7 @@ export class CommunicateBoxComponent implements OnInit, AfterViewChecked, AfterV
     this.pDataService.reportReviewData( xProductSlug, xReviewId, xReportReason)
       .subscribe(
         response => {
+          this.router.navigate( ['../../'], {relativeTo: this.route } );
           this.isShowModal = false;
           this.store.dispatch(new DisplayAlertMessage('신고가 정상적으로 접수 되었습니다.'));
           this.cd.markForCheck();
@@ -373,6 +372,8 @@ export class CommunicateBoxComponent implements OnInit, AfterViewChecked, AfterV
           alert('신고 중 에러가 발생하였습니다.');
         }
       );
+
+
   }
   showReportModal(xReviewId, xPrdocutSlug, xIsAuthenticated) {
 

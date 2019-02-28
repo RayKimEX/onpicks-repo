@@ -31,6 +31,11 @@ export class OrderDataService {
       data);
   }
 
+  addCustomIdNumber(xUserId, xData) {
+    return this.httpClient.patch<any>( this.BASE_URL + '/api/customers/' + xUserId + '/', xData);
+    // this.httpClient.patch<any>( this.BASE_URL + '/api/customers/')
+  }
+
   deleteDeliveryData( userId, deliveryIndex) {
     return this.httpClient.delete<any>( this.BASE_URL + '/api/customers/address_book/' + deliveryIndex);
   }

@@ -41,13 +41,12 @@
 
 
 
-<ng-container *ngIf="
-{
-  review : (currentData$ | async)?.list[reviewsId],
-  results : (currentData$ | async)?.results,
-  pictures : (currentData$ | async)?.list[reviewsId]?.pictures,
-  isAuthenticated : (userState$ | async)?.isAuthenticated
-} as data; else loading">
+<ng-container *ngIf="{
+    review : (currentData$ | async)?.list[reviewsId],
+    results : (currentData$ | async)?.results,
+    pictures : (currentData$ | async)?.list[reviewsId]?.pictures,
+    isAuthenticated : (userState$ | async)?.isAuthenticated
+  } as data; else loading">
 
 <!--async 쓰고싶은데, 동적으로 현재 데이터가 있는지 없는지 판단해서, 넣고 안놓고는 어떻게하지? async유지하면서? -->
 

@@ -13,7 +13,6 @@ export class ShopsIndexComponent implements OnInit, AfterViewInit {
   // shopsValueImages = {
   //   imgSrc : '',
   //   title : 'Zero Calories',
-  //
   // }
 
   shopsBannerImage = {
@@ -73,9 +72,9 @@ export class ShopsIndexComponent implements OnInit, AfterViewInit {
       href : '/shops/c/pantry-and-household/household-supplies'
     },
     {
-      imgSrc : 'http://img.onpicks.com/categories/category-baby.png',
-      name : '유아동',
-      href : '/shops/c/pantry-and-household/baby'
+      imgSrc : 'http://img.onpicks.com/categories/category-body.png',
+      name : '바디케어',
+      href : '/shops/c/beauty/body-care'
     },
     {
       imgSrc : 'http://img.onpicks.com/categories/category-health.png',
@@ -85,7 +84,7 @@ export class ShopsIndexComponent implements OnInit, AfterViewInit {
     {
       imgSrc : 'http://img.onpicks.com/categories/category-skincare.png',
       name : '스킨케어',
-      href : '/shops/c/beauty/skincare'
+      href : '/shops/c/beauty/skin-care'
     },
     {
       imgSrc : 'http://img.onpicks.com/categories/category-fragrance.png',

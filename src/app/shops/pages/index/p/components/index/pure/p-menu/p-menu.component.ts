@@ -19,6 +19,7 @@ import ResizeSensor from 'css-element-queries/src/ResizeSensor';
 import {TryAddOrCreateToCart} from '../../../../../../../../core/store/cart/cart.actions';
 import {DisplayAlertMessage} from '../../../../../../../../core/store/ui/ui.actions';
 import {CURRENCY, LOCATION_MAP} from '../../../../../../../../app.config';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'onpicks-p-menu',
@@ -209,7 +210,8 @@ export class PMenuComponent implements OnInit, OnDestroy, AfterViewInit, OnChang
     @Inject(LOCATION_MAP) public locationMap: any,
     private renderer: Renderer2,
     private store: Store<any>,
-    private cd: ChangeDetectorRef
+    private cd: ChangeDetectorRef,
+    private router: Router
   ) {
     this.initialDatesTitle = ['Date1', 'Date2', 'Date3'];
     this.cartStore$ = this.store.pipe(select(state => state.cart))
@@ -231,6 +233,11 @@ export class PMenuComponent implements OnInit, OnDestroy, AfterViewInit, OnChang
       this.cartStore$.unsubscribe();
     }
   }
+
+  goBrandFilter(xBrand){
+    this.router.navigate(['/shops/search'], { queryParams: {page_size: 18, page: 1, ordering: 'most_popular', brand: xBrand}, queryParamsHandling: 'merge'} );
+  }
+
   optionSelect(xValue, xIndex) {
     this.keyListForSlug[xIndex] = xValue.value;
 
