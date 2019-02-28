@@ -82,9 +82,9 @@ export class ShopsIndexComponent implements OnInit, AfterViewInit {
       href : '/shops/c/pantry-and-household/health'
     },
     {
-      imgSrc : 'http://img.onpicks.com/categories/category-skincare.png',
-      name : '스킨케어',
-      href : '/shops/c/beauty/skin-care'
+      imgSrc : 'http://img.onpicks.com/categories/cateogry-makeup.png',
+      name : '메이크업',
+      href : '/shops/c/beauty/makeup'
     },
     {
       imgSrc : 'http://img.onpicks.com/categories/category-fragrance.png',
