@@ -15,7 +15,6 @@ export class CheckoutSuccessVirtualAccountComponent implements OnInit {
   queryParams$;
 
   orderCode = 0;
-
   orderInfo$;
 
   constructor(

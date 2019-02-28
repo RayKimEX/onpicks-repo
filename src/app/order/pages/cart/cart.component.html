@@ -294,11 +294,17 @@
             <tr *ngFor="let itemChild of item.items; index as itemIndex">
               <td>
                 <div class="cart__multi-table--image">
-                  <img drLazyLoad src="{{itemChild.thumbnail}}" alt="">
+                  <a class="cart__multi-table--image" [routerLink]="'/shops/p/' + itemChild.product">
+                    <img drLazyLoad src="{{itemChild.thumbnail}}" alt="">
+                  </a>
                 </div>
                 <div class="cart__multi-table--info">
                   <div class="cart__multi-table--info-title subtitle-3-bold">{{itemChild.brand}}</div>
-                  <div class="cart__multi-table--info-name subtitle-3-regular">{{itemChild.title}}</div>
+                  <div class="cart__multi-table--info-name subtitle-3-regular" >
+                    <a [routerLink]="'/shops/p/' + itemChild.product">
+                      {{itemChild.title}}
+                    </a>
+                  </div>
                   <div class="cart__multi-table--info-option">
                     <ng-container *ngFor="let option of objectKeys(itemChild.attribute_values); index as optionIndex">
                       <span class="subtitle-3-regular u-color-grey">

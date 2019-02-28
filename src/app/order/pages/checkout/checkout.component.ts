@@ -53,13 +53,25 @@ export class CheckoutComponent implements OnInit, AfterViewInit, OnDestroy {
     title : '배송시 요청 사항 (선택사항)',
     list : [
       {
-        title : '택배기사 아저씨한테 부탁해주세요',
-        value : '택배기사 아저씨한테 부탁해주세요'
+        title : '직접 받고 부재시에는 문 앞에 놔주세요',
+        value : '직접 받고 부재시에는 문 앞에 놔주세요'
       },
       {
-        title : '문 앞에 냅둬주세요!',
-        value : '문 앞에 냅둬주세요!'
-      }
+        title : '문 앞에 놔주세요',
+        value : '문 앞에 놔주세요'
+      },
+      {
+        title : '경비실에 맡겨주세요',
+        value : '경비실에 맡겨주세요'
+      },
+      {
+        title : '배송전에 연락 주세요',
+        value : '배송전에 연락 주세요'
+      },
+      {
+        title : '직접 입력[선택 시 100자정도 텍스트 입력],[이전 입력내용 남아있음]',
+        value : '직접 입력[선택 시 100자정도 텍스트 입력],[이전 입력내용 남아있음]'
+      },
   ]};
 
   readonly
@@ -76,7 +88,6 @@ export class CheckoutComponent implements OnInit, AfterViewInit, OnDestroy {
   readonly INVALID_CUSTOMS_ID_NUMBER = 0b00100000000;
 
   readonly EMPTY_AGREEMENT_DIRECT_BUYING = 0b10000000000;
-
 
   // MUST TODO : 이미지 안보인는건 src를 초기화 해서 memory낭비 적게 하기
 
