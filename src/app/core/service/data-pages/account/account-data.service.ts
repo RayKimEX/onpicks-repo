@@ -82,7 +82,7 @@ export class AccountDataService {
 
   changePasswordData( xPassword ) {
     return this.httpClient.post<any>(
-      this.BASE_URL + '/api/customers/change_password/', {password : xPassword});
+      this.BASE_URL + '/api/customers/change_password/', { password : xPassword } );
   }
 
   completePurchaseData( xOrderId, xProductSlug ) {

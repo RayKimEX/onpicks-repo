@@ -21,6 +21,11 @@ export class FooterComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+
+  }
+
+  openBizCommPop(xWrkrNo) {
+    window.open('http://www.ftc.go.kr/bizCommPop.do?wrkr_no=' + xWrkrNo, 'mark', 'scrollbars=no,resizable=no,width=700,height=750');
   }
 
   toggleMobileBusinessInfo() {
