@@ -78,6 +78,9 @@
     &--inicis-icon {
       width : 5rem;
       height : 5rem;
+      &:nth-child(1){
+        margin-left : 1.6rem;
+      }
     }
 
     &--second-floor {
@@ -146,15 +149,31 @@
         position:relative;
         vertical-align: middle;
         &--inicis-icon {
-          float:right;
-          width:3rem;
-          height:3rem;
-          display:inline-block;
-          img {
-            width :100%;
-            height : 100%;
+
+          &--inicis {
+            margin-left: 1.2rem;
+            float:right;
+            width:3rem;
+            height:3rem;
+            display:inline-block;
+            img {
+              width :100%;
+              height : 100%;
+            }
           }
+          &--escrow {
+            float:right;
+            width:3rem;
+            height:3rem;
+            display:inline-block;
+            img {
+              width :100%;
+              height : 100%;
+            }
+          }
+
         }
+
         &--inner {
           @include verticalCenter;
           display:inline-block;
