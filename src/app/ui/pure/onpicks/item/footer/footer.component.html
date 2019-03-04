@@ -50,13 +50,13 @@
       </nav>
       <div class="footer__desktop--miscell u-float-right">
         <!--<emitter-change-preference class="header__miscell&#45;&#45;item">{{ region === '/kr' ? 'KOR' : 'USA' }}</emitter-change-preference>-->
-        <!--<emitter-change-preference-->
-          <!--[position]="'footer'"-->
-          <!--[color]="'white'"-->
-          <!--[type]="'currency'"-->
-          <!--class="footer__desktop&#45;&#45;miscell&#45;&#45;item subtitle-2-regular">-->
-          <!--{{ (currency | async) === 'KRW' ? 'KRW ₩' : 'USD $' }}-->
-        <!--</emitter-change-preference>-->
+        <emitter-change-preference
+          [position]="'footer'"
+          [color]="'white'"
+          [type]="'currency'"
+          class="footer__desktop--miscell--item subtitle-2-regular">
+          {{ (currency | async) === 'KRW' ? 'KRW ₩' : 'USD $' }}
+        </emitter-change-preference>
         <!--<emitter-change-preference-->
           <!--[position]="'footer'"-->
           <!--[color]="'white'"-->
@@ -108,12 +108,12 @@
   <div class="footer__mobile">
     <div class="footer__mobile--first-floor">
       <div class="footer__mobile--first-floor--miscell">
-        <!--<emitter-change-preference-->
-          <!--[color]="'white'"-->
-          <!--[type]="'currency'"-->
-          <!--class="footer__mobile&#45;&#45;first-floor&#45;&#45;miscell&#45;&#45;item subtitle-2-regular">-->
-          <!--{{ (currency | async) === 'KRW' ? 'KRW ₩' : 'USD $' }}-->
-        <!--</emitter-change-preference>-->
+        <emitter-change-preference
+          [color]="'white'"
+          [type]="'currency'"
+          class="footer__mobile--first-floor--miscell--item subtitle-2-regular">
+          {{ (currency | async) === 'KRW' ? 'KRW ₩' : 'USD $' }}
+        </emitter-change-preference>
         <!--<emitter-change-preference-->
           <!--[color]="'white'"-->
           <!--[type]="'locale'"-->
