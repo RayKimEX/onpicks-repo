@@ -413,8 +413,8 @@
 
                     <div class="search-content__item--name-outer">
                       <div class="search-content__item--name-outer-brand subtitle-2-bold">
-                        <a routerLink="/shops/p/{{item.slug}}">
-                          {{item.brand}}
+                        <a (click)="goBrandFilter(item.brand.slug)">
+                          {{item.brand.name}}
                         </a>
                       </div>
 

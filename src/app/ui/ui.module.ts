@@ -39,6 +39,7 @@ import { ValueListComponent } from './pure/onpicks/list/value-list/value-list.co
 import { DynamicCarouselComponent } from './pure/common/dynamic-carousel/dynamic-carousel.component';
 import { SearchNavigatorMobileFilterComponent } from './emitter/search-navigator/search-navigator-mobile-filter/search-navigator-mobile-filter.component';
 import { BannerComponent } from './pure/common/banner/banner.component';
+import { TrendingReviewsComponent } from './pure/onpicks/list/trending-reviews/trending-reviews.component';
 
 @NgModule({
 
@@ -84,7 +85,8 @@ import { BannerComponent } from './pure/common/banner/banner.component';
     ValueListComponent,
     DynamicCarouselComponent,
     SearchNavigatorMobileFilterComponent,
-    BannerComponent
+    BannerComponent,
+    TrendingReviewsComponent
 
   ],
   exports: [
@@ -121,7 +123,8 @@ import { BannerComponent } from './pure/common/banner/banner.component';
     WellBeingLabelListComponent,
     ValueListComponent,
     DynamicCarouselComponent,
-    BannerComponent
+    BannerComponent,
+    TrendingReviewsComponent
 
   ]
 })

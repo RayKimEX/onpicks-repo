@@ -15,6 +15,7 @@ import {select, Store} from '@ngrx/store';
 import {TryAddOrCreateToCart, TrySubtractOrDeleteFromCart} from '../../../../core/store/cart/cart.actions';
 import {CURRENCY, LOCATION_MAP} from '../../../../app.config';
 import {BehaviorSubject} from 'rxjs';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'ui-mini-list',
@@ -44,6 +45,7 @@ export class MiniListComponent implements OnInit, AfterViewInit, OnDestroy {
     private renderer: Renderer2,
     private store: Store<any>,
     private cd: ChangeDetectorRef,
+    private router: Router,
     @Inject( LOCATION_MAP ) public locationMap: any,
     @Inject(LOCALE_ID) public locale: string,
     @Inject(APP_BASE_HREF) public region: string,
@@ -56,6 +58,9 @@ export class MiniListComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
 
+  goBrandFilter(xBrand) {
+    this.router.navigate(['/shops/search'], { queryParams: {page_size: 18, page: 1, ordering: 'most_popular', brand: xBrand}, queryParamsHandling: 'merge'} );
+  }
 
   addToCart(xAmount, xProductSlug, xPackIndex) {
 

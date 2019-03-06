@@ -38,6 +38,15 @@ onpicks-popular-brand {
   }
 }
 
+onpicks-trending-reviews {
+  display : block;
+  margin-bottom : 5.6rem;
+
+  @include respond(tb){
+    margin-bottom :4rem;
+  }
+}
+
 ui-banner {
   display:block;
   margin-bottom: 5.6rem;

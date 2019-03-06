@@ -150,6 +150,7 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
         }
 
         this.currentList = null;
+        this.orderedFilterList = [];
         // category main페이지 일때
         if (this.router.url.indexOf('&') < 0) {
           const temp = this.router.url.substring(this.router.url.indexOf('&') + 1, this.router.url.length);
@@ -475,6 +476,10 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
     } else {
       this.router.navigate(['./'], { relativeTo: this.route, queryParams: {ordering: xSortSlug}, queryParamsHandling: 'merge'} );
     }
+  }
+
+  goBrandFilter(xBrand){
+    this.router.navigate(['/shops/search'], { queryParams: {page_size: 18, page: 1, ordering: 'most_popular', brand: xBrand}, queryParamsHandling: 'merge'} );
   }
 
   categoryClicked( xCategoryCode ) {
