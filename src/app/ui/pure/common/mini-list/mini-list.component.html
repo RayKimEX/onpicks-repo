@@ -1,5 +1,9 @@
 
-<div class="row-list-scroll" *ngIf="infoList?.length !== 0">
+<ng-template #loading>
+  <onpicks-loading-icon></onpicks-loading-icon>
+</ng-template>
+
+<div class="row-list-scroll" *ngIf="infoList !== null; else loading">
 
   <div
     [ngClass]=
@@ -10,7 +14,7 @@
       #insertTitle
       [ngClass]=
         "[ mobileType === 'half' ? 'ui-mini-list-halfM__title' : 'ui-mini-list-fullM__title']"
-      class="h1-bold"></h1>
+      class="h1-bold">{{setTitle}}</h1>
     <div
       [ngClass]="[
           mobileType === 'half' ?

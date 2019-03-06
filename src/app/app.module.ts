@@ -33,7 +33,7 @@ import {SearchEffects} from './core/store/search/search.effects';
 import {LayoutModule} from '@angular/cdk/layout';
 import 'hammerjs';
 import {BehaviorSubject} from 'rxjs';
-import {CATEGORY_CODE_MAP, CATEGORY_CODE_MAP_CONST} from './app.database';
+import {CATEGORY_CODE_MAP, CATEGORY_CODE_MAP_CONST, CATEGORY_MAP, CATEGORY_MAP_CONST} from './app.database';
 // export function getBaseHref(platformLocation: PlatformLocation): string {
 //   return platformLocation.getBaseHrefFromDOM();
 // }
@@ -126,6 +126,10 @@ function setCookie(cname, cvalue ) {
     {
       provide: LOCATION_MAP,
       useValue : LOCATION_MAP_CONST,
+    },
+    {
+      provide : CATEGORY_MAP,
+      useValue : CATEGORY_MAP_CONST
     },
     {
       provide: CATEGORY_CODE_MAP,

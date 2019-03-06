@@ -176,4 +176,5 @@ export class CartComponent {
   deleteWishList( xWishListId, xIndex ) {
     this.store.dispatch( new TryDeleteWishList( { wishListId : xWishListId, index : xIndex}));
   }
+
 }

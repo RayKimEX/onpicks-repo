@@ -153,13 +153,13 @@ export class CheckoutComponent implements OnInit, AfterViewInit, OnDestroy {
   constructor(
     @Inject(CURRENCY) public currency: BehaviorSubject<any>,
     @Inject(DOMAIN_HOST) private BASE_URL: string,
+    @Inject(RESPONSIVE_MAP) public categoryMap,
     private orderDataService: OrderDataService,
     private renderer: Renderer2,
     private httpClient: HttpClient,
     private store: Store<any>,
     private router: Router,
     private cd: ChangeDetectorRef,
-    @Inject(RESPONSIVE_MAP) public categoryMap,
     private breakpointObserver:  BreakpointObserver,
   ) {
 

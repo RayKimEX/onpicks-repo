@@ -92,12 +92,11 @@ export class MiniListComponent implements OnInit, AfterViewInit, OnDestroy {
     if ( this.cartStore$ !== undefined ) {
       this.cartStore$.unsubscribe();
     }
-
   }
 
-  ngAfterViewInit() {
-    this.renderer.setProperty( this.insertTitle.nativeElement, 'innerHTML', this.setTitle);
-  }
+  // ngAfterViewInit() {
+  //   this.renderer.setProperty( this.insertTitle.nativeElement, 'innerHTML', this.setTitle);
+  // }
 
   nextButton() {
     this.pressedPrev = false;
@@ -110,6 +109,7 @@ export class MiniListComponent implements OnInit, AfterViewInit, OnDestroy {
     this.imageIndex--;
     this.renderer.setStyle(this.container.nativeElement, 'transform', 'translateX(' + (-this.imageIndex) * this.translateXWidth + 'px)');
   }
+
   round(float) {
 
     return Math.round(float);

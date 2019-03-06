@@ -107,7 +107,9 @@ export class TrySubtractOrDeleteFromCart implements Action {
     amount,
     packIndex,
     subtractOrDelete
-  }) { }
+  }) {
+
+  }
 }
 
 export class SubtractFromSuccess implements Action {
