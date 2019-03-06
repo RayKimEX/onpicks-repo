@@ -1,0 +1,259 @@
+
+<div class="row-list-scroll" *ngIf="infoList?.length !== 0">
+
+  <div
+    [ngClass]=
+      "[ mobileType === 'half' ? 'trending-reviews-halfM' : 'trending-reviews-fullM']"
+    class="u-margin-bottom">
+
+    <h1
+      #insertTitle
+      [ngClass]=
+        "[ mobileType === 'half' ? 'trending-reviews-halfM__title' : 'trending-reviews-fullM__title']"
+      class="h1-bold"></h1>
+    <div
+      [ngClass]="[
+          mobileType === 'half' ?
+          'trending-reviews-halfM__content--outer' :
+          'trending-reviews-fullM__content--outer'
+        ]">
+      <onpicks-circle-n-button
+        *ngIf="imageIndex  < (infoList?.length - carouselLength) "
+        [top]="'12.6rem'"
+        [right]="'-2.2rem'"
+        (click)="nextButton()" >
+      </onpicks-circle-n-button>
+      <onpicks-circle-p-button
+        *ngIf="imageIndex !== 0"
+        [top]="'12.6rem'"
+        [left]="'-2rem'"
+        (click)="prevButton()">
+      </onpicks-circle-p-button>
+      <div
+        [ngClass]="[
+          mobileType === 'half' ?
+          'trending-reviews-halfM__content' :
+          'trending-reviews-fullM__content'
+        ]">
+        <ul
+          class="trending-reviews-halfM__content-ul"
+          #container>
+          <ng-container *ngFor="let item of infoList; index as i">
+            <li
+              class="trending-reviews-halfM__content-li"
+              *ngIf="pressedPrev ? i < imageIndex + 7 : i < imageIndex + carouselLength">
+              <div
+                [ngClass]="[
+                  mobileType === 'half' ?
+                  'trending-reviews-halfM__item' :
+                  'trending-reviews-fullM__item'
+                ]">
+                <div
+                  [ngClass]="[
+                      mobileType === 'half' ?
+                      'trending-reviews-halfM__item--image' :
+                      'trending-reviews-fullM__item--image'
+                    ]">
+                  <div
+                    [routerLink]="'/shops/p/' + item.slug"
+                    [ngClass]="[
+                      mobileType === 'half' ?
+                      'trending-reviews-halfM__item--image-outer' :
+                      'trending-reviews-fullM__item--image-outer'
+                    ]">
+                    <div
+                      [ngClass]="[
+                      mobileType === 'half' ?
+                      'trending-reviews-halfM__item--image-inner' :
+                      'trending-reviews-fullM__item--image-inner'
+                    ]">
+                      <img drLazyLoad [relativeOption]="false" src="{{item?.review_info?.img_src}}" alt="">
+                    </div>
+                    <div class="profile">
+                      <div class="profile-inner">
+                        <figure class="profile-inner__figure">
+                          <span class="profile-inner__figure--image--outer">
+                            <img
+                              drLazyLoad
+                              src="{{item?.review_info?.author?.avatar}}" alt="Person on a tour" class="profile-inner__figure--image">
+                          </span>
+
+                          <figcaption class="subtitle-1-bold u-color-white">{{item?.review_info?.author?.nickname}}</figcaption>
+                          <!--<!--[@divState] (load) ---->
+                          <ui-star-rating [star-point]="item?.review_info?.rating"></ui-star-rating>
+                          <span class="subtitle-2-regular u-color-white">{{item?.modified | date : 'longDate'}}</span>
+                        </figure>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  [ngClass]="[
+                    mobileType === 'half' ?
+                    'trending-reviews-halfM__item--name-outer' :
+                    'trending-reviews-fullM__item--name-outer'
+                  ]">
+                  <div
+                    [ngClass]="[
+                      mobileType === 'half' ?
+                      'trending-reviews-halfM__item--name-outer-brand' :
+                      'trending-reviews-fullM__item--name-outer-brand'
+                    ]"
+                    class="subtitle-2-bold">
+                    <a [routerLink]="'/shops/p/' + item.slug">
+                      {{item.brand}}
+                    </a>
+                  </div>
+
+                  <a [routerLink]="'/shops/p/' + item.slug">
+                    <span
+                      [ngClass]="[
+                        mobileType === 'half' ?
+                        'trending-reviews-halfM__item--name-outer-name' :
+                        'trending-reviews-fullM__item--name-outer-name'
+                      ]"
+                      class="body-2-regular">
+                      {{item.title}}
+                    </span>
+                  </a>
+                </div>
+
+                <ui-star-rating
+                  [star-point]="item.review_avg_rating"
+                  [size]="10">
+                </ui-star-rating>
+                <span class="subtitle-3-regular u-color-dark-grey">{{item.review_count}}</span>
+                <br>
+                <div
+                  [ngClass]="[
+                    mobileType === 'half' ?
+                    'trending-reviews-halfM__price-info' :
+                    'trending-reviews-fullM__price-info'
+                  ]">
+                  <span
+                    [ngClass]="[
+                      mobileType === 'half' ?
+                      'trending-reviews-halfM__price-info--discount' :
+                      'trending-reviews-fullM__price-info--discount'
+                    ]"
+                    class="subtitle-1-bold u-color-orange">{{100 - round((item.price / item.msrp * 100))}}%</span>
+                  <span
+                    [ngClass]="[
+                      mobileType === 'half' ?
+                      'trending-reviews-halfM__price-info--price' :
+                      'trending-reviews-fullM__price-info--price'
+                    ]"
+                    class="subtitle-1-bold">{{item.price | onpicksCurrency:(currency| async)}}</span>
+                  <span
+                    [ngClass]="[
+                      mobileType === 'half' ?
+                      'trending-reviews-halfM__price-info--MSRP' :
+                      'trending-reviews-fullM__price-info--MSRP'
+                    ]"
+                    *ngIf="locale == 'en'">MSRP</span>
+                  <span
+                    [ngClass]="[
+                      mobileType === 'half' ?
+                      'trending-reviews-halfM__price-info--MSRP-discount' :
+                      'trending-reviews-fullM__price-info--MSRP-discount'
+                    ]"
+                    class="subtitle-3-regular u-color-grey">{{item.msrp | onpicksCurrency:(currency| async)}}</span>
+                </div>
+                <div
+                  [ngClass]="[
+                    mobileType === 'half' ?
+                    'trending-reviews-halfM__delivery-point' :
+                    'trending-reviews-fullM__delivery-point'
+                  ]">
+                  <ng-container [ngSwitch]="locationMap[item.location.slug].sequence">
+                    <ng-container *ngSwitchCase="1" >
+                      <span
+                        [ngClass]="[
+                          mobileType === 'half' ?
+                          'trending-reviews-halfM__delivery-point--icon' :
+                          'trending-reviews-fullM__delivery-point--icon'
+                        ]"
+                        class="icon-small-la"></span>
+                      <span
+                        [ngClass]="[
+                          mobileType === 'half' ?
+                          'trending-reviews-halfM__delivery-point--text' :
+                          'trending-reviews-fullM__delivery-point--text'
+                        ]"
+                        class="subtitle-2-regular u-color-black"><strong>엘에이</strong> 출고</span>
+                    </ng-container>
+                    <ng-container *ngSwitchCase="2">
+                      <span
+                        [ngClass]="[
+                          mobileType === 'half' ?
+                          'trending-reviews-halfM__delivery-point--icon' :
+                          'trending-reviews-fullM__delivery-point--icon'
+                        ]"
+                        class="icon-small-new"></span>
+                      <span
+                        [ngClass]="[
+                          mobileType === 'half' ?
+                          'trending-reviews-halfM__delivery-point--text' :
+                          'trending-reviews-fullM__delivery-point--text'
+                        ]"
+                        class="subtitle-2-regular u-color-black"><strong>뉴저지</strong> 출고</span>
+                    </ng-container>
+                    <ng-container *ngSwitchCase="0">
+                      <span
+                        [ngClass]="[
+                          mobileType === 'half' ?
+                          'trending-reviews-halfM__delivery-point--icon' :
+                          'trending-reviews-fullM__delivery-point--icon'
+                        ]"
+                        class="icon-small-gorgia"></span>
+                      <span
+                        [ngClass]="[
+                          mobileType === 'half' ?
+                          'trending-reviews-halfM__delivery-point--text' :
+                          'trending-reviews-fullM__delivery-point--text'
+                        ]"
+                        class="subtitle-2-regular u-color-black"><strong>죠지아</strong> 출고</span>
+                    </ng-container>
+                    <ng-container *ngSwitchCase="4">
+                      <span
+                        [ngClass]="[
+                          mobileType === 'half' ?
+                          'trending-reviews-halfM__delivery-point--icon' :
+                          'trending-reviews-fullM__delivery-point--icon'
+                        ]"
+                        class="icon-small-osaka"></span>
+                      <span
+                        [ngClass]="[
+                          mobileType === 'half' ?
+                          'trending-reviews-halfM__delivery-point--text' :
+                          'trending-reviews-fullM__delivery-point--text'
+                        ]"
+                        class="subtitle-2-regular u-color-black"><strong>오사카</strong> 출고</span>
+                    </ng-container>
+                    <ng-container *ngSwitchCase="3">
+                      <span
+                        [ngClass]="[
+                          mobileType === 'half' ?
+                          'trending-reviews-halfM__delivery-point--icon' :
+                          'trending-reviews-fullM__delivery-point--icon'
+                        ]"
+                        class="icon-small-hong"></span>
+                      <span
+                        [ngClass]="[
+                          mobileType === 'half' ?
+                          'trending-reviews-halfM__delivery-point--text' :
+                          'trending-reviews-fullM__delivery-point--text'
+                        ]"
+                        class="subtitle-2-regular u-color-black"><strong>홍콩</strong> 출고</span>
+                    </ng-container>
+                  </ng-container>
+                </div>
+              </div>
+            </li>
+          </ng-container>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
