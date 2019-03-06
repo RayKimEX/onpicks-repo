@@ -252,7 +252,7 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
     if (searchTerms === '') { return; };
 
     // jet에서도 uri encode를 하지 않아서 했다가 다시 지움. 20181210 - ray
-    this.router.navigate(   ['/shops/search'], { relativeTo: this.route, queryParams: { term : searchTerms, ordering : 'most_popular', page : 1, page_size : 18 } } );
+    this.router.navigate(   ['/shops/search'], { relativeTo: this.route, queryParams: { term : searchTerms, ordering : 'most_popular', page : 1 } } );
   }
 
   ngOnInit() {

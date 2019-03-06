@@ -20,10 +20,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {EffectsModule} from '@ngrx/effects';
 import {AuthEffects} from './core/store/auth/auth.effects';
 import {
-  API_URL,
-  API_URL_CONST,
-  CATEGORY_MAP,
-  CATEGORY_MAP_CONST, CATEGORY_SECOND_MAP, CATEGORY_SECOND_MAP_CONST,
+  CATEGORY_SECOND_MAP, CATEGORY_SECOND_MAP_CONST,
   CURRENCY,
   DOMAIN_HOST,
   LOCATION_MAP,
@@ -36,6 +33,7 @@ import {SearchEffects} from './core/store/search/search.effects';
 import {LayoutModule} from '@angular/cdk/layout';
 import 'hammerjs';
 import {BehaviorSubject} from 'rxjs';
+import {CATEGORY_CODE_MAP, CATEGORY_CODE_MAP_CONST} from './app.database';
 // export function getBaseHref(platformLocation: PlatformLocation): string {
 //   return platformLocation.getBaseHrefFromDOM();
 // }
@@ -130,8 +128,8 @@ function setCookie(cname, cvalue ) {
       useValue : LOCATION_MAP_CONST,
     },
     {
-      provide: CATEGORY_MAP,
-      useValue : CATEGORY_MAP_CONST,
+      provide: CATEGORY_CODE_MAP,
+      useValue : CATEGORY_CODE_MAP_CONST,
     },
     {
       provide : REPORT_REASON_MAP,

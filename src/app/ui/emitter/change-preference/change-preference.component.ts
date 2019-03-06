@@ -13,7 +13,7 @@ import {
 import {Store} from '@ngrx/store';
 import {UiService} from '../../../core/service/ui/ui.service';
 import {HttpClient} from '@angular/common/http';
-import {CATEGORY_MAP, CURRENCY, RESPONSIVE_MAP} from '../../../app.config';
+import { CURRENCY, RESPONSIVE_MAP } from '../../../app.config';
 import {BehaviorSubject} from 'rxjs';
 import {BreakpointObserver, BreakpointState} from '../../../../../node_modules/@angular/cdk/layout';
 

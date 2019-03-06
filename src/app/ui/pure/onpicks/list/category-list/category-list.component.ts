@@ -10,7 +10,7 @@ import {
   ViewChildren
 } from '@angular/core';
 import {BreakpointObserver, BreakpointState} from '@angular/cdk/layout';
-import {CATEGORY_MAP, RESPONSIVE_MAP} from '../../../../../app.config';
+import {RESPONSIVE_MAP} from '../../../../../app.config';
 
 @Component({
   selector: 'onpicks-category-list',

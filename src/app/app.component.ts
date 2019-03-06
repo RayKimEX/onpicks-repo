@@ -22,7 +22,7 @@ import {
 } from './core/store/ui/ui.actions';
 import {UiService} from './core/service/ui/ui.service';
 import {TryGetCartInfo, TryGetWishListInfo} from './core/store/cart/cart.actions';
-import {CATEGORY_MAP} from './app.config';
+import {CATEGORY_CODE_MAP} from './app.database';
 
 @Component({
   selector: 'onpicks-root',
@@ -42,7 +42,7 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit, DoCheck {
   previousUrl = [];
 
   constructor(
-    @Inject(CATEGORY_MAP) public categoryMap,
+    @Inject(CATEGORY_CODE_MAP) public categoryMap,
     @Inject(LOCALE_ID) public locale: string,
     private store: Store<AppState>,
     private router: Router,
@@ -113,7 +113,7 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit, DoCheck {
               {
                 data: '',
                 type: url[3],
-                firstSortKey: this.categoryMap[url[3]],
+                firstSortKey: this.categoryMap[url[3]].code,
                 secondSortKey: url[4].indexOf('?') > -1 ? url[4].substring(0, url[4].indexOf('?')) : url[4],
                 thirdSortKey: url[5] === undefined ? 'undefined' : url[5].indexOf('?') > -1 ? url[5].substring(0, url[5].indexOf('?')) : url[5],
                 fourthSortKey: url[6] === undefined ? 'undefined' : url[6].indexOf('?') > -1 ? url[6].substring(0, url[6].indexOf('?')) : url[6]

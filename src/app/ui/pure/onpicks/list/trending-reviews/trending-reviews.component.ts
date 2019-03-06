@@ -4,6 +4,7 @@ import {BehaviorSubject} from 'rxjs';
 import {select, Store} from '@ngrx/store';
 import {APP_BASE_HREF} from '@angular/common';
 import {TryAddOrCreateToCart, TrySubtractOrDeleteFromCart} from '../../../../../core/store/cart/cart.actions';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'onpicks-trending-reviews',
@@ -37,6 +38,7 @@ export class TrendingReviewsComponent implements OnInit {
     @Inject( LOCATION_MAP ) public locationMap: any,
     @Inject(LOCALE_ID) public locale: string,
     @Inject(APP_BASE_HREF) public region: string,
+    private router: Router,
   ) {
     this.cartStore$ = this.store.pipe(select(state => state.cart))
       .subscribe(val => {
@@ -77,7 +79,10 @@ export class TrendingReviewsComponent implements OnInit {
     if ( this.cartStore$ !== undefined ) {
       this.cartStore$.unsubscribe();
     }
+  }
 
+  goBrandFilter(xBrand){
+    this.router.navigate(['/shops/search'], { queryParams: { page: 1, ordering: 'most_popular', brand: xBrand}, queryParamsHandling: 'merge'} );
   }
 
   ngAfterViewInit() {
@@ -95,8 +100,8 @@ export class TrendingReviewsComponent implements OnInit {
     this.imageIndex--;
     this.renderer.setStyle(this.container.nativeElement, 'transform', 'translateX(' + (-this.imageIndex) * this.translateXWidth + 'px)');
   }
-  round(float) {
 
+  round(float) {
     return Math.round(float);
   }
 }

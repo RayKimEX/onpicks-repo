@@ -131,7 +131,10 @@ export class ShopsIndexComponent implements OnInit, AfterViewInit {
   trendingReviews = [
     {
       'slug': 'diptyque-nourishing-lip-balm-15ml',
-      'brand': '딥티크',
+      'brand': {
+        'slug' : 'diptyque',
+        'name' : '딥디크'
+      },
       'title': '딥티크 너리싱 립밤 15ml',
       'condition': 'new',
       'adult': false,
@@ -168,7 +171,10 @@ export class ShopsIndexComponent implements OnInit, AfterViewInit {
     },
     {
       'slug': 'orgain-organic-meal-nutrition-powder-all-in-one-creamy-chocolate-fudge-2-01lb',
-      'brand': '올게인',
+      'brand': {
+        'slug' : 'orgain',
+        'name' : '올게인'
+      },
       'title': '올게인 오가닉 올인원 영양 분말 크리미 초콜릿 퍼지',
       'condition': 'new',
       'adult': false,
@@ -205,7 +211,10 @@ export class ShopsIndexComponent implements OnInit, AfterViewInit {
     },
       {
         'slug': 'diptyque-eau-de-toilette-do-son-50ml',
-        'brand': '딥티크',
+        'brand': {
+          'slug' : 'diptyque',
+          'name' : '딥티크'
+        },
         'title': '딥티크 도손 오드뚜왈렛 50ml, 0개',
         'condition': 'new',
         'adult': false,
@@ -242,7 +251,10 @@ export class ShopsIndexComponent implements OnInit, AfterViewInit {
       },
       {
         'slug': 'quest-protein-bar-vanilla-amond-crunch-2-12oz',
-        'brand': '퀘스트 뉴트리션',
+        'brand': {
+          'slug' : 'quest-nutrition',
+          'name' : '퀘스트 뉴트리션'
+        },
         'title': '퀘스트 뉴트리션 프로틴 바 바닐라 아몬드 크런치, 60g, 12개 묶음',
         'condition': 'new',
         'adult': false,
@@ -279,7 +291,10 @@ export class ShopsIndexComponent implements OnInit, AfterViewInit {
       },
       {
         'slug': 'mac-amplified-lipstick-morange-3gm1oz',
-        'brand': '맥',
+        'brand': {
+          'slug' : 'mac',
+          'name' : '맥'
+        },
         'title': '맥 앰플리파이드 크림립스틱 모란지',
         'condition': 'new',
         'adult': false,

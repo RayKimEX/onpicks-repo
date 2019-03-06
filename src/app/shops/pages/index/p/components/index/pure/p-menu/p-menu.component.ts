@@ -235,7 +235,7 @@ export class PMenuComponent implements OnInit, OnDestroy, AfterViewInit, OnChang
   }
 
   goBrandFilter(xBrand){
-    this.router.navigate(['/shops/search'], { queryParams: {page_size: 18, page: 1, ordering: 'most_popular', brand: xBrand}, queryParamsHandling: 'merge'} );
+    this.router.navigate(['/shops/search'], { queryParams: { page: 1, ordering: 'most_popular', brand: xBrand}, queryParamsHandling: 'merge'} );
   }
 
   optionSelect(xValue, xIndex) {

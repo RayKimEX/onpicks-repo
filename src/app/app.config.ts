@@ -13,8 +13,8 @@ export const API_URL_CONST = {
   }
 }
 
+// 배송지
 export const LOCATION_MAP = new InjectionToken<any>('app.config');
-
 export const LOCATION_MAP_CONST = {
   'lax' : {
     nickname : 'la',
@@ -38,18 +38,8 @@ export const LOCATION_MAP_CONST = {
   }
 }
 
-export const CATEGORY_MAP = new InjectionToken<any>( 'app.config');
-export const CATEGORY_MAP_CONST = {
-  'pantry-and-household' : 1000000,
-  'beauty' : 2000000,
-  'home-living' : 3000000,
-  'electronics' : 4000000,
-  'sports-fitness-outdoor' : 5000000,
-  'fashion' : 6000000
-}
-
+//category menu
 export const CATEGORY_SECOND_MAP = new InjectionToken<any>( 'app.config');
-
 export const CATEGORY_SECOND_MAP_CONST = {
 
   'pantry-and-household' : {
@@ -97,7 +87,7 @@ export const CATEGORY_SECOND_MAP_CONST = {
   }
 }
 
-
+//신고하기 기능
 export const REPORT_REASON_MAP = new InjectionToken<any>( 'app.config');
 export const REPORT_REASON_MAP_CONST = {
   'ko' : {
@@ -112,6 +102,7 @@ export const REPORT_REASON_MAP_CONST = {
   }
 }
 
+// reponsive
 export const RESPONSIVE_MAP = new InjectionToken<any>('app.config');
 export const RESPONSIVE_MAP_CONST = {
   // 640 / 16
@@ -127,6 +118,7 @@ export const RESPONSIVE_MAP_CONST = {
   'desktop' : '(max-width: 80em)'
 }
 
+// menu
 export const MENU_MAP = new InjectionToken<any>( 'app.config');
 export const MENU_MAP_CONST = {
   'ko' : {

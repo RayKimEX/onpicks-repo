@@ -100,8 +100,8 @@
                       'trending-reviews-fullM__item--name-outer-brand'
                     ]"
                     class="subtitle-2-bold">
-                    <a [routerLink]="'/shops/p/' + item.slug">
-                      {{item.brand}}
+                    <a (click)="goBrandFilter(item.brand.slug)">
+                      {{item.brand.name}}
                     </a>
                   </div>
 

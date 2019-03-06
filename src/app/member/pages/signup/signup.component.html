@@ -1,6 +1,8 @@
 <div class="signup">
   <div class="signup__social">
-    <button class="signup__social--naver signup__social--btn btn--hover">
+    <button
+      (click)="loginWithSocial('naver')"
+      class="signup__social--naver signup__social--btn btn--hover">
       <svg  xmlns="http://www.w3.org/2000/svg" width="24" height="24"  x="0px" y="0px" viewBox="0 0 24 24" >
         <g>
           <polygon fill="#FFFFFF" points="15.8,1 15.8,12.1 8.2,1 0,1 0,23 8.2,23 8.2,11.9 15.8,23 24,23 24,1 	"/>
@@ -8,14 +10,18 @@
       </svg>
       <span class="subtitle-2-regular u-color-white">네이버 계정으로 가입하기</span>
     </button>
-    <button class="signup__social--kakao signup__social--btn btn--hover">
+    <button
+      (click)="loginWithSocial('kakao')"
+      class="signup__social--kakao signup__social--btn btn--hover">
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" x="0px" y="0px" viewBox="0 0 24 24">
         <path fill="#381E1F" class="st1" d="M12,1C5.4,1,0,5.2,0,10.5c0,3.4,2.3,6.4,5.7,8.1c-0.3,0.9-0.9,3.4-1,3.9c-0.2,0.7,0.2,0.6,0.5,0.5
             c0.2-0.1,3.3-2.2,4.6-3.1c0.7,0.1,1.5,0.2,2.2,0.2c6.6,0,12-4.2,12-9.5S18.6,1,12,1z"/>
       </svg>
       <span style="color:#3c1e1e;" class="subtitle-2-regular">카카오 계정으로 가입하기</span>
     </button>
-    <button class="signup__social--facebook signup__social--btn btn--hover">
+    <button
+      (click)="loginWithSocial('facebook')"
+      class="signup__social--facebook signup__social--btn btn--hover">
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
         <g fill="none" fill-rule="evenodd">
           <rect width="24" height="24" fill="#FFF" rx="4"/>
@@ -24,7 +30,9 @@
       </svg>
       <span class="subtitle-2-regular u-color-white">페이스북 계정으로 가입하기</span>
     </button>
-    <button class="signup__social--google signup__social--btn btn--hover">
+    <button
+      (click)="loginWithSocial('google')"
+      class="signup__social--google signup__social--btn btn--hover">
       <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24">
         <defs>
           <path id="a" d="M0 2.549L3.267.012a5.722 5.722 0 0 0 8.734 2.762l3.19 2.57a9.694 9.694 0 0 1-6.523 2.51A9.73 9.73 0 0 1 0 2.55z"/>
