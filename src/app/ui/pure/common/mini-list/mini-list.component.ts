@@ -23,7 +23,7 @@ import {Router} from '@angular/router';
   styleUrls: ['./mini-list.component.scss'],
   changeDetection : ChangeDetectionStrategy.OnPush
 })
-export class MiniListComponent implements OnInit, AfterViewInit, OnDestroy {
+export class MiniListComponent implements OnInit, OnDestroy {
 
   @ViewChild('insertTitle') insertTitle;
   @ViewChild('container') container;

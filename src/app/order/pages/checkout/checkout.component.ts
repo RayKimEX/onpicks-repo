@@ -577,7 +577,7 @@ export class CheckoutComponent implements OnInit, AfterViewInit, OnDestroy {
       v => {
 
         const temp = [];
-        this.deliveryData.forEach( (value, forEachIndex) => {
+        this.deliveryData.forEach( (value, forEachIndex) =>
 
           if(forEachIndex === index) {
             const valueTemp = {
