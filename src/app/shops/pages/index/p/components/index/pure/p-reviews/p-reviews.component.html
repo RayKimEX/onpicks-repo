@@ -33,7 +33,7 @@
   reviews : (reviews$ | async),
   userState : (userState$ | async)
   } as data ">
-  <div class="p-reviews u-margin-bottom" *ngIf="data.reviews?.results?.length > 0">
+  <div id="reviewHello" class="p-reviews u-margin-bottom" *ngIf="data.reviews?.results?.length > 0">
     <!--async에대한 처리로 추가로 감싸줌-->
 
       <h1 class="p-reviews__title h1-bold">

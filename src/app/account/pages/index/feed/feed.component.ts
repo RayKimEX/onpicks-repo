@@ -1,7 +1,8 @@
 import {ChangeDetectionStrategy, Component, OnDestroy, OnInit} from '@angular/core';
 import {fromEvent} from 'rxjs';
-import {sampleTime} from 'rxjs/operators';
+import {sampleTime, tap} from 'rxjs/operators';
 import {select, Store} from '@ngrx/store';
+import {AccountDataService} from '../../../../core/service/data-pages/account/account-data.service';
 
 @Component({
   selector: 'onpicks-feed',
@@ -12,7 +13,7 @@ import {select, Store} from '@ngrx/store';
 export class FeedComponent implements OnInit, OnDestroy {
 
 
-  feedList = []
+
   numbers;
 
   imageIndex = 1000;
@@ -24,17 +25,17 @@ export class FeedComponent implements OnInit, OnDestroy {
   userState$;
 
   contentHeight = '';
+
+  feedList = []
+  feedList$;
   constructor(
     private store: Store<any>,
+    private accountDataService: AccountDataService
   ) {
 
     this.userState$ = this.store.pipe(select( state => state.auth.user));
 
-    for ( let i = 0 ; i < 20; i ++ ) {
-      if (this.exceptionDatabase[this.imageIndex]) {       this.imageIndex -= 5;  continue; }
-      this.feedList.push({ imgSrc : 'https://picsum.photos/264/264?image=' + this.imageIndex});
-      this.imageIndex -= 5;
-    }
+    this.feedList$ = this.accountDataService.getFeedListData().pipe( tap( v => console.log(v)));
 
     this.body = document.body;
 
@@ -56,23 +57,14 @@ export class FeedComponent implements OnInit, OnDestroy {
     this.scroll$.unsubscribe();
   }
 
-
-
-  exceptionDatabase = {
-    920 : true,
-    895 : true,
-    850 : true,
-  }
-
   willLoadDataFunction() {
-    for ( let i = 0 ; i < 20; i ++ ) {
-      if (this.exceptionDatabase[this.imageIndex]) { this.imageIndex -= 5;  continue; }
-      this.feedList.push({ imgSrc : 'https://picsum.photos/264/264?image=' + this.imageIndex});
-      this.imageIndex -= 5;
-    }
+    // for ( let i = 0 ; i < 20; i ++ ) {
+    //   if (this.exceptionDatabase[this.imageIndex]) { this.imageIndex -= 5;  continue; }
+    //   this.feedList.push({ imgSrc : 'https://picsum.photos/264/264?image=' + this.imageIndex});
+    //   this.imageIndex -= 5;
+    // }
 
     this.willLoadData = false;
-
   }
 
 }

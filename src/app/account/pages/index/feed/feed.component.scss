@@ -26,6 +26,9 @@
     width : 26.4rem;
     height: 26.4rem;
     margin-bottom : 2.4rem;
+    img {
+      @include imageAspactRatio;
+    }
 
     // custom grid
     &:not(:nth-child(4n)){
