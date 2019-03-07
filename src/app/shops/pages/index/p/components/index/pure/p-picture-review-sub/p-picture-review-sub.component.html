@@ -16,8 +16,9 @@
           [ngClass]="{'u-opacity-half' : i !== this.imageIndex + 1 }"
           class="p-customer__content--item">
           <span>
-
-            <img drLazyLoad [relativeOption]="false" src="{{item.url}}" alt="">
+            <a (click)="goReview(item.review_id)">
+              <img drLazyLoad [relativeOption]="false" src="{{item.url}}" alt="">
+            </a>
           </span>
 
           <div *ngIf="i === this.imageIndex + 1" class="p-customer__content--profile">

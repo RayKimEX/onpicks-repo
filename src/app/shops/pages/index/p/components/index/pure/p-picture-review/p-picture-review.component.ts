@@ -31,8 +31,8 @@ export class PPictureReviewComponent implements OnInit, AfterViewInit, OnDestroy
   @ViewChildren('imageSmallOuter') imageSmallOuter;
 
   @Input('pictureReviewList') set setList(xData) {
-
     if ( xData === null ) { return ; };
+
     this.imagesLargeList = xData;
     this.imagesLargeList.unshift({});
     this.imagesLargeList.push({});

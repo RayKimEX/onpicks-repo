@@ -11,6 +11,8 @@ import {
 } from '@angular/core';
 import {fromEvent} from 'rxjs';
 import {first, map} from 'rxjs/operators';
+import {ActivatedRoute, Router} from '@angular/router';
+
 import {select, Store} from '@ngrx/store';
 import {PDataService} from '../../../../../../../../core/service/data-pages/p/p-data.service';
 
@@ -30,16 +32,20 @@ export class PPictureReviewSubComponent {
   @Input('pictureReviewList') set setList(xData) {
 
     if ( xData === null ) { return ; };
+
     this.imagesLargeList = xData;
     this.imagesLargeList.unshift({});
     this.imagesLargeList.push({});
-    this.cd.markForCheck();
+
     setTimeout( () => {
       this.imagesLargeList.forEach( item => {
+        console.log(item.url);
         if ( item.url !== undefined ){
-          this.imagesSmallList.push(item.url);
+          // 작은 이미지 만들어서 불러오기
+          this.imagesSmallList.push(item.url + '?d=w128-h128');
         }
       });
+
       // this.imageSmallOuterArray = this.imageSmallOuter.toArray();
       // this.imageLargeOuterArray = this.imageLargeOuter.toArray();
 
@@ -58,7 +64,7 @@ export class PPictureReviewSubComponent {
       }, 20);
 
 
-
+      this.cd.markForCheck();
     }, 0);
   }
 
@@ -83,7 +89,9 @@ export class PPictureReviewSubComponent {
     private renderer: Renderer2,
     private store: Store<any>,
     private pDataService: PDataService,
-    private cd: ChangeDetectorRef
+    private cd: ChangeDetectorRef,
+    private router: Router,
+    private route: ActivatedRoute
     //
   ) {
     this.reviews$ = this.store.pipe(select((state) => state['p']['reviews']));
@@ -120,5 +128,9 @@ export class PPictureReviewSubComponent {
     console.log(this.firstOffset);
     this.renderer.setStyle(this.container.nativeElement, 'transition', 'transform .5s ease 0s');
     this.renderer.setStyle(this.container.nativeElement, 'transform', 'translateX(-' + (this.firstOffset + (this.imageIndex * this.translateXWidth)) + 'px)');
+  }
+
+  goReview(xReviewId) {
+    this.router.navigate(['reviews/' + xReviewId], {relativeTo: this.route});
   }
 }

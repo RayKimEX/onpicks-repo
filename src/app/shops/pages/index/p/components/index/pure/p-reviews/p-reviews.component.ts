@@ -156,7 +156,6 @@ export class PReviewsComponent implements AfterViewInit {
       .subscribe(
         response => {
           this.isShowModal = false;
-          console.log('7777777777777777');
           this.store.dispatch(new DisplayAlertMessage('신고가 정상적으로 접수 되었습니다.'));
           this.cd.markForCheck();
         },
@@ -196,7 +195,6 @@ export class PReviewsComponent implements AfterViewInit {
 
   reviewSorting( xSortingValue ) {
     this.selectedElement.value = xSortingValue
-    console.log(xSortingValue);
     this.store.dispatch(new TryGetReviewProduct({ productSlug : this.route.snapshot.params.id, sorting: xSortingValue}));
   }
 
