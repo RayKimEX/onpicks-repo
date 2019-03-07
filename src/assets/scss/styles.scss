@@ -52,6 +52,7 @@ main {
 a {
   line-height : 0;
   text-decoration-line: none;
+  text-decoration : none;
   color : $color-black;
   cursor: pointer;
   &:hover{
