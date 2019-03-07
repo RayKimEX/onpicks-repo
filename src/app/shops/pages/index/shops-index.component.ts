@@ -295,7 +295,7 @@ export class ShopsIndexComponent implements OnInit, AfterViewInit {
           'slug' : 'bobs-red-mill',
           'name' : '밥스 레드 밀'
         },
-        'title': '딥티크 너리싱 립밤 15ml',
+        'title': '밥스 레드 밀 오가닉 롤드 오트, 4개 묶음',
         'condition': 'new',
         'adult': false,
         'pack_of': 1,
