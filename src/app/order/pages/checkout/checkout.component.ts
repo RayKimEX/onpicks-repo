@@ -575,32 +575,32 @@ export class CheckoutComponent implements OnInit, AfterViewInit, OnDestroy {
   updateDeliveryDataToDefault( index ) {
     this.orderDataService.updateDeliveryDataToDefault(this.userStore.id, this.deliveryData[index].id).subscribe(
       v => {
-
         const temp = [];
-        this.deliveryData.forEach( (value, forEachIndex) =>
+        this.deliveryData.forEach((value, forEachIndex) => {
 
-          if(forEachIndex === index) {
+          if (forEachIndex === index) {
             const valueTemp = {
               ...value,
-              default : true,
+              default: true,
             }
             temp.unshift(valueTemp);
           } else {
             const valueTemp = {
               ...value,
-              default : false,
+              default: false,
             }
             temp.push(valueTemp);
           }
-        })
 
-        this.deliveryData = temp;
-        this.deliveryData$ = of(temp);
 
-        this.cd.markForCheck();
-      }
-    );
-  }
+          this.deliveryData = temp;
+          this.deliveryData$ = of(temp);
+
+          this.cd.markForCheck();
+        });
+
+      });
+    }
 
   validateDeliveryInfo(){
 

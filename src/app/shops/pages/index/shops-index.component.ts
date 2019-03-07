@@ -129,86 +129,46 @@ export class ShopsIndexComponent implements OnInit, AfterViewInit {
   ];
 
   trendingReviews = [
-    {
-      'slug': 'diptyque-nourishing-lip-balm-15ml',
-      'brand': {
-        'slug' : 'diptyque',
-        'name' : '딥디크'
-      },
-      'title': '딥티크 너리싱 립밤 15ml',
-      'condition': 'new',
-      'adult': false,
-      'pack_of': 1,
-      'attributes': [
-
-      ],
-      'thumbnail': '',
-      'msrp': 72000.0,
-      'price': 64800.0,
-      'discount_rate': 0.1,
-      'package_unit': 'count',
-      'package_size': 0.0,
-      'unit_pricing_base': 1,
-      'review_info' : {
-        'author' : {
-          'nickname' : 'moon_pilates_',
-          'avatar' : 'https://scontent-icn1-1.cdninstagram.com/vp/7ec07a3574cade39307119a1f80ede21/5D28C7DE/t51.2885-19/s150x150/51049451_983185548547718_8326170789107728384_n.jpg?_nc_ht=scontent-icn1-1.cdninstagram.com',
+      {
+        'slug': 'thayers-witch-hazel-toner-aloevera-formula-rose-petal-12fl-oz',
+        'brand': {
+          'slug' : 'thayers',
+          'name' : '세이어스'
         },
-        'img_src' : 'https://scontent-icn1-1.cdninstagram.com/vp/0421299cc3eab907ba5fba0f3640953b/5D1B8531/t51.2885-15/sh0.08/e35/s640x640/51936973_400845247129834_8790677930792109302_n.jpg?_nc_ht=scontent-icn1-1.cdninstagram.com',
-        'rating' : 4
-      },
-      'location': {
-        'slug': 'hkg',
-        'name': '홍콩',
-        'base_shipping_fee': 9000,
-        'free_shipping_threshold': 150000
-      },
-      'ship_alone': false,
-      'in_stock': true,
-      'stock_quantity': 12,
-      'review_count': 0,
-      'review_avg_rating': 0.0
-    },
-    {
-      'slug': 'orgain-organic-meal-nutrition-powder-all-in-one-creamy-chocolate-fudge-2-01lb',
-      'brand': {
-        'slug' : 'orgain',
-        'name' : '올게인'
-      },
-      'title': '올게인 오가닉 올인원 영양 분말 크리미 초콜릿 퍼지',
-      'condition': 'new',
-      'adult': false,
-      'pack_of': 1,
-      'attributes': [
+        'title': '세이어스 위치 하젤 알로에 베라 포뮬라 무알콜 로즈 페탈 토너',
+        'condition': 'new',
+        'adult': false,
+        'pack_of': 1,
+        'attributes': [
 
-      ],
-      'thumbnail': 'http://img.staging.onpicks.com.s3.amazonaws.com/products/0e31905b-e86d-49ba-ba31-9efb5468ca3e.jpg',
-      'msrp': 70780.0,
-      'price': 48460.0,
-      'discount_rate': 0.3153,
-      'package_unit': 'kg',
-      'package_size': 0.91,
-      'unit_pricing_base': 1,
-      'review_info' : {
-        'author' : {
-          'nickname' : 'soyoung_kil',
-          'avatar' : 'https://scontent-icn1-1.cdninstagram.com/vp/79b2d07b5ea50e4ca15e35a4caa33dde/5D0DF99C/t51.2885-19/s150x150/43521348_294202318089206_8013713150979342336_n.jpg?_nc_ht=scontent-icn1-1.cdninstagram.com',
+        ],
+        'thumbnail': 'http://img.staging.onpicks.com.s3.amazonaws.com/products/0e31905b-e86d-49ba-ba31-9efb5468ca3e.jpg',
+        'msrp': 70780.0,
+        'price': 48460.0,
+        'discount_rate': 0.3153,
+        'package_unit': 'kg',
+        'package_size': 0.91,
+        'unit_pricing_base': 1,
+        'review_info' : {
+          'author' : {
+            'nickname' : '7jaydxb7',
+            'avatar' : 'https://scontent-icn1-1.cdninstagram.com/vp/9075995f7bf89f6c0811b03aed4bd5d2/5D253F2A/t51.2885-19/s150x150/41704357_483269682192554_8250464087775903744_n.jpg?_nc_ht=scontent-icn1-1.cdninstagram.com',
+          },
+          'img_src' : 'https://scontent-icn1-1.cdninstagram.com/vp/bfcfb605c2991e6a1e3fad9c584e7b76/5D2879BC/t51.2885-15/sh0.08/e35/s640x640/44631402_566008033861086_2552127599648334866_n.jpg?_nc_ht=scontent-icn1-1.cdninstagram.com',
+          'rating' : 5
         },
-        'img_src' : 'https://scontent-icn1-1.cdninstagram.com/vp/7c37e3ca16dd0a603141844f6eca4e56/5D0A8B64/t51.2885-15/sh0.08/e35/c0.130.1056.1056/s640x640/52620840_469854616882511_6462090831768924602_n.jpg?_nc_ht=scontent-icn1-1.cdninstagram.com',
-        'rating' : 5
+        'location': {
+          'slug': 'lax',
+          'name': '엘에이',
+          'base_shipping_fee': 9000,
+          'free_shipping_threshold': 150000
+        },
+        'ship_alone': false,
+        'in_stock': true,
+        'stock_quantity': 85,
+        'review_count': 0,
+        'review_avg_rating': 0.0
       },
-      'location': {
-        'slug': 'lax',
-        'name': '엘에이',
-        'base_shipping_fee': 9000,
-        'free_shipping_threshold': 150000
-      },
-      'ship_alone': false,
-      'in_stock': true,
-      'stock_quantity': 85,
-      'review_count': 0,
-      'review_avg_rating': 0.0
-    },
       {
         'slug': 'diptyque-eau-de-toilette-do-son-50ml',
         'brand': {
@@ -231,10 +191,10 @@ export class ShopsIndexComponent implements OnInit, AfterViewInit {
         'unit_pricing_base': 1,
         'review_info' : {
           'author' : {
-            'nickname' : 'cherrykoko_korea',
-            'avatar' : 'https://scontent-icn1-1.cdninstagram.com/vp/d77f424f9795f9452238e70d9f393ab0/5D0C073D/t51.2885-19/s150x150/30087046_178103436243269_1243021977082396672_n.jpg?_nc_ht=scontent-icn1-1.cdninstagram.com',
+            'nickname' : 'okja1718',
+            'avatar' : 'https://scontent-icn1-1.cdninstagram.com/vp/5718446587bc753cce1e050a58ee9cff/5D2350B8/t51.2885-19/s150x150/52717195_1081737998666379_2603202943943442432_n.jpg?_nc_ht=scontent-icn1-1.cdninstagram.com',
           },
-          'img_src' : 'https://scontent-icn1-1.cdninstagram.com/vp/cc947c003fce987ad01237471e8eb1b0/5D25E36A/t51.2885-15/sh0.08/e35/s640x640/53551264_130507744672323_2871472206323493495_n.jpg?_nc_ht=scontent-icn1-1.cdninstagram.com',
+          'img_src' : 'https://scontent-icn1-1.cdninstagram.com/vp/b2984571adaab3c5dc15e49202680878/5D1AF1A1/t51.2885-15/sh0.08/e35/s640x640/51960967_639510296506064_4572844112408261937_n.jpg?_nc_ht=scontent-icn1-1.cdninstagram.com',
           'rating' : 4
         },
         'location': {
@@ -250,12 +210,12 @@ export class ShopsIndexComponent implements OnInit, AfterViewInit {
         'review_avg_rating': 0.0
       },
       {
-        'slug': 'quest-protein-bar-vanilla-amond-crunch-2-12oz',
+        'slug': 'jo-malone-cologne-grapefruit-30ml1floz',
         'brand': {
-          'slug' : 'quest-nutrition',
-          'name' : '퀘스트 뉴트리션'
+          'slug' : 'jo-malone',
+          'name' : '조 말론'
         },
-        'title': '퀘스트 뉴트리션 프로틴 바 바닐라 아몬드 크런치, 60g, 12개 묶음',
+        'title': '조 말론 그레이프프루트 코롱 30ml',
         'condition': 'new',
         'adult': false,
         'pack_of': 12,
@@ -271,10 +231,10 @@ export class ShopsIndexComponent implements OnInit, AfterViewInit {
         'unit_pricing_base': 1,
         'review_info' : {
           'author' : {
-            'nickname' : 'chungha',
-            'avatar' : 'https://scontent-icn1-1.cdninstagram.com/vp/c02b41ec6192f646ddbbd578da1619aa/5D279B40/t51.2885-19/s150x150/25038945_530878020613923_1456719062737354752_n.jpg?_nc_ht=scontent-icn1-1.cdninstagram.com',
+            'nickname' : 'd_uk25',
+            'avatar' : 'https://scontent-icn1-1.cdninstagram.com/vp/f9440d476ee5694656508a17a85cdfa8/5D06D9A7/t51.2885-19/s150x150/41532580_266296104216628_9030194385089724416_n.jpg?_nc_ht=scontent-icn1-1.cdninstagram.com',
           },
-          'img_src' : 'https://scontent-icn1-1.cdninstagram.com/vp/c0283e584b56a37592a65bcbb26288cb/5D242FDB/t51.2885-15/sh0.08/e35/p640x640/51906523_247534739526226_7183228415503419138_n.jpg?_nc_ht=scontent-icn1-1.cdninstagram.com',
+          'img_src' : 'https://scontent-icn1-1.cdninstagram.com/vp/3243decc9d593bbedf64e7ec12d2872c/5D1EAC3E/t51.2885-15/sh0.08/e35/s640x640/52864795_268505384042553_8261323545731653846_n.jpg?_nc_ht=scontent-icn1-1.cdninstagram.com',
           'rating' : 4.5
         },
         'location': {
@@ -290,12 +250,12 @@ export class ShopsIndexComponent implements OnInit, AfterViewInit {
         'review_avg_rating': 0.0
       },
       {
-        'slug': 'mac-amplified-lipstick-morange-3gm1oz',
+        'slug': 'simply-organic-garlic-powder-3-64oz',
         'brand': {
-          'slug' : 'mac',
-          'name' : '맥'
+          'slug' : 'simply-organic',
+          'name' : '심플리 오가닉'
         },
-        'title': '맥 앰플리파이드 크림립스틱 모란지',
+        'title': '심플리 오가닉 갈릭 파우더, 6개 묶음',
         'condition': 'new',
         'adult': false,
         'pack_of': 1,
@@ -311,10 +271,10 @@ export class ShopsIndexComponent implements OnInit, AfterViewInit {
         'unit_pricing_base': 1,
         'review_info' : {
           'author' : {
-            'nickname' : '16.brand',
-            'avatar' : 'https://scontent-icn1-1.cdninstagram.com/vp/26ac70225470370d9fe7eee742457c5b/5D0C6366/t51.2885-19/s150x150/12905184_241296066221278_1899852474_a.jpg?_nc_ht=scontent-icn1-1.cdninstagram.com',
+            'nickname' : 'kkangnation',
+            'avatar' : 'https://scontent-icn1-1.cdninstagram.com/vp/642fd9c9d37124bfc401a83855d5a160/5D1801C7/t51.2885-19/s150x150/32271951_273072116567320_3960036335984574464_n.jpg?_nc_ht=scontent-icn1-1.cdninstagram.com',
           },
-          'img_src' : 'https://scontent-icn1-1.cdninstagram.com/vp/960fca54ce1e52168d4dc4aa79da4364/5D06F43B/t51.2885-15/sh0.08/e35/s640x640/52183959_783101582056077_4987984572651173017_n.jpg?_nc_ht=scontent-icn1-1.cdninstagram.com',
+          'img_src' : 'https://scontent-icn1-1.cdninstagram.com/vp/fbc2333bbe335d82b614de42e95532af/5D1D794F/t51.2885-15/sh0.08/e35/s640x640/32178403_454908898302360_7887830472737161216_n.jpg?_nc_ht=scontent-icn1-1.cdninstagram.com',
           'rating' : 4.2
         },
         'location': {
@@ -326,6 +286,46 @@ export class ShopsIndexComponent implements OnInit, AfterViewInit {
         'ship_alone': false,
         'in_stock': true,
         'stock_quantity': 42,
+        'review_count': 0,
+        'review_avg_rating': 0.0
+      },
+      {
+        'slug': 'bobs-red-mill-organic-extra-thick-rolled-oats-32oz',
+        'brand': {
+          'slug' : 'bobs-red-mill',
+          'name' : '밥스 레드 밀'
+        },
+        'title': '딥티크 너리싱 립밤 15ml',
+        'condition': 'new',
+        'adult': false,
+        'pack_of': 1,
+        'attributes': [
+
+        ],
+        'thumbnail': '',
+        'msrp': 72000.0,
+        'price': 64800.0,
+        'discount_rate': 0.1,
+        'package_unit': 'count',
+        'package_size': 0.0,
+        'unit_pricing_base': 1,
+        'review_info' : {
+          'author' : {
+            'nickname' : 'bulletproof',
+            'avatar' : 'https://scontent-icn1-1.cdninstagram.com/vp/14c02261f5fb70e416e2d761bf5e5e6d/5D24196B/t51.2885-19/s150x150/28156968_178741116070301_5929122757794070528_n.jpg?_nc_ht=scontent-icn1-1.cdninstagram.com',
+          },
+          'img_src' : 'https://scontent-icn1-1.cdninstagram.com/vp/7f737dc38a918d32a05de63c7f07ff12/5D1B5427/t51.2885-15/sh0.08/e35/s640x640/40000413_283447112489136_3449802261398552576_n.jpg?_nc_ht=scontent-icn1-1.cdninstagram.com',
+          'rating' : 4
+        },
+        'location': {
+          'slug': 'hkg',
+          'name': '홍콩',
+          'base_shipping_fee': 9000,
+          'free_shipping_threshold': 150000
+        },
+        'ship_alone': false,
+        'in_stock': true,
+        'stock_quantity': 12,
         'review_count': 0,
         'review_avg_rating': 0.0
       },
