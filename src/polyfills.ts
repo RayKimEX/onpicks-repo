@@ -33,7 +33,8 @@ import 'core-js/es6/regexp';
 import 'core-js/es6/map';
 import 'core-js/es6/weak-map';
 import 'core-js/es6/set';
-import 'core-js/client/shim';
+import 'core-js/es6/reflect';
+import 'core-js/shim';
 
 // require('intersection-observer');
 // require('intersection-observer/intersection-observer');
