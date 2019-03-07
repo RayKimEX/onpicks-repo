@@ -224,7 +224,7 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
             this.scrollForDeliveryBox$.unsubscribe();
             this.scrollForDeliveryBox$ = null;
           }
-        }, 3000);
+        }, 100000);
 
         if ( this.scrollForDeliveryBox$ == null ) {
           this.scrollForDeliveryBox$ = fromEvent( window , 'scroll').subscribe(

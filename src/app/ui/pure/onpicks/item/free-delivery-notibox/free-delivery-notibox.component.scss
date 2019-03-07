@@ -46,7 +46,7 @@
   &__item {
 
     &:not(:last-child){
-      margin-bottom: 2.4rem;
+      padding-bottom: 0 !important;
     }
     &--info {
       position:relative;
