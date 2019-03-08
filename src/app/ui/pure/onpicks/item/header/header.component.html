@@ -1,4 +1,5 @@
 
+
 <header
   class="header"
   (mouseleave)="outMenu()"
@@ -360,11 +361,7 @@
       </nav>
     </div>
 
-    <onpicks-free-delivery-notibox
-      #deliveryBox
-      [setCartInfo]="cart$ | async"
-      [ngStyle]="{ opacity : '0'}">
-    </onpicks-free-delivery-notibox>
+
 
     <div #menu class="header-menu__outer">
       <nav>
@@ -414,4 +411,3 @@
 
   </div>
 </header>
-

@@ -35,7 +35,7 @@
     <span class="free-delivery-notibox__amount-box--title subtitle-2-regular u-color-grey">총 상품금액</span>
     <span class="free-delivery-notibox__amount-box--price subtitle-2-bold">{{totalItems | onpicksCurrency: (currency| async)}}</span>
     <onpicks-button
-      routerLink="/order/cart"
+      (click)="goCart()"
       class="free-delivery-notibox__amount-box--button"
       [width]="'10.4rem'"
       [type]="'black'"

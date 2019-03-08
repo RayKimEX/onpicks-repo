@@ -17,7 +17,8 @@ export class SearchService {
   }
 
   search(xParam) {
-    return this.httpClient.get<any>( this.BASE_URL + '/api/products/search/' + xParam + '&page_size=36');
+    const param = xParam === null ?  '?page_size=36' : xParam + '&page_size=36';
+    return this.httpClient.get<any>( this.BASE_URL + '/api/products/search/' + param);
   }
 
   categorySearch(xCategoryCode, xSortCode, xCurrentPage) {

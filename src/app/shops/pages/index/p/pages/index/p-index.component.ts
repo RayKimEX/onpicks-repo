@@ -36,12 +36,12 @@ export class PIndexComponent implements OnInit, OnDestroy {
   pUI;
   pPictureReviews$;
   weeklyBest$;
+
   /****************/
   isFB = false;
   previousYOffset = 0;
   isShowMobileMenu = true;
   isExpendMobileMenu = false;
-
 
   numberOptionList = {
     list : [
@@ -98,6 +98,8 @@ export class PIndexComponent implements OnInit, OnDestroy {
 
   cartStore$;
   cartStore;
+
+  discountPercent;
   constructor(
     @Inject(LOCATION_MAP) public locationMap: any,
     @Inject(RESPONSIVE_MAP) public categoryMap,
@@ -115,7 +117,7 @@ export class PIndexComponent implements OnInit, OnDestroy {
     this.store.dispatch(new TryGetProductInfo(this.route.snapshot.params.id));
     this.pData$ = this.store.pipe(
       select( state => state.p.data),
-      tap( () => {
+      tap( (v) => {
         // 해당 페이지에 들어 왔을때, reviews에서, scroll값이 있으면 해당 스크롤로 이동
         // TODO : 좀 가라로 한듯함
         const url = this.router.url.split('/');
@@ -124,6 +126,9 @@ export class PIndexComponent implements OnInit, OnDestroy {
           const splitTemp = temp.split('=');
           window.scrollTo(0, parseInt(splitTemp[1], 10))
           setTimeout( () => window.scrollTo(0, parseInt(splitTemp[1], 10)), 500);
+        }
+        if ( v !== undefined) {
+          this.discountPercent = 100 - Math.round((v.price / v.msrp * 100));
         }
       })
     );

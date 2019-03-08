@@ -37,7 +37,6 @@ import {TryLogout} from '../../../../../core/store/auth/auth.actions';
 })
 
 export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
-  @ViewChild('deliveryBox', {read : ElementRef}) deliveryBox;
   @ViewChild('menu') menuRef;
   @ViewChild('shops') shopsRef;
   @ViewChild('form') form;
@@ -73,7 +72,6 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
   currentUrl;
   /*****************************/
 
-  scrollForDeliveryBox$ = null;
   scrollForAlert$ = null;
 
 
@@ -85,7 +83,6 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
 
   /**mobileZone**/
   mobileAlertTop = '11rem';
-  isDesktopBreakPoint = false;
   isShowSettingMenu = false;
 
   constructor(
@@ -93,7 +90,7 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
     @Inject(APP_BASE_HREF) public region: string,
     @Inject(CURRENCY) public currency: BehaviorSubject<any>,
     @Inject(MENU_MAP) public menuMap,
-    @Inject(RESPONSIVE_MAP) public categoryMap,
+    @Inject(RESPONSIVE_MAP) public ResponsiveMap,
     private renderer: Renderer2,
     private authService: AuthService,
     private store: Store<AppState>,
@@ -104,15 +101,13 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
   ) {
 
     this.breakpointObserver
-      .observe([this.categoryMap['desktop']])
+      .observe([this.ResponsiveMap['desktop']])
       .subscribe((state: BreakpointState) => {
         if (state.matches) {
           this.mobileAlertTop = '6rem';
-          this.isDesktopBreakPoint = true;
           this.cd.markForCheck();
         } else {
           this.mobileAlertTop = '11rem';
-          this.isDesktopBreakPoint = false;
         }
       });
 
@@ -190,57 +185,7 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
 
     // [ngStyle]="{ display : cartData.isViewCart ? 'block' : 'none'}"
     this.cart$ = this.store.pipe(
-      select(state => state.cart.cartInfo),
-      tap( v => {
-        console.log(v);
-        if ( this.deliveryBox === undefined) { return ; }
-        // 세번 불리는데 이유는 잘 모르겠음. 일단 세번까지 막음.
-        // 그중 한번은 getCartInfo
-        // 그중 또 한번은 getWishListInfo
-
-        if ( v.isPopUp === false ) { return ; };
-
-        // 무슨 변경이 있던간에, 항상 보여주고 그다음 주조건 삭제하는 로직.
-
-        if ( this.clearSetTimeout !== undefined) {
-          clearTimeout(this.clearSetTimeout);
-        }
-
-
-        this.renderer.setStyle(this.deliveryBox.nativeElement, 'pointer-events', 'auto');
-        this.renderer.setStyle(this.deliveryBox.nativeElement, 'opacity', '1');
-        if ( window.pageYOffset >= 108 ){
-          this.renderer.setStyle(this.deliveryBox.nativeElement, 'position', 'fixed');
-          this.renderer.setStyle(this.deliveryBox.nativeElement, 'top', this.isDesktopBreakPoint ? '7.6rem' : '1.6rem');
-        } else {
-          this.renderer.setStyle(this.deliveryBox.nativeElement, 'position', 'absolute');
-          this.renderer.setStyle(this.deliveryBox.nativeElement, 'top', this.isDesktopBreakPoint ? '7.6rem' : '12.4rem');
-        }
-        this.clearSetTimeout = setTimeout( v => {
-          this.renderer.setStyle(this.deliveryBox.nativeElement, 'opacity', '0');
-          this.renderer.setStyle(this.deliveryBox.nativeElement, 'pointer-events', 'none');
-
-          if ( this.scrollForDeliveryBox$ != null ) {
-            this.scrollForDeliveryBox$.unsubscribe();
-            this.scrollForDeliveryBox$ = null;
-          }
-        }, 100000);
-
-        if ( this.scrollForDeliveryBox$ == null ) {
-          this.scrollForDeliveryBox$ = fromEvent( window , 'scroll').subscribe(
-            scrollValue => {
-              console.log(this.isDesktopBreakPoint);
-              if ( window.pageYOffset >= 108 ) {
-                this.renderer.setStyle(this.deliveryBox.nativeElement, 'position', 'fixed');
-                this.renderer.setStyle(this.deliveryBox.nativeElement, 'top', this.isDesktopBreakPoint ? '7.6rem' : '1.6rem');
-              } else {
-                this.renderer.setStyle(this.deliveryBox.nativeElement, 'position', 'absolute');
-                this.renderer.setStyle(this.deliveryBox.nativeElement, 'top', this.isDesktopBreakPoint ? '7.6rem' : '12.4rem');
-              }
-            }
-          );
-        }
-      })
+      select(state => state.cart.cartInfo)
     );
   }
 

@@ -13,7 +13,6 @@
   transition : transform .5s;
   transition-delay : .2s;
 
-
   &--outer {
     z-index:9001;
     position:fixed;
@@ -42,6 +41,18 @@
   &__product-info {
     display:inline-block;
     &--price {
+      &--svg{
+        display:inline-block;
+        margin-right : 0.8rem;
+      }
+
+      &-discount {
+        margin-right : 0.8rem;
+      }
+
+      &-realprice {
+        margin-right : 0.8rem;
+      }
     }
 
     &--MSRP {

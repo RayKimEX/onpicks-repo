@@ -246,28 +246,6 @@
   }
 
 
-
-  onpicks-free-delivery-notibox {
-    position:absolute;
-    right : $default-padding;
-    pointer-events: none;
-    will-change: transform;
-    opacity: 0;
-    transition-duration: .5s;
-    transition-property: transform, opacity;
-
-   @include respond(tb){
-     right : auto;
-     @include horizontalCenter;
-   }
-
-    @media only screen and (max-width: 28.25em) {
-      width : calc(100% - 3.2rem);
-
-      left : calc(50% - 0.8rem);
-    };
-  }
-
   .active {
     color: $color-black;
   }
@@ -562,5 +540,7 @@
   }
 
 }
+
+
 
 

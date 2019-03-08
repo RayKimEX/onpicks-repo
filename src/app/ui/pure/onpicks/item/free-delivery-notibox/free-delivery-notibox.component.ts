@@ -1,6 +1,7 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, Inject, Input, LOCALE_ID, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Inject, Input, LOCALE_ID, OnInit, Output} from '@angular/core';
 import {CURRENCY, LOCATION_MAP} from '../../../../../app.config';
 import {BehaviorSubject} from 'rxjs';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'onpicks-free-delivery-notibox',
@@ -17,12 +18,15 @@ export class FreeDeliveryNotiboxComponent implements OnInit {
     this.cartInfo = _cartInfo.pack;
   }
 
+  @Output() goCartEvent = new EventEmitter();
+
   cartInfo = null;
   totalItems = 0;
 
   constructor(
     @Inject(CURRENCY) public currency: BehaviorSubject<any>,
     @Inject(LOCATION_MAP) public locationMap: any,
+    private router: Router
   ) {
 
   }
@@ -30,4 +34,9 @@ export class FreeDeliveryNotiboxComponent implements OnInit {
   ngOnInit() {
   }
 
+
+  goCart() {
+    this.goCartEvent.emit();
+    this.router.navigate(['/order/cart']);
+  }
 }

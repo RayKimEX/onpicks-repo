@@ -176,14 +176,10 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
           const temp = this.router.url.substring(this.router.url.indexOf('&') + 1, this.router.url.length);
           const tempArray = temp.split('&');
           tempArray.forEach(item => {
+            console.log(item);
             const paramTemp = item.split('=');
             if (paramTemp[0] !== 'ordering' && paramTemp[0] !== 'category' && paramTemp[0] !== 'page' && paramTemp[0] !== 'page_size') {
               this.orderedFilterList.push(paramTemp[1]);
-            } else {
-              if (paramTemp[0] === 'ordering') {
-                this.currentSortSlug = paramTemp[1];
-                console.log(this.currentSortSlug);
-              }
             }
           });
         }
@@ -195,7 +191,9 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
           this.previous = null;
           this.currentSlug = null;
 
-          const param = this.router.url.substring(this.router.url.indexOf('?'), this.router.url.length);
+
+          console.log('hello');
+          const param = this.router.url.indexOf('?') < 0 ? null : this.router.url.substring(this.router.url.indexOf('?'), this.router.url.length);
 
           this.searchData$ = this.searchService.search(param).subscribe(_infoList => {
             /* async 데이터가 들어오는데, null이라면 return을 해줌 */
@@ -266,7 +264,7 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
       }
     })
     this.queryParams$ = this.route.queryParams
-      .subscribe((val: { term, brand, value, location, category, page }) => {
+      .subscribe((val: { term, brand, value, location, category, page, ordering }) => {
         this.currentList = null;
         this.orderedFilterList = [];
         this.currentParamList = {
@@ -274,6 +272,7 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
         };
         this.currentPage = val.page === undefined ? 1 : parseInt(val.page, 10);
         this.currentCategory = val.category;
+        this.currentSortSlug = val.ordering;
 
 
 
