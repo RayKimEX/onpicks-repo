@@ -44,6 +44,7 @@ export class SearchNavigatorMobileFilterComponent implements OnInit {
 
 
   valueClicked(xValueSlug){
+    this.exitEvent.emit();
     if (this.valueListForCheck[xValueSlug] === true) {
       this.valueListForCheck[xValueSlug] = false;
       const index = this.queryParams.value.indexOf(xValueSlug);
@@ -71,7 +72,7 @@ export class SearchNavigatorMobileFilterComponent implements OnInit {
   }
 
   brandClicked(xBrandSlug) {
-
+    this.exitEvent.emit();
     if (this.brandListForCheck[xBrandSlug] === true) {
       this.brandListForCheck[xBrandSlug] = false;
       const index = this.queryParams.brand.indexOf(xBrandSlug);
@@ -87,6 +88,7 @@ export class SearchNavigatorMobileFilterComponent implements OnInit {
   }
 
   locationClicked(xLocationSlug) {
+    this.exitEvent.emit();
     if (this.locationListForCheck[xLocationSlug] === true) {
       this.locationListForCheck[xLocationSlug] = false;
       const index = this.queryParams.location.indexOf(xLocationSlug);
@@ -125,13 +127,9 @@ export class SearchNavigatorMobileFilterComponent implements OnInit {
 
 
   categoryClicked( navigateUrlForCategory, xCategoryCode ) {
-    console.log('categoryClicked');
-    console.log(this.searchState);
     if( this.searchState === 'search') {
       this.router.navigate( ['/shops/search'], {queryParams: {category: xCategoryCode}, queryParamsHandling: 'merge'});
     } else {
-      console.log(navigateUrlForCategory);
-
       this.router.navigateByUrl(navigateUrlForCategory);
       this.exitEvent.emit();
     }

@@ -191,8 +191,6 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
           this.previous = null;
           this.currentSlug = null;
 
-
-          console.log('hello');
           const param = this.router.url.indexOf('?') < 0 ? null : this.router.url.substring(this.router.url.indexOf('?'), this.router.url.length);
 
           this.searchData$ = this.searchService.search(param).subscribe(_infoList => {
@@ -272,7 +270,7 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
         };
         this.currentPage = val.page === undefined ? 1 : parseInt(val.page, 10);
         this.currentCategory = val.category;
-        this.currentSortSlug = val.ordering;
+        this.currentSortSlug = val.ordering === undefined ? 'most_popular' : val.ordering;
 
 
 
