@@ -125,6 +125,8 @@ export class SearchNavigatorMobileFilterComponent implements OnInit {
 
 
   categoryClicked( navigateUrlForCategory, xCategoryCode ) {
+    console.log('categoryClicked');
+    console.log(this.searchState);
     if( this.searchState === 'search') {
       this.router.navigate( ['/shops/search'], {queryParams: {category: xCategoryCode}, queryParamsHandling: 'merge'});
     } else {
