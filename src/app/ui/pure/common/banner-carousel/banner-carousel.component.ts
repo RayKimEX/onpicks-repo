@@ -18,6 +18,7 @@ import {
   styleUrls: ['./banner-carousel.component.scss'],
   changeDetection : ChangeDetectionStrategy.OnPush
 })
+
 export class BannerCarouselComponent implements OnInit, AfterViewInit, OnDestroy {
   @Input('height') height;
   @Input('imagesLargeList') imagesLargeList;
@@ -35,6 +36,8 @@ export class BannerCarouselComponent implements OnInit, AfterViewInit, OnDestroy
   scrollBarWidth;
 
   // TODO : 화면이 넘어갔을때, 이미지를 안나오게 해서, resource 최적화
+
+  isIEOrEdge = /msie\s|trident\/|edge\//i.test(window.navigator.userAgent)
 
   constructor(
     private renderer: Renderer2,

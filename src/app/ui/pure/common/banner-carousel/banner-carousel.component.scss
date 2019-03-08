@@ -1,6 +1,11 @@
 @import '~src/assets/scss/abstracts/variables';
 
 
+.isIEOrEdge {
+  background-size: cover;
+  background-position: center center;
+}
+
 .banner-carousel {
 
   top: 0;
@@ -58,8 +63,8 @@
         height:inherit;
         object-fit : cover;
         object-position: center;
-        //background-size: cover;
-        //background: url("https://picsum.photos/1920/440?image=96") center;
+
+
       }
 
       svg {

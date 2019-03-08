@@ -6,12 +6,14 @@
         <li #itemList *ngFor="let item of imagesLargeList; index as i">
           <div class="banner-carousel__item">
             <div
+              [ngStyle]="{ backgroundImage : isIEOrEdge ? 'url(' + item.imgSrc + ')'  : ''}"
+              [ngClass]=" isIEOrEdge ? 'isIEOrEdge' : ''"
               class="banner-carousel__item--image-outer">
-              <img
+              <img *ngIf="!isIEOrEdge"
                 drLazyLoad
                 [relativeOption]="false"
                 src="{{item.imgSrc}}"
-                alt="">
+                alt="{{!isIEOrEdge}}">
             </div>
             <div
               *ngIf="!(item.title?.length === 0 && item.description?.length === 0)"
@@ -50,9 +52,6 @@
     </div>
     <onpicks-circle-n-button #buttonNext (click)="nextButton()" ></onpicks-circle-n-button>
     <onpicks-circle-p-button #buttonPrev (click)="prevButton()" ></onpicks-circle-p-button>
+
   </div>
-
 </div>
-
-
-
