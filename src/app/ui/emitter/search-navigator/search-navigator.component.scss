@@ -577,7 +577,7 @@ onpicks-check-box {
     }
 
     &--image {
-      height: 26.4rem;
+      // height: 26.4rem;
       width: 100%;
       position: relative;
       margin-bottom :1.6rem;
@@ -585,11 +585,13 @@ onpicks-check-box {
       @include respond(sb){
         height:auto;
       }
+
       onpicks-list-active-button {
         position: absolute;
         right: 0;
         bottom: 0;
       }
+
       &-inner {
         width: 100%;
         position:relative;
