@@ -131,8 +131,8 @@ export class SearchNavigatorMobileFilterComponent implements OnInit {
       this.router.navigate( ['/shops/search'], {queryParams: {category: xCategoryCode}, queryParamsHandling: 'merge'});
     } else {
       this.router.navigateByUrl(navigateUrlForCategory);
-      this.exitEvent.emit();
     }
+    this.exitEvent.emit();
 
   }
 }
