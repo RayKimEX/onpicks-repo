@@ -127,7 +127,7 @@ export class PIndexComponent implements OnInit, OnDestroy {
           window.scrollTo(0, parseInt(splitTemp[1], 10))
           setTimeout( () => window.scrollTo(0, parseInt(splitTemp[1], 10)), 500);
         }
-        if ( v !== undefined) {
+        if ( v !== undefined && v !== null ) {
           this.discountPercent = 100 - Math.round((v.price / v.msrp * 100));
         }
       })

@@ -17,12 +17,13 @@ import {
   TrySubtractOrDeleteFromCart
 } from '../../../core/store/cart/cart.actions';
 import {SearchService} from '../../../core/service/data-pages/search/search.service';
-import {CURRENCY, LOCATION_MAP} from '../../../app.config';
+import {CURRENCY, LOCATION_MAP, RESPONSIVE_MAP} from '../../../app.config';
 import {UiService} from '../../../core/service/ui/ui.service';
 import {normalize, schema} from 'normalizr';
 import {DisplayAlertMessage} from '../../../core/store/ui/ui.actions';
 import {BehaviorSubject, combineLatest, merge} from 'rxjs';
 import {CATEGORY_CODE_MAP} from '../../../app.database';
+import {BreakpointObserver, BreakpointState} from '../../../../../node_modules/@angular/cdk/layout';
 @Component({
   selector: 'emitter-search-navigator',
   templateUrl: './search-navigator.component.html',
@@ -73,6 +74,7 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
   /***** filter modal For Mobile ****/
   isShowMobileFilter = false;
   mobileFilterState = 'menu'
+  isMobile = false;
 
   /******* subscribe ******/
   cartStore$;
@@ -104,9 +106,10 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
   }
 
   constructor(
-    @Inject(CURRENCY) public currency: BehaviorSubject<any>,
+    @Inject( CURRENCY ) public currency: BehaviorSubject<any>,
     @Inject( LOCATION_MAP ) public locationMap: any,
-    @Inject( CATEGORY_CODE_MAP) private categoryMap,
+    @Inject( CATEGORY_CODE_MAP)  private categoryMap,
+    @Inject( RESPONSIVE_MAP ) public responsiveMap,
     private uiService: UiService,
     private renderer: Renderer2,
     private store: Store<any>,
@@ -115,8 +118,20 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
     private location: Location,
     private cd: ChangeDetectorRef,
     private searchService: SearchService,
-    
+    private breakpointObserver:  BreakpointObserver,
   ) {
+
+    this.breakpointObserver
+      .observe([this.responsiveMap['tb']])
+      .subscribe((state: BreakpointState) => {
+        if (state.matches) {
+          this.isMobile = true;
+          this.cd.markForCheck();
+        } else {
+          this.isMobile = false;
+          this.cd.markForCheck();
+        }
+      });
 
     this.uiStore$ = this.store.pipe(select(state => state.ui.currentCategoryList))
       .subscribe(val => {
