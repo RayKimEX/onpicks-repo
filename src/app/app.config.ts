@@ -16,23 +16,23 @@ export const API_URL_CONST = {
 // 배송지
 export const LOCATION_MAP = new InjectionToken<any>('app.config');
 export const LOCATION_MAP_CONST = {
-  'lax' : {
+  'LAX' : {
     nickname : 'la',
     sequence : 1
   },
-  'jfk' : {
+  'JFK' : {
     nickname : 'new',
     sequence : 0
   },
-  'kix' : {
+  'KIX' : {
     nickname : 'osaka',
     sequence : 4
   },
-  'atl' : {
+  'ATL' : {
     nickname : 'gorgia',
     sequence : 2
   },
-  'hkg' : {
+  'HKG' : {
     nickname : 'hong',
     sequence : 3
   }

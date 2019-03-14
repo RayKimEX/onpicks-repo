@@ -202,11 +202,11 @@
               <span class="cart__delivery-multi-icon subtitle-1-bold"
                 [ngClass]=
                   "[
-                    (locationMap[item.location.slug].nickname === 'la')  ? 'icon-la' : '',
-                    (locationMap[item.location.slug].nickname === 'new')  ? 'icon-new' : '',
-                    (locationMap[item.location.slug].nickname === 'osaka')  ? 'icon-osaka' : '',
-                    (locationMap[item.location.slug].nickname === 'gorgia')  ? 'icon-gorgia' : '',
-                    (locationMap[item.location.slug].nickname === 'hong')  ? 'icon-hong' : ''
+                    (locationMap[item.location.code].nickname === 'la')  ? 'icon-la' : '',
+                    (locationMap[item.location.code].nickname === 'new')  ? 'icon-new' : '',
+                    (locationMap[item.location.code].nickname === 'osaka')  ? 'icon-osaka' : '',
+                    (locationMap[item.location.code].nickname === 'gorgia')  ? 'icon-gorgia' : '',
+                    (locationMap[item.location.code].nickname === 'hong')  ? 'icon-hong' : ''
                   ]">
               </span>
               <span class="cart__delivery-multi-spot-list">
@@ -278,8 +278,8 @@
                   </div>
                   <div class="cart-mobile__table--item-option--manage-amount">
                     <onpicks-list-active-button
-                      (addEvent)="addToCart(syncedData?.cartList[itemChild.product]?.quantity, itemChild.product, locationMap[item.location.slug].sequence)"
-                      (subtractEvent)="subtractFromCart(syncedData?.cartList[itemChild.product]?.quantity, itemChild.product, locationMap[item.location.slug].sequence)"
+                      (addEvent)="addToCart(syncedData?.cartList[itemChild.product]?.quantity, itemChild.product, locationMap[item.location.code].sequence)"
+                      (subtractEvent)="subtractFromCart(syncedData?.cartList[itemChild.product]?.quantity, itemChild.product, locationMap[item.location.code].sequence)"
                       [amount]="syncedData?.cartList[itemChild.product]?.quantity"
                       [isFixExtend]="true">
                     </onpicks-list-active-button>
@@ -324,8 +324,8 @@
               <td>
                 <div class="cart__multi-table--amount">
                   <onpicks-list-active-button
-                    (addEvent)="addToCart(syncedData?.cartList[itemChild.product]?.quantity, itemChild.product, locationMap[item.location.slug].sequence)"
-                    (subtractEvent)="subtractFromCart(syncedData?.cartList[itemChild.product]?.quantity, itemChild.product, locationMap[item.location.slug].sequence)"
+                    (addEvent)="addToCart(syncedData?.cartList[itemChild.product]?.quantity, itemChild.product, locationMap[item.location.code].sequence)"
+                    (subtractEvent)="subtractFromCart(syncedData?.cartList[itemChild.product]?.quantity, itemChild.product, locationMap[item.location.code].sequence)"
                     [amount]="syncedData?.cartList[itemChild.product]?.quantity"
                     [isFixExtend]="true">
                   </onpicks-list-active-button>
@@ -333,14 +333,14 @@
 
                 <div class="cart__multi-table--add-to-wish">
                   <a
-                    (click)="addToWishList(itemChild.product, locationMap[item.location.slug].sequence )"
+                    (click)="addToWishList(itemChild.product, locationMap[item.location.code].sequence )"
                     class="subtitle-2-regular u-color-grey">
                     다음에 구매하기
                   </a>
                 </div>
                 <div class="cart__multi-table--delete subtitle-2-regular u-color-grey">
                   <a
-                    (click)="subtractFromCart(1, itemChild.product, locationMap[item.location.slug].sequence )"
+                    (click)="subtractFromCart(1, itemChild.product, locationMap[item.location.code].sequence )"
                     class="subtitle-2-regular u-color-grey">
                     삭제하기
                   </a>
@@ -394,11 +394,11 @@
                   class="cart__wishlist-table--delivery-info-image"
                   [ngClass]=
                   "[
-                    (locationMap[item?.location.slug]?.nickname === 'la')  ? 'icon-small-la' : '',
-                    (locationMap[item?.location.slug]?.nickname === 'new')  ? 'icon-small-new' : '',
-                    (locationMap[item?.location.slug]?.nickname === 'osaka')  ? 'icon-small-osaka' : '',
-                    (locationMap[item?.location.slug]?.nickname === 'gorgia')  ? 'icon-small-gorgia' : '',
-                    (locationMap[item?.location.slug]?.nickname === 'hong')  ? 'icon-small-hong' : ''
+                    (locationMap[item?.location.code]?.nickname === 'la')  ? 'icon-small-la' : '',
+                    (locationMap[item?.location.code]?.nickname === 'new')  ? 'icon-small-new' : '',
+                    (locationMap[item?.location.code]?.nickname === 'osaka')  ? 'icon-small-osaka' : '',
+                    (locationMap[item?.location.code]?.nickname === 'gorgia')  ? 'icon-small-gorgia' : '',
+                    (locationMap[item?.location.code]?.nickname === 'hong')  ? 'icon-small-hong' : ''
                   ]">
                 </span>
 
@@ -416,7 +416,7 @@
                 class="btn btn--white btn--small cart__wishlist-table--btn"
                 [routerLink]="'/shops/p/' + item.product">옵션 선택하기</button>
               <button
-                (click)="moveWishListToCart(1, item.product, item.ship_alone ? 'free' : locationMap[item?.location.slug]?.sequence, item.id, i)"
+                (click)="moveWishListToCart(1, item.product, item.ship_alone ? 'free' : locationMap[item?.location.code]?.sequence, item.id, i)"
                 *ngIf="item.attributes.length === 0"
                 class="btn btn--white btn--small cart__wishlist-table--btn"
                 >쇼핑백에 담기</button>

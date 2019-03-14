@@ -76,8 +76,8 @@
                   </div>
                   <onpicks-list-active-button
                     [amount]="cartStore?.cartList[item.slug] === undefined ? 0 : cartStore?.cartList[item.slug]?.quantity"
-                    (addEvent)="addToCart($event, item.slug, item.ship_alone ? 'free' : locationMap[item.location.slug].sequence)"
-                    (subtractEvent)="subtractFromCart($event, item.slug, item.ship_alone ? 'free' : locationMap[item.location.slug].sequence)">
+                    (addEvent)="addToCart($event, item.slug, item.ship_alone ? 'free' : locationMap[item.location.code].sequence)"
+                    (subtractEvent)="subtractFromCart($event, item.slug, item.ship_alone ? 'free' : locationMap[item.location.code].sequence)">
                   </onpicks-list-active-button>
                 </div>
                 <div
@@ -158,7 +158,7 @@
                     'ui-mini-list-halfM__delivery-point' :
                     'ui-mini-list-fullM__delivery-point'
                   ]">
-                  <ng-container [ngSwitch]="locationMap[item.location.slug].sequence">
+                  <ng-container [ngSwitch]="locationMap[item.location.code].sequence">
                     <ng-container *ngSwitchCase="1" >
                       <span
                         [ngClass]="[
