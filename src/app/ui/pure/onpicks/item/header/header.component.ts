@@ -265,7 +265,7 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
     // search-engine crawling을 위해 아래와 같은 기능을 뺌
-    // this.router.navigate([xUrl]);
+    this.router.navigate([xUrl]);
   }
 
   clickMobileSearch() {
