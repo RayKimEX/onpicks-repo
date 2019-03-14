@@ -137,8 +137,7 @@ onpicks-circle-n-button {
       border-radius : 50%;
       overflow:hidden;
       img {
-        width:4rem;
-        height:4.2rem;
+        @include imageAspactRatio;
       }
 
     }

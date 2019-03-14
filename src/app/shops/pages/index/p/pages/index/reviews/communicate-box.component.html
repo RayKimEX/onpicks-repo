@@ -65,13 +65,23 @@
 
     <div class="communicate-box__mobile--figure">
       <figure>
-          <span class="communicate-box-only__figure--image-outer">
-            <img drLazyLoad src="{{data.review?.author?.avatar}}" alt="Person on a tour" class="story__img">
-          </span>
-        <figcaption class="communicate-box-only__caption subtitle-1-bold">{{data.review?.author?.nickname}}</figcaption>
+        <span class="communicate-box-only__figure--image-outer">
+          <img drLazyLoad src="{{data.review?.author?.avatar}}" alt="{{data.review?.author?.nickname}}" class="story__img">
+        </span>
 
-        <ui-star-rating [star-point]="data?.review?.rating"></ui-star-rating>
-        <span class="communicate-box-only__figure--created-date subtitle-2-regular u-color-dark-grey">{{data.review?.modified | timeAgo}}</span>
+        <figcaption
+          class="communicate-box-only__caption subtitle-1-bold">
+          {{data.review?.author?.nickname}}
+        </figcaption>
+
+        <ui-star-rating
+          [star-point]="data?.review?.rating">
+        </ui-star-rating>
+
+        <span
+          class="communicate-box-only__figure--created-date subtitle-2-regular u-color-dark-grey">
+          {{data.review?.modified | timeAgo}}
+        </span>
       </figure>
     </div>
 
