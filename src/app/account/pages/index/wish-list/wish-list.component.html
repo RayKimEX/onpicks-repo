@@ -36,11 +36,11 @@
 
           <div class="wish-list__table--delivery-info-where subtitle-2-regular">
             <span class="u-bold">{{item.location.name}}</span>&nbsp;출고&nbsp;·&nbsp;</div>
-          <div class="wish-list__table--delivery-info-price subtitle-2-bold" *ngIf="item.ship_alone">&nbsp;무료배송</div>
+          <div class="wish-list__table--delivery-info-price subtitle-2-bold" *ngIf="item.shipping_fee == 0">&nbsp;무료 배송</div>
           <div class="wish-list__table--delivery-info-price subtitle-2-regular"
-               *ngIf="!item.ship_alone">묶음배송 · {{item.location.base_shipping_fee | onpicksCurrency:(currency| async)}}</div>
+               *ngIf="item.shipping_fee > 0">묶음배송 · {{item.shipping_fee | onpicksCurrency:(currency| async)}}</div>
 
-          <div class="wish-list__table--delivery-info-description subtitle-2-regular u-color-dark-grey">{{item.location.name}} 단독 배송 상품 {{item.location.location.free_shipping_threshold | onpicksCurrency: (currency| async)}} 이상 주문시 무료 배송</div>
+          <div class="wish-list__table--delivery-info-description subtitle-2-regular u-color-dark-grey">{{item.location.name}} 묶음배송 상품 {{item.location.free_shipping_threshold | onpicksCurrency: (currency| async)}} 이상 주문시 무료 배송</div>
         </div>
       </td>
       <td>

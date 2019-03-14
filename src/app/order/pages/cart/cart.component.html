@@ -183,16 +183,16 @@
                 <img src="http://img.onpicks.com/cart__table--info-N.png" alt="무료배송 아이콘">
               </div>
 
-              <div class="cart__free-table--delivery-info-where subtitle-2-regular"><span class="u-bold">뉴저지</span>출고&nbsp;·&nbsp;</div>
+              <div class="cart__free-table--delivery-info-where subtitle-2-regular"><span class="u-bold">뉴저지</span> 출고&nbsp;·&nbsp;</div>
               <div class="cart__free-table--delivery-info-price subtitle-2-bold">무료배송</div>
-              <div class="cart__free-table--delivery-info-description subtitle-2-regular u-color-dark-grey">뉴저지 단독 배송 상품으로 개별 배송료가 발생합니다.</div>
+              <div class="cart__free-table--delivery-info-description subtitle-2-regular u-color-dark-grey">뉴저지 단독배송 상품으로 무료로 배송 됩니다.</div>
             </div>
           </td>
         </tr>
       </table>
     </ng-container>
     <ng-container *ngIf="lengthCheckForPack !== 0" >
-      <div class="cart__section--title subtitle-1-bold">묶음 배송 상품</div>
+      <div class="cart__section--title subtitle-1-bold">묶음배송 상품</div>
       <ng-container
         *ngFor="let item of syncedData?.cartInfo?.pack; index as packIndex">
         <ng-container *ngIf="item.items?.length !== 0">
@@ -352,7 +352,7 @@
                     <span class="subtitle-2-regular" *ngSwitchCase="true">{{item.shipping_fee | onpicksCurrency: syncedData.currencyInfo}}</span>
                     <span class="subtitle-2-bold u-color-green" *ngSwitchDefault>무료</span>
                   </div>
-                  <div class="cart__multi-table--delivery-info-description subtitle-2-regular u-color-dark-grey">{{item.location.name}} 단독 배송 상품 {{item.location.free_shipping_threshold | onpicksCurrency: syncedData.currencyInfo}} 이상 주문시 무료 배송</div>
+                  <div class="cart__multi-table--delivery-info-description subtitle-2-regular u-color-dark-grey">{{item.location.name}} 묶음배송 상품 {{item.location.free_shipping_threshold | onpicksCurrency: syncedData.currencyInfo}} 이상 주문시 무료 배송</div>
                 </div>
               </td>
             </tr>
@@ -403,10 +403,10 @@
                 </span>
 
                 <div class="cart__wishlist-table--delivery-info-where subtitle-2-regular">
-                  <span class="u-bold">{{item.location.name}}</span>&nbsp;출고&nbsp;·</div>
-                <div class="cart__wishlist-table--delivery-info-price subtitle-2-bold" *ngIf="item.ship_alone">&nbsp;무료배송</div>
+                  <span class="u-bold">{{item.location.name}}</span> 출고 ·</div>
+                <div class="cart__wishlist-table--delivery-info-price subtitle-2-bold" *ngIf="item.shipping_fee == 0">&nbsp;무료배송</div>
                 <div class="cart__wishlist-table--delivery-info-price subtitle-2-regular"
-                     *ngIf="!item.ship_alone">묶음배송 · {{item.location.base_shipping_fee | onpicksCurrency:syncedData.currencyInfo}}</div>
+                     *ngIf="item.shipping_fee > 0">&nbsp;묶음배송 · {{item.shipping_fee | onpicksCurrency:syncedData.currencyInfo}}</div>
                 <div class="cart__wishlist-table--delivery-info-description subtitle-2-regular u-color-dark-grey">{{item.location.name}} 묶음배송 상품으로 {{item.location.free_shipping_threshold | onpicksCurrency: syncedData.currencyInfo}} 이상 주문시 배송료 무료</div>
               </div>
             </td>
@@ -446,7 +446,7 @@
           <tr class="h1-bold">
             <td>{{syncedData?.cartInfo?.total?.total_items | onpicksCurrency: syncedData.currencyInfo}}</td>
             <td>+</td>
-            <td [ngClass]="{ 'u-color-green' : syncedData?.cartInfo?.total?.total_shipping_costs == 0}">{{syncedData?.cartInfo?.total?.total_shipping_costs === 0 ? '무료' : (syncedData?.cartInfo?.total?.total_shipping_costs | onpicksCurrency: 'KRW')}}</td>
+            <td [ngClass]="{ 'u-color-green' : syncedData?.cartInfo?.total?.total_shipping_costs == 0}">{{syncedData?.cartInfo?.total?.total_shipping_costs === 0 ? '무료' : (syncedData?.cartInfo?.total?.total_shipping_costs | onpicksCurrency: syncedData.currencyInfo)}}</td>
             <td>-</td>
             <td>{{syncedData?.cartInfo?.total?.total_discounts | onpicksCurrency: syncedData.currencyInfo}}</td>
             <td>=</td>
