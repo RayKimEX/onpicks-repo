@@ -12,11 +12,11 @@
   <div
     *ngFor="let key of objectKeys(reasonMap['ko'])"
     class="modal__item subtitle-2-regular">
-    {{key}}
+    {{reasonMap['ko'][key]}}
     <onpicks-check-box
       (boxEvent)="textReportReasonForModal = $event"
       class="modal__item--check-box"
-      [value]="reasonMap['ko'][key]"
+      [value]="key"
       [type]="'radio'">
     </onpicks-check-box>
   </div>

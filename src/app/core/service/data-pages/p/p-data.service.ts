@@ -61,7 +61,7 @@ export class PDataService {
 // { text : "" }
 
   reportReviewData( xProductSlug, xReviewId, xReportReason) {
-    return this.httpClient.post<any>( this.BASE_URL + '/api/products/' + xProductSlug + '/reviews/' + xReviewId + '/report/', { text : xReportReason});
+    return this.httpClient.post<any>( this.BASE_URL + '/api/products/' + xProductSlug + '/reviews/' + xReviewId + '/report/', { reason : xReportReason });
   }
 
 }
