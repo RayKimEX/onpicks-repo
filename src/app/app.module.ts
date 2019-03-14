@@ -71,6 +71,7 @@ function setCookie(cname, cvalue ) {
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     LayoutModule,
     HttpClientModule,
     FormsModule,
@@ -79,7 +80,7 @@ function setCookie(cname, cvalue ) {
 
     RouterModule,
     AppRoutingModule,
-    BrowserAnimationsModule,
+
 
     // Common Module
     StoreModule.forRoot(reducers),

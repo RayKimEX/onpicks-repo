@@ -264,8 +264,8 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
       this.renderer.setProperty(xInputChecked, 'checked', true);
     }
 
-
-    this.router.navigate([xUrl]);
+    // search-engine crawling을 위해 아래와 같은 기능을 뺌
+    // this.router.navigate([xUrl]);
   }
 
   clickMobileSearch() {
