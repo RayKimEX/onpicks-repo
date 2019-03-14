@@ -18,7 +18,7 @@
         class="today-collection__ul" >
         <li #itemList *ngFor="let item of todayCollection" class="col-3-of-12-list-scroll today-collection__item">
           <div  class="today-collection__image--outer">
-            <img drCleanLoad src="{{item.imgSrc}}" alt="">
+            <img drCleanLoad src="{{item.imgSrc}}" alt="{{item.todayTitle}}">
           </div>
           <div class="today-collection__item--category-name subtitle-3-bold u-color-green">
             {{item.todayCategoryName}}

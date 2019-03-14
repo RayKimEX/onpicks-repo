@@ -391,7 +391,7 @@
                     <div class="search-content__item--image">
                       <div routerLink="/shops/p/{{item.slug}}" class="search-content__item--image-outer">
                         <div class="search-content__item--image-inner">
-                          <img drLazyLoad [relativeOption]="false" src="{{item.thumbnail}}" alt="">
+                          <img drLazyLoad [relativeOption]="false" src="{{item.thumbnail}}" alt="{{item.title}}">
                         <!--카트정보가 어떤식으로 들어갈지 알아야, 대충이라도 작업할 수 있음.-->
 
                         </div>
@@ -417,16 +417,20 @@
 
                     <div class="search-content__item--name-outer">
                       <div class="search-content__item--name-outer-brand subtitle-2-bold">
-                        <a (click)="goBrandFilter(item.brand.slug)">
+                        <a
+                          (click)="goBrandFilter(item.brand.slug)">
                           {{item.brand.name}}
                         </a>
                       </div>
 
-                      <a routerLink="/shops/p/{{item.slug}}">
-                        <span class="search-content__item--name-outer-name body-2-regular">
+
+                      <span class="search-content__item--name-outer-name body-2-regular">
+                        <a
+                          routerLink="/shops/p/{{item.slug}}">
                           {{item.title}}
-                        </span>
-                      </a>
+                        </a>
+                      </span>
+
                     </div>
 
                     <ui-star-rating

@@ -87,7 +87,7 @@
 
               <div class="cart-mobile__table--item--image">
                 <div class="cart-mobile__table--item--image-inner">
-                  <img drLazyLoad src="{{itemForFree.thumbnail}}" alt="">
+                  <img drLazyLoad src="{{itemForFree.thumbnail}}" alt="{{itemForFree.title}}">
                 </div>
               </div>
 
@@ -139,19 +139,18 @@
               <div class="cart__free-table--info-name body-3-regular">{{itemForFree.title}}</div>
               <div class="cart__multi-table--info-option">
                 <ng-container *ngFor="let option of objectKeys(itemForFree.attribute_values); index as optionIndex">
-                      <span class="subtitle-3-regular u-color-grey">
-                        {{option}} :
-                      </span>
                   <span class="subtitle-3-regular u-color-grey">
-                        {{itemForFree.attribute_values[option]}}
-                      </span>
+                    {{option}} :
+                  </span>
+                  <span class="subtitle-3-regular u-color-grey">
+                    {{itemForFree.attribute_values[option]}}
+                  </span>
                   <span
                     *ngIf="objectKeys(itemForFree.attribute_values).length - 1 !== optionIndex"
                     class="cart__multi-table--info-option--spliter-margin subtitle-3-regular u-color-grey">·</span>
                 </ng-container>
               </div>
-              <div class="cart__free-table--info-price subtitle-2-bold">{{itemForFree.price | onpicksCurrency : syncedData.currencyInfo
-                }}</div>
+              <div class="cart__free-table--info-price subtitle-2-bold">{{itemForFree.price | onpicksCurrency : syncedData.currencyInfo }}</div>
             </div>
           </td>
           <td>
@@ -181,7 +180,7 @@
           <td>
             <div class="cart__free-table--delivery-info">
               <div class="cart__free-table--delivery-info-image">
-                <img src="http://img.onpicks.com/cart__table--info-N.png" alt="">
+                <img src="http://img.onpicks.com/cart__table--info-N.png" alt="무료배송 아이콘">
               </div>
 
               <div class="cart__free-table--delivery-info-where subtitle-2-regular"><span class="u-bold">뉴저지</span>출고&nbsp;·&nbsp;</div>
@@ -250,7 +249,7 @@
 
                   <div class="cart-mobile__table--item--image">
                     <div class="cart-mobile__table--item--image-inner">
-                      <img drLazyLoad src="{{itemChild.thumbnail}}" alt="">
+                      <img drLazyLoad src="{{itemChild.thumbnail}}" alt="{{itemChild.title}}">
                     </div>
                   </div>
 
@@ -295,7 +294,7 @@
               <td>
                 <div class="cart__multi-table--image">
                   <a class="cart__multi-table--image" [routerLink]="'/shops/p/' + itemChild.product">
-                    <img drLazyLoad src="{{itemChild.thumbnail}}" alt="">
+                    <img drLazyLoad src="{{itemChild.thumbnail}}" alt="{{itemChild.title}}">
                   </a>
                 </div>
                 <div class="cart__multi-table--info">
@@ -380,7 +379,7 @@
           <tr *ngFor="let item of syncedData?.wishList; index as i">
             <td>
               <div class="cart__wishlist-table--image">
-                <img drLazyLoad src="{{item.thumbnail}}" alt="">
+                <img drLazyLoad src="{{item.thumbnail}}" alt="{{item.title}}">
               </div>
 
               <div class="cart__wishlist-table--info">

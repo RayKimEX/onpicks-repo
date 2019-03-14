@@ -5,7 +5,7 @@
       drLazyLoad
       [relativeOption]="false"
       src="{{bannerInfo.imgSrc}}"
-      alt="">
+      alt="{{bannerInfo.title[0]}} {{bannerInfo.title[1]}}">
   </div>
   <div
     *ngIf="!(bannerInfo.title?.length === 0 && bannerInfo.description?.length === 0)"
