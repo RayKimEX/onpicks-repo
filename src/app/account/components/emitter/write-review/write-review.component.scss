@@ -23,6 +23,10 @@
         @include body-1-regular;
         color : $color-grey;
       }
+
+      @include respond(tb){
+        width: 100%;
+      }
     }
   }
 
@@ -165,6 +169,13 @@
     padding-bottom : 2.4rem;
     border-bottom : 1px solid $color-light-grey;
     position:relative;
+
+    &--item {
+      @include respond(tb){
+        display:none;
+      }
+    }
+
     &--exit-btn {
       cursor : pointer;
       width :2.4rem;
@@ -250,11 +261,12 @@
     background-color:$color-white;
 
     @include respond(tb){
-      top: auto;
-      left: auto;
-      position: static;
+      top: 0;
+      left: 0;
+      position: fixed;
       transform: none;
       width :100%;
+      height:100%;
     }
 
     &--inner{

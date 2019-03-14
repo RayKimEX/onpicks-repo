@@ -121,6 +121,8 @@
       display:inline-block;
       float:right;
 
+
+
       &--title {
         padding-bottom : 4px;
       }
@@ -132,9 +134,11 @@
       &--btn {
         display:inline-block;
         margin-top : 12px;
+        float:right;
 
         @include respond(actb){
           margin-top : 3.2rem;
+          float: none;
         }
       }
     }

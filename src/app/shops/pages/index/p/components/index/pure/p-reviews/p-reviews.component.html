@@ -8,6 +8,7 @@
   [isShow]="isShowModal">
 
   <h1 class="modal__title h1-bold">신고사유를 선택해주세요.</h1>
+
   <div
     *ngFor="let key of objectKeys(reasonMap['ko'])"
     class="modal__item subtitle-2-regular">
@@ -19,6 +20,7 @@
       [type]="'radio'">
     </onpicks-check-box>
   </div>
+
   <onpicks-button
     (click)="reportReview(productSlugForModal, reviewIndexForModal, textReportReasonForModal)"
     class="modal__btn"
