@@ -49,6 +49,8 @@ main {
   position:relative;
 }
 
+
+
 a {
   line-height : 0;
   text-decoration-line: none;
@@ -178,6 +180,18 @@ textarea {
 
   100% {
     opacity : 1;
+  }
+}
+
+.u-button-effect {
+  line-height : 0;
+  color : $color-black;
+  cursor: pointer;
+  display : inline-block;
+  &:hover{
+    //transition-property: opacity;
+    //transition-duration: .2s;
+    opacity: 0.6;
   }
 }
 

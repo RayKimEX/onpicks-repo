@@ -76,34 +76,33 @@
                 </a>
               </li>
               <li>
-                <a
-                   class="h1-bold u-color-grey"
-
+                <div
+                   class="h1-bold u-color-grey u-button-effect"
                    (click)="showPreparingMessage()"
                    i18n="@@header__showcases">
                    쇼케이스|showcases
-                </a>
+                </div>
                 <!--routerLink="showcases"-->
                 <!--[routerLinkActive]="['u-color-black', 'u-active']"-->
               </li>
               <li>
-                <a
-                   class="h1-bold u-color-grey"
+                <div
+                   class="h1-bold u-color-grey u-button-effect"
 
                    (click)="showPreparingMessage()"
                    i18n="@@header__events">
                    이벤트|events
-                </a>
+                </div>
                 <!--routerLink="events"-->
                 <!--[routerLinkActive]="['u-color-black', 'u-active']"-->
               </li>
               <li>
-                <a
-                   class="h1-bold u-color-grey"
+                <div
+                   class="h1-bold u-color-grey u-button-effect"
                    (click)="showPreparingMessage()"
                    i18n="@@header__reviews">
                    리뷰|reviews
-                </a>
+                </div>
                 <!--routerLink="reviews"-->
                 <!--[routerLinkActive]="['u-color-black', 'u-active']"-->
               </li>
@@ -206,33 +205,33 @@
               <svg xmlns="http://www.w3.org/2000/svg" width="8" height="14" viewBox="0 0 8 14">
                 <path fill="#B3B3B3" fill-rule="evenodd" d="M7 14a.997.997 0 0 1-.707-.293l-6-6a.999.999 0 0 1 0-1.414l6-6a.999.999 0 1 1 1.414 1.414L2.414 7l5.293 5.293A.999.999 0 0 1 7 14"/>
               </svg>
-              <a class="u-color-dark-grey header__mobile-hamburger--return-menu">
+              <div class="u-button-effect" class="u-color-dark-grey header__mobile-hamburger--return-menu">
                 돌아가기
-              </a>
+              </div>
             </div>
           </li>
           <li class="header__mobile-hamburger--li">
             <div
               (click)="routeForMobile('/account/settings/profile', inputCheckedForToggle)">
-              <a>
+              <div class="u-button-effect">
                 프로필
-              </a>
+              </div>
             </div>
           </li>
           <li class="header__mobile-hamburger--li">
             <div
               (click)="routeForMobile('/account/settings/delivery-address', inputCheckedForToggle)">
-              <a>
+              <div class="u-button-effect">
                 배송비
-              </a>
+              </div>
             </div>
           </li>
           <li class="header__mobile-hamburger--li">
             <div
               (click)="routeForMobile('/account/settings/refund', inputCheckedForToggle)">
-              <a>
+              <div class="u-button-effect">
                 환불정보
-              </a>
+              </div>
             </div>
           </li>
         </ul>
@@ -247,9 +246,9 @@
             <li class="header__mobile-hamburger--li--not-login">
               <div
                 (click)="routeForMobile('/member/login', inputCheckedForToggle)">
-                <a>
+                <div class="u-button-effect">
                   로그인
-                </a>
+                </div>
               </div>
             </li>
           </ng-container>
@@ -257,33 +256,33 @@
             <li class="header__mobile-hamburger--li">
               <div
                 (click)="routeForMobile('/account/my-shopping/orders', inputCheckedForToggle)">
-                <a>
+                <div class="u-button-effect">
                   나의 쇼핑
-                </a>
+                </div>
               </div>
             </li>
             <li class="header__mobile-hamburger--li">
               <div
                 (click)="routeForMobile('/account/my-reviews/written', inputCheckedForToggle)">
-                <a>
+                <div class="u-button-effect">
                   나의 리뷰
-                </a>
+                </div>
               </div>
             </li>
             <li class="header__mobile-hamburger--li">
               <div
                 (click)="routeForMobile('/account/wish-list', inputCheckedForToggle)">
-                  <a>
+                  <div class="u-button-effect">
                     다음에 구매하기
-                  </a>
+                  </div>
               </div>
             </li>
             <li class="header__mobile-hamburger--li">
               <div
                 (click)="isShowSettingMenu = true">
-                <a>
+                <div class="u-button-effect">
                   설정
-                </a>
+                </div>
                 <svg class="u-float-right" xmlns="http://www.w3.org/2000/svg" width="8" height="14" viewBox="0 0 8 14">
                   <path fill="#292929" fill-rule="evenodd" d="M1 14a.999.999 0 0 1-.707-1.707L5.586 7 .293 1.707A.999.999 0 1 1 1.707.293l6 6a.999.999 0 0 1 0 1.414l-6 6A.997.997 0 0 1 1 14"/>
                 </svg>
@@ -297,10 +296,10 @@
             *ngFor="let item of menuMap[locale]?.main">
             <div
               (click)="routeForMobile('/shops/c/' + item.href, inputCheckedForToggle)">
-              <a>
+              <div class="u-button-effect">
                 <img [src]="'https://img.onpicks.com/assets/' + item.slug + '.jpg?d=w80-h80'" alt="">
                 <span>{{item.name}}</span>
-              </a>
+              </div>
             </div>
           </li>
         </ul>
@@ -308,25 +307,25 @@
           <li class="header__mobile-hamburger--li">
             <div
               (click)="showPreparingMessage()">
-              <a>
+              <div class="u-button-effect">
                 리뷰
-              </a>
+              </div>
             </div>
           </li>
           <li class="header__mobile-hamburger--li">
             <div
               (click)="showPreparingMessage()">
-              <a>
+              <div class="u-button-effect">
                 쇼케이스
-              </a>
+              </div>
             </div>
           </li>
           <li class="header__mobile-hamburger--li">
             <div
               (click)="showPreparingMessage()">
-              <a>
+              <div class="u-button-effect">
                 이벤트
-              </a>
+              </div>
             </div>
           </li>
           <!--<li class="header__mobile-hamburger&#45;&#45;li">-->
@@ -339,7 +338,7 @@
         <ul class="header__mobile-hamburger--ul subtitle-2-regular">
           <li class="header__mobile-hamburger--li">
             <div>
-              <a>{{ (currency | async) === 'KRW' ? 'KRW ₩' : 'USD $' }}</a>
+              <div class="u-button-effect">{{ (currency | async) === 'KRW' ? 'KRW ₩' : 'USD $' }}</div>
             </div>
           </li>
           <!--<li class="header__mobile-hamburger&#45;&#45;li">-->
@@ -354,7 +353,7 @@
           <!--</li>-->
           <li class="header__mobile-hamburger--li">
             <div>
-              <a>로그아웃</a>
+              <div class="u-button-effect">로그아웃</div>
             </div>
           </li>
         </ul>
@@ -368,7 +367,7 @@
         <ul class="header-menu__item" *ngFor="let item of menuMap[locale]?.main">
           <li>
             <a
-              (click)="routeForDeskTop('/shops/c/' + item.href)">
+              [routerLink]="'/shops/c/' + item.href" (click)="routeForDeskTop()">
               <div
                 class="header-menu__item--title"
                 [ngClass] =

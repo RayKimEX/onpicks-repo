@@ -65,6 +65,7 @@ export class WriteReviewComponent implements OnInit, OnChanges, OnDestroy {
     private uiService: UiService,
     private store: Store<any>
   ) {
+
   }
 
   ngOnDestroy() {
@@ -73,14 +74,12 @@ export class WriteReviewComponent implements OnInit, OnChanges, OnDestroy {
 
 
   ngOnChanges(changes: SimpleChanges) {
-
     if ( changes.isShow.currentValue === true ) {
       this.renderer.addClass(document.body , 'u-open-modal');
     } else {
       this.renderer.removeClass(document.body, 'u-open-modal');
       console.log('@@@@@@@@@@@@@@@@remove modal 7');
     }
-
   }
 
 
@@ -99,13 +98,11 @@ export class WriteReviewComponent implements OnInit, OnChanges, OnDestroy {
 
 
   onDragOver(files) {
-
     files.preventDefault();
   }
 
   dragEnter() {
     this.isDraggedEnter = true;
-
   }
 
   dragLeave() {
@@ -136,13 +133,13 @@ export class WriteReviewComponent implements OnInit, OnChanges, OnDestroy {
       }
 
       this.totalFileSize += (event.dataTransfer.files[key].size / 1024) / 1024;
-      if ( this.totalFileSize > 20 ){
+      if ( this.totalFileSize > 20 ) {
         this.errorStatus = 2;
         this.totalFileSize -= (event.dataTransfer.files[key].size / 1024) / 1024;
         return ;
       }
 
-      this.imageFileList.push({file : event.dataTransfer.files[key], blobData : temp});
+      this.imageFileList.push( { file : event.dataTransfer.files[key], blobData : temp } );
       // this.imgSrc = temp;
       this.imageFileList.forEach(
         value => {
@@ -152,9 +149,7 @@ export class WriteReviewComponent implements OnInit, OnChanges, OnDestroy {
               v => console.log('complete!!!')
             );
           }
-
         });
-
     });
 
     this.isDraggedEnter = false;
@@ -167,7 +162,7 @@ export class WriteReviewComponent implements OnInit, OnChanges, OnDestroy {
     this.imageFileList.splice(index , 1);
   }
 
-  publishReview( xProductSlug, xReviewId ){
+  publishReview( xProductSlug, xReviewId ) {
     // xProductSlug, xReviewId, xRating, xText
 
     this.accountDataService
@@ -188,7 +183,5 @@ export class WriteReviewComponent implements OnInit, OnChanges, OnDestroy {
         }
       );
     this.exitEvent.emit();
-
-
   }
 }

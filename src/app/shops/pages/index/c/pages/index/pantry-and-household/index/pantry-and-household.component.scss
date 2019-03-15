@@ -2,8 +2,12 @@
 
 ui-banner-carousel {
   height: 40rem;
-}
+  display:block;
 
+  @include respond(tb){
+    display:none;
+  }
+}
 
 onpicks-category-list {
   display:block;
