@@ -401,8 +401,8 @@
                         <onpicks-list-active-button
                           [amount]="cartStore.cartList[item.slug] === undefined ? 0 : cartStore.cartList[item.slug]?.quantity"
                           *ngSwitchCase="0"
-                          (addEvent)="addToCart($event, item.slug, item.ship_alone ? 'free' : locationMap[item.location.slug].sequence)"
-                          (subtractEvent)="subtractFromCart($event, item.slug, item.ship_alone ? 'free' : locationMap[item.location.slug].sequence)">
+                          (addEvent)="addToCart($event, item.slug, item.ship_alone ? 'free' : locationMap[item.location.code].sequence)"
+                          (subtractEvent)="subtractFromCart($event, item.slug, item.ship_alone ? 'free' : locationMap[item.location.code].sequence)">
                         </onpicks-list-active-button>
 
                         <div
@@ -446,24 +446,24 @@
                       <span class="search-content__price-info--MSRP-discount subtitle-3-regular u-color-grey">{{item.msrp | onpicksCurrency : (currency| async)}}</span>
                     </div>
                     <div class="search-content__delivery-point">
-                      <ng-container [ngSwitch]="item.location?.slug">
-                        <ng-container *ngSwitchCase="'lax'" >
+                      <ng-container [ngSwitch]="item.location?.code">
+                        <ng-container *ngSwitchCase="'LAX'" >
                           <span class="search-content__delivery-point--icon icon-small-la"></span>
                           <span class="search-content__delivery-point--text subtitle-2-regular u-color-black"><strong>엘에이</strong> 출고</span>
                         </ng-container>
-                        <ng-container *ngSwitchCase="'jfk'">
+                        <ng-container *ngSwitchCase="'JFK'">
                           <span class="search-content__delivery-point--icon icon-small-new"></span>
                           <span class="search-content__delivery-point--text subtitle-2-regular u-color-black"><strong>뉴저지</strong> 출고</span>
                         </ng-container>
-                        <ng-container *ngSwitchCase="'atl'">
+                        <ng-container *ngSwitchCase="'ATL'">
                           <span class="search-content__delivery-point--icon icon-small-gorgia"></span>
                           <span class="search-content__delivery-point--text subtitle-2-regular u-color-black"><strong>죠지아</strong> 출고</span>
                         </ng-container>
-                        <ng-container *ngSwitchCase="'kix'">
+                        <ng-container *ngSwitchCase="'KIX'">
                           <span class="search-content__delivery-point--icon icon-small-osaka"></span>
                           <span class="search-content__delivery-point--text subtitle-2-regular u-color-black"><strong>오사카</strong> 출고</span>
                         </ng-container>
-                        <ng-container *ngSwitchCase="'hkg'">
+                        <ng-container *ngSwitchCase="'HKG'">
                           <span class="search-content__delivery-point--icon icon-small-hong"></span>
                           <span class="search-content__delivery-point--text subtitle-2-regular u-color-black"><strong>홍콩</strong> 출고</span>
                         </ng-container>

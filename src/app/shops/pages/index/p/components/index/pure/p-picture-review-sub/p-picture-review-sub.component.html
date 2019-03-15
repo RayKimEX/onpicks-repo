@@ -1,4 +1,4 @@
-<div class="p-customer" [ngStyle]="{ display : (reviews$ | async)?.results.length > 0 ? 'block' : 'none'}" style="margin-bottom: 5.7rem;">
+<div class="p-customer" *ngIf="imagesCount > 0" style="margin-bottom: 5.7rem;">
   <div class="p-customer__title">
     <h1 class="h1-bold">사진 후기</h1>
     <!--<span class=" u-float-right"><a href="#" class="subtitle-1-regular u-color-grey">모두보기</a></span>-->

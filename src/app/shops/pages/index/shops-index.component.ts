@@ -158,7 +158,7 @@ export class ShopsIndexComponent implements OnInit, AfterViewInit {
           'rating' : 5
         },
         'location': {
-          'slug': 'lax',
+          'code': 'LAX',
           'name': '엘에이',
           'base_shipping_fee': 9000,
           'free_shipping_threshold': 150000
@@ -198,7 +198,7 @@ export class ShopsIndexComponent implements OnInit, AfterViewInit {
           'rating' : 4
         },
         'location': {
-          'slug': 'hkg',
+          'code': 'HKG',
           'name': '홍콩',
           'base_shipping_fee': 9000,
           'free_shipping_threshold': 150000
@@ -238,7 +238,7 @@ export class ShopsIndexComponent implements OnInit, AfterViewInit {
           'rating' : 4.5
         },
         'location': {
-          'slug': 'jfk',
+          'code': 'JFK',
           'name': '뉴저지',
           'base_shipping_fee': 9000,
           'free_shipping_threshold': 150000
@@ -278,7 +278,7 @@ export class ShopsIndexComponent implements OnInit, AfterViewInit {
           'rating' : 4.2
         },
         'location': {
-          'slug': 'hkg',
+          'code': 'HKG',
           'name': '홍콩',
           'base_shipping_fee': 9000,
           'free_shipping_threshold': 150000
@@ -318,7 +318,7 @@ export class ShopsIndexComponent implements OnInit, AfterViewInit {
           'rating' : 4
         },
         'location': {
-          'slug': 'hkg',
+          'code': 'HKG',
           'name': '홍콩',
           'base_shipping_fee': 9000,
           'free_shipping_threshold': 150000

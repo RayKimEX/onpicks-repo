@@ -165,7 +165,7 @@
                     'trending-reviews-halfM__delivery-point' :
                     'trending-reviews-fullM__delivery-point'
                   ]">
-                  <ng-container [ngSwitch]="locationMap[item.location.slug].sequence">
+                  <ng-container [ngSwitch]="locationMap[item.location.code].sequence">
                     <ng-container *ngSwitchCase="1" >
                       <span
                         [ngClass]="[

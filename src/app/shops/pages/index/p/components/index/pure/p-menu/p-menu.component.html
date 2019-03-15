@@ -70,21 +70,24 @@
 
           <span [ngClass]=
             "[
-              (locationMap[_data?.location.slug]?.nickname === 'la')  ? 'icon-small-la' : '',
-              (locationMap[_data?.location.slug]?.nickname === 'new')  ? 'icon-small-new' : '',
-              (locationMap[_data?.location.slug]?.nickname === 'osaka')  ? 'icon-small-osaka' : '',
-              (locationMap[_data?.location.slug]?.nickname === 'gorgia')  ? 'icon-small-gorgia' : '',
-              (locationMap[_data?.location.slug]?.nickname === 'hong')  ? 'icon-small-hong' : ''
+              (locationMap[_data?.location.code]?.nickname === 'la')  ? 'icon-small-la' : '',
+              (locationMap[_data?.location.code]?.nickname === 'new')  ? 'icon-small-new' : '',
+              (locationMap[_data?.location.code]?.nickname === 'osaka')  ? 'icon-small-osaka' : '',
+              (locationMap[_data?.location.code]?.nickname === 'gorgia')  ? 'icon-small-gorgia' : '',
+              (locationMap[_data?.location.code]?.nickname === 'hong')  ? 'icon-small-hong' : ''
             ]">
           </span>
           <span class="p-menu__delivery--first-spot subtitle-2-bold">
             {{_data?.location?.name}}
           </span>
-          <span class="p-menu__delivery--first-info subtitle-2-regular">출고, 묶음배송, {{9000| onpicksCurrency: (currency| async)}}</span>
+          <span *ngIf="_data?.shipping_fee == 0" class="p-menu__delivery--first-info subtitle-2-regular">출고,
+              <span class="p-menu__delivery--first-info subtitle-2-bold"> 무료배송</span>
+          </span>
+          <span *ngIf="_data?.shipping_fee > 0" class="p-menu__delivery--first-info subtitle-2-regular">출고, 묶음배송, {{_data?.shipping_fee | onpicksCurrency: (currency| async)}}</span>
 
         </div>
 
-        <div class="p-menu__delivery--second subtitle-2-regular u-color-dark-grey">{{_data?.location?.name}} 묶음배송 상품 {{80000 | onpicksCurrency : (currency| async) }} 이상 배송료 무료</div>
+        <div *ngIf="_data?.shipping_fee > 0" class="p-menu__delivery--second subtitle-2-regular u-color-dark-grey">{{_data?.location?.name}} 묶음배송 상품 {{_data?.location?.free_shipping_threshold | onpicksCurrency : (currency| async) }} 이상 배송료 무료</div>
       </div>
     </div>
 
@@ -114,7 +117,7 @@
       </onpicks-select-box>
 
       <onpicks-button
-        (click)="addToCart(_data?.ship_alone ? 'free' : locationMap[_data?.location.slug].sequence)"
+        (click)="addToCart(_data?.ship_alone ? 'free' : locationMap[_data?.location.code].sequence)"
         [type]="'black'"
         [marginLeft]="'1.2rem'"
         [size]="'big'"

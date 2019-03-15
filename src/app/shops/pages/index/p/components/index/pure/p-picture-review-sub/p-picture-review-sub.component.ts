@@ -33,7 +33,8 @@ export class PPictureReviewSubComponent {
 
     if ( xData === null ) { return ; };
 
-    this.imagesLargeList = xData;
+    this.imagesCount = xData.count;
+    this.imagesLargeList = xData.results;
     this.imagesLargeList.unshift({});
     this.imagesLargeList.push({});
 
@@ -73,6 +74,7 @@ export class PPictureReviewSubComponent {
   translateXWidth = 0;
   firstOffset = 0;
 
+  imagesCount = 0;
   imagesLargeList = [];
   imagesSmallList = [];
 
@@ -84,7 +86,6 @@ export class PPictureReviewSubComponent {
 
   animationEndEvent;
 
-  reviews$;
   constructor(
     private renderer: Renderer2,
     private store: Store<any>,
@@ -94,7 +95,6 @@ export class PPictureReviewSubComponent {
     private route: ActivatedRoute
     //
   ) {
-    this.reviews$ = this.store.pipe(select((state) => state['p']['reviews']));
   }
 
   @HostListener('window:resize', ['$event'])
