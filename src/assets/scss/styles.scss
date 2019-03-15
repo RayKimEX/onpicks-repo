@@ -31,9 +31,9 @@ html {
   @include respond(sb){
     font-size : 58%;
   }
-  @include respond(tb){
-    font-size : 52%;
-  }
+  //@include respond(tb){
+  //  font-size : 52%;
+  //}
 
 
 }
