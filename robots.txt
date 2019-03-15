@@ -1,0 +1,11 @@
+User-agent: *
+
+Disallow: /*/account/
+Disallow: /*/checkout/
+Disallow: /*/order/
+Disallow: /*/showcases/
+Disallow: /*/member/
+Disallow: /*/help/
+Disallow: /*/term/
+Disallow: /api/
+Disallow: /admin/
