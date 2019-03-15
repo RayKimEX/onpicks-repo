@@ -1,3 +1,13 @@
 User-agent: *
 
-Disallow: /
+Disallow: /*/account/
+Disallow: /*/checkout/
+Disallow: /*/order/
+Disallow: /*/showcases/
+Disallow: /*/member/
+Disallow: /*/help/
+Disallow: /*/term/
+Disallow: /api/
+Disallow: /admin/
+
+Sitemap: https://www.onpicks.com/sitemap.xml
