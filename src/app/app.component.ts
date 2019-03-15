@@ -11,6 +11,7 @@ import {tap} from 'rxjs/operators';
 import {fromEvent} from 'rxjs';
 import {BreakpointObserver, BreakpointState} from '../../node_modules/@angular/cdk/layout';
 import {RESPONSIVE_MAP} from './app.config';
+import {DOCUMENT} from '@angular/common';
 
 @Component({
   selector: 'onpicks-root',
@@ -51,7 +52,7 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit, DoCheck {
     this.store.dispatch(new TryGetAuthUser());
     this.store.dispatch(new TryGetCartInfo());
     this.store.dispatch(new TryGetWishListInfo());
-
+    document.getElementsByTagName('html')[0].setAttribute('lang', locale);
 
     this.breakpointObserver
       .observe([this.responsiveMap['desktop']])
@@ -210,6 +211,7 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit, DoCheck {
 
   ngOnInit() {
     // TODO : 해당 아래코드를 AppComponent OnInit에 하지 말고, App.Module의 FactoryProvider를 통해 가능한지 ?
+
     if ( this.locale !== 'ko' ) {
       require( 'style-loader!./../assets/scss/typography/typography.ko.scss');
     } else {
