@@ -247,7 +247,7 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
   routeForDeskTop( ) {
     this.renderer.removeChild(document.body, this.tempDiv);
     this.renderer.setStyle(this.menuRef.nativeElement, 'display', 'none');
-    // this.router.navigate([xUrl]);
+    this.router.navigate([xUrl]);
   }
 
   routeForMobile(xUrl, xInputChecked) {

@@ -366,8 +366,8 @@
       <nav>
         <ul class="header-menu__item" *ngFor="let item of menuMap[locale]?.main">
           <li>
-            <div class=""
-              [routerLink]="'/shops/c/' + item.href" (click)="routeForDeskTop()">
+            <a
+              (click)="routeForDeskTop('/shops/c/' + item.href)">
               <div
                 class="header-menu__item--title"
                 [ngClass] =
@@ -379,7 +379,7 @@
                 ]">
                 <span>{{item.name}}</span>
               </div>
-            </div>
+            </a>
           </li>
           <li class="header-menu__item--category"
               *ngFor="let subItem of item.sub">
