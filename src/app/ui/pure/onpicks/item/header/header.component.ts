@@ -209,24 +209,26 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
 
   }
 
-  outMenu() {
+  outMenu(xMenuToggle) {
     this.renderer.removeChild(document.body, this.tempDiv);
-    this.renderer.setStyle(this.menuRef.nativeElement, 'display', 'none');
+    this.renderer.setProperty(xMenuToggle, 'checked', false);
   }
 
-  hoverMenu() {
+  hoverMenu(xInputChecked, xMenuToggle) {
 
     console.log('ddd');
-    this.renderer.appendChild(document.body, this.tempDiv);
-    this.renderer.setStyle(this.tempDiv, 'top', '0');
-    this.renderer.setStyle(this.tempDiv, 'position', 'absolute');
-    this.renderer.setStyle(this.tempDiv, 'display', 'block');
-    this.renderer.setStyle(this.tempDiv, 'width', '100%');
-    this.renderer.setStyle(this.tempDiv, 'height', document.body.clientHeight + 'px');
-    this.renderer.setStyle(this.tempDiv, 'z-index', '10');
-    this.renderer.setStyle(this.tempDiv, 'background-color', '#000000');
-    this.renderer.setStyle(this.tempDiv, 'opacity', '0.5');
-    this.renderer.setStyle(this.menuRef.nativeElement, 'display', 'block');
+    // this.renderer.appendChild(document.body, this.tempDiv);
+    // this.renderer.setStyle(this.tempDiv, 'top', '0');
+    // this.renderer.setStyle(this.tempDiv, 'position', 'absolute');
+    // this.renderer.setStyle(this.tempDiv, 'display', 'block');
+    // this.renderer.setStyle(this.tempDiv, 'width', '100%');
+    // this.renderer.setStyle(this.tempDiv, 'height', document.body.clientHeight + 'px');
+    // this.renderer.setStyle(this.tempDiv, 'z-index', '10');
+    // this.renderer.setStyle(this.tempDiv, 'background-color', '#000000');
+    // this.renderer.setStyle(this.tempDiv, 'opacity', '0.5');
+    this.renderer.setProperty(xInputChecked, 'checked', true);
+    this.renderer.setProperty(xMenuToggle, 'checked', true);
+    // this.renderer.setStyle(this.menuRef.nativeElement, 'display', 'block');
   }
 
   showPreparingMessage() {
@@ -246,8 +248,8 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
 
   routeForDeskTop( xUrl ) {
     this.renderer.removeChild(document.body, this.tempDiv);
-    this.renderer.setStyle(this.menuRef.nativeElement, 'display', 'none');
-    this.router.navigate([xUrl]);
+    // this.renderer.setStyle(this.menuRef.nativeElement, 'display', 'none');
+    // this.router.navigate([xUrl]);
   }
 
   routeForMobile(xUrl, xInputChecked) {
@@ -301,5 +303,6 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
     console.log('@@@@@@@@@@@@@@@@remove modal 4');
     location.href = '/shops';
   }
+
 }
 

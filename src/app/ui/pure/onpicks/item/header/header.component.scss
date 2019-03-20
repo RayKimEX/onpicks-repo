@@ -17,12 +17,42 @@
   }
 }
 
+.navigation__menu-toggle:checked ~ .header-menu__outer {
+  display:block;
+}
+
+
+
+.navigation__menu-toggle:checked ~ .header-menu__background {
+  display:block;
+}
+.header-menu__background {
+  display:none;
+  position:fixed;
+  top: 0;
+  width : 100%;
+  height : 100%;
+  z-index : 0;
+  background-color : #000000;
+  opacity : 0.5;
+}
 
 .navigation {
   display:table-cell;
   width:100%;
   vertical-align: middle;
   position:relative;
+
+
+  &__menu-toggle {
+    display:none;
+  }
+
+  &__menu-toggle:checked + .header-menu__outer {
+    display:block;
+  }
+
+
 
   &__icon {
     float:right;
@@ -105,6 +135,10 @@
     top: 0;
     transform: rotate(-135deg);
   }
+
+
+
+  // &__checkbox:checked
 }
 
 
@@ -170,6 +204,9 @@
     }
   }
   &__main-menu {
+    z-index : 11;
+    position:relative;
+    background-color :#ffffff;
     @include respond(desktop) {
       display:none;
     }
@@ -393,36 +430,27 @@
 
   &-menu {
 
-    &__recommend{
-      max-width : $grid-width;
+    &__recommend {
+      max-width: $grid-width;
       margin: 0 auto;
       height: 7.2rem;
-      position:relative;
+      position: relative;
       &--ul {
         @include verticalCenter;
         list-style: none;
         &-item {
 
-
-          a{
-            color : $color-black;
+          a {
+            color: $color-black;
           }
 
-          float:left;
-          display : inline-block;
-          width:26.4rem;
-          font-size : 1.4rem;
-          line-height : 1.71;
-          vertical-align:middle;
+          float: left;
+          display: inline-block;
+          width: 26.4rem;
+          vertical-align: middle;
 
-          &:first-child {
-            font-size : 1.6rem;
-            font-weight : 700;
-            line-height : 1.5;
-            letter-spacing : 0.04rem;
-          }
-          &:not(:last-child){
-            margin-right : 2.4rem;
+          &:not(:last-child) {
+            margin-right: 2.4rem;
           }
         }
 
@@ -442,6 +470,19 @@
         max-width : $grid-width;
         margin: 0 auto;
         @include clearfix;
+      }
+      //
+      &:nth-of-type(1){
+          content:' ';
+          display:block;
+          position:fixed;
+          top: 0;
+          width : 100%;
+          margin-top : 51rem;
+          height : 100%;
+          z-index : 0;
+          background-color : #000000;
+          opacity : 0.5;
       }
     }
 
@@ -463,15 +504,6 @@
 
         height : 12rem;
         display:block;
-
-        span {
-          margin-bottom: 3rem;
-          display:block;
-          font-size: 1.8rem;
-          font-weight : 700;
-          line-height : 1.33;
-          letter-spacing : 0.03rem;
-        }
 
         &-pantry-and-household{
           background-position: right bottom;
@@ -512,13 +544,6 @@
 
       // TODO : CSS ORDER 정리 ( 가독성이 현재 떨어짐 )
       li {
-        font-size:1.4rem;
-        line-height: 1.71;
-
-        a{
-          font-weight: 400;
-          color: $color-black;
-        }
 
         &:last-child {
           a{

@@ -2,7 +2,6 @@
 
 <header
   class="header"
-  (mouseleave)="outMenu()"
   *ngIf="(auth$ | async) as auth;">
   <div class="header__inner" >
 
@@ -11,7 +10,7 @@
         <div class="header__miscell--inner">
           <!--<emitter-change-preference class="header__miscell&#45;&#45;item">{{ region === '/kr' ? 'KOR' : 'USA' }}</emitter-change-preference>-->
           <emitter-change-preference
-            (showEvent)="outMenu()"
+            (showEvent)="outMenu(menuToggle)"
             [type]="'currency'"
             class="header__miscell--item">
             {{ (currency | async) === 'KRW' ? 'KRW ₩' : 'USD $' }}
@@ -68,7 +67,7 @@
                 <a
                    class="h1-bold u-color-grey"
                    #shops
-                   (mouseenter)="hoverMenu()"
+                   (mouseenter)="hoverMenu(inputCheckedForToggle, menuToggle)"
                    routerLink="/shops"
                    [ngClass]="{ 'u-color-black' : ((url$ | async)[1] !== 'showcases') && ((url$ | async)[1] !== 'events')  && ((url$ | async)[1] !== 'reviews')}"
                    i18n="@@header__shops">
@@ -194,9 +193,9 @@
     <!-- && (currentUrl.length > 2 ? !(currentUrl[2].indexOf('search') > -1) : true )? 'block' : 'none'}-->
     <div
       #mobileHamburger
-      [ngStyle]="{ display: inputCheckedForToggle.checked ? 'block' : 'none'}"
-      class="header__mobile-hamburger" [attr.value]="inputCheckedForToggle.checked ">
 
+      class="header__mobile-hamburger" [attr.value]="inputCheckedForToggle.checked ">
+      <!--[ngStyle]="{ display: inputCheckedForToggle.checked ? 'block' : 'none'}"-->
       <nav *ngIf="isShowSettingMenu">
         <ul
           class="header__mobile-hamburger--ul subtitle-2-regular">
@@ -362,51 +361,59 @@
 
 
 
-    <div #menu class="header-menu__outer">
+    <input
+      type="checkbox"
+      id="menu_toggle"
+      class="navigation__menu-toggle"
+      #menuToggle>
+
+
+    <div
+      (mouseenter)="outMenu(menuToggle)"
+      class="header-menu__background"></div>
+    <div class="header-menu__outer" #menu>
       <nav>
         <ul class="header-menu__item" *ngFor="let item of menuMap[locale]?.main">
           <li>
-            <a
-              (click)="routeForDeskTop('/shops/c/' + item.href)">
-              <div
-                class="header-menu__item--title"
-                [ngClass] =
-                "[
-                  (item.slug === 'pantry-and-household')  ? 'header-menu__item--title-pantry-and-household' : '',
-                  (item.slug === 'beauty')  ? 'header-menu__item--title-beauty' : '',
-                  (item.slug === 'baby')  ? 'header-menu__item--title-baby' : '',
-                  (item.slug === 'health')  ? 'header-menu__item--title-health' : ''
-                ]">
-                <span>{{item.name}}</span>
-              </div>
-            </a>
+            <div
+              class="header-menu__item--title h1-bold"
+              [ngClass] =
+              "[
+                (item.slug === 'pantry-and-household')  ? 'header-menu__item--title-pantry-and-household' : '',
+                (item.slug === 'beauty')  ? 'header-menu__item--title-beauty' : '',
+                (item.slug === 'baby')  ? 'header-menu__item--title-baby' : '',
+                (item.slug === 'health')  ? 'header-menu__item--title-health' : ''
+              ]">
+              <span (click)="menuToggle.checked = false;">
+                <a [routerLink]="'/shops/c/' + item.href">{{item.name}}</a>
+              </span>
+            </div>
+
           </li>
-          <li class="header-menu__item--category"
+          <li class="header-menu__item--category subtitle-2-regular"
               *ngFor="let subItem of item.sub">
-            <a
-              (click)="routeForDeskTop('/shops/c/' + subItem.href)">
-              {{subItem.name}}
-            </a>
+            <span (click)="menuToggle.checked = false;">
+               <a [routerLink]="'/shops/c/' + subItem.href">{{subItem.name}}</a>
+            </span>
           </li>
-          <li class="header-menu__item--category">
-            <a
-              (click)="routeForDeskTop('/shops/c/' + item.href)">
-              {{item.name}} 더보기 >
-            </a>
+          <li class="header-menu__item--category subtitle-2-bold">
+            <span (click)="menuToggle.checked = false;">
+              <a [routerLink]="'/shops/c/' + item.href">{{item.name}} 더보기 ></a>
+            </span>
           </li>
         </ul>
       </nav>
       <div class="header-menu__recommend">
         <ul class="header-menu__recommend--ul">
-          <li class="header-menu__recommend--ul-item" i18n="@@header-menu__recommend-category"> </li>
-          <li class="header-menu__recommend--ul-item" *ngFor="let item of menuMap[locale]?.recommandCategory"><a [routerLink]="'/shops/c/' + item.href">{{item.name}}</a></li>
+          <li class="header-menu__recommend--ul-item subtitle-2-bold" i18n="@@header-menu__recommend-category"> </li>
+          <li class="header-menu__recommend--ul-item subtitle-2-regular" *ngFor="let item of menuMap[locale]?.recommandCategory"><a [routerLink]="'/shops/c/' + item.href">{{item.name}}</a></li>
         </ul>
       </div>
-    </div>
-    <div #alertMessage class="header__alert">
-      <span class="header__alert--message subtitle-2-regular u-color-green">언녕하세요</span>
-      <span></span>
     </div>
 
   </div>
 </header>
+<div #alertMessage class="header__alert">
+  <span class="header__alert--message subtitle-2-regular u-color-green">언녕하세요</span>
+  <span></span>
+</div>
