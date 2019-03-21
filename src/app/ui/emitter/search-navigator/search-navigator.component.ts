@@ -24,6 +24,7 @@ import {DisplayAlertMessage} from '../../../core/store/ui/ui.actions';
 import {BehaviorSubject, combineLatest, merge} from 'rxjs';
 import {CATEGORY_CODE_MAP} from '../../../app.database';
 import {BreakpointObserver, BreakpointState} from '../../../../../node_modules/@angular/cdk/layout';
+import {Title} from '@angular/platform-browser';
 @Component({
   selector: 'emitter-search-navigator',
   templateUrl: './search-navigator.component.html',
@@ -54,6 +55,7 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
   currentName = '';
   currentCategory = 0;
   currentParamList = {};
+  contentHeight;
 
   imageIndex = 0;
 
@@ -119,6 +121,7 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
     private cd: ChangeDetectorRef,
     private searchService: SearchService,
     private breakpointObserver:  BreakpointObserver,
+    private titleService: Title,
   ) {
 
     this.breakpointObserver
@@ -143,6 +146,8 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
         this.currentCode = val.currentCode;
         this.currentName = val.currentName;
         this.currentTitle = val.currentTitle;
+
+        this.titleService.setTitle(this.currentName);
       });
 
     this.cartStore$ = this.store.pipe(select(state => state.cart))
@@ -330,7 +335,7 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-
+    this.contentHeight = (window.screen.height - 400) < 300 ? '' : (window.screen.height) + 'px';
   }
 
   showMobileFilter(xMenuState) {

@@ -42,6 +42,7 @@ export class PIndexComponent implements OnInit, OnDestroy {
   previousYOffset = 0;
   isShowMobileMenu = true;
   isExpendMobileMenu = false;
+  contentHeight;
 
   numberOptionList = {
     list : [
@@ -168,6 +169,8 @@ export class PIndexComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.contentHeight = (window.screen.height - 400) < 300 ? '' : (window.screen.height) + 'px';
+
     this.breakpointObserver
       .observe([this.categoryMap['desktop']])
       .subscribe((state: BreakpointState) => {

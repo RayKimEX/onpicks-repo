@@ -10,6 +10,7 @@ import {Store} from '@ngrx/store';
 import {TryLogin} from '../../../core/store/auth/auth.actions';
 import {AuthService} from '../../../core/service/auth/auth.service';
 import {Router} from '@angular/router';
+import {Title} from '@angular/platform-browser';
 
 
 @Component({
@@ -27,8 +28,9 @@ export class LoginComponent implements OnInit {
     private store: Store<AppState>,
     private authService: AuthService,
     private router: Router,
+    private titleService: Title
   ) {
-
+    this.titleService.setTitle('온픽스, 건강하고 아름다운 삶을 위한 선택');
   }
 
   info = {

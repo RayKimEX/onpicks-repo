@@ -24,7 +24,7 @@ export class FeedComponent implements OnInit, OnDestroy {
 
   userState$;
 
-  contentHeight = '';
+  contentHeight;
 
   feedList = []
   feedList$;

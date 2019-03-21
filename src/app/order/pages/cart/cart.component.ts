@@ -19,6 +19,7 @@ import {HttpClient} from '@angular/common/http';
 import {UiService} from '../../../core/service/ui/ui.service';
 import {DisplayAlertMessage} from '../../../core/store/ui/ui.actions';
 import {BehaviorSubject} from 'rxjs';
+import {Title} from '@angular/platform-browser';
 
 @Component({
   selector: 'onpicks-cart',
@@ -48,8 +49,10 @@ export class CartComponent {
     private store: Store<any>,
     private httpClient: HttpClient,
     private cd: ChangeDetectorRef,
-    private uiService: UiService
+    private uiService: UiService,
+    private titleService: Title
   ) {
+    this.titleService.setTitle('온픽스, 건강하고 아름다운 삶을 위한 선택');
     this.cartStore$ = this.store.pipe(
       select( state => state.cart ),
       tap( state => this.cartStore = state),

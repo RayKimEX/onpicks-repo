@@ -1,6 +1,7 @@
 import {AfterViewInit, ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {UiService} from '../../../core/service/ui/ui.service';
 import {tap} from 'rxjs/operators';
+import {Title} from '@angular/platform-browser';
 
 @Component({
   selector: 'onpicks-shops-index',
@@ -338,7 +339,9 @@ export class ShopsIndexComponent implements OnInit, AfterViewInit {
 
   constructor(
     private uiDataService: UiService,
+    private titleService: Title
   ) {
+    this.titleService.setTitle( '온픽스, 건강하고 아름다운 삶을 위한 선택' );
     this.weeklyBest$ = this.uiDataService.getWeeklyBestGoods().pipe( tap( v => {
       console.log(v);
     }) );

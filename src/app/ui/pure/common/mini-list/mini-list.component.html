@@ -158,8 +158,8 @@
                     'ui-mini-list-halfM__delivery-point' :
                     'ui-mini-list-fullM__delivery-point'
                   ]">
-                  <ng-container [ngSwitch]="locationMap[item.location.code].sequence">
-                    <ng-container *ngSwitchCase="1" >
+                  <ng-container [ngSwitch]="item.location?.code">
+                    <ng-container *ngSwitchCase="'LAX'" >
                       <span
                         [ngClass]="[
                           mobileType === 'half' ?
@@ -175,7 +175,7 @@
                         ]"
                         class="subtitle-2-regular u-color-black"><strong>엘에이</strong> 출고</span>
                     </ng-container>
-                    <ng-container *ngSwitchCase="2">
+                    <ng-container *ngSwitchCase="'JFK'">
                       <span
                         [ngClass]="[
                           mobileType === 'half' ?
@@ -191,7 +191,7 @@
                         ]"
                         class="subtitle-2-regular u-color-black"><strong>뉴저지</strong> 출고</span>
                     </ng-container>
-                    <ng-container *ngSwitchCase="0">
+                    <ng-container *ngSwitchCase="'ATL'">
                       <span
                         [ngClass]="[
                           mobileType === 'half' ?
@@ -207,7 +207,7 @@
                         ]"
                         class="subtitle-2-regular u-color-black"><strong>죠지아</strong> 출고</span>
                     </ng-container>
-                    <ng-container *ngSwitchCase="4">
+                    <ng-container *ngSwitchCase="'KIX'">
                       <span
                         [ngClass]="[
                           mobileType === 'half' ?
@@ -223,7 +223,7 @@
                         ]"
                         class="subtitle-2-regular u-color-black"><strong>오사카</strong> 출고</span>
                     </ng-container>
-                    <ng-container *ngSwitchCase="3">
+                    <ng-container *ngSwitchCase="'HKG'">
                       <span
                         [ngClass]="[
                           mobileType === 'half' ?
@@ -248,8 +248,5 @@
       </div>
     </div>
   </div>
-
-
-
 </div>
 

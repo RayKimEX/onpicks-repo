@@ -25,7 +25,7 @@
   [isShowMobileFilter]="isShowMobileFilter">
 </onpicks-search-navigator-mobile-filter>
 
-<div class="row">
+<div class="row" [ngStyle]="{ minHeight : contentHeight }">
     <ng-container
       *ngIf="currentList?.length === 0 && router.url.split('/')[2].indexOf('search') > -1">
       <div class="search-content__empty" >

@@ -3,6 +3,7 @@ import {AppState} from '../../../core/store/app.reducer';
 import {Store} from '@ngrx/store';
 import {Signup, TryLogin} from '../../../core/store/auth/auth.actions';
 import {AuthService} from '../../../core/service/auth/auth.service';
+import {Title} from '@angular/platform-browser';
 
 @Component({
   selector: 'onpicks-signup',
@@ -17,8 +18,11 @@ export class SignupComponent implements OnInit {
 
   constructor(
     private store: Store<AppState>,
-    private authService: AuthService
-  ) { }
+    private authService: AuthService,
+    private titleService: Title,
+  ) {
+    this.titleService.setTitle('온픽스, 건강하고 아름다운 삶을 위한 선택');
+  }
 
   ngOnInit() {
 

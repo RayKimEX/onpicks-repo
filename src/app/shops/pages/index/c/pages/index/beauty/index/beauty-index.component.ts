@@ -1,5 +1,6 @@
 import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {UiService} from '../../../../../../../../core/service/ui/ui.service';
+import {Meta, Title} from '@angular/platform-browser';
 
 @Component({
   selector: 'onpicks-beauty',
@@ -63,8 +64,12 @@ export class BeautyIndexComponent implements OnInit {
   popularBrand$;
 
   constructor(
-    private uiDataService: UiService
+    private uiDataService: UiService,
+    private titleService: Title,
+    private meta: Meta
   ) {
+    this.titleService.setTitle('뷰티');
+    // this.meta.addTag({ name: 'description', content: '유러피안 럭셔리 뷰티' });
     this.popularBrand$ = this.uiDataService.getPopularBrands('beauty');
   }
 
