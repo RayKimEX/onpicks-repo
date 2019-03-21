@@ -3,250 +3,257 @@
   <onpicks-loading-icon></onpicks-loading-icon>
 </ng-template>
 
-<div class="row-list-scroll" *ngIf="infoList !== null; else loading">
-
-  <div
-    [ngClass]=
-      "[ mobileType === 'half' ? 'ui-mini-list-halfM' : 'ui-mini-list-fullM']"
-    class="u-margin-bottom">
-
-    <h1
-      #insertTitle
-      [ngClass]=
-        "[ mobileType === 'half' ? 'ui-mini-list-halfM__title' : 'ui-mini-list-fullM__title']"
-      class="h1-bold">{{setTitle}}</h1>
+<ng-container *ngLet="(currency| async) as currencyAsync">
+  <div class="row-list-scroll" *ngIf="infoList !== null; else loading">
     <div
-      [ngClass]="[
-          mobileType === 'half' ?
-          'ui-mini-list-halfM__content--outer' :
-          'ui-mini-list-fullM__content--outer'
-        ]">
-        <onpicks-circle-n-button
-          *ngIf="imageIndex  < (infoList?.length - carouselLength) "
-          [top]="'12.6rem'"
-          [right]="'-2.2rem'"
-          (click)="nextButton()" >
-        </onpicks-circle-n-button>
-        <onpicks-circle-p-button
-          *ngIf="imageIndex !== 0"
-          [top]="'12.6rem'"
-          [left]="'-2rem'"
-          (click)="prevButton()">
-        </onpicks-circle-p-button>
+      [ngClass]=
+        "[ mobileType === 'half' ? 'ui-mini-list-halfM' : 'ui-mini-list-fullM']"
+      class="u-margin-bottom">
+
+      <h1
+        #insertTitle
+        [ngClass]=
+          "[ mobileType === 'half' ? 'ui-mini-list-halfM__title' : 'ui-mini-list-fullM__title']"
+        class="h1-bold">{{setTitle}}</h1>
       <div
         [ngClass]="[
-          mobileType === 'half' ?
-          'ui-mini-list-halfM__content' :
-          'ui-mini-list-fullM__content'
-        ]">
-        <ul
-          class="ui-mini-list-halfM__content-ul"
-          #container>
-          <ng-container *ngFor="let item of infoList; index as i">
-            <li
-              class="ui-mini-list-halfM__content-li"
-              *ngIf="pressedPrev ? i < imageIndex + 7 : i < imageIndex + carouselLength">
-              <div
-                [ngClass]="[
-                  mobileType === 'half' ?
-                  'ui-mini-list-halfM__item' :
-                  'ui-mini-list-fullM__item'
-                ]">
+            mobileType === 'half' ?
+            'ui-mini-list-halfM__content--outer' :
+            'ui-mini-list-fullM__content--outer'
+          ]">
+          <onpicks-circle-n-button
+            *ngIf="imageIndex  < (infoList?.length - carouselLength) "
+            [top]="'12.6rem'"
+            [right]="'-2.2rem'"
+            (click)="nextButton()" >
+          </onpicks-circle-n-button>
+          <onpicks-circle-p-button
+            *ngIf="imageIndex !== 0"
+            [top]="'12.6rem'"
+            [left]="'-2rem'"
+            (click)="prevButton()">
+          </onpicks-circle-p-button>
+        <div
+          [ngClass]="[
+            mobileType === 'half' ?
+            'ui-mini-list-halfM__content' :
+            'ui-mini-list-fullM__content'
+          ]">
+          <ul
+            class="ui-mini-list-halfM__content-ul"
+            #container>
+            <ng-container *ngFor="let item of infoList; index as i">
+              <li
+                class="ui-mini-list-halfM__content-li"
+                *ngIf="pressedPrev ? i < imageIndex + 7 : i < imageIndex + carouselLength">
                 <div
                   [ngClass]="[
-                      mobileType === 'half' ?
-                      'ui-mini-list-halfM__item--image' :
-                      'ui-mini-list-fullM__item--image'
-                    ]">
+                    mobileType === 'half' ?
+                    'ui-mini-list-halfM__item' :
+                    'ui-mini-list-fullM__item'
+                  ]">
                   <div
-                    [routerLink]="'/shops/p/' + item.slug"
+                    [ngClass]="[
+                        mobileType === 'half' ?
+                        'ui-mini-list-halfM__item--image' :
+                        'ui-mini-list-fullM__item--image'
+                      ]">
+                    <div
+                      [routerLink]="'/shops/p/' + item.slug"
+                      [ngClass]="[
+                        mobileType === 'half' ?
+                        'ui-mini-list-halfM__item--image-outer' :
+                        'ui-mini-list-fullM__item--image-outer'
+                      ]">
+                      <div
+                        [ngClass]="[
+                        mobileType === 'half' ?
+                        'ui-mini-list-halfM__item--image-inner' :
+                        'ui-mini-list-fullM__item--image-inner'
+                      ]">
+                          <img drLazyLoad [relativeOption]="false" src="{{item.thumbnail}}" alt="{{item.title}}">
+                      </div>
+                    </div>
+                    <onpicks-list-active-button
+                      [amount]="cartStore?.cartList[item.slug] === undefined ? 0 : cartStore?.cartList[item.slug]?.quantity"
+                      (addEvent)="addToCart($event, item.slug, item.ship_alone ? 'free' : locationMap[item.location.code].sequence)"
+                      (subtractEvent)="subtractFromCart($event, item.slug, item.ship_alone ? 'free' : locationMap[item.location.code].sequence)">
+                    </onpicks-list-active-button>
+                  </div>
+                  <div
                     [ngClass]="[
                       mobileType === 'half' ?
-                      'ui-mini-list-halfM__item--image-outer' :
-                      'ui-mini-list-fullM__item--image-outer'
+                      'ui-mini-list-halfM__item--name-outer' :
+                      'ui-mini-list-fullM__item--name-outer'
                     ]">
                     <div
                       [ngClass]="[
-                      mobileType === 'half' ?
-                      'ui-mini-list-halfM__item--image-inner' :
-                      'ui-mini-list-fullM__item--image-inner'
-                    ]">
-                        <img drLazyLoad [relativeOption]="false" src="{{item.thumbnail}}" alt="{{item.title}}">
+                        mobileType === 'half' ?
+                        'ui-mini-list-halfM__item--name-outer-brand' :
+                        'ui-mini-list-fullM__item--name-outer-brand'
+                      ]"
+                      class="subtitle-2-bold">
+                      <a (click)="goBrandFilter(item?.brand?.slug)">
+                        {{item.brand.name}}
+                      </a>
                     </div>
-                  </div>
-                  <onpicks-list-active-button
-                    [amount]="cartStore?.cartList[item.slug] === undefined ? 0 : cartStore?.cartList[item.slug]?.quantity"
-                    (addEvent)="addToCart($event, item.slug, item.ship_alone ? 'free' : locationMap[item.location.code].sequence)"
-                    (subtractEvent)="subtractFromCart($event, item.slug, item.ship_alone ? 'free' : locationMap[item.location.code].sequence)">
-                  </onpicks-list-active-button>
-                </div>
-                <div
-                  [ngClass]="[
-                    mobileType === 'half' ?
-                    'ui-mini-list-halfM__item--name-outer' :
-                    'ui-mini-list-fullM__item--name-outer'
-                  ]">
-                  <div
-                    [ngClass]="[
-                      mobileType === 'half' ?
-                      'ui-mini-list-halfM__item--name-outer-brand' :
-                      'ui-mini-list-fullM__item--name-outer-brand'
-                    ]"
-                    class="subtitle-2-bold">
-                    <a (click)="goBrandFilter(item?.brand?.slug)">
-                      {{item.brand.name}}
+
+                    <a [routerLink]="'/shops/p/' + item.slug">
+                      <span
+                        [ngClass]="[
+                          mobileType === 'half' ?
+                          'ui-mini-list-halfM__item--name-outer-name' :
+                          'ui-mini-list-fullM__item--name-outer-name'
+                        ]"
+                        class="body-2-regular">
+                        {{item.title}}
+                      </span>
                     </a>
                   </div>
 
-                  <a [routerLink]="'/shops/p/' + item.slug">
+                  <ui-star-rating
+                    [star-point]="item.review_avg_rating"
+                    [size]="10">
+                  </ui-star-rating>
+                  <span class="subtitle-3-regular u-color-dark-grey">{{item.review_count}}</span>
+                  <br>
+                  <span
+                    [ngClass]="[
+                        mobileType === 'half' ?
+                        'ui-mini-list-halfM__price-info--MSRP-mobile-discount' :
+                        'ui-mini-list-fullM__price-info--MSRP-mobile-discount'
+                      ]"
+                    class="subtitle-3-regular u-color-grey">{{item.msrp | onpicksCurrency:currencyAsync}}</span>
+                  <div
+                    [ngClass]="[
+                      mobileType === 'half' ?
+                      'ui-mini-list-halfM__price-info' :
+                      'ui-mini-list-fullM__price-info'
+                    ]">
                     <span
                       [ngClass]="[
                         mobileType === 'half' ?
-                        'ui-mini-list-halfM__item--name-outer-name' :
-                        'ui-mini-list-fullM__item--name-outer-name'
+                        'ui-mini-list-halfM__price-info--discount' :
+                        'ui-mini-list-fullM__price-info--discount'
                       ]"
-                      class="body-2-regular">
-                      {{item.title}}
-                    </span>
-                  </a>
+                      class="subtitle-1-bold u-color-orange">{{100 - round((item.price / item.msrp * 100))}}%</span>
+                    <span
+                      [ngClass]="[
+                        mobileType === 'half' ?
+                        'ui-mini-list-halfM__price-info--price' :
+                        'ui-mini-list-fullM__price-info--price'
+                      ]"
+                      class="subtitle-1-bold">{{item.price | onpicksCurrency:currencyAsync}}</span>
+                    <span
+                      [ngClass]="[
+                        mobileType === 'half' ?
+                        'ui-mini-list-halfM__price-info--MSRP' :
+                        'ui-mini-list-fullM__price-info--MSRP'
+                      ]"
+                      *ngIf="locale == 'en'">MSRP</span>
+                    <span
+                      [ngClass]="[
+                        mobileType === 'half' ?
+                        'ui-mini-list-halfM__price-info--MSRP-discount' :
+                        'ui-mini-list-fullM__price-info--MSRP-discount'
+                      ]"
+                      class="subtitle-3-regular u-color-grey">{{item.msrp | onpicksCurrency:currencyAsync}}</span>
+                  </div>
+                  <div
+                    [ngClass]="[
+                      mobileType === 'half' ?
+                      'ui-mini-list-halfM__delivery-point' :
+                      'ui-mini-list-fullM__delivery-point'
+                    ]">
+                    <ng-container [ngSwitch]="item.location?.code">
+                      <ng-container *ngSwitchCase="'LAX'" >
+                        <span
+                          [ngClass]="[
+                            mobileType === 'half' ?
+                            'ui-mini-list-halfM__delivery-point--icon' :
+                            'ui-mini-list-fullM__delivery-point--icon'
+                          ]"
+                          class="icon-small-la"></span>
+                        <span
+                          [ngClass]="[
+                            mobileType === 'half' ?
+                            'ui-mini-list-halfM__delivery-point--text' :
+                            'ui-mini-list-fullM__delivery-point--text'
+                          ]"
+                          class="subtitle-2-regular u-color-black"><strong>엘에이</strong> 출고</span>
+                      </ng-container>
+                      <ng-container *ngSwitchCase="'JFK'">
+                        <span
+                          [ngClass]="[
+                            mobileType === 'half' ?
+                            'ui-mini-list-halfM__delivery-point--icon' :
+                            'ui-mini-list-fullM__delivery-point--icon'
+                          ]"
+                          class="icon-small-new"></span>
+                        <span
+                          [ngClass]="[
+                            mobileType === 'half' ?
+                            'ui-mini-list-halfM__delivery-point--text' :
+                            'ui-mini-list-fullM__delivery-point--text'
+                          ]"
+                          class="subtitle-2-regular u-color-black"><strong>뉴저지</strong> 출고</span>
+                      </ng-container>
+                      <ng-container *ngSwitchCase="'ATL'">
+                        <span
+                          [ngClass]="[
+                            mobileType === 'half' ?
+                            'ui-mini-list-halfM__delivery-point--icon' :
+                            'ui-mini-list-fullM__delivery-point--icon'
+                          ]"
+                          class="icon-small-gorgia"></span>
+                        <span
+                          [ngClass]="[
+                            mobileType === 'half' ?
+                            'ui-mini-list-halfM__delivery-point--text' :
+                            'ui-mini-list-fullM__delivery-point--text'
+                          ]"
+                          class="subtitle-2-regular u-color-black"><strong>죠지아</strong> 출고</span>
+                      </ng-container>
+                      <ng-container *ngSwitchCase="'KIX'">
+                        <span
+                          [ngClass]="[
+                            mobileType === 'half' ?
+                            'ui-mini-list-halfM__delivery-point--icon' :
+                            'ui-mini-list-fullM__delivery-point--icon'
+                          ]"
+                          class="icon-small-osaka"></span>
+                        <span
+                          [ngClass]="[
+                            mobileType === 'half' ?
+                            'ui-mini-list-halfM__delivery-point--text' :
+                            'ui-mini-list-fullM__delivery-point--text'
+                          ]"
+                          class="subtitle-2-regular u-color-black"><strong>오사카</strong> 출고</span>
+                      </ng-container>
+                      <ng-container *ngSwitchCase="'HKG'">
+                        <span
+                          [ngClass]="[
+                            mobileType === 'half' ?
+                            'ui-mini-list-halfM__delivery-point--icon' :
+                            'ui-mini-list-fullM__delivery-point--icon'
+                          ]"
+                          class="icon-small-hong"></span>
+                        <span
+                          [ngClass]="[
+                            mobileType === 'half' ?
+                            'ui-mini-list-halfM__delivery-point--text' :
+                            'ui-mini-list-fullM__delivery-point--text'
+                          ]"
+                          class="subtitle-2-regular u-color-black"><strong>홍콩</strong> 출고</span>
+                      </ng-container>
+                    </ng-container>
+                  </div>
                 </div>
-
-                <ui-star-rating
-                  [star-point]="item.review_avg_rating"
-                  [size]="10">
-                </ui-star-rating>
-                <span class="subtitle-3-regular u-color-dark-grey">{{item.review_count}}</span>
-                <br>
-                <div
-                  [ngClass]="[
-                    mobileType === 'half' ?
-                    'ui-mini-list-halfM__price-info' :
-                    'ui-mini-list-fullM__price-info'
-                  ]">
-                  <span
-                    [ngClass]="[
-                      mobileType === 'half' ?
-                      'ui-mini-list-halfM__price-info--discount' :
-                      'ui-mini-list-fullM__price-info--discount'
-                    ]"
-                    class="subtitle-1-bold u-color-orange">{{100 - round((item.price / item.msrp * 100))}}%</span>
-                  <span
-                    [ngClass]="[
-                      mobileType === 'half' ?
-                      'ui-mini-list-halfM__price-info--price' :
-                      'ui-mini-list-fullM__price-info--price'
-                    ]"
-                    class="subtitle-1-bold">{{item.price | onpicksCurrency:(currency| async)}}</span>
-                  <span
-                    [ngClass]="[
-                      mobileType === 'half' ?
-                      'ui-mini-list-halfM__price-info--MSRP' :
-                      'ui-mini-list-fullM__price-info--MSRP'
-                    ]"
-                    *ngIf="locale == 'en'">MSRP</span>
-                  <span
-                    [ngClass]="[
-                      mobileType === 'half' ?
-                      'ui-mini-list-halfM__price-info--MSRP-discount' :
-                      'ui-mini-list-fullM__price-info--MSRP-discount'
-                    ]"
-                    class="subtitle-3-regular u-color-grey">{{item.msrp | onpicksCurrency:(currency| async)}}</span>
-                </div>
-                <div
-                  [ngClass]="[
-                    mobileType === 'half' ?
-                    'ui-mini-list-halfM__delivery-point' :
-                    'ui-mini-list-fullM__delivery-point'
-                  ]">
-                  <ng-container [ngSwitch]="item.location?.code">
-                    <ng-container *ngSwitchCase="'LAX'" >
-                      <span
-                        [ngClass]="[
-                          mobileType === 'half' ?
-                          'ui-mini-list-halfM__delivery-point--icon' :
-                          'ui-mini-list-fullM__delivery-point--icon'
-                        ]"
-                        class="icon-small-la"></span>
-                      <span
-                        [ngClass]="[
-                          mobileType === 'half' ?
-                          'ui-mini-list-halfM__delivery-point--text' :
-                          'ui-mini-list-fullM__delivery-point--text'
-                        ]"
-                        class="subtitle-2-regular u-color-black"><strong>엘에이</strong> 출고</span>
-                    </ng-container>
-                    <ng-container *ngSwitchCase="'JFK'">
-                      <span
-                        [ngClass]="[
-                          mobileType === 'half' ?
-                          'ui-mini-list-halfM__delivery-point--icon' :
-                          'ui-mini-list-fullM__delivery-point--icon'
-                        ]"
-                        class="icon-small-new"></span>
-                      <span
-                        [ngClass]="[
-                          mobileType === 'half' ?
-                          'ui-mini-list-halfM__delivery-point--text' :
-                          'ui-mini-list-fullM__delivery-point--text'
-                        ]"
-                        class="subtitle-2-regular u-color-black"><strong>뉴저지</strong> 출고</span>
-                    </ng-container>
-                    <ng-container *ngSwitchCase="'ATL'">
-                      <span
-                        [ngClass]="[
-                          mobileType === 'half' ?
-                          'ui-mini-list-halfM__delivery-point--icon' :
-                          'ui-mini-list-fullM__delivery-point--icon'
-                        ]"
-                        class="icon-small-gorgia"></span>
-                      <span
-                        [ngClass]="[
-                          mobileType === 'half' ?
-                          'ui-mini-list-halfM__delivery-point--text' :
-                          'ui-mini-list-fullM__delivery-point--text'
-                        ]"
-                        class="subtitle-2-regular u-color-black"><strong>죠지아</strong> 출고</span>
-                    </ng-container>
-                    <ng-container *ngSwitchCase="'KIX'">
-                      <span
-                        [ngClass]="[
-                          mobileType === 'half' ?
-                          'ui-mini-list-halfM__delivery-point--icon' :
-                          'ui-mini-list-fullM__delivery-point--icon'
-                        ]"
-                        class="icon-small-osaka"></span>
-                      <span
-                        [ngClass]="[
-                          mobileType === 'half' ?
-                          'ui-mini-list-halfM__delivery-point--text' :
-                          'ui-mini-list-fullM__delivery-point--text'
-                        ]"
-                        class="subtitle-2-regular u-color-black"><strong>오사카</strong> 출고</span>
-                    </ng-container>
-                    <ng-container *ngSwitchCase="'HKG'">
-                      <span
-                        [ngClass]="[
-                          mobileType === 'half' ?
-                          'ui-mini-list-halfM__delivery-point--icon' :
-                          'ui-mini-list-fullM__delivery-point--icon'
-                        ]"
-                        class="icon-small-hong"></span>
-                      <span
-                        [ngClass]="[
-                          mobileType === 'half' ?
-                          'ui-mini-list-halfM__delivery-point--text' :
-                          'ui-mini-list-fullM__delivery-point--text'
-                        ]"
-                        class="subtitle-2-regular u-color-black"><strong>홍콩</strong> 출고</span>
-                    </ng-container>
-                  </ng-container>
-                </div>
-              </div>
-            </li>
-          </ng-container>
-        </ul>
+              </li>
+            </ng-container>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
-</div>
-
+</ng-container>

@@ -16,6 +16,10 @@
   &__delivery-point {
     margin-top : 0.8rem;
     position:relative;
+    @include respond(tb){
+      margin-top : 0.4rem;
+    }
+
 
     &--icon {
       margin-right : 0.8rem;
@@ -33,6 +37,9 @@
 
   &__price-info {
     margin-top: 0.8rem;
+    @include respond(tb){
+      margin-top : 0.4rem;
+    }
 
     &--MSRP {
       margin-right: 0.2rem;
@@ -43,6 +50,18 @@
       &-discount {
         vertical-align: text-top;;
         text-decoration: line-through;
+
+        @include respond(tb){
+          display:none;
+        }
+      }
+
+      &-mobile-discount {
+        margin-top : 0.4rem;
+        display:none;
+        @include respond(tb){
+          display: block;
+        }
       }
     }
 
@@ -106,6 +125,9 @@
 
     &--name-outer {
       margin-bottom: 0.8rem;
+      @include respond(tb){
+        margin-bottom : 0.4rem;
+      }
 
       &-brand {
         margin-bottom: 0.4rem;
@@ -224,6 +246,9 @@
   &__delivery-point {
     margin-top : 0.8rem;
     position:relative;
+    @include respond(tb){
+      margin-top : 0.4rem;
+    }
 
     &--icon {
       margin-right : 0.8rem;
@@ -240,6 +265,9 @@
 
   &__price-info {
     margin-top: 0.8rem;
+    @include respond(tb){
+      margin-top : 0.4rem;
+    }
 
     &--MSRP {
       margin-right: 0.2rem;
@@ -250,6 +278,18 @@
       &-discount {
         vertical-align: text-top;;
         text-decoration: line-through;
+
+        @include respond(tb){
+          display:none;
+        }
+      }
+
+      &-mobile-discount {
+        display:none;
+        margin-top : 0.4rem;
+        @include respond(tb){
+          display: block;
+        }
       }
     }
 
@@ -270,6 +310,9 @@
 
     &--name-outer {
       margin-bottom: 0.8rem;
+      @include respond(tb){
+        margin-bottom : 0.4rem;
+      }
 
       &-brand {
         margin-bottom: 0.4rem;

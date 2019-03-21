@@ -68,8 +68,10 @@ export class PopularBrandComponent implements OnInit, AfterViewInit {
 
   @HostListener('window:resize', ['$event'])
   onResize(event) {
-    const computedStyle = getComputedStyle(( this.itemList.first.nativeElement ), null);
-    this.translateXWidth =  parseInt(computedStyle.width, 10 ) + parseInt(computedStyle.marginRight, 10);
+    if ( this.itemList.first !== null && this.itemList.first !== undefined ) {
+      const computedStyle = getComputedStyle(( this.itemList.first.nativeElement ), null);
+      this.translateXWidth =  parseInt(computedStyle.width, 10 ) + parseInt(computedStyle.marginRight, 10);
+    }
   }
 
   nextButton() {

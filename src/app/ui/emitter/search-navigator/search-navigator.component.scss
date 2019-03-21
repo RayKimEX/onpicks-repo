@@ -497,6 +497,17 @@ onpicks-check-box {
       &-discount {
         vertical-align: text-top;;
         text-decoration: line-through;
+        @include respond(tb){
+          display: none;
+        }
+      }
+
+      &-mobile-discount {
+        display: none;
+        margin-top:0.4rem;
+        @include respond(tb){
+          display: block;
+        }
       }
     }
 
@@ -565,6 +576,9 @@ onpicks-check-box {
 
     &--name-outer {
       margin-bottom: 0.8rem;
+      @include respond(tb){
+        margin-bottom: 0.4rem;
+      }
 
       &-brand {
         margin-bottom: 0.4rem;

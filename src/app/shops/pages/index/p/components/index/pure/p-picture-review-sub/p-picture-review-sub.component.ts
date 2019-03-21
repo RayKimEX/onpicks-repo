@@ -51,19 +51,20 @@ export class PPictureReviewSubComponent {
       // this.imageLargeOuterArray = this.imageLargeOuter.toArray();
 
       this.itemListArray = this.itemList.toArray();
-      const computedStyle = getComputedStyle(( this.itemList.first.nativeElement ), null);
-      this.calculatePercentToPXInterval = setInterval( () => {
-        const isPX = computedStyle.width.endsWith('px');
-        if ( isPX ) {
-          this.firstOffset = parseFloat(computedStyle.width) * 0.8245;
-          this.translateXWidth =  parseInt(computedStyle.width, 10 ) + parseInt(computedStyle.marginRight, 10);
-          this.renderer.setStyle(this.container.nativeElement, 'transition', 'x');
-          this.renderer.setStyle(this.container.nativeElement, 'transform', 'translateX(-' + this.firstOffset + 'px');
-          clearInterval(this.calculatePercentToPXInterval);
-        }
+      if ( this.itemList.first !== undefined ){
+        const computedStyle = getComputedStyle(( this.itemList.first.nativeElement ), null);
+        this.calculatePercentToPXInterval = setInterval( () => {
+          const isPX = computedStyle.width.endsWith('px');
+          if ( isPX ) {
+            this.firstOffset = parseFloat(computedStyle.width) * 0.8245;
+            this.translateXWidth =  parseInt(computedStyle.width, 10 ) + parseInt(computedStyle.marginRight, 10);
+            this.renderer.setStyle(this.container.nativeElement, 'transition', 'x');
+            this.renderer.setStyle(this.container.nativeElement, 'transform', 'translateX(-' + this.firstOffset + 'px');
+            clearInterval(this.calculatePercentToPXInterval);
+          }
 
-      }, 20);
-
+        }, 20);
+      }
 
       this.cd.markForCheck();
     }, 0);

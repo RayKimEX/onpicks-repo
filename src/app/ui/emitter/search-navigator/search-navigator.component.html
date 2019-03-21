@@ -385,7 +385,7 @@
           </div>
           <div class="search-content__content--outer">
             <div class="search-content__content">
-              <ul #container>
+              <ul #container *ngLet="(currency| async) as currencyAync">
                 <li #itemList *ngFor="let item of currentList; index as i" class="search-content__item">
                   <div>
                     <div class="search-content__item--image">
@@ -439,11 +439,12 @@
                     </ui-star-rating>
                     <span class="subtitle-3-regular u-color-dark-grey">{{item.review_count}}</span>
                     <br>
+                    <span class="search-content__price-info--MSRP-discount subtitle-3-regular u-color-grey">{{item.msrp | onpicksCurrency : currencyAync}}</span>
                     <div class="search-content__price-info">
                       <span class="search-content__price-info--discount subtitle-1-bold u-color-orange">{{item.discount_rate | percentPipe}}%</span>
-                      <span class="search-content__price-info--price subtitle-1-bold">{{item.price | onpicksCurrency : (currency| async)}}</span>
+                      <span class="search-content__price-info--price subtitle-1-bold">{{item.price | onpicksCurrency : currencyAync}}</span>
                       <span class="search-content__price-info--MSRP" *ngIf="locale == 'en'">MSRP</span>
-                      <span class="search-content__price-info--MSRP-discount subtitle-3-regular u-color-grey">{{item.msrp | onpicksCurrency : (currency| async)}}</span>
+                      <span class="search-content__price-info--MSRP-discount subtitle-3-regular u-color-grey">{{item.msrp | onpicksCurrency : currencyAync}}</span>
                     </div>
                     <div class="search-content__delivery-point">
                       <ng-container [ngSwitch]="item.location?.code">
