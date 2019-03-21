@@ -102,7 +102,6 @@ export class PReviewsComponent implements AfterViewInit {
         console.log(v);
         this.starMaxList = v.extraInfo.reviewRatingsDist;
 
-        v.results = [ 1, 2, 3, 4, 5, 6 ,7 ,8, 9, 10, 4, 5, 6 ,7 ,8 9, 10, 4, 5, 6 ,7 ,8, 9, 10, 4, 5, 6 ,7 ,8, 9, 10, 4, 5, 6 ,7 ,8, 9, 10, 4, 5, 6 ,7 ,8 9, 10, 4, 5, 6 ,7 ,8 9, 10, 4, 5, 6 ,7 ,8 9, 10, 4, 5, 6 ,7 ,8 9, 10, 4, 5, 6 ,7 ,8 9, 10];
         this.totalList = v.results;
         this.totalCount = this.totalList.length;
         this.totalPage = this.totalCount / this.maxRow;
