@@ -441,6 +441,14 @@ onpicks-check-box {
       list-style : none;
       margin-right : 2.6rem;
 
+      @include respond(tb){
+        margin-right : 2.2rem;
+
+        &:last-of-type {
+          margin-right : 0;
+        }
+      }
+
       div {
         text-align:center;
         display : inline-block;

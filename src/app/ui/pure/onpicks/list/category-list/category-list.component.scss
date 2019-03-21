@@ -34,19 +34,27 @@
     }
 
     @include respond(tb){
+      padding-top: 100%;
       margin-bottom : 1.6rem;
     }
 
     img {
-      width:100%;
-      height:100%;
-      border-radius : 50%;
+      width: 100%;
+      height : 100%;
+
+      @include respond(tb){
+        @include imageAspactRatio;
+      }
+
     }
   }
 
   &__item {
     float : none !important;
     display:inline-block;
+    a {
+      padding-top :100%;
+    }
     img {
       user-select: none;
     }

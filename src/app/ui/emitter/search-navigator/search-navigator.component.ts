@@ -64,7 +64,7 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
   totalPage;
 
   totalPageArray = [];
-  maxRow = 36;
+  maxRow = 6;
 
   currentList = [];
   currentPage = 1;
@@ -223,9 +223,10 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
               this.categoryList = _infoList.aggregation.categories;
 
               console.log(this.categoryList);
+              _infoList.results = [ 1, 2, 3, 4, 5, 6 ,7 ,8, 9, 10, 4, 5, 6 ,7 ,8, 9, 10, 4, 5, 6 ,7 ,8, 9, 10, 4, 5, 6, 9, 10, 4, 5, 6,9, 10, 4, 5, 6];
               this.infoList = _infoList.results;
-
-              this.totalCount = _infoList.count;
+              this.totalCount = _infoList.results.length;
+              // this.totalCount = _infoList.count;
               this.totalPage = this.totalCount / this.maxRow;
 
               this.totalPageArray = Array(parseInt(this.totalPage, 10));
