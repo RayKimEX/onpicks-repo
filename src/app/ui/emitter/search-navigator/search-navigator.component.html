@@ -334,7 +334,7 @@
       </div>
 
       <div class="col-9-of-12 search-content">
-        <!--<div *ngIf="currentList !== null; else loading"  >
+        <div *ngIf="currentList !== null; else loading"  >
           <h1 class="search-content__title h1-bold">
             <div *ngIf="searchState == 'search'">
               <span *ngIf="searchState == 'search' && queryParams.term !== undefined">
@@ -368,31 +368,31 @@
             </ng-container>
           </h1>
           <div class="search-content__mobile-filter">
-            <div class="search-content__mobile-filter&#45;&#45;table">
+            <div class="search-content__mobile-filter--table">
               <div
                 (click)="showMobileFilter('menu')"
-                class="search-content__mobile-filter&#45;&#45;table&#45;&#45;vertical-center subtitle-2-regular">필터</div>
+                class="search-content__mobile-filter--table--vertical-center subtitle-2-regular">필터</div>
             </div>
           </div>
           <div class="search-content__mobile-sorting">
-            <div class="search-content__mobile-sorting&#45;&#45;table">
+            <div class="search-content__mobile-sorting--table">
               <div
                 (click)="showMobileFilter('sort')"
-                class="search-content__mobile-sorting&#45;&#45;table&#45;&#45;vertical-center subtitle-2-regular">
+                class="search-content__mobile-sorting--table--vertical-center subtitle-2-regular">
                 {{sortMap[currentSortSlug]}}
               </div>
             </div>
           </div>
-          <div class="search-content__content&#45;&#45;outer">
+          <div class="search-content__content--outer">
             <div class="search-content__content">
               <ul #container *ngLet="(currency| async) as currencyAync">
                 <li #itemList *ngFor="let item of currentList; index as i" class="search-content__item">
                   <div>
-                    <div class="search-content__item&#45;&#45;image">
-                      <div routerLink="/shops/p/{{item.slug}}" class="search-content__item&#45;&#45;image-outer">
-                        <div class="search-content__item&#45;&#45;image-inner">
+                    <div class="search-content__item--image">
+                      <div routerLink="/shops/p/{{item.slug}}" class="search-content__item--image-outer">
+                        <div class="search-content__item--image-inner">
                           <img drLazyLoad [relativeOption]="false" src="{{item.thumbnail}}" alt="{{item.title}}">
-                        &lt;!&ndash;카트정보가 어떤식으로 들어갈지 알아야, 대충이라도 작업할 수 있음.&ndash;&gt;
+                        <!--카트정보가 어떤식으로 들어갈지 알아야, 대충이라도 작업할 수 있음.-->
 
                         </div>
                       </div>
@@ -406,7 +406,7 @@
                         </onpicks-list-active-button>
 
                         <div
-                          class="search-content__item&#45;&#45;option-product"
+                          class="search-content__item--option-product"
                           *ngSwitchDefault>
                           <span class="subtitle-3-regular">옵션선택상품</span>
                         </div>
@@ -415,8 +415,8 @@
                     </div>
 
 
-                    <div class="search-content__item&#45;&#45;name-outer">
-                      <div class="search-content__item&#45;&#45;name-outer-brand subtitle-2-bold">
+                    <div class="search-content__item--name-outer">
+                      <div class="search-content__item--name-outer-brand subtitle-2-bold">
                         <a
                           (click)="goBrandFilter(item.brand.slug)">
                           {{item.brand.name}}
@@ -424,7 +424,7 @@
                       </div>
 
 
-                      <span class="search-content__item&#45;&#45;name-outer-name body-2-regular">
+                      <span class="search-content__item--name-outer-name body-2-regular">
                         <a
                           routerLink="/shops/p/{{item.slug}}">
                           {{item.title}}
@@ -439,34 +439,34 @@
                     </ui-star-rating>
                     <span class="subtitle-3-regular u-color-dark-grey">{{item.review_count}}</span>
                     <br>
-                    <span class="search-content__price-info&#45;&#45;MSRP-discount subtitle-3-regular u-color-grey">{{item.msrp | onpicksCurrency : currencyAync}}</span>
+                    <span class="search-content__price-info--MSRP-discount subtitle-3-regular u-color-grey">{{item.msrp | onpicksCurrency : currencyAync}}</span>
                     <div class="search-content__price-info">
-                      <span class="search-content__price-info&#45;&#45;discount subtitle-1-bold u-color-orange">{{item.discount_rate | percentPipe}}%</span>
-                      <span class="search-content__price-info&#45;&#45;price subtitle-1-bold">{{item.price | onpicksCurrency : currencyAync}}</span>
-                      <span class="search-content__price-info&#45;&#45;MSRP" *ngIf="locale == 'en'">MSRP</span>
-                      <span class="search-content__price-info&#45;&#45;MSRP-discount subtitle-3-regular u-color-grey">{{item.msrp | onpicksCurrency : currencyAync}}</span>
+                      <span class="search-content__price-info--discount subtitle-1-bold u-color-orange">{{item.discount_rate | percentPipe}}%</span>
+                      <span class="search-content__price-info--price subtitle-1-bold">{{item.price | onpicksCurrency : currencyAync}}</span>
+                      <span class="search-content__price-info--MSRP" *ngIf="locale == 'en'">MSRP</span>
+                      <span class="search-content__price-info--MSRP-discount subtitle-3-regular u-color-grey">{{item.msrp | onpicksCurrency : currencyAync}}</span>
                     </div>
                     <div class="search-content__delivery-point">
                       <ng-container [ngSwitch]="item.location?.code">
                         <ng-container *ngSwitchCase="'LAX'" >
-                          <span class="search-content__delivery-point&#45;&#45;icon icon-small-la"></span>
-                          <span class="search-content__delivery-point&#45;&#45;text subtitle-2-regular u-color-black"><strong>엘에이</strong> 출고</span>
+                          <span class="search-content__delivery-point--icon icon-small-la"></span>
+                          <span class="search-content__delivery-point--text subtitle-2-regular u-color-black"><strong>엘에이</strong> 출고</span>
                         </ng-container>
                         <ng-container *ngSwitchCase="'JFK'">
-                          <span class="search-content__delivery-point&#45;&#45;icon icon-small-new"></span>
-                          <span class="search-content__delivery-point&#45;&#45;text subtitle-2-regular u-color-black"><strong>뉴저지</strong> 출고</span>
+                          <span class="search-content__delivery-point--icon icon-small-new"></span>
+                          <span class="search-content__delivery-point--text subtitle-2-regular u-color-black"><strong>뉴저지</strong> 출고</span>
                         </ng-container>
                         <ng-container *ngSwitchCase="'ATL'">
-                          <span class="search-content__delivery-point&#45;&#45;icon icon-small-gorgia"></span>
-                          <span class="search-content__delivery-point&#45;&#45;text subtitle-2-regular u-color-black"><strong>죠지아</strong> 출고</span>
+                          <span class="search-content__delivery-point--icon icon-small-gorgia"></span>
+                          <span class="search-content__delivery-point--text subtitle-2-regular u-color-black"><strong>죠지아</strong> 출고</span>
                         </ng-container>
                         <ng-container *ngSwitchCase="'KIX'">
-                          <span class="search-content__delivery-point&#45;&#45;icon icon-small-osaka"></span>
-                          <span class="search-content__delivery-point&#45;&#45;text subtitle-2-regular u-color-black"><strong>오사카</strong> 출고</span>
+                          <span class="search-content__delivery-point--icon icon-small-osaka"></span>
+                          <span class="search-content__delivery-point--text subtitle-2-regular u-color-black"><strong>오사카</strong> 출고</span>
                         </ng-container>
                         <ng-container *ngSwitchCase="'HKG'">
-                          <span class="search-content__delivery-point&#45;&#45;icon icon-small-hong"></span>
-                          <span class="search-content__delivery-point&#45;&#45;text subtitle-2-regular u-color-black"><strong>홍콩</strong> 출고</span>
+                          <span class="search-content__delivery-point--icon icon-small-hong"></span>
+                          <span class="search-content__delivery-point--text subtitle-2-regular u-color-black"><strong>홍콩</strong> 출고</span>
                         </ng-container>
                       </ng-container>
                     </div>
@@ -475,7 +475,7 @@
               </ul>
             </div>
           </div>
-        </div>-->
+        </div>
 
         <div class="search-content__pagination--outer" *ngIf="currentList != null && currentList.length !== 0">
           <div class="search-content__pagination">
