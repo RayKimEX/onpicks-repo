@@ -8,6 +8,7 @@ import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
 })
 export class PDescriptionComponent implements OnInit {
   @Input('description') description;
+  @Input('location') location;
 
   shopsBannerImage = {
     imgSrc : 'https://img.onpicks.com/assets/beauty_banner1.jpg',

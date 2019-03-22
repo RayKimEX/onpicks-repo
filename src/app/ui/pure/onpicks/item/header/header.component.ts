@@ -226,7 +226,7 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
     // this.renderer.setStyle(this.tempDiv, 'z-index', '10');
     // this.renderer.setStyle(this.tempDiv, 'background-color', '#000000');
     // this.renderer.setStyle(this.tempDiv, 'opacity', '0.5');
-    this.renderer.setProperty(xInputChecked, 'checked', true);
+    // this.renderer.setProperty(xInputChecked, 'checked', true);
     this.renderer.setProperty(xMenuToggle, 'checked', true);
     // this.renderer.setStyle(this.menuRef.nativeElement, 'display', 'block');
   }

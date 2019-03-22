@@ -31,7 +31,7 @@
           [pictureReviewList]="(pPictureReviews$ | async)">
         </onpicks-p-picture-review-sub>
         <onpicks-p-item-detail></onpicks-p-item-detail>
-        <onpicks-p-description [description]="data?.description"></onpicks-p-description>
+        <onpicks-p-description [location]="data?.location.code" [description]="data?.description"></onpicks-p-description>
         <onpicks-p-product-report></onpicks-p-product-report>
         <!--async를 붙여서 넘기는 이유는 받을때 좀더 편
         하게 받게 하기 위함-->
