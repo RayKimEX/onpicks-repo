@@ -10,7 +10,6 @@
           <span class="current-nav__category subtitle-2-bold">{{item.name}}</span>
           <span *ngIf="data?.category.length - 1 !== (i)" class="current-nav__slash">/</span>
         </span>
-
       </div>
     </div>
 
@@ -33,14 +32,13 @@
         </onpicks-p-picture-review-sub>
         <onpicks-p-item-detail></onpicks-p-item-detail>
         <onpicks-p-description [description]="data?.description"></onpicks-p-description>
+        <onpicks-p-product-report></onpicks-p-product-report>
         <!--async를 붙여서 넘기는 이유는 받을때 좀더 편
         하게 받게 하기 위함-->
-        <onpicks-p-reviews
-          #onpicksReview>
+        <onpicks-p-reviews #onpicksReview>
         </onpicks-p-reviews>
         <onpicks-p-refund></onpicks-p-refund>
       </div>
-
 
       <router-outlet style="position:fixed"></router-outlet>
 
@@ -53,8 +51,8 @@
       *ngIf="isExpendMobileMenu"
       (click)="isExpendMobileMenu = false"
       class="mobile-menu--outer">
-
     </div>
+
     <div
       class="mobile-menu" [ngClass]="isShowMobileMenu ? '' : 'mobile-menu--hide'">
       <div *ngIf="isExpendMobileMenu" class="mobile-menu__product-info--MSRP subtitle-1-regular">

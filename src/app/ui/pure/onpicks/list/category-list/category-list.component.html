@@ -17,14 +17,16 @@
           #itemList
           *ngFor="let item of popularCategory"
           class="col-2-of-12-list-line-up category-list__item">
-          <div [routerLink]="item.href">
-            <div class="category-list__image--outer">
-              <img drCleanLoad src="{{item.imgSrc}}" alt="{{item.name}} 카테고리">
+          <a>
+            <div [routerLink]="item.href">
+              <div class="category-list__image--outer">
+                <img drCleanLoad src="{{item.imgSrc}}" alt="{{item.name}} 카테고리">
+              </div>
+              <div class="category-list__item--name">
+                {{item.name}}
+              </div>
             </div>
-            <div class="category-list__item--name">
-              {{item.name}}
-            </div>
-          </div>
+          </a>
         </li>
       </ul>
     </div>

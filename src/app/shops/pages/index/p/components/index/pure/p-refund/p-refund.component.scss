@@ -1,9 +1,20 @@
 @import '~src/assets/scss/abstracts/variables';
 
 
+
 .p-refund {
+  margin-bottom : 1.6rem;
+  onpicks-sort-box {
+    float : right;
+  }
   h1 {
+    display:inline-block;
     margin-bottom : 2.4rem;
+  }
+
+  &__fold {
+    display:inline-block;
+    float:right;
   }
 
   &__title {

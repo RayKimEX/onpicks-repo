@@ -17,11 +17,12 @@ export class PRefundComponent implements OnInit, AfterViewInit, OnDestroy {
 
   }
 
-
   menuPositionInterval;
   currentMenuPositionOffset;
   previousMenuPositionOffset;
   menuPositionCount = 0;
+
+  foldFlag = false;
   ngOnInit() {
   }
 

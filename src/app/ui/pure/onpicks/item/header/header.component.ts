@@ -153,7 +153,7 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
               this.scrollForAlert$.unsubscribe();
               this.scrollForAlert$ = null;
             }
-          }, 2000);
+          }, 3000);
         } else {
           this.renderer.setStyle(this.alertMessage.nativeElement, 'opacity', 0);
         }

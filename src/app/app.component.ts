@@ -106,7 +106,7 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit, DoCheck {
             this.scrollForDeliveryBox$.unsubscribe();
             this.scrollForDeliveryBox$ = null;
           }
-        }, 2000);
+        }, 3000);
 
         if ( this.scrollForDeliveryBox$ == null ) {
           this.scrollForDeliveryBox$ = fromEvent( window , 'scroll').subscribe(

@@ -24,22 +24,26 @@
       display: inline-block;
       list-style: none;
 
-      & span {
-        display:block;
-        position: relative;
-        width : 100%;
+      &--padding {
+        padding : 2.4rem;
 
-        padding-top: 100%;
+        & div {
+          display:block;
+          position: relative;
+          width : 100%;
 
-        img {
-          position: absolute;
-          margin: auto;
-          top: 0;
-          bottom: 0;
-          left: 0;
-          right: 0;
-          max-width: 100%;
-          max-height: 100%;
+          padding-top: 100%;
+
+          img {
+            position: absolute;
+            margin: auto;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            max-width: 100%;
+            max-height: 100%;
+          }
         }
       }
     }

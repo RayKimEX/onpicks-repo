@@ -19,6 +19,7 @@ import { PRefundComponent } from './components/index/pure/p-refund/p-refund.comp
 import { EffectsModule } from '@ngrx/effects';
 import { PEffects } from './store/p.effects';
 import { PPictureReviewSubComponent } from './components/index/pure/p-picture-review-sub/p-picture-review-sub.component';
+import { PProductReportComponent } from './components/index/pure/p-product-report/p-product-report.component';
 
 @NgModule({
   imports: [
@@ -47,6 +48,8 @@ import { PPictureReviewSubComponent } from './components/index/pure/p-picture-re
     PRefundComponent,
 
     PPictureReviewSubComponent,
+
+    PProductReportComponent,
   ]
 })
 export class PModule { }
