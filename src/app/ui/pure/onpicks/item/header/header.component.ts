@@ -146,8 +146,8 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
           if ( this.clearSetTimeoutForAlert !== undefined) {
             clearTimeout(this.clearSetTimeoutForAlert);
           }
-          this.clearSetTimeoutForAlert = setTimeout( v => {
 
+          this.clearSetTimeoutForAlert = setTimeout( v => {
             this.store.dispatch( new RemoveAlertMessage())
             if ( this.scrollForAlert$ != null ) {
               this.scrollForAlert$.unsubscribe();
