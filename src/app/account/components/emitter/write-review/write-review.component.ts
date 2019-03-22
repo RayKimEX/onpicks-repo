@@ -122,9 +122,17 @@ export class WriteReviewComponent implements OnInit, OnChanges, OnDestroy {
   dropFiles(event) {
     // const that = this;
     // event.dataTransfer.dropEffect = 'copy';
+    
+    let files = '';
+    if( event.type === 'change' ) {
+      files = event.target.files;
+    } else {
+      files =  event.dataTransfer.files;
+    }
 
-    Object.keys(event.dataTransfer.files).forEach( (key) => {
-      const temp = URL.createObjectURL(event.dataTransfer.files[key]);
+
+    Object.keys(files).forEach( (key) => {
+      const temp = URL.createObjectURL(files[key]);
 
       if ( this.imageFileList.length >= 10 ) {
         this.errorStatus = 1;
@@ -132,14 +140,14 @@ export class WriteReviewComponent implements OnInit, OnChanges, OnDestroy {
         return;
       }
 
-      this.totalFileSize += (event.dataTransfer.files[key].size / 1024) / 1024;
+      this.totalFileSize += (files[key].size / 1024) / 1024;
       if ( this.totalFileSize > 20 ) {
         this.errorStatus = 2;
-        this.totalFileSize -= (event.dataTransfer.files[key].size / 1024) / 1024;
+        this.totalFileSize -= (files[key].size / 1024) / 1024;
         return ;
       }
 
-      this.imageFileList.push( { file : event.dataTransfer.files[key], blobData : temp } );
+      this.imageFileList.push( { file : files[key], blobData : temp } );
       // this.imgSrc = temp;
       this.imageFileList.forEach(
         value => {

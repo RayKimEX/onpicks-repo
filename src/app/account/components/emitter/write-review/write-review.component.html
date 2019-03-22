@@ -61,8 +61,11 @@
                 (dragenter)="dragEnter($event)"
                 (dragleave)="dragLeave($event)"
                 (dragover)="onDragOver($event)">
+                <label for="flie_id"></label>
                 <img src="" alt="">
                 <div></div>
+
+                <input id="flie_id" type="file" (change)="dropFiles($event)">
               </li>
             </ng-container>
           </ul>
