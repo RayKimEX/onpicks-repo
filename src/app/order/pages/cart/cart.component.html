@@ -107,10 +107,13 @@
             <div class="cart-mobile__table--item-option">
               <div class="cart-mobile__table--item-option--vertical-center">
                 <div
+                  (click)="addToWishList(itemForFree.product, 'free')"
                   class="cart-mobile__table--item-option--add-to-wish subtitle-2-regular u-color-grey">
                   다음에 구매하기
                 </div>
-                <div class="cart-mobile__table--item-option--delete subtitle-2-regular u-color-grey">
+                <div
+                  (click)="subtractFromCart(1, itemForFree.product, 'free' )"
+                  class="cart-mobile__table--item-option--delete subtitle-2-regular u-color-grey">
                   삭제하기
                 </div>
               </div>
@@ -269,10 +272,13 @@
                 <div class="cart-mobile__table--item-option">
                   <div class="cart-mobile__table--item-option--vertical-center">
                     <div
+                      (click)="addToWishList(itemChild.product, locationMap[item.location.code].sequence )"
                       class="cart-mobile__table--item-option--add-to-wish subtitle-2-regular u-color-grey">
                       다음에 구매하기
                     </div>
-                    <div class="cart-mobile__table--item-option--delete subtitle-2-regular u-color-grey">
+                    <div
+                      (click)="subtractFromCart(1, itemChild.product, locationMap[item.location.code].sequence )"
+                      class="cart-mobile__table--item-option--delete subtitle-2-regular u-color-grey">
                       삭제하기
                     </div>
                   </div>
