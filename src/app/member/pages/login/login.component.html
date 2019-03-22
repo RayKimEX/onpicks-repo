@@ -87,7 +87,9 @@
 
   <div class="login__miscell">
     <onpicks-check-box (click)="checkBox(isPersistent)" [type]="'checkbox'" #isPersistent>로그인 상태 유지</onpicks-check-box>
-    <span ><a href="" routerLink="/member/forgot-password" class="u-float-right u-color-green u-regular">비밀번호가 생각나지 않으세요?</a></span>
+    <span class="login__miscell--forgot-password">
+      <a href="" routerLink="/member/forgot-password" class="u-color-green u-regular">비밀번호가 생각나지 않으세요?</a>
+    </span>
   </div>
   <button class="btn btn--black login__btn" (click)="loginClick()">로그인</button>
 

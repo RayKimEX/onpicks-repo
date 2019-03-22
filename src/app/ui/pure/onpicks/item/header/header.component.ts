@@ -242,6 +242,7 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
     } else {
       this.renderer.addClass(document.body , 'u-open-modal');
     }
+
     // this.mobileHamburger.
     // console.log(xElement.value);
   }

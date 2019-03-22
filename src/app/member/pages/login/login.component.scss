@@ -105,6 +105,10 @@
     font-size : 1.4rem;
     color : #8d8d8d;
     margin-bottom : 1.6rem ;
+
+    &--forgot-password {
+      float:right;
+    }
   }
 
   &__no-account {

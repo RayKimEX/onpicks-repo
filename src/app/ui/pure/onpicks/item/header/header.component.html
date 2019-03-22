@@ -196,9 +196,9 @@
     <!-- && (currentUrl.length > 2 ? !(currentUrl[2].indexOf('search') > -1) : true )? 'block' : 'none'}-->
     <div
       #mobileHamburger
-
+      [ngStyle]="{ display: inputCheckedForToggle.checked ? 'block' : 'none'}"
       class="header__mobile-hamburger" [attr.value]="inputCheckedForToggle.checked ">
-      <!--[ngStyle]="{ display: inputCheckedForToggle.checked ? 'block' : 'none'}"-->
+
       <nav *ngIf="isShowSettingMenu">
         <ul
           class="header__mobile-hamburger--ul subtitle-2-regular">
