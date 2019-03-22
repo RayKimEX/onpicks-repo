@@ -52,7 +52,6 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit, DoCheck {
     this.store.dispatch(new TryGetAuthUser());
     this.store.dispatch(new TryGetCartInfo());
     this.store.dispatch(new TryGetWishListInfo());
-    document.getElementsByTagName('html')[0].setAttribute('lang', locale);
 
     this.breakpointObserver
       .observe([this.responsiveMap['desktop']])

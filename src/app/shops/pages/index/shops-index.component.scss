@@ -49,7 +49,12 @@ onpicks-trending-reviews {
 
 ui-banner {
   display:block;
+  height : 30rem;
   margin-bottom: 5.6rem;
+
+  @include respond(tb){
+    height : auto;
+  }
 }
 
 

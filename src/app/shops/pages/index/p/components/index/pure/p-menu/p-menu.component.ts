@@ -251,7 +251,7 @@ export class PMenuComponent implements OnInit, OnDestroy, AfterViewInit, OnChang
     this.currentSelectOption.amount = xValue.value;
   }
 
-  addToCart(xPackIndex){
+  addToCart(xPackIndex) {
     let keyForSlug = '';
     this.keyListForSlug.forEach( (value, index) => {
       if ( (this.keyListForSlug.length - 1) === index ){

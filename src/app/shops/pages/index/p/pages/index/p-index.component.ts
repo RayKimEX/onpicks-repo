@@ -192,6 +192,8 @@ export class PIndexComponent implements OnInit, OnDestroy {
       });
   }
 
+  ngAfter
+
   addToCart(xPackIndex, data) {
     let keyForSlug = '';
     this.keyListForSlug.forEach( (value, index) => {

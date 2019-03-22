@@ -8,6 +8,7 @@ import {Store} from '@ngrx/store';
   styleUrls: ['./p-refund.component.scss'],
   changeDetection : ChangeDetectionStrategy.OnPush,
 })
+
 export class PRefundComponent implements OnInit, AfterViewInit, OnDestroy {
 
   @ViewChild('bottomLine') bottomLine;
@@ -38,9 +39,8 @@ export class PRefundComponent implements OnInit, AfterViewInit, OnDestroy {
     this.menuPositionInterval = setInterval( () => {
       const bodyRect = document.body.getBoundingClientRect();
       const elemRect = this.bottomLine.nativeElement.getBoundingClientRect();
-
       const temp = elemRect.top - bodyRect.top;
-      this.currentMenuPositionOffset = temp - (( 780 - 125) - 0);
+      this.currentMenuPositionOffset = temp;
 
       if (this.previousMenuPositionOffset === this.currentMenuPositionOffset) {
         this.menuPositionCount++;
@@ -53,16 +53,6 @@ export class PRefundComponent implements OnInit, AfterViewInit, OnDestroy {
       this.store.dispatch(new MenuActions.UpdateMenuPosition(this.currentMenuPositionOffset));
       this.previousMenuPositionOffset = this.currentMenuPositionOffset;
     }, 500);
-
-    // // hrListList가 변화가 있을때 체크함
-    // this.hrLineList$ = this.hrLineList.changes.subscribe( t => {
-    //   const bodyRect = document.body.getBoundingClientRect();
-    //   const elemRect = this.hrLineList.last.nativeElement.getBoundingClientRect();
-    //   let offset   = elemRect.top - bodyRect.top;
-    //   offset -= (( 780 - 50) - 0);
-    //   this.store.dispatch( new MenuActions.UpdateMenuPosition(offset) );
-    // });
-
 
 
   }

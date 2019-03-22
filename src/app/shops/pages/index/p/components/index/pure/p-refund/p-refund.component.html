@@ -1,4 +1,4 @@
-<div class="p-refund">
+<div class="p-refund" #bottomLine>
   <div>
     <h1 class="h1-bold">환불교환 / 배송고시</h1>
     <onpicks-sort-box (click)="foldFlag = !foldFlag" [selectedElement]="{ title : '더보기' }" [showBox]="false">더보기</onpicks-sort-box>
@@ -29,7 +29,7 @@
     </ul>
 
     <div class="p-refund__title subtitle-1-bold">관세 및 통관</div>
-    <ul #bottomLine class="p-refund__section body-2-regular">
+    <ul class="p-refund__section body-2-regular">
       <li>건강식품은 6개까지만 통관 가능합니다.</li>
       <li>일반통관의 경우 $150, 목록통관의 경우 $200 이상 구매시 관세가 발생하게 됩니다.</li>
     </ul>

@@ -119,7 +119,9 @@
 
     <div class="header__mobile-menu">
       <div class="navigation">
-        <div class="navigation__toggle" #mobileToggle>
+        <div
+          class="navigation__toggle"
+          #mobileToggle>
           <input
             #inputCheckedForToggle
             type="checkbox"
@@ -142,6 +144,7 @@
           (deleteText)="clickMobileSearch()"
           class="navigation__searchbox-el">
         </onpicks-search-box>
+
         <div class="navigation__icon" #mobileIconOuter>
           <a routerLink="/shops">
             <svg
