@@ -1,0 +1,51 @@
+@import '~src/assets/scss/abstracts/variables';
+
+
+.p-product-report {
+
+  &__title {
+    position:relative;
+    margin-bottom : 2.4rem;
+  }
+
+  h1 {
+    display:inline-block;
+  }
+
+  onpicks-sort-box {
+    right : 0;
+    cursor : pointer;
+    @include verticalCenter;
+  }
+
+  table {
+    width:100%;
+    margin-bottom :1.6rem;
+    border-collapse: collapse;
+    border : 1px solid #e5e5e5;
+
+
+    td {
+      padding : 1.6rem;
+
+      &:nth-of-type(1) {
+        width : 14.8rem;
+        @include subtitle-2-regular;
+      }
+
+      &:nth-of-type(2) {
+        width : calc(100% - 14.8rem);
+        @include subtitle-2-bold;
+      }
+    }
+
+
+    td:not(:last-child) {
+      border-right : 1px solid #e5e5e5;
+    }
+
+    tr:not(:last-child) {
+      border-bottom : 1px solid #e5e5e5;
+    }
+  }
+}
