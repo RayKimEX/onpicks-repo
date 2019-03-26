@@ -13,7 +13,9 @@
   <onpicks-popular-brand [popularBrand]="popularBrands$ | async"></onpicks-popular-brand>
   <onpicks-trending-reviews [infoList]="trendingReviews" [setTitle]="'인기 리뷰'"></onpicks-trending-reviews>
 
-  <ui-banner [bannerInfo]="shopsBannerImage"> </ui-banner>
+  <div class="row">
+    <ui-banner [bannerInfo]="shopsBannerImage"> </ui-banner>
+  </div>
 
   <ui-mini-list
     [mobileType]="'half'"

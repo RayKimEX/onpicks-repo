@@ -59,6 +59,7 @@
       &-mobile-discount {
         margin-top : 0.4rem;
         display:none;
+        text-decoration: line-through;
         @include respond(tb){
           display: block;
         }
@@ -100,12 +101,11 @@
       vertical-align: top;
       display: inline-block;
       list-style: none;
-      width: 26.4rem;
-
-
-      @include respond(fb){
         width: 25%;
         padding : 0 1.2rem;
+
+      @include respond(fb){
+        padding : 0 0.8rem;
       }
 
       @include respond(tb){

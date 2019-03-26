@@ -518,19 +518,6 @@ textarea {
 
   @include clearfix;
 
-  @include respond(fb) {
-    margin: 0 3.2rem;
-  }
-
-  @include respond(sb) {
-    margin: 0 3.2rem;
-  }
-
-  @include respond(tb) {
-    margin: 0 1.6rem;
-  }
-
-
   /* class이름이 col로 시작한다는 말임 */
   [class ^= "col-"] {
     float: left;
