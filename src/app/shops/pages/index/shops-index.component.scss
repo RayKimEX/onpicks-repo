@@ -1,8 +1,13 @@
 @import "~src/assets/scss/abstracts/variables";
 
+.shops-index {
+  padding : 0 2.4rem;
+}
+
 ui-banner-carousel {
   height: 40rem;
   display:block;
+  margin : 0 -2.4rem;
 
   @include respond(tb){
     display:none;

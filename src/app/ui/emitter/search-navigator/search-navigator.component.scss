@@ -513,6 +513,7 @@ onpicks-check-box {
       &-mobile-discount {
         display: none;
         margin-top:0.4rem;
+        text-decoration: line-through;
         @include respond(tb){
           display: block;
         }

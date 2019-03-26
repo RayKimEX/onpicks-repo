@@ -80,9 +80,12 @@
     width: inherit;
     white-space: nowrap;
 
-
     @include respond(tb){
-      overflow : auto;
+      overflow-x : auto;
+      margin : 0 -2.4rem;
+      &::-webkit-scrollbar{
+        display :none;
+      }
     }
 
     &--outer {
@@ -99,19 +102,23 @@
       list-style: none;
       width: 26.4rem;
 
-      &:not(:last-child){
-        margin-right: 2.4rem;
-      }
+
       @include respond(fb){
         width: 25%;
-        margin-right : 0 !important;
         padding : 0 1.2rem;
       }
 
       @include respond(tb){
         width: 40%;
-        margin-right : 0 !important;
-        padding : 0 1.2rem;
+        padding : 0 0.6rem;
+        &:first-child {
+          margin-left : 2.4rem;
+        }
+
+        &:last-child {
+          margin-right : 2.4rem;
+        }
+
       }
 
 
@@ -179,8 +186,8 @@
       }
 
       &-outer {
+        position: relative;
         width: 100%;
-        height:100%;
 
         &:hover {
           opacity: 0.5;
@@ -287,6 +294,7 @@
       &-mobile-discount {
         display:none;
         margin-top : 0.4rem;
+        text-decoration: line-through;
         @include respond(tb){
           display: block;
         }

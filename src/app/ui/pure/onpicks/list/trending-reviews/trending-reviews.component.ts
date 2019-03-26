@@ -1,4 +1,4 @@
-import {Component, OnInit, ChangeDetectionStrategy, ViewChild, Input, Inject, Renderer2, ChangeDetectorRef, LOCALE_ID} from '@angular/core';
+import {Component, OnInit, ChangeDetectionStrategy, ViewChild, Input, Inject, Renderer2, ChangeDetectorRef, LOCALE_ID, ViewChildren, HostListener} from '@angular/core';
 import {CURRENCY, LOCATION_MAP} from '../../../../../app.config';
 import {BehaviorSubject} from 'rxjs';
 import {select, Store} from '@ngrx/store';
@@ -16,6 +16,7 @@ import {Router} from '@angular/router';
 export class TrendingReviewsComponent implements OnInit {
 
   @ViewChild('insertTitle') insertTitle;
+  @ViewChildren('itemList') itemList;
   @ViewChild('container') container;
   @Input('carouselLength') carouselLength = 4;
   @Input('setTitle') setTitle;
@@ -79,6 +80,14 @@ export class TrendingReviewsComponent implements OnInit {
     if ( this.cartStore$ !== undefined ) {
       this.cartStore$.unsubscribe();
     }
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    const computedStyle = getComputedStyle(( this.itemList.first.nativeElement ), null);
+    console.log(computedStyle);
+    this.translateXWidth =  parseInt(computedStyle.width, 10 ) + parseInt(computedStyle.marginRight, 10);
+    console.log(computedStyle.width);
   }
 
   goBrandFilter(xBrand){

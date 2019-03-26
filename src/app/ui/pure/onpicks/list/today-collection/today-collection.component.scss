@@ -10,6 +10,7 @@
     transition: -ms-transform 0.5s ease 0s, -webkit-transform 0.5s ease 0s, transform 0.5s ease 0s !important;
     @include respond(tb){
       overflow-x: auto;
+      margin : 0 -2.4rem;
       &::-webkit-scrollbar{
         display :none;
       }

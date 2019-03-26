@@ -149,6 +149,7 @@
     overflow: hidden;
     @include respond(tb){
       overflow-x : auto;
+      margin : 0 -2.4rem;
       &::-webkit-scrollbar{
         display :none;
       }

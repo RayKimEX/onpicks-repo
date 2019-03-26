@@ -1,27 +1,29 @@
-<ui-banner-carousel
-  [imagesLargeList]="shopsCarouselBannerImages"
-  [height]="40">
-</ui-banner-carousel>
+<div class="shops-index">
+  <ui-banner-carousel
+    [imagesLargeList]="shopsCarouselBannerImages"
+    [height]="40">
+  </ui-banner-carousel>
 
-<onpicks-category-list
-  [popularCategory]="popularCategory">
-</onpicks-category-list>
+  <onpicks-category-list
+    [popularCategory]="popularCategory">
+  </onpicks-category-list>
 
-<onpicks-today-collection [todayCollection]="todayCollection"></onpicks-today-collection>
-<onpicks-value-list [valueList]="valueList$ | async"></onpicks-value-list>
-<onpicks-popular-brand [popularBrand]="popularBrands$ | async"></onpicks-popular-brand>
-<onpicks-trending-reviews [infoList]="trendingReviews" [setTitle]="'인기 리뷰'"></onpicks-trending-reviews>
+  <onpicks-today-collection [todayCollection]="todayCollection"></onpicks-today-collection>
+  <onpicks-value-list [valueList]="valueList$ | async"></onpicks-value-list>
+  <onpicks-popular-brand [popularBrand]="popularBrands$ | async"></onpicks-popular-brand>
+  <onpicks-trending-reviews [infoList]="trendingReviews" [setTitle]="'인기 리뷰'"></onpicks-trending-reviews>
 
-<ui-banner [bannerInfo]="shopsBannerImage"> </ui-banner>
+  <ui-banner [bannerInfo]="shopsBannerImage"> </ui-banner>
 
-<ui-mini-list
-  [mobileType]="'half'"
-  [setTitle]="'추천상품'"
-  [infoList]="weeklyBest$ | async">
-</ui-mini-list>
+  <ui-mini-list
+    [mobileType]="'half'"
+    [setTitle]="'추천상품'"
+    [infoList]="weeklyBest$ | async">
+  </ui-mini-list>
 
-<ui-mini-list
-  [mobileType]="'half'"
-  [setTitle]="'최근 본 상품'"
-  [infoList]="(recentlyViewed$ | async)?.results">
-</ui-mini-list>
+  <ui-mini-list
+    [mobileType]="'half'"
+    [setTitle]="'최근 본 상품'"
+    [infoList]="(recentlyViewed$ | async)?.results">
+  </ui-mini-list>
+</div>

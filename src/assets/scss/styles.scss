@@ -433,20 +433,13 @@ textarea {
 /********** List-lin-up-Grid **********/
 .row-list-line-up {
   white-space: nowrap;
-  @include respond(tb) {
-
-  }
   max-width : $grid-width;
   margin: 0 auto;
   @include respond(fb) {
-    padding: 0 3.2rem;
-    margin : 0;
   }
 
   @include respond(tb) {
     white-space: normal;
-    padding : 0 1.6rem;
-    margin : 0;
   }
 
   [class *= "12-list-line-up"]{
@@ -472,15 +465,9 @@ textarea {
 .row-list-scroll {
   max-width : $grid-width;
   margin: 0 auto;
-  @include respond(fb) {
-    padding: 0 3.2rem;
-  }
 
   @include respond(tb) {
     padding : 0;
-    h1 {
-      padding : 0 1.6rem;
-    }
   }
 
   .col-2-of-12-list-scroll {
@@ -494,11 +481,11 @@ textarea {
     @include respond(tb) {
       width: 40%;
       &:first-child {
-        margin-left : 1.6rem;
+        margin-left : 2.4rem;
       }
 
       &:last-child {
-        margin-right : 1.6rem;
+        margin-right : 2.4rem;
       }
     }
   }
@@ -514,11 +501,11 @@ textarea {
     @include respond(tb) {
       width: 40%;
       &:first-child {
-        margin-left : 1.6rem;
+        margin-left : 2.4rem;
       }
 
       &:last-child {
-        margin-right : 1.6rem;
+        margin-right : 2.4rem;
       }
     }
   }

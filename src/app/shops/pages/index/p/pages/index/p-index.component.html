@@ -45,6 +45,7 @@
       <div [ngStyle]="{display : isFB ? 'none' :'block'}" class="col-5-of-12">
         <onpicks-p-menu [data]="data"></onpicks-p-menu>
       </div>
+      <ui-mini-list [infoList]="weeklyBest$ | async" [setTitle]="'이 상품 구매자가 함께 본 상품'"></ui-mini-list>
     </div>
 
     <div
@@ -136,8 +137,6 @@
       <!--</onpicks-p-thumbnail>-->
     <!--</div>-->
 
-    <div class="row">
-      <ui-mini-list [infoList]="weeklyBest$ | async" [setTitle]="'이 상품 구매자가 함께 본 상품'"></ui-mini-list>
-    </div>
+
   </ng-container>
 </div>

@@ -41,6 +41,7 @@
             #container>
             <ng-container *ngFor="let item of infoList; index as i">
               <li
+                #itemList
                 class="trending-reviews-halfM__content-li"
                 *ngIf="pressedPrev ? i < imageIndex + 7 : i < imageIndex + carouselLength">
                 <div
