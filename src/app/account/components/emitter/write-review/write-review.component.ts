@@ -19,6 +19,7 @@ import {BehaviorSubject} from 'rxjs';
 import {CURRENCY} from '../../../../app.config';
 import {Store} from '@ngrx/store';
 import {DisplayAlertMessage} from '../../../../core/store/ui/ui.actions';
+import EXIF = require('../../../../../../node_modules/exif-js/exif');
 
 @Component({
   selector: 'onpicks-write-review',
@@ -131,8 +132,25 @@ export class WriteReviewComponent implements OnInit, OnChanges, OnDestroy {
     }
 
 
+
+
     Object.keys(files).forEach( (key) => {
       const temp = URL.createObjectURL(files[key]);
+
+      // EXIF.getData(temp, function() {
+      //   const orientation = EXIF.getTag(this, 'Orientation');
+      //   switch ( orientation ) {
+      //     case 3:
+      //       node.css('transform', 'rotate(180deg)');
+      //       break;
+      //     case 6:
+      //       node.css('transform', 'rotate(90deg)');
+      //       break;
+      //     case 8:
+      //       node.css('transform', 'rotate(-90deg)');
+      //       break;
+      //   }
+      // });
 
       if ( this.imageFileList.length >= 10 ) {
         this.errorStatus = 1;

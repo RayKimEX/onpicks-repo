@@ -148,7 +148,7 @@
       width: 100%;
       position: relative;
       margin-bottom :1.6rem;
-      @include respond(sb){
+      @include respond(fb){
         height:auto;
       }
 
@@ -193,6 +193,10 @@
         height:100%;
 
         padding : 2.4rem;
+
+        @include respond(fb){
+          padding : 1.6rem;
+        }
         &:hover {
           opacity: 0.5;
           cursor: pointer;

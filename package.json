@@ -31,6 +31,7 @@
     "classlist.js": "^1.1.20150312",
     "core-js": "^2.5.4",
     "css-element-queries": "^1.1.1",
+    "exif-js": "^2.3.0",
     "hammerjs": "^2.0.8",
     "intersection-observer": "^0.5.1",
     "ngx-infinite-scroll": "^6.0.1",

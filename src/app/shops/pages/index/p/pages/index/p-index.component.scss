@@ -5,6 +5,19 @@ onpicks-loading-icon {
   margin-top : 10rem;
 }
 
+
+.mobile-row {
+  @include respond(desktop){
+
+    width:74.8rem;
+    margin : 0 auto;
+  }
+
+  @include respond(sb){
+    width: 100%;
+    padding: 0 1.6rem;
+  }
+}
 .mobile-menu {
   padding : 1.6rem;
   position : fixed;
