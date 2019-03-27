@@ -19,7 +19,7 @@ import {BehaviorSubject} from 'rxjs';
 import {CURRENCY} from '../../../../app.config';
 import {Store} from '@ngrx/store';
 import {DisplayAlertMessage} from '../../../../core/store/ui/ui.actions';
-import EXIF from 'exif-js/exif';
+import * as EXIF from 'exif-js/exif';
 
 @Component({
   selector: 'onpicks-write-review',
@@ -240,6 +240,6 @@ export class WriteReviewComponent implements OnInit, OnChanges, OnDestroy {
       //     rotate = 'rotate(-90deg)';
       //     break;
       // }
-    })
+    });
   }
 }
