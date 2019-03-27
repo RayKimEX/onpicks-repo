@@ -45,8 +45,9 @@
           <ul>
             <li class="write-review__photo--images-item" *ngFor="let item of imageFileList; index as i">
               <div class="write-review__photo--images-item-outer">
-                <img drLazyLoad [src]="item.blobData | safeHtml" alt="">
+                <img drLazyLoad #imageViewList (load)="imgLoaded($event)" [ngStyle]="{transform : item.rotate}" [src]="item.blobData | safeHtml" alt="">
               </div>
+
 
               <div (click)="deleteImageFile(i)"  class="write-review__photo--images-exit">
                 <span class="write-review__photo--images-exit-inner"></span>

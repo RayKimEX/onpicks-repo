@@ -11,7 +11,7 @@ import {
   Renderer2,
   ChangeDetectorRef,
   OnDestroy,
-  ViewChild, Inject
+  ViewChild, Inject, ViewChildren
 } from '@angular/core';
 import {AccountDataService} from '../../../../core/service/data-pages/account/account-data.service';
 import {UiService} from '../../../../core/service/ui/ui.service';
@@ -19,7 +19,7 @@ import {BehaviorSubject} from 'rxjs';
 import {CURRENCY} from '../../../../app.config';
 import {Store} from '@ngrx/store';
 import {DisplayAlertMessage} from '../../../../core/store/ui/ui.actions';
-import EXIF = require('../../../../../../node_modules/exif-js/exif');
+import EXIF from 'exif-js/exif';
 
 @Component({
   selector: 'onpicks-write-review',
@@ -29,6 +29,7 @@ import EXIF = require('../../../../../../node_modules/exif-js/exif');
 })
 
 export class WriteReviewComponent implements OnInit, OnChanges, OnDestroy {
+  @ViewChildren('imageViewList') imageViewList;
   @Input('isShow') isShow = false;
   @Input('writeReview') set data(xWriteReview) {
 
@@ -40,15 +41,16 @@ export class WriteReviewComponent implements OnInit, OnChanges, OnDestroy {
     this.accountDataService.getPendingReviewData(this._data.reviewData['product'], this._data.reviewData['review'])
       .subscribe( v => {
         v.pictures.forEach( item => {
-          this.imageFileList.push({file : '', blobData : item});
+          this.imageFileList.push({file : '', blobData : item, rotate: ''});
           this.cd.markForCheck();
+          console.log(this.imageViewList);
         });
       });
   }
   @Output('exit') exitEvent = new EventEmitter();
   @Output('publishReview') publishReviewEvent = new EventEmitter()
   @ViewChild('reviewTextView') reviewTextView;
-  imageFileList: { file, blobData }[] = [];
+  imageFileList: { file, blobData, rotate }[] = [];
   errorStatus = 0;
   totalFileSize = 0;
   viewDragArea = true;
@@ -97,7 +99,6 @@ export class WriteReviewComponent implements OnInit, OnChanges, OnDestroy {
 
   }
 
-
   onDragOver(files) {
     files.preventDefault();
   }
@@ -111,20 +112,21 @@ export class WriteReviewComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   @HostListener('drop', ['$event'])
-  dropOnPage(event) {
-    event.preventDefault();
+  dropOnPage( xEvent ) {
+    xEvent.preventDefault();
   }
 
   @HostListener('dragover', ['$event'])
-  dragOverOnPage(event) {
-    event.preventDefault();
+  dragOverOnPage( xEvent ) {
+    xEvent.preventDefault();
   }
 
   dropFiles(event) {
     // const that = this;
     // event.dataTransfer.dropEffect = 'copy';
-    
+
     let files = '';
+    let rotate = '';
     if( event.type === 'change' ) {
       files = event.target.files;
     } else {
@@ -137,55 +139,66 @@ export class WriteReviewComponent implements OnInit, OnChanges, OnDestroy {
     Object.keys(files).forEach( (key) => {
       const temp = URL.createObjectURL(files[key]);
 
-      // EXIF.getData(temp, function() {
-      //   const orientation = EXIF.getTag(this, 'Orientation');
-      //   switch ( orientation ) {
-      //     case 3:
-      //       node.css('transform', 'rotate(180deg)');
-      //       break;
-      //     case 6:
-      //       node.css('transform', 'rotate(90deg)');
-      //       break;
-      //     case 8:
-      //       node.css('transform', 'rotate(-90deg)');
-      //       break;
-      //   }
-      // });
+      const that = this;
+      EXIF.getData(files[key], function() {
+        const orientation = EXIF.getTag(this, 'Orientation');
+        console.log(that.imageFileList);
+        switch ( orientation ) {
+          case 3:
+            rotate = 'rotate(180deg)';
+            break;
+          case 6:
+            rotate = 'rotate(90deg)';
+            break;
+          case 8:
+            rotate = 'rotate(-90deg)';
+            break;
+        }
+        console.log(that.imageFileList);
 
-      if ( this.imageFileList.length >= 10 ) {
-        this.errorStatus = 1;
-        this.viewDragArea = false;
-        return;
-      }
 
-      this.totalFileSize += (files[key].size / 1024) / 1024;
-      if ( this.totalFileSize > 20 ) {
-        this.errorStatus = 2;
-        this.totalFileSize -= (files[key].size / 1024) / 1024;
-        return ;
-      }
+        if ( that.imageFileList.length >= 10 ) {
+          that.errorStatus = 1;
+          that.viewDragArea = false;
+          return;
+        }
 
-      this.imageFileList.push( { file : files[key], blobData : temp } );
-      // this.imgSrc = temp;
-      this.imageFileList.forEach(
-        value => {
+        that.totalFileSize += (files[key].size / 1024) / 1024;
+        if ( that.totalFileSize > 20 ) {
+          that.errorStatus = 2;
+          that.totalFileSize -= (files[key].size / 1024) / 1024;
+          return ;
+        }
 
-          if ( value.file !== '') {
-            this.accountDataService.uploadReviewImage(this._data.reviewData.product, this._data.reviewData.review, value.file).subscribe(
-              v => console.log('complete!!!')
-            );
-          }
-        });
+        that.imageFileList.push( { file : files[key], blobData : temp, rotate : rotate } );
+        // this.imgSrc = temp;
+        that.imageFileList.forEach(
+          value => {
+
+            if ( value.file !== '') {
+              that.accountDataService.uploadReviewImage(that._data.reviewData.product, that._data.reviewData.review, value.file)
+                .subscribe(
+                v =>  {
+
+                    console.log('complete!!!');
+                    that.cd.markForCheck();
+                  }
+                );
+            }
+          });
+      });
+
+      that.isDraggedEnter = false;
+      event.preventDefault();
     });
 
-    this.isDraggedEnter = false;
-    event.preventDefault();
+
   }
 
-  deleteImageFile(index) {
+  deleteImageFile( xIndex ) {
     this.errorStatus = 0;
     this.viewDragArea = true;
-    this.imageFileList.splice(index , 1);
+    this.imageFileList.splice( xIndex , 1);
   }
 
   publishReview( xProductSlug, xReviewId ) {
@@ -209,5 +222,24 @@ export class WriteReviewComponent implements OnInit, OnChanges, OnDestroy {
         }
       );
     this.exitEvent.emit();
+  }
+
+  imgLoaded(event) {
+    EXIF.getData(event.target, function() {
+      const orientation = EXIF.getTag(this, 'Orientation');
+      console.log(orientation);
+      // console.log(this.imageFileList);
+      // switch (orientation) {
+      //   case 3:
+      //     rotate = 'rotate(180deg)';
+      //     break;
+      //   case 6:
+      //     rotate = 'rotate(90deg)';
+      //     break;
+      //   case 8:
+      //     rotate = 'rotate(-90deg)';
+      //     break;
+      // }
+    })
   }
 }
