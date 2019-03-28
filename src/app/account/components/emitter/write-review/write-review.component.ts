@@ -225,21 +225,21 @@ export class WriteReviewComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   imgLoaded(event) {
-    EXIF.getData(event.target, function() {
-      const orientation = EXIF.getTag(this, 'Orientation');
-      console.log(orientation);
-      // console.log(this.imageFileList);
-      // switch (orientation) {
-      //   case 3:
-      //     rotate = 'rotate(180deg)';
-      //     break;
-      //   case 6:
-      //     rotate = 'rotate(90deg)';
-      //     break;
-      //   case 8:
-      //     rotate = 'rotate(-90deg)';
-      //     break;
-      // }
-    });
+    // EXIF.getData(event.target, function() {
+    //   const orientation = EXIF.getTag(this, 'Orientation');
+    //   console.log(orientation);
+    //   // console.log(this.imageFileList);
+    //   // switch (orientation) {
+    //   //   case 3:
+    //   //     rotate = 'rotate(180deg)';
+    //   //     break;
+    //   //   case 6:
+    //   //     rotate = 'rotate(90deg)';
+    //   //     break;
+    //   //   case 8:
+    //   //     rotate = 'rotate(-90deg)';
+    //   //     break;
+    //   // }
+    // });
   }
 }

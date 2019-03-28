@@ -195,6 +195,17 @@ textarea {
   }
 }
 
+.u-button-effect-normal {
+  color : $color-black;
+  cursor: pointer;
+  display : block;
+  &:hover{
+    //transition-property: opacity;
+    //transition-duration: .2s;
+    opacity: 0.6;
+  }
+}
+
 .u-open-modal {
   width:100%;
   position: fixed !important;
