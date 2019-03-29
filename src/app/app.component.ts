@@ -12,6 +12,7 @@ import {fromEvent} from 'rxjs';
 import {BreakpointObserver, BreakpointState} from '../../node_modules/@angular/cdk/layout';
 import {RESPONSIVE_MAP} from './app.config';
 import {DOCUMENT} from '@angular/common';
+import {ignore} from '../../node_modules/@types/selenium-webdriver/testing';
 
 @Component({
   selector: 'onpicks-root',
@@ -26,6 +27,7 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit, DoCheck {
   title = 'onpicks';
   isCategoryLoaded = false;
   categoryLoadType = '';
+  globalKakaoPosition = '3rem';
 
 
   scrollForDeliveryBox$ = null;
@@ -68,6 +70,7 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit, DoCheck {
     this.uiState$ = this.store.pipe(select( 'ui')).subscribe( val => {
       this.isCategoryLoaded = val.currentCategoryList.isLoaded;
       this.categoryLoadType = val.currentCategoryList.type;
+      this.globalKakaoPosition = val.globalKakaoPosition;
     })
 
     this.cart$ = this.store.pipe(
@@ -209,6 +212,9 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit, DoCheck {
   }
 
   ngOnInit() {
+    // @ts-ignore
+    Kakao.init('338dd28b32fa58b2628dac561e494f5d');
+    // _haxhDj
     // TODO : 해당 아래코드를 AppComponent OnInit에 하지 말고, App.Module의 FactoryProvider를 통해 가능한지 ?
 
     if ( this.locale !== 'ko' ) {
@@ -216,6 +222,13 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit, DoCheck {
     } else {
       require( 'style-loader!./../assets/scss/typography/typography.en.scss');
     }
+  }
+
+  plusFriendChat() {
+    // @ts-ignore
+    Kakao.PlusFriend.chat({
+      plusFriendId: '_haxhDj' // 플러스친구 홈 URL에 명시된 id로 설정합니다.
+    });
   }
 
   goCartEvent(){

@@ -4,17 +4,18 @@ import {
   GET_CATEGORY_ALL_SUCCESS,
   REMOVE_ALERT_MESSAGE,
   UiActions,
-  UPDATE_CATEGORY,
+  UPDATE_CATEGORY, UPDATE_GLOBAL_KAKAO_PLUS_FRIEND_FOR_DETAIL_PAGE, UPDATE_GLOBAL_KAKAO_PLUS_FRIEND_FOR_NORMAL,
   UPDATE_URL_ACTIVE
 } from './ui.actions';
 
-import {normalize, schema} from 'normalizr';
+import { normalize, schema } from 'normalizr';
 
 export interface UiState {
   currentCategoryList: any;
   // searchList: any;
   activeUrl: any;
   alertMessage: any;
+  globalKakaoPosition: any;
 }
 
 export const initialState: UiState = {
@@ -23,6 +24,7 @@ export const initialState: UiState = {
   },
   activeUrl : [],
   alertMessage: '',
+  globalKakaoPosition: '3rem'
 };
 
 
@@ -56,11 +58,26 @@ let notChangeThirdPrevious;
 export function UiReducer(state = initialState, action: UiActions): UiState {
 
   switch (action.type) {
+
+    case UPDATE_GLOBAL_KAKAO_PLUS_FRIEND_FOR_DETAIL_PAGE :
+
+      return {
+        ...state,
+        globalKakaoPosition : '14rem'
+      };
+
+    case UPDATE_GLOBAL_KAKAO_PLUS_FRIEND_FOR_NORMAL :
+
+      return {
+        ...state,
+        globalKakaoPosition : '3rem'
+      };
+
     case UPDATE_URL_ACTIVE :
 
       return {
         ...state,
-        activeUrl : action.payload,
+        activeUrl : action.payload
       };
 
     case DISPLAY_ALERT_MESSAGE :

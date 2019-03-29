@@ -1,5 +1,37 @@
 @import '~src/assets/scss/abstracts/variables';
 
+.kakao-plus-friend {
+  display:none;
+  position: fixed;
+  z-index:100000;
+  width : 4rem;
+  height : 4rem;
+  right : 2rem;
+  transition: bottom .5s;
+  transition-delay : .2s;
+  @include respond(tb){
+    display:inline-block;
+    img {
+      width : 100%;
+      height : 100%;
+    }
+  }
+}
+
+.onpicks__advertisement {
+  display:table;
+  height:3rem;
+  width:100%;
+  text-align : center;
+  background-color : $color-light-black;
+
+  &--center {
+    width:100%;
+    display: table-cell;
+    vertical-align: middle;
+  }
+}
+
 ui-footer {
   display: block;
 }

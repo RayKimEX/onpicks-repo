@@ -17,7 +17,7 @@ import {
 import {UiService} from '../../../../../../core/service/ui/ui.service';
 import {BreakpointObserver, BreakpointState} from '../../../../../../../../node_modules/@angular/cdk/layout';
 import {LOCATION_MAP, RESPONSIVE_MAP} from '../../../../../../app.config';
-import {DisplayAlertMessage} from '../../../../../../core/store/ui/ui.actions';
+import {DisplayAlertMessage, UpdateGlobalKakaoPlusFriendForDetailPage, UpdateGlobalKakaoPlusFriendForNormal} from '../../../../../../core/store/ui/ui.actions';
 import {TryAddOrCreateToCart} from '../../../../../../core/store/cart/cart.actions';
 
 @Component({
@@ -166,10 +166,13 @@ export class PIndexComponent implements OnInit, OnDestroy {
       this.isShowMobileMenu = false;
       return ;
     };
+
     if ( delta < -1 ) {
       this.isShowMobileMenu = true;
+      this.store.dispatch(new UpdateGlobalKakaoPlusFriendForDetailPage());
     } else if ( delta > 1 ) {
       this.isShowMobileMenu = false;
+      this.store.dispatch(new UpdateGlobalKakaoPlusFriendForNormal());
     }
     this.previousYOffset = window.pageYOffset;
     // this.previousYOffset = window.pageYOffset;
@@ -177,6 +180,7 @@ export class PIndexComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.store.dispatch(new UpdateGlobalKakaoPlusFriendForDetailPage());
     this.contentHeight = (window.screen.height - 400) < 300 ? '' : (window.screen.height) + 'px';
 
     this.breakpointObserver
@@ -191,8 +195,6 @@ export class PIndexComponent implements OnInit, OnDestroy {
         }
       });
   }
-
-  ngAfter
 
   addToCart(xPackIndex, data) {
     let keyForSlug = '';
@@ -226,6 +228,7 @@ export class PIndexComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
+    this.store.dispatch(new UpdateGlobalKakaoPlusFriendForNormal());
     this.store.dispatch(new DeleteProductAndReviewInfo());
     this.cartStore$.unsubscribe();
     this.pUI$.unsubscribe();

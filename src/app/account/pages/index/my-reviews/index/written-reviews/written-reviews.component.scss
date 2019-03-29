@@ -2,7 +2,6 @@
 
 .written-reviews {
 
-
   &__link-to-product {
     display:block;
     height : 9.6rem;
@@ -24,7 +23,7 @@
     }
     &--description {
       display:inline-block;
-      width : 53.4rem;
+      width : calc(100% - 6.4rem);
       margin-left : 1.6rem;
     }
     &--inner {

@@ -142,19 +142,22 @@ export class WriteReviewComponent implements OnInit, OnChanges, OnDestroy {
       const that = this;
       EXIF.getData(files[key], function() {
         const orientation = EXIF.getTag(this, 'Orientation');
-        console.log(that.imageFileList);
-        switch ( orientation ) {
-          case 3:
-            rotate = 'rotate(180deg)';
-            break;
-          case 6:
-            rotate = 'rotate(90deg)';
-            break;
-          case 8:
-            rotate = 'rotate(-90deg)';
-            break;
+
+        const iOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+
+        if ( !iOS ){
+          switch ( orientation ) {
+            case 3:
+              rotate = 'rotate(180deg)';
+              break;
+            case 6:
+              rotate = 'rotate(90deg)';
+              break;
+            case 8:
+              rotate = 'rotate(-90deg)';
+              break;
+          }
         }
-        console.log(that.imageFileList);
 
 
         if ( that.imageFileList.length >= 10 ) {

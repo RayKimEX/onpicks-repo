@@ -3,6 +3,10 @@
   <font-spoqa *ngSwitchCase="'ko'"></font-spoqa>
 </div>
 
+<div class="onpicks__advertisement subtitle-2-regular u-color-white">
+  <div class="onpicks__advertisement--center">런칭 이벤트 8만원 이상 구매 시 무료 배송</div>
+</div>
+
 <ui-header></ui-header>
 
 <onpicks-free-delivery-notibox
@@ -13,7 +17,9 @@
 </onpicks-free-delivery-notibox>
 
 <router-outlet></router-outlet>
-<ui-footer [ngStyle]="{paddingTop : deltaHeight}"></ui-footer>
+<ui-footer [ngStyle]="{ paddingTop : deltaHeight }"></ui-footer>
 
 
-
+<a [ngStyle]="{ bottom : globalKakaoPosition }" class="kakao-plus-friend" (click)="plusFriendChat()">
+  <img src="https://img.onpicks.com/assets/kakao-plus-friend.png"/>
+</a>

@@ -100,6 +100,11 @@
 
 .cart{
 
+  padding : 0 1.6rem;
+
+  @include respond(tb){
+    overflow:hidden;
+  }
   ui-progressive-bar {
     display:inline-block;
     width : 69.4rem;
@@ -205,12 +210,19 @@
   }
 
   &__wishlist {
+
     display: none;
+
+
+
     &--title {
       margin-bottom: 2.4rem;
     }
 
     &-table {
+      @include respond(tb){
+        display:none !important;
+      }
       clear:both;
       margin-bottom: 4rem;
       border-collapse: collapse;

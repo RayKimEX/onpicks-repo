@@ -381,6 +381,74 @@
             다음에 구매할 상품이 없습니다. 다음에 구매할 상품을 담아주세요!
           </div>
         </ng-container>
+        <div class="cart-mobile">
+          <div class="cart-mobile__table">
+            <div
+              class="cart-mobile__table--item"
+              *ngFor="let itemForFree of syncedData?.wishList index as itemForFreeIndex">
+              <div class="cart-mobile__table--item--image-and-font-line-fixed">
+
+                <div class="cart-mobile__table--item--image">
+                  <div class="cart-mobile__table--item--image-inner">
+                    <img drLazyLoad src="{{itemForFree.thumbnail}}" alt="{{itemForFree.title}}">
+                  </div>
+                </div>
+
+                <div class="cart-mobile__table--item-info">
+
+                  <div class="cart-mobile__table--item-info--title subtitle-3-bold">
+                    {{itemForFree.brand}}
+                  </div>
+                  <div class="cart-mobile__table--item-info--description body-3-regular">
+                    {{itemForFree.title}}
+                  </div>
+                  <div class="cart-mobile__table--item-info--price subtitle-2-bold">
+                    {{itemForFree.price | onpicksCurrency : syncedData.currencyInfo}}
+                  </div>
+                  <div style="margin-top:0.8rem;">
+                    <span
+                      class="cart__wishlist-table--delivery-info-image"
+                      [ngClass]=
+                        "[
+                      (locationMap[itemForFree?.location.code]?.nickname === 'la')  ? 'icon-small-la' : '',
+                      (locationMap[itemForFree?.location.code]?.nickname === 'new')  ? 'icon-small-new' : '',
+                      (locationMap[itemForFree?.location.code]?.nickname === 'osaka')  ? 'icon-small-osaka' : '',
+                      (locationMap[itemForFree?.location.code]?.nickname === 'gorgia')  ? 'icon-small-gorgia' : '',
+                      (locationMap[itemForFree?.location.code]?.nickname === 'hong')  ? 'icon-small-hong' : ''
+                    ]">
+                    </span>
+                    <div class="cart__wishlist-table--delivery-info-where subtitle-2-regular">
+                      <span class="u-bold">{{itemForFree.location.name}}</span> 출고 ·</div>
+                    <div class="cart__wishlist-table--delivery-info-price subtitle-2-bold" *ngIf="itemForFree.shipping_fee == 0">&nbsp;무료배송</div>
+                    <div class="cart__wishlist-table--delivery-info-price subtitle-2-regular"
+                         *ngIf="itemForFree.shipping_fee > 0">&nbsp;묶음배송 </div>
+                  </div>
+                </div>
+              </div>
+              <div class="cart-mobile__table--item-option">
+                <div class="cart-mobile__table--item-option--vertical-center">
+                  <onpicks-button
+                    [width]="'11.4rem'"
+                    [type]="'white'"
+                    (click)="moveWishListToCart(1, itemForFree.product, itemForFree.ship_alone ? 'free' : locationMap[itemForFree?.location.code]?.sequence, itemForFree.id, i)"
+                    *ngIf="itemForFree.attributes.length === 0"
+                    [size]="'small'">
+                    쇼핑백에 담기
+                  </onpicks-button>
+                  <onpicks-button
+                    [marginLeft]="'0.8rem'"
+                    [type]="'white'"
+                    [width]="'11.4rem'"
+                    (click)="deleteWishList(itemForFree.id, i)"
+                    *ngIf="itemForFree.attributes.length === 0"
+                    [size]="'small'">
+                    삭제하기
+                  </onpicks-button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
         <table class="cart__wishlist-table">
           <tr *ngFor="let item of syncedData?.wishList; index as i">
             <td>
@@ -413,19 +481,24 @@
                 <div class="cart__wishlist-table--delivery-info-price subtitle-2-bold" *ngIf="item.shipping_fee == 0">&nbsp;무료배송</div>
                 <div class="cart__wishlist-table--delivery-info-price subtitle-2-regular"
                      *ngIf="item.shipping_fee > 0">&nbsp;묶음배송 · {{item.shipping_fee | onpicksCurrency:syncedData.currencyInfo}}</div>
-                <div class="cart__wishlist-table--delivery-info-description subtitle-2-regular u-color-dark-grey">{{item.location.name}} 묶음배송 상품으로 {{item.location.free_shipping_threshold | onpicksCurrency: syncedData.currencyInfo}} 이상 주문시 배송료 무료</div>
+                <div class="cart__wishlist-table--delivery-info-description subtitle-2-regular u-color-dark-grey">
+                  {{item.location.name}} 묶음배송 상품으로 {{item.location.free_shipping_threshold | onpicksCurrency: syncedData.currencyInfo}} 이상 주문시 배송료 무료
+                </div>
               </div>
             </td>
             <td>
               <button
                 *ngIf="item.attributes.length !== 0"
                 class="btn btn--white btn--small cart__wishlist-table--btn"
-                [routerLink]="'/shops/p/' + item.product">옵션 선택하기</button>
+                [routerLink]="'/shops/p/' + item.product">
+                옵션 선택하기
+              </button>
               <button
                 (click)="moveWishListToCart(1, item.product, item.ship_alone ? 'free' : locationMap[item?.location.code]?.sequence, item.id, i)"
                 *ngIf="item.attributes.length === 0"
-                class="btn btn--white btn--small cart__wishlist-table--btn"
-                >쇼핑백에 담기</button>
+                class="btn btn--white btn--small cart__wishlist-table--btn">
+                쇼핑백에 담기
+              </button>
               <button
                 class="btn btn--white btn--small cart__wishlist-table--btn"
                 (click)="deleteWishList(item.id, i)">

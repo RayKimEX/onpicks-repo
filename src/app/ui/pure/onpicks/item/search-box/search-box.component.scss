@@ -14,9 +14,10 @@
     line-height: 4rem;
 
     &--input {
-      padding-left: 5.6rem;
+
+      margin-left: 5.6rem;
       border : 0;
-      width : calc(100% - 4rem);
+      width : calc(100% - 5.6rem);
 
       // TODO : placeholder 부분을 다른 div로 만들어서 처리하던가 해야됨. 이부분으 따로 class 만 줄수가 없음
       &::placeholder {
@@ -45,6 +46,7 @@
           height: 2px;
           background-color: $color-dark-grey;
           display: inline-block;
+
         }
 
         &::before,
@@ -64,5 +66,6 @@
       @include verticalCenter;
       left : 1.6rem;
     }
+
   }
 }
