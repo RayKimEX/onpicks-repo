@@ -15,9 +15,9 @@
 
     &--input {
 
-      margin-left: 5.6rem;
+      margin-left: 4.6rem;
       border : 0;
-      width : calc(100% - 5.6rem);
+      width : calc(100% - 8.6rem);
 
       // TODO : placeholder 부분을 다른 div로 만들어서 처리하던가 해야됨. 이부분으 따로 class 만 줄수가 없음
       &::placeholder {

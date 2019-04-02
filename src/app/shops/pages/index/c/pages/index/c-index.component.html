@@ -12,7 +12,7 @@
         *ngFor="let key of objectKeys(secondCategoryMap[this.router.url.split('/')[3]])"
         class="c-header__category--li subtitle-2-bold u-color-white">
         <a class="u-color-white" [routerLink]="'/shops/c/' + this.router.url.split('/')[3] + '/' + key">
-          {{ secondCategoryMap[this.router.url.split('/')[3]][key].name }}
+          {{ secondCategoryMap[this.router.url.split('/')[3]][key][locale] }}
         </a>
       </li>
     </ul>

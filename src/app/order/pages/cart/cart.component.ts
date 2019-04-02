@@ -147,7 +147,7 @@ export class CartComponent {
       }) );
   }
 
-  moveWishListToCart(xAmount, xProductSlug, xPackIndex, xWishListId, xIndex){
+  moveWishListToCart(xAmount, xProductSlug, xPackIndex, xIndex) {
     this.store.dispatch( new TryAddOrCreateToCart(
       {
         isPopUp : false,
@@ -157,7 +157,7 @@ export class CartComponent {
         increaseOrCreate : xProductSlug in this.cartStore.cartList
       }) );
 
-    this.store.dispatch( new TryDeleteWishList( { wishListId : xWishListId, index : xIndex}));
+    this.store.dispatch( new TryDeleteWishList( { wishListSlug : xProductSlug, index : xIndex}));
   }
 
   subtractFromCart(xAmount, xProductSlug, xPackIndex ) {
@@ -176,8 +176,8 @@ export class CartComponent {
     this.store.dispatch( new TryAddToWishList( { productSlug : xProductSlug, packIndex : xPackIndex }));
   }
 
-  deleteWishList( xWishListId, xIndex ) {
-    this.store.dispatch( new TryDeleteWishList( { wishListId : xWishListId, index : xIndex}));
+  deleteWishList( xWishListSlug, xIndex ) {
+    this.store.dispatch( new TryDeleteWishList( { wishListSlug : xWishListSlug, index : xIndex}));
   }
 
 }

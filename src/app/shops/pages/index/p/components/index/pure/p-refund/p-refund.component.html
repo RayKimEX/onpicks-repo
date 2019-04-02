@@ -1,10 +1,9 @@
 <div class="p-refund" #bottomLine>
   <div>
     <h1 class="h1-bold">환불교환 / 배송고시</h1>
-    <onpicks-sort-box (click)="foldFlag = !foldFlag" [selectedElement]="{ title : '더보기' }" [showBox]="false">더보기</onpicks-sort-box>
   </div>
 
-  <div *ngIf="foldFlag">
+  <div>
     <div class="p-refund__title subtitle-1-bold">주문 유의사항</div>
     <ul class="p-refund__section body-2-regular">
       <li>제품 이미지는 제품 리뉴얼 등으로 인해 실제 이미지와 다를 수도 있습니다.</li>

@@ -18,6 +18,7 @@ export class CIndexComponent {
   objectKeys = Object.keys;
   constructor(
     @Inject(CATEGORY_SECOND_MAP) public secondCategoryMap,
+    @Inject(LOCALE_ID) public locale: string,
     private renderer: Renderer2,
     public route: ActivatedRoute,
     public router: Router,

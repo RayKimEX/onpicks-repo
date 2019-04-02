@@ -500,6 +500,7 @@
       &:not(:last-child){
         margin-right : 2.4rem;
       }
+
       &--title{
 
         height : 12rem;
@@ -509,7 +510,7 @@
           background-position: right bottom;
           background-repeat: no-repeat;
           background-size : 8.8rem 8rem;
-          background-image: url('https://img.onpicks.com/assets/pantry-and-household.jpg?d=w176-h160');
+          background-image: url('https://img.onpicks.com/assets/menu/pantry-and-household.jpg?d=w176-h160');
           border-bottom: 2px solid $color-green;
         }
 
@@ -517,7 +518,7 @@
           background-position: right bottom;
           background-repeat: no-repeat;
           background-size : 8.8rem 8rem;
-          background-image: url('https://img.onpicks.com/assets/beauty.jpg?d=w176-h160');
+          background-image: url('https://img.onpicks.com/assets/menu/beauty.jpg?d=w176-h160');
           border-bottom: 2px solid $color-pink;
         }
 
@@ -525,7 +526,7 @@
           background-position: right bottom;
           background-repeat: no-repeat;
           background-size : 8.8rem 8rem;
-          background-image: url('https://img.onpicks.com/assets/baby.jpg?d=w176-h160');
+          background-image: url('https://img.onpicks.com/assets/menu/baby.jpg?d=w176-h160');
           border-bottom: 2px solid $color-orange;
         }
 
@@ -533,7 +534,7 @@
           background-position: right bottom;
           background-repeat: no-repeat;
           background-size : 8.8rem 8rem;
-          background-image: url('https://img.onpicks.com/assets/health.jpg?d=w176-h160');
+          background-image: url('https://img.onpicks.com/assets/menu/health.jpg?d=w176-h160');
           border-bottom: 2px solid $color-dark-green;
         }
 

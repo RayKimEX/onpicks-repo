@@ -8,6 +8,7 @@ import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
 })
 export class PItemDetailComponent implements OnInit {
   @Input('description') description;
+  @Input('categoryInfo') categoryInfo;
 
   constructor() { }
 

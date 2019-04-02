@@ -39,7 +39,7 @@
           </div>
         </li>
       </ul>
-      <div class="circle-navigate" >
+      <div *ngIf="imagesLargeList.length > 3" class="circle-navigate" >
         <div  #circleNavigate class="circle-navigate__outer">
           <span
             *ngFor="let item of imagesLargeList.slice(0, imagesLargeList.length - 2); index as i"
@@ -49,8 +49,8 @@
       </div>
       <!--<div class="banner-carousel__content&#45;&#45;blur"></div>-->
     </div>
-    <onpicks-circle-n-button #buttonNext (click)="nextButton()" ></onpicks-circle-n-button>
-    <onpicks-circle-p-button #buttonPrev (click)="prevButton()" ></onpicks-circle-p-button>
+    <onpicks-circle-n-button *ngIf="imagesLargeList.length > 3" #buttonNext (click)="nextButton()" ></onpicks-circle-n-button>
+    <onpicks-circle-p-button *ngIf="imagesLargeList.length > 3" #buttonPrev (click)="prevButton()" ></onpicks-circle-p-button>
 
   </div>
 </div>

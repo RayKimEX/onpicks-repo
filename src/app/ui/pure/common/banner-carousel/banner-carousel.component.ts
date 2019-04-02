@@ -52,16 +52,21 @@ export class BannerCarouselComponent implements OnInit, AfterViewInit, OnDestroy
 
   @HostListener('mouseover')
   onMouseOver() {
-    this.renderer.setStyle( this.buttonNext.nativeElement, 'opacity', '1');
-    this.renderer.setStyle( this.buttonPrev.nativeElement, 'opacity', '1');
-    this.renderer.setStyle( this.circleNavigate.nativeElement, 'opacity', '1' );
+    if ( this.imagesLargeList.length > 3 ) {
+      this.renderer.setStyle( this.buttonNext.nativeElement, 'opacity', '1');
+      this.renderer.setStyle( this.buttonPrev.nativeElement, 'opacity', '1');
+      this.renderer.setStyle( this.circleNavigate.nativeElement, 'opacity', '1' );
+    }
   }
 
   @HostListener('mouseleave')
   onMouseLeave() {
-    this.renderer.setStyle( this.buttonNext.nativeElement, 'opacity', '0');
-    this.renderer.setStyle( this.buttonPrev.nativeElement, 'opacity', '0');
-    this.renderer.setStyle( this.circleNavigate.nativeElement, 'opacity', '0' );
+    // 배너가 1장일때는 기본적으로 length가 3이상임
+    if ( this.imagesLargeList.length > 3 ) {
+      this.renderer.setStyle(this.buttonNext.nativeElement, 'opacity', '0');
+      this.renderer.setStyle(this.buttonPrev.nativeElement, 'opacity', '0');
+      this.renderer.setStyle(this.circleNavigate.nativeElement, 'opacity', '0');
+    }
   }
 
 

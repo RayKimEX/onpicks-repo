@@ -11,11 +11,29 @@ import {Meta, Title} from '@angular/platform-browser';
 export class BeautyIndexComponent implements OnInit {
   pantryAndHouseHoldBannerImages = [
     {
-      imgSrc : 'https://img.onpicks.com/assets/beauty_banner3.jpg',
+      imgSrc : 'https://img.onpicks.com/banners/beauty/2019-04-01/beauty-banner1.jpg',
       // marginLeftForText : '6.2%',
       title : [],
       description : []
-    }
+    },
+    // {
+    //   imgSrc : 'https://img.onpicks.com/banners/beauty/2019-04-01/beauty-banner2.jpg',
+    //   // marginLeftForText : '6.2%',
+    //   title : [],
+    //   description : []
+    // },
+    // {
+    //   imgSrc : 'https://img.onpicks.com/banners/beauty/2019-04-01/beauty-banner3.jpg',
+    //   // marginLeftForText : '6.2%',
+    //   title : [],
+    //   description : []
+    // },
+    // {
+    //   imgSrc : 'https://img.onpicks.com/banners/beauty/2019-04-01/beauty-banner4.jpg',
+    //   // marginLeftForText : '6.2%',
+    //   title : [],
+    //   description : []
+    // }
   ]
 
   popularPantryCategory = [

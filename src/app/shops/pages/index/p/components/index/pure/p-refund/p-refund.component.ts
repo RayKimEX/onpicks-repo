@@ -14,16 +14,13 @@ export class PRefundComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('bottomLine') bottomLine;
   constructor(
     private store: Store<any>,
-  ) {
-
-  }
+  ) { }
 
   menuPositionInterval;
   currentMenuPositionOffset;
   previousMenuPositionOffset;
   menuPositionCount = 0;
 
-  foldFlag = false;
   ngOnInit() {
   }
 
@@ -53,8 +50,6 @@ export class PRefundComponent implements OnInit, AfterViewInit, OnDestroy {
       this.store.dispatch(new MenuActions.UpdateMenuPosition(this.currentMenuPositionOffset));
       this.previousMenuPositionOffset = this.currentMenuPositionOffset;
     }, 500);
-
-
   }
 
 }

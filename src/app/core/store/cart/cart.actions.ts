@@ -206,7 +206,7 @@ export class GetWishListInfoFailure implements Action {
 export class TryDeleteWishList implements Action {
   readonly type = TRY_DELETE_WISH_LIST;
 
-  constructor ( public payload: { wishListId, index } ) { }
+  constructor ( public payload: { wishListSlug, index } ) { }
 }
 
 export class DeleteWishListSuccess implements Action {

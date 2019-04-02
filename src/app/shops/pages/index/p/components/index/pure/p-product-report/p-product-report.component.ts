@@ -9,12 +9,11 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 export class PProductReportComponent implements OnInit {
 
 
-  foldFlag = true;
+  foldFlag = false;
 
   constructor() { }
 
   ngOnInit() {
-
   }
 
 }

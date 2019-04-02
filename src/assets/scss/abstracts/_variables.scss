@@ -234,13 +234,11 @@ $default-padding : 8rem;
     @media only screen and (max-width: 55.625em) { @content };     //890px
   }
 
-
   // 912 / 16
   // account-break-point
   @if $breakpoint == actb {
     @media only screen and (max-width: 57em) { @content };     //912px
   }
-
 
   // 1192 / 16
   // first-break-point
@@ -256,4 +254,5 @@ $default-padding : 8rem;
   @if $breakpoint == big-desktop {
     @media only screen and (min-width: 112.5em) { @content };    //1800
   }
+
 }

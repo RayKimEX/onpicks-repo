@@ -35,7 +35,7 @@ export class CartEffects {
     ofType( CartActions.TRY_DELETE_WISH_LIST),
     map( payload => payload['payload']),
     switchMap( payload => {
-      return this.cartService.deleteToWishList( payload.wishListId )
+      return this.cartService.deleteToWishList( payload.wishListSlug )
         .pipe(
           map( response => {
             return new DeleteWishListSuccess( payload.index );

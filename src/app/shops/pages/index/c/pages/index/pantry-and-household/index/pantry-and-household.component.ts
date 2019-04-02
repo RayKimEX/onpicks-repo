@@ -14,7 +14,7 @@ export class PantryAndHouseholdComponent implements OnInit {
 
   pantryAndHouseHoldBannerImages =  [
     {
-      imgSrc : 'https://img.onpicks.com/assets/beauty_banner1.jpg',
+      imgSrc : 'https://img.onpicks.com/banners/pantry-and-household/2019-02-27/PAH-banner1.jpg?d=w2576-h800',
       // marginLeftForText : '6.2%',
       title : [
         '세이어스'
@@ -27,7 +27,7 @@ export class PantryAndHouseholdComponent implements OnInit {
       descriptionFontType : 'subtitle-1-regular'
     },
     {
-      imgSrc : 'https://img.onpicks.com/assets/beauty_banner2.jpg',
+      imgSrc : 'https://img.onpicks.com/banners/pantry-and-household/2019-02-27/PAH-banner2.jpg?d=w2576-h800',
       // marginLeftForText : '6.2%',
       title : [
         '온가족이 사용하는',

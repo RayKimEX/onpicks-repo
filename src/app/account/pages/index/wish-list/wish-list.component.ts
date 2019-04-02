@@ -48,7 +48,7 @@ export class WishListComponent implements OnInit, OnDestroy {
     this.cartStore$.unsubscribe();
   }
 
-  moveWishListToCart(xAmount, xProductSlug, xPackIndex, xWishListId, xIndex){
+  moveWishListToCart(xAmount, xProductSlug, xPackIndex, xIndex){
     this.store.dispatch( new TryAddOrCreateToCart(
       {
         isPopUp : false,
@@ -58,12 +58,12 @@ export class WishListComponent implements OnInit, OnDestroy {
         increaseOrCreate : xProductSlug in this.cartStore.cartList
       }) );
 
-    this.store.dispatch( new TryDeleteWishList( { wishListId : xWishListId, index : xIndex}));
+    this.store.dispatch( new TryDeleteWishList( { wishListSlug : xProductSlug, index : xIndex}));
   }
 
 
 
-  deleteWishList( xWishListId, xIndex ) {
-    this.store.dispatch( new TryDeleteWishList( { wishListId : xWishListId, index : xIndex}));
+  deleteWishList( xProductSlug, xIndex ) {
+    this.store.dispatch( new TryDeleteWishList( { wishListSlug : xProductSlug, index : xIndex}));
   }
 }

@@ -35,7 +35,6 @@ export class PMenuComponent implements OnInit, OnDestroy, AfterViewInit, OnChang
 
   keyMapForSlug = {};
   optionObject = {};
-
   selectedFirstOptionIndex = null;
 
   @ViewChild('titleHeight') titleHeightElement;
@@ -87,6 +86,7 @@ export class PMenuComponent implements OnInit, OnDestroy, AfterViewInit, OnChang
         });
 
         const listTemp = [];
+
         let depthCnt = 0;
         let listFirstDepthTemp = [];
         let listTwoDepthParentTemp = {};
@@ -288,7 +288,6 @@ export class PMenuComponent implements OnInit, OnDestroy, AfterViewInit, OnChang
 
 
   ngAfterViewInit() {
-
 
     const weatherDates = []
 

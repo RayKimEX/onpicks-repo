@@ -38,28 +38,34 @@ export const LOCATION_MAP_CONST = {
   }
 }
 
-//category menu
+// category menu
 export const CATEGORY_SECOND_MAP = new InjectionToken<any>( 'app.config');
 export const CATEGORY_SECOND_MAP_CONST = {
 
   'pantry-and-household' : {
     'grocery' : {
-      name : '식품'
+      ko : '식품',
+      en : ''
     },
     'household-supplies' : {
-      name : '생활용품'
+      ko : '생활용품',
+      en : ''
     },
     'health' : {
-      name : '건강'
+      ko : '건강',
+      en : ''
     },
     'personal-care' : {
-      name : '퍼스널케어'
+      ko : '퍼스널케어',
+      en : ''
     },
     'baby' : {
-      name : '유아동'
+      ko : '유아동',
+      en : ''
     },
     'pet-supplies': {
-      name : '반려용품'
+      ko : '반려용품',
+      en : ''
     },
     // 'office-supplies' : {
     //   name : '사무용품'
@@ -67,27 +73,33 @@ export const CATEGORY_SECOND_MAP_CONST = {
   },
   'beauty' : {
     'skin-care' : {
-      name : '스킨케어'
+      ko : '스킨케어',
+      en : ''
     },
     'hair-care' : {
-      name : '헤어케어'
+      ko : '헤어케어',
+      en : ''
     },
     'fragrance' : {
-      name : '향수'
+      ko : '향수',
+      en : ''
     },
     'makeup' : {
-      name : '메이크업'
+      ko : '메이크업',
+      en : ''
     },
     'body-care' : {
-      name : '바디'
+      ko : '바디',
+      en : ''
     },
     'mens-grooming' : {
-      name : '남성'
+      ko : '남성',
+      en : ''
     }
   }
 }
 
-//신고하기 기능
+// 신고하기 기능
 export const REPORT_REASON_MAP = new InjectionToken<any>( 'app.config');
 export const REPORT_REASON_MAP_CONST = {
   'ko' : {

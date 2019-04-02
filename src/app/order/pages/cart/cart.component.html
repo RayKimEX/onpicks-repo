@@ -430,7 +430,7 @@
                   <onpicks-button
                     [width]="'11.4rem'"
                     [type]="'white'"
-                    (click)="moveWishListToCart(1, itemForFree.product, itemForFree.ship_alone ? 'free' : locationMap[itemForFree?.location.code]?.sequence, itemForFree.id, i)"
+                    (click)="moveWishListToCart(1, itemForFree.product, itemForFree.ship_alone ? 'free' : locationMap[itemForFree?.location.code]?.sequence, i)"
                     *ngIf="itemForFree.attributes.length === 0"
                     [size]="'small'">
                     쇼핑백에 담기
@@ -439,7 +439,7 @@
                     [marginLeft]="'0.8rem'"
                     [type]="'white'"
                     [width]="'11.4rem'"
-                    (click)="deleteWishList(itemForFree.id, i)"
+                    (click)="deleteWishList(itemForFree.product, i)"
                     *ngIf="itemForFree.attributes.length === 0"
                     [size]="'small'">
                     삭제하기
@@ -494,14 +494,14 @@
                 옵션 선택하기
               </button>
               <button
-                (click)="moveWishListToCart(1, item.product, item.ship_alone ? 'free' : locationMap[item?.location.code]?.sequence, item.id, i)"
+                (click)="moveWishListToCart(1, item.product, item.ship_alone ? 'free' : locationMap[item?.location.code]?.sequence, i)"
                 *ngIf="item.attributes.length === 0"
                 class="btn btn--white btn--small cart__wishlist-table--btn">
                 쇼핑백에 담기
               </button>
               <button
                 class="btn btn--white btn--small cart__wishlist-table--btn"
-                (click)="deleteWishList(item.id, i)">
+                (click)="deleteWishList(item.product, i)">
                 삭제하기
               </button>
             </td>

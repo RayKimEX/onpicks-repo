@@ -25,6 +25,10 @@
   text-align : center;
   background-color : $color-light-black;
 
+  @include respond(desktop){
+    display:none;
+  }
+
   &--center {
     width:100%;
     display: table-cell;
