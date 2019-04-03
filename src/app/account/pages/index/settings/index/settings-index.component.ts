@@ -14,7 +14,7 @@ export class SettingsIndexComponent implements OnInit {
 
   constructor(
     private cd: ChangeDetectorRef,
-    @Inject(RESPONSIVE_MAP) public categoryMap,
+    @Inject(RESPONSIVE_MAP) public responsiveMap,
     private breakpointObserver:  BreakpointObserver,
   ) {
 
@@ -22,7 +22,7 @@ export class SettingsIndexComponent implements OnInit {
 
   ngOnInit() {
     this.breakpointObserver
-      .observe([this.categoryMap['actb']])
+      .observe([this.responsiveMap['actb']])
       .subscribe((state: BreakpointState) => {
         if (state.matches) {
           this.isACTBreakPoint = false;

@@ -2,11 +2,9 @@
   <onpicks-loading-icon></onpicks-loading-icon>
 </ng-template>
 
-
-
-
 <onpicks-search-navigator-mobile-filter
-  [categoryList]="categoryList"
+  [categoryList]="searchState === 'search' ? categoryList : normalizedCategoryInfoList"
+  [normalizedCategoryCodeList]="normalizedCategoryCodeList"
   [currentCategory]="currentCategory"
   [orderedFilterList]="orderedFilterList"
   [brandList]="brandList"
@@ -137,44 +135,44 @@
                 <nav class="subtitle-3-bold u-color-dark-grey">
                   <!-- async를 이용하여 마지막에의 변수값가져오기 -->
                   <ul #depthOuter *ngIf="route.url | async as lastUrl">
-                    <li #oneDepth *ngFor="let firstCategoryId of result">
+                    <li #oneDepth *ngFor="let firstCategoryCode of normalizedCategoryCodeList">
                       <!--twoDepth-->
                       <div class="c-category-navigator__item">
-                        <a (click)="updateSecondCategory(firstCategoryId, normalizedCategoryList.secondCategory[firstCategoryId].slug)"
-                           [ngClass]="normalizedCategoryList.secondCategory[firstCategoryId].active ? 'main-active' : 'main-deactive'" >
-                          {{normalizedCategoryList.secondCategory[firstCategoryId].name}}
+                        <a (click)="updateSecondCategory(firstCategoryCode, normalizedCategoryInfoList.secondCategory[firstCategoryCode].slug)"
+                           [ngClass]="normalizedCategoryInfoList.secondCategory[firstCategoryCode].active ? 'main-active' : 'main-deactive'" >
+                          {{normalizedCategoryInfoList.secondCategory[firstCategoryCode].name}}
                         </a>
                         <label (click)="onedepthFold(f1, label1)" >
                           <svg #label1 width="10" height="8" viewBox="0 0 10 8"
-                               [ngStyle]="{'transform': normalizedCategoryList.secondCategory[firstCategoryId].active ? 'rotate(-180deg)' : 'rotate(0deg)' }">
+                               [ngStyle]="{'transform': normalizedCategoryInfoList.secondCategory[firstCategoryCode].active ? 'rotate(-180deg)' : 'rotate(0deg)' }">
                             <polyline
                               points="1 2 5 6 9 2"
-                              [ngClass]="normalizedCategoryList.secondCategory[firstCategoryId].active ? 'u-color-stroke-black' : f1.style.maxHeight == '3500px' ? 'u-color-stroke-dark-grey' : 'u-color-stroke-grey'"
+                              [ngClass]="normalizedCategoryInfoList.secondCategory[firstCategoryCode].active ? 'u-color-stroke-black' : f1.style.maxHeight == '3500px' ? 'u-color-stroke-dark-grey' : 'u-color-stroke-grey'"
                               fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
                           </svg>
                         </label>
                       </div>
                       <!--threeDepth-->
                       <ul #f1
-                          [ngStyle]="{'maxHeight': normalizedCategoryList.secondCategory[firstCategoryId].active ? '3500px' : '0px' }">
-                        <li #twoDepth *ngFor="let secondCategoryId of normalizedCategoryList.secondCategory[firstCategoryId].children">
+                          [ngStyle]="{'maxHeight': normalizedCategoryInfoList.secondCategory[firstCategoryCode].active ? '3500px' : '0px' }">
+                        <li #twoDepth *ngFor="let secondCategoryId of normalizedCategoryInfoList.secondCategory[firstCategoryCode].children">
                           <div class="c-category-navigator__item">
                             <!--첫번째 category가 active되있는ㄴ지 아닌지 판단해서 색감넣음-->
                             <a (click)="updateThirdCategory(
                                       secondCategoryId,
-                                      normalizedCategoryList.secondCategory[firstCategoryId].slug,
-                                      normalizedCategoryList.thirdCategory[secondCategoryId].slug)"
-                               [ngClass]="normalizedCategoryList.secondCategory[firstCategoryId].active && !normalizedCategoryList.thirdCategory[secondCategoryId].active
-                                        ? previous.thirdPrevious !== undefined ? 'main-deactive' : 'sub-active' : normalizedCategoryList.thirdCategory[secondCategoryId].active ?  'main-active' : 'main-deactive' ">
-                              {{normalizedCategoryList.thirdCategory[secondCategoryId].name}}
+                                      normalizedCategoryInfoList.secondCategory[firstCategoryCode].slug,
+                                      normalizedCategoryInfoList.thirdCategory[secondCategoryId].slug)"
+                               [ngClass]="normalizedCategoryInfoList.secondCategory[firstCategoryCode].active && !normalizedCategoryInfoList.thirdCategory[secondCategoryId].active
+                                        ? previous.thirdPrevious !== undefined ? 'main-deactive' : 'sub-active' : normalizedCategoryInfoList.thirdCategory[secondCategoryId].active ?  'main-active' : 'main-deactive' ">
+                              {{normalizedCategoryInfoList.thirdCategory[secondCategoryId].name}}
                             </a>
                             <!--3dpeth-->
-                            <label *ngIf="normalizedCategoryList.thirdCategory[secondCategoryId].children.length !== 0 " for="" (click)="twodepthFold(f2, label2)"  >
+                            <label *ngIf="normalizedCategoryInfoList.thirdCategory[secondCategoryId].children.length !== 0 " for="" (click)="twodepthFold(f2, label2)"  >
                               <svg #label2
                                    width="10" height="8" viewBox="0 0 10 8" xmlns="http://www.w3.org/2000/svg"
-                                   [ngStyle]="{ 'transform' : normalizedCategoryList.thirdCategory[secondCategoryId].active ? 'rotate(-180deg)' : 'rotate(0deg)' }">
+                                   [ngStyle]="{ 'transform' : normalizedCategoryInfoList.thirdCategory[secondCategoryId].active ? 'rotate(-180deg)' : 'rotate(0deg)' }">
                                 <polyline points="1 2 5 6 9 2"
-                                          [ngClass]="normalizedCategoryList.thirdCategory[secondCategoryId].active ? 'u-color-stroke-black' : f2.style.maxHeight == '700px' ? 'u-color-stroke-grey' : 'u-color-stroke-light-grey'"
+                                          [ngClass]="normalizedCategoryInfoList.thirdCategory[secondCategoryId].active ? 'u-color-stroke-black' : f2.style.maxHeight == '700px' ? 'u-color-stroke-grey' : 'u-color-stroke-light-grey'"
                                           fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
                               </svg>
                             </label>
@@ -182,17 +180,17 @@
 
                           <ul #f2
                               [ngStyle]="{
-                              'maxHeight' : normalizedCategoryList.thirdCategory[secondCategoryId].active ? '700px' : '0px' }">
-                            <li #threeDepth *ngFor="let thirdCategoryId of normalizedCategoryList.thirdCategory[secondCategoryId].children">
+                              'maxHeight' : normalizedCategoryInfoList.thirdCategory[secondCategoryId].active ? '700px' : '0px' }">
+                            <li #threeDepth *ngFor="let thirdCategoryId of normalizedCategoryInfoList.thirdCategory[secondCategoryId].children">
                               <div class="c-category-navigator__item">
                                 <a
                                   (click)="updateFourthCategory(
                                       thirdCategoryId,
-                                      normalizedCategoryList.secondCategory[firstCategoryId].slug,
-                                      normalizedCategoryList.thirdCategory[secondCategoryId].slug,
-                                      normalizedCategoryList.fourthCategory[thirdCategoryId].slug)"
-                                  [ngClass]="normalizedCategoryList.thirdCategory[secondCategoryId].active ?  lastUrl[1] == normalizedCategoryList.fourthCategory[thirdCategoryId].slug ? 'main-active' : 'sub-active' : 'main-deactive'"
-                                >{{normalizedCategoryList.fourthCategory[thirdCategoryId].name}}</a>
+                                      normalizedCategoryInfoList.secondCategory[firstCategoryCode].slug,
+                                      normalizedCategoryInfoList.thirdCategory[secondCategoryId].slug,
+                                      normalizedCategoryInfoList.fourthCategory[thirdCategoryId].slug)"
+                                  [ngClass]="normalizedCategoryInfoList.thirdCategory[secondCategoryId].active ?  lastUrl[1] == normalizedCategoryInfoList.fourthCategory[thirdCategoryId].slug ? 'main-active' : 'sub-active' : 'main-deactive'"
+                                >{{normalizedCategoryInfoList.fourthCategory[thirdCategoryId].name}}</a>
                               </div>
                             </li>
                           </ul>
@@ -320,8 +318,8 @@
                   class="c-ex-warehouse-navigator__content-ul--item"
                   *ngFor="let item of locationList">
                   <onpicks-check-box
-                    (click)="locationClicked(item.slug)"
-                    [isChecked]="locationListForCheck[item.slug]"
+                    (click)="locationClicked(item.code)"
+                    [isChecked]="locationListForCheck[item.code]"
                     [type]="'checkbox'">
                     <span class="subtitle-3-regular">{{item.name}}</span>
                     <span class="subtitle-3-regular u-color-dark-grey">{{item.count}}</span>

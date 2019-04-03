@@ -84,7 +84,7 @@ export class CommunicateBoxComponent implements OnInit, AfterViewChecked, AfterV
     @Inject(DOMAIN_HOST) private HOST: string,
     @Inject(APP_BASE_HREF) private BASE_URL: string,
     @Inject(REPORT_REASON_MAP) public reasonMap: string,
-    @Inject(RESPONSIVE_MAP) public categoryMap,
+    @Inject(RESPONSIVE_MAP) public responsiveMap,
     private renderer: Renderer2,
     private breakpointObserver:  BreakpointObserver,
     private store: Store<AppState>,
@@ -148,7 +148,7 @@ export class CommunicateBoxComponent implements OnInit, AfterViewChecked, AfterV
 
 
     this.breakpointObserver
-      .observe([this.categoryMap['tb']])
+      .observe([this.responsiveMap['tb']])
       .subscribe((state: BreakpointState) => {
         if (state.matches) {
           this.cd.markForCheck();
@@ -160,7 +160,7 @@ export class CommunicateBoxComponent implements OnInit, AfterViewChecked, AfterV
       });
 
     this.breakpointObserver
-      .observe([this.categoryMap['desktop']])
+      .observe([this.responsiveMap['desktop']])
       .subscribe((state: BreakpointState) => {
         if (state.matches) {
           this.isBlockExistForMobile = true;

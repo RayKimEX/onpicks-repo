@@ -38,7 +38,7 @@ export class PopularBrandComponent implements OnInit, AfterViewInit {
   translateXWidth = 192;
   isShowButton = true;
   constructor(
-    @Inject(RESPONSIVE_MAP) public categoryMap,
+    @Inject(RESPONSIVE_MAP) public responsiveMap,
     private renderer: Renderer2,
     private breakpointObserver:  BreakpointObserver,
     private router: Router,
@@ -49,7 +49,7 @@ export class PopularBrandComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.breakpointObserver
-      .observe([this.categoryMap['tb']])
+      .observe([this.responsiveMap['tb']])
       .subscribe((state: BreakpointState) => {
         if (state.matches) {
           this.isShowButton = false;

@@ -18,7 +18,7 @@ export class ShopsIndexComponent implements OnInit, AfterViewInit {
   // }
 
   shopsBannerImage = {
-    imgSrc : 'https://img.onpicks.com/assets/beauty_banner1.jpg',
+    imgSrc : 'https://img.onpicks.com/banners/pantry-and-household/2019-02-27/PAH-banner1.jpg?d=w2576-h800',
     // marginLeftForText : '6.2%',
     title : [
       '모든 피부에 적합한',
@@ -43,6 +43,7 @@ export class ShopsIndexComponent implements OnInit, AfterViewInit {
     }
   ];
 
+  // https://s3.ap-northeast-2.amazonaws.com/img.onpicks.com/onpicks_banner_banner_3840x800.png
   popularCategory = [
     {
       imgSrc : 'http://img.onpicks.com/categories/category-grocery.png',

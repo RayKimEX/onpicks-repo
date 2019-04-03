@@ -103,7 +103,7 @@ export class PIndexComponent implements OnInit, OnDestroy {
   discountPercent;
   constructor(
     @Inject(LOCATION_MAP) public locationMap: any,
-    @Inject(RESPONSIVE_MAP) public categoryMap,
+    @Inject(RESPONSIVE_MAP) public responsiveMap,
     private breakpointObserver:  BreakpointObserver,
     private cd: ChangeDetectorRef,
     private store: Store<any>,
@@ -184,7 +184,7 @@ export class PIndexComponent implements OnInit, OnDestroy {
     this.contentHeight = (window.screen.height - 400) < 300 ? '' : (window.screen.height) + 'px';
 
     this.breakpointObserver
-      .observe([this.categoryMap['desktop']])
+      .observe([this.responsiveMap['desktop']])
       .subscribe((state: BreakpointState) => {
         if (state.matches) {
           this.isFB = true;

@@ -35,6 +35,12 @@
     vertical-align: middle;
   }
 }
+.onpicks-padding {
+  padding : 0 2.4rem;
+  @include respond(fb){
+    padding : 0 2.4rem;
+  }
+}
 
 ui-footer {
   display: block;

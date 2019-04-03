@@ -57,7 +57,7 @@ export class ChangePreferenceComponent implements OnInit {
 
   constructor(
     @Inject(CURRENCY) public currency: BehaviorSubject<any>,
-    @Inject(RESPONSIVE_MAP) public categoryMap,
+    @Inject(RESPONSIVE_MAP) public responsiveMap,
     private breakpointObserver:  BreakpointObserver,
     private store: Store<any>,
     private eRef: ElementRef,
@@ -75,7 +75,7 @@ export class ChangePreferenceComponent implements OnInit {
 
 
     this.breakpointObserver
-      .observe([this.categoryMap['sb']])
+      .observe([this.responsiveMap['sb']])
       .subscribe((state: BreakpointState) => {
         if (state.matches) {
           this.isSecondBreakPoint = true;

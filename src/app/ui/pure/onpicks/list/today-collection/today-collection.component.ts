@@ -31,7 +31,7 @@ export class TodayCollectionComponent implements OnInit, AfterViewInit {
   panInterval = null;
 
   constructor(
-    @Inject(RESPONSIVE_MAP) public categoryMap,
+    @Inject(RESPONSIVE_MAP) public responsiveMap,
     private renderer: Renderer2,
     private breakpointObserver:  BreakpointObserver,
     private cd: ChangeDetectorRef
@@ -45,7 +45,7 @@ export class TodayCollectionComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     // tb
     this.breakpointObserver
-      .observe([this.categoryMap['tb']])
+      .observe([this.responsiveMap['tb']])
       .subscribe((state: BreakpointState) => {
         if (state.matches) {
           this.isShowButton = false;

@@ -153,7 +153,7 @@ export class CheckoutComponent implements OnInit, AfterViewInit, OnDestroy {
   constructor(
     @Inject(CURRENCY) public currency: BehaviorSubject<any>,
     @Inject(DOMAIN_HOST) private BASE_URL: string,
-    @Inject(RESPONSIVE_MAP) public categoryMap,
+    @Inject(RESPONSIVE_MAP) public responsiveMap,
     private orderDataService: OrderDataService,
     private renderer: Renderer2,
     private httpClient: HttpClient,
@@ -279,7 +279,7 @@ export class CheckoutComponent implements OnInit, AfterViewInit, OnDestroy {
     });
 
     this.breakpointObserver
-      .observe([this.categoryMap['tb']])
+      .observe([this.responsiveMap['tb']])
       .subscribe((state: BreakpointState) => {
         if (state.matches) {
           this.isThirdBreakPoint = false;

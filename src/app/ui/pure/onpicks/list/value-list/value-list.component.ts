@@ -71,7 +71,7 @@ export class ValueListComponent implements OnInit, AfterViewInit {
   // ]
 
   constructor(
-    @Inject(RESPONSIVE_MAP) public categoryMap,
+    @Inject(RESPONSIVE_MAP) public responsiveMap,
     private router: Router,
     private renderer: Renderer2,
     private breakpointObserver:  BreakpointObserver,
@@ -86,7 +86,7 @@ export class ValueListComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     // tb
     this.breakpointObserver
-      .observe([this.categoryMap['tb']])
+      .observe([this.responsiveMap['tb']])
       .subscribe((state: BreakpointState) => {
         if (state.matches) {
           this.isThirdBreakPoint = true;

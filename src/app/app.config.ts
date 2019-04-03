@@ -115,7 +115,7 @@ export const REPORT_REASON_MAP_CONST = {
 }
 
 // reponsive
-export const RESPONSIVE_MAP = new InjectionToken<any>('app.config');
+export const /**/RESPONSIVE_MAP = new InjectionToken<any>('app.config');
 export const RESPONSIVE_MAP_CONST = {
   // 640 / 16
   // third-break-point : popularCategory, collection, popularBrands

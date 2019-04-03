@@ -17,7 +17,7 @@
         </div>
         <div class="search-content-mobile__filter--title subtitle-1-regular">
           <span *ngIf="state === 'menu'">필터</span>
-          <span *ngIf="state === 'category'">카테고리</span>
+          <span *ngIf="state === 'category'">{{searchState === 'search' ? '검색' : ''}} 카테고리</span>
           <span *ngIf="state === 'brand'">브랜드</span>
           <span *ngIf="state === 'value'">식품인증</span>
           <span *ngIf="state === 'ex-warehouse'">출고지</span>
@@ -32,12 +32,91 @@
       </div>
     </div>
 
-    <div *ngIf="state === 'category'" class="category-content">
+    <div *ngIf="state === 'category' && searchState === 'category'" class="category-content">
+      <!--첫번째 카테고리의 경우 0~3번째 코도의 자리만 일치하면, Active로 판단-->
+      <div
+        *ngFor="let firstCategoryCode of normalizedCategoryCodeList"
+        [ngClass]="[
+          ( currentCategory.toString().substring(0,3).indexOf(firstCategoryCode.toString().substring(0,3)) > -1 || currentCategory == firstCategoryCode ) ? 'category-content__depth' : 'category-content__depth fold'
+        ]">
+        <div
+          class="category-content__item-title"
+          [ngClass]="[
+            ( currentCategory.toString().substring(0,3).indexOf(firstCategoryCode.toString().substring(0,3)) > -1 || currentCategory == firstCategoryCode ) ? 'subtitle-2-bold' : 'subtitle-2-regular'
+          ]">
+
+          <span
+            class="category-content__category-indicator"
+            *ngIf="firstCategoryCode / currentCategory  < 1">
+            <!--<svg width="6" height="10" viewBox="0 0 6 10">-->
+            <!--<path fill="#B3B3B3" d="M5 10a.997.997 0 0 1-.707-.293l-4-4a.999.999 0 0 1 0-1.414l4-4a.999.999 0 1 1 1.414 1.414L2.414 5l3.293 3.293A.999.999 0 0 1 5 10" />-->
+            <!--</svg>-->
+          </span>
+          <span>
+            <a
+              (click)="categoryClicked('/shops/c/'+ router.url.split('/')[3] + '/' +categoryList.secondCategory[firstCategoryCode].slug, firstCategoryCode)">
+              {{ categoryList.secondCategory[firstCategoryCode].name }}
+              <!--(click)="categoryClicked('/shops/c/'+oneCat.slug, oneCat?.code)">-->
+            </a>
+          </span>
+        </div>
+        <!--두번째 카테고리의 경우 0~5번째 코드의 자리만 일치하면, Active로 판단-->
+        <div
+          *ngFor="let secondCategoryCode of categoryList.secondCategory[firstCategoryCode].children"
+          [ngClass]="[
+            ( currentCategory.toString().substring(0,5).indexOf(secondCategoryCode.toString().substring(0,5)) > -1 || currentCategory == secondCategoryCode ) ? 'category-content__depth' : 'category-content__depth fold'
+          ]"
+          style="margin-left: 10px">
+          <div
+            class="category-content__item-title">
+            <a
+              [ngClass]="[
+                ( currentCategory.toString().substring(0,5).indexOf(secondCategoryCode.toString().substring(0,5)) > -1 || currentCategory == secondCategoryCode ) ? 'subtitle-2-bold' : 'subtitle-2-regular'
+              ]"
+
+              (click)="categoryClicked('/shops/c/'+ router.url.split('/')[3] + '/' +categoryList.secondCategory[firstCategoryCode].slug.toLowerCase()+'/'+categoryList.thirdCategory[secondCategoryCode].slug.toLowerCase(), categoryList.thirdCategory[secondCategoryCode].code)">
+              {{ categoryList.thirdCategory[secondCategoryCode].name }}
+            </a>
+            <span
+              *ngIf="(!(secondCategoryCode / currentCategory < 1)) && (secondCategoryCode / currentCategory < 1 || currentCategory == secondCategoryCode )"
+              style="float:right">
+              <svg xmlns="http://www.w3.org/2000/svg" width="10" height="7" viewBox="0 0 10 7">
+                <path fill="#000" fill-rule="evenodd" d="M4.024 7h-.007a1.413 1.413 0 0 1-1.023-.448L.279 3.708a1.008 1.008 0 0 1 .029-1.421 1 1 0 0 1 1.414.03L4.025 4.73 8.282.305A1 1 0 0 1 9.696.281a1.01 1.01 0 0 1 .023 1.421l-4.68 4.864A1.411 1.411 0 0 1 4.025 7z"/>
+              </svg>
+            </span>
+          </div>
+          <div
+            style="margin-left: 10px"
+            class="category-content__depth subtitle-2-bold"
+            *ngFor="let thirdCategoryCode of categoryList.thirdCategory[secondCategoryCode].children">
+            <div
+              class="category-content__item-title">
+              <a
+                [ngClass]="[
+                  ( currentCategory == thirdCategoryCode ) ? 'subtitle-2-bold' : 'subtitle-2-regular'
+                ]"
+                (click)="categoryClicked('/shops/c/' + router.url.split('/')[3] + '/' + categoryList.secondCategory[firstCategoryCode].slug.toLowerCase()+'/' + categoryList.thirdCategory[secondCategoryCode].slug.toLowerCase()+'/' + categoryList.fourthCategory[thirdCategoryCode].slug.toLowerCase(), categoryList.fourthCategory[thirdCategoryCode].code)">
+                {{ categoryList.fourthCategory[thirdCategoryCode].name }}
+              </a>
+              <span
+                *ngIf="(!(thirdCategoryCode / currentCategory < 1)) && (thirdCategoryCode / currentCategory < 1 || currentCategory == thirdCategoryCode )"
+                style="float:right">
+                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="7" viewBox="0 0 10 7">
+                  <path fill="#000" fill-rule="evenodd" d="M4.024 7h-.007a1.413 1.413 0 0 1-1.023-.448L.279 3.708a1.008 1.008 0 0 1 .029-1.421 1 1 0 0 1 1.414.03L4.025 4.73 8.282.305A1 1 0 0 1 9.696.281a1.01 1.01 0 0 1 .023 1.421l-4.68 4.864A1.411 1.411 0 0 1 4.025 7z"/>
+                </svg>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="state === 'category' && searchState === 'search'" class="category-content">
       <ng-container *ngIf="categoryList?.length !== 0">
         <div
           class="category-content__depth"
           *ngFor="let oneCat of categoryList">
-          <div class="category-content__item-title subtitle-2-bold">
+          <div *ngIf="searchState === 'search'" class="category-content__item-title subtitle-2-bold">
             <span
               class="category-content__category-indicator"
               *ngIf="oneCat?.code / currentCategory  < 1">
@@ -47,8 +126,8 @@
             </span>
             <span>
               <a
-                [ngClass]="{'u-color-dark-grey' : (oneCat?.code / currentCategory < 1)}"
-                (click)="categoryClicked('/shops/c/'+oneCat.slug, oneCat?.code)">{{ oneCat.name }}
+                [ngClass]="{'u-color-dark-grey' : (oneCat?.code / currentCategory < 1)}" (click)="categoryClicked('/shops/c/'+oneCat.slug, oneCat?.code)">{{ oneCat.name }}
+                <!--(click)="categoryClicked('/shops/c/'+oneCat.slug, oneCat?.code)">-->
               </a>
             </span>
           </div>
@@ -70,7 +149,7 @@
                   (twoCat?.code / currentCategory < 1) ? 'u-color-dark-grey' : '',
                   (twoCat?.code / currentCategory < 1 || currentCategory == twoCat?.code ) ? 'subtitle-2-bold' : 'subtitle-2-regular'
                 ]"
-                (click)="categoryClicked('/shops/c/'+oneCat.slug+'/'+twoCat.slug, twoCat?.code)">{{ twoCat.name }}
+                (click)="categoryClicked('/shops/c/'+oneCat.slug.toLowerCase()+'/'+twoCat.slug.toLowerCase(), twoCat?.code)">{{ twoCat.name }}
               </a>
               <span
                 *ngIf="(!(twoCat?.code / currentCategory < 1)) && (twoCat?.code / currentCategory < 1 || currentCategory == twoCat?.code )"
@@ -91,7 +170,7 @@
                     (threeCat?.code / currentCategory < 1) ? 'u-color-dark-grey' : '',
                     (threeCat?.code / currentCategory < 1 || currentCategory == threeCat?.code ) ? 'subtitle-2-bold' : 'subtitle-2-regular'
                     ]"
-                  (click)="categoryClicked('/shops/c/'+oneCat.slug+'/'+twoCat.slug+'/'+threeCat.slug ,threeCat?.code)">
+                  (click)="categoryClicked('/shops/c/'+oneCat.slug.toLowerCase()+'/'+twoCat.slug.toLowerCase()+'/'+threeCat.slug.toLowerCase() ,threeCat?.code)">
                   {{ threeCat.name }}
                 </a>
                 <span
@@ -110,7 +189,7 @@
                   class="category-content__item-title">
                   <a
                     [ngClass]="[(currentCategory == fourCat?.code ) ? 'subtitle-2-bold' : 'subtitle-2-regular']"
-                    (click)="categoryClicked('/shops/c/'+oneCat.slug+'/'+twoCat.slug+'/'+threeCat.slug+'/'+fourCat.slug , fourCat?.code)">
+                    (click)="categoryClicked('/shops/c/'+oneCat.slug.toLowerCase()+'/'+twoCat.slug.toLowerCase()+'/'+threeCat.slug.toLowerCase()+'/'+fourCat.slug.toLowerCase() , fourCat?.code)">
                     {{ fourCat?.name }}
                   </a>
                   <span
@@ -120,7 +199,6 @@
                       <path fill="#000" fill-rule="evenodd" d="M4.024 7h-.007a1.413 1.413 0 0 1-1.023-.448L.279 3.708a1.008 1.008 0 0 1 .029-1.421 1 1 0 0 1 1.414.03L4.025 4.73 8.282.305A1 1 0 0 1 9.696.281a1.01 1.01 0 0 1 .023 1.421l-4.68 4.864A1.411 1.411 0 0 1 4.025 7z"/>
                     </svg>
                   </span>
-
                 </div>
               </div>
             </div>
@@ -150,8 +228,8 @@
               [isChecked]="brandListForCheck[item.slug] !== true ? false : true"
               (click)="brandClicked(item.slug)"
               [type]="'checkbox'">
-              <span class="subtitle-3-regular">{{item.slug}}</span>
-              <span class="subtitle-3-regular u-color-dark-grey">{{item.count}}</span>
+              <span class="brand-content__ul--item--name subtitle-2-regular">{{item.name}}</span>
+              <span class="subtitle-2-regular u-color-dark-grey">{{item.count}}</span>
             </onpicks-check-box>
           </div>
         </li>
@@ -176,8 +254,8 @@
               [isChecked]="valueListForCheck[item.slug] !== true ? false : true"
               (click)="valueClicked(item.slug)"
               [type]="'checkbox'">
-              <span class="subtitle-3-regular">{{item.slug}}</span>
-              <span class="subtitle-3-regular u-color-dark-grey">{{item.count}}</span>
+              <span class="value-content__ul--item--name subtitle-2-regular">{{item.name}}</span>
+              <span class="subtitle-2-regular u-color-dark-grey">{{item.count}}</span>
             </onpicks-check-box>
           </div>
         </li>
@@ -202,8 +280,8 @@
               (click)="locationClicked(item.slug)"
               [isChecked]="locationListForCheck[item.slug]"
               [type]="'checkbox'">
-              <span class="subtitle-3-regular">{{item.name}}</span>
-              <span class="subtitle-3-regular u-color-dark-grey">{{item.count}}</span>
+              <span class="ex-warehouse-content__ul--item--name subtitle-2-regular">{{item.name}}</span>
+              <span class="subtitle-2-regular u-color-dark-grey">{{item.count}}</span>
             </onpicks-check-box>
           </div>
         </li>

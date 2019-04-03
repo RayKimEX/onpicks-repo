@@ -43,11 +43,12 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
   infoList;
   orderedFilterList = [];
 
+  /** currentState **/
   currentSortSlug = 'most_popular';
 
-  result;
+  normalizedCategoryCodeList;
   categoryList;
-  normalizedCategoryList;
+  normalizedCategoryInfoList;
   previous;
   currentSlug;
   currentCode;
@@ -123,7 +124,6 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
     private breakpointObserver:  BreakpointObserver,
     private titleService: Title,
   ) {
-
     this.breakpointObserver
       .observe([this.responsiveMap['tb']])
       .subscribe((state: BreakpointState) => {
@@ -139,11 +139,13 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
     this.uiStore$ = this.store.pipe(select(state => state.ui.currentCategoryList))
       .subscribe(val => {
         // this.categoryList = val;
-        this.normalizedCategoryList = val.entities;
-        this.result = val.result;
+        this.normalizedCategoryInfoList = val.entities;
+        this.normalizedCategoryCodeList = val.result;
         this.previous = val.previous;
         this.currentSlug = val.currentSlug;
         this.currentCode = val.currentCode;
+        this.currentCategory = val.currentCode;
+
         this.currentName = val.currentName;
         this.currentTitle = val.currentTitle;
 
@@ -159,9 +161,8 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
     this.weeklyBest$ = this.uiService.getWeeklyBestGoods();
 
     // this.router.events.pipe( merge(this.route.queryParams) )
-      // this.router.events.pipe(concat(this.route.queryParams))
+    // this.router.events.pipe(concat(this.route.queryParams))
     this.router.events.subscribe( (event: RouterEvent) => {
-
 
       if (event instanceof NavigationEnd ) {
         let url = this.router.url;
@@ -207,7 +208,7 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
 
         if (url.indexOf('/search') > -1) {
           this.searchState = 'search';
-          this.result = null;
+          this.normalizedCategoryCodeList = null;
           this.previous = null;
           this.currentSlug = null;
 
@@ -256,8 +257,14 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
               break;
           }
 
-
-          this.searchData$ = this.searchService.categorySearch(categoryCurrentCode, this.currentSortSlug, this.currentPage).subscribe(_infoList => {
+          console.log(this.queryParams.location[0]);
+          this.searchData$ =
+            this.searchService.categorySearch(categoryCurrentCode,
+              this.currentSortSlug,
+              this.currentPage,
+              this.queryParams.brand[0] === undefined ? '' : this.queryParams.brand[0],
+              this.queryParams.value[0] === undefined ? '' : this.queryParams.value[0],
+              this.queryParams.location[0] === undefined ? '' : this.queryParams.location[0] ).subscribe(_infoList => {
             this.searchState = 'category';
 
             /* async 데이터가 들어오는데, null이라면 return을 해줌 */
@@ -450,10 +457,15 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
       this.queryParams.value.push(xValueSlug);
     }
 
-    this.router.navigate(['/shops/search'], {
-      queryParams: { page: null, value: this.queryParams.value.length === 0 ? null : this.queryParams.value},
-      queryParamsHandling: 'merge'
-    });
+    if ( this.searchState === 'search') {
+      this.router.navigate(['/shops/search'], {
+        queryParams: { page: null, value: this.queryParams.value.length === 0 ? null : this.queryParams.value},
+        queryParamsHandling: 'merge'
+      });
+    } else {
+      this.router.navigate(['./'], { relativeTo: this.route, queryParams: {value: xValueSlug}, queryParamsHandling: 'merge'} );
+    }
+
   }
 
   brandClicked(xBrandSlug) {
@@ -466,10 +478,16 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
       this.queryParams.brand.push(xBrandSlug);
     }
 
-    this.router.navigate(['/shops/search'], {
-      queryParams: {page: null, brand: this.queryParams.brand.length === 0 ? null : this.queryParams.brand},
-      queryParamsHandling: 'merge'
-    });
+
+    if( this.searchState === 'search') {
+      this.router.navigate(['/shops/search'], {
+        queryParams: {page: null, brand: this.queryParams.brand.length === 0 ? null : this.queryParams.brand},
+        queryParamsHandling: 'merge'
+      });
+    } else {
+      this.router.navigate(['./'], { relativeTo: this.route, queryParams: {brand: xBrandSlug}, queryParamsHandling: 'merge'} );
+    }
+
   }
 
   locationClicked(xLocationSlug) {
@@ -482,10 +500,15 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
       this.queryParams.location.push(xLocationSlug);
     }
 
-    this.router.navigate(['/shops/search'], {
-      queryParams: {page: null, location: this.queryParams.location.length === 0 ? null : this.queryParams.location},
-      queryParamsHandling: 'merge'
-    });
+    if( this.searchState === 'search') {
+      this.router.navigate(['/shops/search'], {
+        queryParams: {page: null, location: this.queryParams.location.length === 0 ? null : this.queryParams.location},
+        queryParamsHandling: 'merge'
+      });
+    } else {
+      this.router.navigate(['./'], { relativeTo: this.route, queryParams: {location: xLocationSlug}, queryParamsHandling: 'merge'} );
+    }
+
   }
 
   sortClicked(xSortSlug) {
