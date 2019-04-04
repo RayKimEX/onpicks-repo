@@ -21,6 +21,7 @@ onpicks-loading-icon {
 .mobile-menu {
   padding : 1.6rem;
   position : fixed;
+  margin : 0 -2.4rem;
   bottom : 0;
   width : 100%;
   z-index : 9999;
@@ -33,6 +34,7 @@ onpicks-loading-icon {
     z-index:9001;
     position:fixed;
     top : 0;
+    margin : 0 -2.4rem;
 
     height : 100%;
     width :100%;
@@ -123,7 +125,6 @@ onpicks-loading-icon {
   }
   @include respond(sb){
     width:100%;
-    padding: 0 1.6rem;
     overflow:hidden;
   }
 }

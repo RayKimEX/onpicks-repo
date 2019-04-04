@@ -51,7 +51,7 @@
 
     <div
       *ngIf="isExpendMobileMenu"
-      (click)="isExpendMobileMenu = false"
+      (click)="revertMobileMenu()"
       class="mobile-menu--outer">
     </div>
 
@@ -85,7 +85,7 @@
 
       <onpicks-button
         *ngIf="!isExpendMobileMenu"
-        (click)="isExpendMobileMenu = true"
+        (click)="expandMobileMenu()"
         class="mobile-menu__button"
         [width]="'13.4rem'"
         [type]="'black'"

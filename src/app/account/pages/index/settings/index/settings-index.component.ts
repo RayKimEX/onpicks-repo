@@ -16,9 +16,7 @@ export class SettingsIndexComponent implements OnInit {
     private cd: ChangeDetectorRef,
     @Inject(RESPONSIVE_MAP) public responsiveMap,
     private breakpointObserver:  BreakpointObserver,
-  ) {
-
-  }
+  ) { }
 
   ngOnInit() {
     this.breakpointObserver

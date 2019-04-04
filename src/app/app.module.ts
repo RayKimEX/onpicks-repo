@@ -122,7 +122,7 @@ function setCookie(cname, cvalue ) {
     },
     {
       provide: CURRENCY,
-      useValue : getCookie('onpicks-currency') === '' ? setCookie('onpicks-currency', 'KRW' ) : new BehaviorSubject(getCookie('onpicks-currency')),
+      useValue : new BehaviorSubject(getCookie('onpicks-currency')),
     },
     {
       provide: LOCATION_MAP,

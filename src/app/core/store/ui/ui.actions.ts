@@ -13,9 +13,12 @@ export const DISPLAY_ALERT_MESSAGE = '[UI] DISPLAY_ALERT_MESSAGE';
 export const REMOVE_ALERT_MESSAGE = '[UI] REMOVE_ALERT_MESSAGE';
 
 export const UPDATE_GLOBAL_KAKAO_PLUS_FRIEND_FOR_DETAIL_PAGE = '[UI] UPDATE_GLOBAL_KAKAO_PLUS_FRIEND_FOR_DETAIL_PAGE';
+export const UPDATE_GLOBAL_KAKAO_PLUS_FRIEND_FOR_PURCHASE = '[UI] UPDATE_GLOBAL_KAKAO_PLUS_FRIEND_FOR_PURCHASE';
 export const UPDATE_GLOBAL_KAKAO_PLUS_FRIEND_FOR_NORMAL = '[UI] UPDATE_GLOBAL_KAKAO_PLUS_FRIEND_FOR_NORMAL';
 
-
+export class UpdateGlobalKakaoPlusFriendForPurchase implements Action {
+  readonly type = UPDATE_GLOBAL_KAKAO_PLUS_FRIEND_FOR_PURCHASE;
+}
 
 export class UpdateGlobalKakaoPlusFriendForDetailPage implements Action {
   readonly type = UPDATE_GLOBAL_KAKAO_PLUS_FRIEND_FOR_DETAIL_PAGE;
@@ -97,4 +100,5 @@ export type UiActions =
   DisplayAlertMessage |
   RemoveAlertMessage |
   UpdateGlobalKakaoPlusFriendForDetailPage |
-  UpdateGlobalKakaoPlusFriendForNormal;
+  UpdateGlobalKakaoPlusFriendForNormal |
+  UpdateGlobalKakaoPlusFriendForPurchase;

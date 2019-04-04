@@ -17,7 +17,7 @@ import {
 import {UiService} from '../../../../../../core/service/ui/ui.service';
 import {BreakpointObserver, BreakpointState} from '../../../../../../../../node_modules/@angular/cdk/layout';
 import {LOCATION_MAP, RESPONSIVE_MAP} from '../../../../../../app.config';
-import {DisplayAlertMessage, UpdateGlobalKakaoPlusFriendForDetailPage, UpdateGlobalKakaoPlusFriendForNormal} from '../../../../../../core/store/ui/ui.actions';
+import {DisplayAlertMessage, UpdateGlobalKakaoPlusFriendForDetailPage, UpdateGlobalKakaoPlusFriendForNormal, UpdateGlobalKakaoPlusFriendForPurchase} from '../../../../../../core/store/ui/ui.actions';
 import {TryAddOrCreateToCart} from '../../../../../../core/store/cart/cart.actions';
 
 @Component({
@@ -194,6 +194,18 @@ export class PIndexComponent implements OnInit, OnDestroy {
           this.cd.markForCheck();
         }
       });
+  }
+
+  expandMobileMenu(){
+    this.isExpendMobileMenu = true;
+
+    this.store.dispatch(new UpdateGlobalKakaoPlusFriendForPurchase());
+  }
+
+  revertMobileMenu() {
+    this.isExpendMobileMenu = false;
+
+    this.store.dispatch(new UpdateGlobalKakaoPlusFriendForDetailPage());
   }
 
   addToCart(xPackIndex, data) {

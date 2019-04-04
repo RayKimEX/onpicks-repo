@@ -4,7 +4,7 @@ import {
   GET_CATEGORY_ALL_SUCCESS,
   REMOVE_ALERT_MESSAGE,
   UiActions,
-  UPDATE_CATEGORY, UPDATE_GLOBAL_KAKAO_PLUS_FRIEND_FOR_DETAIL_PAGE, UPDATE_GLOBAL_KAKAO_PLUS_FRIEND_FOR_NORMAL,
+  UPDATE_CATEGORY, UPDATE_GLOBAL_KAKAO_PLUS_FRIEND_FOR_DETAIL_PAGE, UPDATE_GLOBAL_KAKAO_PLUS_FRIEND_FOR_NORMAL, UPDATE_GLOBAL_KAKAO_PLUS_FRIEND_FOR_PURCHASE,
   UPDATE_URL_ACTIVE
 } from './ui.actions';
 
@@ -58,6 +58,12 @@ let notChangeThirdPrevious;
 export function UiReducer(state = initialState, action: UiActions): UiState {
 
   switch (action.type) {
+    case UPDATE_GLOBAL_KAKAO_PLUS_FRIEND_FOR_PURCHASE :
+
+      return {
+        ...state,
+        globalKakaoPosition : '17rem'
+      }
 
     case UPDATE_GLOBAL_KAKAO_PLUS_FRIEND_FOR_DETAIL_PAGE :
 
