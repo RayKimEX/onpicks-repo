@@ -65,12 +65,15 @@ function setCookie(cname, cvalue ) {
 export function getCurrency() {
   switch (window.location.pathname.split('/')[1]) {
     case 'kr' :
+      setCookie( 'onpicks-language', 'ko');
       setCookie( 'onpicks-currency', 'KRW');
       break;
     case 'us' :
+      setCookie( 'onpicks-language', 'en');
       setCookie( 'onpicks-currency', 'USD');
       break;
     case 'cn' :
+      setCookie( 'onpicks-language', 'zh');
       setCookie( 'onpicks-currency', 'CNY');
       break;
     default :

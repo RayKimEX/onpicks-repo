@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --configuration=ko --public-host http://localhost:4200",
+    "startko": "ng serve --configuration=ko --public-host http://localhost:4200",
+    "starten": "ng serve --configuration=en --public-host http://localhost:4300 --port=4300",
     "proxystart": "ng serve --configuration=ko --proxy-config proxy.conf.json --public-host http://localhost:4200",
     "build": "ng build",
     "test": "ng test",
