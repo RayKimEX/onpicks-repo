@@ -80,20 +80,31 @@ export class PantryAndHouseholdComponent implements OnInit {
       imgSrc : 'http://img.onpicks.com/collections/collections-paleo.jpg',
       todayCategoryName : '식품·생활용품',
       todayTitle : '팔레오 다이어트',
-      todayDiscription: '건강&체중을 한 번에! 수천년 전에 인간 사냥꾼 조상이 먹은 것과 유사하도록 고안된 구석기 다이어트...',
+      todayDiscription: '헐리웃 셀럽들 사이에서 hot한 건강&체중을 동시에 잡는 식이요법을 경험해보세요.',
+      filterSlug : {
+        value : ['paleo']
+      }
     },
     {
       imgSrc : 'http://img.onpicks.com/collections/collections-USDA.jpg',
       todayCategoryName : '식품·생활용품',
       todayTitle : 'USDA 인증',
-      todayDiscription: '미국 유기농 인증마크 USDA',
+      todayDiscription: '깐깐하기로 소문난 United States Department of Agriculture 의 인증, Real Organic 을 소개합니다.',
+      filterSlug : {
+        value : [
+          'organic-95', 'organic-100'
+        ]
+      }
     },
     {
       imgSrc : 'http://img.onpicks.com/collections/collections-gluten.jpg',
       todayCategoryName : '식품·생활용품',
       todayTitle : '글루텐프리',
-      todayDiscription: '밀가루 무첨가 영양만점 글루텐프리',
-    }
+      todayDiscription: '미국의 3대 글루텐프리 인증 단체인 GFCO, CSA, ACG의 인증, 미국 본토의 글루텐프리 컬렉션.',
+      filterSlug : {
+        value : ['certified-gluten-free']
+      }
+    },
   ]
 
   popularBrand$;

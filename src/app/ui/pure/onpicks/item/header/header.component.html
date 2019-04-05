@@ -71,27 +71,22 @@
                    쇼핑|shops
                 </a>
               </li>
-              <li>
+              <!--<li>
                 <div
                    class="h1-bold u-color-grey u-button-effect"
                    (click)="showPreparingMessage()"
                    i18n="@@header__showcases">
                    쇼케이스|showcases
                 </div>
-                <!--routerLink="showcases"-->
-                <!--[routerLinkActive]="['u-color-black', 'u-active']"-->
               </li>
               <li>
                 <div
                    class="h1-bold u-color-grey u-button-effect"
-
                    (click)="showPreparingMessage()"
                    i18n="@@header__events">
                    이벤트|events
                 </div>
-                <!--routerLink="events"-->
-                <!--[routerLinkActive]="['u-color-black', 'u-active']"-->
-              </li>
+              </li>-->
               <li>
                 <div
                    class="h1-bold u-color-grey u-button-effect"
@@ -99,8 +94,6 @@
                    i18n="@@header__reviews">
                    리뷰|reviews
                 </div>
-                <!--routerLink="reviews"-->
-                <!--[routerLinkActive]="['u-color-black', 'u-active']"-->
               </li>
             </ul>
           </nav>
@@ -351,8 +344,9 @@
             <!--</div>-->
           <!--</li>-->
           <li class="header__mobile-hamburger--li">
-            <div>
-              <div class="u-button-effect">로그아웃</div>
+            <div
+              (click)="logout(inputCheckedForToggle)">
+              <a *ngIf="auth.isAuthenticated">로그아웃</a>
             </div>
           </li>
         </ul>

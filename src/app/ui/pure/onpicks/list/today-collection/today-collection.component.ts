@@ -8,6 +8,7 @@ import {
 } from '@angular/core';
 import {BreakpointObserver, BreakpointState} from '../../../../../../../node_modules/@angular/cdk/layout';
 import {RESPONSIVE_MAP} from '../../../../../app.config';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'onpicks-today-collection',
@@ -34,7 +35,9 @@ export class TodayCollectionComponent implements OnInit, AfterViewInit {
     @Inject(RESPONSIVE_MAP) public responsiveMap,
     private renderer: Renderer2,
     private breakpointObserver:  BreakpointObserver,
-    private cd: ChangeDetectorRef
+    private cd: ChangeDetectorRef,
+    private router: Router,
+    private route: ActivatedRoute,
   ) {
 
   }
@@ -76,5 +79,17 @@ export class TodayCollectionComponent implements OnInit, AfterViewInit {
   prevButton() {
     this.imageIndex++;
     this.renderer.setStyle(this.container.nativeElement, 'transform', 'translateX(' + this.imageIndex * this.translateXWidth  + 'px)');
+  }
+
+  navigateForCollection(xFilterSlug) {
+
+    Object.keys(xFilterSlug).forEach( v => {
+      if ( v === 'router' ) {
+        this.router.navigate([xFilterSlug[v]]);
+      } else {
+        this.router.navigate(['/shops/search'], { relativeTo: this.route, queryParams: {  ordering : 'most_popular', [v] : xFilterSlug[v] }, queryParamsHandling : 'merge'});
+      }
+    });
+    // this.router.navigate();
   }
 }

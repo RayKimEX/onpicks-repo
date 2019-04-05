@@ -3,7 +3,7 @@ import {
   ChangeDetectionStrategy, ChangeDetectorRef,
   Component,
   ElementRef,
-  HostListener,
+  HostListener, Inject,
   Input,
   OnDestroy,
   OnInit,
@@ -11,6 +11,8 @@ import {
   ViewChild,
   ViewChildren
 } from '@angular/core';
+import {BreakpointObserver, BreakpointState} from '../../../../../../node_modules/@angular/cdk/layout';
+import {RESPONSIVE_MAP} from '../../../../app.config';
 
 @Component({
   selector: 'ui-banner-carousel',
@@ -35,13 +37,18 @@ export class BannerCarouselComponent implements OnInit, AfterViewInit, OnDestroy
   myInterval;
   scrollBarWidth;
 
+  isMobile = false;
+
   // TODO : 화면이 넘어갔을때, 이미지를 안나오게 해서, resource 최적화
 
   isIEOrEdge = /msie\s|trident\/|edge\//i.test(window.navigator.userAgent)
 
   constructor(
+    @Inject(RESPONSIVE_MAP) public responsiveMap,
     private renderer: Renderer2,
-    private cd: ChangeDetectorRef
+    private cd: ChangeDetectorRef,
+    private breakpointObserver:  BreakpointObserver,
+
   ) {
 
   }
@@ -69,8 +76,19 @@ export class BannerCarouselComponent implements OnInit, AfterViewInit, OnDestroy
     }
   }
 
-
   ngOnInit() {
+    this.breakpointObserver
+      .observe([this.responsiveMap['tb']])
+      .subscribe((state: BreakpointState) => {
+        if (state.matches) {
+          this.isMobile = true;
+          this.cd.markForCheck();
+        } else {
+          this.isMobile = false;
+          this.cd.markForCheck();
+        }
+      });
+
     // 윈도우에서 스크롤바에 의한 layout깨짐 방지
     const scrollDiv = this.renderer.createElement('div');
 
@@ -79,17 +97,14 @@ export class BannerCarouselComponent implements OnInit, AfterViewInit, OnDestroy
 
     // Get the scrollbar width
     this.scrollBarWidth = scrollDiv.offsetWidth - scrollDiv.clientWidth;
-    console.warn(this.scrollBarWidth); // Mac:  15
+    // console.warn(this.scrollBarWidth); // Mac:  15
 
     this.renderer.removeChild(document.body, scrollDiv);
-
-
-
     this.imageIndex = 1;
-    console.warn(window.innerWidth);
+    // console.warn(window.innerWidth);
 
     this.capturedBrowserWidth = window.innerWidth - this.scrollBarWidth;
-    console.warn(this.capturedBrowserWidth);
+    // console.warn(this.capturedBrowserWidth);
     this.capturedTranslateX = window.innerWidth - this.scrollBarWidth;
     this.imagesLargeList.splice(0, 0, this.imagesLargeList.slice(this.imagesLargeList.length - 1, this.imagesLargeList.length)[0]);
     this.imagesLargeList.push(this.imagesLargeList.slice(1, 2)[0]);
@@ -113,11 +128,9 @@ export class BannerCarouselComponent implements OnInit, AfterViewInit, OnDestroy
   }
 
   nextButton() {
-    console.log(this.imageIndex )
-    console.log(this.imagesLargeList.length)
 
     clearInterval( this.myInterval );
-    // this.myInterval = setInterval( () => this.moveNext(), 4000);
+    this.myInterval = setInterval( () => this.moveNext(), 4000);
     if ( this.imageIndex === this.imagesLargeList.length - 2) {
       this.renderer.setStyle(this.container.nativeElement, 'transition', 'x');
       this.renderer.setStyle(this.container.nativeElement, 'transform', 'translateX(0px)');
@@ -125,7 +138,7 @@ export class BannerCarouselComponent implements OnInit, AfterViewInit, OnDestroy
       setTimeout(() => {
         this.capturedBrowserWidth = window.innerWidth - this.scrollBarWidth;
         this.imageIndex++;
-        this.renderer.setStyle(this.container.nativeElement, 'transition', 'transform .5s ease 0s');
+        this.renderer.setStyle(this.container.nativeElement, 'transition', 'transform .5s ease-in-out 0s');
         this.renderer.setStyle(this.container.nativeElement, 'transform', 'translateX(-' + (( window.innerWidth - this.scrollBarWidth) * this.imageIndex ) + 'px)');
         this.capturedTranslateX  = (window.innerWidth - this.scrollBarWidth) * this.imageIndex;
         this.cd.markForCheck();
@@ -133,7 +146,7 @@ export class BannerCarouselComponent implements OnInit, AfterViewInit, OnDestroy
     } else {
       this.capturedBrowserWidth = window.innerWidth - this.scrollBarWidth;
       this.imageIndex++;
-      this.renderer.setStyle(this.container.nativeElement, 'transition', 'transform .5s ease 0s');
+      this.renderer.setStyle(this.container.nativeElement, 'transition', 'transform .5s ease-in-out 0s');
       this.renderer.setStyle(this.container.nativeElement, 'transform', 'translateX(-' + (( window.innerWidth - this.scrollBarWidth) * this.imageIndex ) + 'px)');
       this.capturedTranslateX  = (window.innerWidth - this.scrollBarWidth) * this.imageIndex;
     }
@@ -142,7 +155,7 @@ export class BannerCarouselComponent implements OnInit, AfterViewInit, OnDestroy
   prevButton() {
 
     clearInterval( this.myInterval );
-    // this.myInterval = setInterval( () => this.moveNext(), 4000);
+    this.myInterval = setInterval( () => this.moveNext(), 4000);
     if ( this.imageIndex === 1 ) {
       this.imageIndex = this.imagesLargeList.length - 1;
       this.renderer.setStyle(this.container.nativeElement, 'transition', 'x');
@@ -151,7 +164,7 @@ export class BannerCarouselComponent implements OnInit, AfterViewInit, OnDestroy
       setTimeout(() => {
         this.capturedBrowserWidth = (window.innerWidth - this.scrollBarWidth);
         this.imageIndex--;
-        this.renderer.setStyle(this.container.nativeElement, 'transition', 'transform .5s ease 0s');
+        this.renderer.setStyle(this.container.nativeElement, 'transition', 'transform .5s ease-in-out 0s');
         this.renderer.setStyle(this.container.nativeElement, 'transform', 'translateX(-' + ( (window.innerWidth - this.scrollBarWidth) * this.imageIndex ) + 'px)');
         this.capturedTranslateX  = (window.innerWidth - this.scrollBarWidth) * this.imageIndex;
         this.cd.markForCheck();
@@ -159,7 +172,7 @@ export class BannerCarouselComponent implements OnInit, AfterViewInit, OnDestroy
     } else {
       this.capturedBrowserWidth = (window.innerWidth - this.scrollBarWidth);
       this.imageIndex--;
-      this.renderer.setStyle(this.container.nativeElement, 'transition', 'transform .5s ease 0s');
+      this.renderer.setStyle(this.container.nativeElement, 'transition', 'transform .5s ease-in-out 0s');
       this.renderer.setStyle(this.container.nativeElement, 'transform', 'translateX(-' + ( (window.innerWidth - this.scrollBarWidth) * this.imageIndex ) + 'px)');
       this.capturedTranslateX  = (window.innerWidth - this.scrollBarWidth) * this.imageIndex;
     }
@@ -174,7 +187,7 @@ export class BannerCarouselComponent implements OnInit, AfterViewInit, OnDestroy
       setTimeout(() => {
         this.capturedBrowserWidth = (window.innerWidth - this.scrollBarWidth);
         this.imageIndex++;
-        this.renderer.setStyle(this.container.nativeElement, 'transition', 'transform 1.3s ease 0s');
+        this.renderer.setStyle(this.container.nativeElement, 'transition', 'transform 1.3s ease-in-out 0s');
         this.renderer.setStyle(this.container.nativeElement, 'transform', 'translateX(-' + ( (window.innerWidth - this.scrollBarWidth) * this.imageIndex ) + 'px)');
         this.capturedTranslateX  = (window.innerWidth - this.scrollBarWidth) * this.imageIndex;
       }, 20);
@@ -182,7 +195,7 @@ export class BannerCarouselComponent implements OnInit, AfterViewInit, OnDestroy
     } else {
       this.capturedBrowserWidth = (window.innerWidth - this.scrollBarWidth);
       this.imageIndex++;
-      this.renderer.setStyle(this.container.nativeElement, 'transition', 'transform 1.3s ease 0s');
+      this.renderer.setStyle(this.container.nativeElement, 'transition', 'transform 1.3s ease-in-out 0s');
       this.renderer.setStyle(this.container.nativeElement, 'transform', 'translateX(-' + ( (window.innerWidth - this.scrollBarWidth) * this.imageIndex ) + 'px)');
       this.capturedTranslateX  = (window.innerWidth - this.scrollBarWidth) * this.imageIndex;
     }

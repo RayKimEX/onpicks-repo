@@ -4,18 +4,14 @@ ui-banner-carousel {
   height: 40rem;
   display:block;
   margin : 0 -2.4rem;
-
-  @include respond(tb){
-    display:none;
-  }
 }
 
 onpicks-category-list {
   display:block;
-  margin-top : 3.2rem;
+  margin-top : 5.6rem;
 
   @include respond(tb){
-    margin-top : 2.4rem;
+    margin-top : 4rem;
   }
 }
 

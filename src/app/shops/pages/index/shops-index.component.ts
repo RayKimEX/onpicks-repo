@@ -34,7 +34,22 @@ export class ShopsIndexComponent implements OnInit, AfterViewInit {
 
   shopsCarouselBannerImages = [
     {
-      imgSrc : 'https://img.onpicks.com/banners/main/2019-04-01/main_banner_1.jpg',
+      imgSrcForDesktop : 'https://img.onpicks.com/banners/main/2019-04-01/main-banner1.jpg',
+      srcSetForDesktop : 'https://img.onpicks.com/banners/main/2019-04-01/main-banner1.jpg?d=w1920-h400 1920w,https://img.onpicks.com/banners/main/2019-04-01/main-banner1.jpg?d=w2400-h500 2400w, https://img.onpicks.com/banners/main/2019-04-01/main-banner1.jpg 3840w',
+      imgSrcForMobile : 'https://img.onpicks.com/banners/main/2019-04-01/main-mobile-banner1.jpg',
+      srcSetForMobile : 'https://img.onpicks.com/banners/main/2019-04-01/main-mobile-banner1.jpg 640w',
+      // marginLeftForText : '6.2%',
+      title : [],
+      titleFontType : '',
+      description : [],
+      descriptionFontType : ''
+    },
+    {
+      // imgSrc : 'https://img.onpicks.com/banners/main/2019-04-01/main-banner2.jpg',
+      imgSrcForDesktop : 'https://img.onpicks.com/banners/main/2019-04-01/main-banner2.jpg',
+      srcSetForDesktop : 'https://img.onpicks.com/banners/main/2019-04-01/main-banner2.jpg?d=w1920-h400 1920w,https://img.onpicks.com/banners/main/2019-04-01/main-banner2.jpg?d=w2400-h500 2400w, https://img.onpicks.com/banners/main/2019-04-01/main-banner2.jpg 3840w',
+      imgSrcForMobile : 'https://img.onpicks.com/banners/main/2019-04-01/main-mobile-banner2.jpg',
+      srcSetForMobile : 'https://img.onpicks.com/banners/main/2019-04-01/main-mobile-banner2.jpg 640w',
       // marginLeftForText : '6.2%',
       title : [],
       titleFontType : '',
@@ -83,31 +98,49 @@ export class ShopsIndexComponent implements OnInit, AfterViewInit {
       imgSrc : 'http://img.onpicks.com/collections/collections-paleo.jpg',
       todayCategoryName : '식품·생활용품',
       todayTitle : '팔레오 다이어트',
-      todayDiscription: '건강&체중을 한 번에! 수천년 전에 인간 사냥꾼 조상이 먹은 것과 유사하도록 고안된 구석기 다이어트...',
+      todayDiscription: '헐리웃 셀럽들 사이에서 hot한 건강&체중을 동시에 잡는 식이요법을 경험해보세요.',
+      filterSlug : {
+        value : ['paleo']
+      }
     },
     {
       imgSrc : 'http://img.onpicks.com/collections/collections-USDA.jpg',
       todayCategoryName : '식품·생활용품',
       todayTitle : 'USDA 인증',
-      todayDiscription: '미국 유기농 인증마크 USDA',
+      todayDiscription: '깐깐하기로 소문난 United States Department of Agriculture 의 인증, Real Organic 을 소개합니다.',
+      filterSlug : {
+        value : [
+          'organic-95', 'organic-100'
+        ]
+      }
     },
     {
       imgSrc : 'http://img.onpicks.com/collections/collections-gluten.jpg',
       todayCategoryName : '식품·생활용품',
       todayTitle : '글루텐프리',
-      todayDiscription: '밀가루 무첨가 영양만점 글루텐프리',
+      todayDiscription: '미국의 3대 글루텐프리 인증 단체인 GFCO, CSA, ACG의 인증, 미국 본토의 글루텐프리 컬렉션.',
+      filterSlug : {
+        value : ['certified-gluten-free']
+      }
     },
     {
       imgSrc : 'https://img.onpicks.com/collections/collection-flower.jpg?d=w528-h352',
       todayCategoryName : '뷰티',
       todayTitle : '봄을 맞이하는 아이템!',
-      todayDiscription : '인간 벚꽃이 되어 당신 주변에 이른 봄을 선물하는 건 어떨까요?'
+      todayDiscription : '인간 벚꽃이 되어 당신 주변에 이른 봄을 선물하는 건 어떨까요?',
+
+      filterSlug : {
+        router : 'shops/c/beauty/fragrance',
+      }
     },
     {
       imgSrc : 'https://img.onpicks.com/collections/collection-byredo.jpg?d=w528-h352',
       todayCategoryName : '뷰티',
       todayTitle : '페피들의 잇 아이템',
-      todayDiscription : '바이레도의 감성으로 북유럽의 서정적인 향기를 입어보세요'
+      todayDiscription : '바이레도의 감성으로 북유럽의 서정적인 향기를 입어보세요',
+      filterSlug : {
+        brand : ['byredo']
+      }
     }
   ];
 

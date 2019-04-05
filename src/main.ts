@@ -6,13 +6,14 @@ import { environment } from './environments/environment';
 
 if (environment.production) {
   enableProdMode();
+  console.log = function(){};
 }
 
 
 // use the require method provided by webpack
-  declare const require;
+declare const require;
 // we use the webpack raw-loader to return the content as a string
-  const translations = require(`raw-loader!./locale/messages.ko.xlf`);
+const translations = require(`raw-loader!./locale/messages.ko.xlf`);
 
 platformBrowserDynamic().bootstrapModule(AppModule,
   {

@@ -85,7 +85,6 @@ export class TrendingReviewsComponent implements OnInit {
   @HostListener('window:resize', ['$event'])
   onResize(event) {
     const computedStyle = getComputedStyle(( this.itemList.first.nativeElement ), null);
-    console.log(computedStyle);
     this.translateXWidth =  parseInt(computedStyle.width, 10 ) + parseInt(computedStyle.marginRight, 10);
     console.log(computedStyle.width);
   }

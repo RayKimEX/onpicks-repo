@@ -17,15 +17,17 @@
         #container
         class="today-collection__ul" >
         <li #itemList *ngFor="let item of todayCollection" class="col-3-of-12-list-scroll today-collection__item">
-          <div  class="today-collection__image--outer">
-            <img drCleanLoad src="{{item.imgSrc}}" alt="{{item.todayTitle}}">
+          <div class="today-collection__image--outer">
+            <a (click)="navigateForCollection(item.filterSlug)">
+              <img drCleanLoad src="{{item.imgSrc}}" alt="{{item.todayTitle}}">
+            </a>
           </div>
           <div class="today-collection__item--category-name subtitle-3-bold u-color-green">
             {{item.todayCategoryName}}
           </div>
-          <div class="today-collection__item--title subtitle-1-bold">
+          <h2 class="today-collection__item--title subtitle-1-bold">
             {{item.todayTitle}}
-          </div>
+          </h2>
           <div #shaveDiscription class="today-collection__item--discription body-2-regular">
             {{item.todayDiscription}}
           </div>

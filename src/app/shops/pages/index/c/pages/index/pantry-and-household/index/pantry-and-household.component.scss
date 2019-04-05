@@ -13,10 +13,10 @@ ui-banner-carousel {
 
 onpicks-category-list {
   display:block;
-  margin-top : 3.2rem;
+  margin-top : 5.6rem;
 
   @include respond(tb){
-    margin-top : 2.4rem;
+    margin-top : 4rem;
   }
 }
 

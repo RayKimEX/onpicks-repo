@@ -100,8 +100,6 @@
 
 .cart{
 
-  padding : 0 1.6rem;
-
   @include respond(tb){
     overflow:hidden;
   }
@@ -177,6 +175,9 @@
       display:inline-block;
       @include verticalCenter;
       right : 2.4rem;
+      @include respond(tb){
+        right : 0;
+      }
       span {
         margin-left : 8px;
       }
@@ -196,6 +197,10 @@
       margin-right: 1.6rem;
       width : 4rem;
       height: 4rem;
+
+      @include respond(tb){
+        margin-left : 0;
+      }
     }
 
 
@@ -460,6 +465,9 @@
       @include verticalCenter;
       right : 2.4rem;
 
+      @include respond(tb){
+        right : 0;
+      }
       &--title {
         @include respond(tb){
           display:none;
@@ -486,6 +494,10 @@
       height: 4rem;
       //background-color : $color-green;
       background-image : linear-gradient(#00A7BE,#008489);
+
+      @include respond(tb){
+        margin-left : 0;
+      }
     }
 
     &-font {

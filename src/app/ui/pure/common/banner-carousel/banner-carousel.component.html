@@ -12,7 +12,9 @@
               <img *ngIf="!isIEOrEdge"
                 drLazyLoad
                 [relativeOption]="false"
-                src="{{item.imgSrc}}"
+                src="{{isMobile ? item.imgSrcForMobile : item.imgSrcForDesktop}}"
+                   sizes="100vw"
+                 srcset="{{isMobile ? item.srcSetForMobile : item.srcSetForDesktop}}"
                 alt="{{item.title[0]}} {{item.title[1]}}">
             </div>
             <div

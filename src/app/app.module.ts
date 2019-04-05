@@ -62,6 +62,25 @@ function setCookie(cname, cvalue ) {
   return 'KRW';
 }
 
+export function getCurrency() {
+  switch (window.location.pathname.split('/')[1]) {
+    case 'kr' :
+      setCookie( 'onpicks-currency', 'KRW');
+      break;
+    case 'us' :
+      setCookie( 'onpicks-currency', 'USD');
+      break;
+    case 'cn' :
+      setCookie( 'onpicks-currency', 'CNY');
+      break;
+    default :
+      setCookie( 'onpicks-currency', '???');
+      break;
+  }
+
+  return new BehaviorSubject(getCookie('onpicks-currency'));
+}
+
 
 @NgModule({
   declarations: [
@@ -122,8 +141,10 @@ function setCookie(cname, cvalue ) {
     },
     {
       provide: CURRENCY,
-      useValue : new BehaviorSubject(getCookie('onpicks-currency')),
+      useFactory : getCurrency,
+      // useValue : new BehaviorSubject(getCookie('onpicks-currency')),
     },
+    // window.location.pathname.split('/')[1] === 'kr' ?
     {
       provide: LOCATION_MAP,
       useValue : LOCATION_MAP_CONST,
