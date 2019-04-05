@@ -63,7 +63,9 @@ function setCookie(cname, cvalue ) {
 }
 
 export function getCurrency() {
-  if (getCookie('onpicks-currency') !== '') {
+  console.log('@@@@@@@@@@@!@@')
+  console.log(getCookie('onpicks-currency') );
+  if (getCookie('onpicks-currency') === '') {
     switch (window.location.pathname.split('/')[1]) {
       case 'kr' :
         // setCookie( 'onpicks-language', 'ko');
