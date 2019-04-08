@@ -86,7 +86,7 @@
                       'ui-mini-list-halfM__item--name-outer' :
                       'ui-mini-list-fullM__item--name-outer'
                     ]">
-                    <div
+                    <h1
                       [ngClass]="[
                         mobileType === 'half' ?
                         'ui-mini-list-halfM__item--name-outer-brand' :
@@ -96,7 +96,7 @@
                       <a (click)="goBrandFilter(item?.brand?.slug)">
                         {{item.brand.name}}
                       </a>
-                    </div>
+                    </h1>
 
                     <a [routerLink]="'/shops/p/' + item.slug">
                       <span

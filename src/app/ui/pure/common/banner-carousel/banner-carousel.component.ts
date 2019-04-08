@@ -124,7 +124,7 @@ export class BannerCarouselComponent implements OnInit, AfterViewInit, OnDestroy
     this.renderer.setStyle(this.container.nativeElement, 'height', this.height + 'rem' );
     this.renderer.setStyle(this.container.nativeElement, 'transition', 'x');
     this.renderer.setStyle(this.container.nativeElement, 'transform', 'translateX(-' + ( (window.innerWidth - this.scrollBarWidth) * this.imageIndex ) + 'px)');
-    // this.myInterval = setInterval(() => this.moveNext(), 4000);
+    this.myInterval = setInterval(() => this.moveNext(), 4000);
   }
 
   nextButton() {
