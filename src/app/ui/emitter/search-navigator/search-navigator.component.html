@@ -387,11 +387,17 @@
                 <li #itemList *ngFor="let item of currentList; index as i" class="search-content__item">
                   <div>
                     <div class="search-content__item--image">
-                      <div routerLink="/shops/p/{{item.slug}}" class="search-content__item--image-outer">
+                      <div
+                        routerLink="/shops/p/{{item.slug}}"
+                        class="search-content__item--image-outer">
+                        <!--<div class="search-content__item&#45;&#45;stock-quantity">매진임박{{}}</div>-->
                         <div class="search-content__item--image-inner">
-                          <img drLazyLoad [relativeOption]="false" src="{{item.thumbnail}}" alt="{{item.title}}">
-                        <!--카트정보가 어떤식으로 들어갈지 알아야, 대충이라도 작업할 수 있음.-->
-
+                          <img
+                            drLazyLoad
+                            [relativeOption]="false"
+                            src="{{item.thumbnail}}"
+                            alt="{{item.title}}">
+                          <!--카트정보가 어떤식으로 들어갈지 알아야, 대충이라도 작업할 수 있음.-->
                         </div>
                       </div>
                       <ng-container
