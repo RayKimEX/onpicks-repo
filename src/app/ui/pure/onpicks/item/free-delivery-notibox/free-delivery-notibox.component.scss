@@ -44,6 +44,12 @@
 
   &__item {
 
+    padding:2.4rem;
+
+    @include respond(tb){
+      padding : 1.8rem;
+    }
+
     &:not(:last-child){
       padding-bottom: 0 !important;
     }
