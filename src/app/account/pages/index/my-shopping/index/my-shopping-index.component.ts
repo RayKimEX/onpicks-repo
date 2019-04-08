@@ -3,7 +3,7 @@ import {select, Store} from '@ngrx/store';
 import {tap} from 'rxjs/operators';
 import {AccountDataService} from '../../../../../core/service/data-pages/account/account-data.service';
 import {BreakpointObserver, BreakpointState} from '../../../../../../../node_modules/@angular/cdk/layout';
-import {RESPONSIVE_MAP} from '../../../../../app.config';
+import {RESPONSIVE_MAP} from '../../../../../core/global-constant/app.config';
 
 @Component({
   selector: 'onpicks-my-shopping-index',

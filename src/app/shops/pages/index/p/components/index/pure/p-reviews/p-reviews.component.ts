@@ -10,13 +10,14 @@ import {
   ViewChildren
 } from '@angular/core';
 import { select, Store } from '@ngrx/store';
-import { DOMAIN_HOST, REPORT_REASON_MAP } from '../../../../../../../../app.config';
+import { DOMAIN_HOST } from '../../../../../../../../core/global-constant/app.config';
 import { tap } from 'rxjs/operators';
 import { PDataService } from '../../../../../../../../core/service/data-pages/p/p-data.service';
 import { TryGetReviewProduct, TryToggleVoteReview } from '../../../../store/p.actions';
 import { DisplayAlertMessage } from '../../../../../../../../core/store/ui/ui.actions';
 import { APP_BASE_HREF } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
+import {REPORT_REASON_MAP} from '../../../../../../../../core/global-constant/app.locale';
 
 
 @Component({

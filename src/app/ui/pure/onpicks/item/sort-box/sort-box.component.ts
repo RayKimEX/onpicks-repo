@@ -41,12 +41,12 @@ export class SortBoxComponent implements OnInit, AfterViewInit {
   constructor(
     private eRef: ElementRef,
     private renderer: Renderer2
-  ) {
-
-  }
+  ) { }
 
   ngOnInit() {
     // init시에 무조건 첫번째 Object를 가져옴
+    console.log(this.selectedElement);
+    if ( this.showBox === false ) { return };
 
     if ( this.selectedElement === undefined ) {
       this.selectedElement = this.sortList[0];

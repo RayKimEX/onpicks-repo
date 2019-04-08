@@ -1,7 +1,7 @@
 import {ChangeDetectionStrategy, Component, Inject, OnDestroy, OnInit} from '@angular/core';
 import {select, Store} from '@ngrx/store';
 import {tap} from 'rxjs/operators';
-import {LOCATION_MAP} from '../../../../app.config';
+import {LOCATION_MAP} from '../../../../core/global-constant/app.config';
 import {TryAddOrCreateToCart, TryDeleteWishList} from '../../../../core/store/cart/cart.actions';
 import {UiService} from '../../../../core/service/ui/ui.service';
 

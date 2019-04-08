@@ -12,6 +12,7 @@ export class BeautyIndexComponent implements OnInit {
   pantryAndHouseHoldBannerImages = [
     {
       imgSrc : 'https://img.onpicks.com/banners/beauty/2019-04-01/beauty-banner1.jpg',
+      imgSrcForDesktop : 'https://img.onpicks.com/banners/beauty/2019-04-01/beauty-banner1.jpg',
       // marginLeftForText : '6.2%',
       title : [],
       description : []

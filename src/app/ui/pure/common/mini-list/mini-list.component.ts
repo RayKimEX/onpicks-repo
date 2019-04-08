@@ -13,7 +13,7 @@ import {
 import {APP_BASE_HREF} from '@angular/common';
 import {select, Store} from '@ngrx/store';
 import {TryAddOrCreateToCart, TrySubtractOrDeleteFromCart} from '../../../../core/store/cart/cart.actions';
-import {CURRENCY, LOCATION_MAP} from '../../../../app.config';
+import {CURRENCY, LOCATION_MAP} from '../../../../core/global-constant/app.config';
 import {BehaviorSubject} from 'rxjs';
 import {Router} from '@angular/router';
 

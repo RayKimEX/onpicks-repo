@@ -13,7 +13,7 @@ import {
 import {Store} from '@ngrx/store';
 import {UiService} from '../../../core/service/ui/ui.service';
 import {HttpClient} from '@angular/common/http';
-import { CURRENCY, RESPONSIVE_MAP } from '../../../app.config';
+import { CURRENCY, RESPONSIVE_MAP } from '../../../core/global-constant/app.config';
 import {BehaviorSubject} from 'rxjs';
 import {BreakpointObserver, BreakpointState} from '../../../../../node_modules/@angular/cdk/layout';
 
@@ -50,7 +50,7 @@ export class ChangePreferenceComponent implements OnInit {
     }
   }
 
-  isSecondBreakPoint = false;
+  isThirdBreakPoint = false;
 
 
 
@@ -75,19 +75,19 @@ export class ChangePreferenceComponent implements OnInit {
 
 
     this.breakpointObserver
-      .observe([this.responsiveMap['sb']])
+      .observe([this.responsiveMap['tb']])
       .subscribe((state: BreakpointState) => {
         if (state.matches) {
-          this.isSecondBreakPoint = true;
+          this.isThirdBreakPoint = true;
         } else {
-          this.isSecondBreakPoint = false;
+          this.isThirdBreakPoint = false;
         }
       });
 
   }
   @HostListener('document:click', ['$event'])
   clickout(event) {
-    if ( this.isSecondBreakPoint ) { return; }
+    if ( this.isThirdBreakPoint ) { return; }
     if ( this.eRef.nativeElement.contains(event.target)) {
     } else {
       this.isShowModal = false;
@@ -96,9 +96,9 @@ export class ChangePreferenceComponent implements OnInit {
 
   changePreference(xPreferenceCode) {
 
-    if ( this.isSecondBreakPoint ) {
-      this.renderer.removeClass(document.body, 'u-open-modal');
-    }
+    // if ( this.isThirdBreakPoint ) {
+    //   this.renderer.removeClass(document.body, 'u-open-modal');
+    // }
 
     switch (this.type) {
       case 'currency' :
@@ -130,7 +130,7 @@ export class ChangePreferenceComponent implements OnInit {
   showModal() {
     this.isShowModal = !this.isShowModal;
     this.showEvent.emit();
-    if ( this.isSecondBreakPoint ) {
+    if ( this.isThirdBreakPoint ) {
       this.renderer.addClass(document.body, 'u-open-modal');
     }
   }

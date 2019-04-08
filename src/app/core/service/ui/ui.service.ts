@@ -1,9 +1,9 @@
 import {Inject, Injectable} from '@angular/core';
-import {DOMAIN_HOST} from '../../../app.config';
+import {DOMAIN_HOST} from '../../global-constant/app.config';
 import {of} from 'rxjs';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {map} from 'rxjs/operators';
-import {CATEGORY_MAP} from '../../../app.database';
+import {CATEGORY_MAP} from '../../global-constant/app.category-database-long';
 
 @Injectable({
   providedIn: 'root'

@@ -37,17 +37,17 @@
       <div
         *ngFor="let firstCategoryCode of normalizedCategoryCodeList"
         [ngClass]="[
-          ( currentCategory.toString().substring(0,3).indexOf(firstCategoryCode.toString().substring(0,3)) > -1 || currentCategory == firstCategoryCode ) ? 'category-content__depth' : 'category-content__depth fold'
+          ( currentCategoryCode.toString().substring(0,3).indexOf(firstCategoryCode.toString().substring(0,3)) > -1 || currentCategoryCode == firstCategoryCode ) ? 'category-content__depth' : 'category-content__depth fold'
         ]">
         <div
           class="category-content__item-title"
           [ngClass]="[
-            ( currentCategory.toString().substring(0,3).indexOf(firstCategoryCode.toString().substring(0,3)) > -1 || currentCategory == firstCategoryCode ) ? 'subtitle-2-bold' : 'subtitle-2-regular'
+            ( currentCategoryCode.toString().substring(0,3).indexOf(firstCategoryCode.toString().substring(0,3)) > -1 || currentCategoryCode == firstCategoryCode ) ? 'subtitle-2-bold' : 'subtitle-2-regular'
           ]">
 
           <span
             class="category-content__category-indicator"
-            *ngIf="firstCategoryCode / currentCategory  < 1">
+            *ngIf="firstCategoryCode / currentCategoryCode  < 1">
             <!--<svg width="6" height="10" viewBox="0 0 6 10">-->
             <!--<path fill="#B3B3B3" d="M5 10a.997.997 0 0 1-.707-.293l-4-4a.999.999 0 0 1 0-1.414l4-4a.999.999 0 1 1 1.414 1.414L2.414 5l3.293 3.293A.999.999 0 0 1 5 10" />-->
             <!--</svg>-->
@@ -64,21 +64,21 @@
         <div
           *ngFor="let secondCategoryCode of categoryList.secondCategory[firstCategoryCode].children"
           [ngClass]="[
-            ( currentCategory.toString().substring(0,5).indexOf(secondCategoryCode.toString().substring(0,5)) > -1 || currentCategory == secondCategoryCode ) ? 'category-content__depth' : 'category-content__depth fold'
+            ( currentCategoryCode.toString().substring(0,5).indexOf(secondCategoryCode.toString().substring(0,5)) > -1 || currentCategoryCode == secondCategoryCode ) ? 'category-content__depth' : 'category-content__depth fold'
           ]"
           style="margin-left: 10px">
           <div
             class="category-content__item-title">
             <a
               [ngClass]="[
-                ( currentCategory.toString().substring(0,5).indexOf(secondCategoryCode.toString().substring(0,5)) > -1 || currentCategory == secondCategoryCode ) ? 'subtitle-2-bold' : 'subtitle-2-regular'
+                ( currentCategoryCode.toString().substring(0,5).indexOf(secondCategoryCode.toString().substring(0,5)) > -1 || currentCategoryCode == secondCategoryCode ) ? 'subtitle-2-bold' : 'subtitle-2-regular'
               ]"
 
               (click)="categoryClicked('/shops/c/'+ router.url.split('/')[3] + '/' +categoryList.secondCategory[firstCategoryCode].slug.toLowerCase()+'/'+categoryList.thirdCategory[secondCategoryCode].slug.toLowerCase(), categoryList.thirdCategory[secondCategoryCode].code)">
               {{ categoryList.thirdCategory[secondCategoryCode].name }}
             </a>
             <span
-              *ngIf="(!(secondCategoryCode / currentCategory < 1)) && (secondCategoryCode / currentCategory < 1 || currentCategory == secondCategoryCode )"
+              *ngIf="(!(secondCategoryCode / currentCategoryCode < 1)) && (secondCategoryCode / currentCategoryCode < 1 || currentCategoryCode == secondCategoryCode )"
               style="float:right">
               <svg xmlns="http://www.w3.org/2000/svg" width="10" height="7" viewBox="0 0 10 7">
                 <path fill="#000" fill-rule="evenodd" d="M4.024 7h-.007a1.413 1.413 0 0 1-1.023-.448L.279 3.708a1.008 1.008 0 0 1 .029-1.421 1 1 0 0 1 1.414.03L4.025 4.73 8.282.305A1 1 0 0 1 9.696.281a1.01 1.01 0 0 1 .023 1.421l-4.68 4.864A1.411 1.411 0 0 1 4.025 7z"/>
@@ -93,13 +93,13 @@
               class="category-content__item-title">
               <a
                 [ngClass]="[
-                  ( currentCategory == thirdCategoryCode ) ? 'subtitle-2-bold' : 'subtitle-2-regular'
+                  ( currentCategoryCode == thirdCategoryCode ) ? 'subtitle-2-bold' : 'subtitle-2-regular'
                 ]"
                 (click)="categoryClicked('/shops/c/' + router.url.split('/')[3] + '/' + categoryList.secondCategory[firstCategoryCode].slug.toLowerCase()+'/' + categoryList.thirdCategory[secondCategoryCode].slug.toLowerCase()+'/' + categoryList.fourthCategory[thirdCategoryCode].slug.toLowerCase(), categoryList.fourthCategory[thirdCategoryCode].code)">
                 {{ categoryList.fourthCategory[thirdCategoryCode].name }}
               </a>
               <span
-                *ngIf="(!(thirdCategoryCode / currentCategory < 1)) && (thirdCategoryCode / currentCategory < 1 || currentCategory == thirdCategoryCode )"
+                *ngIf="(!(thirdCategoryCode / currentCategoryCode < 1)) && (thirdCategoryCode / currentCategoryCode < 1 || currentCategoryCode == thirdCategoryCode )"
                 style="float:right">
                 <svg xmlns="http://www.w3.org/2000/svg" width="10" height="7" viewBox="0 0 10 7">
                   <path fill="#000" fill-rule="evenodd" d="M4.024 7h-.007a1.413 1.413 0 0 1-1.023-.448L.279 3.708a1.008 1.008 0 0 1 .029-1.421 1 1 0 0 1 1.414.03L4.025 4.73 8.282.305A1 1 0 0 1 9.696.281a1.01 1.01 0 0 1 .023 1.421l-4.68 4.864A1.411 1.411 0 0 1 4.025 7z"/>
@@ -119,14 +119,14 @@
           <div *ngIf="searchState === 'search'" class="category-content__item-title subtitle-2-bold">
             <span
               class="category-content__category-indicator"
-              *ngIf="oneCat?.code / currentCategory  < 1">
+              *ngIf="oneCat?.code / currentCategoryCode  < 1">
               <!--<svg width="6" height="10" viewBox="0 0 6 10">-->
                 <!--<path fill="#B3B3B3" d="M5 10a.997.997 0 0 1-.707-.293l-4-4a.999.999 0 0 1 0-1.414l4-4a.999.999 0 1 1 1.414 1.414L2.414 5l3.293 3.293A.999.999 0 0 1 5 10" />-->
               <!--</svg>-->
             </span>
             <span>
               <a
-                [ngClass]="{'u-color-dark-grey' : (oneCat?.code / currentCategory < 1)}" (click)="categoryClicked('/shops/c/'+oneCat.slug, oneCat?.code)">{{ oneCat.name }}
+                [ngClass]="{'u-color-dark-grey' : (oneCat?.code / currentCategoryCode < 1)}" (click)="categoryClicked('/shops/c/'+oneCat.slug, oneCat?.code)">{{ oneCat.name }}
                 <!--(click)="categoryClicked('/shops/c/'+oneCat.slug, oneCat?.code)">-->
               </a>
             </span>
@@ -137,7 +137,7 @@
             style="margin-left: 10px">
             <!--<span-->
               <!--class="category-content__category-indicator"-->
-              <!--*ngIf="twoCat?.code / currentCategory < 1">-->
+              <!--*ngIf="twoCat?.code / currentCategoryCode < 1">-->
               <!--<svg width="6" height="10" viewBox="0 0 6 10">-->
                 <!--<path fill="#B3B3B3" d="M5 10a.997.997 0 0 1-.707-.293l-4-4a.999.999 0 0 1 0-1.414l4-4a.999.999 0 1 1 1.414 1.414L2.414 5l3.293 3.293A.999.999 0 0 1 5 10" />-->
               <!--</svg>-->
@@ -146,13 +146,13 @@
               class="category-content__item-title">
               <a
                 [ngClass]="[
-                  (twoCat?.code / currentCategory < 1) ? 'u-color-dark-grey' : '',
-                  (twoCat?.code / currentCategory < 1 || currentCategory == twoCat?.code ) ? 'subtitle-2-bold' : 'subtitle-2-regular'
+                  (twoCat?.code / currentCategoryCode < 1) ? 'u-color-dark-grey' : '',
+                  (twoCat?.code / currentCategoryCode < 1 || currentCategoryCode == twoCat?.code ) ? 'subtitle-2-bold' : 'subtitle-2-regular'
                 ]"
                 (click)="categoryClicked('/shops/c/'+oneCat.slug.toLowerCase()+'/'+twoCat.slug.toLowerCase(), twoCat?.code)">{{ twoCat.name }}
               </a>
               <span
-                *ngIf="(!(twoCat?.code / currentCategory < 1)) && (twoCat?.code / currentCategory < 1 || currentCategory == twoCat?.code )"
+                *ngIf="(!(twoCat?.code / currentCategoryCode < 1)) && (twoCat?.code / currentCategoryCode < 1 || currentCategoryCode == twoCat?.code )"
                 style="float:right">
                 <svg xmlns="http://www.w3.org/2000/svg" width="10" height="7" viewBox="0 0 10 7">
                   <path fill="#000" fill-rule="evenodd" d="M4.024 7h-.007a1.413 1.413 0 0 1-1.023-.448L.279 3.708a1.008 1.008 0 0 1 .029-1.421 1 1 0 0 1 1.414.03L4.025 4.73 8.282.305A1 1 0 0 1 9.696.281a1.01 1.01 0 0 1 .023 1.421l-4.68 4.864A1.411 1.411 0 0 1 4.025 7z"/>
@@ -167,14 +167,14 @@
                 class="category-content__item-title">
                 <a
                   [ngClass]="[
-                    (threeCat?.code / currentCategory < 1) ? 'u-color-dark-grey' : '',
-                    (threeCat?.code / currentCategory < 1 || currentCategory == threeCat?.code ) ? 'subtitle-2-bold' : 'subtitle-2-regular'
+                    (threeCat?.code / currentCategoryCode < 1) ? 'u-color-dark-grey' : '',
+                    (threeCat?.code / currentCategoryCode < 1 || currentCategoryCode == threeCat?.code ) ? 'subtitle-2-bold' : 'subtitle-2-regular'
                     ]"
                   (click)="categoryClicked('/shops/c/'+oneCat.slug.toLowerCase()+'/'+twoCat.slug.toLowerCase()+'/'+threeCat.slug.toLowerCase() ,threeCat?.code)">
                   {{ threeCat.name }}
                 </a>
                 <span
-                  *ngIf="(!(threeCat?.code / currentCategory < 1)) && (threeCat?.code / currentCategory < 1 || currentCategory == threeCat?.code )"
+                  *ngIf="(!(threeCat?.code / currentCategoryCode < 1)) && (threeCat?.code / currentCategoryCode < 1 || currentCategoryCode == threeCat?.code )"
                   style="float:right">
                   <svg xmlns="http://www.w3.org/2000/svg" width="10" height="7" viewBox="0 0 10 7">
                     <path fill="#000" fill-rule="evenodd" d="M4.024 7h-.007a1.413 1.413 0 0 1-1.023-.448L.279 3.708a1.008 1.008 0 0 1 .029-1.421 1 1 0 0 1 1.414.03L4.025 4.73 8.282.305A1 1 0 0 1 9.696.281a1.01 1.01 0 0 1 .023 1.421l-4.68 4.864A1.411 1.411 0 0 1 4.025 7z"/>
@@ -188,12 +188,12 @@
                 <div
                   class="category-content__item-title">
                   <a
-                    [ngClass]="[(currentCategory == fourCat?.code ) ? 'subtitle-2-bold' : 'subtitle-2-regular']"
+                    [ngClass]="[(currentCategoryCode == fourCat?.code ) ? 'subtitle-2-bold' : 'subtitle-2-regular']"
                     (click)="categoryClicked('/shops/c/'+oneCat.slug.toLowerCase()+'/'+twoCat.slug.toLowerCase()+'/'+threeCat.slug.toLowerCase()+'/'+fourCat.slug.toLowerCase() , fourCat?.code)">
                     {{ fourCat?.name }}
                   </a>
                   <span
-                    *ngIf="(!(fourCat?.code / currentCategory < 1)) && (fourCat?.code / currentCategory < 1 || currentCategory == fourCat?.code )"
+                    *ngIf="(!(fourCat?.code / currentCategoryCode < 1)) && (fourCat?.code / currentCategoryCode < 1 || currentCategoryCode == fourCat?.code )"
                     style="float:right">
                     <svg xmlns="http://www.w3.org/2000/svg" width="10" height="7" viewBox="0 0 10 7">
                       <path fill="#000" fill-rule="evenodd" d="M4.024 7h-.007a1.413 1.413 0 0 1-1.023-.448L.279 3.708a1.008 1.008 0 0 1 .029-1.421 1 1 0 0 1 1.414.03L4.025 4.73 8.282.305A1 1 0 0 1 9.696.281a1.01 1.01 0 0 1 .023 1.421l-4.68 4.864A1.411 1.411 0 0 1 4.025 7z"/>

@@ -20,9 +20,9 @@ export class SearchNavigatorMobileFilterComponent implements OnInit {
   @Input('normalizedCategoryCodeList') set _normalizedCategoryCodeList(xData) {
     this.normalizedCategoryCodeList = xData;
     console.log(this.normalizedCategoryCodeList);
-
   };
-  @Input('currentCategory') currentCategory;
+
+  @Input('currentCategoryCode') currentCategoryCode;
   @Input('orderedFilterList') orderedFilterList;
   @Input('brandList') brandList;
   @Input('brandListForCheck') brandListForCheck;
@@ -59,7 +59,7 @@ export class SearchNavigatorMobileFilterComponent implements OnInit {
     this.currentSortSlug = xSortSlug;
     this.exitEvent.emit();
     // this.orderedFilterListForCheck[]
-    if( this.searchState === 'search') {
+    if ( this.searchState === 'search' ) {
       this.router.navigate(['/shops/search'], { queryParams: {ordering: xSortSlug}, queryParamsHandling: 'merge'} );
     } else {
       this.router.navigate(['./'], { relativeTo: this.route, queryParams: {ordering: xSortSlug}, queryParamsHandling: 'merge'} );
@@ -154,11 +154,12 @@ export class SearchNavigatorMobileFilterComponent implements OnInit {
   categoryClicked( navigateUrlForCategory, xCategoryCode ) {
     // this.router.navigate( ['/shops/search'], {queryParams: {category: xCategoryCode}, queryParamsHandling: 'merge'});
 
-    if( this.searchState === 'search') {
+    if ( this.searchState === 'search' ) {
       this.router.navigate( ['/shops/search'], {queryParams: {category: xCategoryCode}, queryParamsHandling: 'merge'});
     } else {
       this.router.navigateByUrl(navigateUrlForCategory);
     }
     this.exitEvent.emit();
   }
+
 }

@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
-import { DOMAIN_HOST } from '../../../app.config';
+import { DOMAIN_HOST } from '../../global-constant/app.config';
 import { catchError, map, switchMap, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { SearchService } from '../../service/data-pages/search/search.service';

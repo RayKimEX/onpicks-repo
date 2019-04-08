@@ -1,6 +1,6 @@
 import {Inject, Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {DOMAIN_HOST} from '../../../app.config';
+import {DOMAIN_HOST} from '../../global-constant/app.config';
 
 @Injectable({
   providedIn: 'root'

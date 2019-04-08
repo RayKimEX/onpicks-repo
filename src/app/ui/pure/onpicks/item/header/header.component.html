@@ -304,22 +304,22 @@
               </div>
             </div>
           </li>
-          <li class="header__mobile-hamburger--li">
-            <div
-              (click)="showPreparingMessage()">
-              <div class="u-button-effect">
-                쇼케이스
-              </div>
-            </div>
-          </li>
-          <li class="header__mobile-hamburger--li">
-            <div
-              (click)="showPreparingMessage()">
-              <div class="u-button-effect">
-                이벤트
-              </div>
-            </div>
-          </li>
+          <!--<li class="header__mobile-hamburger&#45;&#45;li">-->
+            <!--<div-->
+              <!--(click)="showPreparingMessage()">-->
+              <!--<div class="u-button-effect">-->
+                <!--쇼케이스-->
+              <!--</div>-->
+            <!--</div>-->
+          <!--</li>-->
+          <!--<li class="header__mobile-hamburger&#45;&#45;li">-->
+            <!--<div-->
+              <!--(click)="showPreparingMessage()">-->
+              <!--<div class="u-button-effect">-->
+                <!--이벤트-->
+              <!--</div>-->
+            <!--</div>-->
+          <!--</li>-->
           <!--<li class="header__mobile-hamburger&#45;&#45;li">-->
             <!--<div-->
               <!--(click)="logout(inputCheckedForToggle)">-->
@@ -353,18 +353,15 @@
       </nav>
     </div>
 
-
-
     <input
       type="checkbox"
       id="menu_toggle"
       class="navigation__menu-toggle"
       #menuToggle>
-
-
     <div
       (mouseenter)="outMenu(menuToggle)"
-      class="header-menu__background"></div>
+      class="header-menu__background">
+    </div>
     <div class="header-menu__outer" #menu>
       <nav>
         <ul class="header-menu__item" *ngFor="let item of menuMap[locale]?.main">
@@ -406,8 +403,10 @@
     </div>
     <div #alertMessage class="header__alert">
       <span class="header__alert--message subtitle-2-regular u-color-green">언녕하세요</span>
-      <span></span>
     </div>
   </div>
+  <!--<onpicks-modal [isShow]="true">-->
+    <!--hello-->
+  <!--</onpicks-modal>-->
 </header>
 

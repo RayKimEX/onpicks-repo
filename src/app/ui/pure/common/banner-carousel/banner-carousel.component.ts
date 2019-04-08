@@ -12,7 +12,7 @@ import {
   ViewChildren
 } from '@angular/core';
 import {BreakpointObserver, BreakpointState} from '../../../../../../node_modules/@angular/cdk/layout';
-import {RESPONSIVE_MAP} from '../../../../app.config';
+import {RESPONSIVE_MAP} from '../../../../core/global-constant/app.config';
 
 @Component({
   selector: 'ui-banner-carousel',
@@ -124,7 +124,10 @@ export class BannerCarouselComponent implements OnInit, AfterViewInit, OnDestroy
     this.renderer.setStyle(this.container.nativeElement, 'height', this.height + 'rem' );
     this.renderer.setStyle(this.container.nativeElement, 'transition', 'x');
     this.renderer.setStyle(this.container.nativeElement, 'transform', 'translateX(-' + ( (window.innerWidth - this.scrollBarWidth) * this.imageIndex ) + 'px)');
-    this.myInterval = setInterval(() => this.moveNext(), 4000);
+
+    if( this.imagesLargeList.length > 3 ){
+      this.myInterval = setInterval(() => this.moveNext(), 4000);
+    }
   }
 
   nextButton() {

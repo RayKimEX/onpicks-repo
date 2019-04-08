@@ -17,12 +17,12 @@ import {
   TrySubtractOrDeleteFromCart
 } from '../../../core/store/cart/cart.actions';
 import {SearchService} from '../../../core/service/data-pages/search/search.service';
-import {CURRENCY, LOCATION_MAP, RESPONSIVE_MAP} from '../../../app.config';
+import {CURRENCY, LOCATION_MAP, RESPONSIVE_MAP} from '../../../core/global-constant/app.config';
 import {UiService} from '../../../core/service/ui/ui.service';
 import {normalize, schema} from 'normalizr';
 import {DisplayAlertMessage} from '../../../core/store/ui/ui.actions';
 import {BehaviorSubject, combineLatest, merge} from 'rxjs';
-import {CATEGORY_CODE_MAP} from '../../../app.database';
+import {CATEGORY_CODE_MAP} from '../../../core/global-constant/app.category-database-long';
 import {BreakpointObserver, BreakpointState} from '../../../../../node_modules/@angular/cdk/layout';
 import {Title} from '@angular/platform-browser';
 @Component({
@@ -54,7 +54,7 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
   currentCode;
   currentTitle;
   currentName = '';
-  currentCategory = 0;
+  currentCategoryCode = 0;
   currentParamList = {};
   contentHeight;
 
@@ -144,7 +144,7 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
         this.previous = val.previous;
         this.currentSlug = val.currentSlug;
         this.currentCode = val.currentCode;
-        this.currentCategory = val.currentCode;
+        this.currentCategoryCode = val.currentCode;
 
         this.currentName = val.currentName;
         this.currentTitle = val.currentTitle;
@@ -296,7 +296,7 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
           ...val
         };
         this.currentPage = val.page === undefined ? 1 : parseInt(val.page, 10);
-        this.currentCategory = val.category;
+        this.currentCategoryCode = val.category;
         this.currentSortSlug = val.ordering === undefined ? 'most_popular' : val.ordering;
 
 

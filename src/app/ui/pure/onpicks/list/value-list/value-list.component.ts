@@ -9,7 +9,7 @@ import {
   AfterViewInit,
   ViewChild, ViewChildren, OnDestroy, Input
 } from '@angular/core';
-import {RESPONSIVE_MAP} from '../../../../../app.config';
+import {RESPONSIVE_MAP} from '../../../../../core/global-constant/app.config';
 import {BreakpointObserver, BreakpointState} from '../../../../../../../node_modules/@angular/cdk/layout';
 import {Router} from '@angular/router';
 

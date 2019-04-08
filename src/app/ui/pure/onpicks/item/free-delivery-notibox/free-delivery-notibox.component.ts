@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Inject, Input, LOCALE_ID, OnInit, Output} from '@angular/core';
-import {CURRENCY, LOCATION_MAP} from '../../../../../app.config';
+import {CURRENCY, LOCATION_MAP} from '../../../../../core/global-constant/app.config';
 import {BehaviorSubject} from 'rxjs';
 import {Router} from '@angular/router';
 

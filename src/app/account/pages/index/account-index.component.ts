@@ -3,7 +3,7 @@ import {select, Store} from '@ngrx/store';
 import {AppState} from '../../../core/store/app.reducer';
 import {TryLogout} from '../../../core/store/auth/auth.actions';
 import {Router} from '@angular/router';
-import {CURRENCY} from '../../../app.config';
+import {CURRENCY} from '../../../core/global-constant/app.config';
 
 @Component({
   selector: 'onpicks-account-index',

@@ -1,137 +1,44 @@
-import { InjectionToken } from '@angular/core';
-
-export const DOMAIN_HOST = new InjectionToken<string>('app.config');
-export const CURRENCY = new InjectionToken<string>('app.config');
-
-// API를 글로벌하게 URL관리하지 않는이유..
-// '/api/products/1/variants/1/'
-// 이런식으로 1같은 값이 중간에 끼어 있으면, 어떻게 처리해야되는지에 대한 해답이 없음
-export const API_URL = new InjectionToken<string>('app.config');
-export const API_URL_CONST = {
-  pageData : {
-    p : '/api/products/1/variants/1/',
-  }
-}
-
-// 배송지
-export const LOCATION_MAP = new InjectionToken<any>('app.config');
-export const LOCATION_MAP_CONST = {
-  'LAX' : {
-    nickname : 'la',
-    sequence : 1
-  },
-  'JFK' : {
-    nickname : 'new',
-    sequence : 0
-  },
-  'KIX' : {
-    nickname : 'osaka',
-    sequence : 4
-  },
-  'ATL' : {
-    nickname : 'gorgia',
-    sequence : 2
-  },
-  'HKG' : {
-    nickname : 'hong',
-    sequence : 3
-  }
-}
-
-// category menu
-export const CATEGORY_SECOND_MAP = new InjectionToken<any>( 'app.config');
-export const CATEGORY_SECOND_MAP_CONST = {
-
-  'pantry-and-household' : {
-    'grocery' : {
-      ko : '식품',
-      en : ''
-    },
-    'household-supplies' : {
-      ko : '생활용품',
-      en : ''
-    },
-    'health' : {
-      ko : '건강',
-      en : ''
-    },
-    'personal-care' : {
-      ko : '퍼스널케어',
-      en : ''
-    },
-    'baby' : {
-      ko : '유아동',
-      en : ''
-    },
-    'pet-supplies': {
-      ko : '반려용품',
-      en : ''
-    },
-    // 'office-supplies' : {
-    //   name : '사무용품'
-    // }
-  },
-  'beauty' : {
-    'skin-care' : {
-      ko : '스킨케어',
-      en : ''
-    },
-    'hair-care' : {
-      ko : '헤어케어',
-      en : ''
-    },
-    'fragrance' : {
-      ko : '향수',
-      en : ''
-    },
-    'makeup' : {
-      ko : '메이크업',
-      en : ''
-    },
-    'body-care' : {
-      ko : '바디',
-      en : ''
-    },
-    'mens-grooming' : {
-      ko : '남성',
-      en : ''
-    }
-  }
-}
 
 // 신고하기 기능
-export const REPORT_REASON_MAP = new InjectionToken<any>( 'app.config');
+import {InjectionToken} from '@angular/core';
+
+export const REPORT_REASON_MAP = new InjectionToken<any>( './core/global-constant/app.locale');
 export const REPORT_REASON_MAP_CONST = {
-  'ko' : {
-    'irrelevant' : '주제와 관련 없음',
-    'inappropriate' : '음란, 욕설 및 비방',
-    'advertising' : '스팸 및 광고성',
-    'piracy' : '복제 등 저작권 침해 우려',
-    'others' : '기타',
+  'irrelevant' : {
+    ko : '주제와 관련 없음',
+    en : '',
+    // 중국어
+    zh : '',
   },
-  'en' : {
-
-  }
+  'inappropriate' : {
+    ko : '음란, 욕설 및 비방',
+    en : '',
+    // 중국어
+    zh : '',
+  },
+  'advertising' : {
+    ko : '스팸 및 광고성',
+    en : '',
+    // 중국어
+    zh : '',
+  },
+  'piracy' : {
+    ko : '복제 등 저작권 침해 우려',
+    en : '',
+    // 중국어
+    zh : '',
+  },
+  'others' : {
+    ko : '기타',
+    en : '',
+    // 중국어
+    zh : '',
+  },
 }
 
-// reponsive
-export const /**/RESPONSIVE_MAP = new InjectionToken<any>('app.config');
-export const RESPONSIVE_MAP_CONST = {
-  // 640 / 16
-  // third-break-point : popularCategory, collection, popularBrands
-  'tb' : '(max-width: 40em)',
-  // 950 / 16
-  // second-break-point : popularCategory, collection, popularBrands/**/
-  'sb' : '(max-width: 55.625em)',
-  // 1192 / 16
-  // first-break-point
-  'actb' : '(max-width: 57em)',
-  'fb' : '(max-width: 74.5em)',
-  'desktop' : '(max-width: 80em)'
-}
 
 // menu
-export const MENU_MAP = new InjectionToken<any>( 'app.config');
+export const MENU_MAP = new InjectionToken<any>( './core/global-constant/app.locale');
 export const MENU_MAP_CONST = {
   'ko' : {
     main : [

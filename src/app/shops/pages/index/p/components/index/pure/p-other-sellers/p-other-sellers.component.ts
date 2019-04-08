@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, Component, Inject, OnInit} from '@angular/core';
-import {CURRENCY} from '../../../../../../../../app.config';
+import {CURRENCY} from '../../../../../../../../core/global-constant/app.config';
 import {BehaviorSubject} from 'rxjs';
 
 @Component({

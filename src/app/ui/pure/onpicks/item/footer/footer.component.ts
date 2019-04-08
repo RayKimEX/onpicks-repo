@@ -1,6 +1,6 @@
 import {ChangeDetectionStrategy, ChangeDetectorRef, Component, Inject, LOCALE_ID, OnInit} from '@angular/core';
 import {APP_BASE_HREF} from '@angular/common';
-import {CURRENCY} from '../../../../../app.config';
+import {CURRENCY} from '../../../../../core/global-constant/app.config';
 import {BehaviorSubject} from 'rxjs';
 
 @Component({

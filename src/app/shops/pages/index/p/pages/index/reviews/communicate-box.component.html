@@ -9,9 +9,6 @@
   Loading stuff...
 </ng-template>
 
-
-
-
 <onpicks-modal
   class="modal"
   (exit)="exitShowModal()"
@@ -19,9 +16,9 @@
 
   <h1 class="modal__title h1-bold">신고사유를 선택해주세요.</h1>
   <div
-    *ngFor="let key of objectKeys(reasonMap['ko'])"
+    *ngFor="let key of objectKeys(reasonMap)"
     class="modal__item subtitle-2-regular">
-    {{reasonMap['ko'][key]}}
+    {{reasonMap[key]['ko']}}
     <onpicks-check-box
       (boxEvent)="textReportReasonForModal = $event"
       class="modal__item--check-box"
@@ -56,7 +53,6 @@
 <!--MUST TODO : -->
 <div
   #communicateBox
-
   [ngStyle]="{ width : data.pictures?.length === 0 || (data.pictures ? data.pictures[0] : '1056px') === '' ? '660px' : '1056px'}"
   class="communicate-box">
   <!--[ngStyle]="{ width : data.review['pictures'].length === 0 ? ''}"-->

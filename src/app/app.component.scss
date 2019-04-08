@@ -1,5 +1,13 @@
 @import '~src/assets/scss/abstracts/variables';
 
+onpicks-modal {
+  display:none;
+
+  @include respond(tb){
+    display:block;
+  }
+}
+
 .kakao-plus-friend {
   display:none;
   position: fixed;
@@ -35,6 +43,9 @@
     vertical-align: middle;
   }
 }
+
+
+
 .onpicks-padding {
   padding : 0 2.4rem;
   @include respond(fb){

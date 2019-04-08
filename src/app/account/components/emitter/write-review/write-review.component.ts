@@ -16,7 +16,7 @@ import {
 import {AccountDataService} from '../../../../core/service/data-pages/account/account-data.service';
 import {UiService} from '../../../../core/service/ui/ui.service';
 import {BehaviorSubject} from 'rxjs';
-import {CURRENCY} from '../../../../app.config';
+import {CURRENCY} from '../../../../core/global-constant/app.config';
 import {Store} from '@ngrx/store';
 import {DisplayAlertMessage} from '../../../../core/store/ui/ui.actions';
 import * as EXIF from 'exif-js/exif';

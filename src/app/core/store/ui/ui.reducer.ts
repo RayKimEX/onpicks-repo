@@ -216,7 +216,7 @@ export function UiReducer(state = initialState, action: UiActions): UiState {
         },
         currentName : currentName,
         currentSlug : currentSlug,
-        currentCode : sortAllInfo[currentSlug],
+        currentCode : getSecondSortValue,
         currentTitle : action.payload.categoryTitle,
         type : action.payload.type,
         isLoaded : true,
@@ -321,7 +321,7 @@ export function UiReducer(state = initialState, action: UiActions): UiState {
           },
           currentSlug : currentSlug,
           currentName : currentName,
-          currentCode : sortAllInfo[currentSlug],
+          currentCode : getSecondSortValue,
         }
       };
       break;

@@ -19,9 +19,19 @@
 <div class="onpicks-padding">
   <router-outlet></router-outlet>
 </div>
+
 <ui-footer [ngStyle]="{ paddingTop : deltaHeight }"></ui-footer>
 
 
-<a [ngStyle]="{ bottom : globalKakaoPosition }" class="kakao-plus-friend" (click)="plusFriendChat()">
-  <img src="https://img.onpicks.com/assets/social/kakao-plus-friend.png"/>
-</a>
+<div>
+  <a [ngStyle]="{ bottom : globalKakaoPosition }" class="kakao-plus-friend" (click)="plusFriendChat()">
+    <img src="https://img.onpicks.com/assets/social/kakao-plus-friend.png"/>
+  </a>
+</div>
+
+<!--<onpicks-modal-->
+  <!--class="global-modal"-->
+  <!--[onlyMobile]="true" [isShow]="true">-->
+  <!--hello-->
+<!--</onpicks-modal>-->
+

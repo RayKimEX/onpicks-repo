@@ -30,8 +30,13 @@
     background-color  : white;
 
     @include respond(sb){
+      left:75px;
+      top:10px !important;
+    }
+
+    @include respond(tb){
       position:fixed;
-      top : 0;
+      top : 0 !important;
       left : 0;
       width:100%;
       height:100%;
@@ -44,7 +49,7 @@
       margin : 0 2.4rem;
 
       height : 4.8rem;
-      @include respond(sb){
+      @include respond(tb){
         height: auto;
       }
       span {
@@ -52,7 +57,7 @@
         margin-top : 1.6rem;
         margin-bottom : 1rem;
 
-        @include respond(sb){
+        @include respond(tb){
           margin : 0;
           display:block;
           padding : 2.4rem 0;
@@ -70,14 +75,14 @@
 
       &--check-svg {
         display : none;
-        @include respond(sb){
+        @include respond(tb){
           display : inline-block;
         }
       }
       &:nth-of-type(2) > div{
         border-top : 1px solid $color-light-grey;
 
-        @include respond(sb){
+        @include respond(tb){
           border-top: 0;
         }
       }

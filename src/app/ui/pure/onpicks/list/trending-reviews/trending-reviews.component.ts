@@ -1,5 +1,5 @@
 import {Component, OnInit, ChangeDetectionStrategy, ViewChild, Input, Inject, Renderer2, ChangeDetectorRef, LOCALE_ID, ViewChildren, HostListener} from '@angular/core';
-import {CURRENCY, LOCATION_MAP} from '../../../../../app.config';
+import {CURRENCY, LOCATION_MAP} from '../../../../../core/global-constant/app.config';
 import {BehaviorSubject} from 'rxjs';
 import {select, Store} from '@ngrx/store';
 import {APP_BASE_HREF} from '@angular/common';

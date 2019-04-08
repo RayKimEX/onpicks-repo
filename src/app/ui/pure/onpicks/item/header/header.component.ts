@@ -20,14 +20,14 @@ import {BehaviorSubject, fromEvent, Observable} from 'rxjs';
 import {shareReplay, tap} from 'rxjs/operators';
 
 // Custom
-import {SearchService} from '../../../../../core/service/data-pages/search/search.service';
 import {AuthService} from '../../../../../core/service/auth/auth.service';
 import {AuthState} from '../../../../../core/store/auth/auth.model';
 import {AppState} from '../../../../../core/store/app.reducer';
-import {CURRENCY, MENU_MAP, RESPONSIVE_MAP} from '../../../../../app.config';
+import {CURRENCY, RESPONSIVE_MAP} from '../../../../../core/global-constant/app.config';
 import {DisplayAlertMessage, RemoveAlertMessage} from '../../../../../core/store/ui/ui.actions';
 import {BreakpointObserver, BreakpointState} from '../../../../../../../node_modules/@angular/cdk/layout';
 import {TryLogout} from '../../../../../core/store/auth/auth.actions';
+import {MENU_MAP} from '../../../../../core/global-constant/app.locale';
 
 @Component({
   selector: 'ui-header',

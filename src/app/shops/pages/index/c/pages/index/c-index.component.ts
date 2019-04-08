@@ -5,7 +5,7 @@ import {
 } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {select, Store} from '@ngrx/store';
-import {CATEGORY_SECOND_MAP} from '../../../../../../app.config';
+import {CATEGORY_SECOND_MAP} from '../../../../../../core/global-constant/app.category-database-short';
 
 @Component({
   selector: 'onpicks-c-index',

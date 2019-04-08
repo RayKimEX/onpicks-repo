@@ -16,7 +16,7 @@ import {catchError, debounceTime, distinctUntilChanged, flatMap, map, tap} from 
 import {select, Store} from '@ngrx/store';
 import {Router} from '@angular/router';
 import {CartToCheckoutService} from '../../share/cart-to-checkout.service';
-import {CURRENCY, DOMAIN_HOST, RESPONSIVE_MAP} from '../../../app.config';
+import {CURRENCY, DOMAIN_HOST, RESPONSIVE_MAP} from '../../../core/global-constant/app.config';
 import {FormControl, FormGroup} from '@angular/forms';
 import {OrderDataService} from '../../../core/service/data-pages/order/order-data.service';
 import {BreakpointObserver, BreakpointState} from '../../../../../node_modules/@angular/cdk/layout';

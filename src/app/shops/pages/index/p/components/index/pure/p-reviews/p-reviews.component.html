@@ -10,9 +10,9 @@
   <h1 class="modal__title h1-bold">신고사유를 선택해주세요.</h1>
 
   <div
-    *ngFor="let key of objectKeys(reasonMap['ko'])"
+    *ngFor="let key of objectKeys(reasonMap)"
     class="modal__item subtitle-2-regular">
-    {{reasonMap['ko'][key]}}
+    {{reasonMap[key]['ko']}}
     <onpicks-check-box
       (boxEvent)="textReportReasonForModal = $event"
       class="modal__item--check-box"

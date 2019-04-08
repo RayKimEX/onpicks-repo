@@ -6,11 +6,11 @@ import {NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Route
 import {GetCategoryAll, UpdateCategory, UpdateUrlActive} from './core/store/ui/ui.actions';
 import {UiService} from './core/service/ui/ui.service';
 import {TryGetCartInfo, TryGetWishListInfo} from './core/store/cart/cart.actions';
-import {CATEGORY_CODE_MAP} from './app.database';
+import {CATEGORY_CODE_MAP} from './core/global-constant/app.category-database-long';
 import {tap} from 'rxjs/operators';
 import {fromEvent} from 'rxjs';
 import {BreakpointObserver, BreakpointState} from '../../node_modules/@angular/cdk/layout';
-import {RESPONSIVE_MAP} from './app.config';
+import {RESPONSIVE_MAP} from './core/global-constant/app.config';
 import {DOCUMENT} from '@angular/common';
 import {ignore} from '../../node_modules/@types/selenium-webdriver/testing';
 
@@ -38,7 +38,6 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit, DoCheck {
   isDesktopBreakPoint = false;
 
   deltaHeight = 0;
-
   previousUrl = [];
 
   constructor(

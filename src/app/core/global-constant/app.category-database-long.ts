@@ -1,7 +1,7 @@
 import {InjectionToken} from '@angular/core';
 
-export const CATEGORY_CODE_MAP = new InjectionToken<any>( 'app.database');
-export const CATEGORY_MAP = new InjectionToken<any>( 'app.database');
+export const CATEGORY_CODE_MAP = new InjectionToken<any>( './core/global-constant/app.category-database');
+export const CATEGORY_MAP = new InjectionToken<any>( './core/global-constant/app.category-database');
 
 export const CATEGORY_MAP_CONST = {
   '1000000': {

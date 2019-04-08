@@ -1,7 +1,7 @@
 import {Inject, Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {DOMAIN_HOST} from '../../../../app.config';
-import {CATEGORY_CODE_MAP} from '../../../../app.database';
+import {DOMAIN_HOST} from '../../../global-constant/app.config';
+import {CATEGORY_CODE_MAP} from '../../../global-constant/app.category-database-long';
 
 @Injectable({
   providedIn: 'root'

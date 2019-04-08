@@ -72,6 +72,7 @@ export class LoginComponent implements OnInit {
   }
 
   loginClick() {
+    console.log('hello');
     // const url = new URL(location.href);
     const returnURL = this.getQueryString('return');
     console.log(returnURL);

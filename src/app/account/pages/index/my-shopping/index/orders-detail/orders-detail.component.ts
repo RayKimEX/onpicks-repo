@@ -2,7 +2,7 @@ import {ChangeDetectionStrategy, Component, Inject, OnDestroy, OnInit} from '@an
 import {ActivatedRoute} from '@angular/router';
 import {AccountDataService} from '../../../../../../core/service/data-pages/account/account-data.service';
 import {tap} from 'rxjs/operators';
-import {CURRENCY} from '../../../../../../app.config';
+import {CURRENCY} from '../../../../../../core/global-constant/app.config';
 import {BehaviorSubject} from 'rxjs';
 
 @Component({

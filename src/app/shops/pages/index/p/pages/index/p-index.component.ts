@@ -16,7 +16,7 @@ import {
 } from 'rxjs/operators';
 import {UiService} from '../../../../../../core/service/ui/ui.service';
 import {BreakpointObserver, BreakpointState} from '../../../../../../../../node_modules/@angular/cdk/layout';
-import {LOCATION_MAP, RESPONSIVE_MAP} from '../../../../../../app.config';
+import {LOCATION_MAP, RESPONSIVE_MAP} from '../../../../../../core/global-constant/app.config';
 import {DisplayAlertMessage, UpdateGlobalKakaoPlusFriendForDetailPage, UpdateGlobalKakaoPlusFriendForNormal, UpdateGlobalKakaoPlusFriendForPurchase} from '../../../../../../core/store/ui/ui.actions';
 import {TryAddOrCreateToCart} from '../../../../../../core/store/cart/cart.actions';
 

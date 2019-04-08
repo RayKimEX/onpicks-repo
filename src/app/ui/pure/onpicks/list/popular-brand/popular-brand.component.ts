@@ -10,7 +10,7 @@ import {
   ViewChildren
 } from '@angular/core';
 import {BreakpointObserver, BreakpointState} from '../../../../../../../node_modules/@angular/cdk/layout';
-import {RESPONSIVE_MAP} from '../../../../../app.config';
+import {RESPONSIVE_MAP} from '../../../../../core/global-constant/app.config';
 import {Router} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
 

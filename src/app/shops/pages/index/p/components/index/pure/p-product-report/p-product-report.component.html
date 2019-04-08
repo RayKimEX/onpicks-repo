@@ -1,7 +1,7 @@
-<div class="p-product-report" [ngStyle]="{ marginBottom : foldFlag ? '5.2rem' : '2.4rem'}" e>
+<div class="p-product-report" [ngStyle]="{ marginBottom : foldFlag ? '5.2rem' : '2.4rem'}">
 
   <div class="p-product-report__title">
-    <h1 class="h1-bold">상품정보 제공 고시</h1>    <onpicks-sort-box (click)="foldFlag = !foldFlag" [selectedElement]="{ title : '더보기' }" [showBox]="false">더보기</onpicks-sort-box>
+    <h1 class="h1-bold">상품정보 제공 고시</h1>    <onpicks-sort-box (click)="foldFlag = !foldFlag" [selectedElement]="{ title : '더보기', value : 0 }" [showBox]="false">더보기</onpicks-sort-box>
     <!--<onpicks-sort-box (click)="foldFlag = !foldFlag" [selectedElement]="{ title : '더보기' }" [showBox]="false">더보기</onpicks-sort-box>-->
   </div>
   <div *ngIf="foldFlag">

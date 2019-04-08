@@ -1,5 +1,5 @@
 import {Inject, Injectable} from '@angular/core';
-import {DOMAIN_HOST} from '../../../../app.config';
+import {DOMAIN_HOST} from '../../../global-constant/app.config';
 import {HttpClient} from '../../../../../../node_modules/@angular/common/http';
 
 @Injectable({

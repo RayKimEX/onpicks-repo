@@ -15,6 +15,10 @@ export class PantryAndHouseholdComponent implements OnInit {
   pantryAndHouseHoldBannerImages =  [
     {
       imgSrc : 'https://img.onpicks.com/banners/pantry-and-household/2019-02-27/PAH-banner1.jpg?d=w2576-h800',
+      imgSrcForDesktop : 'https://img.onpicks.com/banners/pantry-and-household/2019-02-27/PAH-banner1.jpg',
+      // srcSetForDesktop : '',
+      // imgSrcForMobile : 'https://img.onpicks.com/banners/main/2019-04-01/main-mobile-banner1.jpg',
+      // srcSetForMobile : 'https://img.onpicks.com/banners/main/2019-04-01/main-mobile-banner1.jpg 640w',
       // marginLeftForText : '6.2%',
       title : [
         '세이어스'
@@ -28,6 +32,9 @@ export class PantryAndHouseholdComponent implements OnInit {
     },
     {
       imgSrc : 'https://img.onpicks.com/banners/pantry-and-household/2019-02-27/PAH-banner2.jpg?d=w2576-h800',
+      imgSrcForDesktop : 'https://img.onpicks.com/banners/pantry-and-household/2019-02-27/PAH-banner2.jpg',
+      // imgSrcForMobile : 'https://img.onpicks.com/banners/main/2019-04-01/main-mobile-banner1.jpg',
+      // srcSetForMobile : 'https://img.onpicks.com/banners/main/2019-04-01/main-mobile-banner1.jpg 640w',
       // marginLeftForText : '6.2%',
       title : [
         '온가족이 사용하는',

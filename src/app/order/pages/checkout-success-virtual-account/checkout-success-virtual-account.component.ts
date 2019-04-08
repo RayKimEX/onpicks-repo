@@ -1,7 +1,7 @@
 import {ChangeDetectionStrategy, Component, Inject, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {OrderDataService} from '../../../core/service/data-pages/order/order-data.service';
-import {CURRENCY} from '../../../app.config';
+import {CURRENCY} from '../../../core/global-constant/app.config';
 import {BehaviorSubject} from 'rxjs';
 
 @Component({

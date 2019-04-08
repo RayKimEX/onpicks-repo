@@ -7,7 +7,7 @@ import {
 } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import {share, shareReplay, tap} from 'rxjs/operators';
-import {CURRENCY, DOMAIN_HOST, LOCATION_MAP} from '../../../app.config';
+import {CURRENCY, DOMAIN_HOST, LOCATION_MAP} from '../../../core/global-constant/app.config';
 import {
   TryAddOrCreateToCart,
   TryAddToWishList,

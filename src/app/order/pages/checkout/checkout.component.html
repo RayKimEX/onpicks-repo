@@ -350,7 +350,6 @@
           결제하기
         </onpicks-button>
       </div>
-
     </div>
   </div>
 </div>
@@ -394,7 +393,8 @@
     <onpicks-input-box
       #inputRecipientNumber
       class="checkout-left__info--delivery-input body-2-regular"
-      [placeholder]="'받는분 연락처'"></onpicks-input-box>
+      [placeholder]="'받는분 연락처'">
+    </onpicks-input-box>
     <div *ngIf="checkBitWise(EMPTY_RECIPIENT_NUMBER)" class="checkout_warning subtitle-2-regular u-color-orange">받는분 연락처를 입력해주세요</div>
     <div *ngIf="checkBitWise(INVALID_RECIPIENT_NUMBER)" class="checkout_warning subtitle-2-regular u-color-orange">숫자만 입력가능합니다</div>
   </div>
