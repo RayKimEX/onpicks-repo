@@ -91,7 +91,7 @@ export class CartComponent {
       },
       error => {
         if ( error.status === 502 ) {
-          this.store.dispath(new DisplayAlertMessage('서버에 상태가 불안정합니다.'));c
+          this.store.dispatch(new DisplayAlertMessage('서버에 상태가 불안정합니다.'));
         } else if ( error.status === 403 ) {
           // this.router.navigate(['/member/login']);
           console.log(this.BASE_URL);
