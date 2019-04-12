@@ -19,45 +19,23 @@ import {BreakpointObserver, BreakpointState} from '../../../../../../node_module
   styleUrls: ['./modal.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ModalComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy {
-  @Input('isShow') isShow = false;
-  @Input('onlyMobile') onlyMobile = false;
-  @Output('exit') exitEvent = new EventEmitter();
-  @ViewChild('modal') modal;
 
-  // 검은색 부분을 눌러을 때, 꼬이는것을 방지하기 위해 추가
-  popupState = false;
+export class ModalComponent implements OnInit, AfterViewInit, OnDestroy {
+  @Input('isShow') set _isShow(xIsShow) {
+    if (xIsShow === null ) { return; }
 
-  constructor(
-    private renderer: Renderer2,
-    @Inject(RESPONSIVE_MAP) public responsiveMap,
-    private breakpointObserver:  BreakpointObserver,
-  ) { }
-
-  ngOnInit() {
-    this.breakpointObserver
-      .observe([this.responsiveMap['tb']])
-      .subscribe((state: BreakpointState) => {
-        if (state.matches) {
-          // isShow = true이고, 모바일 버전일땐, isThirdBreakPoint가 true일때만, u-open-modal적용
-          if( this.onlyMobile === true ) {
-            this.renderer.addClass(document.body , 'u-open-modal');
-          }
-        } else {
-          if( this.onlyMobile === true ) {
-            this.renderer.removeClass(document.body, 'u-open-modal');
-          }
-        }
-      });
-  }
-
-  ngOnChanges(changes: SimpleChanges) {
+    this.isShow = xIsShow;
+    console.log(this.isShow);
     this.popupState = false;
-    if ( changes.isShow.currentValue === true ) {
+    if ( this.isShow === true ) {
 
       // isShow = true이고, 모바일 버전이 아닐때만 open-modal적용
-      if( this.onlyMobile === false ) {
+      if ( this.modalForMenu === false ) {
         this.renderer.addClass(document.body , 'u-open-modal');
+      }
+
+      if ( this.modalForMenu === true && this.isDesktopBreakPoint === true ){
+        this.renderer.addClass(document.body, 'u-open-modal');
       }
 
       // 검은색 부분을 눌러을 때, 꼬이는것을 방지하기 위해 추가
@@ -65,21 +43,57 @@ export class ModalComponent implements OnInit, OnChanges, AfterViewInit, OnDestr
         this.popupState = true;
       }, 0);
     } else {
-      this.renderer.removeClass(document.body, 'u-open-modal');
+      console.log(document.body);
 
+      this.renderer.removeClass(document.body, 'u-open-modal');
+      console.log(document.body);
     }
+  }
+
+  @Input('modalForMenu') modalForMenu = false;
+  @Output('exit') exitEvent = new EventEmitter();
+  @ViewChild('modal') modal;
+
+  // 검은색 부분을 눌러을 때, 꼬이는것을 방지하기 위해 추가
+  popupState = false;
+  isShow = false;
+  isDesktopBreakPoint = false;
+
+  constructor(
+    @Inject(RESPONSIVE_MAP) public responsiveMap,
+    private renderer: Renderer2,
+    private breakpointObserver:  BreakpointObserver
+  ) { }
+
+  ngOnInit() {
+    this.breakpointObserver
+      .observe([this.responsiveMap['desktop']])
+      .subscribe((state: BreakpointState) => {
+        if (state.matches) {
+          // isShow = true이고, 모바일 버전일땐, isThirdBreakPoint가 true일때만, u-open-modal적용
+          this.isDesktopBreakPoint = true;
+          if ( this.isShow === true && this.modalForMenu === true ) {
+            console.log('333');
+            this.renderer.addClass(document.body , 'u-open-modal');
+          }
+        } else {
+          this.isDesktopBreakPoint = false;
+          if ( this.isShow === true && this.modalForMenu === true ) {
+            this.renderer.removeClass(document.body, 'u-open-modal');
+          }
+        }
+      });
   }
 
   @HostListener('document:keydown.escape', ['$event'])
   onKeydownHandler(event: KeyboardEvent) {
-
     // &&  this.communicateBox.nativeElement.style.display !== 'none'
     if ( event.key === 'Escape' ) {
       this.exitEvent.emit();
     }
   }
 
-  ngAfterViewInit(){
+  ngAfterViewInit() {
 
   }
 
@@ -94,7 +108,9 @@ export class ModalComponent implements OnInit, OnChanges, AfterViewInit, OnDestr
       if (this.modal.nativeElement.contains(event.target)) {
 
       } else {
-        this.exitEvent.emit();
+        if ( !this.modalForMenu ) {
+          this.exitEvent.emit();
+        }
       }
     }
   }

@@ -19,7 +19,7 @@
        class="preference-modal"><!---->
     <div class="preference-modal__inner">
       <div class="preference-modal__title">
-        <span [ngClass]="[ isThirdBreakPoint ? 'h1-bold' : 'subtitle-2-bold']">
+        <span [ngClass]="[ isDesktopBreakPoint ? 'h1-bold' : 'subtitle-2-bold']">
           {{preferenceList[type].title}}
         </span>
       </div>
@@ -27,7 +27,7 @@
         class="preference-modal__item" *ngFor="let item of preferenceList[type].list | keyvalue: nonCompareFunction">
         <div
              class="preference-modal__item--inner">
-          <span [ngClass]="{ 'subtitle-1-regular' : isThirdBreakPoint }">
+          <span [ngClass]="{ 'subtitle-1-regular' : isDesktopBreakPoint }">
             {{item.value}}
           </span>
           <svg *ngIf="(currency | async) === item.key" class="preference-modal__item--check-svg u-float-right" xmlns="http://www.w3.org/2000/svg" width="10" height="7" viewBox="0 0 10 7">

@@ -3,6 +3,11 @@ import { InjectionToken } from '@angular/core';
 export const DOMAIN_HOST = new InjectionToken<string>('./core/global-constant/app.config');
 export const CURRENCY = new InjectionToken<string>('./core/global-constant/app.config');
 
+export const BREAKPOINT =  new InjectionToken<string>('./core/global-constant/app.config');
+// export const BREAKPOINT_TB =  new InjectionToken<string>('./core/global-constant/app.config');
+// export const BREAKPOINT_ACTB =  new InjectionToken<string>('./core/global-constant/app.config');
+
+
 // API를 글로벌하게 URL관리하지 않는이유..
 // '/api/products/1/variants/1/'
 // 이런식으로 1같은 값이 중간에 끼어 있으면, 어떻게 처리해야되는지에 대한 해답이 없음

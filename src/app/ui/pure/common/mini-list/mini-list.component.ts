@@ -13,9 +13,10 @@ import {
 import {APP_BASE_HREF} from '@angular/common';
 import {select, Store} from '@ngrx/store';
 import {TryAddOrCreateToCart, TrySubtractOrDeleteFromCart} from '../../../../core/store/cart/cart.actions';
-import {CURRENCY, LOCATION_MAP} from '../../../../core/global-constant/app.config';
+import {CURRENCY, LOCATION_MAP, RESPONSIVE_MAP} from '../../../../core/global-constant/app.config';
 import {BehaviorSubject} from 'rxjs';
 import {Router} from '@angular/router';
+import {BreakpointObserver, BreakpointState} from '../../../../../../node_modules/@angular/cdk/layout';
 
 @Component({
   selector: 'ui-mini-list',
@@ -40,20 +41,36 @@ export class MiniListComponent implements OnInit, OnDestroy {
   cartStore;
 
   translateXWidth = 288;
+  isFirstBreakPoint = false;
+
   constructor(
     @Inject(CURRENCY) public currency: BehaviorSubject<any>,
+    @Inject( LOCATION_MAP ) public locationMap: any,
+    @Inject(LOCALE_ID) public locale: string,
+    @Inject(APP_BASE_HREF) public region: string,
+    @Inject(RESPONSIVE_MAP) public responsiveMap,
     private renderer: Renderer2,
     private store: Store<any>,
     private cd: ChangeDetectorRef,
     private router: Router,
-    @Inject( LOCATION_MAP ) public locationMap: any,
-    @Inject(LOCALE_ID) public locale: string,
-    @Inject(APP_BASE_HREF) public region: string,
+    private breakpointObserver:  BreakpointObserver
   ) {
     this.cartStore$ = this.store.pipe(select(state => state.cart))
       .subscribe(val => {
         this.cartStore = val;
         this.cd.markForCheck();
+      });
+
+    this.breakpointObserver
+      .observe([this.responsiveMap['fb']])
+      .subscribe((state: BreakpointState) => {
+        if (state.matches) {
+          this.isFirstBreakPoint = true;
+          // this.cd.markForCheck();
+        } else {
+          // this.mobileAlertTop = '11rem';
+          this.isFirstBreakPoint = false;
+        }
       });
   }
 
@@ -63,7 +80,6 @@ export class MiniListComponent implements OnInit, OnDestroy {
   }
 
   addToCart(xAmount, xProductSlug, xPackIndex) {
-
     xAmount++;
     // 만약 카트 아이디가. 카트스토어 카트리스트에 있다면, increase cart를 하고, create cart를 하지 않는다.
     this.store.dispatch(new TryAddOrCreateToCart({

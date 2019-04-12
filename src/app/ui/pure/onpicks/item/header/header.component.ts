@@ -28,6 +28,7 @@ import {DisplayAlertMessage, RemoveAlertMessage} from '../../../../../core/store
 import {BreakpointObserver, BreakpointState} from '../../../../../../../node_modules/@angular/cdk/layout';
 import {TryLogout} from '../../../../../core/store/auth/auth.actions';
 import {MENU_MAP} from '../../../../../core/global-constant/app.locale';
+import {ShowCurrencyModal} from '../../../../../core/store/modal/modal.actions';
 
 @Component({
   selector: 'ui-header',
@@ -99,7 +100,6 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
     private breakpointObserver:  BreakpointObserver,
     private cd: ChangeDetectorRef
   ) {
-
     this.breakpointObserver
       .observe([this.ResponsiveMap['desktop']])
       .subscribe((state: BreakpointState) => {
@@ -187,6 +187,7 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
     this.cart$ = this.store.pipe(
       select(state => state.cart.cartInfo)
     );
+
   }
 
   ngOnDestroy() {
@@ -237,7 +238,7 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
 
   showMenuForMobile( xInputChecked ) {
     console.log(xInputChecked.checked);
-    if(xInputChecked.checked) {
+    if ( xInputChecked.checked ) {
       this.renderer.removeClass(document.body, 'u-open-modal');
     } else {
       this.renderer.addClass(document.body , 'u-open-modal');
@@ -296,14 +297,17 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   }
 
-  logout(xInputChecked) {
+  logout( xInputChecked ) {
     this.store.dispatch(new TryLogout());
     this.renderer.setProperty(xInputChecked, 'checked', false);
     this.renderer.setStyle(this.mobileHamburger.nativeElement, 'display', 'none');
     this.renderer.removeClass(document.body, 'u-open-modal');
-    console.log('@@@@@@@@@@@@@@@@remove modal 4');
     location.href = '/shops';
   }
 
+  showCurrencyGlobalModal( xMenuToggle ) {
+    this.renderer.setProperty(xMenuToggle, 'checked', false);
+    this.store.dispatch(new ShowCurrencyModal());
+  }
 }
 

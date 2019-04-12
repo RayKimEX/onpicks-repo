@@ -117,12 +117,21 @@
       </onpicks-select-box>
 
       <onpicks-button
+        *ngIf="!(_data.in_stock === false || _data.in_stock === true && _data.stock_quantity === 0)"
         (click)="addToCart(_data?.ship_alone ? 'free' : locationMap[_data?.location.code].sequence)"
         [type]="'black'"
         [marginLeft]="'1.2rem'"
         [size]="'big'"
         [width]="'23.7rem'">
-        쇼핑백에 담기
+        {{'쇼핑백에 담기'}}
+      </onpicks-button>
+      <onpicks-button
+        *ngIf="(_data.in_stock === false || _data.in_stock === true && _data.stock_quantity === 0)"
+        [type]="'grey'"
+        [marginLeft]="'1.2rem'"
+        [size]="'big'"
+        [width]="'23.7rem'">
+        {{'품 절'}}
       </onpicks-button>
     </div>
   </div>

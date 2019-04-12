@@ -22,16 +22,32 @@
 
 <ui-footer [ngStyle]="{ paddingTop : deltaHeight }"></ui-footer>
 
-
 <div>
   <a [ngStyle]="{ bottom : globalKakaoPosition }" class="kakao-plus-friend" (click)="plusFriendChat()">
     <img src="https://img.onpicks.com/assets/social/kakao-plus-friend.png"/>
   </a>
 </div>
 
-<!--<onpicks-modal-->
-  <!--class="global-modal"-->
-  <!--[onlyMobile]="true" [isShow]="true">-->
-  <!--hello-->
-<!--</onpicks-modal>-->
+<onpicks-modal
+  (exit)="hideCurrencyModal()"
+  [modalForMenu]="true"
+  [isShow]="(modalState$ | async).currencyModal">
+  <div class="modal__currency">
+    <div class="modal__currency--title">
+      <div class="u-vertical-center-with-table-cell h1-bold">{{preferenceMap['currency'].title[locale]}}</div>
+    </div>
+    <div
+      (click)="changeCurrencyPreference(item.key)"
+      *ngFor="let item of preferenceMap['currency'].list | keyvalue: nonCompareFunction"
+      class="modal__currency--item subtitle-1-regular">
+      <div class="modal__currency--item--inner u-vertical-center-with-table-cell subtitle-1-regular">
+        {{item.value[locale]}}
+        <svg *ngIf="(currency | async) === item.key" class="preference-modal__item--check-svg u-float-right" xmlns="http://www.w3.org/2000/svg" width="10" height="7" viewBox="0 0 10 7">
+          <path fill="#000" fill-rule="evenodd" d="M4.024 7h-.007a1.413 1.413 0 0 1-1.023-.448L.279 3.708a1.008 1.008 0 0 1 .029-1.421 1 1 0 0 1 1.414.03L4.025 4.73 8.282.305A1 1 0 0 1 9.696.281a1.01 1.01 0 0 1 .023 1.421l-4.68 4.864A1.411 1.411 0 0 1 4.025 7z"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+</onpicks-modal>
+
 

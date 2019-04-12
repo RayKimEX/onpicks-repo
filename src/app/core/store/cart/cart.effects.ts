@@ -34,11 +34,11 @@ export class CartEffects {
   deleteWishList = this.actions$.pipe(
     ofType( CartActions.TRY_DELETE_WISH_LIST),
     map( payload => payload['payload']),
-    switchMap( payload => {
-      return this.cartService.deleteToWishList( payload.wishListSlug )
+    switchMap( (subLoad: { wishListSlug, index }) => {
+      return this.cartService.deleteToWishList( subLoad.wishListSlug )
         .pipe(
           map( response => {
-            return new DeleteWishListSuccess( payload.index );
+            return new DeleteWishListSuccess( subLoad.index );
           }),
           catchError( error => {
             return of(new DeleteWishListFailure( { error: error}));
@@ -70,9 +70,9 @@ export class CartEffects {
   addToWishList = this.actions$.pipe(
     ofType( CartActions.TRY_ADD_TO_WISH_LIST),
     map( payload => payload['payload']),
-    switchMap( payload => {
-      console.log(payload);
-      return this.cartService.addToWishList( payload.productSlug )
+    switchMap( (subLoad: {productSlug, packIndex}) => {
+      console.log(subLoad);
+      return this.cartService.addToWishList( subLoad.productSlug )
         .pipe(
           mergeMap( response => {
             return [
@@ -80,9 +80,9 @@ export class CartEffects {
               new TrySubtractOrDeleteFromCart(
                 {
                   isPopUp : false,
-                  productSlug : payload.productSlug,
+                  productSlug : subLoad.productSlug,
                   amount : 0,
-                  packIndex : payload.packIndex,
+                  packIndex : subLoad.packIndex,
                   subtractOrDelete : false
                 })
               ];

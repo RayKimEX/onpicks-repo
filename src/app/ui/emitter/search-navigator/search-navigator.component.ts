@@ -244,6 +244,7 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
           }
           console.log(categoryUrl[3]);
           console.log(categoryUrl[4]);
+          console.log(this.categoryMap);
 
           switch ( categoryUrl.length ) {
             case 5 :

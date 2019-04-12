@@ -1,9 +1,37 @@
 @import '~src/assets/scss/abstracts/variables';
 
+.modal {
+  &__currency {
+    display:block;
+    &--title {
+      padding : 0 2.4rem;
+      display:table;
+      height: 7.6rem;
+      width:100%;
+      border-bottom : 1px solid $color-light-grey;
+    }
+
+    &--item {
+      display:table;
+      height: 5.6rem;
+      width:100%;
+      cursor: pointer;
+
+      &--inner {
+        padding : 0 1.6rem;
+      }
+
+      &:hover {
+        background-color : $color-light-grey;
+      }
+    }
+  }
+}
+
 onpicks-modal {
   display:none;
 
-  @include respond(tb){
+  @include respond(desktop){
     display:block;
   }
 }

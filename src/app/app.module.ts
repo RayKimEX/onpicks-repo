@@ -20,6 +20,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {EffectsModule} from '@ngrx/effects';
 import {AuthEffects} from './core/store/auth/auth.effects';
 import {
+  BREAKPOINT,
   CURRENCY,
   DOMAIN_HOST,
   LOCATION_MAP,
@@ -31,12 +32,12 @@ import {AuthInterceptorService} from './core/service/auth/auth-interceptor.servi
 import {UiEffects} from './core/store/ui/ui.effects';
 import {CartEffects} from './core/store/cart/cart.effects';
 import {SearchEffects} from './core/store/search/search.effects';
-import {LayoutModule} from '@angular/cdk/layout';
+import {BreakpointObserver, LayoutModule} from '@angular/cdk/layout';
 import 'hammerjs';
 import {BehaviorSubject} from 'rxjs';
 import {CATEGORY_CODE_MAP, CATEGORY_CODE_MAP_CONST, CATEGORY_MAP, CATEGORY_MAP_CONST} from './core/global-constant/app.category-database-long';
 import {CATEGORY_SECOND_MAP, CATEGORY_SECOND_MAP_CONST} from './core/global-constant/app.category-database-short';
-import {MENU_MAP, MENU_MAP_CONST, REPORT_REASON_MAP, REPORT_REASON_MAP_CONST} from './core/global-constant/app.locale';
+import {MENU_MAP, MENU_MAP_CONST, PREFERENCE_MAP, PREFERENCE_MAP_CONST, REPORT_REASON_MAP, REPORT_REASON_MAP_CONST} from './core/global-constant/app.locale';
 // export function getBaseHref(platformLocation: PlatformLocation): string {
 //   return platformLocation.getBaseHrefFromDOM();
 // }
@@ -154,7 +155,6 @@ export function getCurrency() {
       useFactory : getCurrency,
       // useValue : new BehaviorSubject(getCookie('onpicks-currency')),
     },
-    // window.location.pathname.split('/')[1] === 'kr' ?
     {
       provide: LOCATION_MAP,
       useValue : LOCATION_MAP_CONST,
@@ -183,6 +183,10 @@ export function getCurrency() {
       provide : REPORT_REASON_MAP,
       useValue : REPORT_REASON_MAP_CONST
     },
+    {
+      provide : PREFERENCE_MAP,
+      useValue : PREFERENCE_MAP_CONST
+    }
   ],
   bootstrap: [ AppComponent ]
 })

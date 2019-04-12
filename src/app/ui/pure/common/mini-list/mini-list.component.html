@@ -65,16 +65,35 @@
                         'ui-mini-list-halfM__item--image-outer' :
                         'ui-mini-list-fullM__item--image-outer'
                       ]">
+                      <div *ngIf="item.in_stock === true && item.stock_quantity <= 10 && item.stock_quantity !== 0" [ngClass]="[
+                        mobileType === 'half' ?
+                        'ui-mini-list-halfM__item--stock' :
+                        'ui-mini-list-fullM__item--stock']">
+                        <span class="ui-mini-list-halfM__item--stock--inner u-color-white">
+                          매진임박 10개
+                        </span>
+                      </div>
+                      <div *ngIf="item.in_stock === false || item.in_stock === true && item.stock_quantity === 0" [ngClass]="[
+                        mobileType === 'half' ?
+                        'ui-mini-list-halfM__item--stock-empty' :
+                        'ui-mini-list-fullM__item--stock-empty']">
+                        <span
+                          class="ui-mini-list-halfM__item--stock--inner u-color-white">
+                          품절
+                        </span>
+                      </div>
                       <div
                         [ngClass]="[
                         mobileType === 'half' ?
                         'ui-mini-list-halfM__item--image-inner' :
                         'ui-mini-list-fullM__item--image-inner'
                       ]">
+
                           <img drLazyLoad [relativeOption]="false" src="{{item.thumbnail}}" alt="{{item.title}}">
                       </div>
                     </div>
                     <onpicks-list-active-button
+                      *ngIf="!(item.in_stock === false || item.in_stock === true && item.stock_quantity === 0)"
                       [amount]="cartStore?.cartList[item.slug] === undefined ? 0 : cartStore?.cartList[item.slug]?.quantity"
                       (addEvent)="addToCart($event, item.slug, item.ship_alone ? 'free' : locationMap[item.location.code].sequence)"
                       (subtractEvent)="subtractFromCart($event, item.slug, item.ship_alone ? 'free' : locationMap[item.location.code].sequence)">

@@ -344,9 +344,13 @@ onpicks-check-box {
 
 .search-content {
 
+
+
   @include respond(sb){
     width :100%;
   }
+
+
 
   &__sort-box {
     @include respond(sb){
@@ -568,6 +572,35 @@ onpicks-check-box {
         margin-right : 0;
       }
     }
+
+    &--stock {
+      position:relative;
+      top : 0;
+      width: 9.4rem;
+      height: 24px;
+      border-radius: 4px;
+      background-color : $color-orange;
+      margin-left:-2.4rem;
+      margin-top :-2.4rem;
+      text-align : center;
+      &--inner {
+        width:100%;
+        @include absCenter;
+      }
+    }
+
+    &--stock-empty {
+      text-align : center;
+      position:relative;
+      top : 0;
+      width: 9.4rem;
+      height: 24px;
+      border-radius: 4px;
+      background-color : $color-grey;
+      margin-left:-2.4rem;
+      margin-top :-2.4rem;
+    }
+
     &--option-product {
       display:table;
       position:absolute;

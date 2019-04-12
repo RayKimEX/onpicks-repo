@@ -38,9 +38,9 @@ export class PEffects {
     ofType( PActions.TRY_TOGGLE_VOTE_REIVEW ),
     tap( v => console.log(v)),
     map( payload => payload['payload']),
-    switchMap( payload => {
-      if ( payload.isVote ) {
-        return this.pDataService.voteReviewsData(payload.productSlug, payload.reviewId)
+    switchMap( (subLoad: {productSlug, reviewId, isVote}) => {
+      if ( subLoad.isVote ) {
+        return this.pDataService.voteReviewsData(subLoad.productSlug, subLoad.reviewId)
           .pipe(
             map( (response) => {
               return new ToggleVoteReviewSuccess(response);
@@ -51,7 +51,7 @@ export class PEffects {
             })
           );
       } else {
-        return this.pDataService.unvoteReviewsData(payload.productSlug, payload.reviewId)
+        return this.pDataService.unvoteReviewsData(subLoad.productSlug, subLoad.reviewId)
           .pipe(
             map( (response) => {
               return new ToggleVoteReviewSuccess(response);
@@ -90,8 +90,10 @@ export class PEffects {
   getReviews = this.actions$.pipe(
     ofType( PActions.TRY_GET_REVIEWS_PRODUCT ),
     map( payload => payload['payload']),
-    switchMap( payload => {
-      return this.pDataService.getReviewsData(payload.productSlug, payload.sorting)
+    switchMap( (subLoad: { productSlug, sorting }) => {
+      console.log('subLoad TRY_GET_REVIEWS_PRODUCT');
+      console.log(subLoad);
+      return this.pDataService.getReviewsData(subLoad.productSlug, subLoad.sorting)
         .pipe(
           map( (getReviews) => {
             return new GetReviewProductSuccess( getReviews);
@@ -108,11 +110,11 @@ export class PEffects {
   getCommnets = this.actions$.pipe(
     ofType( PActions.TRY_GET_COMMENTS_PRODUCT ),
     map( payload => payload['payload']),
-    switchMap( payload => {
-      return this.pDataService.getCommentsData(payload.productId, payload.reviewsId)
+    switchMap( (subLoad: {productId, reviewsId} ) => {
+      return this.pDataService.getCommentsData(subLoad.productId, subLoad.reviewsId)
         .pipe(
           map( (getReviews) => {
-            return new GetCommentsProductSuccess( { currentComments : getReviews, reviewsId : payload.reviewsId } );
+            return new GetCommentsProductSuccess( { currentComments : getReviews, reviewsId : subLoad.reviewsId } );
           }),
           catchError( (error) => {
             return of(new GetCommentsProductFailure({ error : error }));
@@ -126,11 +128,11 @@ export class PEffects {
   addComments = this.actions$.pipe(
     ofType( PActions.TRY_ADD_COMMENT ),
     map( payload => payload['payload']),
-    switchMap( payload => {
-      return this.pDataService.addCommentsData( payload.productId, payload.reviewsId, payload.addedText )
+    switchMap( (subLoad: { productId, reviewsId, addedText }) => {
+      return this.pDataService.addCommentsData( subLoad.productId, subLoad.reviewsId, subLoad.addedText )
         .pipe(
           map( (respond) => {
-            return new AddCommentSuccess({ respond : respond, reviewsId : payload.reviewsId });
+            return new AddCommentSuccess({ respond : respond, reviewsId : subLoad.reviewsId });
           }),
           catchError( (error) => {
             return of(new AddCommentFailure({ error : error }));

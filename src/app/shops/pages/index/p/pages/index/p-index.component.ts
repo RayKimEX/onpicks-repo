@@ -167,10 +167,10 @@ export class PIndexComponent implements OnInit, OnDestroy {
       return ;
     };
 
-    if ( delta < -1 ) {
+    if ( delta < -1 && this.isFB) {
       this.isShowMobileMenu = true;
       this.store.dispatch(new UpdateGlobalKakaoPlusFriendForDetailPage());
-    } else if ( delta > 1 ) {
+    } else if ( delta > 1  && this.isFB ) {
       this.isShowMobileMenu = false;
       this.store.dispatch(new UpdateGlobalKakaoPlusFriendForNormal());
     }

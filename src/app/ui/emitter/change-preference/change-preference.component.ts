@@ -16,6 +16,7 @@ import {HttpClient} from '@angular/common/http';
 import { CURRENCY, RESPONSIVE_MAP } from '../../../core/global-constant/app.config';
 import {BehaviorSubject} from 'rxjs';
 import {BreakpointObserver, BreakpointState} from '../../../../../node_modules/@angular/cdk/layout';
+import {ShowCurrencyModal} from '../../../core/store/modal/modal.actions';
 
 @Component({
   selector: 'emitter-change-preference',
@@ -50,10 +51,7 @@ export class ChangePreferenceComponent implements OnInit {
     }
   }
 
-  isThirdBreakPoint = false;
-
-
-
+  isDesktopBreakPoint = false;
 
   constructor(
     @Inject(CURRENCY) public currency: BehaviorSubject<any>,
@@ -64,30 +62,27 @@ export class ChangePreferenceComponent implements OnInit {
     private uiService: UiService,
     private httpClient: HttpClient,
     private renderer: Renderer2
-  ) {
-
-  }
+  ) { }
 
   ngOnInit() {
     this.currency.subscribe( value => {
       console.log(value);
     });
 
-
     this.breakpointObserver
-      .observe([this.responsiveMap['tb']])
+      .observe([this.responsiveMap['desktop']])
       .subscribe((state: BreakpointState) => {
         if (state.matches) {
-          this.isThirdBreakPoint = true;
+          this.isDesktopBreakPoint = true;
         } else {
-          this.isThirdBreakPoint = false;
+          this.isDesktopBreakPoint = false;
         }
       });
-
   }
+
   @HostListener('document:click', ['$event'])
   clickout(event) {
-    if ( this.isThirdBreakPoint ) { return; }
+    if ( this.isDesktopBreakPoint ) { return; }
     if ( this.eRef.nativeElement.contains(event.target)) {
     } else {
       this.isShowModal = false;
@@ -96,29 +91,12 @@ export class ChangePreferenceComponent implements OnInit {
 
   changePreference(xPreferenceCode) {
 
-    // if ( this.isThirdBreakPoint ) {
-    //   this.renderer.removeClass(document.body, 'u-open-modal');
-    // }
+    setCookie('onpicks-currency', xPreferenceCode);
 
-    switch (this.type) {
-      case 'currency' :
-        this.httpClient.post('/api/preferences/currency/', {currency : xPreferenceCode})
-          .subscribe( (response) => {
-              console.log(xPreferenceCode);
-              this.currency.next(xPreferenceCode);
-              window.location.reload();
-            }
-          );
-        this.isShowModal = false;
-
-
-
-        break;
-
-      case 'locale' :
-        this.isShowModal = false;
-
-        break;
+    if ( this.currency.getValue() !== xPreferenceCode ) {
+      window.location.reload();
+    } else {
+      this.isShowModal = false;
     }
   }
 
@@ -128,11 +106,20 @@ export class ChangePreferenceComponent implements OnInit {
 
 
   showModal() {
-    this.isShowModal = !this.isShowModal;
-    this.showEvent.emit();
-    if ( this.isThirdBreakPoint ) {
+    if ( this.isDesktopBreakPoint ) {
       this.renderer.addClass(document.body, 'u-open-modal');
+      this.store.dispatch(new ShowCurrencyModal());
+    } else {
+      this.isShowModal = !this.isShowModal;
     }
+    this.showEvent.emit();
   }
+}
 
+
+function setCookie(cname, cvalue ) {
+  // const d = new Date();
+  // d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+  // const expires = 'expires=' + d.toUTCString();
+  document.cookie = cname + '=' + cvalue + ';path=/';
 }

@@ -8,11 +8,12 @@ import {UiService} from './core/service/ui/ui.service';
 import {TryGetCartInfo, TryGetWishListInfo} from './core/store/cart/cart.actions';
 import {CATEGORY_CODE_MAP} from './core/global-constant/app.category-database-long';
 import {tap} from 'rxjs/operators';
-import {fromEvent} from 'rxjs';
+import {BehaviorSubject, fromEvent} from 'rxjs';
 import {BreakpointObserver, BreakpointState} from '../../node_modules/@angular/cdk/layout';
-import {RESPONSIVE_MAP} from './core/global-constant/app.config';
-import {DOCUMENT} from '@angular/common';
-import {ignore} from '../../node_modules/@types/selenium-webdriver/testing';
+import {CURRENCY, RESPONSIVE_MAP} from './core/global-constant/app.config';
+import {HideCurrencyModal} from './core/store/modal/modal.actions';
+import {PREFERENCE_MAP} from './core/global-constant/app.locale';
+import {HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'onpicks-root',
@@ -24,16 +25,19 @@ import {ignore} from '../../node_modules/@types/selenium-webdriver/testing';
 
 export class AppComponent implements OnInit, OnDestroy, AfterViewInit, DoCheck {
   @ViewChild('deliveryBox', {read : ElementRef}) deliveryBox;
+
   title = 'onpicks';
   isCategoryLoaded = false;
   categoryLoadType = '';
   globalKakaoPosition = '3rem';
-
-
   scrollForDeliveryBox$ = null;
+
+  //
   cart$;
   uiState$;
+  modalState$;
 
+  //
   clearSetTimeout;
   isDesktopBreakPoint = false;
 
@@ -41,14 +45,17 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit, DoCheck {
   previousUrl = [];
 
   constructor(
+
     @Inject(CATEGORY_CODE_MAP) public categoryMap,
     @Inject(RESPONSIVE_MAP) public responsiveMap,
     @Inject(LOCALE_ID) public locale: string,
+    @Inject(PREFERENCE_MAP) public preferenceMap,
+    @Inject(CURRENCY) public currency: BehaviorSubject<any>,
     private store: Store<AppState>,
     private router: Router,
     private uiService: UiService,
     private renderer: Renderer2,
-    private breakpointObserver:  BreakpointObserver,
+    private breakpointObserver:  BreakpointObserver
   ) {
 
     this.store.dispatch(new TryGetAuthUser());
@@ -72,6 +79,8 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit, DoCheck {
       this.categoryLoadType = val.currentCategoryList.type;
       this.globalKakaoPosition = val.globalKakaoPosition;
     })
+
+    this.modalState$ = this.store.pipe(select( 'modal'));
 
     this.cart$ = this.store.pipe(
       select(state => state.cart.cartInfo),
@@ -246,11 +255,35 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit, DoCheck {
   }
 
   ngAfterViewInit() {
+  }
+  // GlobalModal
+
+  hideCurrencyModal() {
+    this.store.dispatch(new HideCurrencyModal());
+  }
+
+  nonCompareFunction( a, b ) {
+    return 0;
+  }
+
+  changeCurrencyPreference(xPreferenceCode) {
+    setCookie('onpicks-currency', xPreferenceCode);
+
+    if ( this.currency.getValue() !== xPreferenceCode ) {
+      window.location.reload();
+    } else {
+      this.hideCurrencyModal();
+    }
 
   }
 }
 
 
+function setCookie(cname, cvalue ) {
+  // const d = new Date();
+  // d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+  // const expires = 'expires=' + d.toUTCString();
+  document.cookie = cname + '=' + cvalue + ';path=/';
 
-
-
+  return 'KRW';
+}

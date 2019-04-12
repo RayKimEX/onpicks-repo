@@ -36,7 +36,6 @@ export class BannerCarouselComponent implements OnInit, AfterViewInit, OnDestroy
   capturedTranslateX;
   myInterval;
   scrollBarWidth;
-
   isMobile = false;
 
   // TODO : 화면이 넘어갔을때, 이미지를 안나오게 해서, resource 최적화
@@ -48,10 +47,7 @@ export class BannerCarouselComponent implements OnInit, AfterViewInit, OnDestroy
     private renderer: Renderer2,
     private cd: ChangeDetectorRef,
     private breakpointObserver:  BreakpointObserver,
-
-  ) {
-
-  }
+  ) { }
 
   ngOnDestroy() {
     clearInterval( this.myInterval );
@@ -126,14 +122,14 @@ export class BannerCarouselComponent implements OnInit, AfterViewInit, OnDestroy
     this.renderer.setStyle(this.container.nativeElement, 'transform', 'translateX(-' + ( (window.innerWidth - this.scrollBarWidth) * this.imageIndex ) + 'px)');
 
     if( this.imagesLargeList.length > 3 ){
-      this.myInterval = setInterval(() => this.moveNext(), 4000);
+      this.myInterval = setInterval(() => this.moveNext(), 5000);
     }
   }
 
   nextButton() {
 
     clearInterval( this.myInterval );
-    this.myInterval = setInterval( () => this.moveNext(), 4000);
+    this.myInterval = setInterval( () => this.moveNext(), 5000);
     if ( this.imageIndex === this.imagesLargeList.length - 2) {
       this.renderer.setStyle(this.container.nativeElement, 'transition', 'x');
       this.renderer.setStyle(this.container.nativeElement, 'transform', 'translateX(0px)');
@@ -158,7 +154,7 @@ export class BannerCarouselComponent implements OnInit, AfterViewInit, OnDestroy
   prevButton() {
 
     clearInterval( this.myInterval );
-    this.myInterval = setInterval( () => this.moveNext(), 4000);
+    this.myInterval = setInterval( () => this.moveNext(), 5000);
     if ( this.imageIndex === 1 ) {
       this.imageIndex = this.imagesLargeList.length - 1;
       this.renderer.setStyle(this.container.nativeElement, 'transition', 'x');

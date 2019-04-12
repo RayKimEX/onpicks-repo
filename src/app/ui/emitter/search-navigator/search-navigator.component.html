@@ -386,11 +386,23 @@
               <ul #container *ngLet="(currency| async) as currencyAync">
                 <li #itemList *ngFor="let item of currentList; index as i" class="search-content__item">
                   <div>
+
                     <div class="search-content__item--image">
                       <div
                         routerLink="/shops/p/{{item.slug}}"
                         class="search-content__item--image-outer">
-                        <!--<div class="search-content__item&#45;&#45;stock-quantity">매진임박{{}}</div>-->
+                        <div *ngIf="item.in_stock === true && item.stock_quantity <= 10 && item.stock_quantity !== 0"
+                        class="search-content__item--stock">
+                          <span class="search-content__item--stock--inner subtitle-2-bold u-color-white">
+                            매진임박 {{item.stock_quantity}}개
+                          </span>
+                        </div>
+                        <div *ngIf="item.in_stock === false || item.in_stock === true && item.stock_quantity === 0"
+                        class="search-content__item--stock-empty">
+                          <span class="search-content__item--stock--inner subtitle-2-bold u-color-white">
+                            품절
+                          </span>
+                        </div>
                         <div class="search-content__item--image-inner">
                           <img
                             drLazyLoad
@@ -403,17 +415,17 @@
                       <ng-container
                         [ngSwitch]="item.attributes.length">
                         <onpicks-list-active-button
+                          *ngIf="!(item.in_stock === false || item.in_stock === true && item.stock_quantity === 0)"
                           [amount]="cartStore.cartList[item.slug] === undefined ? 0 : cartStore.cartList[item.slug]?.quantity"
-                          *ngSwitchCase="0"
                           (addEvent)="addToCart($event, item.slug, item.ship_alone ? 'free' : locationMap[item.location.code].sequence)"
                           (subtractEvent)="subtractFromCart($event, item.slug, item.ship_alone ? 'free' : locationMap[item.location.code].sequence)">
                         </onpicks-list-active-button>
 
-                        <div
-                          class="search-content__item--option-product"
-                          *ngSwitchDefault>
-                          <span class="subtitle-3-regular">옵션선택상품</span>
-                        </div>
+                        <!--<div-->
+                          <!--class="search-content__item&#45;&#45;option-product"-->
+                          <!--*ngSwitchDefault>-->
+                          <!--<span class="subtitle-3-regular">옵션선택상품</span>-->
+                        <!--</div>-->
 
                       </ng-container>
                     </div>

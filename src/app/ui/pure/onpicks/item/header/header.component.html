@@ -329,7 +329,7 @@
         </ul>
         <ul class="header__mobile-hamburger--ul subtitle-2-regular">
           <li class="header__mobile-hamburger--li">
-            <div>
+            <div (click)="showCurrencyGlobalModal(inputCheckedForToggle)">
               <div class="u-button-effect">{{ (currency | async) === 'KRW' ? 'KRW ₩' : 'USD $' }}</div>
             </div>
           </li>

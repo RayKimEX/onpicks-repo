@@ -67,6 +67,13 @@ export const CATEGORY_MAP_CONST = {
                 'name': '주스',
                 'children': []
               },
+            ]
+          },
+          {
+            'slug': 'snack-foods',
+            'id': 1010200,
+            'name': '스낵',
+            'children': [
               {
                 'slug': 'applesauce-fruit-cups-and-squeezes',
                 'id': 1010201,
@@ -3217,7 +3224,10 @@ export const CATEGORY_CODE_MAP_CONST = {
         },
         'juice': {
           'code': 1010108
-        },
+        }
+      },
+      'snack-foods': {
+        'code': 1010200,
         'applesauce-fruit-cups-and-squeezes': {
           'code': 1010201
         },

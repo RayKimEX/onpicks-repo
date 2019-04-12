@@ -2,6 +2,33 @@
 // 신고하기 기능
 import {InjectionToken} from '@angular/core';
 
+export const PREFERENCE_MAP = new InjectionToken<any>( './core/global-constant/app.locale');
+export const PREFERENCE_MAP_CONST = {
+  locale : {
+    title : '언어를 선택해주세요',
+    list : {
+      en : 'English',
+      ko : '한국어'
+    }
+  },
+  currency : {
+    title : {
+      ko : '통화를 선택해주세요',
+      en : '통화를 선택해주세요(English)'
+    },
+    list : {
+      USD : {
+        ko : '미국 달러 - $',
+        en : '미국 달러 - $(English)'
+      },
+      KRW : {
+        ko : '한국 원 - ₩',
+        en : '한국 원 - ₩(English)'
+      },
+    }
+  }
+}
+
 export const REPORT_REASON_MAP = new InjectionToken<any>( './core/global-constant/app.locale');
 export const REPORT_REASON_MAP_CONST = {
   'irrelevant' : {

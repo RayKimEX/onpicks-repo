@@ -1,6 +1,5 @@
 @import '~src/assets/scss/abstracts/variables';
 
-
 .ui-mini-list-halfM {
 
   onpicks-circle-n-button {
@@ -113,15 +112,47 @@
         margin-right : 0 !important;
         padding : 0 1.2rem;
       }
-
-
     }
   }
 
   &__item {
+    &--stock {
+      position:relative;
+      top : 0;
+      width: 44.5%;
+      height: 24px;
+      border-radius: 4px;
+      background-color : $color-orange;
+      margin-left:-2.4rem;
+      margin-top :-2.4rem;
+
+      &--inner {
+        @include subtitle-2-bold;
+        @include respond(fb){
+          @include subtitle-3-bold;
+        }
 
 
+        @include absCenter;
+      }
+    }
 
+    &--stock-empty {
+      position:relative;
+      top : 0;
+      width: 44.5%;
+      height: 24px;
+      border-radius: 4px;
+      background-color : $color-grey;
+      margin-left:-2.4rem;
+      margin-top :-2.4rem;
+
+      @include respond(fb){
+        margin-left:-1.6rem;
+        margin-top :-1.6rem;
+        height: 1.6rem;
+      }
+    }
 
     ui-star-rating {
       margin-right : 0.4rem;

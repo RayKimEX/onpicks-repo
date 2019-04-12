@@ -1,26 +1,20 @@
 <ng-container *ngIf="isShow">
-  <div #modal class="modal">
-    <div class="modal--outer">
-      <div class="modal__delete--outer">
+  <div #modal [ngClass]="modalForMenu ? 'modalForMenu' : 'modal' ">
+    <div [ngClass]="modalForMenu ? 'modalForMenu__outer' : 'modal--outer'">
+      <div *ngIf="!modalForMenu" class="modal__delete--outer">
         <span
           (click)="exitEvent.emit()"
           class="modal__delete">
-
         </span>
       </div>
-
       <ng-content></ng-content>
     </div>
   </div>
-  <div class="outer">
-
-  </div>
+  <div *ngIf="(modalForMenu && isDesktopBreakPoint === false) || modalForMenu === false " class="outer"></div>
 </ng-container>
 
 
 <!--<span *ngIf="insertedValue !== ''"-->
-      <!--(click)="deleteText()"-->
-      <!--class="p-reviews__search-reviews&#45;&#45;input-delete">-->
-  <!--</span>-->
-
-
+  <!--(click)="deleteText()"-->
+  <!--class="p-reviews__search-reviews&#45;&#45;input-delete">-->
+<!--</span>-->

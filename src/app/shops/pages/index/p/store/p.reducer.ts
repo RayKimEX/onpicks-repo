@@ -103,7 +103,8 @@ export function PReducer (state = initialState, action: PActions.PActions) {
       }
 
     case PActions.GET_REVIEWS_PRODUCT_SUCCESS :
-
+      console.log('GET_REVIEWS_PRODUCT_SUCCESS');
+      console.log(action.payload);
       const data =  reviewNormalizer(action.payload.results);
       return {
         ...state,
