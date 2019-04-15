@@ -11,11 +11,6 @@ import {Title} from '@angular/platform-browser';
 })
 
 export class ShopsIndexComponent implements OnInit, AfterViewInit {
-  //
-  // shopsValueImages = {
-  //   imgSrc : '',
-  //   title : 'Zero Calories',
-  // }
 
   shopsBannerImage = {
     imgSrc : 'https://img.onpicks.com/banners/pantry-and-household/2019-02-27/PAH-banner1.jpg?d=w2576-h800',
@@ -62,32 +57,50 @@ export class ShopsIndexComponent implements OnInit, AfterViewInit {
   popularCategory = [
     {
       imgSrc : 'http://img.onpicks.com/categories/category-grocery.png',
-      name : '식품',
+      name : {
+        ko : '식품',
+        en : 'Grocery'
+      },
       href : '/shops/c/pantry-and-household/grocery'
     },
     {
       imgSrc : 'http://img.onpicks.com/categories/category-household.png',
-      name : '생활용품',
+      name : {
+        ko : '생활용품',
+        en : 'Household'
+      },
       href : '/shops/c/pantry-and-household/household-supplies'
     },
     {
       imgSrc : 'http://img.onpicks.com/categories/category-body.png',
-      name : '바디케어',
+      name : {
+        ko : '바디케어',
+        en : 'Body Care'
+      },
       href : '/shops/c/beauty/body-care'
     },
     {
       imgSrc : 'http://img.onpicks.com/categories/category-health.png',
-      name : '건강',
+      name : {
+        ko : '건강',
+        en : 'Health'
+      },
       href : '/shops/c/pantry-and-household/health'
     },
     {
       imgSrc : 'http://img.onpicks.com/categories/cateogry-makeup.png',
-      name : '메이크업',
+      name : {
+        ko : '메이크업',
+        en : 'Makeup'
+      },
       href : '/shops/c/beauty/makeup'
     },
     {
       imgSrc : 'http://img.onpicks.com/categories/category-fragrance.png',
-      name : '향수',
+      name : {
+        ko : '향수',
+        en : 'Fragrance'
+      },
       href : '/shops/c/beauty/fragrance'
     }
   ];

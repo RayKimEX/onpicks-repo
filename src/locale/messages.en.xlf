@@ -2,7 +2,6 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
   <file source-language="ko" datatype="plaintext" original="ng2.template">
     <body>
-
       <!--Header Section-->
       <trans-unit id="header__shops" datatype="html">
         <target>shopping</target>
@@ -54,10 +53,6 @@
         </context-group>
       </trans-unit>
 
-      <!--HeaderMenu Section-->
-
-      <!--pantry-and-household-->
-
       <trans-unit id="header-menu__pantry-and-household" datatype="html">
         <target>식품·생활용품</target>
         <context-group purpose="location">
@@ -98,6 +93,23 @@
         <context-group purpose="location">
           <context context-type="sourcefile">app/ui/onpicks/header/header.component.html</context>
           <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <!--Miscell-->
+      <trans-unit id="category-list__title" datatype="html">
+        <target>Top Categories</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/pure/onpicks/list/category-list/category-list.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="today-collection__title" datatype="html">
+        <target>Featured Collections</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/pure/onpicks/list/today-collection/today-collection.component.html:7</context>
+          <context context-type="linenumber">2</context>
         </context-group>
       </trans-unit>
 
@@ -352,37 +364,36 @@
 
 
       <trans-unit id="footer__about" datatype="html">
-        <target>회사소개</target>
+        <target>About Us</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
           <context context-type="linenumber">52</context>
         </context-group>
       </trans-unit>
 
-      <trans-unit id="footer__blog" datatype="html">
-        <target>블로그</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
-          <context context-type="linenumber">52</context>
-        </context-group>
-      </trans-unit>
+      <!--<trans-unit id="footer__blog" datatype="html">-->
+        <!--<target>블로그</target>-->
+        <!--<context-group purpose="location">-->
+          <!--<context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>-->
+          <!--<context context-type="linenumber">52</context>-->
+        <!--</context-group>-->
+      <!--</trans-unit>-->
 
-      <trans-unit id="footer__career" datatype="html">
-        <target>채용정보</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
-          <context context-type="linenumber">52</context>
-        </context-group>
-      </trans-unit>
+      <!--<trans-unit id="footer__career" datatype="html">-->
+        <!--<target>채용정보</target>-->
+        <!--<context-group purpose="location">-->
+          <!--<context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>-->
+          <!--<context context-type="linenumber">52</context>-->
+        <!--</context-group>-->
+      <!--</trans-unit>-->
 
       <trans-unit id="footer__contact" datatype="html">
-        <target>고객센터</target>
+        <target>Contact</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
           <context context-type="linenumber">52</context>
         </context-group>
       </trans-unit>
-
 
       <trans-unit id="footer__faq" datatype="html">
         <target>FAQ</target>
@@ -393,7 +404,7 @@
       </trans-unit>
 
       <trans-unit id="footer__privacy" datatype="html">
-        <target>개인정보취급방침</target>
+        <target>Privacy Policy</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
           <context context-type="linenumber">52</context>
@@ -401,7 +412,24 @@
       </trans-unit>
 
       <trans-unit id="footer__termsofuse" datatype="html">
-        <target>이용약관</target>
+        <target>Terms of Use</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+
+      <trans-unit id="footer__desktop--copyright--cooperation-name1" datatype="html">
+        <target>Mojo Studio, Inc.  CEO : HanTae Lee   E-mail : </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="footer__desktop--copyright--cooperation-name2" datatype="html">
+        <target> Address: 7F, 59, Seongsuil-ro 8-gil, Seongdong-gu, Seoul</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
           <context context-type="linenumber">52</context>

@@ -16,7 +16,7 @@ export class OnpicksCurrencyPipe implements PipeTransform {
       // null의 경우가 있을때는 리턴
       // TODO : 왜 null의 경우가 생기는지 알아보기
 
-      if ( temp === null ) { return ;}
+      if ( temp === null ) { return ; }
       temp = temp.substring(1, temp.length) + '원';
       return temp;
     } else {
