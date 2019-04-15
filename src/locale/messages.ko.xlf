@@ -101,6 +101,23 @@
           </context-group>
         </trans-unit>
 
+        <!--Miscell-->
+        <trans-unit id="category-list__title" datatype="html">
+          <target>인기 카테고리</target>
+          <context-group purpose="location">
+            <context context-type="sourcefile">app/ui/pure/onpicks/list/category-list/category-list.component.html</context>
+            <context context-type="linenumber">2</context>
+          </context-group>
+        </trans-unit>
+
+        <trans-unit id="today-collection__title" datatype="html">
+          <target>오늘의 컬렉션</target>
+          <context-group purpose="location">
+            <context context-type="sourcefile">app/ui/pure/onpicks/list/today-collection/today-collection.component.html:7</context>
+            <context context-type="linenumber">2</context>
+          </context-group>
+        </trans-unit>
+
         <!--Beauty-->
         <trans-unit id="header-menu__beauty" datatype="html">
           <target>뷰티</target>
@@ -402,6 +419,22 @@
 
       <trans-unit id="footer__termsofuse" datatype="html">
         <target>이용약관</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="footer__desktop--copyright--cooperation-name1" datatype="html">
+        <target>Mojo Studio, Inc.  CEO : HanTae Lee   E-mail : </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="footer__desktop--copyright--cooperation-name2" datatype="html">
+        <target> Address: 7F, 59, Seongsuil-ro 8-gil, Seongdong-gu, Seoul</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
           <context context-type="linenumber">52</context>

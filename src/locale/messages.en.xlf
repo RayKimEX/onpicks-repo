@@ -421,7 +421,7 @@
 
 
       <trans-unit id="footer__desktop--copyright--cooperation-name1" datatype="html">
-        <target>Mojo Studio, Inc.  CEO : HanTae Lee   E-mail : </target>
+        <target>상호명 : 모조스튜디오 주식회사 대표이사: 유한태 이메일 : </target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
           <context context-type="linenumber">52</context>
@@ -429,7 +429,7 @@
       </trans-unit>
 
       <trans-unit id="footer__desktop--copyright--cooperation-name2" datatype="html">
-        <target> Address: 7F, 59, Seongsuil-ro 8-gil, Seongdong-gu, Seoul</target>
+        <target> 주소: 서울특별시 성동구 성수일로8길 59, 7층 805호</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
           <context context-type="linenumber">52</context>
