@@ -133,6 +133,12 @@
       margin-left:-2.4rem;
       margin-top :-2.4rem;
 
+      @include respond(fb){
+        margin-left:-1.6rem;
+        margin-top :-1.6rem;
+        height: 1.6rem;
+      }
+
       &--inner {
         @include subtitle-2-bold;
         @include respond(fb){
@@ -191,7 +197,6 @@
 
       @include respond(fb){
         height:auto;
-        padding : 1.6rem;
       }
 
       onpicks-list-active-button {
@@ -400,10 +405,6 @@
         width: 100%;
         height:100%;
         padding : 2.4rem;
-
-        @include respond(fb){
-          padding : 1.6rem;
-        }
 
         &:hover {
           opacity: 0.5;
