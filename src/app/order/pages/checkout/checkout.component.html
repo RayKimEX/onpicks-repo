@@ -191,54 +191,6 @@
       </div>
 
       <div class="checkout-addition-info">
-        <h1 class="h1-bold checkout-addition-info__title">해외직구상품 추가정보 (필수)</h1>
-        <!--<div class="subtitle-2-regular checkout-addition-info__sub-title">개인통관고유부호 소유자 성함</div>-->
-        <!--<onpicks-input-box-->
-          <!--#checkoutAdditionName-->
-          <!--class="checkout-addition-info__input"-->
-          <!--[width]="'40.8rem'"-->
-          <!--[placeholder]="'받는분 성함'"></onpicks-input-box>-->
-        <!--<div *ngIf="checkBitWise(EMPTY_JUSO)" class="write-review__photo&#45;&#45;description subtitle-2-regular u-color-orange">개인통관부호 소유자 성함을 입력해주세요.</div>-->
-
-        <!--<div class="subtitle-2-regular u-color-dark-grey checkout-addition-info__description">반드시 주민등록상의 성함을 기재해 주셔야 하며, 잘못 기재 했을 시 통관지연등의 불이익을 받으실 수 있습니다.</div>-->
-
-        <div class="checkout-addition-info__outer">
-          <div class="subtitle-2-regular checkout-addition-info__sub-title">개인통관고유부호</div>
-          <onpicks-input-box
-            #checkoutAdditionNumber
-            class="checkout-addition-info__input"
-            [value]="userStore?.customs_id_number"
-            [placeholder]="'P로 시작하는 13자리를 입력하세요'">
-          </onpicks-input-box>
-
-          <div *ngIf="!checkBitWise(EMPTY_CUSTOMS_ID_NUMBER) && !checkBitWise(INVALID_CUSTOMS_ID_NUMBER)" class="subtitle-2-regular u-color-dark-grey checkout-addition-info__description">상품을 받는분의 개인통관고유부호를 입력해주세요</div>
-          <div *ngIf="checkBitWise(EMPTY_CUSTOMS_ID_NUMBER)" class="checkout_warning subtitle-2-regular u-color-orange">받는분의 개인통관고유부호를 입력해주세요</div>
-          <div *ngIf="checkBitWise(INVALID_CUSTOMS_ID_NUMBER)" class="checkout_warning subtitle-2-regular u-color-orange">올바른 개인통관고유부호를 입력해주세요</div>
-
-        </div>
-
-
-
-        <onpicks-check-box
-          (click)="isAgreementDirectBuyingInfo = !isAgreementDirectBuyingInfo"
-          [type]="'checkbox'"
-          class="checkout-addition-info__checkbox">통관정보 수집, 제공에 동의 (필수)</onpicks-check-box>
-        <div *ngIf="checkBitWise(EMPTY_AGREEMENT_DIRECT_BUYING)" class="subtitle-2-regular u-color-orange">통관정보 수집, 제공에 대한 동의가 필요합니다</div>
-        <div *ngIf="!checkBitWise(EMPTY_AGREEMENT_DIRECT_BUYING)"class="checkout-addition-info__description2 subtitle-2-regular u-color-dark-grey">받는분의 이름과 개인통관고유부호의 불일치로 인한 배송지연/환불에 대해서는 책임지지 않으니 이점 유의 하시기 바랍니다.</div>
-
-        <div class="checkout-addition-info__question">
-          <a
-            href="https://unipass.customs.go.kr/csp/persIndex.do" target="_blank">
-            <ui-angle-bracket-navigator>개인통관고유부호 발급하기</ui-angle-bracket-navigator>
-          </a>
-        </div>
-
-        <onpicks-button
-          (click)="addCustomIdNumber()"
-          [type]="'white'"
-          [width]="'16.7rem'">
-          개인통관고유부호 저장
-        </onpicks-button>
       </div>
 
       <div class="checkout-left__info--checkout">

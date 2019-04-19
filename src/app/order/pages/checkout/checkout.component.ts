@@ -344,7 +344,7 @@ export class CheckoutComponent implements OnInit, AfterViewInit, OnDestroy {
         this.formData.street_address_2 = this.deliveryData[0].street_address_2;
       }
 
-      this.formData.customs_id_number = this.checkoutAdditionNumber.nativeElement.children[0].value;
+      // this.formData.customs_id_number = this.checkoutAdditionNumber.nativeElement.children[0].value;
 
       this.formData.city = 'helloCity';
       this.formData.country = 'helloCountry';
@@ -700,17 +700,17 @@ export class CheckoutComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
 
-
-    if ( this.checkoutAdditionNumber.nativeElement.children[0].value === '') {
-      if ( this.errorStatus === 0 ) {this.checkoutAdditionNumber.nativeElement.children[0].focus();}
-      this.errorStatus |= this.EMPTY_CUSTOMS_ID_NUMBER;
-    } else {
+    //
+    // if ( this.checkoutAdditionNumber.nativeElement.children[0].value === '') {
+    //   if ( this.errorStatus === 0 ) {this.checkoutAdditionNumber.nativeElement.children[0].focus();}
+    //   this.errorStatus |= this.EMPTY_CUSTOMS_ID_NUMBER;
+    // } else {
       // const patt = new RegExp('^[pP][0-9]{12}$');
       // if ( !(patt.test(this.checkoutAdditionNumber.nativeElement.children[0].value))) {
       //   if ( this.errorStatus === 0 ) {this.checkoutAdditionNumber.nativeElement.children[0].focus();}
       //   this.errorStatus |= this.INVALID_CUSTOMS_ID_NUMBER;
       // }
-    }
+    // }
 
     if ( this.isAgreementDirectBuyingInfo === false ) {
       this.errorStatus |= this.EMPTY_AGREEMENT_DIRECT_BUYING;
