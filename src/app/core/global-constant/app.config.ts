@@ -1,5 +1,7 @@
 import { InjectionToken } from '@angular/core';
 
+export const REGION_ID = new InjectionToken<string>('./core/global-constant/app.config');
+
 export const DOMAIN_HOST = new InjectionToken<string>('./core/global-constant/app.config');
 export const CURRENCY = new InjectionToken<string>('./core/global-constant/app.config');
 

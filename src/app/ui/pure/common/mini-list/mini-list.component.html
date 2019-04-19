@@ -44,7 +44,11 @@
             #container>
             <ng-container *ngFor="let item of infoList; index as i">
               <li
-                class="ui-mini-list-halfM__content-li"
+                [ngClass]="[
+                    mobileType === 'half' ?
+                    'ui-mini-list-halfM__content-li' :
+                    'ui-mini-list-fullM__content-li'
+                  ]"
                 *ngIf="pressedPrev ? i < imageIndex + 7 : i < imageIndex + carouselLength">
                 <div
                   [ngClass]="[
@@ -134,7 +138,7 @@
                     [star-point]="item.review_avg_rating"
                     [size]="10">
                   </ui-star-rating>
-                  <span class="subtitle-3-regular u-color-dark-grey">{{item.review_count}}</span>
+                  <span class="subtitle-3-regular u-color-dark-grey">{{ item.review_count }}</span>
                   <br>
                   <span
                     [ngClass]="[
@@ -142,7 +146,9 @@
                         'ui-mini-list-halfM__price-info--MSRP-mobile-discount' :
                         'ui-mini-list-fullM__price-info--MSRP-mobile-discount'
                       ]"
-                    class="subtitle-3-regular u-color-grey">{{item.msrp | onpicksCurrency:currencyAsync}}</span>
+                    class="subtitle-3-regular u-color-grey">
+                    {{ item.msrp | onpicksCurrency: currencyAsync }}
+                  </span>
                   <div
                     [ngClass]="[
                       mobileType === 'half' ?
@@ -155,28 +161,36 @@
                         'ui-mini-list-halfM__price-info--discount' :
                         'ui-mini-list-fullM__price-info--discount'
                       ]"
-                      class="subtitle-1-bold u-color-orange">{{100 - round((item.price / item.msrp * 100))}}%</span>
+                      class="subtitle-1-bold u-color-orange">
+                      {{ 100 - round((item.price / item.msrp * 100)) }}%
+                    </span>
                     <span
                       [ngClass]="[
                         mobileType === 'half' ?
                         'ui-mini-list-halfM__price-info--price' :
                         'ui-mini-list-fullM__price-info--price'
                       ]"
-                      class="subtitle-1-bold">{{item.price | onpicksCurrency:currencyAsync}}</span>
+                      class="subtitle-1-bold">
+                      {{ item.price | onpicksCurrency: currencyAsync }}
+                    </span>
                     <span
                       [ngClass]="[
                         mobileType === 'half' ?
                         'ui-mini-list-halfM__price-info--MSRP' :
                         'ui-mini-list-fullM__price-info--MSRP'
                       ]"
-                      *ngIf="locale == 'en'">MSRP</span>
+                      *ngIf="locale == 'en'">
+                      MSRP
+                    </span>
                     <span
                       [ngClass]="[
                         mobileType === 'half' ?
                         'ui-mini-list-halfM__price-info--MSRP-discount' :
                         'ui-mini-list-fullM__price-info--MSRP-discount'
                       ]"
-                      class="subtitle-3-regular u-color-grey">{{item.msrp | onpicksCurrency:currencyAsync}}</span>
+                      class="subtitle-3-regular u-color-grey">
+                      {{ item.msrp | onpicksCurrency: currencyAsync }}
+                    </span>
                   </div>
                   <div
                     [ngClass]="[
@@ -192,14 +206,19 @@
                             'ui-mini-list-halfM__delivery-point--icon' :
                             'ui-mini-list-fullM__delivery-point--icon'
                           ]"
-                          class="icon-small-la"></span>
+                          class="icon-small-la">
+                        </span>
                         <span
                           [ngClass]="[
                             mobileType === 'half' ?
                             'ui-mini-list-halfM__delivery-point--text' :
                             'ui-mini-list-fullM__delivery-point--text'
                           ]"
-                          class="subtitle-2-regular u-color-black"><strong>엘에이</strong> 출고</span>
+                          class="subtitle-2-regular u-color-black">
+                          <span *ngIf="locale === 'en'">Shipping from </span>
+                          <strong i18n="@@location-warehouse__LAX">엘에이</strong>
+                          <span *ngIf="locale === 'ko'">출고</span>
+                        </span>
                       </ng-container>
                       <ng-container *ngSwitchCase="'JFK'">
                         <span
@@ -215,7 +234,11 @@
                             'ui-mini-list-halfM__delivery-point--text' :
                             'ui-mini-list-fullM__delivery-point--text'
                           ]"
-                          class="subtitle-2-regular u-color-black"><strong>뉴저지</strong> 출고</span>
+                          class="subtitle-2-regular u-color-black">
+                          <span *ngIf="locale === 'en'">Shipping from </span>
+                          <strong i18n="@@location-warehouse__JFK">뉴저지</strong>
+                          <span *ngIf="locale === 'ko'">출고</span>
+                        </span>
                       </ng-container>
                       <ng-container *ngSwitchCase="'ATL'">
                         <span
@@ -224,14 +247,19 @@
                             'ui-mini-list-halfM__delivery-point--icon' :
                             'ui-mini-list-fullM__delivery-point--icon'
                           ]"
-                          class="icon-small-gorgia"></span>
+                          class="icon-small-gorgia">
+                        </span>
                         <span
                           [ngClass]="[
                             mobileType === 'half' ?
                             'ui-mini-list-halfM__delivery-point--text' :
                             'ui-mini-list-fullM__delivery-point--text'
                           ]"
-                          class="subtitle-2-regular u-color-black"><strong>죠지아</strong> 출고</span>
+                          class="subtitle-2-regular u-color-black">
+                          <span *ngIf="locale === 'en'">Shipping from </span>
+                          <strong i18n="@@location-warehouse__ATL">죠지아</strong>
+                          <span *ngIf="locale === 'ko'">출고</span>
+                        </span>
                       </ng-container>
                       <ng-container *ngSwitchCase="'KIX'">
                         <span
@@ -246,8 +274,11 @@
                             mobileType === 'half' ?
                             'ui-mini-list-halfM__delivery-point--text' :
                             'ui-mini-list-fullM__delivery-point--text'
-                          ]"
-                          class="subtitle-2-regular u-color-black"><strong>오사카</strong> 출고</span>
+                          ]" class="subtitle-2-regular u-color-black">
+                          <span *ngIf="locale === 'en'">Shipping from </span>
+                          <strong i18n="@@location-warehouse__KIX">오사카</strong>
+                          <span *ngIf="locale === 'ko'">출고</span>
+                        </span>
                       </ng-container>
                       <ng-container *ngSwitchCase="'HKG'">
                         <span
@@ -263,7 +294,11 @@
                             'ui-mini-list-halfM__delivery-point--text' :
                             'ui-mini-list-fullM__delivery-point--text'
                           ]"
-                          class="subtitle-2-regular u-color-black"><strong>홍콩</strong> 출고</span>
+                          class="subtitle-2-regular u-color-black">
+                          <span *ngIf="locale === 'en'">Shipping from </span>
+                          <strong i18n="@@location-warehouse__HKG">홍콩</strong>
+                          <span *ngIf="locale === 'ko'">출고</span>
+                        </span>
                       </ng-container>
                     </ng-container>
                   </div>

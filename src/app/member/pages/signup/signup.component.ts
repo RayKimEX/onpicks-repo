@@ -1,9 +1,10 @@
-import {ChangeDetectionStrategy, Component, OnInit, ViewChild} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Inject, OnInit, ViewChild} from '@angular/core';
 import {AppState} from '../../../core/store/app.reducer';
 import {Store} from '@ngrx/store';
 import {Signup, TryLogin} from '../../../core/store/auth/auth.actions';
 import {AuthService} from '../../../core/service/auth/auth.service';
 import {Title} from '@angular/platform-browser';
+import {REGION_ID} from '../../../core/global-constant/app.config';
 
 @Component({
   selector: 'onpicks-signup',
@@ -17,6 +18,7 @@ export class SignupComponent implements OnInit {
   @ViewChild('inputPassword') inputPassword;
 
   constructor(
+    @Inject(REGION_ID) public region: string,
     private store: Store<AppState>,
     private authService: AuthService,
     private titleService: Title,

@@ -1,9 +1,14 @@
 <div #f class="row wish-list" [ngStyle]="{ minHeight : contentHeight }" *ngIf="wishList$ | async as data">
-  <div class="wish-list__title h1-bold">다음에 구매하기</div>
+  <div i18n="@@wish-list__title" class="wish-list__title h1-bold">다음에 구매하기</div>
   <ng-container *ngIf="data.length === 0">
-    <div class="u-margin-bottom subtitle-1-regular u-color-dark-grey">다음에 구매할 상품이 없습니다. 다음에 구매할 상품을 담아주세요!</div>
+    <div
+      i18n="@@wish-list__description"
+      class="u-margin-bottom subtitle-1-regular u-color-dark-grey">
+      다음에 구매할 상품이 없습니다. 다음에 구매할 상품을 담아주세요!
+    </div>
     <ui-mini-list
-      [setTitle]="'추천 상품'"
+      setTitle="'추천상품'"
+      i18n-setTitle="@@recommand-products__title"
       [infoList]="weeklyBest$ | async">
     </ui-mini-list>
   </ng-container>
@@ -12,12 +17,12 @@
     <tr *ngFor="let item of data; index as wishListIndex">
       <td>
         <div class="wish-list__table--image">
-          <img src="{{item.thumbnail}}" alt="">
+          <img src="{{ item.thumbnail }}" alt="">
         </div>
         <div class="wish-list__table--info">
-          <div class="wish-list__table--info-title subtitle-3-bold">{{item.brand}}</div>
-          <div class="wish-list__table--info-name body-3-regular">{{item.title}}</div>
-          <div class="wish-list__table--info-price subtitle-2-bold">{{item.price | onpicksCurrency: (currency| async)}}</div>
+          <div class="wish-list__table--info-title subtitle-3-bold">{{ item.brand }}</div>
+          <div class="wish-list__table--info-name body-3-regular">{{ item.title }}</div>
+          <div class="wish-list__table--info-price subtitle-2-bold">{{ item.price | onpicksCurrency: (currency| async) }}</div>
         </div>
       </td>
       <td>
@@ -26,36 +31,51 @@
             class="wish-list__table--delivery-info-image"
             [ngClass]=
               "[
-              (locationMap[item?.location.code]?.nickname === 'la')  ? 'icon-small-la' : '',
-              (locationMap[item?.location.code]?.nickname === 'new')  ? 'icon-small-new' : '',
-              (locationMap[item?.location.code]?.nickname === 'osaka')  ? 'icon-small-osaka' : '',
-              (locationMap[item?.location.code]?.nickname === 'gorgia')  ? 'icon-small-gorgia' : '',
-              (locationMap[item?.location.code]?.nickname === 'hong')  ? 'icon-small-hong' : ''
-            ]">
+                  (locationMap[item?.location.code]?.nickname === 'la')  ? 'icon-small-la' : '',
+                  (locationMap[item?.location.code]?.nickname === 'new')  ? 'icon-small-new' : '',
+                  (locationMap[item?.location.code]?.nickname === 'osaka')  ? 'icon-small-osaka' : '',
+                  (locationMap[item?.location.code]?.nickname === 'gorgia')  ? 'icon-small-gorgia' : '',
+                  (locationMap[item?.location.code]?.nickname === 'hong')  ? 'icon-small-hong' : ''
+              ]">
           </span>
 
           <div class="wish-list__table--delivery-info-where subtitle-2-regular">
-            <span class="u-bold">{{item.location.name}}</span>&nbsp;출고&nbsp;·&nbsp;</div>
-          <div class="wish-list__table--delivery-info-price subtitle-2-bold" *ngIf="item.shipping_fee == 0">&nbsp;무료 배송</div>
-          <div class="wish-list__table--delivery-info-price subtitle-2-regular"
-               *ngIf="item.shipping_fee > 0">묶음배송 · {{item.shipping_fee | onpicksCurrency:(currency| async)}}</div>
+            <span class="u-bold">{{item.location.name}}</span>&nbsp;출고&nbsp;·&nbsp;
+          </div>
+          <div class="wish-list__table--delivery-info-price subtitle-2-bold"
+               *ngIf="item.shipping_fee == 0">&nbsp;
+            무료 배송
+          </div>
+          <div
+            class="wish-list__table--delivery-info-price subtitle-2-regular"
+            *ngIf="item.shipping_fee > 0">
+            묶음배송 · {{item.shipping_fee | onpicksCurrency:(currency| async)}}
+          </div>
 
-          <div class="wish-list__table--delivery-info-description subtitle-2-regular u-color-dark-grey">{{item.location.name}} 묶음배송 상품 {{item.location.free_shipping_threshold | onpicksCurrency: (currency| async)}} 이상 주문시 무료 배송</div>
+          <div
+            class="wish-list__table--delivery-info-description subtitle-2-regular u-color-dark-grey">
+            {{item.location.name}} 묶음배송 상품 {{item.location.free_shipping_threshold | onpicksCurrency: (currency| async)}} 이상 주문시 무료 배송
+          </div>
         </div>
       </td>
       <td>
         <button
           *ngIf="item.attributes.length !== 0"
           [routerLink]="'/shops/p/' + item.product"
-          class="btn btn--white btn--small wish-list__table--btn">옵션 선택하기</button>
+          class="btn btn--white btn--small wish-list__table--btn">
+          옵션 선택하기
+        </button>
         <button
           (click)="moveWishListToCart(1, item.product, item.ship_alone ? 'free' : locationMap[item?.location.code]?.sequence, item.id, wishListIndex)"
           *ngIf="item.attributes.length === 0"
-          class="btn btn--white btn--small wish-list__table--btn"
-        >쇼핑백에 담기</button>
+          class="btn btn--white btn--small wish-list__table--btn">
+          쇼핑백에 담기
+        </button>
         <button
           (click)="deleteWishList(item.id, wishListIndex)"
-          class="btn btn--white btn--small wish-list__table--btn">삭제하기</button>
+          class="btn btn--white btn--small wish-list__table--btn">
+          삭제하기
+        </button>
       </td>
     </tr>
   </table>

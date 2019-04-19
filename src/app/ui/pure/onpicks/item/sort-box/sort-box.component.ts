@@ -3,8 +3,8 @@ import {
   ChangeDetectionStrategy,
   Component,
   ElementRef, EventEmitter,
-  HostListener,
-  Input,
+  HostListener, Inject,
+  Input, LOCALE_ID,
   OnInit, Output,
   Renderer2,
   ViewChild
@@ -19,7 +19,6 @@ import {
 })
 export class SortBoxComponent implements OnInit, AfterViewInit {
   @ViewChild('HTMLdropDown') HTMLdropDown;
-
   @Input('sortList') sortList;
   @Input('fontSize') fontSize;
   @Input('showBox') showBox;
@@ -39,6 +38,7 @@ export class SortBoxComponent implements OnInit, AfterViewInit {
   }
 
   constructor(
+    @Inject(LOCALE_ID) public locale: string,
     private eRef: ElementRef,
     private renderer: Renderer2
   ) { }

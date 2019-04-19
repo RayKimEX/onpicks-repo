@@ -11,6 +11,8 @@ export class OnpicksCurrencyPipe implements PipeTransform {
 
   transform(value: any, currencyCode: any): any {
 
+    // console.log(value);
+    // console.log(currencyCode);
     if ( currencyCode === 'KRW' ) {
       let temp = this.currencyPipe.transform(value, currencyCode);
       // null의 경우가 있을때는 리턴
@@ -18,14 +20,17 @@ export class OnpicksCurrencyPipe implements PipeTransform {
 
       if ( temp === null ) { return ; }
       temp = temp.substring(1, temp.length) + '원';
+      console.log(temp);
       return temp;
     } else {
       let temp = this.currencyPipe.transform(value, currencyCode, 'symbol', '1.0');
       // null의 경우가 있을때는 리턴
       // TODO : 왜 null의 경우가 생기는지 알아보기
 
+      console.log(temp);
       if ( temp === null ) { return ;}
-      temp = temp.substring(2, temp.length);
+      // temp = temp.substring(2, temp.length);
+      console.log(temp);
       return temp;
     }
   }

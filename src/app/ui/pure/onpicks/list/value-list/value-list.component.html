@@ -1,54 +1,16 @@
-<!--<div class="value-list">-->
-  <!--<h1 class="value-list__title h1-bold">식품 인증</h1>-->
-
-  <!--<div class="value-list__content&#45;&#45;outer">-->
-    <!--<onpicks-circle-n-button *ngIf="isShowButton && -imageIndex < (valueList.length - 3)" (click)="nextButton()" [right]="'-2rem'"></onpicks-circle-n-button>-->
-    <!--<onpicks-circle-p-button *ngIf="isShowButton && imageIndex !== 0" (click)="prevButton()" [left]="'-2rem'"></onpicks-circle-p-button>-->
-    <!--<div class="value-list__content">-->
-      <!--<ul-->
-        <!--#container-->
-        <!--class="value-list__ul" >-->
-        <!--<li #itemList *ngFor="let item of valueList index as valueIndex" class="value-list__item">-->
-          <!--<div  class="value-list__image&#45;&#45;outer">-->
-            <!--<img drCleanLoad src="{{item.imgSrc}}" alt="">-->
-          <!--</div>-->
-          <!--<div class="value-list__item&#45;&#45;title subtitle-2-bold">-->
-            <!--{{item.title}}-->
-          <!--</div>-->
-          <!--<div-->
-            <!--(mouseover)=-->
-             <!--"currentDescription = item.description;-->
-              <!--currentDescriptionTitle = item.title;-->
-              <!--currentDescriptionIndex = valueIndex + 1;-->
-              <!--isShowDescription = true"-->
-           <!--(mouseleave)="isShowDescription = false"-->
-           <!--class="value-list__item&#45;&#45;description-icon subtitle-2-bold">!</div>-->
-        <!--</li>-->
-      <!--</ul>-->
-    <!--</div>-->
-    <!--<div [ngStyle]="{ left : ((valueList.length - 2) > currentDescriptionIndex) ? (currentDescriptionIndex * 15.5 + (currentDescriptionIndex - 1) * 3.7) + 'rem' : ((currentDescriptionIndex + imageIndex) * (15.5) + (currentDescriptionIndex + imageIndex -1) * 3.7) + 'rem'  , display : isShowDescription ? 'block' : 'none'}"class="value-list__description">-->
-      <!--<div class="value-list__description&#45;&#45;title subtitle-2-bold">-->
-        <!--{{currentDescriptionTitle}}란? {{currentDescriptionIndex}} {{valueList.length}}-->
-      <!--</div>-->
-      <!--<div class="value-list__description&#45;&#45;content body-2-regular">-->
-        <!--{{currentDescription}}-->
-      <!--</div>-->
-
-    <!--</div>-->
-  <!--</div>-->
-<!--</div>-->
-
-
 <div class="row-list-scroll popular-brand" *ngIf="valueList.length !== 0">
   <h1
     [ngStyle]="{ padding : type === 'product' ? 0 : '' }"
-    class="popular-brand__title h1-bold">성분 인증</h1>
+    i18n="@@value-list__title"
+    class="popular-brand__title h1-bold">성분 인증|Value</h1>
   <div class="popular-brand__content--outer">
+
     <onpicks-circle-n-button
       *ngIf="isShowButton && imageIndex < (valueList?.length - 6)"
       (click)="nextButton()"
       [right]="'-2rem'">
     </onpicks-circle-n-button>
+
     <onpicks-circle-p-button
       *ngIf="isShowButton && -imageIndex !== 0"
       (click)="prevButton()"

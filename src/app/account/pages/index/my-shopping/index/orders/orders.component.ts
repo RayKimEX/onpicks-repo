@@ -25,19 +25,31 @@ export class OrdersComponent implements OnInit {
 
   sortList = [
     {
-      title : '3개월',
+      title : {
+        ko : '3개월',
+        en : '3 Months'
+      },
       value : '3m'
     },
     {
-      title : '6개월',
+      title : {
+        ko : '6개월',
+        en : '6 Months'
+      },
       value : '6m'
     },
     {
-      title : '1년',
+      title : {
+        ko : '1년',
+        en : '1 Year'
+      },
       value : '1y'
     },
     {
-      title : '전체보기',
+      title : {
+        ko : '전체보기',
+        en : 'all'
+      },
       value : 'all',
     }
   ]

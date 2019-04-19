@@ -364,11 +364,11 @@
     </div>
     <div class="header-menu__outer" #menu>
       <nav>
-        <ul class="header-menu__item" *ngFor="let item of menuMap[locale]?.main">
+        <ul class="header-menu__item" *ngFor="let item of menuMap?.main">
           <li>
             <div
               class="header-menu__item--title h1-bold"
-              [ngClass] =
+              [ngClass]=
               "[
                 (item.slug === 'pantry-and-household')  ? 'header-menu__item--title-pantry-and-household' : '',
                 (item.slug === 'beauty')  ? 'header-menu__item--title-beauty' : '',
@@ -376,28 +376,41 @@
                 (item.slug === 'health')  ? 'header-menu__item--title-health' : ''
               ]">
               <span (click)="menuToggle.checked = false;">
-                <a [routerLink]="'/shops/c/' + item.href">{{item.name}}</a>
+                <a
+                  [routerLink]="'/shops/c/' + item.href">
+                  {{item.name[locale]}}
+                </a>
               </span>
             </div>
-
           </li>
           <li class="header-menu__item--category subtitle-2-regular"
               *ngFor="let subItem of item.sub">
             <span (click)="menuToggle.checked = false;">
-               <a [routerLink]="'/shops/c/' + subItem.href">{{subItem.name}}</a>
+               <a [routerLink]="'/shops/c/' + subItem.href">{{subItem.name[locale]}}</a>
             </span>
           </li>
           <li class="header-menu__item--category subtitle-2-bold">
-            <span (click)="menuToggle.checked = false;">
-              <a [routerLink]="'/shops/c/' + item.href">{{item.name}} 더보기 ></a>
-            </span>
+            <!--<span (click)="menuToggle.checked = false;">-->
+              <!--<a [routerLink]="'/shops/c/' + item.href">{{item.name[locale]}} 더보기 ></a>-->
+            <!--</span>-->
+            <a (click)="menuToggle.checked = false;">
+              <ui-angle-bracket-navigator
+                [verticalAlign]="'baseline'"
+                [routerLink]="'/shops/c/' + item.href">
+                {{item.all[locale]}}
+              </ui-angle-bracket-navigator>
+            </a>
           </li>
         </ul>
       </nav>
       <div class="header-menu__recommend">
         <ul class="header-menu__recommend--ul">
           <li class="header-menu__recommend--ul-item subtitle-2-bold" i18n="@@header-menu__recommend-category"> </li>
-          <li class="header-menu__recommend--ul-item subtitle-2-regular" *ngFor="let item of menuMap[locale]?.recommandCategory"><a [routerLink]="'/shops/c/' + item.href">{{item.name}}</a></li>
+          <li class="header-menu__recommend--ul-item subtitle-2-regular" *ngFor="let item of menuMap?.recommandCategory">
+            <a [routerLink]="'/shops/c/' + item.href">
+              {{item.name[locale]}}
+            </a>
+          </li>
         </ul>
       </div>
     </div>

@@ -6,8 +6,15 @@
       </div>
       <div class="account-profile__info-description">
         <div class="account-profile__info-description--name h1-bold" >{{ userData?.nickname }}</div>
-        <div class="account-profile__info-description--grade subtitle-2-regular">골드 멤버</div>
-        <div class="account-profile__info-description--modify subtitle-2-regular u-color-grey">수정하기</div>
+        <div
+          i18n="@@account-profile__info-description--grade"
+          class="account-profile__info-description--grade subtitle-2-regular">골드 멤버</div>
+        <div
+          i18n="@@account-profile__modify"
+          routerLink="/account/settings/profile"
+          class="account-profile__info-description--modify subtitle-2-regular u-color-grey u-button-effect">
+          수정하기
+        </div>
       </div>
     </div>
   </div>
@@ -16,32 +23,55 @@
     <nav>
       <ul>
         <li>
-          <button class="subtitle-2-bold u-color-grey" routerLinkActive="u-color-black" routerLink="/account/feed">
+          <button
+            i18n="@@account-navigator__feed"
+            class="subtitle-2-bold u-color-grey"
+            routerLinkActive="u-color-black"
+            routerLink="/account/feed">
             피드
           </button>
         </li>
         <li>
-          <button class="subtitle-2-bold u-color-grey" routerLinkActive="u-color-black"  routerLink="/account/my-shopping">
+          <button
+            i18n="@@account-navigator__shopping"
+            class="subtitle-2-bold u-color-grey"
+            routerLinkActive="u-color-black"
+            routerLink="/account/my-shopping">
             나의 쇼핑
           </button>
         </li>
         <li>
-          <button class="subtitle-2-bold u-color-grey" routerLinkActive="u-color-black"  routerLink="/account/my-reviews">
+          <button
+            i18n="@@account-navigator__review"
+            class="subtitle-2-bold u-color-grey"
+            routerLinkActive="u-color-black"
+            routerLink="/account/my-reviews">
             나의 리뷰
           </button>
         </li>
         <li>
-          <button class="subtitle-2-bold u-color-grey" routerLinkActive="u-color-black"  routerLink="/account/wish-list">
+          <button
+            i18n="@@account-navigator__wish-list"
+            class="subtitle-2-bold u-color-grey"
+            routerLinkActive="u-color-black"
+            routerLink="/account/wish-list">
             다음에 구매하기
           </button>
         </li>
         <li>
-          <button class="subtitle-2-bold u-color-grey" routerLinkActive="u-color-black"  routerLink="/account/settings">
+          <button
+            i18n="@@account-navigator__setting"
+            class="subtitle-2-bold u-color-grey"
+            routerLinkActive="u-color-black"
+            routerLink="/account/settings">
             설정
           </button>
         </li>
         <li>
-          <button (click)="logout()" class="subtitle-2-bold u-color-grey">
+          <button
+            i18n="@@account-navigator__log-out"
+            (click)="logout()"
+            class="subtitle-2-bold u-color-grey">
             로그아웃
           </button>
         </li>
@@ -51,3 +81,4 @@
 
   <router-outlet></router-outlet>
 </div>
+

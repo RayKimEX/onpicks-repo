@@ -24,7 +24,7 @@ import {
   CURRENCY,
   DOMAIN_HOST,
   LOCATION_MAP,
-  LOCATION_MAP_CONST,
+  LOCATION_MAP_CONST, REGION_ID,
   RESPONSIVE_MAP,
   RESPONSIVE_MAP_CONST
 } from './core/global-constant/app.config';
@@ -141,6 +141,10 @@ export function getCurrency() {
     {
       provide: APP_BASE_HREF,
       useValue: '/' + (window.location.pathname.split('/')[1] || '')
+    },
+    {
+      provide: REGION_ID,
+      useValue: (window.location.pathname.split('/')[1] || '')
     },
     {
       provide: LOCALE_ID,

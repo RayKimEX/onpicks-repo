@@ -2,18 +2,34 @@
   <div
     [ngClass]="isACTBreakPoint ? 'col-3-of-12 account-settings-navigator' : 'account-settings-navigator'">
     <div class="account-settings-navigator__item">
-      <button class="subtitle-2-bold u-color-grey" routerLinkActive="u-color-black" routerLink="profile">
+      <button
+        class="subtitle-2-bold u-color-grey"
+        i18n="@@profile__title"
+        routerLinkActive="u-color-black"
+        routerLink="profile">
         프로필
       </button>
     </div>
-    <div class="account-settings-navigator__item">
-      <button class="subtitle-2-bold u-color-grey" routerLinkActive="u-color-black" routerLink="delivery-address">
+    <div
+      *ngIf="region === 'kr'"
+      class="account-settings-navigator__item">
+      <button
+        i18n="@@delivery-address__title"
+        class="subtitle-2-bold u-color-grey"
+        routerLinkActive="u-color-black"
+        routerLink="delivery-address">
         배송지
       </button>
 
     </div>
-    <div class="account-settings-navigator__item">
-      <button class="subtitle-2-bold u-color-grey" routerLinkActive="u-color-black" routerLink="refund">
+    <div
+      *ngIf="region === 'kr'"
+      class="account-settings-navigator__item">
+      <button
+        i18n="@@refund__title"
+        class="subtitle-2-bold u-color-grey"
+        routerLinkActive="u-color-black"
+        routerLink="refund">
         환불정보
       </button>
     </div>

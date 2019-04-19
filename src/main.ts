@@ -9,6 +9,18 @@ if (environment.production) {
   console.log = function(){};
 }
 
+function setCookie(cname, cvalue ) {
+  // const d = new Date();
+  // d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+  // const expires = 'expires=' + d.toUTCString();
+  document.cookie = cname + '=' + cvalue + ';path=/';
+
+  return 'KRW';
+}
+
+
+setCookie('onpicks-language', 'en');
+
 
 // use the require method provided by webpack
 declare const require;

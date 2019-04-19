@@ -5,7 +5,7 @@ import {
   EventEmitter,
   HostListener,
   Inject,
-  Input,
+  Input, LOCALE_ID,
   OnInit,
   Output,
   Renderer2
@@ -36,17 +36,29 @@ export class ChangePreferenceComponent implements OnInit {
 
   preferenceList = {
     locale : {
-      title : '언어를 선택해주세요',
+      title : {
+        ko : '언어를 선택해주세요',
+        en : 'Choose Language'
+      },
       list : {
         en : 'English',
         ko : '한국어'
       }
     },
     currency : {
-      title : '통화를 선택해주세요',
+      title : {
+        ko : '통화를 선택해주세요',
+        en : 'Choose Currency'
+      },
       list : {
-        USD : '미국 달러 - $',
-        KRW : '한국 원 - ₩',
+        USD : {
+          ko : '미국 달러 - $',
+          en : 'USD - $'
+        },
+        KRW : {
+          ko : '한국 원 - ₩',
+          en : 'KRW - ₩'
+        },
       }
     }
   }
@@ -56,6 +68,7 @@ export class ChangePreferenceComponent implements OnInit {
   constructor(
     @Inject(CURRENCY) public currency: BehaviorSubject<any>,
     @Inject(RESPONSIVE_MAP) public responsiveMap,
+    @Inject(LOCALE_ID) public locale: string,
     private breakpointObserver:  BreakpointObserver,
     private store: Store<any>,
     private eRef: ElementRef,

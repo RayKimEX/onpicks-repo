@@ -1,6 +1,6 @@
 import {
   AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef,
-  Component, HostListener, Inject, Input,
+  Component, HostListener, Inject, Input, LOCALE_ID,
   OnInit,
   Renderer2,
   ViewChild,
@@ -33,6 +33,7 @@ export class TodayCollectionComponent implements OnInit, AfterViewInit {
 
   constructor(
     @Inject(RESPONSIVE_MAP) public responsiveMap,
+    @Inject(LOCALE_ID) public locale: string,
     private renderer: Renderer2,
     private breakpointObserver:  BreakpointObserver,
     private cd: ChangeDetectorRef,

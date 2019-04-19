@@ -20,7 +20,7 @@
     <div class="preference-modal__inner">
       <div class="preference-modal__title">
         <span [ngClass]="[ isDesktopBreakPoint ? 'h1-bold' : 'subtitle-2-bold']">
-          {{preferenceList[type].title}}
+          {{preferenceList[type].title[locale]}}
         </span>
       </div>
       <div (click)="changePreference(item.key)"
@@ -28,9 +28,16 @@
         <div
              class="preference-modal__item--inner">
           <span [ngClass]="{ 'subtitle-1-regular' : isDesktopBreakPoint }">
-            {{item.value}}
+            {{item.value[locale]}}
           </span>
-          <svg *ngIf="(currency | async) === item.key" class="preference-modal__item--check-svg u-float-right" xmlns="http://www.w3.org/2000/svg" width="10" height="7" viewBox="0 0 10 7">
+
+          <svg
+            *ngIf="(currency | async) === item.key"
+            class="preference-modal__item--check-svg u-float-right"
+            xmlns="http://www.w3.org/2000/svg"
+            width="10"
+            height="7"
+            viewBox="0 0 10 7">
             <path fill="#000" fill-rule="evenodd" d="M4.024 7h-.007a1.413 1.413 0 0 1-1.023-.448L.279 3.708a1.008 1.008 0 0 1 .029-1.421 1 1 0 0 1 1.414.03L4.025 4.73 8.282.305A1 1 0 0 1 9.696.281a1.01 1.01 0 0 1 .023 1.421l-4.68 4.864A1.411 1.411 0 0 1 4.025 7z"/>
           </svg>
 

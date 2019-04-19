@@ -1,14 +1,32 @@
-<div class="settings-profile" *ngLet="profileData$ | async as data">
+<div
+  class="settings-profile"
+  *ngLet="profileData$ | async as data">
   <div class="settings-profile__normal-info">
     <div class="settings-profile__row">
-      <div class="settings-profile__row--title subtitle-2-regular">닉네임</div>
+      <div
+        i18n="@@settings-profile__nickname--title"
+        class="settings-profile__row--title subtitle-2-regular">
+        닉네임
+      </div>
       <onpicks-input-box
         class="settings-profile__row--input--nickname"
         #nickname
         [value]="data?.nickname"
-        [placeholder]="'닉네임을 입력해주세요'"></onpicks-input-box>
-      <div *ngIf="!checkBitWise(EMPTY_ORDER_NAME)" class="settings-profile__row--description subtitle-2-regular u-color-dark-grey">다른 사용자들에겐 사용자가 설정한 닉네임으로 보여집니다.</div>
-      <div *ngIf="checkBitWise(EMPTY_ORDER_NAME)" class="settings-profile__row--description subtitle-2-regular u-color-orange">닉네임을 입력해주세요.</div>
+        i18n-placeholder="@@sentence__insert-nickname"
+        placeholder="닉네임을 입력해주세요">
+      </onpicks-input-box>
+      <div
+        *ngIf="!checkBitWise(EMPTY_ORDER_NAME)"
+        i18n="@@settings-profile__nickname--description"
+        class="settings-profile__row--description subtitle-2-regular u-color-dark-grey">
+        다른 사용자들에겐 사용자가 설정한 닉네임으로 보여집니다
+      </div>
+      <div
+        *ngIf="checkBitWise(EMPTY_ORDER_NAME)"
+        i18n="@@sentence__insert-nickname"
+        class="settings-profile__row--description subtitle-2-regular u-color-orange">
+        닉네임을 입력해주세요
+      </div>
     </div>
     <!--<div class="settings-profile__row">-->
       <!--<div class="settings-profile__row&#45;&#45;title subtitle-2-regular">이메일</div>-->
@@ -21,13 +39,16 @@
     <!--</div>-->
 
     <div class="settings-profile__row">
-      <div class="settings-profile__row--title subtitle-2-regular">연락처</div>
+      <div
+        i18n="@@settings-profile__phone--title"
+        class="settings-profile__row--title subtitle-2-regular">연락처</div>
       <onpicks-input-box
         #tel
         class="settings-profile__row--input--tel"
         [value]="data?.contact"
         [marginRight]="'1.6rem'"
-        [placeholder]="'전화번호를 입력해주세요'">
+        i18n-placeholder="@@sentence__insert-phone-number"
+        placeholder="'전화번호를 입력해주세요'">
       </onpicks-input-box>
       <!--<onpicks-button-->
         <!--[type]="'white'"-->
@@ -36,25 +57,35 @@
     </div>
 
     <div class="settings-profile__row">
-      <div class="settings-profile__row--title subtitle-2-regular">비밀번호</div>
+      <div
+        i18n="@@settings-profile__password--title"
+        class="settings-profile__row--title subtitle-2-regular">비밀번호</div>
       <form action="" style="display:inline-block; width:100%">
         <onpicks-input-box
           #password
           class="settings-profile__row--input--password"
           [password]="true"
-          [placeholder]="'비밀번호를 입력해주세요'">
+          i18n-placeholder="@@sentence__insert-password"
+          placeholder="'비밀번호를 입력해주세요'">
         </onpicks-input-box>
         <onpicks-button
+          i18n="@@word__modify"
           (click)="changePassword(password)"
           [type]="'white'"
-          [width]="'8.5rem'"
-        >수정하기</onpicks-button>
+          [width]="'auto'">
+          수정하기
+        </onpicks-button>
       </form>
 
     </div>
     <div class="settings-profile__row">
-      <div class="settings-profile__row--title subtitle-2-regular">성별</div>
+      <div
+        i18n="@@word__gender"
+        class="settings-profile__row--title subtitle-2-regular">
+        성별
+      </div>
       <onpicks-check-box
+        i18n="@@word__male"
         [isChecked]="data?.gender === 'M'"
         (boxEvent)="setGender($event)"
         [value]="'M'"
@@ -64,6 +95,7 @@
       </onpicks-check-box>
 
       <onpicks-check-box
+        i18n="@@word__female"
         [isChecked]="data?.gender === 'F'"
         (boxEvent)="setGender($event)"
         [value]="'F'"
@@ -71,61 +103,94 @@
         여자
       </onpicks-check-box>
 
-      <div class="settings-profile__row--description subtitle-2-regular u-color-dark-grey">이 정보는 통계 목적으로 사용되며 다른 회원들에게 절대 공개되지 않습니다.</div>
+      <div
+        i18n="@@settings-profile__row--description"
+        class="settings-profile__row--description subtitle-2-regular u-color-dark-grey">
+        이 정보는 통계 목적으로 사용되며 다른 회원들에게 절대 공개되지 않습니다
+      </div>
     </div>
   </div>
   <div class="settings-profile__private-info">
     <div class="settings-profile__row">
-      <div class="settings-profile__row--title subtitle-2-regular">생년월일</div>
+      <div
+        i18n="@@word__birthday"
+        class="settings-profile__row--title subtitle-2-regular">
+        생년월일
+      </div>
 
       <onpicks-select-box
         [selectedElement]="{ title: '', value : data?.birthday?.split('-')[1] }"
         (changeEvent)="setMonth($event)"
         class="settings-profile__row--select-box-month"
-        [sortList]="monthList"
-      ></onpicks-select-box>
+        [sortList]="monthList">
+      </onpicks-select-box>
       <onpicks-select-box
         [selectedElement]="{ value : data?.birthday?.split('-')[2] }"
         (changeEvent)="setDay($event)"
         class="settings-profile__row--select-box-day"
-        [sortList]="dayList"
-      ></onpicks-select-box>
+        [sortList]="dayList">
+      </onpicks-select-box>
       <onpicks-select-box
         [selectedElement]="{ value : data?.birthday?.split('-')[0] }"
         (changeEvent)="setYear($event)"
         class="settings-profile__row--select-box-year"
-        [sortList]="yearList"
-      ></onpicks-select-box>
-      <div *ngIf="!checkBitWise(EMPTY_DATE)" class="settings-profile__row--description subtitle-2-regular u-color-dark-grey">이 정보는 통계 목적으로 사용되며 다른 회원들에게 절대 공개되지 않습니다.</div>
-      <div *ngIf="checkBitWise(EMPTY_DATE)" class="settings-profile__row--description subtitle-2-regular u-color-orange">생년월일을 정확히 입력해주세요.</div>
+        [sortList]="yearList">
+      </onpicks-select-box>
+      <div
+        *ngIf="!checkBitWise(EMPTY_DATE)"
+        i18n="@@settings-profile__row--description"
+        class="settings-profile__row--description subtitle-2-regular u-color-dark-grey">
+        이 정보는 통계 목적으로 사용되며 다른 회원들에게 절대 공개되지 않습니다
+      </div>
+      <div
+        *ngIf="checkBitWise(EMPTY_DATE)"
+        class="settings-profile__row--description subtitle-2-regular u-color-orange">
+        생년월일을 정확히 입력해주세요
+      </div>
     </div>
     <div class="settings-profile__row">
-      <div class="settings-profile__row--title subtitle-2-regular">키</div>
+      <div
+        i18n="@@word__height"
+        class="settings-profile__row--title subtitle-2-regular">
+        키
+      </div>
       <onpicks-input-box
         #height
         class="settings-profile__row--input--height"
         [value]="data?.height"
         [placeholder]="'cm'">
       </onpicks-input-box>
-      <div class="settings-profile__row--description subtitle-2-regular u-color-dark-grey">이 정보는 통계 목적으로 사용되며 다른 회원들에게 절대 공개되지 않습니다.</div>
+      <div
+        i18n="@@settings-profile__row--description"
+        class="settings-profile__row--description subtitle-2-regular u-color-dark-grey">
+        이 정보는 통계 목적으로 사용되며 다른 회원들에게 절대 공개되지 않습니다
+      </div>
     </div>
     <div class="settings-profile__row">
-      <div class="settings-profile__row--title subtitle-2-regular">몸무게</div>
+      <div
+        i18n="@@word__weight"
+        class="settings-profile__row--title subtitle-2-regular">
+        몸무게
+      </div>
       <onpicks-input-box
         #weight
         class="settings-profile__row--input--weight"
         [value]="data?.weight"
         [placeholder]="'kg'">
       </onpicks-input-box>
-      <div class="settings-profile__row--description subtitle-2-regular u-color-dark-grey">이 정보는 통계 목적으로 사용되며 다른 회원들에게 절대 공개되지 않습니다.</div>
+      <div
+        i18n="@@settings-profile__row--description"
+        class="settings-profile__row--description subtitle-2-regular u-color-dark-grey">
+        이 정보는 통계 목적으로 사용되며 다른 회원들에게 절대 공개되지 않습니다
+      </div>
     </div>
 
     <onpicks-button
+      i18n="@@settings-profile__save"
       (click)="saveProfile()"
-      [width]="'10.1rem'"
+      [width]="'auto'"
       [size]="'small'"
-      [type]="'white'"
-    >
+      [type]="'white'">
       프로필 저장
     </onpicks-button>
   </div>

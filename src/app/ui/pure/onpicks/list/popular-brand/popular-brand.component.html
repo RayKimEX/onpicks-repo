@@ -1,5 +1,7 @@
 <div class="row-list-scroll popular-brand" *ngIf="popularBrand?.length !== 0">
-  <h1 class="popular-brand__title h1-bold" i18n="@@onpicks__popular-brand">인기 브랜드|Popular Brand</h1>
+  <h1
+    class="popular-brand__title h1-bold"
+    i18n="@@popular-brand__title">인기 브랜드|Popular Brand</h1>
   <div class="popular-brand__content--outer">
     <onpicks-circle-n-button
       *ngIf="isShowButton && -imageIndex < (popularBrand?.length - 6)"

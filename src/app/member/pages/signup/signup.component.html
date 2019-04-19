@@ -1,6 +1,7 @@
 <div class="signup">
   <div class="signup__social">
     <button
+      *ngIf="region === 'kr'"
       (click)="loginWithSocial('naver')"
       class="signup__social--naver signup__social--btn btn--hover">
       <svg  xmlns="http://www.w3.org/2000/svg" width="24" height="24"  x="0px" y="0px" viewBox="0 0 24 24" >
@@ -11,6 +12,7 @@
       <span class="subtitle-2-regular u-color-white">네이버 계정으로 가입하기</span>
     </button>
     <button
+      *ngIf="region === 'kr'"
       (click)="loginWithSocial('kakao')"
       class="signup__social--kakao signup__social--btn btn--hover">
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" x="0px" y="0px" viewBox="0 0 24 24">
@@ -28,7 +30,7 @@
           <path fill="#385084" d="M16.56 24v-9.423h3.12l.466-3.673H16.56V8.56c0-1.063.29-1.788 1.795-1.788h1.918V3.486c-.332-.045-1.47-.145-2.795-.145-2.766 0-4.659 1.711-4.659 4.854v2.708H9.692v3.673h3.127V24h3.74z"/>
         </g>
       </svg>
-      <span class="subtitle-2-regular u-color-white">페이스북 계정으로 가입하기</span>
+      <span i18n="@@signup__social--facebook" class="subtitle-2-regular u-color-white">페이스북 계정으로 가입하기</span>
     </button>
     <button
       (click)="loginWithSocial('google')"
@@ -47,13 +49,13 @@
           <use fill="#EA4335" transform="translate(3.085 2)" xlink:href="#c"/>
         </g>
       </svg>
-      <span class="subtitle-2-regular">구글 계정으로 가입하기</span>
+      <span i18n="@@signup__social--google" class="subtitle-2-regular">구글 계정으로 가입하기</span>
     </button>
   </div>
 
   <div class="signup__or-line">
     <span class="signup__or-line--active">
-      <span class="signup__or-line--text subtitle-2-regular u-color-dark-grey">
+      <span i18n="@@signup__or-line--text" class="signup__or-line--text subtitle-2-regular u-color-dark-grey">
         또는
       </span>
     </span>
@@ -65,24 +67,29 @@
         class="subtitle-2-regular"
         #inputEmail
         type="text"
+        i18n-placeholder="@@signup__input-box--placeholder--email"
         placeholder="이메일을 입력해주세요"/>
+
       <input
         class="subtitle-2-regular"
         #inputNickName
         type="text"
+        i18n-placeholder="@@signup__input-box--placeholder--nickname"
         placeholder="닉네임을 입력해주세요"/>
+
       <input
         class="subtitle-2-regular"
         #inputPassword
         (keypress)="signUp($event)"
         autocomplete
+        i18n-placeholder="@@signup__input-box--placeholder--password"
         type="password"
         placeholder="비밀번호를 입력해주세요"/>
     </form>
   </div>
 
 
-  <div class="signup__description subtitle-2-regular u-color-dark-grey">
+  <div *ngIf="region === 'kr'" class="signup__description subtitle-2-regular u-color-dark-grey">
     본인은 만 14세 이상이며, Onpicks
     <span>
       <a
@@ -98,7 +105,26 @@
         class="u-color-green u-regular">개인정보 처리 방침</a>을 확인 하였으며, 동의합니다.
     </span>
   </div>
+
+  <div *ngIf="region === 'en'" class="signup__description subtitle-2-regular u-color-dark-grey">
+    본인은 만 14세 이상이며, Onpicks
+    <span>
+      <a
+        routerLink="/terms"
+        class="u-color-green u-regular">
+        이용약관
+      </a>
+    </span>
+    <span class="subtitle-2-regular u-color-dark-grey">및&nbsp;</span>
+    <span>
+      <a
+        routerLink="/terms/privacy"
+        class="u-color-green u-regular">개인정보 처리 방침</a>을 확인 하였으며, 동의합니다.
+    </span>
+  </div>
+
   <button
+    i18n="@@signup__agreement-and-signup"
     class="btn btn--black signup__btn button-bold-white"
     (click)="signUp(undefined)">
     동의하고 가입하기
@@ -107,11 +133,14 @@
   <div class="signup__line"></div>
 
   <div class="signup__already-account">
-    <span class="signup__already-account--text subtitle-2-regular">
+    <span i18n="@@signup__already-account--text" class="signup__already-account--text subtitle-2-regular">
       이미 Onpicks 계정이 있나요?
     </span>
     <a routerLink="/member/login">
-      <ui-angle-bracket-navigator>로그인</ui-angle-bracket-navigator>
+      <ui-angle-bracket-navigator
+        i18n="@@signup__already-account--login">
+        로그인
+      </ui-angle-bracket-navigator>
     </a>
   </div>
 </div>

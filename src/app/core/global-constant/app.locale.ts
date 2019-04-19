@@ -67,125 +67,206 @@ export const REPORT_REASON_MAP_CONST = {
 // menu
 export const MENU_MAP = new InjectionToken<any>( './core/global-constant/app.locale');
 export const MENU_MAP_CONST = {
-  'ko' : {
-    main : [
-      {
-        name : '식품·생활용품',
-        slug : 'pantry-and-household',
-        href : 'pantry-and-household',
-        sub : [
-          {
-            name : '식품',
-            slug : 'grocery',
-            href : 'pantry-and-household/grocery'
-          },
-          {
-            name : '생활용품',
-            slug : 'household-supplies',
-            href : 'pantry-and-household/household-supplies'
-          },
-          {
-            name : '퍼스널케어',
-            slug : 'personal-care',
-            href : 'pantry-and-household/personal-care'
-          },
-          {
-            name : '주방',
-            slug : 'pantry',
-            href : 'pantry-and-household/grocery/pantry'
-          }
-        ],
+  main : [
+    {
+      name : {
+        ko : '식품·생활용품',
+        en : 'Pantry & Household'
       },
-      {
-        name : '뷰티',
-        slug : 'beauty',
-        href : 'beauty',
-        sub : [
-          {
-            name : '스킨케어',
-            slug : 'skincare',
-            href : 'beauty/skincare'
-          },
-          {
-            name : '헤어',
-            slug : 'hair',
-            href : 'beauty/hair'
-          },
-          {
-            name : '메이크업',
-            slug : 'makeup',
-            href : 'beauty/makeup'
-          },
-          {
-            name : '향수',
-            slug : 'fragrance',
-            href : 'beauty/fragrance'
-          },
-        ],
+      slug : 'pantry-and-household',
+      href : 'pantry-and-household',
+      all : {
+        ko : '식품·생활용품 더보기',
+        en : 'Shop All Pantry & Household'
       },
-      {
-        name : '유아동',
-        slug : 'baby',
-        href : 'pantry-and-household/baby',
-        sub : [
-          {
-            name : '이유식·분유',
-            slug : 'baby-food-and-formula',
-            href : 'pantry-and-household/baby/baby-food-and-formula'
+      sub : [
+        {
+          name : {
+            ko : '식품',
+            en : 'Grocery'
           },
-          {
-            name : '수유·이유용품',
-            slug : 'feeding-and-nursing',
-            href : 'pantry-and-household/baby/feeding-and-nursing'
+          slug : 'grocery',
+          href : 'pantry-and-household/grocery'
+        },
+        {
+          name : {
+            ko : '생활용품',
+            en : 'Household'
           },
-          {
-            name : '기저귀·교체용품',
-            slug : 'diapering',
-            href : 'pantry-and-household/baby/diapering'
+          slug : 'household-supplies',
+          href : 'pantry-and-household/household-supplies'
+        },
+        {
+          name : {
+            ko : '퍼스널케어',
+            en : 'Personal Care'
           },
-          {
-            name : '유아용품',
-            slug : 'baby-gear',
-            href : 'pantry-and-household/baby/baby-gear'
+          slug : 'personal-care',
+          href : 'pantry-and-household/personal-care'
+        },
+        {
+          name : {
+            ko : '주방',
+            en : 'Pantry'
           },
-        ],
+          slug : 'pantry',
+          href : 'pantry-and-household/grocery/pantry'
+        }
+      ],
+    },
+    {
+      name : {
+        ko : '뷰티',
+        en : 'Beauty'
       },
+      slug : 'beauty',
+      href : 'beauty',
+      all : {
+        ko : '뷰티 더보기',
+        en : 'Shop All Beauty'
+      },
+      sub : [
+        {
+          name : {
+            ko : '스킨케어',
+            en : 'Skin Care'
+          },
+          slug : 'skincare',
+          href : 'beauty/skincare'
+        },
+        {
+          name : {
+            ko : '헤어',
+            en : 'Hair'
+          },
+          slug : 'hair',
+          href : 'beauty/hair'
+        },
+        {
+          name : {
+            ko : '메이크업',
+            en : 'Makeup'
+          },
+          slug : 'makeup',
+          href : 'beauty/makeup'
+        },
+        {
+          name : {
+            ko : '향수',
+            en : 'Fragrance'
+          },
+          slug : 'fragrance',
+          href : 'beauty/fragrance'
+        },
+      ],
+    },
+    {
+      name : {
+        ko : '유아동',
+        en : 'Baby'
+      },
+      slug : 'baby',
+      href : 'pantry-and-household/baby',
+      all : {
+        ko : '유아동 더보기',
+        en : 'Shop All Baby'
+      },
+      sub : [
+        {
+          name : {
+            ko : '이유식·분유',
+            en : 'Baby Food & Formula'
+          },
+          slug : 'baby-food-and-formula',
+          href : 'pantry-and-household/baby/baby-food-and-formula'
+        },
+        {
+          name : {
+            ko : '수유·이유용품',
+            en : 'Feeding &? Nursing'
+          },
+          slug : 'feeding-and-nursing',
+          href : 'pantry-and-household/baby/feeding-and-nursing'
+        },
+        {
+          name : {
+            ko : '기저귀·교체용품',
+            en : 'Diapering'
+          },
+          slug : 'diapering',
+          href : 'pantry-and-household/baby/diapering'
+        },
+        {
+          name : {
+            ko : '유아용품',
+            en : 'Baby Gear'
+          },
+          slug : 'baby-gear',
+          href : 'pantry-and-household/baby/baby-gear'
+        },
+      ],
+    },
+    {
+      name : {
+        ko : '건강',
+        en : 'Health'
+      },
+      slug : 'health',
+      href : 'pantry-and-household/health',
+      all : {
+        ko : '건강 더보기',
+        en : 'Shop All Health'
+      },
+      sub : [
+        {
+          name : {
+            ko : '건강기능식품',
+            en : 'Vitamins & Dietary Supplements'
+          },
+          slug : 'vitamins-and-dietary-supplements',
+          href : 'pantry-and-household/health/vitamins-and-dietary-supplements'
+        },
+        {
+          name : {
+            ko : '헬스·다이어트',
+            en : 'Sports Nutrition & Diet'
+          },
+          slug : 'sports-nutrition-and-diet',
+          href : 'pantry-and-household/health/sports-nutrition-and-diet'
+        },
+        {
+          name : {
+            ko : '의약품',
+            en : 'Medicine Cabinet'
+          },
+          slug : 'medicine-cabinet',
+          href : 'pantry-and-household/health/medicine-cabinet'
+        },
+        {
+          name : {
+            ko : '의료용품',
+            en : 'Medical Supplies & Equipment'
+          },
+          slug : 'medical-supplies-and-equipment',
+          href : 'pantry-and-household/health/medical-supplies-and-equipment'
+        },
+      ],
+    }
+  ],
+  recommandCategory : [
       {
-        name : '건강',
-        slug : 'health',
-        href : 'pantry-and-household/health',
-        sub : [
-          {
-            name : '건강기능식품',
-            slug : 'vitamins-and-dietary-supplements',
-            href : 'pantry-and-household/health/vitamins-and-dietary-supplements'
-          },
-          {
-            name : '헬스·다이어트',
-            slug : 'sports-nutrition-and-diet',
-            href : 'pantry-and-household/health/sports-nutrition-and-diet'
-          },
-          {
-            name : '의약품',
-            slug : 'medicine-cabinet',
-            href : 'pantry-and-household/health/medicine-cabinet'
-          },
-          {
-            name : '의료용품',
-            slug : 'medical-supplies-and-equipmen',
-            href : 'pantry-and-household/health/medical-supplies-and-equipment'
-          },
-        ],
-      }
-    ],
-    recommandCategory : [
-      {
-        name : '양념·향신료',
+        name : {
+          ko : '양념·향신료',
+          en : 'Spices & Seasonings'
+        },
         slug : 'spices-and-seasonings',
         href : 'pantry-and-household/grocery/pantry/spices-and-seasonings'
       },
       {
-        name : '반려용품',
+        name : {
+          ko : '반려용품',
+          en : 'Pet Supplies'
+        },
         slug : 'pet-supplies',
         href : 'pantry-and-household/pet-supplies'
       },
@@ -198,137 +279,4 @@ export const MENU_MAP_CONST = {
       // '반려용품',
       // '스포츠',
     ]
-  },
-  'en' : {
-    main : [
-      {
-        name : 'Pantry & Household',
-        slug : 'pantry-and-household',
-        href : 'pantry-and-household',
-        sub : [
-          {
-            name : 'Grocery',
-            slug : 'grocery',
-            href : 'pantry-and-household/grocery'
-          },
-          {
-            name : 'Household',
-            slug : 'household-supplies',
-            href : 'pantry-and-household/household-supplies'
-          },
-          {
-            name : 'Personal',
-            slug : 'personal-care',
-            href : 'pantry-and-household/personal-care'
-          },
-          {
-            name : 'Pantry',
-            slug : 'pantry',
-            href : 'pantry-and-household/grocery/pantry'
-          }
-        ],
-      },
-      {
-        name : 'Beauty',
-        slug : 'beauty',
-        href : 'beauty',
-        sub : [
-          {
-            name : 'Skin Care',
-            slug : 'skincare',
-            href : 'beauty/skincare'
-          },
-          {
-            name : 'Hair',
-            slug : 'hair',
-            href : 'beauty/hair'
-          },
-          {
-            name : 'Makeup',
-            slug : 'makeup',
-            href : 'beauty/makeup'
-          },
-          {
-            name : 'Fragrance',
-            slug : 'fragrance',
-            href : 'beauty/fragrance'
-          },
-        ],
-      },
-      {
-        name : 'Baby',
-        slug : 'baby',
-        href : 'pantry-and-household/baby',
-        sub : [
-          {
-            name : '이유식·분유',
-            slug : 'baby-food-and-formula',
-            href : 'pantry-and-household/baby/baby-food-and-formula'
-          },
-          {
-            name : '수유·이유용품',
-            slug : 'feeding-and-nursing',
-            href : 'pantry-and-household/baby/feeding-and-nursing'
-          },
-          {
-            name : '기저귀·교체용품',
-            slug : 'diapering',
-            href : 'pantry-and-household/baby/diapering'
-          },
-          {
-            name : '유아용품',
-            slug : 'baby-gear',
-            href : 'pantry-and-household/baby/baby-gear'
-          },
-        ],
-      },
-      {
-        name : 'Health',
-        slug : 'health',
-        href : 'pantry-and-household/health',
-        sub : [
-          {
-            name : '건강기능식품',
-            slug : 'vitamins-and-dietary-supplements',
-            href : 'pantry-and-household/health/vitamins-and-dietary-supplements'
-          },
-          {
-            name : '헬스·다이어트',
-            slug : 'sports-nutrition-and-diet',
-            href : 'pantry-and-household/health/sports-nutrition-and-diet'
-          },
-          {
-            name : '의약품',
-            slug : 'medicine-cabinet',
-            href : 'pantry-and-household/health/medicine-cabinet'
-          },
-          {
-            name : '의료용품',
-            slug : 'medical-supplies-and-equipmen',
-            href : 'pantry-and-household/health/medical-supplies-and-equipment'
-          },
-        ],
-      }
-    ],
-    recommandCategory : [
-      {
-        name : '양념·향신료',
-        slug : 'spices-and-seasonings',
-        href : 'pantry-and-household/grocery/pantry/spices-and-seasonings'
-      },
-      {
-        name : '반려용품',
-        slug : 'pet-supplies',
-        href : 'pantry-and-household/pet-supplies'
-      },
-      // {
-      //   name : '스포츠',
-      //   slug : 'grocery',
-      //   href : 'pantry-and-household/grocery'
-      // },
-      // '양념·향신료',
-      // '반려용품',
-      // '스포츠',
-    ]
-  },
-}
+  }

@@ -1,6 +1,6 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, Inject, LOCALE_ID, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, Inject, InjectionToken, LOCALE_ID, OnInit} from '@angular/core';
 import {APP_BASE_HREF} from '@angular/common';
-import {CURRENCY} from '../../../../../core/global-constant/app.config';
+import {CURRENCY, REGION_ID} from '../../../../../core/global-constant/app.config';
 import {BehaviorSubject} from 'rxjs';
 
 @Component({
@@ -10,18 +10,17 @@ import {BehaviorSubject} from 'rxjs';
   changeDetection : ChangeDetectionStrategy.OnPush
 })
 export class FooterComponent implements OnInit {
-
-
   isShowMobileToggleBusinessInfo = false;
+
   constructor(
     @Inject(LOCALE_ID) public locale: string,
-    @Inject(APP_BASE_HREF) public region: string,
+    @Inject(REGION_ID) public region: string,
     @Inject(CURRENCY) public currency: BehaviorSubject<any>,
+
     private cd: ChangeDetectorRef
   ) { }
 
   ngOnInit() {
-
   }
 
   openBizCommPop(xWrkrNo) {
@@ -40,5 +39,4 @@ export class FooterComponent implements OnInit {
       window.open('https://mark.inicis.com/mark/escrow_popup.php?mid=onpicks001', 'mark', 'scrollbars=no,resizable=no,width=565,height=683');
     }
   }
-
 }

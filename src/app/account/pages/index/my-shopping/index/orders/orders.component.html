@@ -5,7 +5,7 @@
 <div class="orders" [ngStyle]="{ minHeight : contentHeight }">
   <ng-container *ngIf="orderData$ | async as orderData; else loading">
     <div class="orders__title-box">
-      <h1 class="h1-bold">주문·배송조회</h1>
+      <h1 i18n="@@orders__title" class="h1-bold">주문·배송조회</h1>
       <onpicks-sort-box
         [selectedElement]="selectedElement"
         (changeEvent)="test($event)"
@@ -13,14 +13,16 @@
       </onpicks-sort-box>
     </div>
     <ng-container *ngIf="orderData?.results.length === 0">
-      <div class="u-margin-bottom subtitle-1-regular u-color-dark-grey">
+      <div
+        i18n="@@orders__description"
+        class="u-margin-bottom subtitle-1-regular u-color-dark-grey">
         주문한 상품이 없습니다. Onpicks와 함께 다양한 아이템을 최적의 가격으로 쇼핑하세요!
       </div>
-
       <ui-mini-list
         [carouselLength]="3"
         [mobileType]="'full'"
-        [setTitle]="'추천상품'"
+        setTitle="'추천상품'"
+        i18n-setTitle="@@recommand-products__title"
         [infoList]="weeklyBest$ | async">
       </ui-mini-list>
     </ng-container>

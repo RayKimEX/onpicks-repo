@@ -92,12 +92,41 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
   weeklyBest$;
 
   sortList = [
-    {title: '인기순', value: 'most_popular'},
-    // { title : '판매량', value : 'most_popular' },
-    {title: '리뷰 많은순', value: 'most_reviewed'},
-    {title: '평점순', value: 'top_rated'},
-    {title: '가격 높은순', value: 'price_high'},
-    {title: '가격 낮은순', value: 'price_low'}
+    {
+      title: {
+        ko : '인기순',
+        en : 'Popular'
+      },
+      value: 'most_popular'
+    },
+    {
+      title: {
+        ko : '리뷰 많은순',
+        en : 'Most Reviews'
+      },
+      value: 'most_reviewed'
+    },
+    {
+      title: {
+        ko : '평점순',
+        en : 'Most Ratings'
+      },
+      value: 'top_rated'
+    },
+    {
+      title: {
+        ko : '가격 높은순',
+        en : 'High Price'
+      },
+      value: 'price_high'
+    },
+    {
+      title: {
+        ko : '가격 낮은순',
+        en : 'Low Price'
+      },
+      value: 'price_low'
+    }
   ]
 
   sortMap = {
@@ -217,13 +246,12 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
           this.searchData$ = this.searchService.search(param).subscribe(_infoList => {
             /* async 데이터가 들어오는데, null이라면 return을 해줌 */
             if (_infoList != null) {
-              console.log(_infoList);
+
               this.valueList = _infoList.aggregation.values;
               this.locationList = _infoList.aggregation.locations;
               this.brandList = _infoList.aggregation.brands;
               this.categoryList = _infoList.aggregation.categories;
 
-              console.log(this.categoryList);
               this.infoList = _infoList.results;
 
               this.totalCount = _infoList.count;

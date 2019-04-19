@@ -47,8 +47,9 @@
 
     &__title {
       margin : 0 2.4rem;
-
+      text-transform : none;
       height : 4.8rem;
+
       @include respond(tb){
         height: auto;
       }

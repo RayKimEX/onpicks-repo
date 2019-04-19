@@ -44,17 +44,18 @@ export class MiniListComponent implements OnInit, OnDestroy {
   isFirstBreakPoint = false;
 
   constructor(
-    @Inject(CURRENCY) public currency: BehaviorSubject<any>,
+    @Inject( CURRENCY ) public currency: BehaviorSubject<any>,
     @Inject( LOCATION_MAP ) public locationMap: any,
-    @Inject(LOCALE_ID) public locale: string,
-    @Inject(APP_BASE_HREF) public region: string,
-    @Inject(RESPONSIVE_MAP) public responsiveMap,
+    @Inject( LOCALE_ID ) public locale: string,
+    @Inject( APP_BASE_HREF ) public region: string,
+    @Inject( RESPONSIVE_MAP ) public responsiveMap,
     private renderer: Renderer2,
     private store: Store<any>,
     private cd: ChangeDetectorRef,
     private router: Router,
     private breakpointObserver:  BreakpointObserver
   ) {
+
     this.cartStore$ = this.store.pipe(select(state => state.cart))
       .subscribe(val => {
         this.cartStore = val;

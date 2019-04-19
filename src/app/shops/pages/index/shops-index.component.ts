@@ -109,8 +109,14 @@ export class ShopsIndexComponent implements OnInit, AfterViewInit {
   todayCollection = [
     {
       imgSrc : 'http://img.onpicks.com/collections/collections-paleo.jpg',
-      todayCategoryName : '식품·생활용품',
-      todayTitle : '팔레오 다이어트',
+      todayCategoryName : {
+        ko : '식품·생활용품',
+        en : 'Pantry & Household'
+      },
+      todayTitle : {
+        ko : '팔레오 다이어트',
+        en : 'Paleo Diet',
+      },
       todayDiscription: '헐리웃 셀럽들 사이에서 hot한 건강&체중을 동시에 잡는 식이요법을 경험해보세요.',
       filterSlug : {
         value : ['paleo']
@@ -118,8 +124,14 @@ export class ShopsIndexComponent implements OnInit, AfterViewInit {
     },
     {
       imgSrc : 'http://img.onpicks.com/collections/collections-USDA.jpg',
-      todayCategoryName : '식품·생활용품',
-      todayTitle : 'USDA 인증',
+      todayCategoryName : {
+        ko : '식품·생활용품',
+        en : 'Pantry & Household'
+      },
+      todayTitle : {
+        ko : 'USDA 인증',
+        en : 'Certified Organic'
+      },
       todayDiscription: '깐깐하기로 소문난 United States Department of Agriculture 의 인증, Real Organic 을 소개합니다.',
       filterSlug : {
         value : [
@@ -129,17 +141,29 @@ export class ShopsIndexComponent implements OnInit, AfterViewInit {
     },
     {
       imgSrc : 'http://img.onpicks.com/collections/collections-gluten.jpg',
-      todayCategoryName : '식품·생활용품',
-      todayTitle : '글루텐프리',
+      todayCategoryName : {
+        ko : '식품·생활용품',
+        en : 'Pantry & Household'
+      },
+      todayTitle : {
+        ko : '글루텐프리',
+        en : 'Certified Gluten-Free'
+      },
       todayDiscription: '미국의 3대 글루텐프리 인증 단체인 GFCO, CSA, ACG의 인증, 미국 본토의 글루텐프리 컬렉션.',
       filterSlug : {
-        value : ['certified-gluten-free']
+        value : [ 'certified-gluten-free' ]
       }
     },
     {
       imgSrc : 'https://img.onpicks.com/collections/collection-flower.jpg?d=w528-h352',
-      todayCategoryName : '뷰티',
-      todayTitle : '봄을 맞이하는 아이템!',
+      todayCategoryName : {
+        ko : '뷰티',
+        en : 'Beauty'
+      },
+      todayTitle : {
+        ko : '봄을 맞이하는 아이템!',
+        en : ''
+      },
       todayDiscription : '인간 벚꽃이 되어 당신 주변에 이른 봄을 선물하는 건 어떨까요?',
 
       filterSlug : {
@@ -148,7 +172,10 @@ export class ShopsIndexComponent implements OnInit, AfterViewInit {
     },
     {
       imgSrc : 'https://img.onpicks.com/collections/collection-byredo.jpg?d=w528-h352',
-      todayCategoryName : '뷰티',
+      todayCategoryName : {
+        ko : '뷰티',
+        en : 'Beauty'
+      },
       todayTitle : '페피들의 잇 아이템',
       todayDiscription : '바이레도의 감성으로 북유럽의 서정적인 향기를 입어보세요',
       filterSlug : {

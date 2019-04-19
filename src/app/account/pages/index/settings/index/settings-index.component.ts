@@ -1,6 +1,6 @@
 import {ChangeDetectionStrategy, ChangeDetectorRef, Component, Inject, OnInit} from '@angular/core';
 import {BreakpointObserver, BreakpointState} from '../../../../../../../node_modules/@angular/cdk/layout';
-import {RESPONSIVE_MAP} from '../../../../../core/global-constant/app.config';
+import {REGION_ID, RESPONSIVE_MAP} from '../../../../../core/global-constant/app.config';
 
 @Component({
   selector: 'onpicks-settings-index',
@@ -15,6 +15,7 @@ export class SettingsIndexComponent implements OnInit {
   constructor(
     private cd: ChangeDetectorRef,
     @Inject(RESPONSIVE_MAP) public responsiveMap,
+    @Inject(REGION_ID) public region: string,
     private breakpointObserver:  BreakpointObserver,
   ) { }
 

@@ -153,8 +153,8 @@
       &--btn {
         display:table-cell;
         vertical-align: middle;
-        right : 2.4rem;
-        width:16.1rem;
+        padding-right : 2.4rem;
+        float:right;
         margin-top : 1.6rem;
         margin-bottom : 1.6rem;
 
@@ -450,14 +450,13 @@
       float:right;
 
       padding-right: 2.4rem;
-      width:16.1rem;
       height : 4.6rem;
+
       @include respond(tb){
         width : 100%;
         margin : 1.6rem 0;
         padding-right : 0;
       }
-
     }
 
     &-total-count {
