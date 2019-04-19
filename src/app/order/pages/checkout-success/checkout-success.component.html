@@ -3,7 +3,6 @@
 </div>
 
 <div class="checkout-success">
-
   <div class="checkout-success__icon">
     <svg width="40" height="40" viewBox="0 0 40 40">
       <g fill="none" fill-rule="evenodd">
@@ -12,13 +11,22 @@
       </g>
     </svg>
   </div>
-  <div class="checkout-success__title">주문이 완료되었습니다</div>
-  <div class="checkout-success__order-num">주문번호
-    <span class="u-color-green">{{ orderCode}}</span>
+  <div class="checkout-success__title">
+    주문이 완료되었습니다
   </div>
-  <div class="checkout-success__description">
-    <div class="checkout-success__description--1">- 해외직구상품의 경우는 세법상 현금영수증 발급대상 거래가 아닙니다.</div>
-    <div class="checkout-success__description--2">- 휴대폰결제관련 문의는 LGU+전자결제 고객센터 1544-7772 로 연락해주시기 바랍니다.</div>
+  <div
+    class="checkout-success__order-num">
+    주문번호
+    <span class="u-color-green">
+      {{ orderCode }}
+    </span>
+  </div>
+  <div
+    class="checkout-success__description">
+    <div
+      class="checkout-success__description--1">- 해외직구상품의 경우는 세법상 현금영수증 발급대상 거래가 아닙니다.</div>
+    <div
+      class="checkout-success__description--2">- 휴대폰결제관련 문의는 LGU+전자결제 고객센터 1544-7772 로 연락해주시기 바랍니다.</div>
   </div>
 
   <onpicks-button
@@ -36,8 +44,4 @@
     [type]="'black'">
     주문 현황보기
   </onpicks-button>
-
 </div>
-
-
-

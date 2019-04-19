@@ -171,13 +171,15 @@
           </ng-container>
           <div [ngStyle]="{ 'display' : isShowDeliveryView ? 'block' : 'none' }">
 
-            <ng-container *ngTemplateOutlet="templateRef"></ng-container>
+            <ng-container *ngTemplateOutlet="templateRef">
+            </ng-container>
             <onpicks-button
               (click)="addDeliveryInfo()"
               [type]="'white'"
               [width]="'11.4rem'"
-              class="checkout-left__info--delivery-save-btn"
-              >배송지 저장</onpicks-button>
+              class="checkout-left__info--delivery-save-btn">
+              배송지 저장
+            </onpicks-button>
           </div>
         </ng-container>
         <div class="checkout-left__info--delivery-tag subtitle-2-regular">배송요청사항</div>

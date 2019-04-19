@@ -9,6 +9,8 @@ import {BehaviorSubject} from 'rxjs';
   styleUrls: ['./footer.component.scss'],
   changeDetection : ChangeDetectionStrategy.OnPush
 })
+
+
 export class FooterComponent implements OnInit {
   isShowMobileToggleBusinessInfo = false;
 
@@ -18,9 +20,12 @@ export class FooterComponent implements OnInit {
     @Inject(CURRENCY) public currency: BehaviorSubject<any>,
 
     private cd: ChangeDetectorRef
-  ) { }
+  ) {
+
+  }
 
   ngOnInit() {
+
   }
 
   openBizCommPop(xWrkrNo) {
