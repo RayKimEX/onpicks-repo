@@ -1,7 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  ElementRef,
+  ElementRef, Inject,
   OnInit,
   ViewChild
 } from '@angular/core';
@@ -11,6 +11,7 @@ import {TryLogin} from '../../../core/store/auth/auth.actions';
 import {AuthService} from '../../../core/service/auth/auth.service';
 import {Router} from '@angular/router';
 import {Title} from '@angular/platform-browser';
+import {REGION_ID} from '../../../core/global-constant/app.config';
 
 
 @Component({
@@ -25,6 +26,7 @@ export class LoginComponent implements OnInit {
   @ViewChild('isPersistent', {read : ElementRef}) isPersistent;
 
   constructor(
+    @Inject(REGION_ID) public region: string,
     private store: Store<AppState>,
     private authService: AuthService,
     private router: Router,
