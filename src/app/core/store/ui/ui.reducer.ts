@@ -114,12 +114,14 @@ export function UiReducer(state = initialState, action: UiActions): UiState {
       currentSlug = '';
       currentName = '';
 
-      console.log(action.payload);
+
       const normalizedCategoryData = normalizer(action.payload.data);
+      console.log(normalizedCategoryData);
       const secondCategoryData = normalizedCategoryData.entities.secondCategory;
       const thirdCategoryData = normalizedCategoryData.entities.thirdCategory;
       const fourthCategoryData = normalizedCategoryData.entities.fourthCategory;
 
+      console.log('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@');
       // second category info에 관한것을, 정리
       Object.keys(secondCategoryData).forEach(function (key) {
         sortSecondInfo[secondCategoryData[key].slug] = parseInt(key, 10 );
@@ -339,22 +341,23 @@ function normalizer ( data ) {
 
   const fourthCategory = new schema.Entity('fourthCategory', {
 
-  });
+  }, { idAttribute: 'code' });
 
   // // // Define your comments schema
   const thirdCategory = new schema.Entity('thirdCategory', {
-    name : name,
     children : [fourthCategory]
-  });
+  }, { idAttribute: 'code' });
 
   const secondCategory = new schema.Entity('secondCategory', {
     // idAttribute: () => slug
     children : [thirdCategory]
-  });
+  }, { idAttribute: 'code' });
 
   const object = new schema.Array(secondCategory);
 
-
+  console.log('%%%%%%%%%%%%%%');
+  console.log(object);
+  console.log(data);
   return normalize(data, object);
 }
 

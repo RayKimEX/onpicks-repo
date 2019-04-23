@@ -2,7 +2,7 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component, Inject,
-  Input,
+  Input, LOCALE_ID,
   OnDestroy,
   OnInit,
   Renderer2
@@ -130,11 +130,26 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
   ]
 
   sortMap = {
-    'most_popular' : '인기순',
-    'most_reviewed' : '리뷰 많은순',
-    'top_rated' : '평점순',
-    'price_high' : '가격 높은순',
-    'price_low' : '가격 낮은순'
+    'most_popular' : {
+      ko : '인기순',
+      en : 'Popular'
+    },
+    'most_reviewed' : {
+      ko : '리뷰 많은순',
+      en : 'Most Reviews'
+    },
+    'top_rated' : {
+      ko : '평점순',
+      en : 'Most Ratings'
+    },
+    'price_high' : {
+      ko : '가격 높은순',
+      en : ''
+    },
+    'price_low' : {
+      ko : '가격 낮은순',
+      en : ''
+    }
   }
 
   constructor(
@@ -142,6 +157,7 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
     @Inject( LOCATION_MAP ) public locationMap: any,
     @Inject( CATEGORY_CODE_MAP)  private categoryMap,
     @Inject( RESPONSIVE_MAP ) public responsiveMap,
+    @Inject( LOCALE_ID ) public locale: string,
     private uiService: UiService,
     private renderer: Renderer2,
     private store: Store<any>,
@@ -170,6 +186,8 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
         // this.categoryList = val;
         this.normalizedCategoryInfoList = val.entities;
         this.normalizedCategoryCodeList = val.result;
+        console.log('###################################');
+        console.log(val.result);
         this.previous = val.previous;
         this.currentSlug = val.currentSlug;
         this.currentCode = val.currentCode;
@@ -328,9 +346,6 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
         this.currentCategoryCode = val.category;
         this.currentSortSlug = val.ordering === undefined ? 'most_popular' : val.ordering;
 
-
-
-
         this.brandListForCheck = {};
         this.valueListForCheck = {};
         this.locationListForCheck = {};
@@ -346,14 +361,10 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
           this.brandListForCheck = {...this.brandListForCheck, ...tempForInfo};
         });
 
-
-
         this.queryParams.value.forEach(v => {
           const tempForInfo = Object.assign({[v]: true});
           this.valueListForCheck = {...this.valueListForCheck, ...tempForInfo};
         });
-
-
 
         this.queryParams.location.forEach(v => {
           const tempForInfo = Object.assign({[v]: true});

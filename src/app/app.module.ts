@@ -107,10 +107,8 @@ export function getCurrency() {
     FormsModule,
     ReactiveFormsModule,
 
-
     RouterModule,
     AppRoutingModule,
-
 
     // Common Module
     StoreModule.forRoot(reducers),
@@ -124,7 +122,6 @@ export function getCurrency() {
     DirectivesModule,
     UiModule,
     ShopsModule,
-    ///
 
     // ShowcasesModule,
     // TermsModule,

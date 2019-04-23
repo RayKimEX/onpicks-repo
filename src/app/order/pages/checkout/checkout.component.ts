@@ -16,7 +16,7 @@ import {catchError, debounceTime, distinctUntilChanged, flatMap, map, tap} from 
 import {select, Store} from '@ngrx/store';
 import {Router} from '@angular/router';
 import {CartToCheckoutService} from '../../share/cart-to-checkout.service';
-import {CURRENCY, DOMAIN_HOST, RESPONSIVE_MAP} from '../../../core/global-constant/app.config';
+import {CURRENCY, DOMAIN_HOST, REGION_ID, RESPONSIVE_MAP} from '../../../core/global-constant/app.config';
 import {FormControl, FormGroup} from '@angular/forms';
 import {OrderDataService} from '../../../core/service/data-pages/order/order-data.service';
 import {BreakpointObserver, BreakpointState} from '../../../../../node_modules/@angular/cdk/layout';
@@ -51,22 +51,37 @@ export class CheckoutComponent implements OnInit, AfterViewInit, OnDestroy {
   isShowDeliveryModal = false;
 
   deliveryOption = {
-    title : '배송시 요청 사항 (선택사항)',
+    title : {
+      ko : '배송시 요청 사항 (선택사항)',
+      en : '배송시 요청 사항 (선택사항) ( 영어 )',
+    },
     list : [
       {
-        title : '직접 받고 부재시에는 문 앞에 놔주세요',
+        title : {
+          ko : '직접 받고 부재시에는 문 앞에 놔주세요',
+          en : '직접 받고 부재시에는 문 앞에 놔주세요 ( 영어 )'
+        },
         value : '직접 받고 부재시에는 문 앞에 놔주세요'
       },
       {
-        title : '문 앞에 놔주세요',
+        title : {
+          ko : '문 앞에 놔주세요',
+          en : '문 앞에 놔주세요 ( 영어 )'
+        },
         value : '문 앞에 놔주세요'
       },
       {
-        title : '경비실에 맡겨주세요',
+        title : {
+          ko : '경비실에 맡겨주세요',
+          en : '경비실에 맡겨주세요 ( 영어 )'
+        },
         value : '경비실에 맡겨주세요'
       },
       {
-        title : '배송전에 연락 주세요',
+        title : {
+          ko : '배송전에 연락 주세요',
+          en : '배송전에 연락 주세요 ( 영어 )'
+        },
         value : '배송전에 연락 주세요'
       },
       // {
@@ -154,6 +169,7 @@ export class CheckoutComponent implements OnInit, AfterViewInit, OnDestroy {
     @Inject(CURRENCY) public currency: BehaviorSubject<any>,
     @Inject(DOMAIN_HOST) private BASE_URL: string,
     @Inject(RESPONSIVE_MAP) public responsiveMap,
+    @Inject(REGION_ID) public region: string,
     private orderDataService: OrderDataService,
     private renderer: Renderer2,
     private httpClient: HttpClient,
@@ -700,17 +716,17 @@ export class CheckoutComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
 
-    //
-    // if ( this.checkoutAdditionNumber.nativeElement.children[0].value === '') {
-    //   if ( this.errorStatus === 0 ) {this.checkoutAdditionNumber.nativeElement.children[0].focus();}
-    //   this.errorStatus |= this.EMPTY_CUSTOMS_ID_NUMBER;
-    // } else {
-      // const patt = new RegExp('^[pP][0-9]{12}$');
-      // if ( !(patt.test(this.checkoutAdditionNumber.nativeElement.children[0].value))) {
-      //   if ( this.errorStatus === 0 ) {this.checkoutAdditionNumber.nativeElement.children[0].focus();}
-      //   this.errorStatus |= this.INVALID_CUSTOMS_ID_NUMBER;
-      // }
-    // }
+
+    if ( this.checkoutAdditionNumber.nativeElement.children[0].value === '') {
+      if ( this.errorStatus === 0 ) {this.checkoutAdditionNumber.nativeElement.children[0].focus();}
+      this.errorStatus |= this.EMPTY_CUSTOMS_ID_NUMBER;
+    } else {
+      const patt = new RegExp('^[pP][0-9]{12}$');
+      if ( !(patt.test(this.checkoutAdditionNumber.nativeElement.children[0].value))) {
+        if ( this.errorStatus === 0 ) {this.checkoutAdditionNumber.nativeElement.children[0].focus();}
+        this.errorStatus |= this.INVALID_CUSTOMS_ID_NUMBER;
+      }
+    }
 
     if ( this.isAgreementDirectBuyingInfo === false ) {
       this.errorStatus |= this.EMPTY_AGREEMENT_DIRECT_BUYING;

@@ -8,27 +8,27 @@ export const CATEGORY_SECOND_MAP_CONST = {
   'pantry-and-household' : {
     'grocery' : {
       ko : '식품',
-      en : ''
+      en : 'Grocery'
     },
     'household-supplies' : {
       ko : '생활용품',
-      en : ''
+      en : 'Household'
     },
     'health' : {
       ko : '건강',
-      en : ''
+      en : 'Health'
     },
     'personal-care' : {
       ko : '퍼스널케어',
-      en : ''
+      en : 'Personal Care'
     },
     'baby' : {
       ko : '유아동',
-      en : ''
+      en : 'Baby'
     },
     'pet-supplies': {
       ko : '반려용품',
-      en : ''
+      en : 'Pet'
     },
     // 'office-supplies' : {
     //   name : '사무용품'
@@ -37,27 +37,27 @@ export const CATEGORY_SECOND_MAP_CONST = {
   'beauty' : {
     'skin-care' : {
       ko : '스킨케어',
-      en : ''
+      en : 'Skin Care'
     },
     'hair-care' : {
       ko : '헤어케어',
-      en : ''
+      en : 'Hair'
     },
     'fragrance' : {
       ko : '향수',
-      en : ''
+      en : 'Fragrance'
     },
     'makeup' : {
       ko : '메이크업',
-      en : ''
+      en : 'Makeup'
     },
     'body-care' : {
       ko : '바디',
-      en : ''
+      en : 'Body Care'
     },
     'mens-grooming' : {
       ko : '남성',
-      en : ''
+      en : 'Mens'
     }
   }
 }

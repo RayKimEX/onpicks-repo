@@ -15,18 +15,46 @@
         <div (click)="exitEvent.emit()" *ngIf="state === 'menu' || state === 'sort'"
           class="search-content-mobile__filter--delete">
         </div>
-        <div class="search-content-mobile__filter--title subtitle-1-regular">
-          <span *ngIf="state === 'menu'">필터</span>
-          <span *ngIf="state === 'category'">{{searchState === 'search' ? '검색' : ''}} 카테고리</span>
-          <span *ngIf="state === 'brand'">브랜드</span>
-          <span *ngIf="state === 'value'">식품인증</span>
-          <span *ngIf="state === 'ex-warehouse'">출고지</span>
-          <span *ngIf="state === 'sort'">정렬</span>
+        <div
+          class="search-content-mobile__filter--title subtitle-1-regular">
+          <span
+            i18n="@@word__filter"
+            *ngIf="state === 'menu'">
+            필터
+          </span>
+          <span
+            i18n="@@word__category"
+            *ngIf="state === 'category'">
+            <!--{{searchState === 'search' ? '검색' : ''}} -->
+            카테고리
+          </span>
+          <span
+            i18n="@@word__brand"
+            *ngIf="state === 'brand'">
+            브랜드
+          </span>
+          <span
+            i18n="@@word__value"
+            *ngIf="state === 'value'">
+            식품인증
+          </span>
+          <span
+            i18n="@@word__warehouse"
+            *ngIf="state === 'ex-warehouse'">
+            출고지
+          </span>
+          <span
+            i18n="@@word__sort"
+            *ngIf="state === 'sort'">
+            정렬
+          </span>
         </div>
         <div
           *ngIf="state !== 'sort'"
           class="search-content-mobile__filter--remove-all">
-          <a class="subtitle-1-regular u-color-dark-grey"
+          <a
+            i18n="@@word__clear-all"
+            class="subtitle-1-regular u-color-dark-grey"
             (click)="removeFilter(state)">모두 제거</a>
         </div>
       </div>
@@ -55,7 +83,7 @@
           <span>
             <a
               (click)="categoryClicked('/shops/c/'+ router.url.split('/')[3] + '/' +categoryList.secondCategory[firstCategoryCode].slug, firstCategoryCode)">
-              {{ categoryList.secondCategory[firstCategoryCode].name }}
+              {{ categoryList.secondCategory[firstCategoryCode].name[locale] }}
               <!--(click)="categoryClicked('/shops/c/'+oneCat.slug, oneCat?.code)">-->
             </a>
           </span>
@@ -75,7 +103,7 @@
               ]"
 
               (click)="categoryClicked('/shops/c/'+ router.url.split('/')[3] + '/' +categoryList.secondCategory[firstCategoryCode].slug.toLowerCase()+'/'+categoryList.thirdCategory[secondCategoryCode].slug.toLowerCase(), categoryList.thirdCategory[secondCategoryCode].code)">
-              {{ categoryList.thirdCategory[secondCategoryCode].name }}
+              {{ categoryList.thirdCategory[secondCategoryCode].name[locale] }}
             </a>
             <span
               *ngIf="(!(secondCategoryCode / currentCategoryCode < 1)) && (secondCategoryCode / currentCategoryCode < 1 || currentCategoryCode == secondCategoryCode )"
@@ -96,7 +124,7 @@
                   ( currentCategoryCode == thirdCategoryCode ) ? 'subtitle-2-bold' : 'subtitle-2-regular'
                 ]"
                 (click)="categoryClicked('/shops/c/' + router.url.split('/')[3] + '/' + categoryList.secondCategory[firstCategoryCode].slug.toLowerCase()+'/' + categoryList.thirdCategory[secondCategoryCode].slug.toLowerCase()+'/' + categoryList.fourthCategory[thirdCategoryCode].slug.toLowerCase(), categoryList.fourthCategory[thirdCategoryCode].code)">
-                {{ categoryList.fourthCategory[thirdCategoryCode].name }}
+                {{ categoryList.fourthCategory[thirdCategoryCode].name[locale] }}
               </a>
               <span
                 *ngIf="(!(thirdCategoryCode / currentCategoryCode < 1)) && (thirdCategoryCode / currentCategoryCode < 1 || currentCategoryCode == thirdCategoryCode )"
@@ -126,7 +154,7 @@
             </span>
             <span>
               <a
-                [ngClass]="{'u-color-dark-grey' : (oneCat?.code / currentCategoryCode < 1)}" (click)="categoryClicked('/shops/c/'+oneCat.slug, oneCat?.code)">{{ oneCat.name }}
+                [ngClass]="{'u-color-dark-grey' : (oneCat?.code / currentCategoryCode < 1)}" (click)="categoryClicked('/shops/c/'+oneCat.slug, oneCat?.code)">{{ oneCat.name[locale] }}
                 <!--(click)="categoryClicked('/shops/c/'+oneCat.slug, oneCat?.code)">-->
               </a>
             </span>
@@ -149,7 +177,7 @@
                   (twoCat?.code / currentCategoryCode < 1) ? 'u-color-dark-grey' : '',
                   (twoCat?.code / currentCategoryCode < 1 || currentCategoryCode == twoCat?.code ) ? 'subtitle-2-bold' : 'subtitle-2-regular'
                 ]"
-                (click)="categoryClicked('/shops/c/'+oneCat.slug.toLowerCase()+'/'+twoCat.slug.toLowerCase(), twoCat?.code)">{{ twoCat.name }}
+                (click)="categoryClicked('/shops/c/'+oneCat.slug.toLowerCase()+'/'+twoCat.slug.toLowerCase(), twoCat?.code)">{{ twoCat.name[locale] }}
               </a>
               <span
                 *ngIf="(!(twoCat?.code / currentCategoryCode < 1)) && (twoCat?.code / currentCategoryCode < 1 || currentCategoryCode == twoCat?.code )"
@@ -171,7 +199,7 @@
                     (threeCat?.code / currentCategoryCode < 1 || currentCategoryCode == threeCat?.code ) ? 'subtitle-2-bold' : 'subtitle-2-regular'
                     ]"
                   (click)="categoryClicked('/shops/c/'+oneCat.slug.toLowerCase()+'/'+twoCat.slug.toLowerCase()+'/'+threeCat.slug.toLowerCase() ,threeCat?.code)">
-                  {{ threeCat.name }}
+                  {{ threeCat.name[locale] }}
                 </a>
                 <span
                   *ngIf="(!(threeCat?.code / currentCategoryCode < 1)) && (threeCat?.code / currentCategoryCode < 1 || currentCategoryCode == threeCat?.code )"
@@ -190,7 +218,7 @@
                   <a
                     [ngClass]="[(currentCategoryCode == fourCat?.code ) ? 'subtitle-2-bold' : 'subtitle-2-regular']"
                     (click)="categoryClicked('/shops/c/'+oneCat.slug.toLowerCase()+'/'+twoCat.slug.toLowerCase()+'/'+threeCat.slug.toLowerCase()+'/'+fourCat.slug.toLowerCase() , fourCat?.code)">
-                    {{ fourCat?.name }}
+                    {{ fourCat?.name[locale] }}
                   </a>
                   <span
                     *ngIf="(!(fourCat?.code / currentCategoryCode < 1)) && (fourCat?.code / currentCategoryCode < 1 || currentCategoryCode == fourCat?.code )"
@@ -301,7 +329,7 @@
         <li class="search-content-mobile__sort--li subtitle-2-regular"
             (click)="sortClicked(sortItem.value)"
           *ngFor="let sortItem of sortList">
-          <span>{{ sortItem.title }}</span>
+          <span>{{ sortItem.title[locale] }}</span>
           <span
             *ngIf="currentSortSlug === sortItem.value"
             class="u-float-right">
@@ -319,7 +347,11 @@
         <div
           (click)="state = 'category'"
           class="search-content-mobile__filter--navigate-menu--vertical-center">
-          <span class="subtitle-2-regular">카테고리</span>
+          <span
+            i18n="@@word__category"
+            class="subtitle-2-regular">
+            카테고리
+          </span>
           <svg xmlns="http://www.w3.org/2000/svg" width="8" height="14" viewBox="0 0 8 14">
             <path fill="#292929" fill-rule="evenodd" d="M1 14a.999.999 0 0 1-.707-1.707L5.586 7 .293 1.707A.999.999 0 1 1 1.707.293l6 6a.999.999 0 0 1 0 1.414l-6 6A.997.997 0 0 1 1 14"/>
           </svg>
@@ -329,7 +361,11 @@
         (click)="state = 'brand'"
         class="search-content-mobile__filter--navigate-menu--item">
         <div class="search-content-mobile__filter--navigate-menu--vertical-center">
-          <span class="subtitle-2-regular">브랜드</span>
+          <span
+            i18n="@@word__brand"
+            class="subtitle-2-regular">
+            브랜드
+          </span>
           <svg xmlns="http://www.w3.org/2000/svg" width="8" height="14" viewBox="0 0 8 14">
             <path fill="#292929" fill-rule="evenodd" d="M1 14a.999.999 0 0 1-.707-1.707L5.586 7 .293 1.707A.999.999 0 1 1 1.707.293l6 6a.999.999 0 0 1 0 1.414l-6 6A.997.997 0 0 1 1 14"/>
           </svg>
@@ -339,7 +375,11 @@
         (click)="state = 'value'"
         class="search-content-mobile__filter--navigate-menu--item">
         <div class="search-content-mobile__filter--navigate-menu--vertical-center">
-          <span class="subtitle-2-regular">식품인증</span>
+          <span
+            i18n="@@word__value"
+            class="subtitle-2-regular">
+            식품인증
+          </span>
           <svg xmlns="http://www.w3.org/2000/svg" width="8" height="14" viewBox="0 0 8 14">
             <path fill="#292929" fill-rule="evenodd" d="M1 14a.999.999 0 0 1-.707-1.707L5.586 7 .293 1.707A.999.999 0 1 1 1.707.293l6 6a.999.999 0 0 1 0 1.414l-6 6A.997.997 0 0 1 1 14"/>
           </svg>
@@ -349,7 +389,11 @@
         (click)="state = 'ex-warehouse'"
         class="search-content-mobile__filter--navigate-menu--item">
         <div class="search-content-mobile__filter--navigate-menu--vertical-center">
-          <span class="subtitle-2-regular">출고지</span>
+          <span
+            i18n="@@word__warehouse"
+            class="subtitle-2-regular">
+            출고지
+          </span>
           <svg xmlns="http://www.w3.org/2000/svg" width="8" height="14" viewBox="0 0 8 14">
             <path fill="#292929" fill-rule="evenodd" d="M1 14a.999.999 0 0 1-.707-1.707L5.586 7 .293 1.707A.999.999 0 1 1 1.707.293l6 6a.999.999 0 0 1 0 1.414l-6 6A.997.997 0 0 1 1 14"/>
           </svg>

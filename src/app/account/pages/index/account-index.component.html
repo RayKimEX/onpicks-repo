@@ -5,10 +5,14 @@
         <img src="{{ userData?.avatar === ''? 'http://img.onpicks.com/assets/default_avatar.png' : userData?.avatar }}" alt="">
       </div>
       <div class="account-profile__info-description">
-        <div class="account-profile__info-description--name h1-bold" >{{ userData?.nickname }}</div>
+        <div class="account-profile__info-description--name h1-bold" >
+          {{ userData?.nickname }}
+        </div>
         <div
           i18n="@@account-profile__info-description--grade"
-          class="account-profile__info-description--grade subtitle-2-regular">골드 멤버</div>
+          class="account-profile__info-description--grade subtitle-2-regular">
+          골드 멤버
+        </div>
         <div
           i18n="@@account-profile__modify"
           routerLink="/account/settings/profile"
@@ -33,7 +37,7 @@
         </li>
         <li>
           <button
-            i18n="@@account-navigator__shopping"
+            i18n="@@word__my-shopping"
             class="subtitle-2-bold u-color-grey"
             routerLinkActive="u-color-black"
             routerLink="/account/my-shopping">
@@ -42,7 +46,7 @@
         </li>
         <li>
           <button
-            i18n="@@account-navigator__review"
+            i18n="@@word__my-review"
             class="subtitle-2-bold u-color-grey"
             routerLinkActive="u-color-black"
             routerLink="/account/my-reviews">
@@ -51,7 +55,7 @@
         </li>
         <li>
           <button
-            i18n="@@account-navigator__wish-list"
+            i18n="@@word__wish-list"
             class="subtitle-2-bold u-color-grey"
             routerLinkActive="u-color-black"
             routerLink="/account/wish-list">
@@ -60,7 +64,7 @@
         </li>
         <li>
           <button
-            i18n="@@account-navigator__setting"
+            i18n="@@word__setting"
             class="subtitle-2-bold u-color-grey"
             routerLinkActive="u-color-black"
             routerLink="/account/settings">

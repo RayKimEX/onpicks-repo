@@ -248,15 +248,20 @@
             <li class="header__mobile-hamburger--li">
               <div
                 (click)="routeForMobile('/account/my-shopping/orders', inputCheckedForToggle)">
-                <div class="u-button-effect">
+                <div
+                  i18n="@@word__my-shopping"
+                  class="u-button-effect">
                   나의 쇼핑
                 </div>
               </div>
             </li>
             <li class="header__mobile-hamburger--li">
               <div
+
                 (click)="routeForMobile('/account/my-reviews/written', inputCheckedForToggle)">
-                <div class="u-button-effect">
+                <div
+                  i18n="@@word__my-review"
+                  class="u-button-effect">
                   나의 리뷰
                 </div>
               </div>
@@ -264,7 +269,9 @@
             <li class="header__mobile-hamburger--li">
               <div
                 (click)="routeForMobile('/account/wish-list', inputCheckedForToggle)">
-                  <div class="u-button-effect">
+                  <div
+                    i18n="@@word__wish-list"
+                    class="u-button-effect">
                     다음에 구매하기
                   </div>
               </div>
@@ -272,7 +279,9 @@
             <li class="header__mobile-hamburger--li">
               <div
                 (click)="isShowSettingMenu = true">
-                <div class="u-button-effect">
+                <div
+                  i18n="@@word__setting"
+                  class="u-button-effect">
                   설정
                 </div>
                 <svg class="u-float-right" xmlns="http://www.w3.org/2000/svg" width="8" height="14" viewBox="0 0 8 14">
@@ -285,12 +294,12 @@
         <ul class="header__mobile-hamburger--ul subtitle-2-regular">
           <li
             class="header__mobile-hamburger--li"
-            *ngFor="let item of menuMap[locale]?.main">
+            *ngFor="let item of menuMap?.main">
             <div
               (click)="routeForMobile('/shops/c/' + item.href, inputCheckedForToggle)">
               <div class="u-button-effect">
                 <img [src]="'https://img.onpicks.com/assets/menu/' + item.slug + '.jpg?d=w80-h80'" alt="">
-                <span>{{item.name}}</span>
+                <span>{{item.name[locale]}}</span>
               </div>
             </div>
           </li>
@@ -299,7 +308,9 @@
           <li class="header__mobile-hamburger--li">
             <div
               (click)="showPreparingMessage()">
-              <div class="u-button-effect">
+              <div
+                i18n="@@header__reviews"
+                class="u-button-effect">
                 리뷰
               </div>
             </div>

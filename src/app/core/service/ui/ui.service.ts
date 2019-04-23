@@ -14,10 +14,7 @@ export class UiService {
     @Inject(DOMAIN_HOST) private BASE_URL: string,
     @Inject(CATEGORY_MAP) private CATEGORY_MAP_CONST,
     private httpClient: HttpClient,
-
-  ) {
-
-  }
+  ) { }
 
   getWeeklyBestGoods() {
     return this.httpClient.get<any>(this.BASE_URL + '/api/home/weekly_best/');
@@ -38,17 +35,19 @@ export class UiService {
   }
 
   getCategoryAll(oneDepthCode) {
-
     // return this.httpClient.get<any>(this.BASE_URL + '/api/categories/' + oneDepthCode + '/descendants/' );
     return of(this.CATEGORY_MAP_CONST[oneDepthCode]);
   }
 
   postLanguageSetting(xLanguageCode) {
+
     // ko = 한국어
     // en = 영어
 
     // us = 미국
     // kr = 한국
+
     return this.httpClient.post<any>( this.BASE_URL + '/api/preferences/language/', { language : xLanguageCode } );
   }
+
 }

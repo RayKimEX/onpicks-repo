@@ -22,8 +22,11 @@
 
 <ui-footer [ngStyle]="{ paddingTop : deltaHeight }"></ui-footer>
 
-<div>
-  <a [ngStyle]="{ bottom : globalKakaoPosition }" class="kakao-plus-friend" (click)="plusFriendChat()">
+<div *ngIf="region === 'kr'">
+  <a
+    [ngStyle]="{ bottom : globalKakaoPosition }"
+    class="kakao-plus-friend"
+    (click)="plusFriendChat()">
     <img src="https://img.onpicks.com/assets/social/kakao-plus-friend.png"/>
   </a>
 </div>

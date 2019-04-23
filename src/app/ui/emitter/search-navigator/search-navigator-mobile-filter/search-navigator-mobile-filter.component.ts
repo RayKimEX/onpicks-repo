@@ -1,4 +1,4 @@
-import {Component, OnInit, ChangeDetectionStrategy, Input, Output, EventEmitter, Inject} from '@angular/core';
+import {Component, OnInit, ChangeDetectionStrategy, Input, Output, EventEmitter, Inject, LOCALE_ID} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
@@ -45,6 +45,7 @@ export class SearchNavigatorMobileFilterComponent implements OnInit {
   // 'ex-warehouse'
 
   constructor(
+    @Inject(LOCALE_ID) public locale: string,
     public router: Router,
     private route: ActivatedRoute,
   ) {

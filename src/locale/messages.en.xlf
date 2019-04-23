@@ -847,38 +847,6 @@
         </context-group>
       </trans-unit>
 
-      <trans-unit id="account-navigator__shopping" datatype="html">
-        <target>My Shopping</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
-          <context context-type="linenumber">52</context>
-        </context-group>
-      </trans-unit>
-
-      <trans-unit id="account-navigator__review" datatype="html">
-        <target>My Reviews</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
-          <context context-type="linenumber">52</context>
-        </context-group>
-      </trans-unit>
-
-      <trans-unit id="account-navigator__wish-list" datatype="html">
-        <target>Saved for Later</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
-          <context context-type="linenumber">52</context>
-        </context-group>
-      </trans-unit>
-
-      <trans-unit id="account-navigator__setting" datatype="html">
-        <target>Setting</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
-          <context context-type="linenumber">52</context>
-        </context-group>
-      </trans-unit>
-
       <trans-unit id="account-navigator__log-out" datatype="html">
         <target>Logout</target>
         <context-group purpose="location">
@@ -961,22 +929,6 @@
         </context-group>
       </trans-unit>
 
-      <trans-unit id="cart__payment-table--subtotal" datatype="html">
-        <target>Subtotal</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
-          <context context-type="linenumber">52</context>
-        </context-group>
-      </trans-unit>
-
-      <trans-unit id="cart__payment-table--shipping-fee" datatype="html">
-        <target>Shipping Fee</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
-          <context context-type="linenumber">52</context>
-        </context-group>
-      </trans-unit>
-
       <trans-unit id="cart__payment-table--extra-savings" datatype="html">
         <target>Extra Saving</target>
         <context-group purpose="location">
@@ -1010,6 +962,206 @@
       </trans-unit>
 
       <!--Word-->
+
+      <trans-unit id="word__category" datatype="html">
+        <target>Category</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="word__sort" datatype="html">
+        <target>Sort</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="word__clear-all" datatype="html">
+        <target>Clear All</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="word__confirm-and-pay" datatype="html">
+        <target>Confirm and Pay</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="word__order-total" datatype="html">
+        <target>Order Total</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="word__savings" datatype="html">
+        <target>Savings</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="word__shipping-fee" datatype="html">
+        <target>Shipping Fee</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="word__subtotal" datatype="html">
+        <target>Subtotal</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="word__order-summary" datatype="html">
+        <target>Order Summary</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="word__delivery-requirements" datatype="html">
+        <target>배송요청사항 ( 영어 )</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="word__zip-code" datatype="html">
+        <target>Zip Code</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="word__address" datatype="html">
+        <target>Address</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="word__recipient-phone-number" datatype="html">
+        <target>Recipient Phone Number</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="word__recipient-name" datatype="html">
+        <target>Recipient Name</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="word__recipient" datatype="html">
+        <target>Recipient</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="word__shipping-addresses" datatype="html">
+        <target>Shipping Addresses</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="word__free-shipping" datatype="html">
+        <target>Free shipping</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="word__value" datatype="html">
+        <target>Value</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="word__warehouse" datatype="html">
+        <target>Warehouse</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="word__brand" datatype="html">
+        <target>Brand</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="word__filter" datatype="html">
+        <target>Filter</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="word__my-shopping" datatype="html">
+        <target>My Shopping</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="word__my-review" datatype="html">
+        <target>My Reviews</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="word__wish-list" datatype="html">
+        <target>Saved for Later</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="word__setting" datatype="html">
+        <target>Setting</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
 
       <trans-unit id="word__remove" datatype="html">
         <target>Remove</target>
@@ -1083,7 +1235,80 @@
         </context-group>
       </trans-unit>
 
-      <!--Sentence Warehouse-->
+      <trans-unit id="word__checkout" datatype="html">
+        <target>Checkout</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="word__checkout-completed" datatype="html">
+        <target>Completed</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="word__buyer-information" datatype="html">
+        <target>Buyer Information</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="word__buyer-name" datatype="html">
+        <target>Buyer Name</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="word__buyer-phone-number" datatype="html">
+        <target>Buyer Phone Number</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+
+      <!--Sentence-->
+
+      <trans-unit id="sentence__save-address" datatype="html">
+        <target>배송지 저장 ( 영어 )</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="sentence__insert-detail-address" datatype="html">
+        <target>상세주소를 입력하세요 ( 영어 )</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="sentence__search-zip-code" datatype="html">
+        <target>우편번호 찾기 ( 영어 )</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="sentence__insert-buyer-name" datatype="html">
+        <target>주문자 성함을 입력해주세요 ( 영어 )</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
 
       <trans-unit id="sentence__wish-list" datatype="html">
         <target>Save for later</target>

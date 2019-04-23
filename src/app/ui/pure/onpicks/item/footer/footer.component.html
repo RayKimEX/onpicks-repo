@@ -14,7 +14,7 @@
           </li>
           <li>
             <a
-              routerLink="/help/contact"
+              href="mailto:help@onpicks.com"
               class="subtitle-2-regular u-color-white"
               i18n="@@footer__contact">
               고객센터|Contact
@@ -55,13 +55,6 @@
           class="footer__desktop--miscell--item subtitle-2-regular">
           {{ (currency | async) === 'KRW' ? 'KRW ₩' : 'USD $' }}
         </emitter-change-preference>
-        <!--<emitter-change-preference-->
-          <!--[position]="'footer'"-->
-          <!--[color]="'white'"-->
-          <!--[type]="'locale'"-->
-          <!--class="footer__desktop&#45;&#45;miscell&#45;&#45;item subtitle-2-regular">-->
-          <!--{{ locale === 'ko' ? '한글' : 'ENG' }}-->
-        <!--</emitter-change-preference>-->
       </div>
       <hr>
     </div>
@@ -156,7 +149,7 @@
           </div>
           <div class="footer__mobile--second-floor--outer--inner--item">
             <a
-              routerLink="/help/contact"
+              href="mailto:help@onpicks.com"
               class="subtitle-2-regular u-color-white"
               i18n="@@footer__contact">
               고객센터|Contact
@@ -232,5 +225,3 @@
     </div>
   </div>
 </footer>
-
-

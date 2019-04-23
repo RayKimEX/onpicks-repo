@@ -130,7 +130,10 @@
               </ng-container>
             </ng-container>
             <ng-container *ngIf="!(router.url.split('/')[2].indexOf('search') > -1)">
-              <div class="c-category-navigator__title subtitle-1-bold">{{currentTitle}}</div>
+              <div
+                class="c-category-navigator__title subtitle-1-bold">
+                {{currentTitle[locale]}}
+              </div>
               <div class="c-category-navigator__content">
                 <nav class="subtitle-3-bold u-color-dark-grey">
                   <!-- async를 이용하여 마지막에의 변수값가져오기 -->
@@ -140,7 +143,7 @@
                       <div class="c-category-navigator__item">
                         <a (click)="updateSecondCategory(firstCategoryCode, normalizedCategoryInfoList.secondCategory[firstCategoryCode].slug)"
                            [ngClass]="normalizedCategoryInfoList.secondCategory[firstCategoryCode].active ? 'main-active' : 'main-deactive'" >
-                          {{normalizedCategoryInfoList.secondCategory[firstCategoryCode].name}}
+                          {{normalizedCategoryInfoList.secondCategory[firstCategoryCode].name[locale]}}
                         </a>
                         <label (click)="onedepthFold(f1, label1)" >
                           <svg #label1 width="10" height="8" viewBox="0 0 10 8"
@@ -164,7 +167,7 @@
                                       normalizedCategoryInfoList.thirdCategory[secondCategoryId].slug)"
                                [ngClass]="normalizedCategoryInfoList.secondCategory[firstCategoryCode].active && !normalizedCategoryInfoList.thirdCategory[secondCategoryId].active
                                         ? previous.thirdPrevious !== undefined ? 'main-deactive' : 'sub-active' : normalizedCategoryInfoList.thirdCategory[secondCategoryId].active ?  'main-active' : 'main-deactive' ">
-                              {{normalizedCategoryInfoList.thirdCategory[secondCategoryId].name}}
+                              {{normalizedCategoryInfoList.thirdCategory[secondCategoryId].name[locale]}}
                             </a>
                             <!--3dpeth-->
                             <label *ngIf="normalizedCategoryInfoList.thirdCategory[secondCategoryId].children.length !== 0 " for="" (click)="twodepthFold(f2, label2)"  >
@@ -189,8 +192,9 @@
                                       normalizedCategoryInfoList.secondCategory[firstCategoryCode].slug,
                                       normalizedCategoryInfoList.thirdCategory[secondCategoryId].slug,
                                       normalizedCategoryInfoList.fourthCategory[thirdCategoryId].slug)"
-                                  [ngClass]="normalizedCategoryInfoList.thirdCategory[secondCategoryId].active ?  lastUrl[1] == normalizedCategoryInfoList.fourthCategory[thirdCategoryId].slug ? 'main-active' : 'sub-active' : 'main-deactive'"
-                                >{{normalizedCategoryInfoList.fourthCategory[thirdCategoryId].name}}</a>
+                                  [ngClass]="normalizedCategoryInfoList.thirdCategory[secondCategoryId].active ?  lastUrl[1] == normalizedCategoryInfoList.fourthCategory[thirdCategoryId].slug ? 'main-active' : 'sub-active' : 'main-deactive'">
+                                  {{ normalizedCategoryInfoList.fourthCategory[thirdCategoryId].name[locale] }}
+                                </a>
                               </div>
                             </li>
                           </ul>
@@ -207,9 +211,14 @@
           </div>
           <div class="c-filter-navigator">
             <div class="c-filter-navigator__title">
-              <span class="c-filter-navigator__title--name subtitle-1-bold">필터</span>
+              <span
+                i18n="@@word__filter"
+                class="c-filter-navigator__title--name subtitle-1-bold">
+                필터
+              </span>
               <span class="c-filter-navigator__title--remove">
                 <a
+                  i18n="@@word__clear-all"
                   class="subtitle-3-regular u-color-grey"
                   (click)="removeAllFilter()">
                   모두제거
@@ -223,7 +232,6 @@
                     (click)="removeSpecificFilter(item)"
                     class="c-filter-navigator__content-ul--item-remove-outer">
                     <span
-
                       class="c-filter-navigator__content-ul--item-remove">
                     </span>
                   </div>
@@ -235,10 +243,15 @@
           </div>
           <div class="c-brand-navigator">
             <div class="c-brand-navigator__title">
-              <span class="c-brand-navigator__title--name subtitle-3-bold">브랜드</span>
+              <span
+                i18n="@@word__brand"
+                class="c-brand-navigator__title--name subtitle-3-bold">
+                브랜드
+              </span>
               <span class="c-brand-navigator__title--count subtitle-3-regular u-color-dark-grey">{{brandList?.length}}</span>
               <span class="c-brand-navigator__title--remove">
                 <a
+                  i18n="@@word__clear-all"
                   class="subtitle-3-regular u-color-grey"
                   (click)="removeAllFilterBrand()">
                   모두제거
@@ -273,10 +286,13 @@
           </div>
           <div class="c-value-navigator">
             <div class="c-value-navigator__title">
-              <span class="c-value-navigator__title--name subtitle-3-bold">식품인증</span>
+              <span
+                i18n="@@word__value"
+                class="c-value-navigator__title--name subtitle-3-bold">식품인증|Value</span>
               <span class="c-value-navigator__title--count subtitle-3-regular u-color-dark-grey">{{valueList?.length}}</span>
               <span class="c-value-navigator__title--remove">
                 <a
+                  i18n="@@word__clear-all"
                   class="subtitle-3-regular u-color-grey"
                   (click)="removeAllFilterValue()">
                   모두제거
@@ -302,10 +318,15 @@
           </div>
           <div class="c-ex-warehouse-navigator">
             <div class="c-ex-warehouse-navigator__title">
-              <span class="c-ex-warehouse-navigator__title--name subtitle-3-bold">출고지</span>
+              <span
+                i18n="@@word__warehouse"
+                class="c-ex-warehouse-navigator__title--name subtitle-3-bold">
+                출고지
+              </span>
               <span class="c-ex-warehouse-navigator__title--count subtitle-3-regular u-color-dark-grey">{{locationList?.length}}</span>
               <span class="c-ex-warehouse-navigator__title--remove subtitle-3-regular u-color-grey">
                 <a
+                  i18n="@@word__clear-all"
                   class="subtitle-3-regular u-color-grey"
                   (click)="removeAllFilterLocation()">
                   모두제거
@@ -352,7 +373,7 @@
 
             <ng-container  *ngIf="searchState == 'category'">
               <ng-container *ngIf="currentList.length !== 0">
-               <span>{{currentName}} {{totalCount}}</span>건
+               <span>{{currentName[locale]}} {{totalCount}}</span>건
                 <onpicks-sort-box
                   class="search-content__sort-box"
                   [selectedElement]="{ value : currentSortSlug}"
@@ -369,6 +390,7 @@
             <div class="search-content__mobile-filter--table">
               <div
                 (click)="showMobileFilter('menu')"
+                i18n="@@word__filter"
                 class="search-content__mobile-filter--table--vertical-center subtitle-2-regular">
                 필터
               </div>
@@ -379,7 +401,7 @@
               <div
                 (click)="showMobileFilter('sort')"
                 class="search-content__mobile-sorting--table--vertical-center subtitle-2-regular">
-                {{sortMap[currentSortSlug]}}
+                {{ sortMap[currentSortSlug][locale] }}
               </div>
             </div>
           </div>
@@ -468,23 +490,43 @@
                       <ng-container [ngSwitch]="item.location?.code">
                         <ng-container *ngSwitchCase="'LAX'" >
                           <span class="search-content__delivery-point--icon icon-small-la"></span>
-                          <span class="search-content__delivery-point--text subtitle-2-regular u-color-black"><strong>엘에이</strong> 출고</span>
+                          <span class="search-content__delivery-point--text subtitle-2-regular u-color-black">
+                            <span *ngIf="locale === 'en'">Shipping from </span>
+                            <strong i18n="@@location-warehouse__LAX">엘에이</strong>
+                            <span *ngIf="locale === 'ko'"> 출고</span>
+                          </span>
                         </ng-container>
                         <ng-container *ngSwitchCase="'JFK'">
                           <span class="search-content__delivery-point--icon icon-small-new"></span>
-                          <span class="search-content__delivery-point--text subtitle-2-regular u-color-black"><strong>뉴저지</strong> 출고</span>
+                          <span class="search-content__delivery-point--text subtitle-2-regular u-color-black">
+                            <span *ngIf="locale === 'en'">Shipping from </span>
+                            <strong i18n="@@location-warehouse__JFK">뉴저지</strong>
+                            <span *ngIf="locale === 'ko'"> 출고</span>
+                          </span>
                         </ng-container>
                         <ng-container *ngSwitchCase="'ATL'">
                           <span class="search-content__delivery-point--icon icon-small-gorgia"></span>
-                          <span class="search-content__delivery-point--text subtitle-2-regular u-color-black"><strong>죠지아</strong> 출고</span>
+                          <span class="search-content__delivery-point--text subtitle-2-regular u-color-black">
+                            <span *ngIf="locale === 'en'">Shipping from </span>
+                            <strong i18n="@@location-warehouse__ATL">죠지아</strong>
+                            <span *ngIf="locale === 'ko'"> 출고</span>
+                          </span>
                         </ng-container>
                         <ng-container *ngSwitchCase="'KIX'">
                           <span class="search-content__delivery-point--icon icon-small-osaka"></span>
-                          <span class="search-content__delivery-point--text subtitle-2-regular u-color-black"><strong>오사카</strong> 출고</span>
+                          <span class="search-content__delivery-point--text subtitle-2-regular u-color-black">
+                            <span *ngIf="locale === 'en'">Shipping from </span>
+                            <strong i18n="@@location-warehouse__KIX">오사카</strong>
+                            <span *ngIf="locale === 'ko'"> 출고</span>
+                          </span>
                         </ng-container>
                         <ng-container *ngSwitchCase="'HKG'">
                           <span class="search-content__delivery-point--icon icon-small-hong"></span>
-                          <span class="search-content__delivery-point--text subtitle-2-regular u-color-black"><strong>홍콩</strong> 출고</span>
+                          <span class="search-content__delivery-point--text subtitle-2-regular u-color-black">
+                            <span *ngIf="locale === 'en'">Shipping from </span>
+                            <strong i18n="@@location-warehouse__HKG">홍콩</strong>
+                            <span *ngIf="locale === 'ko'"> 출고</span>
+                          </span>
                         </ng-container>
                       </ng-container>
                     </div>

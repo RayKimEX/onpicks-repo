@@ -10,7 +10,7 @@ import {CATEGORY_CODE_MAP} from './core/global-constant/app.category-database-lo
 import {tap} from 'rxjs/operators';
 import {BehaviorSubject, fromEvent} from 'rxjs';
 import {BreakpointObserver, BreakpointState} from '../../node_modules/@angular/cdk/layout';
-import {CURRENCY, RESPONSIVE_MAP} from './core/global-constant/app.config';
+import {CURRENCY, REGION_ID, RESPONSIVE_MAP} from './core/global-constant/app.config';
 import {HideCurrencyModal} from './core/store/modal/modal.actions';
 import {PREFERENCE_MAP} from './core/global-constant/app.locale';
 import {HttpClient} from '@angular/common/http';
@@ -45,11 +45,11 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit, DoCheck {
   previousUrl = [];
 
   constructor(
-
     @Inject(CATEGORY_CODE_MAP) public categoryMap,
     @Inject(RESPONSIVE_MAP) public responsiveMap,
     @Inject(LOCALE_ID) public locale: string,
     @Inject(PREFERENCE_MAP) public preferenceMap,
+    @Inject(REGION_ID) public region: string,
     @Inject(CURRENCY) public currency: BehaviorSubject<any>,
     private store: Store<AppState>,
     private router: Router,
@@ -57,7 +57,6 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit, DoCheck {
     private renderer: Renderer2,
     private breakpointObserver:  BreakpointObserver
   ) {
-
     this.store.dispatch(new TryGetAuthUser());
     this.store.dispatch(new TryGetCartInfo());
     this.store.dispatch(new TryGetWishListInfo());

@@ -4,8 +4,8 @@ import {
   Component,
   ElementRef,
   EventEmitter,
-  HostListener,
-  Input, OnChanges,
+  HostListener, Inject,
+  Input, LOCALE_ID, OnChanges,
   OnInit,
   Output,
   Renderer2,
@@ -91,6 +91,7 @@ export class SelectBoxComponent implements OnInit, OnChanges {
   }
 
   constructor(
+    @Inject(LOCALE_ID) public locale: string,
     private eRef: ElementRef,
     private renderer: Renderer2,
     private cd: ChangeDetectorRef

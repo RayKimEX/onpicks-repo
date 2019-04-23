@@ -12,6 +12,7 @@ export class ButtonComponent implements OnInit {
   @Input('size') size;
   @Input('text') text;
   @Input('marginLeft') marginLeft;
+  @Input('padding') padding = true;
 
   constructor() {
 
