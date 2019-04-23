@@ -353,8 +353,7 @@
               <div
                 *ngIf="!((item.location.free_shipping_threshold - (item.subtotal - item.shipping_fee)) > 0)"
                 class="cart__delivery-multi-purchase--remain-description subtitle-2-bold">
-                {{item.location.name}}
-                <span i18n=""> 무료배송 조건이 충족되었습니다</span>
+                {{item.location.name}} 무료배송 조건이 충족되었습니다.
               </div>
               <ui-progressive-bar
                 [progressWidth]="((((item.subtotal - item.shipping_fee) / item.location.free_shipping_threshold) * 100) > 100 ? 100 :  ((((item.subtotal - item.shipping_fee) / item.location.free_shipping_threshold) * 100))) + '%'">
