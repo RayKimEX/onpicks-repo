@@ -93,14 +93,14 @@ export class BannerCarouselComponent implements OnInit, AfterViewInit, OnDestroy
 
     // Get the scrollbar width
     this.scrollBarWidth = scrollDiv.offsetWidth - scrollDiv.clientWidth;
-    // console.warn(this.scrollBarWidth); // Mac:  15
+    console.warn(this.scrollBarWidth); // Mac:  15
 
     this.renderer.removeChild(document.body, scrollDiv);
     this.imageIndex = 1;
-    // console.warn(window.innerWidth);
+    console.warn(window.innerWidth);
 
     this.capturedBrowserWidth = window.innerWidth - this.scrollBarWidth;
-    // console.warn(this.capturedBrowserWidth);
+    console.warn(this.capturedBrowserWidth);
     this.capturedTranslateX = window.innerWidth - this.scrollBarWidth;
     this.imagesLargeList.splice(0, 0, this.imagesLargeList.slice(this.imagesLargeList.length - 1, this.imagesLargeList.length)[0]);
     this.imagesLargeList.push(this.imagesLargeList.slice(1, 2)[0]);

@@ -52,32 +52,50 @@ export class PantryAndHouseholdComponent implements OnInit {
   popularPantryCategory = [
     {
       imgSrc : 'http://img.onpicks.com/categories/category-grocery.png',
-      name : '식품',
+      name : {
+        ko : '식품',
+        en : 'Grocery'
+      },
       href : '/shops/c/pantry-and-household/grocery'
     },
     {
       imgSrc : 'http://img.onpicks.com/categories/category-household.png',
-      name : '생활용품',
+      name : {
+        ko : '생활용품',
+        en : 'Household'
+      },
       href : '/shops/c/pantry-and-household/household-supplies'
     },
     {
       imgSrc : 'http://img.onpicks.com/categories/category-personalcare.png',
-      name : '퍼스널케어',
+      name : {
+        ko : '퍼스널케어',
+        en : 'Personal Care'
+      },
       href : '/shops/c/pantry-and-household/grocery'
     },
     {
       imgSrc : 'http://img.onpicks.com/categories/category-health.png',
-      name : '건강',
+      name : {
+        ko : '건강',
+        en : 'Health'
+      },
       href : '/shops/c/pantry-and-household/health'
     },
     {
       imgSrc : 'http://img.onpicks.com/categories/category-baby.png',
-      name : '유아동',
+      name : {
+        ko : '유아동',
+        en : 'Baby'
+      },
       href : '/shops/c/pantry-and-household/baby'
     },
     {
       imgSrc : 'http://img.onpicks.com/categories/category-pet.png',
-      name : '반려용품',
+      name : {
+        ko : '반려용품',
+        en : 'Pet'
+      },
       href : '/shops/c/pantry-and-household/pet-supplies'
     }
   ]
