@@ -72,15 +72,15 @@ export function getCurrency() {
   if (getCookie('onpicks-currency') === '') {
     switch (window.location.pathname.split('/')[1]) {
       case 'kr' :
-        // setCookie( 'onpicks-language', 'ko');
+        setCookie( 'onpicks-language', 'ko');
         setCookie( 'onpicks-currency', 'KRW');
         break;
       case 'us' :
-        // setCookie( 'onpicks-language', 'en');
+        setCookie( 'onpicks-language', 'en');
         setCookie( 'onpicks-currency', 'USD');
         break;
       case 'cn' :
-        // setCookie( 'onpicks-language', 'zh');
+        setCookie( 'onpicks-language', 'zh');
         setCookie( 'onpicks-currency', 'CNY');
         break;
       default :

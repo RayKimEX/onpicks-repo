@@ -47,7 +47,7 @@
         </ul>
       </nav>
       <div class="footer__desktop--miscell u-float-right">
-        <!--<emitter-change-preference class="header__miscell&#45;&#45;item">{{ region === '/kr' ? 'KOR' : 'USA' }}</emitter-change-preference>-->
+
         <emitter-change-preference
           [position]="'footer'"
           [type]="'region'"
@@ -118,6 +118,12 @@
   <div class="footer__mobile">
     <div class="footer__mobile--first-floor">
       <div class="footer__mobile--first-floor--miscell">
+        <emitter-change-preference
+          [type]="'region'"
+          [color]="'white'"
+          class="footer__mobile--first-floor--miscell--item subtitle-2-regular">
+          {{ region === 'kr' ? 'KOR' : 'USA' }}
+        </emitter-change-preference>
         <emitter-change-preference
           [color]="'white'"
           [type]="'currency'"
