@@ -87,7 +87,27 @@ export function getCurrency() {
         setCookie( 'onpicks-currency', '???');
         break;
     }
+  } else {
+    switch (window.location.pathname.split('/')[1]) {
+      case 'kr' :
+        setCookie( 'onpicks-language', 'ko');
+        // setCookie( 'onpicks-currency', 'KRW');
+        break;
+      case 'us' :
+        setCookie( 'onpicks-language', 'en');
+        // setCookie( 'onpicks-currency', 'USD');
+        break;
+      case 'cn' :
+        setCookie( 'onpicks-language', 'zh');
+        // setCookie( 'onpicks-currency', 'CNY');
+        break;
+      default :
+        setCookie( 'onpicks-currency', '???');
+        break;
+    }
   }
+
+
 
   return new BehaviorSubject(getCookie('onpicks-currency'));
 }
