@@ -13,14 +13,14 @@
   <div [ngStyle]="{
           display : isShowModal ? 'block' : 'none',
           color : '#000',
-          top : position === 'footer' ? '0' : 'auto',
-          right : position === 'footer' ? '80px' : 'auto'
+          marginTop : position === 'footer' ? '-180px' : 'auto',
+          marginLeft : position === 'footer' ? '-260px' : 'auto'
         }"
        class="preference-modal"><!---->
     <div class="preference-modal__inner">
       <div class="preference-modal__title">
         <span [ngClass]="[ isDesktopBreakPoint ? 'h1-bold' : 'subtitle-2-bold']">
-          {{preferenceList[type].title[locale]}}
+          {{ preferenceList[type].title[locale] }}
         </span>
       </div>
       <div (click)="changePreference(item.key)"
@@ -28,7 +28,7 @@
         <div
              class="preference-modal__item--inner">
           <span [ngClass]="{ 'subtitle-1-regular' : isDesktopBreakPoint }">
-            {{item.value[locale]}}
+            {{ item.value[locale] }}
           </span>
 
           <svg

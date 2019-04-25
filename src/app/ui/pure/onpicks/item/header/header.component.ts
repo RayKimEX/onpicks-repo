@@ -23,7 +23,7 @@ import {shareReplay, tap} from 'rxjs/operators';
 import {AuthService} from '../../../../../core/service/auth/auth.service';
 import {AuthState} from '../../../../../core/store/auth/auth.model';
 import {AppState} from '../../../../../core/store/app.reducer';
-import {CURRENCY, RESPONSIVE_MAP} from '../../../../../core/global-constant/app.config';
+import {CURRENCY, REGION_ID, RESPONSIVE_MAP} from '../../../../../core/global-constant/app.config';
 import {DisplayAlertMessage, RemoveAlertMessage} from '../../../../../core/store/ui/ui.actions';
 import {BreakpointObserver, BreakpointState} from '../../../../../../../node_modules/@angular/cdk/layout';
 import {TryLogout} from '../../../../../core/store/auth/auth.actions';
@@ -91,6 +91,7 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
     @Inject(CURRENCY) public currency: BehaviorSubject<any>,
     @Inject(MENU_MAP) public menuMap,
     @Inject(RESPONSIVE_MAP) public ResponsiveMap,
+    @Inject(REGION_ID) public region: string,
     private renderer: Renderer2,
     private authService: AuthService,
     private store: Store<AppState>,

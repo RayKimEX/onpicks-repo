@@ -26,7 +26,6 @@ import {ShowCurrencyModal} from '../../../core/store/modal/modal.actions';
 })
 
 export class ChangePreferenceComponent implements OnInit {
-
   @Input('type') type;
   @Input('color') color;
   @Input('position') position; // footer or header
@@ -35,14 +34,36 @@ export class ChangePreferenceComponent implements OnInit {
   isShowModal = false;
 
   preferenceList = {
+    region : {
+      title : {
+        ko : '배송지역을 선택해주세요',
+        en : 'Choose Shipping Destination'
+      },
+      list : {
+        kr : {
+          ko : '한국',
+          en : 'Korea'
+        },
+        us : {
+          ko : '미국',
+          en : 'United States'
+        }
+      }
+    },
     locale : {
       title : {
         ko : '언어를 선택해주세요',
         en : 'Choose Language'
       },
       list : {
-        en : 'English',
-        ko : '한국어'
+        en : {
+          ko : '영어',
+          en : 'English'
+        },
+        ko : {
+          ko : '한국어',
+          en : 'Korean'
+        }
       }
     },
     currency : {
@@ -104,13 +125,34 @@ export class ChangePreferenceComponent implements OnInit {
 
   changePreference(xPreferenceCode) {
 
-    setCookie('onpicks-currency', xPreferenceCode);
+    switch (this.type) {
+      case 'region' :
+        window.location.href = '/' + xPreferenceCode;
+        break;
 
-    if ( this.currency.getValue() !== xPreferenceCode ) {
-      window.location.reload();
-    } else {
-      this.isShowModal = false;
+      case 'currency' :
+        setCookie('onpicks-currency', xPreferenceCode);
+
+        if ( this.currency.getValue() !== xPreferenceCode ) {
+          window.location.reload();
+        } else {
+          this.isShowModal = false;
+        }
+        break;
+
+      case 'locale' :
+        console.log(xPreferenceCode);
+        setCookie('onpicks-language', xPreferenceCode);
+
+        if ( this.currency.getValue() !== xPreferenceCode ) {
+          window.location.reload();
+        } else {
+          this.isShowModal = false;
+        }
+        break;
+
     }
+
   }
 
   nonCompareFunction( a, b ) {

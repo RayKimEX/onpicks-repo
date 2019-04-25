@@ -132,7 +132,7 @@
             <ng-container *ngIf="!(router.url.split('/')[2].indexOf('search') > -1)">
               <div
                 class="c-category-navigator__title subtitle-1-bold">
-                {{currentTitle[locale]}}
+                {{currentTitle === undefined ? currentTitle : currentTitle[locale]}}
               </div>
               <div class="c-category-navigator__content">
                 <nav class="subtitle-3-bold u-color-dark-grey">

@@ -8,15 +8,21 @@
           <!--<emitter-change-preference class="header__miscell&#45;&#45;item">{{ region === '/kr' ? 'KOR' : 'USA' }}</emitter-change-preference>-->
           <emitter-change-preference
             (showEvent)="outMenu(menuToggle)"
+            [type]="'region'"
+            class="header__miscell--item">
+            {{ region === 'kr' ? 'KOR' : 'USA' }}
+          </emitter-change-preference>
+          <emitter-change-preference
+            (showEvent)="outMenu(menuToggle)"
             [type]="'currency'"
             class="header__miscell--item">
             {{ (currency | async) === 'KRW' ? 'KRW ₩' : 'USD $' }}
           </emitter-change-preference>
           <!--<emitter-change-preference-->
-            <!--(showEvent)="outMenu()"-->
+            <!--(showEvent)="outMenu(menuToggle)"-->
             <!--[type]="'locale'"-->
             <!--class="header__miscell&#45;&#45;item">-->
-            <!--{{ locale === 'ko' ? '한글' : 'ENG' }}-->
+            <!--{{ locale === 'ko' ? '한국어' : '영어' }}-->
           <!--</emitter-change-preference>-->
 
           <div class="header__miscell--profile u-float-right" *ngIf="auth !== null">
@@ -127,7 +133,8 @@
 
 
         <onpicks-search-box
-          [placeholder]="'검색어'"
+          i18n-placeholder="@@word__search"
+          placeholder="'검색어'"
           [isMobile]="true"
           (enter)="search($event)"
           #mobileSearchBox
@@ -197,7 +204,9 @@
               <svg xmlns="http://www.w3.org/2000/svg" width="8" height="14" viewBox="0 0 8 14">
                 <path fill="#B3B3B3" fill-rule="evenodd" d="M7 14a.997.997 0 0 1-.707-.293l-6-6a.999.999 0 0 1 0-1.414l6-6a.999.999 0 1 1 1.414 1.414L2.414 7l5.293 5.293A.999.999 0 0 1 7 14"/>
               </svg>
-              <div class="u-button-effect" class="u-color-dark-grey header__mobile-hamburger--return-menu">
+              <div
+                i18n="@@word__return"
+                class="u-color-dark-grey header__mobile-hamburger--return-menu u-button-effect">
                 돌아가기
               </div>
             </div>
@@ -205,7 +214,9 @@
           <li class="header__mobile-hamburger--li">
             <div
               (click)="routeForMobile('/account/settings/profile', inputCheckedForToggle)">
-              <div class="u-button-effect">
+              <div
+                i18n="@@word__profile"
+                class="u-button-effect">
                 프로필
               </div>
             </div>
@@ -213,7 +224,9 @@
           <li class="header__mobile-hamburger--li">
             <div
               (click)="routeForMobile('/account/settings/delivery-address', inputCheckedForToggle)">
-              <div class="u-button-effect">
+              <div
+                i18n="@@word__shipping"
+                class="u-button-effect">
                 배송비
               </div>
             </div>
@@ -221,7 +234,9 @@
           <li class="header__mobile-hamburger--li">
             <div
               (click)="routeForMobile('/account/settings/refund', inputCheckedForToggle)">
-              <div class="u-button-effect">
+              <div
+                i18n="@@word__refund"
+                class="u-button-effect">
                 환불정보
               </div>
             </div>
@@ -357,7 +372,11 @@
           <li class="header__mobile-hamburger--li">
             <div
               (click)="logout(inputCheckedForToggle)">
-              <a *ngIf="auth.isAuthenticated">로그아웃</a>
+              <a
+                i18n="@@word__logout"
+                *ngIf="auth.isAuthenticated">
+                로그아웃
+              </a>
             </div>
           </li>
         </ul>

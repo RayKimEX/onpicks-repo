@@ -146,7 +146,7 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit, DoCheck {
   // Shows and hides the loading spinner during RouterEvent changes
   private _navigationInterceptor(event: RouterEvent): void {
 
-    if ( event instanceof NavigationStart ){
+    if ( event instanceof NavigationStart ) {
       this.previousUrl = this.router.url.split('/');
     }
 

@@ -10,7 +10,9 @@
     <ng-container *ngIf="lengthCheckForFree !== 0 || lengthCheckForPack !== 0">
       <h1
         i18n="@@word__shopping-bag"
-        class="cart__title h1-bold">쇼핑백</h1>
+        class="cart__title h1-bold">
+        쇼핑백
+      </h1>
       <div class="cart-mobile">
         <div class="cart-mobile__price">
           <div class="cart-mobile__price--description">
@@ -66,13 +68,18 @@
 
         <onpicks-button
           class="cart__btn--shopping"
+          i18n="@@cart__btn--shopping"
           routerLink="/shops"
           [type]="'white'"
-          [size]="'big'">계속 쇼핑하기
+          [padding]="false"
+          [size]="'big'">
+          계속 쇼핑하기
         </onpicks-button>
         <onpicks-button
+          i18n="@@cart__btn--buy-all"
           (click)="setCheckoutList(denormalizr(cartStore.cartList))"
           class="cart__btn--shopping"
+          [padding]="false"
           [type]="'black'"
           [size]="'big'">
           전체 구매하기
@@ -80,7 +87,10 @@
       </div>
     </ng-container>
     <ng-container *ngIf="lengthCheckForFree === 0 && lengthCheckForPack === 0">
-      <h1 class="cart__title h1-bold">쇼핑백이 비었어요!</h1>
+      <h1
+        class="cart__title h1-bold">
+        쇼핑백이 비었어요!
+      </h1>
       <div class="cart__title--empty-description subtitle-1-regular u-color-dark-grey">
         마음에 드는 상품을 못찾으셨나요? Onpicks와 함께 다양한 아이템을 최적의 가격으로 쇼핑하세요!
       </div>
@@ -138,6 +148,7 @@
       </div>
 
       <onpicks-button
+        (click)="setCheckoutList(syncedData?.cartInfo?.free?.items)"
         i18n="@@cart__delivery-free-purchase"
         class="cart__delivery-free-purchase"
         [type]="'white'"
@@ -162,7 +173,7 @@
               <div class="cart-mobile__table--item-info">
 
                 <div class="cart-mobile__table--item-info--title subtitle-3-bold">
-                  {{itemForFree.brand}}
+                  {{itemForFree.brand.name}}
                 </div>
                 <div class="cart-mobile__table--item-info--description body-3-regular">
                   {{itemForFree.title}}
@@ -387,7 +398,7 @@
 
                   <div class="cart-mobile__table--item-info">
                     <div class="cart-mobile__table--item-info--title subtitle-3-bold">
-                      {{itemChild.brand}}
+                      {{itemChild.brand.name}}
                     </div>
                     <div class="cart-mobile__table--item-info--description body-3-regular">
                       {{itemChild.title}}
@@ -529,7 +540,7 @@
           {
             title : {
               ko : '다음에 구매할 물건 불러오기',
-              en: 'Hide Save for Later'
+              en : 'Hide Save for Later'
            }, value : 0
          }
         ]">

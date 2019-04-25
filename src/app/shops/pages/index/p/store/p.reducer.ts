@@ -10,7 +10,7 @@ export interface PState {
   };
   reviews: {
     list: {};
-    results: [];
+    results: any;
   };
 }
 

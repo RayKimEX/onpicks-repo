@@ -440,7 +440,7 @@
       <!--Footer Section-->
       <trans-unit id="footer__copyright" datatype="html">
         <target>
-          &copy; 2018 Mojo Studio Inc. All Rights Reserved.
+          &copy; 2019 Mojo Ventures Co., Ltd. All Rights Reserved.
         </target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
@@ -506,7 +506,7 @@
       </trans-unit>
 
       <trans-unit id="footer__desktop--copyright--cooperation-name1" datatype="html">
-        <target>Mojo Studio, Inc.  CEO : HanTae Lee   E-mail : </target>
+        <target>Mojo Ventures, Co., Ltd  CEO : HanTae Lee   E-mail : </target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
           <context context-type="linenumber">52</context>
@@ -743,24 +743,8 @@
         </context-group>
       </trans-unit>
 
-      <trans-unit id="profile__title" datatype="html">
-        <target>Profile</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
-          <context context-type="linenumber">52</context>
-        </context-group>
-      </trans-unit>
-
       <trans-unit id="delivery-address__title" datatype="html">
         <target>Delivery Address</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
-          <context context-type="linenumber">52</context>
-        </context-group>
-      </trans-unit>
-
-      <trans-unit id="refund__title" datatype="html">
-        <target>Refund</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
           <context context-type="linenumber">52</context>
@@ -962,6 +946,55 @@
       </trans-unit>
 
       <!--Word-->
+      <trans-unit id="word__search" datatype="html">
+        <target>Search</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="word__refund" datatype="html">
+        <target>Refund</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+
+      <trans-unit id="word__shipping" datatype="html">
+        <target>Shipping</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="word__profile" datatype="html">
+        <target>Profile</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+
+      <trans-unit id="word__return" datatype="html">
+        <target>Return</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="word__logout" datatype="html">
+        <target>Log out</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
 
       <trans-unit id="word__category" datatype="html">
         <target>Category</target>

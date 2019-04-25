@@ -154,43 +154,73 @@ export class PMenuComponent implements OnInit, OnDestroy, AfterViewInit, OnChang
   numberOptionList = {
     list : [
       {
-        title : '1',
+        title : {
+          ko : '1',
+          en : '1'
+        },
         value : 1,
       },
       {
-        title : '2',
+        title : {
+          ko : '2',
+          en : '2'
+        },
         value : 2,
       },
       {
-        title : '3',
+        title : {
+          ko : '3',
+          en : '3'
+        },
         value : 3,
       },
       {
-        title : '4',
+        title : {
+          ko : '4',
+          en : '4'
+        },
         value : 4,
       },
       {
-        title : '5',
+        title : {
+          ko : '5',
+          en : '5'
+        },
         value : 5,
       },
       {
-        title : '6',
+        title : {
+          ko : '6',
+          en : '6'
+        },
         value : 6,
       },
       {
-        title : '7',
+        title : {
+          ko : '7',
+          en : '7'
+        },
         value : 7,
       },
       {
-        title : '8',
+        title : {
+          ko : '8',
+          en : '8'
+        },
         value : 8,
       },
       {
-        title : '9',
+        title : {
+          ko : '9',
+          en : '9'
+        },
         value : 9,
       },
       {
-        title : '10',
+        title : {
+          ko : '10',
+          en : '10'
+        },
         value : 10,
       }
     ]

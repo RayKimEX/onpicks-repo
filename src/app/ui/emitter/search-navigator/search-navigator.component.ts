@@ -167,7 +167,7 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
     private cd: ChangeDetectorRef,
     private searchService: SearchService,
     private breakpointObserver:  BreakpointObserver,
-    private titleService: Title,
+    private titleService: Title
   ) {
     this.breakpointObserver
       .observe([this.responsiveMap['tb']])
@@ -196,7 +196,10 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
         this.currentName = val.currentName;
         this.currentTitle = val.currentTitle;
 
-        this.titleService.setTitle(this.currentName);
+        if ( this.currentName !== undefined ) {
+          this.titleService.setTitle(this.currentName[this.locale]);
+        }
+
       });
 
     this.cartStore$ = this.store.pipe(select(state => state.cart))
@@ -598,6 +601,7 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
       }
     });
 
+    console.log(temp);
     this.router.navigate( ['/shops/search'], {queryParams: temp});
   }
 

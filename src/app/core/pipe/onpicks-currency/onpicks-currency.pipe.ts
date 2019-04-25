@@ -31,10 +31,8 @@ export class OnpicksCurrencyPipe implements PipeTransform {
       // null의 경우가 있을때는 리턴
       // TODO : 왜 null의 경우가 생기는지 알아보기
 
-      console.log(temp);
       if ( temp === null ) { return ;}
       // temp = temp.substring(2, temp.length);
-      console.log(temp);
       return temp;
     }
   }
