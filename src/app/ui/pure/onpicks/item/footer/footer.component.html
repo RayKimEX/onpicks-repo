@@ -48,7 +48,13 @@
       </nav>
       <div class="footer__desktop--miscell u-float-right">
         <!--<emitter-change-preference class="header__miscell&#45;&#45;item">{{ region === '/kr' ? 'KOR' : 'USA' }}</emitter-change-preference>-->
-
+        <emitter-change-preference
+          [position]="'footer'"
+          [type]="'region'"
+          [color]="'white'"
+          class="footer__desktop--miscell--item subtitle-2-regular">
+          {{ region === 'kr' ? 'KOR' : 'USA' }}
+        </emitter-change-preference>
         <emitter-change-preference
           [position]="'footer'"
           [color]="'white'"
@@ -56,13 +62,13 @@
           class="footer__desktop--miscell--item subtitle-2-regular">
           {{ (currency | async) === 'KRW' ? 'KRW ₩' : 'USD $' }}
         </emitter-change-preference>
-        <emitter-change-preference
-          [position]="'footer'"
-          [color]="'white'"
-          [type]="'locale'"
-          class="footer__desktop--miscell--item subtitle-2-regular">
-          {{ locale === 'ko' ? '한국어' : '영어' }}
-        </emitter-change-preference>
+        <!--<emitter-change-preference-->
+          <!--[position]="'footer'"-->
+          <!--[color]="'white'"-->
+          <!--[type]="'locale'"-->
+          <!--class="footer__desktop&#45;&#45;miscell&#45;&#45;item subtitle-2-regular">-->
+          <!--{{ locale === 'ko' ? '한국어' : '영어' }}-->
+        <!--</emitter-change-preference>-->
       </div>
       <hr>
     </div>
