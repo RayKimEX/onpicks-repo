@@ -939,6 +939,7 @@
       </trans-unit>
 
       <!--Word-->
+
       <trans-unit id="word__search" datatype="html">
         <target>Search</target>
         <context-group purpose="location">
@@ -982,6 +983,22 @@
 
       <trans-unit id="word__logout" datatype="html">
         <target>Log out</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="word__all-categories" datatype="html">
+        <target>All Categories</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="word__categories" datatype="html">
+        <target>Categories</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
           <context context-type="linenumber">52</context>

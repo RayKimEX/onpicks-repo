@@ -171,7 +171,6 @@
               </div>
 
               <div class="cart-mobile__table--item-info">
-
                 <div class="cart-mobile__table--item-info--title subtitle-3-bold">
                   {{itemForFree.brand.name}}
                 </div>
@@ -275,18 +274,28 @@
           </td>
           <td>
             <div class="cart__free-table--delivery-info">
-              <div class="cart__free-table--delivery-info-image icon-small-la">
-                <!--<img src="http://img.onpicks.com/cart__table&#45;&#45;info-N.png" alt="무료배송 아이콘">-->
-              </div>
+              <!--<div class="cart__free-table&#45;&#45;delivery-info-image icon-small-la">-->
+                <!--&lt;!&ndash;<img src="http://img.onpicks.com/cart__table&#45;&#45;info-N.png" alt="무료배송 아이콘">&ndash;&gt;-->
+              <!--</div>-->
+              <span class="cart__free-table--delivery-info-image subtitle-1-bold"
+                    [ngClass]=
+                      "[
+                    (locationMap[itemForFree.location.code].nickname === 'la')  ? 'icon-small-la' : '',
+                    (locationMap[itemForFree.location.code].nickname === 'new')  ? 'icon-small-new' : '',
+                    (locationMap[itemForFree.location.code].nickname === 'osaka')  ? 'icon-small-osaka' : '',
+                    (locationMap[itemForFree.location.code].nickname === 'gorgia')  ? 'icon-small-gorgia' : '',
+                    (locationMap[itemForFree.location.code].nickname === 'hong')  ? 'icon-small-hong' : ''
+                  ]">
+              </span>
 
               <div class="cart__free-table--delivery-info-where subtitle-2-regular">
-                <span class="u-bold">뉴저지</span> 출고&nbsp;·&nbsp;
+                <span class="u-bold">{{ itemForFree.location.name }}</span> 출고&nbsp;·&nbsp;
               </div>
               <div class="cart__free-table--delivery-info-price subtitle-2-bold">
                 무료배송
               </div>
               <div class="cart__free-table--delivery-info-description subtitle-2-regular u-color-dark-grey">
-                뉴저지 단독배송 상품으로 무료로 배송 됩니다.
+                {{ itemForFree.location.name }} 단독배송 상품으로 무료로 배송 됩니다.
               </div>
             </div>
           </td>

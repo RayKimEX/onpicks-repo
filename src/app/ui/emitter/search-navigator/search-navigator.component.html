@@ -45,11 +45,14 @@
           <div class="c-category-navigator">
             <!--해당을 누르면 식품품 생홀용품 카테고리 메인페이지로 가게-->
             <ng-container *ngIf="router.url.split('/')[2].indexOf('search') > -1">
-              <div class="c-category-navigator__title subtitle-1-bold">
+              <div
+                i18n="@@word__categories"
+                class="c-category-navigator__title subtitle-1-bold">
                 카테고리
               </div>
               <div>
                 <a
+                  i18n="@@word__all-categories"
                   class="subtitle-3-bold u-color-dark-grey"
                   (click)="removeAllFilterCategory()">
                   모든 카테고리
