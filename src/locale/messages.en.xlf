@@ -979,7 +979,6 @@
         </context-group>
       </trans-unit>
 
-
       <trans-unit id="word__return" datatype="html">
         <target>Return</target>
         <context-group purpose="location">

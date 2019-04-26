@@ -712,7 +712,6 @@
         </context-group>
       </trans-unit>
 
-
       <trans-unit id="settings-profile__row--description" datatype="html">
         <target>이 정보는 통계 목적으로 사용되며 다른 회원들에게 절대 공개되지 않습니다.</target>
         <context-group purpose="location">

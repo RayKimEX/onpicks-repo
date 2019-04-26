@@ -162,7 +162,7 @@ export class ShopsIndexComponent implements OnInit, AfterViewInit {
       },
       todayTitle : {
         ko : '봄을 맞이하는 아이템!',
-        en : ''
+        en : 'Spring is comming'
       },
       todayDiscription : '인간 벚꽃이 되어 당신 주변에 이른 봄을 선물하는 건 어떨까요?',
 
@@ -176,7 +176,10 @@ export class ShopsIndexComponent implements OnInit, AfterViewInit {
         ko : '뷰티',
         en : 'Beauty'
       },
-      todayTitle : '페피들의 잇 아이템',
+      todayTitle : {
+        ko : '페피들의 잇 아이템',
+        en : `Peppy's eat item`
+      },
       todayDiscription : '바이레도의 감성으로 북유럽의 서정적인 향기를 입어보세요',
       filterSlug : {
         brand : ['byredo']
