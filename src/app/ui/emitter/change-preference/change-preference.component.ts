@@ -127,6 +127,7 @@ export class ChangePreferenceComponent implements OnInit {
 
     switch (this.type) {
       case 'region' :
+        setCookie('onpicks-language', xPreferenceCode === 'us' ? 'en' : 'ko');
         window.location.href = '/' + xPreferenceCode;
         break;
 

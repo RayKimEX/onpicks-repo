@@ -2394,7 +2394,7 @@ export const CATEGORY_MAP_CONST = {
             'slug': 'mens-essentials',
             'code': 1030800,
             'name': {
-              'en': "Men's Essentials",
+              'en': `Men's Essentials`,
               'ko': '남성용품',
               'zh_hans': null
             },
@@ -4367,121 +4367,201 @@ export const CATEGORY_MAP_CONST = {
   },
   '2000000' : {
     'slug': 'beauty',
-    'id': 2000000,
-    'name': '뷰티',
+    'code': 2000000,
+    'name': {
+      'en': 'Beauty',
+      'ko': '뷰티',
+      'zh_hans': null
+    },
     'children': [
       {
         'slug': 'skin-care',
-        'id': 2010000,
-        'name': '스킨케어',
+        'code': 2010000,
+        'name': {
+          'en': 'Skin Care',
+          'ko': '스킨케어',
+          'zh_hans': null
+        },
         'children': [
           {
             'slug': 'skin-and-toner',
-            'id': 2010100,
-            'name': '스킨·토너',
+            'code': 2010100,
+            'name': {
+              'en': 'Skin & Toner',
+              'ko': '스킨·토너',
+              'zh_hans': null
+            },
             'children': [
               {
                 'slug': 'skin',
-                'id': 2010101,
-                'name': '스킨',
+                'code': 2010101,
+                'name': {
+                  'en': 'Skin',
+                  'ko': '스킨',
+                  'zh_hans': null
+                },
                 'children': []
               },
               {
                 'slug': 'toner',
-                'id': 2010102,
-                'name': '토너',
+                'code': 2010102,
+                'name': {
+                  'en': 'Toner',
+                  'ko': '토너',
+                  'zh_hans': null
+                },
                 'children': []
               }
             ]
           },
           {
             'slug': 'mist',
-            'id': 2010200,
-            'name': '미스트',
+            'code': 2010200,
+            'name': {
+              'en': 'Mist',
+              'ko': '미스트',
+              'zh_hans': null
+            },
             'children': []
           },
           {
             'slug': 'face-moisturizer-and-treatment',
-            'id': 2010300,
-            'name': '페이스 모이스쳐·트리트먼트',
+            'code': 2010300,
+            'name': {
+              'en': 'Face Moisturizer & Treatment',
+              'ko': '페이스 모이스쳐·트리트먼트',
+              'zh_hans': null
+            },
             'children': [
               {
                 'slug': 'lotion',
-                'id': 2010301,
-                'name': '로션',
+                'code': 2010301,
+                'name': {
+                  'en': 'Lotion',
+                  'ko': '로션',
+                  'zh_hans': null
+                },
                 'children': []
               },
               {
                 'slug': 'emulsion',
-                'id': 2010302,
-                'name': '에멀젼',
+                'code': 2010302,
+                'name': {
+                  'en': 'Emulsion',
+                  'ko': '에멀젼',
+                  'zh_hans': null
+                },
                 'children': []
               },
               {
                 'slug': 'oil',
-                'id': 2010303,
-                'name': '오일',
+                'code': 2010303,
+                'name': {
+                  'en': 'Oil',
+                  'ko': '오일',
+                  'zh_hans': null
+                },
                 'children': []
               },
               {
                 'slug': 'essence',
-                'id': 2010304,
-                'name': '에센스',
+                'code': 2010304,
+                'name': {
+                  'en': 'Essence',
+                  'ko': '에센스',
+                  'zh_hans': null
+                },
                 'children': []
               },
               {
                 'slug': 'ample',
-                'id': 2010305,
-                'name': '엠플',
+                'code': 2010305,
+                'name': {
+                  'en': 'Ample',
+                  'ko': '엠플',
+                  'zh_hans': null
+                },
                 'children': []
               },
               {
                 'slug': 'serum',
-                'id': 2010306,
-                'name': '세럼',
+                'code': 2010306,
+                'name': {
+                  'en': 'Serum',
+                  'ko': '세럼',
+                  'zh_hans': null
+                },
                 'children': []
               }
             ]
           },
           {
             'slug': 'cream-and-gel',
-            'id': 2010400,
-            'name': '크림·젤',
+            'code': 2010400,
+            'name': {
+              'en': 'Cream & Gel',
+              'ko': '크림·젤',
+              'zh_hans': null
+            },
             'children': []
           },
           {
             'slug': 'mask-and-pack',
-            'id': 2010500,
-            'name': '마스크·팩',
+            'code': 2010500,
+            'name': {
+              'en': 'Mask & Pack',
+              'ko': '마스크·팩',
+              'zh_hans': null
+            },
             'children': []
           },
           {
             'slug': 'eye-care',
-            'id': 2010600,
-            'name': '아이케어',
+            'code': 2010600,
+            'name': {
+              'en': 'Eye Care',
+              'ko': '아이케어',
+              'zh_hans': null
+            },
             'children': []
           },
           {
             'slug': 'lip-care',
-            'id': 2010700,
-            'name': '립케어',
+            'code': 2010700,
+            'name': {
+              'en': 'Lip Care',
+              'ko': '립케어',
+              'zh_hans': null
+            },
             'children': []
           },
           {
             'slug': 'sun-care',
-            'id': 2010800,
-            'name': '선케어',
+            'code': 2010800,
+            'name': {
+              'en': 'Sun Care',
+              'ko': '선케어',
+              'zh_hans': null
+            },
             'children': [
               {
                 'slug': 'stick-and-balm',
-                'id': 2010801,
-                'name': '스틱·밤',
+                'code': 2010801,
+                'name': {
+                  'en': 'Stick & Balm',
+                  'ko': '스틱·밤',
+                  'zh_hans': null
+                },
                 'children': []
               },
               {
                 'slug': 'cream-and-gel',
-                'id': 2010802,
-                'name': '크림·젤',
+                'code': 2010802,
+                'name': {
+                  'en': 'Cream & Gel',
+                  'ko': '크림·젤',
+                  'zh_hans': null
+                },
                 'children': []
               }
             ]
@@ -4490,98 +4570,162 @@ export const CATEGORY_MAP_CONST = {
       },
       {
         'slug': 'cleansing-and-peeling',
-        'id': 2020000,
-        'name': '클렌징/필링',
+        'code': 2020000,
+        'name': {
+          'en': 'Cleansing & Peeling',
+          'ko': '클렌징/필링',
+          'zh_hans': null
+        },
         'children': [
           {
             'slug': 'cleansing-foam-and-gel',
-            'id': 2020100,
-            'name': '클렌징 폼·젤',
+            'code': 2020100,
+            'name': {
+              'en': 'Cleansing Foam & Gel',
+              'ko': '클렌징 폼·젤',
+              'zh_hans': null
+            },
             'children': []
           },
           {
             'slug': 'cleansing-water',
-            'id': 2020200,
-            'name': '클렌징 워터',
+            'code': 2020200,
+            'name': {
+              'en': 'Cleansing Water',
+              'ko': '클렌징 워터',
+              'zh_hans': null
+            },
             'children': []
           },
           {
             'slug': 'cleansing-oil',
-            'id': 2020300,
-            'name': '클렌징 오일',
+            'code': 2020300,
+            'name': {
+              'en': 'Cleansing Oil',
+              'ko': '클렌징 오일',
+              'zh_hans': null
+            },
             'children': []
           },
           {
             'slug': 'cleansing-lotion-and-cream',
-            'id': 2020400,
-            'name': '클렌징 로션·크림',
+            'code': 2020400,
+            'name': {
+              'en': 'Cleansing Lotion & Cream',
+              'ko': '클렌징 로션·크림',
+              'zh_hans': null
+            },
             'children': []
           },
           {
             'slug': 'cleansing-soap',
-            'id': 2020500,
-            'name': '클렌징 비누',
+            'code': 2020500,
+            'name': {
+              'en': 'Cleansing Soap',
+              'ko': '클렌징 비누',
+              'zh_hans': null
+            },
             'children': []
           },
           {
             'slug': 'cleansing-wipe',
-            'id': 2020600,
-            'name': '클렌징 티슈',
+            'code': 2020600,
+            'name': {
+              'en': 'Cleansing Wipe',
+              'ko': '클렌징 티슈',
+              'zh_hans': null
+            },
             'children': []
           },
           {
             'slug': 'lip-and-eye-cleanser',
-            'id': 2020700,
-            'name': '립·아이 리무버',
+            'code': 2020700,
+            'name': {
+              'en': 'Lip & Eye Cleanser',
+              'ko': '립·아이 리무버',
+              'zh_hans': null
+            },
             'children': []
           },
           {
             'slug': 'scrubs-and-peeling',
-            'id': 2020800,
-            'name': '스크럽·필링',
+            'code': 2020800,
+            'name': {
+              'en': 'Scrubs & Peeling',
+              'ko': '스크럽·필링',
+              'zh_hans': null
+            },
             'children': []
           }
         ]
       },
       {
         'slug': 'sun-care',
-        'id': 2030000,
-        'name': '선케어',
+        'code': 2030000,
+        'name': {
+          'en': 'Sun Care',
+          'ko': '선케어',
+          'zh_hans': null
+        },
         'children': [
           {
             'slug': 'face',
-            'id': 2030100,
-            'name': '페이스',
+            'code': 2030100,
+            'name': {
+              'en': 'Face',
+              'ko': '페이스',
+              'zh_hans': null
+            },
             'children': [
               {
                 'slug': 'stick-and-balm',
-                'id': 2030101,
-                'name': '스틱·밤',
+                'code': 2030101,
+                'name': {
+                  'en': 'Stick & Balm',
+                  'ko': '스틱·밤',
+                  'zh_hans': null
+                },
                 'children': []
               },
               {
                 'slug': 'cream-and-gel',
-                'id': 2030102,
-                'name': '크림·젤',
+                'code': 2030102,
+                'name': {
+                  'en': 'Cream & Gel',
+                  'ko': '크림·젤',
+                  'zh_hans': null
+                },
                 'children': []
               }
             ]
           },
           {
             'slug': 'body',
-            'id': 2030200,
-            'name': '바디',
+            'code': 2030200,
+            'name': {
+              'en': 'Body',
+              'ko': '바디',
+              'zh_hans': null
+            },
             'children': [
               {
                 'slug': 'stick-and-balm',
-                'id': 2030201,
-                'name': '스틱·밤',
+                'code': 2030201,
+                'name': {
+                  'en': 'Stick & Balm',
+                  'ko': '스틱·밤',
+                  'zh_hans': null
+                },
                 'children': []
               },
               {
                 'slug': 'cream-and-gel',
-                'id': 2030202,
-                'name': '크림·젤',
+                'code': 2030202,
+                'name': {
+                  'en': 'Cream & Gel',
+                  'ko': '크림·젤',
+                  'zh_hans': null
+                },
                 'children': []
               }
             ]
@@ -4590,341 +4734,561 @@ export const CATEGORY_MAP_CONST = {
       },
       {
         'slug': 'makeup',
-        'id': 2040000,
-        'name': '메이크업',
+        'code': 2040000,
+        'name': {
+          'en': 'Makeup',
+          'ko': '메이크업',
+          'zh_hans': null
+        },
         'children': [
           {
             'slug': 'face',
-            'id': 2040100,
-            'name': '페이스',
+            'code': 2040100,
+            'name': {
+              'en': 'Face',
+              'ko': '페이스',
+              'zh_hans': null
+            },
             'children': [
               {
                 'slug': 'makeup-base',
-                'id': 2040101,
-                'name': '메이크업 베이스',
+                'code': 2040101,
+                'name': {
+                  'en': 'Makeup Base',
+                  'ko': '메이크업 베이스',
+                  'zh_hans': null
+                },
                 'children': []
               },
               {
                 'slug': 'primer',
-                'id': 2040102,
-                'name': '프라이머',
+                'code': 2040102,
+                'name': {
+                  'en': 'Primer',
+                  'ko': '프라이머',
+                  'zh_hans': null
+                },
                 'children': []
               },
               {
                 'slug': 'bb-and-cc-cream',
-                'id': 2040103,
-                'name': 'BB·CC 크림',
+                'code': 2040103,
+                'name': {
+                  'en': 'BB & CC Cream',
+                  'ko': 'BB·CC 크림',
+                  'zh_hans': null
+                },
                 'children': []
               },
               {
                 'slug': 'foundation',
-                'id': 2040104,
-                'name': '파운데이션',
+                'code': 2040104,
+                'name': {
+                  'en': 'Foundation',
+                  'ko': '파운데이션',
+                  'zh_hans': null
+                },
                 'children': []
               },
               {
                 'slug': 'cushion-and-powder-and-pact',
-                'id': 2040105,
-                'name': '쿠션·파우더·팩트',
+                'code': 2040105,
+                'name': {
+                  'en': 'Cushion & Powder & Pact',
+                  'ko': '쿠션·파우더·팩트',
+                  'zh_hans': null
+                },
                 'children': []
               },
               {
                 'slug': 'concealer',
-                'id': 2040106,
-                'name': '컨실러',
+                'code': 2040106,
+                'name': {
+                  'en': 'Concealer',
+                  'ko': '컨실러',
+                  'zh_hans': null
+                },
                 'children': []
               },
               {
                 'slug': 'blusher',
-                'id': 2040107,
-                'name': '블러셔',
+                'code': 2040107,
+                'name': {
+                  'en': 'Blusher',
+                  'ko': '블러셔',
+                  'zh_hans': null
+                },
                 'children': []
               },
               {
                 'slug': 'highlighter-and-shading',
-                'id': 2040108,
-                'name': '하이라이터·셰이딩',
+                'code': 2040108,
+                'name': {
+                  'en': 'Highlighter & Shading',
+                  'ko': '하이라이터·셰이딩',
+                  'zh_hans': null
+                },
                 'children': []
               }
             ]
           },
           {
             'slug': 'eye',
-            'id': 2040200,
-            'name': '아이 ',
+            'code': 2040200,
+            'name': {
+              'en': 'Eye',
+              'ko': '아이',
+              'zh_hans': null
+            },
             'children': [
               {
                 'slug': 'eyeshadow',
-                'id': 2040201,
-                'name': '아이섀도',
+                'code': 2040201,
+                'name': {
+                  'en': 'Eyeshadow',
+                  'ko': '아이섀도',
+                  'zh_hans': null
+                },
                 'children': []
               },
               {
                 'slug': 'eyeliner',
-                'id': 2040202,
-                'name': '아이라이너',
+                'code': 2040202,
+                'name': {
+                  'en': 'Eyeliner',
+                  'ko': '아이라이너',
+                  'zh_hans': null
+                },
                 'children': []
               },
               {
                 'slug': 'eyebrow',
-                'id': 2040203,
-                'name': '아이브로우',
+                'code': 2040203,
+                'name': {
+                  'en': 'Eyebrow',
+                  'ko': '아이브로우',
+                  'zh_hans': null
+                },
                 'children': []
               },
               {
                 'slug': 'mascara',
-                'id': 2040204,
-                'name': '마스카라',
+                'code': 2040204,
+                'name': {
+                  'en': 'Mascara',
+                  'ko': '마스카라',
+                  'zh_hans': null
+                },
                 'children': []
               }
             ]
           },
           {
             'slug': 'lip',
-            'id': 2040300,
-            'name': '립 ',
+            'code': 2040300,
+            'name': {
+              'en': 'Lip',
+              'ko': '립',
+              'zh_hans': null
+            },
             'children': [
               {
                 'slug': 'lipstick',
-                'id': 2040301,
-                'name': '립스틱',
+                'code': 2040301,
+                'name': {
+                  'en': 'Lipstick',
+                  'ko': '립스틱',
+                  'zh_hans': null
+                },
                 'children': []
               },
               {
                 'slug': 'lip-tint',
-                'id': 2040302,
-                'name': '립틴트',
+                'code': 2040302,
+                'name': {
+                  'en': 'Lip Tint',
+                  'ko': '립틴트',
+                  'zh_hans': null
+                },
                 'children': []
               },
               {
                 'slug': 'lip-glosse',
-                'id': 2040303,
-                'name': '립글로스',
+                'code': 2040303,
+                'name': {
+                  'en': 'Lip Glosse',
+                  'ko': '립글로스',
+                  'zh_hans': null
+                },
                 'children': []
               },
               {
                 'slug': 'lip-treatment-and-balm',
-                'id': 2040304,
-                'name': '립케어·립밤',
+                'code': 2040304,
+                'name': {
+                  'en': 'Lip Treatment & Balm',
+                  'ko': '립케어·립밤',
+                  'zh_hans': null
+                },
                 'children': []
               }
             ]
           },
           {
             'slug': 'makeup-brush-and-applicator',
-            'id': 2040400,
-            'name': '메이크업 브러쉬·도구',
+            'code': 2040400,
+            'name': {
+              'en': 'Makeup Brush & Applicator',
+              'ko': '메이크업 브러쉬·도구',
+              'zh_hans': null
+            },
             'children': []
           }
         ]
       },
       {
         'slug': 'body-care',
-        'id': 2050000,
-        'name': '바디케어',
+        'code': 2050000,
+        'name': {
+          'en': 'Body Care',
+          'ko': '바디케어',
+          'zh_hans': null
+        },
         'children': [
           {
             'slug': 'body-wash',
-            'id': 2050100,
-            'name': '바디워시',
+            'code': 2050100,
+            'name': {
+              'en': 'Body Wash',
+              'ko': '바디워시',
+              'zh_hans': null
+            },
             'children': []
           },
           {
             'slug': 'body-lotion',
-            'id': 2050200,
-            'name': '바디로션',
+            'code': 2050200,
+            'name': {
+              'en': 'Body Lotion',
+              'ko': '바디로션',
+              'zh_hans': null
+            },
             'children': []
           },
           {
             'slug': 'body-cream-and-gel',
-            'id': 2050300,
-            'name': '바디크림·젤',
+            'code': 2050300,
+            'name': {
+              'en': 'Body Cream & Gel',
+              'ko': '바디크림·젤',
+              'zh_hans': null
+            },
             'children': []
           },
           {
             'slug': 'body-oil-and-essence',
-            'id': 2050400,
-            'name': '바디오일·에센스',
+            'code': 2050400,
+            'name': {
+              'en': 'Body Oil & Essence',
+              'ko': '바디오일·에센스',
+              'zh_hans': null
+            },
             'children': []
           },
           {
             'slug': 'body-scrub',
-            'id': 2050500,
-            'name': '바디스크럽',
+            'code': 2050500,
+            'name': {
+              'en': 'Body Scrub',
+              'ko': '바디스크럽',
+              'zh_hans': null
+            },
             'children': []
           },
           {
             'slug': 'body-mist',
-            'id': 2050600,
-            'name': '바디미스트',
+            'code': 2050600,
+            'name': {
+              'en': 'Body Mist',
+              'ko': '바디미스트',
+              'zh_hans': null
+            },
             'children': []
           },
           {
             'slug': 'hand-and-foot-treatment',
-            'id': 2050700,
-            'name': '핸드·풋케어',
+            'code': 2050700,
+            'name': {
+              'en': 'Hand & Foot Treatment',
+              'ko': '핸드·풋케어',
+              'zh_hans': null
+            },
             'children': []
           },
           {
             'slug': 'bath-salt-and-bubble',
-            'id': 2050800,
-            'name': '입욕제',
+            'code': 2050800,
+            'name': {
+              'en': 'Bath Salt & Bubble',
+              'ko': '입욕제',
+              'zh_hans': null
+            },
             'children': []
           },
           {
             'slug': 'feminine-care',
-            'id': 2050900,
-            'name': '여성청결제',
+            'code': 2050900,
+            'name': {
+              'en': 'Feminine Care',
+              'ko': '여성청결제',
+              'zh_hans': null
+            },
             'children': []
           },
           {
             'slug': 'deodorant',
-            'id': 2051000,
-            'name': '데오드란트',
+            'code': 2051000,
+            'name': {
+              'en': 'Deodorant',
+              'ko': '데오드란트',
+              'zh_hans': null
+            },
             'children': []
           },
           {
             'slug': 'other-body-product',
-            'id': 2051100,
-            'name': '바디 기타',
+            'code': 2051100,
+            'name': {
+              'en': 'Other Body Product',
+              'ko': '바디 기타',
+              'zh_hans': null
+            },
             'children': []
           }
         ]
       },
       {
         'slug': 'hair-care',
-        'id': 2060000,
-        'name': '헤어케어',
+        'code': 2060000,
+        'name': {
+          'en': 'Hair Care',
+          'ko': '헤어케어',
+          'zh_hans': null
+        },
         'children': [
           {
             'slug': 'shampoo',
-            'id': 2060100,
-            'name': '샴푸',
+            'code': 2060100,
+            'name': {
+              'en': 'Shampoo',
+              'ko': '샴푸',
+              'zh_hans': null
+            },
             'children': []
           },
           {
             'slug': 'conditioner-and-treatment',
-            'id': 2060200,
-            'name': '린스·트리트먼트',
+            'code': 2060200,
+            'name': {
+              'en': 'Conditioner & Treatment',
+              'ko': '린스·트리트먼트',
+              'zh_hans': null
+            },
             'children': []
           },
           {
             'slug': 'essence-and-oil',
-            'id': 2060300,
-            'name': '에센스·오일',
+            'code': 2060300,
+            'name': {
+              'en': 'Essence & Oil',
+              'ko': '에센스·오일',
+              'zh_hans': null
+            },
             'children': []
           },
           {
             'slug': 'mist',
-            'id': 2060400,
-            'name': '미스트',
+            'code': 2060400,
+            'name': {
+              'en': 'Mist',
+              'ko': '미스트',
+              'zh_hans': null
+            },
             'children': []
           },
           {
             'slug': 'styling-product',
-            'id': 2060500,
-            'name': '스타일링',
+            'code': 2060500,
+            'name': {
+              'en': 'Styling Product',
+              'ko': '스타일링',
+              'zh_hans': null
+            },
             'children': []
           },
           {
             'slug': 'other-hair-product',
-            'id': 2060600,
-            'name': '헤어기타',
+            'code': 2060600,
+            'name': {
+              'en': 'Other Hair Product',
+              'ko': '헤어기타',
+              'zh_hans': null
+            },
             'children': []
           }
         ]
       },
       {
         'slug': 'fragrance',
-        'id': 2070000,
-        'name': '향수',
+        'code': 2070000,
+        'name': {
+          'en': 'Fragrance',
+          'ko': '향수',
+          'zh_hans': null
+        },
         'children': [
           {
             'slug': 'women',
-            'id': 2070100,
-            'name': '여자향수',
+            'code': 2070100,
+            'name': {
+              'en': 'Women',
+              'ko': '여자향수',
+              'zh_hans': null
+            },
             'children': []
           },
           {
             'slug': 'men',
-            'id': 2070200,
-            'name': '남자향수',
+            'code': 2070200,
+            'name': {
+              'en': 'Men',
+              'ko': '남자향수',
+              'zh_hans': null
+            },
             'children': []
           },
           {
             'slug': 'fragrance-set',
-            'id': 2070300,
-            'name': '향수세트',
+            'code': 2070300,
+            'name': {
+              'en': 'Fragrance Set',
+              'ko': '향수세트',
+              'zh_hans': null
+            },
             'children': []
           }
         ]
       },
       {
         'slug': 'candle-and-diffuser',
-        'id': 2080000,
-        'name': '캔들·디퓨저',
+        'code': 2080000,
+        'name': {
+          'en': 'Candle & Diffuser',
+          'ko': '캔들·디퓨저',
+          'zh_hans': null
+        },
         'children': [
           {
             'slug': 'candle',
-            'id': 2080100,
-            'name': '캔들',
+            'code': 2080100,
+            'name': {
+              'en': 'Candle',
+              'ko': '캔들',
+              'zh_hans': null
+            },
             'children': []
           },
           {
             'slug': 'diffuser',
-            'id': 2080200,
-            'name': '디퓨저',
+            'code': 2080200,
+            'name': {
+              'en': 'Diffuser',
+              'ko': '디퓨저',
+              'zh_hans': null
+            },
             'children': []
           }
         ]
       },
       {
         'slug': 'mens-grooming',
-        'id': 2090000,
-        'name': '남성',
+        'code': 2090000,
+        'name': {
+          'en': `Men's Grooming`,
+          'ko': '남성',
+          'zh_hans': null
+        },
         'children': [
           {
             'slug': 'skin',
-            'id': 2090100,
-            'name': '스킨케어',
+            'code': 2090100,
+            'name': {
+              'en': 'Skin',
+              'ko': '스킨케어',
+              'zh_hans': null
+            },
             'children': []
           },
           {
             'slug': 'body',
-            'id': 2090200,
-            'name': '바디케어',
+            'code': 2090200,
+            'name': {
+              'en': 'Body',
+              'ko': '바디케어',
+              'zh_hans': null
+            },
             'children': []
           },
           {
             'slug': 'hair',
-            'id': 2090300,
-            'name': '헤어케어',
+            'code': 2090300,
+            'name': {
+              'en': 'Hair',
+              'ko': '헤어케어',
+              'zh_hans': null
+            },
             'children': []
           },
           {
             'slug': 'makeup',
-            'id': 2090400,
-            'name': '메이크업 ',
+            'code': 2090400,
+            'name': {
+              'en': 'Makeup',
+              'ko': '메이크업',
+              'zh_hans': null
+            },
             'children': []
           },
           {
             'slug': 'cologne-and-deodorant',
-            'id': 2090500,
-            'name': '향수·데오드란트',
+            'code': 2090500,
+            'name': {
+              'en': 'Cologne & Deodorant',
+              'ko': '향수·데오드란트',
+              'zh_hans': null
+            },
             'children': []
           },
           {
             'slug': 'shave',
-            'id': 2090600,
-            'name': '쉐이빙·잡화',
+            'code': 2090600,
+            'name': {
+              'en': 'Shave',
+              'ko': '쉐이빙·잡화',
+              'zh_hans': null
+            },
             'children': []
           }
         ]
       },
       {
         'slug': 'k-beauty',
-        'id': 2100000,
-        'name': 'K BEAUTY',
+        'code': 2100000,
+        'name': {
+          'en': 'K Beauty',
+          'ko': 'K Beauty',
+          'zh_hans': null
+        },
         'children': []
       }
     ]
