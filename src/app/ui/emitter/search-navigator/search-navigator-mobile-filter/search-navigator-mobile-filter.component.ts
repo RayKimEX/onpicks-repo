@@ -23,7 +23,7 @@ export class SearchNavigatorMobileFilterComponent implements OnInit {
   };
 
   @Input('currentCategoryCode') currentCategoryCode;
-  @Input('orderedFilterList') orderedFilterList;
+  @Input('filters') filters;
   @Input('brandList') brandList;
   @Input('brandListForCheck') brandListForCheck;
   @Input('valueList') valueList;

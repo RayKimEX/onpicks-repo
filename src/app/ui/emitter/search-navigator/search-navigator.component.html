@@ -6,7 +6,7 @@
   [categoryList]="searchState === 'search' ? categoryList : normalizedCategoryInfoList"
   [normalizedCategoryCodeList]="normalizedCategoryCodeList"
   [currentCategoryCode]="currentCategoryCode"
-  [orderedFilterList]="orderedFilterList"
+  [filters]="filters"
   [brandList]="brandList"
   [brandListForCheck]="brandListForCheck"
   [valueList]="valueList"
@@ -225,18 +225,18 @@
                 </a>
               </span>
             </div>
-            <div class="c-filter-navigator__content" *ngIf="orderedFilterList.length !== 0">
+            <div class="c-filter-navigator__content" *ngIf="filterList.length > 0">
               <ul class="c-filter-navigator__content-ul">
-                <li *ngFor="let item of orderedFilterList" class="c-filter-navigator__content-ul--item subtitle-3-regular">
+                <li *ngFor="let item of filterList" class="c-filter-navigator__content-ul--item subtitle-3-regular">
                   <div
-                    (click)="removeSpecificFilter(item)"
+                    (click)="removeSpecificFilter(item.type, item.key)"
                     class="c-filter-navigator__content-ul--item-remove-outer">
                     <span
                       class="c-filter-navigator__content-ul--item-remove">
                     </span>
                   </div>
 
-                  <span>{{item}}</span>
+                  <span>{{item.value}}</span>
                 </li>
               </ul>
             </div>
