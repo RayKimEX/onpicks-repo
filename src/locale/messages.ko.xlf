@@ -1330,7 +1330,7 @@
       </trans-unit>
 
       <trans-unit id="sentence__search-zip-code" datatype="html">
-        <target>우편번호 찾기 ( 영어 )</target>
+        <target>우편번호 찾기</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
           <context context-type="linenumber">52</context>

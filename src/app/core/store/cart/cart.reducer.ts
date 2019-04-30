@@ -135,6 +135,7 @@ export function CartReducer(state = initialState, action: CartActions.CartAction
         console.log(action.payload.packIndex);
         console.log(action.payload.cartInfo.results.slice(1, action.payload.cartInfo.results.length));
         addTemp.subtotal = action.payload.cartInfo.results.slice(1, action.payload.cartInfo.results.length)[action.payload.packIndex].subtotal;
+        addTemp.shipping_fee = action.payload.cartInfo.results.slice(1, action.payload.cartInfo.results.length)[action.payload.packIndex].shipping_fee;
 
 
         state.cartInfo.pack[action.payload.packIndex] = addTemp;
@@ -174,6 +175,7 @@ export function CartReducer(state = initialState, action: CartActions.CartAction
         const subtractTemp = state.cartInfo.pack[action.payload.packIndex];
 
         subtractTemp.subtotal = action.payload.cartInfo.results.slice(1, action.payload.cartInfo.results.length)[action.payload.packIndex].subtotal;
+        subtractTemp.shipping_fee = action.payload.cartInfo.results.slice(1, action.payload.cartInfo.results.length)[action.payload.packIndex].shipping_fee;
         state.cartInfo.pack[action.payload.packIndex] = subtractTemp;
       } else {
         const subtractForFreeTemp = state.cartInfo.free;

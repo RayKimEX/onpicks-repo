@@ -140,6 +140,7 @@
     </div>
 
     <div *ngIf="state === 'category' && searchState === 'search'" class="category-content">
+      <!--search쪽은 locale이 알아서 되서 나오기 때문에 그냥 뿌리기만하면됨-->
       <ng-container *ngIf="categoryList?.length !== 0">
         <div
           class="category-content__depth"
@@ -154,7 +155,8 @@
             </span>
             <span>
               <a
-                [ngClass]="{'u-color-dark-grey' : (oneCat?.code / currentCategoryCode < 1)}" (click)="categoryClicked('/shops/c/'+oneCat.slug, oneCat?.code)">{{ oneCat.name[locale] }}
+                [ngClass]="{'u-color-dark-grey' : (oneCat?.code / currentCategoryCode < 1)}" (click)="categoryClicked('/shops/c/'+oneCat.slug, oneCat?.code)">
+                {{ oneCat.name }}
                 <!--(click)="categoryClicked('/shops/c/'+oneCat.slug, oneCat?.code)">-->
               </a>
             </span>
@@ -177,7 +179,7 @@
                   (twoCat?.code / currentCategoryCode < 1) ? 'u-color-dark-grey' : '',
                   (twoCat?.code / currentCategoryCode < 1 || currentCategoryCode == twoCat?.code ) ? 'subtitle-2-bold' : 'subtitle-2-regular'
                 ]"
-                (click)="categoryClicked('/shops/c/'+oneCat.slug.toLowerCase()+'/'+twoCat.slug.toLowerCase(), twoCat?.code)">{{ twoCat.name[locale] }}
+                (click)="categoryClicked('/shops/c/'+oneCat.slug.toLowerCase()+'/'+twoCat.slug.toLowerCase(), twoCat?.code)">{{ twoCat.name }}
               </a>
               <span
                 *ngIf="(!(twoCat?.code / currentCategoryCode < 1)) && (twoCat?.code / currentCategoryCode < 1 || currentCategoryCode == twoCat?.code )"
@@ -199,7 +201,7 @@
                     (threeCat?.code / currentCategoryCode < 1 || currentCategoryCode == threeCat?.code ) ? 'subtitle-2-bold' : 'subtitle-2-regular'
                     ]"
                   (click)="categoryClicked('/shops/c/'+oneCat.slug.toLowerCase()+'/'+twoCat.slug.toLowerCase()+'/'+threeCat.slug.toLowerCase() ,threeCat?.code)">
-                  {{ threeCat.name[locale] }}
+                  {{ threeCat.name }}
                 </a>
                 <span
                   *ngIf="(!(threeCat?.code / currentCategoryCode < 1)) && (threeCat?.code / currentCategoryCode < 1 || currentCategoryCode == threeCat?.code )"
@@ -218,7 +220,7 @@
                   <a
                     [ngClass]="[(currentCategoryCode == fourCat?.code ) ? 'subtitle-2-bold' : 'subtitle-2-regular']"
                     (click)="categoryClicked('/shops/c/'+oneCat.slug.toLowerCase()+'/'+twoCat.slug.toLowerCase()+'/'+threeCat.slug.toLowerCase()+'/'+fourCat.slug.toLowerCase() , fourCat?.code)">
-                    {{ fourCat?.name[locale] }}
+                    {{ fourCat?.name }}
                   </a>
                   <span
                     *ngIf="(!(fourCat?.code / currentCategoryCode < 1)) && (fourCat?.code / currentCategoryCode < 1 || currentCategoryCode == fourCat?.code )"

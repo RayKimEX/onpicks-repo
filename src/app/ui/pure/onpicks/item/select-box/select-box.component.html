@@ -1,7 +1,7 @@
 <div class="onpicks-select-box">
   <ng-container *ngIf="!isNativeSelectBox">
     <button (click)="clickSortBox()" class="onpicks-select-box__fore-button subtitle-2-regular">
-      {{ _selectedElement?.title }}
+      {{ multiLanguage ? _selectedElement?.title[locale] : _selectedElement?.title }}
       <svg *ngIf="isOpen" width="18" height="12" viewBox="0 0 18 12">
         <polyline points="1 9.5 9 1.5 17 9.5" fill="none" stroke="#979797" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
       </svg>
@@ -20,10 +20,10 @@
                   type="radio"
                   data-value="{{ item.value }}"
                   attr.data-index="{{ selectIndex }}"
-                  data-name="{{ item.title}}">
+                  data-name="{{ multiLanguage ? item.title[locale] : item.title }}">
                 <span
                   class="onpicks-select-box__dropdown--element-text subtitle-2-regular">
-                  {{ item.title }}
+                  {{ multiLanguage ? item.title[locale] : item.title }}
                 </span>
               </label>
             </div>
@@ -49,7 +49,7 @@
       <select
         class="onpicks-select-box__select-box subtitle-2-regular">
         <option *ngFor="let item of _sortList.list;" [value]="item.value">
-          {{ item.title }}
+          {{ multiLanguage ? item.title[locale] : item.title }}
         </option>
       </select>
     </div>

@@ -528,7 +528,8 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
         queryParamsHandling: 'merge'
       });
     } else {
-      this.router.navigate(['./'], { relativeTo: this.route, queryParams: {brand: xBrandSlug}, queryParamsHandling: 'merge'} );
+      this.router.navigate(['./'], { relativeTo: this.route, queryParams: {brand: this.queryParams.brand.length === 0 ? null : this.queryParams.brand},
+        queryParamsHandling: 'merge'} );
     }
 
   }

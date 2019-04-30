@@ -19,7 +19,9 @@
             <div class="cart-mobile__price--all-product">
               <span
                 i18n="@@word__subtotal"
-                class="subtitle-2-regular u-color-dark-grey">총 상품금액</span>
+                class="subtitle-2-regular u-color-dark-grey">
+                총 상품금액
+              </span>
               <span
                 class="subtitle-2-regular u-float-right">
                 {{ syncedData?.cartInfo?.total?.total_items | onpicksCurrency: syncedData.currencyInfo }}
@@ -355,15 +357,16 @@
 
                 <ng-container *ngSwitchCase="'ko'">
                   <div
-                    *ngIf="((item.location.free_shipping_threshold - (item.subtotal - item.shipping_fee)) > 0)"
+                    *ngIf="item.shipping_fee > 0"
                     class="cart__delivery-multi-purchase--remain-description subtitle-2-regular">
-                    {{item.location.name}} 무료배송까지 {{item.location.free_shipping_threshold - (item.subtotal - item.shipping_fee) | onpicksCurrency : syncedData.currencyInfo}} 남았습니다
+                    {{ item.location.name }} 무료배송까지 {{ item.location.free_shipping_threshold - (item.subtotal - item.shipping_fee) | onpicksCurrency : syncedData.currencyInfo }} 남았습니다
+                    {{ item.location.free_shipping_threshold  }}
                   </div>
                 </ng-container>
 
                 <ng-container *ngSwitchCase="'en'">
                   <div
-                    *ngIf="((item.location.free_shipping_threshold - (item.subtotal - item.shipping_fee)) > 0)"
+                    *ngIf="item.shipping_fee > 0"
                     class="cart__delivery-multi-purchase--remain-description subtitle-2-regular">
                     {{item.location.free_shipping_threshold - (item.subtotal - item.shipping_fee) | onpicksCurrency : syncedData.currencyInfo}} to {{item.location.name}} Free Shipping
                   </div>
@@ -376,7 +379,12 @@
                 {{item.location.name}} 무료배송 조건이 충족되었습니다.
               </div>
               <ui-progressive-bar
-                [progressWidth]="((((item.subtotal - item.shipping_fee) / item.location.free_shipping_threshold) * 100) > 100 ? 100 :  ((((item.subtotal - item.shipping_fee) / item.location.free_shipping_threshold) * 100))) + '%'">
+                [progressWidth]="
+                  ((((item.subtotal - item.shipping_fee) /
+                  item.location.free_shipping_threshold) * 100) > 100 ?
+                  100 :
+                  ((((item.subtotal - item.shipping_fee) / item.location.free_shipping_threshold) * 100))) + '%'
+                ">
               </ui-progressive-bar>
             </div>
 

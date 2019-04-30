@@ -31,12 +31,14 @@ export class ProfileComponent implements OnInit, OnDestroy {
   yearList = {
     title : '년',
     list : [
+
     ]
   }
 
   dayList = {
     title : '일',
     list : [
+
     ]
   }
 

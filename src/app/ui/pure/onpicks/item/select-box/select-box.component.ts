@@ -21,6 +21,7 @@ import {
 })
 export class SelectBoxComponent implements OnInit, OnChanges {
   @Input('scrollMin') scrollMin;
+  @Input('multiLanguage') multiLanguage = false;
   @Input('isNativeSelectBox') isNativeSelectBox = false;
   @Input('selectedElement') set selectedElement (xSelectedElement) {
 
@@ -125,9 +126,11 @@ export class SelectBoxComponent implements OnInit, OnChanges {
   clickSelectBoxElement(inputValue) {
 
     this._selectedElement = {
-      title : inputValue.name,
+      title : this.multiLanguage ? { [this.locale] : inputValue.name } : inputValue.name,
       value : inputValue.value,
     }
+
+    console.log(this._selectedElement);
 
     // this._selectedElement.value =
     // this._selectedElement.title = inputValue.name;

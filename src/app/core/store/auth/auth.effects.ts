@@ -97,9 +97,12 @@ export class AuthEffects {
     switchMap( payload => {
       return this.authService.logout()
         .pipe(
-          map( (user) => {
+          mergeMap( (user) => {
             console.log(user);
-            return new LogoutSuccess();
+            return [
+              new LogoutSuccess(),
+              new TryGetCartInfo()
+            ];
           }),
           catchError( (error) => {
             console.log(error);

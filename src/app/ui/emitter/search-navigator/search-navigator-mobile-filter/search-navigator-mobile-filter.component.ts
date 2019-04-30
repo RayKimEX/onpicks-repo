@@ -151,6 +151,11 @@ export class SearchNavigatorMobileFilterComponent implements OnInit {
     this.state = 'menu';
   }
 
+  debugC(){
+    this.state = 'category';
+    console.log(this.categoryList);
+  }
+
 
   categoryClicked( navigateUrlForCategory, xCategoryCode ) {
     // this.router.navigate( ['/shops/search'], {queryParams: {category: xCategoryCode}, queryParamsHandling: 'merge'});
