@@ -21,12 +21,15 @@ export class SearchService {
     return this.httpClient.get<any>( this.BASE_URL + '/api/products/search/' + param);
   }
 
-  categorySearch(xCategoryCode, xSortCode, xCurrentPage, xBrandSlug, xValueSlug, xLocationSlug) {
-    const brandFilter =  xBrandSlug === '' ? xBrandSlug : '&brand=' + xBrandSlug;
-    const valueFilter = xValueSlug === '' ? xValueSlug : '&value=' + xValueSlug;
-    const locationFilter = xLocationSlug === '' ? xLocationSlug : '&location=' + xLocationSlug;
+  categorySearch(xCategoryCode, xSortCode, xCurrentPage, xParam ) {
+    const param = xParam;
+    console.log('########################');
+    console.log(param);
 
-    return this.httpClient.get<any>( this.BASE_URL + '/api/products/search/?category=' + xCategoryCode + brandFilter + valueFilter + locationFilter  + '&ordering=' + xSortCode + '&page=' + xCurrentPage + '&page_size=36');
+    return this.httpClient.get<any>(
+      this.BASE_URL + '/api/products/search/?category=' + xCategoryCode
+      + param
+      + '&ordering=' + xSortCode + '&page=' + xCurrentPage + '&page_size=36');
   }
 
   getChildrenCategory(categoryCode) {

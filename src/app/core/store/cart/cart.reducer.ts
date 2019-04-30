@@ -213,12 +213,14 @@ export function CartReducer(state = initialState, action: CartActions.CartAction
 
 
         deleteTemp.subtotal = action.payload.cartInfo.results.slice(1, action.payload.cartInfo.results.length)[action.payload.packIndex].subtotal;
+        deleteTemp.shipping_fee = action.payload.cartInfo.results.slice(1, action.payload.cartInfo.results.length)[action.payload.packIndex].shipping_fee;
         deleteTemp.items = action.payload.cartInfo.results.slice(1, action.payload.cartInfo.results.length)[action.payload.packIndex].items;
         state.cartInfo.pack[action.payload.packIndex] = deleteTemp;
 
       } else {
         const deleteForFreeTemp = state.cartInfo.free;
         deleteForFreeTemp.subtotal = action.payload.cartInfo.results.slice(0, 1)[0].subtotal;
+        deleteForFreeTemp.shipping_fee = action.payload.cartInfo.results.slice(0, 1)[0].shipping_fee;
         deleteForFreeTemp.items = action.payload.cartInfo.results.slice(0, 1)[0].items;
         state.cartInfo.free = deleteForFreeTemp;
       }

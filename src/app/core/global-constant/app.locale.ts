@@ -183,7 +183,7 @@ export const MENU_MAP_CONST = {
         {
           name : {
             ko : '수유·이유용품',
-            en : 'Feeding &? Nursing'
+            en : 'Feeding & Nursing'
           },
           slug : 'feeding-and-nursing',
           href : 'pantry-and-household/baby/feeding-and-nursing'

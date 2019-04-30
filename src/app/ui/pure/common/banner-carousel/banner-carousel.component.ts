@@ -4,7 +4,7 @@ import {
   Component,
   ElementRef,
   HostListener, Inject,
-  Input,
+  Input, LOCALE_ID,
   OnDestroy,
   OnInit,
   Renderer2,
@@ -43,6 +43,7 @@ export class BannerCarouselComponent implements OnInit, AfterViewInit, OnDestroy
   isIEOrEdge = /msie\s|trident\/|edge\//i.test(window.navigator.userAgent)
 
   constructor(
+    @Inject(LOCALE_ID) public locale: string,
     @Inject(RESPONSIVE_MAP) public responsiveMap,
     private renderer: Renderer2,
     private cd: ChangeDetectorRef,

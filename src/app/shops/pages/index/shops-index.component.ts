@@ -117,7 +117,10 @@ export class ShopsIndexComponent implements OnInit, AfterViewInit {
         ko : '팔레오 다이어트',
         en : 'Paleo Diet',
       },
-      todayDiscription: '헐리웃 셀럽들 사이에서 hot한 건강&체중을 동시에 잡는 식이요법을 경험해보세요.',
+      todayDiscription: {
+        ko : '헐리웃 셀럽들 사이에서 hot한 건강&체중을 동시에 잡는 식이요법을 경험해보세요.',
+        en : 'Experience the trending diet that will help you optimize your health and fitness.'
+      },
       filterSlug : {
         value : ['paleo']
       }
@@ -132,7 +135,10 @@ export class ShopsIndexComponent implements OnInit, AfterViewInit {
         ko : 'USDA 인증',
         en : 'Certified Organic'
       },
-      todayDiscription: '깐깐하기로 소문난 United States Department of Agriculture 의 인증, Real Organic 을 소개합니다.',
+      todayDiscription: {
+        ko : '깐깐하기로 소문난 United States Department of Agriculture 의 인증, Real Organic 을 소개합니다.',
+        en : 'Meet our collection of USDA certified organic products.'
+      },
       filterSlug : {
         value : [
           'organic-95', 'organic-100'
@@ -149,7 +155,10 @@ export class ShopsIndexComponent implements OnInit, AfterViewInit {
         ko : '글루텐프리',
         en : 'Certified Gluten-Free'
       },
-      todayDiscription: '미국의 3대 글루텐프리 인증 단체인 GFCO, CSA, ACG의 인증, 미국 본토의 글루텐프리 컬렉션.',
+      todayDiscription: {
+        ko : '미국의 3대 글루텐프리 인증 단체인 GFCO, CSA, ACG의 인증, 미국 본토의 글루텐프리 컬렉션.',
+        en : 'Go gluten-free with our GFCO, CSA, and ACG certified selection of foods.'
+      },
       filterSlug : {
         value : [ 'certified-gluten-free' ]
       }
@@ -162,9 +171,12 @@ export class ShopsIndexComponent implements OnInit, AfterViewInit {
       },
       todayTitle : {
         ko : '봄을 맞이하는 아이템!',
-        en : 'Spring is comming'
+        en : 'Spring Is In the Air'
       },
-      todayDiscription : '인간 벚꽃이 되어 당신 주변에 이른 봄을 선물하는 건 어떨까요?',
+      todayDiscription : {
+        ko : '인간 벚꽃이 되어 당신 주변에 이른 봄을 선물하는 건 어떨까요?',
+        en : 'Discover our top selection of essential spring fragrances.'
+      },
 
       filterSlug : {
         router : 'shops/c/beauty/fragrance',
@@ -178,9 +190,12 @@ export class ShopsIndexComponent implements OnInit, AfterViewInit {
       },
       todayTitle : {
         ko : '페피들의 잇 아이템',
-        en : `Peppy's eat item`
+        en : 'BYREDO Must-Haves'
       },
-      todayDiscription : '바이레도의 감성으로 북유럽의 서정적인 향기를 입어보세요',
+      todayDiscription : {
+        ko : '바이레도의 감성으로 북유럽의 서정적인 향기를 입어보세요',
+        en : 'Shop our collection of BYREDO must-have fragrances.'
+      },
       filterSlug : {
         brand : ['byredo']
       }

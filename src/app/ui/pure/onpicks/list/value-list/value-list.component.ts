@@ -7,7 +7,7 @@ import {
   ChangeDetectorRef,
   HostListener,
   AfterViewInit,
-  ViewChild, ViewChildren, OnDestroy, Input
+  ViewChild, ViewChildren, OnDestroy, Input, LOCALE_ID
 } from '@angular/core';
 import {RESPONSIVE_MAP} from '../../../../../core/global-constant/app.config';
 import {BreakpointObserver, BreakpointState} from '../../../../../../../node_modules/@angular/cdk/layout';
@@ -71,7 +71,8 @@ export class ValueListComponent implements OnInit, AfterViewInit {
   // ]
 
   constructor(
-    @Inject(RESPONSIVE_MAP) public responsiveMap,
+    @Inject( RESPONSIVE_MAP ) public responsiveMap,
+    @Inject( LOCALE_ID ) public locale: string,
     private router: Router,
     private renderer: Renderer2,
     private breakpointObserver:  BreakpointObserver,

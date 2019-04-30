@@ -28,6 +28,7 @@ export class ListActiveButtonComponent implements OnInit, AfterViewInit, OnDestr
   @Output('subtractEvent') subtractEvent = new EventEmitter<number>();
   @Input('isFixExtend') isFixExtend = false;
   @Input('amount') amount = 0;
+  @Input('limitCount') limitCount = 10;
 
   plusOpactiy = 1;
   minusOpacity = 1;
@@ -84,7 +85,7 @@ export class ListActiveButtonComponent implements OnInit, AfterViewInit, OnDestr
 
   downOpacity (direction) {
     if ( direction === 'plus') {
-      if ( this.amount !== 10) {
+      if ( this.amount !== this.limitCount) {
         this.plusOpactiy = 0.3;
       }
     } else {
@@ -127,7 +128,7 @@ export class ListActiveButtonComponent implements OnInit, AfterViewInit, OnDestr
       // 이미 확장 되었을때,
     } else {
 
-      if ( this.amount < 10) {
+      if ( this.amount < this.limitCount) {
         // this.amount++;
         this.addEvent.emit(this.amount);
 

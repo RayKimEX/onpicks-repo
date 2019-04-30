@@ -66,7 +66,7 @@
         display : isShowDescription ? 'block' : 'none'}"
       class="value-list__description">
       <div class="value-list__description--title subtitle-2-bold">
-        {{currentDescriptionTitle}}(이)란?
+        {{currentDescriptionTitle}}<span *ngIf="locale === 'ko'">(이)란?</span>
       </div>
       <div class="value-list__description--content body-2-regular">
         {{currentDescription}}

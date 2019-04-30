@@ -20,19 +20,18 @@
             <div
               *ngIf="!(item.title?.length === 0 && item.description?.length === 0)"
               class="banner-carousel__item--text row"
-                 [ngStyle]="{ marginLeft : item.marginLeftForText }"
-              >
+                 [ngStyle]="{ marginLeft : item.marginLeftForText }">
               <div
                 class="banner-carousel__item--text-title-outer">
                 <div
-                  *ngFor="let title of item.title"
+                  *ngFor="let title of item.title[locale]"
                   class="banner-carousel__item--text-title"
                   [ngClass]="item.titleFontType">
                   {{title}}
                 </div>
               </div>
 
-              <div *ngFor="let description of item.description"
+              <div *ngFor="let description of item.description[locale]"
                 class="banner-carousel__item--text-description"
                 [ngClass]="item.descriptionFontType">
                 {{description}}

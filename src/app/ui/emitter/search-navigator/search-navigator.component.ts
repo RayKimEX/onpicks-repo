@@ -199,7 +199,6 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
         if ( this.currentName !== undefined ) {
           this.titleService.setTitle(this.currentName[this.locale]);
         }
-
       });
 
     this.cartStore$ = this.store.pipe(select(state => state.cart))
@@ -281,6 +280,7 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
           if ( categoryUrl[categoryUrl.length - 1].indexOf('?') > -1){
             categoryUrl[categoryUrl.length - 1] = categoryUrl[categoryUrl.length - 1].substring(0, categoryUrl[categoryUrl.length - 1].indexOf('?'));
           }
+
           console.log(categoryUrl[3]);
           console.log(categoryUrl[4]);
           console.log(this.categoryMap);
@@ -301,10 +301,7 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
           this.searchData$ =
             this.searchService.categorySearch(categoryCurrentCode,
               this.currentSortSlug,
-              this.currentPage,
-              this.queryParams.brand[0] === undefined ? '' : this.queryParams.brand[0],
-              this.queryParams.value[0] === undefined ? '' : this.queryParams.value[0],
-              this.queryParams.location[0] === undefined ? '' : this.queryParams.location[0] ).subscribe(_infoList => {
+              this.currentPage, this.router.url.indexOf('?') < 0 ? '' : '&' + this.router.url.substring(this.router.url.indexOf('?') + 1, this.router.url.length)).subscribe(_infoList => {
             this.searchState = 'category';
 
             /* async 데이터가 들어오는데, null이라면 return을 해줌 */
@@ -526,7 +523,7 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
         queryParamsHandling: 'merge'
       });
     } else {
-      this.router.navigate(['./'], { relativeTo: this.route, queryParams: {value: xValueSlug}, queryParamsHandling: 'merge'} );
+      this.router.navigate(['./'], { relativeTo: this.route, queryParams: {value: this.queryParams.value.length === 0 ? null : this.queryParams.value}, queryParamsHandling: 'merge'} );
     }
 
   }

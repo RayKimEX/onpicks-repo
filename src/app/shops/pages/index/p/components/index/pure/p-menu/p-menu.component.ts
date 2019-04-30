@@ -45,6 +45,9 @@ export class PMenuComponent implements OnInit, OnDestroy, AfterViewInit, OnChang
       console.log(xData);
       if ( xData === undefined || xData === null ) { return; };
       this._data = xData;
+      for ( var i = 1; i <= (this._data.stock_quantity <= 10 ? this._data.stock_quantity : 10); i ++ ) {
+        this.numberOptionList.list.push({ title : i, value : i });
+      }
       const ObjectKeysCount =  xData.attributes.length;
       let mergeKey = '';
       let cnt = 0;
@@ -153,76 +156,6 @@ export class PMenuComponent implements OnInit, OnDestroy, AfterViewInit, OnChang
 
   numberOptionList = {
     list : [
-      {
-        title : {
-          ko : '1',
-          en : '1'
-        },
-        value : 1,
-      },
-      {
-        title : {
-          ko : '2',
-          en : '2'
-        },
-        value : 2,
-      },
-      {
-        title : {
-          ko : '3',
-          en : '3'
-        },
-        value : 3,
-      },
-      {
-        title : {
-          ko : '4',
-          en : '4'
-        },
-        value : 4,
-      },
-      {
-        title : {
-          ko : '5',
-          en : '5'
-        },
-        value : 5,
-      },
-      {
-        title : {
-          ko : '6',
-          en : '6'
-        },
-        value : 6,
-      },
-      {
-        title : {
-          ko : '7',
-          en : '7'
-        },
-        value : 7,
-      },
-      {
-        title : {
-          ko : '8',
-          en : '8'
-        },
-        value : 8,
-      },
-      {
-        title : {
-          ko : '9',
-          en : '9'
-        },
-        value : 9,
-      },
-      {
-        title : {
-          ko : '10',
-          en : '10'
-        },
-        value : 10,
-      }
     ]
   }
 

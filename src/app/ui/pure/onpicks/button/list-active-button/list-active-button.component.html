@@ -24,7 +24,7 @@
 
   <ui-plus-minus-icon
     [opacity]="plusOpactiy"
-    [borderColor]="mouseHover && (amount === 0) ? '#FFFFFF' : amount === 10 ? '#e5e5e5' : '#292929'"
+    [borderColor]="mouseHover && (amount === 0) ? '#FFFFFF' : amount === limitCount ? '#e5e5e5' : '#292929'"
     [size]="'12px'"
     #plusIcon
     [ngStyle]="
@@ -45,7 +45,7 @@
         (mousedown)="downOpacity('minus')"
         (mouseup)="upOpacity('minus')"
         (mouseleave)="upOpacity('minus')"
-        (click)="amountDown()"
-  ></span>
+        (click)="amountDown()">
+  </span>
 </div>
 
