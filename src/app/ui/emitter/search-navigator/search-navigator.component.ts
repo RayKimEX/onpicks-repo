@@ -41,7 +41,7 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
   valueList;
   valueListForCheck = {};
   infoList;
-  orderedFilterList = [];
+  filters;
 
   /** currentState **/
   currentSortSlug = 'most_popular';
@@ -215,7 +215,7 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
     this.router.events.subscribe( (event: RouterEvent) => {
 
       if (event instanceof NavigationEnd ) {
-        let url = this.router.url;
+        const url = this.router.url;
         this.currentUrl = url;
         if ( url.indexOf('/search') > -1 || url.indexOf('/c/') > -1) {
 
@@ -224,7 +224,7 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
         }
 
         this.currentList = null;
-        this.orderedFilterList = [];
+        this.filters = {};
         // category main페이지 일때
         if (this.router.url.indexOf('&') < 0) {
           const temp = this.router.url.substring(this.router.url.indexOf('&') + 1, this.router.url.length);
@@ -242,17 +242,6 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
             //             //   }
             //             // }
           });
-        } else {
-          // search 화면일때
-          const temp = this.router.url.substring(this.router.url.indexOf('&') + 1, this.router.url.length);
-          const tempArray = temp.split('&');
-          tempArray.forEach(item => {
-            console.log(item);
-            const paramTemp = item.split('=');
-            if (paramTemp[0] !== 'ordering' && paramTemp[0] !== 'category' && paramTemp[0] !== 'page' && paramTemp[0] !== 'page_size') {
-              this.orderedFilterList.push(paramTemp[1]);
-            }
-          });
         }
 
 
@@ -268,6 +257,7 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
             /* async 데이터가 들어오는데, null이라면 return을 해줌 */
             if (_infoList != null) {
 
+              this.filters = _infoList.filters;
               this.valueList = _infoList.aggregation.values;
               this.locationList = _infoList.aggregation.locations;
               this.brandList = _infoList.aggregation.brands;
@@ -320,6 +310,7 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
             /* async 데이터가 들어오는데, null이라면 return을 해줌 */
 
             if (_infoList != null) {
+              this.filters = _infoList.filters;
               this.valueList = _infoList.aggregation.values;
               this.locationList = _infoList.aggregation.locations;
               this.brandList = _infoList.aggregation.brands;
@@ -337,11 +328,11 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
           });
         }
       }
-    })
+    });
+
     this.queryParams$ = this.route.queryParams
       .subscribe((val: { term, brand, value, location, category, page, ordering }) => {
         this.currentList = null;
-        this.orderedFilterList = [];
         this.currentParamList = {
           ...val
         };
@@ -376,6 +367,35 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
 
         this.cd.markForCheck();
       });
+  }
+
+  get filterList() {
+    let filterList = [];
+
+    // 브랜드, 밸류, 출고지 필터들을 종류에 상관없이 1차원 배열로 나열한다.
+    Object.keys(this.filters).forEach(type => {
+      switch (type) {
+        case 'brands':
+          filterList = filterList.concat(
+            (this.filters[type] || []).map(({slug, name}) => ({type: 'brand', key: slug, value: name}))
+          );
+          break;
+        case 'values':
+          filterList = filterList.concat(
+            (this.filters[type] || []).map(({slug, name}) => ({type: 'value', key: slug, value: name}))
+          );
+          break;
+        case 'locations':
+          filterList = filterList.concat(
+            (this.filters[type] || []).map(({code, name}) => ({type: 'location', key: code, value: name}))
+          );
+          break;
+        default:
+          break;
+      }
+    });
+
+    return filterList;
   }
 
   ngOnDestroy() {
@@ -573,37 +593,22 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
     this.router.navigate( ['/shops/search'], { queryParams: {category: xCategoryCode}, queryParamsHandling: 'merge'} );
   }
 
-  removeSpecificFilter(xValue) {
-
-    let temp = {
-      ...this.currentParamList
-    };
-
-    Object.keys(this.currentParamList).forEach( key => {
-      if ( Array.isArray(this.currentParamList[key])) {
-        this.currentParamList[key].forEach( (innerValue, innerIndex) => {
-          if ( innerValue === xValue ) {
-            this.currentParamList[key].splice(innerIndex, 1)
-            if ( this.currentParamList[key].length === 0 ) {
-
-              delete temp[key];
-            } else {
-              temp = {
-                ...this.currentParamList,
-                [key] : [...this.currentParamList[key]]
-              };
-            }
-          }
-        });
-      } else {
-        if ( this.currentParamList[key] === xValue) {
-          delete temp[key];
+  removeSpecificFilter(xType, xKey) {
+    if (Array.isArray(this.currentParamList[xType])) {
+      const index = this.currentParamList[xType].indexOf(xKey);
+      if (index !== -1) {
+        this.currentParamList[xType].splice(index, 1);
+        if (this.currentParamList[xType].length === 0) {
+          delete this.currentParamList[xType];
         }
       }
-    });
+    } else {
+      if (this.currentParamList[xType] === xKey) {
+        delete this.currentParamList[xType];
+      }
+    }
 
-    console.log(temp);
-    this.router.navigate( ['/shops/search'], {queryParams: temp});
+    this.router.navigate( ['/shops/search'], {queryParams: this.currentParamList});
   }
 
   // TODO : 리뷰 검색, 브랜드 검색 2차 스콥때 하기
