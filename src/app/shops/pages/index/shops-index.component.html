@@ -32,6 +32,6 @@
     setTitle="최근 본 상품"
     [mobileType]="'half'"
 
-    [infoList]="(recentlyViewed$ | async)?.results">
+    [infoList]="recentlyViewed$ | async">
   </ui-mini-list>
 </div>
