@@ -17,9 +17,11 @@
       [borderColor]=" isFixExtend && (amount == 1) ? '#b3b3b3' : '#292929'"
       [size]="'14px'"
       #minusIcon
-      [type]="'minus'"></ui-plus-minus-icon>
-    <span class="extendUI__number" *ngIf="amount !== 0"
-    >{{amount}}</span>
+      [type]="'minus'">
+    </ui-plus-minus-icon>
+    <span class="extendUI__number" *ngIf="amount !== 0">
+      {{amount}}
+    </span>
   </span>
 
   <ui-plus-minus-icon
@@ -32,14 +34,15 @@
         left : isFixExtend || this.amount !== 0  ? 'auto' : '',
         right : isFixExtend || this.amount !== 0  ? '1.9rem' : ''
      }"
-    [type]="'plus'" ></ui-plus-minus-icon>
+    [type]="'plus'" >
+  </ui-plus-minus-icon>
 
   <span class="touch__amount-up"
         (mousedown)="downOpacity('plus')"
         (mouseup)="upOpacity('plus')"
         (mouseleave)="upOpacity('plus')"
-        (click)="extendWidth()"
-  ></span>
+        (click)="extendWidth()">
+  </span>
   <span
     *ngIf="amount !== 0" class="touch__amount-down"
         (mousedown)="downOpacity('minus')"
