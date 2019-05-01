@@ -768,7 +768,7 @@
       </trans-unit>
 
       <trans-unit id="written-reviews__title" datatype="html">
-        <target>Written Reviews</target>
+        <target>My Reviews</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
           <context context-type="linenumber">52</context>
@@ -816,7 +816,7 @@
       </trans-unit>
 
       <trans-unit id="orders__description" datatype="html">
-        <target>주문한 상품이 없습니다. Onpicks와 함께 다양한 아이템을 최적의 가격으로 쇼핑하세요! ( 영어 )</target>
+        <target>You haven’t placed any orders yet. Start shopping at Onpicks to save on your favorite products!</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
           <context context-type="linenumber">52</context>
@@ -939,6 +939,14 @@
       </trans-unit>
 
       <!--Word-->
+
+      <trans-unit id="word__results" datatype="html">
+        <target>Results</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
 
       <trans-unit id="word__search" datatype="html">
         <target>Search</target>
@@ -1319,6 +1327,30 @@
 
 
       <!--Sentence-->
+
+      <trans-unit id="sentence__continue-shopping-at-onpicks" datatype="html">
+        <target>Continue shopping at Onpicks to save on your favorite products!</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="sentence__shopping-bag-is-empty" datatype="html">
+        <target>Your Shopping Bag Is Empty</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="sentence__search-word" datatype="html">
+        <target>Search brands, products, and lifestyle.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
 
       <trans-unit id="sentence__save-address" datatype="html">
         <target>배송지 저장 ( 영어 )</target>

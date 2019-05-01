@@ -124,11 +124,15 @@ export class PantryAndHouseholdComponent implements OnInit {
 
   todayCollection = [
     {
-      imgSrc : 'http://img.onpicks.com/collections/collections-paleo.jpg',
+      imgSrc : {
+        ko : 'http://img.onpicks.com/collections/ko/paleo.jpg?d=w528-h352',
+        en : 'http://img.onpicks.com/collections/en/paleo.jpg?d=w528-h352',
+      },
       todayCategoryName : {
         ko : '식품·생활용품',
         en : 'Pantry & Household'
       },
+      categoryCode : 1000000,
       todayTitle : {
         ko : '팔레오 다이어트',
         en : 'Paleo Diet',
@@ -142,11 +146,15 @@ export class PantryAndHouseholdComponent implements OnInit {
       }
     },
     {
-      imgSrc : 'http://img.onpicks.com/collections/collections-USDA.jpg',
+      imgSrc : {
+        ko : 'http://img.onpicks.com/collections/ko/USDA.jpg?d=w528-h352',
+        en : 'http://img.onpicks.com/collections/en/USDA.jpg?d=w528-h352'
+      },
       todayCategoryName : {
         ko : '식품·생활용품',
         en : 'Pantry & Household'
       },
+      categoryCode : 1000000,
       todayTitle : {
         ko : 'USDA 인증',
         en : 'Certified Organic'
@@ -162,11 +170,15 @@ export class PantryAndHouseholdComponent implements OnInit {
       }
     },
     {
-      imgSrc : 'http://img.onpicks.com/collections/collections-gluten.jpg',
+      imgSrc : {
+        ko : 'http://img.onpicks.com/collections/ko/gluten.jpg?d=w528-h352',
+        en : 'http://img.onpicks.com/collections/en/gluten.jpg?d=w528-h352'
+      },
       todayCategoryName : {
         ko : '식품·생활용품',
         en : 'Pantry & Household'
       },
+      categoryCode : 1000000,
       todayTitle : {
         ko : '글루텐프리',
         en : 'Certified Gluten-Free'

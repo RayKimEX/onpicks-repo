@@ -73,8 +73,11 @@
                         mobileType === 'half' ?
                         'ui-mini-list-halfM__item--stock' :
                         'ui-mini-list-fullM__item--stock']">
-                        <span class="ui-mini-list-halfM__item--stock--inner u-color-white">
-                          매진임박 10개
+                        <span *ngIf="locale === 'ko'" class="ui-mini-list-halfM__item--stock--inner u-color-white">
+                          품절임박 {{item.stock_quantity}}개
+                        </span>
+                        <span *ngIf="locale === 'en'" class="ui-mini-list-halfM__item--stock--inner u-color-white">
+                          Only {{item.stock_quantity}} Left
                         </span>
                       </div>
                       <div *ngIf="item.in_stock === false || item.in_stock === true && item.stock_quantity === 0" [ngClass]="[

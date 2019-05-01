@@ -11,7 +11,7 @@
   <onpicks-today-collection [todayCollection]="todayCollection"></onpicks-today-collection>
   <onpicks-value-list [valueList]="valueList$ | async"></onpicks-value-list>
   <onpicks-popular-brand [popularBrand]="popularBrands$ | async"></onpicks-popular-brand>
-  <onpicks-trending-reviews [infoList]="trendingReviews" i18n-setTitle="@@trending-reviews__title" setTitle="인기 리뷰">
+  <onpicks-trending-reviews [infoList]="trendingReviews$ | async" i18n-setTitle="@@trending-reviews__title" setTitle="인기 리뷰">
 
   </onpicks-trending-reviews>
 

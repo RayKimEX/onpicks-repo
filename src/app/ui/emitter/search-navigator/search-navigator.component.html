@@ -376,7 +376,7 @@
 
             <ng-container  *ngIf="searchState == 'category'">
               <ng-container *ngIf="currentList.length !== 0">
-               <span>{{currentName[locale]}} {{totalCount}}</span>건
+                <span>{{currentName[locale]}} {{totalCount}}</span><span i18n="@@word__results">건</span>
                 <onpicks-sort-box
                   class="search-content__sort-box"
                   [selectedElement]="{ value : currentSortSlug}"
@@ -420,8 +420,11 @@
                         class="search-content__item--image-outer">
                         <div *ngIf="item.in_stock === true && item.stock_quantity <= 10 && item.stock_quantity !== 0"
                         class="search-content__item--stock">
-                          <span class="search-content__item--stock--inner subtitle-2-bold u-color-white">
-                            매진임박 {{item.stock_quantity}}개
+                          <span *ngIf="locale === 'ko'" class="search-content__item--stock--inner subtitle-2-bold u-color-white">
+                            품절임박 {{item.stock_quantity}}개
+                          </span>
+                            <span *ngIf="locale === 'en'" class="search-content__item--stock--inner subtitle-2-bold u-color-white">
+                            Only {{item.stock_quantity}} Left
                           </span>
                         </div>
                         <div *ngIf="item.in_stock === false || item.in_stock === true && item.stock_quantity === 0"

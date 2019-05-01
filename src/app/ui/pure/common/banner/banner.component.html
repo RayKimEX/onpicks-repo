@@ -15,14 +15,14 @@
     <div
       class="banner__text-title-outer">
       <div
-        *ngFor="let title of bannerInfo.title"
+        *ngFor="let title of bannerInfo.title[locale]"
         class="banner__text-title"
         [ngClass]="bannerInfo.titleFontType">
         {{title}}
       </div>
     </div>
 
-    <div *ngFor="let description of bannerInfo.description"
+    <div *ngFor="let description of bannerInfo.description[locale]"
          class="banner__text-description"
          [ngClass]="bannerInfo.descriptionFontType"
     >

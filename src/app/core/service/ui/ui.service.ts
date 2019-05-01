@@ -25,6 +25,10 @@ export class UiService {
     return this.httpClient.get<any>( this.BASE_URL + '/api/home/popular_brands/', { params });
   }
 
+  getTrendingReviews() {
+    return this.httpClient.get<any>(this.BASE_URL + '/api/home/trending_reviews/?size=10');
+  }
+
   getRecentlyViewed() {
     return this.httpClient.get<any>(this.BASE_URL + '/api/home/recently_viewed/');
   }

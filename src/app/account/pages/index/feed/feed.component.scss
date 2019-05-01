@@ -17,6 +17,10 @@
 
   &__grid {
     line-height: 0;
+
+    &--div {
+      display:inline-block;
+    }
   }
 
   &__col {
