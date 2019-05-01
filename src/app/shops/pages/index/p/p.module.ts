@@ -18,7 +18,6 @@ import { StoreModule } from '@ngrx/store';
 import { PRefundComponent } from './components/index/pure/p-refund/p-refund.component';
 import { EffectsModule } from '@ngrx/effects';
 import { PEffects } from './store/p.effects';
-import { PPictureReviewSubComponent } from './components/index/pure/p-picture-review-sub/p-picture-review-sub.component';
 import { PProductReportComponent } from './components/index/pure/p-product-report/p-product-report.component';
 
 @NgModule({
@@ -44,11 +43,7 @@ import { PProductReportComponent } from './components/index/pure/p-product-repor
     PItemDetailComponent,
 
     POtherSellersComponent,
-
     PRefundComponent,
-
-    PPictureReviewSubComponent,
-
     PProductReportComponent,
   ]
 })

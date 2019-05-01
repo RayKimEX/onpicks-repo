@@ -12,7 +12,7 @@
   <div
     *ngFor="let key of objectKeys(reasonMap)"
     class="modal__item subtitle-2-regular">
-    {{reasonMap[key]['ko']}}
+    {{reasonMap[key][locale]}}
     <onpicks-check-box
       (boxEvent)="textReportReasonForModal = $event"
       class="modal__item--check-box"
@@ -26,6 +26,7 @@
     class="modal__btn"
     [width]="'10.1rem'"
     [size]="'big'"
+    [padding]="false"
     [type]="'black'">
     신고하기
   </onpicks-button>
@@ -38,23 +39,30 @@
   <div id="reviewHello" class="p-reviews u-margin-bottom" *ngIf="data.reviews?.results?.length > 0">
     <!--async에대한 처리로 추가로 감싸줌-->
 
-      <h1 class="p-reviews__title h1-bold">
+      <h1 *ngIf="locale === 'en'" class="p-reviews__title h1-bold">
+        {{data.reviews.results?.length}} Reviews
+      </h1>
+      <h1 *ngIf="locale === 'ko'" class="p-reviews__title h1-bold">
         리뷰 {{data.reviews.results?.length}}개
       </h1>
       <ui-star-rating
         [star-point]="data.reviews.extraInfo?.reviewAvgRating">
       </ui-star-rating>
 
-      <div class="subtitle-1-regular u-color-dark-grey u-margin-bottom--small">
+      <div
+        i18n="@@word__rating-distribution"
+        class="subtitle-1-regular u-color-dark-grey u-margin-bottom--small">
         별점 분포
       </div>
       <table class="p-reviews__table">
         <tr  *ngFor="let key of objectKeys(starMaxList);  index as i ">
-          <td class="p-reviews__table--col subtitle-1-regular">
+          <td
+            [ngStyle]="{ width : locale === 'ko' ? '7.2rem' : '9.2rem' }"
+            class="p-reviews__table--col subtitle-1-regular">
             <svg  width="14" height="14"  class="star--14">
               <path class="u-color-fill-black"  d="M10.76,8h0l1.47-1.12L13.69,5.8c.48-.36.39-.66-.2-.66H8.79L8.45,4.06h0L7.89,2.25,7.33.44c-.18-.59-.48-.59-.66,0L5.55,4.06h0L5.21,5.14H.51c-.59,0-.68.3-.2.66L1.77,6.92,3.24,8h0l.87.67-.89,2.88L2.66,13.4c-.19.59.06.78.54.41L7,10.91l2.34,1.78,1.46,1.12c.48.37.73.18.54-.41l-.56-1.81L9.89,8.71Z"/>
             </svg>
-            <span class="p-reviews__table--point">{{5-i}}점</span>
+            <span class="p-reviews__table--point">{{5-i}}<span i18n="@@word__stars">점</span></span>
           </td>
           <td class="p-reviews__table--col subtitle-1-regular">
             <div class="p-reviews__table--line">
@@ -73,7 +81,8 @@
       <hr id="forReview" #hrLineList>
 
       <div class="p-reviews__small-header">
-        <div class="subtitle-1-bold u-inline-block">구매자들의 {{data.reviews.results.length}}개 리뷰</div>
+        <div *ngIf="locale === 'ko'" class="subtitle-1-bold u-inline-block">구매자들의 {{data.reviews.results.length}}개 리뷰</div>
+        <div *ngIf="locale === 'en'" class="subtitle-1-bold u-inline-block">Reviewed by {{data.reviews.results.length}} customers</div>
         <onpicks-sort-box
           [selectedElement]="selectedElement"
           (changeEvent)="reviewSorting($event)"
@@ -105,7 +114,9 @@
           </div>
         </figure>
         <div
-          class="subtitle-1-regular u-color-grey"><!--Size: X-Large · Color: Aqua · -->{{data.reviews.list[item].helpful_count}}명이 추천하였습니다 </div>
+          class="subtitle-1-regular u-color-grey"><!--Size: X-Large · Color: Aqua · -->{{data.reviews.list[item].helpful_count}}<span i18n="@@sentence__people-liked-this-review">명이 추천하였습니다</span>
+        </div>
+
 
         <div
           class="p-reviews__content-outer">
@@ -143,32 +154,42 @@
             </svg>
 
             <span
-              [ngClass]="{ 'p-reviews__option--active' : data.reviews.list[item].mark_as_voted}"
+              i18n="@@word__liked"
+              *ngIf="data.reviews.list[item].mark_as_voted"
+              class="p-reviews__option--feature action-1-medium p-reviews__option--active">
+              추천함
+            </span>
+            <span
+              i18n="@@word__like"
+              *ngIf="!data.reviews.list[item].mark_as_voted"
               class="p-reviews__option--feature action-1-medium">
-              {{data.reviews.list[item].mark_as_voted ? '추천함' : '추천하기'}}
+              추천하기
             </span>
           </a>
           <a
             (click)="commentReview('/shops/p/' + data.reviews.list[item].product + '/reviews/' + data.reviews.list[item].id)">
-            <img
-              class="p-reviews__option--feature--icon"
-              src="http://img.onpicks.com/comments-icon.jpg" alt="">
+            <svg class="p-reviews__option--feature--icon" width="18" height="18" viewBox="0 0 18 18">
+              <path fill="#767676" fill-rule="evenodd" d="M13.007 12h-1.044l-.228.262L10.226 14l-.522.6-.204.235-.087.1L9 15.41l-.413-.475-.087-.1-.204-.235-.52-.6-1.51-1.738L6.037 12H2.858a.84.84 0 0 1-.486-.159.871.871 0 0 1-.269-.3.876.876 0 0 1-.093-.322c-.002-.026-.01-.05-.01-.076V2.857a.857.857 0 0 1 .489-.765A.836.836 0 0 1 2.858 2H15.143c.134 0 .256.037.368.092a.86.86 0 0 1 .489.765V11.143c0 .026-.008.05-.01.076a.875.875 0 0 1-.092.322.884.884 0 0 1-.27.3.84.84 0 0 1-.485.159h-2.136zm4.658-10.478A2.851 2.851 0 0 0 15.143 0H2.858A2.852 2.852 0 0 0 .335 1.522 2.872 2.872 0 0 0 0 2.857V11.143c0 .459.116.92.335 1.335A2.852 2.852 0 0 0 2.858 14h2.268l1.659 1.911.292.335 1.147 1.319c.045.066.096.125.153.177.036.034.082.053.123.081A.87.87 0 0 0 9 18a.865.865 0 0 0 .5-.177c.041-.028.087-.047.123-.081a1.01 1.01 0 0 0 .154-.177l1.146-1.319.292-.335L12.874 14h2.269a2.851 2.851 0 0 0 2.522-1.522c.219-.415.335-.876.335-1.335V2.857c0-.459-.116-.92-.335-1.335z"/>
+            </svg>
             <span
+              i18n="@@word__comment"
               class="p-reviews__option--feature action-1-medium"
             >댓글 달기</span>
           </a>
           <a
             (click)="shareReview('/shops/p/' + data.reviews.list[item].product + '/reviews/' + data.reviews.list[item].id)">
-            <img
-              class="p-reviews__option--feature--icon"
-              src="http://img.onpicks.com/share-icon.jpg" alt="">
+            <svg class="p-reviews__option--feature--icon" width="20" height="20" viewBox="0 0 20 20">
+              <path fill="#767676" fill-rule="evenodd" d="M16.035 18.02l-.055.001a2.014 2.014 0 0 1-1.998-1.947 2.004 2.004 0 0 1 1.948-2.053l.054-.001c1.073 0 1.97.874 1.997 1.948a2.001 2.001 0 0 1-1.946 2.052m-10.06-7.769c-.005.045-.009.09-.017.134-.02.105-.05.207-.086.305-.007.018-.01.035-.018.052a2 2 0 0 1-1.803 1.257L3.996 12c-.932 0-1.729-.66-1.94-1.537l-.008-.024c-.02-.086-.026-.176-.034-.265-.004-.054-.012-.108-.012-.164 0-.055.008-.108.012-.163.008-.089.014-.179.034-.265l.007-.025A2.015 2.015 0 0 1 3.996 8.02l.055.001c.822.022 1.515.54 1.803 1.258.007.017.011.035.018.053.036.098.065.199.086.303.008.045.012.091.017.137.01.078.017.157.018.238a1.926 1.926 0 0 1-.019.241M15.98 2l.055.001a2.001 2.001 0 0 1 1.946 2.052A2.011 2.011 0 0 1 15.984 6l-.054-.001a2.002 2.002 0 0 1-1.948-2.051A2.014 2.014 0 0 1 15.98 2m.004 10.02l-.107.002a3.974 3.974 0 0 0-2.896 1.372l-5.075-2.55c.004-.019.004-.04.008-.06.021-.107.028-.216.041-.326.013-.111.04-.218.042-.332.001-.04-.009-.077-.009-.116 0-.039.01-.076.01-.115-.004-.114-.03-.221-.043-.332-.013-.109-.02-.22-.04-.326-.005-.02-.005-.041-.009-.061l5.075-2.549A3.978 3.978 0 0 0 15.984 8a4 4 0 0 0 .104-7.999L15.98 0a4.002 4.002 0 0 0-3.997 3.895c-.009.326.033.64.1.945L7.005 7.39A3.975 3.975 0 0 0 4 6l-.108.001A3.987 3.987 0 0 0 .73 7.716l-.01.016a4.002 4.002 0 0 0-.323.567c-.02.041-.044.079-.062.121a4.182 4.182 0 0 0-.175.524c-.022.081-.05.158-.067.241-.032.148-.044.302-.058.455-.009.093-.032.181-.034.276 0 .032.007.062.007.094S0 10.074 0 10.106c.002.095.025.183.034.274.014.155.026.308.058.456.017.082.045.161.067.241.05.179.103.355.175.524.018.042.043.08.062.121a3.948 3.948 0 0 0 .334.583 3.98 3.98 0 0 0 3.162 1.714l.108.002a3.972 3.972 0 0 0 3.006-1.391l5.076 2.551a3.934 3.934 0 0 0-.099.945 4.002 4.002 0 0 0 4.105 3.893 3.998 3.998 0 0 0 3.892-4.103 4 4 0 0 0-3.996-3.896"/>
+            </svg>
             <span
+              i18n="@@word__share"
               class="p-reviews__option--feature action-1-medium">
               공유 하기
             </span>
           </a>
           <a>
             <span
+              i18n="@@word__report"
               (click)="showReportModal( data.reviews.list[item].id, data.reviews.list[item].product, data.userState.isAuthenticated)"
               class="p-reviews__option--report subtitle-1-regular u-color-grey">
               신고하기

@@ -19,6 +19,7 @@ import {
 })
 export class SortBoxComponent implements OnInit, AfterViewInit {
   @ViewChild('HTMLdropDown') HTMLdropDown;
+  @Input('multiLanguage') multiLanguage = false;
   @Input('sortList') sortList;
   @Input('fontSize') fontSize;
   @Input('showBox') showBox;
@@ -81,8 +82,9 @@ export class SortBoxComponent implements OnInit, AfterViewInit {
   }
 
   clickSortBoxElement(inputValue) {
+    console.log(inputValue.name)
     this.selectedElement = {
-      title : inputValue.name,
+      title : { [this.locale] : inputValue.name },
       value : inputValue.value
     }
 

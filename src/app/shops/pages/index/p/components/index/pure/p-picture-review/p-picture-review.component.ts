@@ -1,7 +1,7 @@
 import {
   AfterViewInit,
   ChangeDetectionStrategy, ChangeDetectorRef,
-  Component,
+  Component, HostListener,
   Input,
   OnDestroy,
   OnInit,
@@ -13,6 +13,7 @@ import {fromEvent} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {select, Store} from '@ngrx/store';
 import {PDataService} from '../../../../../../../../core/service/data-pages/p/p-data.service';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'onpicks-p-picture-review',
@@ -24,308 +25,115 @@ import {PDataService} from '../../../../../../../../core/service/data-pages/p/p-
 
 
 
-export class PPictureReviewComponent implements OnInit, AfterViewInit, OnDestroy {
+export class PPictureReviewComponent {
+  @ViewChildren('itemList') itemList;
+  @ViewChild('container') container;
 
-  @ViewChildren('imageLargeOuter') imageLargeOuter;
-  @ViewChild('imagesSmallOuter') imagesSmallOuter;
-  @ViewChildren('imageSmallOuter') imageSmallOuter;
+
 
   @Input('pictureReviewList') set setList(xData) {
+
     if ( xData === null ) { return ; };
 
-    this.imagesLargeList = xData;
+    this.imagesCount = xData.count;
+    this.imagesLargeList = xData.results;
     this.imagesLargeList.unshift({});
     this.imagesLargeList.push({});
+
     setTimeout( () => {
       this.imagesLargeList.forEach( item => {
+        console.log(item.url);
         if ( item.url !== undefined ){
-          this.imagesSmallList.push(item.url);
+          // 작은 이미지 만들어서 불러오기
+          this.imagesSmallList.push(item.url + '?d=w128-h128');
         }
       });
 
-      const initialLeft_x = -37.6;
-      const offsetLeft = 47.2;
-      const initialRight_x = 104;
+      // this.imageSmallOuterArray = this.imageSmallOuter.toArray();
+      // this.imageLargeOuterArray = this.imageLargeOuter.toArray();
 
-
-      this.imageLargeOuter.forEach(
-        (outer, index) => {
-
-          this.animationEndEvent = fromEvent(outer.nativeElement.parentNode, 'animationend' );
-
-          if ( index === 0 ) {
-            this.renderer.setStyle(outer.nativeElement,
-              'left',
-              (initialLeft_x) + 'rem');
-          } else if ( index >= 3 ) {
-            this.renderer.setStyle(outer.nativeElement,
-              'left',
-              (initialRight_x + 'rem'));
-          } else {
-            this.renderer.setStyle(outer.nativeElement,
-              'left',
-              (initialLeft_x + (offsetLeft * index)) + 'rem');
+      this.itemListArray = this.itemList.toArray();
+      if ( this.itemList.first !== undefined ){
+        const computedStyle = getComputedStyle(( this.itemList.first.nativeElement ), null);
+        this.calculatePercentToPXInterval = setInterval( () => {
+          const isPX = computedStyle.width.endsWith('px');
+          if ( isPX ) {
+            this.firstOffset = parseFloat(computedStyle.width) * 0.8245;
+            this.translateXWidth =  parseInt(computedStyle.width, 10 ) + parseInt(computedStyle.marginRight, 10);
+            this.renderer.setStyle(this.container.nativeElement, 'transition', 'x');
+            this.renderer.setStyle(this.container.nativeElement, 'transform', 'translateX(-' + this.firstOffset + 'px');
+            clearInterval(this.calculatePercentToPXInterval);
           }
 
-        }
-      );
+        }, 20);
+      }
 
-      let animationCount = 0;
-
-      this.animationEndEvent = this.animationEndEvent.pipe(map((val: AnimationEvent) => val.target));
-      this.animationEndEvent = this.animationEndEvent.subscribe(val => {
-
-        // @ts-ignore
-        const temp = getComputedStyle(( val ), null);
-        // force로 duration을 0으로 줘서 이벤트를 중지시켜도 animationend는 불려짐
-        if (this.state === 'leftAnimating' || this.state === 'leftInteruptAnimating') {
-          this.renderer.removeClass(val, 'animate-left');
-
-          this.renderer.setStyle(
-            val, 'left', (parseInt(temp.left, 10) - (this.customWidth)) + 'px');
-
-          // interupt animationend
-          if (this.state === 'leftInteruptAnimating') {
-            this.renderer.removeClass(val, 'u-animation-stop');
-
-            animationCount++;
-            if (animationCount >= 4) {
-              animationCount = 0;
-              this.state = 'leftAnimating';
-              this.animateCarousel('left', 'cur', 'animate-left', 'add');
-              this.imageIndex++;
-            }
-
-            return;
-          }
-          if (this.state === 'leftAnimating') {
-
-            // else의 경우의 수가 명시적이지가 않다..
-            // else를 대신해서 this.state === 'leftAnimating' 하면 되야 되는게 맞는것같은데
-            // else를 풀고 저렇게 하면 제대로 동작하지 않음. 이유에 대해선 정확히 잘 모르겠음
-            animationCount++;
-            if (animationCount >= 4) {
-              this.state = 'stay';
-              animationCount = 0;
-            }
-            return;
-          }
-        }
-
-        if (this.state === 'rightAnimating' || this.state === 'rightInteruptAnimating') {
-          this.renderer.removeClass(val, 'animate-right');
-
-          this.renderer.setStyle(
-            val, 'left', (parseInt(temp.left, 10) + (this.customWidth)) + 'px');
-
-          // interupt animationend
-          if (this.state === 'rightInteruptAnimating') {
-            this.renderer.removeClass(val, 'u-animation-stop');
-
-            animationCount++;
-            if (animationCount >= 4) {
-              animationCount = 0;
-              this.state = 'rightAnimating';
-              this.animateCarousel('right', 'cur', 'animate-right', 'add');
-              this.imageIndex--;
-            }
-
-            return;
-          }
-          if (this.state === 'rightAnimating') {
-
-            // else의 경우의 수가 명시적이지가 않다..
-            // else를 대신해서 this.state === 'leftAnimating' 하면 되야 되는게 맞는것같은데
-            // else를 풀고 저렇게 하면 제대로 동작하지 않음. 이유에 대해선 정확히 잘 모르겠음
-            animationCount++;
-            if (animationCount >= 4) {
-              this.state = 'stay';
-              animationCount = 0;
-            }
-            return;
-          }
-
-
-        };
-      });
-      this.imageSmallOuterArray = this.imageSmallOuter.toArray();
-      this.imageLargeOuterArray = this.imageLargeOuter.toArray();
       this.cd.markForCheck();
-
-
-
     }, 0);
   }
 
+
+  calculatePercentToPXInterval;
+  translateXWidth = 0;
+  firstOffset = 0;
+
+  imagesCount = 0;
   imagesLargeList = [];
   imagesSmallList = [];
 
+
+
+  itemListArray;
   imageIndex = 0;
   // 456(width) + 16 ( margin )
-  customWidth = 472;
-  state = 'stay';
-
-  imageLargeOuterArray = [];
-  imageSmallOuterArray = [];
 
   animationEndEvent;
 
-  reviews$;
   constructor(
     private renderer: Renderer2,
     private store: Store<any>,
     private pDataService: PDataService,
-    private cd: ChangeDetectorRef
+    private cd: ChangeDetectorRef,
+    private router: Router,
+    private route: ActivatedRoute
     //
   ) {
-    this.reviews$ = this.store.pipe(select((state) => state['p']['reviews']));
   }
 
-  ngOnInit() {
-
-  }
-
-  ngOnDestroy() {
-    if ( this.animationEndEvent !== undefined) {
-      this.animationEndEvent.unsubscribe();
-    }
-
-  }
-
-  ngAfterViewInit() {
-
-
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    const computedStyle = getComputedStyle(( this.itemList.first.nativeElement ), null);
+    this.firstOffset = parseFloat(computedStyle.width) * 0.8245;
+    this.translateXWidth =  parseInt(computedStyle.width, 10 ) + parseInt(computedStyle.marginRight, 10);
+    this.renderer.setStyle(this.container.nativeElement, 'transition', 'x');
+    this.renderer.setStyle(this.container.nativeElement, 'transform', 'translateX(-' + (this.firstOffset + (this.imageIndex * this.translateXWidth)) + 'px');
   }
 
   clickImageSmall( f ) {
     this.imageIndex = parseInt(f.getAttribute('data-index'), 10);
-    // const initialLeft_x = -37.6;
-    // const offsetLeft = 47.2;
-    // const initialRight_x = 104;
-
-
-    this.imageLargeOuter.forEach( (el, index) => {
-      if ( index <= this.imageIndex - 1 ) {
-        this.renderer.setStyle(el.nativeElement, 'left', '-84.8rem');
-        return;
-      }
-
-      if ( index >= this.imageIndex + 3 ) {
-        this.renderer.setStyle(el.nativeElement, 'left', '104rem');
-        return;
-      }
-
-      if ( index === this.imageIndex ) {
-        this.renderer.setStyle(el.nativeElement, 'left', '-37.6rem');
-      }
-
-      if ( index === this.imageIndex + 1 ) {
-        this.renderer.setStyle(el.nativeElement, 'left', '9.6rem');
-      }
-
-      if ( index === this.imageIndex + 2 ) {
-        this.renderer.setStyle(el.nativeElement, 'left', '56.8rem');
-      }
-
-    });
-
-    if ( this.imageIndex >= 4 ) {
-      this.renderer.setProperty(this.imagesSmallOuter.nativeElement,
-        'scrollLeft',
-        (72 * (this.imageIndex - 4)));
-
-      return;
-    }
-
-    if ( this.imageIndex <= this.imageSmallOuterArray.length - 5 ) {
-      this.renderer.setProperty(this.imagesSmallOuter.nativeElement,
-        'scrollLeft',
-        this.imagesSmallOuter.nativeElement.scrollLeft - (72 * this.imageIndex - 5));
-      return;
-    }
+    this.renderer.setStyle(this.container.nativeElement, 'transition', 'transform .5s ease 0s');
+    this.renderer.setStyle(this.container.nativeElement, 'transform', 'translateX(-' + (this.firstOffset + (this.imageIndex * this.translateXWidth)) + 'px)');
   }
 
   prevButton() {
-    if ( this.imageIndex === 0) { return; };
-    if ( this.imageIndex <= this.imageSmallOuterArray.length - 5 ) {
-      this.renderer.setProperty(this.imagesSmallOuter.nativeElement,
-        'scrollLeft',
-        this.imagesSmallOuter.nativeElement.scrollLeft - 72);
-    }
-
-    // 사라지는 조건  this.imageIndex == 0
-    switch (this.state) {
-      case 'rightAnimating' :
-        this.animateCarousel('right', 'prev', 'u-animation-stop', 'add');
-        this.state = 'rightInteruptAnimating';
-        break;
-      case 'stay' :
-        this.animateCarousel('right', 'cur', 'animate-right', 'add');
-        this.imageIndex--;
-        this.state = 'rightAnimating';
-        break;
-    }
+    // if ( this.imageIndex === 0) { return; };
+    this.imageIndex--;
+    this.renderer.setStyle(this.container.nativeElement, 'transition', 'transform .5s ease 0s');
+    this.renderer.setStyle(this.container.nativeElement, 'transform', 'translateX(-' + (this.firstOffset + (this.imageIndex * this.translateXWidth)) + 'px)');
   }
 
   nextButton() {
-    if ( this.imageIndex >= this.imageLargeOuterArray.length - 3) { return; };
-    if ( this.imageIndex >= 4 ) {
-      this.renderer.setProperty(this.imagesSmallOuter.nativeElement,
-        'scrollLeft',
-        this.imagesSmallOuter.nativeElement.scrollLeft + 72);
-    }
 
-    // 버튼이 사라지는 조건 this.imageIndex < this.imageLargeOuterArray.length - 3
-
-    switch (this.state) {
-      case 'leftAnimating' :
-
-        this.animateCarousel('left', 'prev', 'u-animation-stop', 'add');
-
-        this.state = 'leftInteruptAnimating';
-        break;
-      case 'stay' :
-        this.animateCarousel('left', 'cur', 'animate-left', 'add');
-        this.imageIndex++;
-        this.state = 'leftAnimating';
-        break;
-    }
+    // if ( this.imageIndex >= this.imageLargeOuterArray.length - 3) { return; };
+    this.imageIndex++;
+    console.log(this.translateXWidth);
+    console.log(this.imageIndex);
+    console.log(this.firstOffset);
+    this.renderer.setStyle(this.container.nativeElement, 'transition', 'transform .5s ease 0s');
+    this.renderer.setStyle(this.container.nativeElement, 'transform', 'translateX(-' + (this.firstOffset + (this.imageIndex * this.translateXWidth)) + 'px)');
   }
 
-  private animateCarousel( direction: string, startPosition: string, addClassName: string, act: string ) {
-    switch (direction) {
-      case 'left' :
-        if ( startPosition === 'cur') {
-          for ( let i = 0; i < 4 ; i ++ ) {
-            act === 'add' ? this.renderer.addClass(this.imageLargeOuterArray[this.imageIndex + i].nativeElement, addClassName) :
-              this.renderer.removeClass(this.imageLargeOuterArray[this.imageIndex + i].nativeElement, addClassName);
-
-          }
-        }
-        if ( startPosition === 'prev' ) {
-          for ( let i = -1; i < 3 ; i ++ ) {
-            act === 'add' ? this.renderer.addClass(this.imageLargeOuterArray[this.imageIndex + i].nativeElement, addClassName) :
-              this.renderer.removeClass(this.imageLargeOuterArray[this.imageIndex + i].nativeElement, addClassName);
-          }
-        }
-
-        break;
-      case 'right' :
-        if ( startPosition === 'cur') {
-          for ( let i = -1; i < 3 ; i ++ ) {
-            act === 'add' ? this.renderer.addClass(this.imageLargeOuterArray[this.imageIndex + i].nativeElement, addClassName) :
-              this.renderer.removeClass(this.imageLargeOuterArray[this.imageIndex + i].nativeElement, addClassName);
-
-          }
-        }
-        if ( startPosition === 'prev' ) {
-          for ( let i = 0; i < 4 ; i ++ ) {
-            act === 'add' ? this.renderer.addClass(this.imageLargeOuterArray[this.imageIndex + i].nativeElement, addClassName) :
-              this.renderer.removeClass(this.imageLargeOuterArray[this.imageIndex + i].nativeElement, addClassName);
-          }
-        }
-        break;
-
-    }
+  goReview(xReviewId) {
+    this.router.navigate(['reviews/' + xReviewId], {relativeTo: this.route});
   }
 }

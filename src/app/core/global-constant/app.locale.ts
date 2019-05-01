@@ -33,31 +33,31 @@ export const REPORT_REASON_MAP = new InjectionToken<any>( './core/global-constan
 export const REPORT_REASON_MAP_CONST = {
   'irrelevant' : {
     ko : '주제와 관련 없음',
-    en : '',
+    en : 'Off Topic',
     // 중국어
     zh : '',
   },
   'inappropriate' : {
     ko : '음란, 욕설 및 비방',
-    en : '',
+    en : 'Abuse',
     // 중국어
     zh : '',
   },
   'advertising' : {
     ko : '스팸 및 광고성',
-    en : '',
+    en : 'Spam',
     // 중국어
     zh : '',
   },
   'piracy' : {
     ko : '복제 등 저작권 침해 우려',
-    en : '',
+    en : 'Copyright Infringement',
     // 중국어
     zh : '',
   },
   'others' : {
     ko : '기타',
-    en : '',
+    en : 'Other',
     // 중국어
     zh : '',
   },

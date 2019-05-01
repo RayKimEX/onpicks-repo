@@ -68,15 +68,24 @@ export class PReviewsComponent implements AfterViewInit {
     //   value : 0
     // },
     {
-      title : '최신순',
+      title : {
+        ko : '최신순',
+        en : 'Newest'
+      },
       value : 'created'
     },
     {
-      title : '별점 낮은순',
+      title : {
+        ko : '별점 낮은순',
+        en : 'Lowest to Highest'
+      },
       value : '-rating'
     },
     {
-      title : '별점 높은순',
+      title : {
+        ko : '별점 높은순',
+        en : 'Highest to Lowest'
+      },
       value : 'rating'
     }
   ]
