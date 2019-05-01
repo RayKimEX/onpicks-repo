@@ -1,0 +1,90 @@
+<div class="col-9-of-12 orders-detail" *ngIf="orderDetailData$ | async as data">
+  <section class="order-section">
+    <h1 class="h1-bold order-section__title">주문상세정보</h1>
+
+    <emitter-adhere-table></emitter-adhere-table>
+  </section>
+
+  <section class="checkout-section">
+    <h1 class="h1-bold checkout-section__title">결제정보</h1>
+
+    <div class="checkout-section__outer">
+      <!--<div class="checkout-section__item">-->
+        <!--<span class="subtitle-1-regular">총 상품금액</span>-->
+        <!--<span class="subtitle-1-regular" >{{data.total_items | onpicksCurrency: (currency| async)}}</span>-->
+      <!--</div>-->
+      <!--<div class="checkout-section__item">-->
+        <!--<span class="subtitle-1-regular">배송비</span>-->
+        <!--<span class="subtitle-1-regular">{{data.total_shipping_costs | onpicksCurrency: (currency| async)}}</span>-->
+      <!--</div>-->
+      <!--<div class="checkout-section__item">-->
+        <!--<span class="subtitle-1-regular">할인금액</span>-->
+        <!--<span class="subtitle-1-regular">{{data.total_discounts | onpicksCurrency: (currency| async)}}</span>-->
+      <!--</div>-->
+      <div class="checkout-section__item">
+        <span class="subtitle-1-bold">총 결제금액</span>
+        <span class="subtitle-1-bold">{{data.grand_total | onpicksCurrency: (currency| async)}}</span>
+      </div>
+      <div class="checkout-section__item-method">
+        <span class="checkout-section__item-method--title subtitle-1-regular">결제방법</span>
+        <span class="checkout-section__item-method--margin subtitle-1-regular">{{data.payment_method_display}} &nbsp;<span *ngIf="data.payment_detail.deposit_until != null">입금기한: {{data.payment_detail.deposit_until | date :'longDate'}}까지</span></span>
+        <div class="checkout-section__item-method--right subtitle-1-regular">{{data.payment_detail.deposit_until != null ? '입금은행 정보:' : '' }} {{data.payment_detail.information}}</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="orderer-section">
+    <h1 class="h1-bold orderer-section__title">
+      주문자 정보
+    </h1>
+
+    <div class="orderer-section__inner">
+      <div class="orderer-section__row">
+        <div class="orderer-section__row--title subtitle-1-regular u-color-grey">주문자</div>
+        <div class="subtitle-1-regular">{{data.buyer_name}}</div>
+      </div>
+      <div class="orderer-section__row">
+        <div class="orderer-section__row--title subtitle-1-regular u-color-grey">주문자 연락처</div>
+        <div class="subtitle-1-regular">{{data.buyer_contact}}</div>
+      </div>
+    </div>
+
+  </section>
+
+  <section class="delivery-section">
+    <h1 class="h1-bold delivery-section__title">
+      배송지 정보
+    </h1>
+
+    <div class="delivery-section__inner">
+      <div class="delivery-section__row">
+        <div class="delivery-section__row--title subtitle-1-regular u-color-grey">받는 분</div>
+        <div class="subtitle-1-regular">{{data.full_name}}</div>
+      </div>
+      <div class="delivery-section__row">
+        <div class="delivery-section__row--title subtitle-1-regular u-color-grey">받는 분 연락처</div>
+        <div class="subtitle-1-regular">{{data.phone_number}}</div>
+      </div>
+      <div class="delivery-section__row">
+        <div class="delivery-section__row--title subtitle-1-regular u-color-grey">주소</div>
+        <div class="subtitle-1-regular">{{data.zip_code}}, {{data.street_address_1}}, {{data.street_address_2}}</div>
+      </div>
+      <div class="delivery-section__row">
+        <div class="delivery-section__row--title subtitle-1-regular u-color-grey">배송요청사항</div>
+        <div class="subtitle-1-regular">{{data.shipping_message}}</div>
+      </div>
+    </div>
+
+    <onpicks-button
+      *ngIf="!isShowDeliveryModal"
+      (click)="isShowDeliveryModal = true"
+      [type]="'white'"
+      [width]="'10.1rem'">배송지 변경
+    </onpicks-button>
+
+    <emitter-delivery-address
+      *ngIf="isShowDeliveryModal"
+    ></emitter-delivery-address>
+  </section>
+
+</div>

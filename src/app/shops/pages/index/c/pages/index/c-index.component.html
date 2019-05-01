@@ -1,0 +1,23 @@
+<div
+  [ngClass]=
+    "[
+      (this.router.url.split('/')[3] === 'pantry-and-household')  ? 'u-background-color-green' : '',
+      (this.router.url.split('/')[3] === 'beauty')  ? 'u-background-color-pink' : ''
+    ]"
+  class="c-header">
+
+  <div class="c-header__category">
+    <ul class="c-header__category--ul">
+      <li
+        *ngFor="let key of objectKeys(secondCategoryMap[this.router.url.split('/')[3]])"
+        class="c-header__category--li subtitle-2-bold u-color-white">
+        <a class="u-color-white" [routerLink]="'/shops/c/' + this.router.url.split('/')[3] + '/' + key">
+          {{ secondCategoryMap[this.router.url.split('/')[3]][key][locale] }}
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<router-outlet></router-outlet>
+

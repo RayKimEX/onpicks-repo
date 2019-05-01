@@ -1,0 +1,31 @@
+<div class="settings-refund" [ngStyle]="{ minHeight : contentHeight }">
+  <h1
+    i18n="@@word__refund"
+    class="h1-bold">
+    환불 정보
+  </h1>
+  <div class="settings-refund__row">
+    <div class="settings-refund__row--title subtitle-2-regular">은행명</div>
+    <!--<onpicks-select-box></onpicks-select-box>-->
+  </div>
+  <div class="settings-refund__row">
+    <div class="settings-refund__row--title subtitle-2-regular">계좌번호</div>
+    <onpicks-input-box
+      class="settings-refund__row--input--account"
+      [placeholder]="'계좌번호를 입력해주세요'">
+    </onpicks-input-box>
+  </div>
+  <div class="settings-refund__row">
+    <div class="settings-refund__row--title subtitle-2-regular">예금주</div>
+
+    <onpicks-input-box
+      class="settings-refund__row--input--account-name"
+      [placeholder]="'예금주를 입력해주세요'">
+    </onpicks-input-box>
+
+    <onpicks-button [type]="'white'" [width]="'auto'">계좌 인증</onpicks-button>
+    <div class="settings-refund__row--desciription subtitle-2-regular u-color-dark-grey">
+      회원님의 명의로 등록된 휴대폰으로 본인인증을 진행합니다.
+    </div>
+  </div>
+</div>

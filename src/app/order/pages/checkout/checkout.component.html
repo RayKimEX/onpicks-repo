@@ -1,0 +1,9 @@
+<div class="row">
+  <onpicks-order-navigator></onpicks-order-navigator>
+</div>
+
+
+
+<onpicks-checkout-kr *ngIf="region === 'kr'"></onpicks-checkout-kr>
+<onpicks-checkout-us *ngIf="region === 'us'"></onpicks-checkout-us>
+<!-- 그 ... 카트 갯수 눌렀을 때 무료배송 에러 나는거 먼저 고치기 -->

@@ -1,0 +1,160 @@
+@import "~src/assets/scss/abstracts/variables";
+
+onpicks-loading-icon {
+  display : block;
+  margin-top : 10rem;
+}
+
+
+.mobile-row {
+  @include respond(desktop){
+
+    width:74.8rem;
+    margin : 0 auto;
+  }
+
+  @include respond(sb){
+    width: 100%;
+    padding: 0 1.6rem;
+  }
+}
+.mobile-menu {
+  padding : 1.6rem;
+  position : fixed;
+  margin : 0 -2.4rem;
+  bottom : 0;
+  width : 100%;
+  z-index : 9999;
+  border-top : 1px solid $color-light-grey;
+  background-color : $color-white;
+  transition : transform .5s;
+  transition-delay : .2s;
+
+  &--outer {
+    z-index:9001;
+    position:fixed;
+    top : 0;
+    margin : 0 -2.4rem;
+
+    height : 100%;
+    width :100%;
+    background-color : $color-black;
+    opacity : .5;
+  }
+  &__options {
+    margin-top : 1.6rem;
+  }
+  &__add-to-cart-button {
+    float : right;
+  }
+
+  display : none;
+  @include respond(desktop){
+    display : block;
+  }
+  &__button {
+    float:right;
+    vertical-align: top;
+  }
+  &__product-info {
+    display:inline-block;
+    &--price {
+      &--svg{
+        display:inline-block;
+        margin-right : 0.8rem;
+      }
+
+      &-discount {
+        margin-right : 0.8rem;
+      }
+
+      &-realprice {
+        margin-right : 0.8rem;
+      }
+    }
+
+    &--MSRP {
+      margin-bottom : 0.4rem;
+      &-discount {
+        text-decoration: line-through;
+        margin-right : 0.8rem;
+      }
+    }
+
+
+    &--reviews {
+    }
+  }
+
+  &--hide {
+    transform: translateY(100%);
+  }
+}
+
+.current-nav {
+  margin-top : 3.2rem;
+
+  @include respond(desktop){
+    display : none;
+  }
+
+  &__border-bottom{
+    border-bottom : 1px solid $color-light-grey;
+    padding-bottom : 1.6rem;
+    margin-bottom : 3rem;
+  }
+  @include respond(desktop){
+    margin-top : 0;
+  }
+  &__slash {
+    padding: 0 2.4rem;
+    color: $color-grey;
+  }
+  & hr {
+    margin-top : 1.6rem;
+    margin-bottom : 3rem;
+  }
+}
+
+.product-detail {
+  display:block;
+  @include respond(desktop){
+
+    width:74.8rem;
+    margin : 0 auto;
+  }
+  @include respond(sb){
+    width:100%;
+    overflow:hidden;
+  }
+}
+
+//
+//.product-detail-mobile {
+//  display:none;
+//  width:74.8rem;
+//  margin : 0 auto;
+//  @include respond(fb){
+//    display:block;
+//  }
+//
+//  @include respond(sb){
+//    width:100%;
+//    padding: 0 1.6rem
+//  }
+//}
+
+
+[class ^= "col-"]{
+  background-color : #FFFFFF;
+}
+
+
+onpicks-value-list{
+  display:block;
+  margin-bottom: 4rem;
+  @include respond(fb){
+    padding-bottom : 2.4rem;
+    border-bottom : 1px solid $color-light-grey;
+  }
+}

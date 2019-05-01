@@ -1,0 +1,144 @@
+<ng-template #loading>
+  <onpicks-loading-icon ></onpicks-loading-icon>
+</ng-template>
+
+<div [ngStyle]="{ minHeight : contentHeight }">
+  <ng-container *ngIf="(pData$ | async) as data; else  loading">
+    <div class="current-nav">
+      <div class="row current-nav__border-bottom">
+        <span *ngFor="let item of data?.category; index as i">
+          <span class="current-nav__category subtitle-2-bold">{{item.name}}</span>
+          <span *ngIf="data?.category.length - 1 !== (i)" class="current-nav__slash">/</span>
+        </span>
+      </div>
+    </div>
+
+    <div
+      [ngClass]="[!isFB ? 'row' : '']" class="product-detail">
+      <div
+        [ngClass]="[!isFB ? 'col-7-of-12' : '']">
+        <onpicks-p-thumbnail
+          [imagesLargeList]="data?.thumbnails.slice()"
+          [imagesSmallList]="data?.thumbnails.slice()">
+        </onpicks-p-thumbnail>
+        <div *ngIf="isFB">
+          <onpicks-p-menu [isMobile]="isFB" [data]="data"></onpicks-p-menu>
+        </div>
+        <onpicks-value-list [type]="'product'" [valueList]="data.values"></onpicks-value-list>
+
+        <!--<onpicks-p-other-sellers></onpicks-p-other-sellers>-->
+
+        <onpicks-p-picture-review-sub
+          [pictureReviewList]="(pPictureReviews$ | async)">
+        </onpicks-p-picture-review-sub>
+
+        <onpicks-p-item-detail
+          [categoryInfo]="data.category">
+        </onpicks-p-item-detail>
+
+        <onpicks-p-description
+          [location]="data?.location.code"
+          [description]="data?.description">
+        </onpicks-p-description>
+
+        <!--async를 붙여서 넘기는 이유는 받을때 좀더 편
+        하게 받게 하기 위함-->
+        <onpicks-p-reviews #onpicksReview></onpicks-p-reviews>
+        <onpicks-p-refund></onpicks-p-refund>
+        <onpicks-p-product-report></onpicks-p-product-report>
+      </div>
+
+      <div [ngStyle]="{display : isFB ? 'none' :'block'}" class="col-5-of-12">
+        <onpicks-p-menu [data]="data"></onpicks-p-menu>
+      </div>
+    </div>
+
+    <div
+      *ngIf="isExpendMobileMenu"
+      (click)="revertMobileMenu()"
+      class="mobile-menu--outer">
+    </div>
+
+    <div
+      class="mobile-menu" [ngClass]="isShowMobileMenu ? '' : 'mobile-menu--hide'">
+      <div *ngIf="isExpendMobileMenu" class="mobile-menu__product-info--MSRP subtitle-1-regular">
+        <!--TODO: MSRP는 지역에 따라 보이고 안보이고 설정-->
+        <!--<span class="p-menu__product-info--MSRP-name">MSRP&nbsp;</span>-->
+        <span class="mobile-menu__product-info--MSRP-discount u-color-grey">{{data?.msrp | onpicksCurrency:(currency| async)}}</span>
+        <span class="mobile-menu__product-info--MSRP-description u-color-green">담을수록 추가 할인</span>
+      </div>
+      <div class="mobile-menu__product-info">
+        <div class="mobile-menu__product-info--price">
+          <svg class="mobile-menu__product-info--price--svg" width="18" height="16" viewBox="0 0 18 16">
+            <g fill="none" fill-rule="evenodd">
+              <path fill="#008488" d="M11.259 10H9.725l-.5-2-.227-.907L8.772 8l-.5 2H6.738l-.333-2-.084-.5H4.998V6H6.07l-.313-1.877c-.007-.042.004-.082.004-.123h1.497l.35 3 .037.319L7.7 7l.524-3h1.547l.523 3 .056.319.037-.319.35-3h1.497c0 .041.01.081.003.123L11.926 6h1.072v1.5h-1.322l-.084.5-.333 2zm6.223-3h-2.484V.5a.5.5 0 0 0-.5-.5h-11a.5.5 0 0 0-.5.5V7H.522c-.467 0-.698.549-.364.864l3.962 3.739 4.509 4.253a.544.544 0 0 0 .737 0l4.51-4.253 3.967-3.744c.332-.313.103-.859-.361-.859z" mask="url(#b)"/>
+            </g>
+          </svg>
+
+          <!--소수점 떨어지는거 관련해서 약간 이슈가 있음-->
+          <span class="mobile-menu__product-info--price-discount price-bold u-color-green">{{discountPercent}}%</span>
+          <span class="mobile-menu__product-info--price-realprice price-bold">{{data?.price | onpicksCurrency:(currency| async)}}</span>
+        </div>
+        <div *ngIf="!isExpendMobileMenu" class="mobile-menu__product-info--reviews">
+          <ui-star-rating
+            [star-point]="data ? data.review_avg_rating : 0">
+          </ui-star-rating>
+          <span class="mobile-menu__product-info--reviews--read-reviews subtitle-1-regular u-color-dark-grey">{{data?.review_count}}개 리뷰</span>
+        </div>
+      </div>
+
+      <onpicks-button
+        *ngIf="!isExpendMobileMenu"
+        (click)="expandMobileMenu()"
+        class="mobile-menu__button"
+        [width]="'13.4rem'"
+        [type]="'black'"
+        [size]="'big'" >
+        옵션 선택하기
+      </onpicks-button>
+
+      <div *ngIf="isExpendMobileMenu" class="mobile-menu__options">
+        <div
+          *ngIf="data?.attributes.length !== 0"
+          class="mobile-menu__options--title subtitle-2-regular">
+          상세옵션을 선택해 주세요
+        </div>
+
+        <onpicks-select-box
+          *ngIf="data?.attributes[0] !== undefined"
+          (changeEvent)="optionSelect($event, 0)"
+          [sortList]="optionObject">
+        </onpicks-select-box>
+        <onpicks-select-box
+          *ngIf="data?.attributes[1] !== undefined"
+          (changeEvent)="optionSelect($event, 1)"
+          [sortList]="selectedFirstOptionIndex === null ? { title : data?.attributes[1] } : optionObject.list[selectedFirstOptionIndex].children">
+        </onpicks-select-box>
+
+        <!--<onpicks-select-box [sortList]="twoOptionList"></onpicks-select-box>-->
+
+        <onpicks-select-box
+          [isNativeSelectBox]="true"
+          (changeEvent)="amountSelect($event)"
+          [sortList]="numberOptionList">
+        </onpicks-select-box>
+
+        <onpicks-button
+          class="mobile-menu__add-to-cart-button"
+          (click)="addToCart(data?.ship_alone ? 'free' : locationMap[data?.location.code].sequence, data)"
+          [type]="'black'"
+          [marginLeft]="'1.2rem'"
+          [size]="'big'"
+          [width]="'23.7rem'">
+          쇼핑백에 담기
+        </onpicks-button>
+      </div>
+    </div>
+
+    <div class="mobile-row">
+      <ui-mini-list [infoList]="weeklyBest$ | async" [setTitle]="'이 상품 구매자가 함께 본 상품'"></ui-mini-list>
+    </div>
+  </ng-container>
+</div>
+
+<router-outlet></router-outlet>

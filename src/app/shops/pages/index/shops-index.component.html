@@ -1,0 +1,37 @@
+<div class="shops-index">
+  <ui-banner-carousel
+    [imagesLargeList]="shopsCarouselBannerImages"
+    [height]="40">
+  </ui-banner-carousel>
+
+  <onpicks-category-list
+    [popularCategory]="popularCategory">
+  </onpicks-category-list>
+
+  <onpicks-today-collection [todayCollection]="todayCollection"></onpicks-today-collection>
+  <onpicks-value-list [valueList]="valueList$ | async"></onpicks-value-list>
+  <onpicks-popular-brand [popularBrand]="popularBrands$ | async"></onpicks-popular-brand>
+  <onpicks-trending-reviews [infoList]="trendingReviews" i18n-setTitle="@@trending-reviews__title" setTitle="인기 리뷰">
+
+  </onpicks-trending-reviews>
+
+  <div class="row">
+    <ui-banner [bannerInfo]="shopsBannerImage"> </ui-banner>
+  </div>
+
+  <ui-mini-list
+    i18n-setTitle="@@recommand-products__title"
+    setTitle="추천상품"
+    [mobileType]="'half'"
+
+    [infoList]="weeklyBest$ | async">
+  </ui-mini-list>
+
+  <ui-mini-list
+    i18n-setTitle="@@recently-viewed__title"
+    setTitle="최근 본 상품"
+    [mobileType]="'half'"
+
+    [infoList]="recentlyViewed$ | async">
+  </ui-mini-list>
+</div>

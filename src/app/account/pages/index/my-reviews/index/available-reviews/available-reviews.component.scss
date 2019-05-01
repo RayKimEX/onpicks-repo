@@ -1,0 +1,16 @@
+@import '~src/assets/scss/abstracts/variables';
+
+
+emitter-adhere-table {
+  display:inline-block;
+  margin-top : 1.6rem;
+  margin-bottom : 4rem;
+}
+
+
+.available-reviews {
+  &__empty-title{
+    margin-top : 2.4rem;
+    margin-bottom : 5.6rem;
+  }
+}

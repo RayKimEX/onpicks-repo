@@ -1,0 +1,642 @@
+<ng-template #loading>
+  <onpicks-loading-icon></onpicks-loading-icon>
+</ng-template>
+
+<onpicks-search-navigator-mobile-filter
+  [categoryList]="searchState === 'search' ? categoryList : normalizedCategoryInfoList"
+  [normalizedCategoryCodeList]="normalizedCategoryCodeList"
+  [currentCategoryCode]="currentCategoryCode"
+  [filters]="filters"
+  [brandList]="brandList"
+  [brandListForCheck]="brandListForCheck"
+  [valueList]="valueList"
+  [valueListForCheck]="valueListForCheck"
+  [locationList]="locationList"
+  [locationListForCheck]="locationListForCheck"
+  [queryParams]="queryParams"
+  [sortList]="sortList"
+  (exit)="hideMobileFilter()"
+  [state]="mobileFilterState"
+  [searchState]="searchState"
+
+  [currentSortSlug]="currentSortSlug"
+  [isShowMobileFilter]="isShowMobileFilter">
+</onpicks-search-navigator-mobile-filter>
+
+<div class="row" [ngStyle]="{ minHeight : contentHeight }">
+    <ng-container
+      *ngIf="currentList?.length === 0 && router.url.split('/')[2].indexOf('search') > -1">
+      <div class="search-content__empty" >
+        <h1 class="search-content__empty--title h1-bold">
+          <span class="u-color-green">{{queryParams.term}}</span>에 대한 검색 결과를 찾을 수 없습니다.
+        </h1>
+        <div class="search-content__empty--description subtitle-1-regular u-color-grey">다른검색어를 입력하시거나 철자와 띄어쓰기를 확인해보세요</div>
+        <div class="search-content__empty--description subtitle-1-regular u-color-grey">현재 판매종료 상품일 수 있으니 나중에 다시 검색해보세요</div>
+      </div>
+      <ui-mini-list
+        [infoList]="weeklyBest$ | async"
+        [setTitle]="'추천 상품'">
+      </ui-mini-list>
+    </ng-container>
+    <ng-container
+      *ngIf="currentList?.length !== 0 || !(router.url.split('/')[2].indexOf('search') > -1)">
+      <div class="col-3-of-12 c-category">
+        <div class="c-navigator-padding">
+          <div class="c-category-navigator">
+            <!--해당을 누르면 식품품 생홀용품 카테고리 메인페이지로 가게-->
+            <ng-container *ngIf="router.url.split('/')[2].indexOf('search') > -1">
+              <div
+                i18n="@@word__categories"
+                class="c-category-navigator__title subtitle-1-bold">
+                카테고리
+              </div>
+              <div>
+                <a
+                  i18n="@@word__all-categories"
+                  class="subtitle-3-bold u-color-dark-grey"
+                  (click)="removeAllFilterCategory()">
+                  모든 카테고리
+                </a>
+              </div>
+              <ng-container *ngIf="categoryList?.length !== 0">
+                <div
+                  [ngStyle]="{marginLeft : currentCategoryCode == undefined || currentCategoryCode / category?.code <= 1 ? '10px' : ''}"
+                  *ngFor="let category of categoryList">
+                  <div class="c-category-navigator__item subtitle-3-bold">
+                    <span
+                      class="c-category-navigator__category-indicator"
+                      *ngIf="category?.code / currentCategoryCode  < 1">
+                      <svg width="6" height="10" viewBox="0 0 6 10">
+ 	                      <path fill="#B3B3B3" d="M5 10a.997.997 0 0 1-.707-.293l-4-4a.999.999 0 0 1 0-1.414l4-4a.999.999 0 1 1 1.414 1.414L2.414 5l3.293 3.293A.999.999 0 0 1 5 10" />
+                      </svg>
+                    </span>
+                    <span>
+                      <a
+                        [ngClass]="{'u-color-dark-grey' : (category?.code / currentCategoryCode < 1)}"
+                        (click)="categoryClicked(category?.code)">{{ category.name }}
+                      </a>
+                    </span>
+                  </div>
+                  <div
+                    [ngStyle]="{marginLeft : currentCategoryCode / twoCat?.code <= 1 ? '10px' : ''}"
+                    class="c-category-navigator__item subtitle-3-bold" *ngFor="let twoCat of category?.children">
+                    <span
+                      class="c-category-navigator__category-indicator"
+                      *ngIf="twoCat?.code / currentCategoryCode < 1">
+                      <svg width="6" height="10" viewBox="0 0 6 10">
+ 	                      <path fill="#B3B3B3" d="M5 10a.997.997 0 0 1-.707-.293l-4-4a.999.999 0 0 1 0-1.414l4-4a.999.999 0 1 1 1.414 1.414L2.414 5l3.293 3.293A.999.999 0 0 1 5 10" />
+                      </svg>
+                    </span>
+                    <span>
+                      <a
+                        [ngClass]="[
+                          (twoCat?.code / currentCategoryCode < 1) ? 'u-color-dark-grey' : '',
+                          (twoCat?.code / currentCategoryCode < 1 || currentCategoryCode == twoCat?.code ) ? 'subtitle-3-bold' : 'subtitle-3-regular'
+                        ]"
+                        (click)="categoryClicked(twoCat?.code)">{{ twoCat.name }}
+                      </a>
+                    </span>
+                    <div
+                      [ngStyle]="{marginLeft : currentCategoryCode / threeCat?.code <= 1 ? '10px' : ''}"
+                      class="c-category-navigator__item subtitle-3-bold"
+                      *ngFor="let threeCat of twoCat?.children">
+                      <span
+                        class="c-category-navigator__category-indicator"
+                        *ngIf="threeCat?.code / currentCategoryCode < 1">
+                        <svg width="6" height="10" viewBox="0 0 6 10">
+ 	                        <path fill="#B3B3B3" d="M5 10a.997.997 0 0 1-.707-.293l-4-4a.999.999 0 0 1 0-1.414l4-4a.999.999 0 1 1 1.414 1.414L2.414 5l3.293 3.293A.999.999 0 0 1 5 10" />
+                        </svg>
+                      </span>
+                      <span>
+                        <a
+                          [ngClass]="[
+                            (threeCat?.code / currentCategoryCode < 1) ? 'u-color-dark-grey' : '',
+                            (threeCat?.code / currentCategoryCode < 1 || currentCategoryCode == threeCat?.code ) ? 'subtitle-3-bold' : 'subtitle-3-regular'
+                            ]"
+                          (click)="categoryClicked(threeCat?.code)">
+                          {{ threeCat.name }}
+                        </a>
+                      </span>
+                      <div
+                        style="margin-left: 10px"
+                        class="c-category-navigator__item"
+                        *ngFor="let fourthCat of threeCat?.children">
+                        <a
+                          [ngClass]="[(currentCategoryCode == fourthCat?.code ) ? 'subtitle-3-bold' : 'subtitle-3-regular']"
+                          (click)="categoryClicked(fourthCat?.code)">
+                          {{ fourthCat?.name }}
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </ng-container>
+            </ng-container>
+            <ng-container *ngIf="!(router.url.split('/')[2].indexOf('search') > -1)">
+              <div
+                class="c-category-navigator__title subtitle-1-bold">
+                {{currentTitle === undefined ? currentTitle : currentTitle[locale]}}
+              </div>
+              <div class="c-category-navigator__content">
+                <nav class="subtitle-3-bold u-color-dark-grey">
+                  <!-- async를 이용하여 마지막에의 변수값가져오기 -->
+                  <ul #depthOuter *ngIf="route.url | async as lastUrl">
+                    <li #oneDepth *ngFor="let firstCategoryCode of normalizedCategoryCodeList">
+                      <!--twoDepth-->
+                      <div class="c-category-navigator__item">
+                        <a (click)="updateSecondCategory(firstCategoryCode, normalizedCategoryInfoList.secondCategory[firstCategoryCode].slug)"
+                           [ngClass]="normalizedCategoryInfoList.secondCategory[firstCategoryCode].active ? 'main-active' : 'main-deactive'" >
+                          {{normalizedCategoryInfoList.secondCategory[firstCategoryCode].name[locale]}}
+                        </a>
+                        <label (click)="onedepthFold(f1, label1)" >
+                          <svg #label1 width="10" height="8" viewBox="0 0 10 8"
+                               [ngStyle]="{'transform': normalizedCategoryInfoList.secondCategory[firstCategoryCode].active ? 'rotate(-180deg)' : 'rotate(0deg)' }">
+                            <polyline
+                              points="1 2 5 6 9 2"
+                              [ngClass]="normalizedCategoryInfoList.secondCategory[firstCategoryCode].active ? 'u-color-stroke-black' : f1.style.maxHeight == '3500px' ? 'u-color-stroke-dark-grey' : 'u-color-stroke-grey'"
+                              fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+                          </svg>
+                        </label>
+                      </div>
+                      <!--threeDepth-->
+                      <ul #f1
+                          [ngStyle]="{'maxHeight': normalizedCategoryInfoList.secondCategory[firstCategoryCode].active ? '3500px' : '0px' }">
+                        <li #twoDepth *ngFor="let secondCategoryId of normalizedCategoryInfoList.secondCategory[firstCategoryCode].children">
+                          <div class="c-category-navigator__item">
+                            <!--첫번째 category가 active되있는ㄴ지 아닌지 판단해서 색감넣음-->
+                            <a (click)="updateThirdCategory(
+                                      secondCategoryId,
+                                      normalizedCategoryInfoList.secondCategory[firstCategoryCode].slug,
+                                      normalizedCategoryInfoList.thirdCategory[secondCategoryId].slug)"
+                               [ngClass]="normalizedCategoryInfoList.secondCategory[firstCategoryCode].active && !normalizedCategoryInfoList.thirdCategory[secondCategoryId].active
+                                        ? previous.thirdPrevious !== undefined ? 'main-deactive' : 'sub-active' : normalizedCategoryInfoList.thirdCategory[secondCategoryId].active ?  'main-active' : 'main-deactive' ">
+                              {{normalizedCategoryInfoList.thirdCategory[secondCategoryId].name[locale]}}
+                            </a>
+                            <!--3dpeth-->
+                            <label *ngIf="normalizedCategoryInfoList.thirdCategory[secondCategoryId].children.length !== 0 " for="" (click)="twodepthFold(f2, label2)"  >
+                              <svg #label2
+                                   width="10" height="8" viewBox="0 0 10 8" xmlns="http://www.w3.org/2000/svg"
+                                   [ngStyle]="{ 'transform' : normalizedCategoryInfoList.thirdCategory[secondCategoryId].active ? 'rotate(-180deg)' : 'rotate(0deg)' }">
+                                <polyline points="1 2 5 6 9 2"
+                                          [ngClass]="normalizedCategoryInfoList.thirdCategory[secondCategoryId].active ? 'u-color-stroke-black' : f2.style.maxHeight == '700px' ? 'u-color-stroke-grey' : 'u-color-stroke-light-grey'"
+                                          fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+                              </svg>
+                            </label>
+                          </div>
+
+                          <ul #f2
+                              [ngStyle]="{
+                              'maxHeight' : normalizedCategoryInfoList.thirdCategory[secondCategoryId].active ? '700px' : '0px' }">
+                            <li #threeDepth *ngFor="let thirdCategoryId of normalizedCategoryInfoList.thirdCategory[secondCategoryId].children">
+                              <div class="c-category-navigator__item">
+                                <a
+                                  (click)="updateFourthCategory(
+                                      thirdCategoryId,
+                                      normalizedCategoryInfoList.secondCategory[firstCategoryCode].slug,
+                                      normalizedCategoryInfoList.thirdCategory[secondCategoryId].slug,
+                                      normalizedCategoryInfoList.fourthCategory[thirdCategoryId].slug)"
+                                  [ngClass]="normalizedCategoryInfoList.thirdCategory[secondCategoryId].active ?  lastUrl[1] == normalizedCategoryInfoList.fourthCategory[thirdCategoryId].slug ? 'main-active' : 'sub-active' : 'main-deactive'">
+                                  {{ normalizedCategoryInfoList.fourthCategory[thirdCategoryId].name[locale] }}
+                                </a>
+                              </div>
+                            </li>
+                          </ul>
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
+                </nav>
+                <!--<div>-->
+                  <!--<a *ngIf="" class="subtitle-3-bold u-color-green">숨기기</a>-->
+                <!--</div>-->
+              </div>
+            </ng-container>
+          </div>
+          <div class="c-filter-navigator">
+            <div class="c-filter-navigator__title">
+              <span
+                i18n="@@word__filter"
+                class="c-filter-navigator__title--name subtitle-1-bold">
+                필터
+              </span>
+              <span class="c-filter-navigator__title--remove">
+                <a
+                  i18n="@@word__clear-all"
+                  class="subtitle-3-regular u-color-grey"
+                  (click)="removeAllFilter()">
+                  모두제거
+                </a>
+              </span>
+            </div>
+            <div class="c-filter-navigator__content" *ngIf="filterList.length > 0">
+              <ul class="c-filter-navigator__content-ul">
+                <li *ngFor="let item of filterList" class="c-filter-navigator__content-ul--item subtitle-3-regular">
+                  <div
+                    (click)="removeSpecificFilter(item.type, item.key)"
+                    class="c-filter-navigator__content-ul--item-remove-outer">
+                    <span
+                      class="c-filter-navigator__content-ul--item-remove">
+                    </span>
+                  </div>
+
+                  <span>{{item.value}}</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="c-brand-navigator">
+            <div class="c-brand-navigator__title">
+              <span
+                i18n="@@word__brand"
+                class="c-brand-navigator__title--name subtitle-3-bold">
+                브랜드
+              </span>
+              <span class="c-brand-navigator__title--count subtitle-3-regular u-color-dark-grey">{{brandList?.length}}</span>
+              <span class="c-brand-navigator__title--remove">
+                <a
+                  i18n="@@word__clear-all"
+                  class="subtitle-3-regular u-color-grey"
+                  (click)="removeAllFilterBrand()">
+                  모두제거
+                </a>
+              </span>
+            </div>
+            <!--<onpicks-search-box-->
+              <!--(keypress)="brandSearch($event)"-->
+              <!--class="c-brand-navigator__search-box"-->
+              <!--[placeholder]="'검색'">-->
+            <!--</onpicks-search-box>-->
+
+            <div class="c-brand-navigator__content">
+              <ul class="c-brand-navigator__content-ul">
+                <li
+                  class="c-brand-navigator__content-ul--item"
+                  *ngFor="let item of brandList">
+                  <onpicks-check-box
+                    [isChecked]="brandListForCheck[item.slug] !== true ? false : true"
+                    (click)="brandClicked(item.slug)"
+                    [type]="'checkbox'">
+                    <span class="subtitle-3-regular">{{item.name}}</span>
+                    <span class="subtitle-3-regular u-color-dark-grey">{{item.count}}</span>
+                  </onpicks-check-box>
+                </li>
+              </ul>
+            </div>
+            <!--<div class="">-->
+              <!--<a-->
+                <!--class="subtitle-3-bold u-color-green">숨기기</a>-->
+            <!--</div>-->
+          </div>
+          <div class="c-value-navigator">
+            <div class="c-value-navigator__title">
+              <span
+                i18n="@@word__value"
+                class="c-value-navigator__title--name subtitle-3-bold">식품인증|Value</span>
+              <span class="c-value-navigator__title--count subtitle-3-regular u-color-dark-grey">{{valueList?.length}}</span>
+              <span class="c-value-navigator__title--remove">
+                <a
+                  i18n="@@word__clear-all"
+                  class="subtitle-3-regular u-color-grey"
+                  (click)="removeAllFilterValue()">
+                  모두제거
+                </a>
+              </span>
+            </div>
+            <div class="c-value-navigator__content">
+              <ul class="c-value-navigator__content-ul">
+                <li
+                  class="c-value-navigator__content-ul--item"
+                  *ngFor="let item of valueList">
+                  <onpicks-check-box
+                    [isChecked]="valueListForCheck[item.slug] !== true ? false : true"
+                    (click)="valueClicked(item.slug)"
+                    [type]="'checkbox'">
+                    <span class="subtitle-3-regular">{{item.name}}</span>
+                    <span class="subtitle-3-regular u-color-dark-grey">{{item.count}}</span>
+                  </onpicks-check-box>
+                </li>
+              </ul>
+            </div>
+            <!--<div class="subtitle-3-bold u-color-green">숨기기</div>-->
+          </div>
+          <div class="c-ex-warehouse-navigator">
+            <div class="c-ex-warehouse-navigator__title">
+              <span
+                i18n="@@word__warehouse"
+                class="c-ex-warehouse-navigator__title--name subtitle-3-bold">
+                출고지
+              </span>
+              <span class="c-ex-warehouse-navigator__title--count subtitle-3-regular u-color-dark-grey">{{locationList?.length}}</span>
+              <span class="c-ex-warehouse-navigator__title--remove subtitle-3-regular u-color-grey">
+                <a
+                  i18n="@@word__clear-all"
+                  class="subtitle-3-regular u-color-grey"
+                  (click)="removeAllFilterLocation()">
+                  모두제거
+                </a>
+              </span>
+            </div>
+            <div class="c-ex-warehouse-navigator__content">
+              <ul class="c-ex-warehouse-navigator__content-ul">
+                <li
+                  class="c-ex-warehouse-navigator__content-ul--item"
+                  *ngFor="let item of locationList">
+                  <onpicks-check-box
+                    (click)="locationClicked(item.code)"
+                    [isChecked]="locationListForCheck[item.code]"
+                    [type]="'checkbox'">
+                    <span class="subtitle-3-regular">{{item.name}}</span>
+                    <span class="subtitle-3-regular u-color-dark-grey">{{item.count}}</span>
+                  </onpicks-check-box>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-9-of-12 search-content">
+        <div *ngIf="currentList !== null; else loading"  >
+          <h1 class="search-content__title h1-bold">
+            <div *ngIf="searchState == 'search'">
+              <span *ngIf="searchState == 'search' && queryParams.term !== undefined">
+                <span
+                  class="u-color-green">{{queryParams.term}}</span>에 대한 검색 결과 {{totalCount}}건
+              </span>
+              <span
+                *ngIf="searchState == 'search' && queryParams.term === undefined">{{totalCount}}건</span>
+
+              <onpicks-sort-box
+                class="search-content__sort-box"
+                [selectedElement]="{ value : currentSortSlug }"
+                (changeEvent)="sortClicked($event)"
+                [sortList]="sortList">
+              </onpicks-sort-box>
+            </div>
+
+            <ng-container  *ngIf="searchState == 'category'">
+              <ng-container *ngIf="currentList.length !== 0">
+               <span>{{currentName[locale]}} {{totalCount}}</span>건
+                <onpicks-sort-box
+                  class="search-content__sort-box"
+                  [selectedElement]="{ value : currentSortSlug}"
+                  (changeEvent)="sortClicked($event)"
+                  [sortList]="sortList">
+                </onpicks-sort-box>
+              </ng-container>
+              <ng-container *ngIf="currentList.length === 0">
+                해당 카테고리는 준비중 입니다.
+              </ng-container>
+            </ng-container>
+          </h1>
+          <div class="search-content__mobile-filter">
+            <div class="search-content__mobile-filter--table">
+              <div
+                (click)="showMobileFilter('menu')"
+                i18n="@@word__filter"
+                class="search-content__mobile-filter--table--vertical-center subtitle-2-regular">
+                필터
+              </div>
+            </div>
+          </div>
+          <div class="search-content__mobile-sorting">
+            <div class="search-content__mobile-sorting--table">
+              <div
+                (click)="showMobileFilter('sort')"
+                class="search-content__mobile-sorting--table--vertical-center subtitle-2-regular">
+                {{ sortMap[currentSortSlug][locale] }}
+              </div>
+            </div>
+          </div>
+          <div class="search-content__content--outer">
+            <div class="search-content__content">
+              <ul #container *ngLet="(currency| async) as currencyAync">
+                <li #itemList *ngFor="let item of currentList; index as i" class="search-content__item">
+                  <div>
+
+                    <div class="search-content__item--image">
+                      <div
+                        routerLink="/shops/p/{{item.slug}}"
+                        class="search-content__item--image-outer">
+                        <div *ngIf="item.in_stock === true && item.stock_quantity <= 10 && item.stock_quantity !== 0"
+                        class="search-content__item--stock">
+                          <span class="search-content__item--stock--inner subtitle-2-bold u-color-white">
+                            매진임박 {{item.stock_quantity}}개
+                          </span>
+                        </div>
+                        <div *ngIf="item.in_stock === false || item.in_stock === true && item.stock_quantity === 0"
+                        class="search-content__item--stock-empty">
+                          <span class="search-content__item--stock--inner subtitle-2-bold u-color-white">
+                            품절
+                          </span>
+                        </div>
+                        <div class="search-content__item--image-inner">
+                          <img
+                            drLazyLoad
+                            [relativeOption]="false"
+                            src="{{item.thumbnail}}"
+                            alt="{{item.title}}">
+                          <!--카트정보가 어떤식으로 들어갈지 알아야, 대충이라도 작업할 수 있음.-->
+                        </div>
+                      </div>
+                      <ng-container
+                        [ngSwitch]="item.attributes.length">
+                        <onpicks-list-active-button
+                          [limitCount]="item.stock_quantity"
+                          *ngIf="!(item.in_stock === false || item.in_stock === true && item.stock_quantity === 0)"
+                          [amount]="cartStore.cartList[item.slug] === undefined ? 0 : cartStore.cartList[item.slug]?.quantity"
+                          (addEvent)="addToCart($event, item.slug, item.ship_alone ? 'free' : locationMap[item.location.code].sequence)"
+                          (subtractEvent)="subtractFromCart($event, item.slug, item.ship_alone ? 'free' : locationMap[item.location.code].sequence)">
+                        </onpicks-list-active-button>
+
+                        <!--<div-->
+                          <!--class="search-content__item&#45;&#45;option-product"-->
+                          <!--*ngSwitchDefault>-->
+                          <!--<span class="subtitle-3-regular">옵션선택상품</span>-->
+                        <!--</div>-->
+
+                      </ng-container>
+                    </div>
+
+
+                    <div class="search-content__item--name-outer">
+                      <h1 class="search-content__item--name-outer-brand subtitle-2-bold">
+                        <a
+                          (click)="goBrandFilter(item.brand.slug)">
+                          {{item.brand.name}}
+                        </a>
+                      </h1>
+
+
+                      <span class="search-content__item--name-outer-name body-2-regular">
+                        <a
+                          routerLink="/shops/p/{{item.slug}}">
+                          {{item.title}}
+                        </a>
+                      </span>
+
+                    </div>
+
+                    <ui-star-rating
+                      [star-point]="item.review_avg_rating"
+                      [size]="10">
+                    </ui-star-rating>
+                    <span class="subtitle-3-regular u-color-dark-grey">{{item.review_count}}</span>
+                    <br>
+                    <span class="search-content__price-info--MSRP-mobile-discount subtitle-3-regular u-color-grey">{{item.msrp | onpicksCurrency : currencyAync}}</span>
+                    <div class="search-content__price-info">
+                      <span class="search-content__price-info--discount subtitle-1-bold u-color-orange">{{item.discount_rate | percentPipe}}%</span>
+                      <span class="search-content__price-info--price subtitle-1-bold">{{item.price | onpicksCurrency : currencyAync}}</span>
+                      <span class="search-content__price-info--MSRP" *ngIf="locale == 'en'">MSRP</span>
+                      <span class="search-content__price-info--MSRP-discount subtitle-3-regular u-color-grey">{{item.msrp | onpicksCurrency : currencyAync}}</span>
+                    </div>
+                    <div class="search-content__delivery-point">
+                      <ng-container [ngSwitch]="item.location?.code">
+                        <ng-container *ngSwitchCase="'LAX'" >
+                          <span class="search-content__delivery-point--icon icon-small-la"></span>
+                          <span class="search-content__delivery-point--text subtitle-2-regular u-color-black">
+                            <span *ngIf="locale === 'en'">Shipping from </span>
+                            <strong i18n="@@location-warehouse__LAX">엘에이</strong>
+                            <span *ngIf="locale === 'ko'"> 출고</span>
+                          </span>
+                        </ng-container>
+                        <ng-container *ngSwitchCase="'JFK'">
+                          <span class="search-content__delivery-point--icon icon-small-new"></span>
+                          <span class="search-content__delivery-point--text subtitle-2-regular u-color-black">
+                            <span *ngIf="locale === 'en'">Shipping from </span>
+                            <strong i18n="@@location-warehouse__JFK">뉴저지</strong>
+                            <span *ngIf="locale === 'ko'"> 출고</span>
+                          </span>
+                        </ng-container>
+                        <ng-container *ngSwitchCase="'ATL'">
+                          <span class="search-content__delivery-point--icon icon-small-gorgia"></span>
+                          <span class="search-content__delivery-point--text subtitle-2-regular u-color-black">
+                            <span *ngIf="locale === 'en'">Shipping from </span>
+                            <strong i18n="@@location-warehouse__ATL">죠지아</strong>
+                            <span *ngIf="locale === 'ko'"> 출고</span>
+                          </span>
+                        </ng-container>
+                        <ng-container *ngSwitchCase="'KIX'">
+                          <span class="search-content__delivery-point--icon icon-small-osaka"></span>
+                          <span class="search-content__delivery-point--text subtitle-2-regular u-color-black">
+                            <span *ngIf="locale === 'en'">Shipping from </span>
+                            <strong i18n="@@location-warehouse__KIX">오사카</strong>
+                            <span *ngIf="locale === 'ko'"> 출고</span>
+                          </span>
+                        </ng-container>
+                        <ng-container *ngSwitchCase="'HKG'">
+                          <span class="search-content__delivery-point--icon icon-small-hong"></span>
+                          <span class="search-content__delivery-point--text subtitle-2-regular u-color-black">
+                            <span *ngIf="locale === 'en'">Shipping from </span>
+                            <strong i18n="@@location-warehouse__HKG">홍콩</strong>
+                            <span *ngIf="locale === 'ko'"> 출고</span>
+                          </span>
+                        </ng-container>
+                      </ng-container>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="search-content__pagination--outer" *ngIf="currentList != null && currentList.length !== 0">
+          <div class="search-content__pagination">
+            <ul *ngIf="currentPage >= 1">
+              <li *ngIf="currentPage !== 1">
+                <div (click)="paginate(currentPage - 1)">
+                  <svg width="9" height="14" viewBox="0 0 9 14">
+                    <path fill="none" fill-rule="evenodd" stroke="#767676" stroke-width="2" d="M8 1L2 7.05 8 13"/>
+                  </svg>
+                </div>
+              </li>
+
+              <span *ngIf="currentPage <= (isMobile ? 2 : 4)">
+            <!--5이하일 경우엔 가변 처리 없이, 무조건 5까지 다 보여줌-->
+                <span *ngIf="totalPageArray.length <= (isMobile ? 5 : 7)">
+                  <li *ngFor="let number of totalPageArray;  index as i;" >
+                    <div (click)="paginate(i + 1)" [ngClass]="{'search-content__pagination--number-bold' : currentPage === (1 + i)}">{{i + 1}}</div>
+                  </li>
+                </span>
+                <span *ngIf="totalPageArray.length >= (isMobile ? 6 : 8)">
+                  <li *ngFor="let number of isMobile ? numberArray(3) : numberArray(5);  index as i;" >
+                    <div (click)="paginate(i+ 1)" [ngClass]="{'search-content__pagination--number-bold' : currentPage === (1 + i)}">{{i+ 1}}</div>
+                  </li>
+                  <li>
+                    <div class="search-content__pagination--finite-num">...</div>
+                  </li>
+                  <li>
+                    <div (click)="paginate( totalPageArray.length )" [ngClass]="{'search-content__pagination--number-bold' : currentPage === totalPageArray.length }">{{totalPageArray.length }}</div>
+                  </li>
+                </span>
+              </span>
+
+              <span *ngIf="currentPage >= (isMobile ? 3 : 5)">
+                <!--currentPage가 5이상일 경우에도 가변 처리 없이, 무조건 7까지는 다 보여줌-->
+                <span *ngIf="totalPageArray.length <= (isMobile ? 5 : 7)">
+                  <li *ngFor="let number of totalPageArray;  index as i;" >
+                    <div (click)="paginate(i + 1)" [ngClass]="{'search-content__pagination--number-bold' : currentPage === (1 + i)}">{{i + 1}}</div>
+                  </li>
+                </span>
+                <!--currentPage가 5이상이고 totalPage가 8이상일 경우엔 가변처리를 뿌려줌-->
+                <span *ngIf="totalPageArray.length >= (isMobile ? 6 : 8)">
+                  <li>
+                    <div (click)="paginate( 1 )" >1</div>
+                  </li>
+                  <li>
+                    <div class="search-content__pagination--finite-num">...</div>
+                  </li>
+
+                  <!--currentPage가 5이상이고 totalPage - currentPage가 4보다 크면 가변 처리 되는 조건 ( 거의 대부분의 조건에 해당 )-->
+                  <span *ngIf="(totalPageArray.length - currentPage) >= (isMobile ? 2 : 4)">
+                    <li *ngIf="!isMobile">
+                     <div (click)="paginate( currentPage - 1 )">{{currentPage - 1}}</div>
+                    </li>
+                    <li>
+                     <div (click)="paginate( currentPage )" class="search-content__pagination--number-bold">{{currentPage}}</div>
+                    </li>
+                    <li *ngIf="!isMobile">
+                     <div (click)="paginate( currentPage + 1)">{{currentPage + 1}}</div>
+                    </li>
+                    <li>
+                      <div class="search-content__pagination--finite-num">...</div>
+                    </li>
+                    <li>
+                      <div (click)="paginate( totalPageArray.length )" [ngClass]="{'search-content__pagination--number-bold' : currentPage === totalPageArray.length }">{{totalPageArray.length }}</div>
+                    </li>
+                  </span>
+
+                  <!--totalPage - currentPage가 3이하면 특수 조건 발동 -->
+                  <span *ngIf="(totalPageArray.length - currentPage) <= (isMobile ? 1 : 3)">
+                    <!-- 특수 조건에서 for 갯수는,totalPage - currentPage + 2가됨,
+                     마지막 page일 경우 ( currentPage === length )에는, 1을 더 추가해서, 앞에 하나 더 나오게 함  -->
+                    <!-- TODO : 아래의 소스는 가독성이 떨어지므로 한번 수정 필요  -->
+                    <span *ngFor="let item of numberArray(totalPageArray.length - currentPage + 2 + (  currentPage === totalPageArray.length ? 1 : 0));  index as i;">
+                      <li>
+                        <!-- +1의 의미는 현재 페이지에서 앞에 li를 하나 더 나오게 한다는 의미-->
+                        <div
+                          (click)="paginate( totalPageArray.length - ( (totalPageArray.length - currentPage + 1 + ( currentPage === totalPageArray.length ? 1 : 0)) - i ) )"
+                          [ngClass]="{'search-content__pagination--number-bold' : currentPage === (totalPageArray.length - ( (totalPageArray.length - currentPage + 1 + ( currentPage === totalPageArray.length ? 1 : 0))- i)) }">
+                          {{totalPageArray.length - ( (totalPageArray.length - currentPage + 1 + ( currentPage === totalPageArray.length ? 1 : 0))- i) }}
+                        </div>
+                      </li>
+                    </span>
+                  </span>
+                </span>
+              </span>
+              <li *ngIf="currentPage !== totalPageArray.length && totalPageArray.length !== 0">
+                <div (click)="paginate(currentPage + 1)">
+                  <svg width="9" height="14" viewBox="0 0 9 14">
+                    <path fill="none" fill-rule="evenodd" stroke="#767676" stroke-width="2" d="M1 13l6-6.05L1 1"/>
+                  </svg>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+
+  <!--</ng-container>-->
+</div>

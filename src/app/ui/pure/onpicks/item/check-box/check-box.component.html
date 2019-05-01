@@ -1,0 +1,39 @@
+
+<ng-container [ngSwitch]="type">
+
+
+  <label for="{{uuid}}" *ngSwitchDefault [ngClass]="[ radioType === 'normal' ? 'radio-checkbox' : 'radio-checkbox--radius' ]" [ngStyle]="{ 'margin-right' : marginRight }">
+    <input
+      id="{{uuid}}"
+      [checked]="isChecked"
+      class="radio-checkbox__input"
+      (change)="handleChangeForRadio($event)"
+      type="radio"
+      name="radio"
+      #radioBoxView
+    >
+    <span [ngStyle]="{ display : radioType === 'normal' ? 'inline-block' : 'none'}" class="radio-checkbox__checkmark">
+    </span>
+    <span [ngClass]="[ radioType === 'normal' ? 'radio-checkbox__content' : 'radio-checkbox__content--radius' ]" >
+      <ng-container *ngTemplateOutlet="tempOutlet" ></ng-container>
+    </span>
+  </label>
+
+  <div for="checkbox" *ngSwitchCase="'checkbox'" class="normal-checkbox" (click)="handleChangeForCheckbox(checkBoxView)" [ngStyle]="{ 'margin-right' : marginRight }">
+    <input id="checkbox" class="normal-checkbox__input" type="checkbox" [checked]="isChecked"  #checkBoxView>
+    <span class="normal-checkbox__checkmark">
+    </span>
+    <span>
+      <ng-container *ngTemplateOutlet="tempOutlet"></ng-container>
+    </span>
+  </div>
+</ng-container>
+
+<ng-template #tempOutlet>
+  <ng-content></ng-content>
+</ng-template>
+
+
+
+
+

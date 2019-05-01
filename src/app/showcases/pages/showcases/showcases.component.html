@@ -1,3 +1,143 @@
-<p>
-  showcases works!
-</p>
+<div class="current-nav">
+  <div class="row">
+    Health & Beauty
+    <span>/</span>
+    Health Care
+    <span>/</span>
+    Fitness & Nutrition
+    <span>/</span>
+    Nutrition Bars
+    <span>/</span>
+    Nutrition Bars
+    <hr>
+  </div>
+</div>
+
+
+<div class="row">
+  <div (drop)="dropFiles($event)" (dragover)="onDragOver($event)" class="drag-and-drop">
+
+  </div>
+  <img [src]="imgSrc | safeHtml" alt="">
+  <!--<form action="" enctype="multipart/form-data">-->
+    <!--<div class="box__input">-->
+      <!--<input class="box__file" type="file" name="files[]" id="file" multiple />-->
+      <!--<label for="file"><strong>Choose a file</strong><span class="box__dragndrop"> or drag it here</span>.</label>-->
+      <!--&lt;!&ndash;<button class="box__button" type="submit">Upload</button>&ndash;&gt;-->
+    <!--</div>-->
+  <!--</form>-->
+</div>
+
+<!--각 줄마다 row로 하지 않은것은, 좀더 iterate을 쉽게 하기 위해서, row. col조합에 대한 딱히 이점을 느끼지 못해서-->
+<section class="showcases">
+  <div class="row showcases__grid--row">
+    <div class="showcases__grid--column" *ngFor="let item of showcasesDataList">
+      <div class="lazyLoadOuter">
+        <img drLazyLoad class="showcases__grid--contents-image" src="{{item.imgSrc}}" alt="">
+      </div>
+
+      <div class="showcases__grid--contents-category">
+        {{item.category}}
+      </div>
+      <div class="showcases__grid--contents-title">
+        {{item.title}}
+      </div>
+    </div>
+  </div>
+
+  <!---->
+  <!--<div class="row showcases__grid&#45;&#45;row">-->
+    <!--&lt;!&ndash;<div class="showcases__grid&#45;&#45;column col-4-of-12">&ndash;&gt;-->
+    <!--<div class="col-4-of-12 showcases__grid&#45;&#45;column">-->
+      <!--<div class="lazyLoadOuter">-->
+        <!--<img drLazyLoad class="showcases__grid&#45;&#45;contents-image" src="https://picsum.photos/360/360?image=100" alt="">-->
+      <!--</div>-->
+
+      <!--<div class="showcases__grid&#45;&#45;contents-category">-->
+        <!--Beauty-->
+      <!--</div>-->
+      <!--<div class="showcases__grid&#45;&#45;contents-title">-->
+        <!--Have You Discovered Lancome?-->
+      <!--</div>-->
+    <!--</div>-->
+    <!--<div class="col-4-of-12 showcases__grid&#45;&#45;column">-->
+      <!--<div class="lazyLoadOuter">-->
+        <!--<img drLazyLoad class="showcases__grid&#45;&#45;contents-image" src="https://picsum.photos/360/360?image=200" alt="">-->
+      <!--</div>-->
+      <!--<div class="showcases__grid&#45;&#45;contents-category">-->
+        <!--Beauty-->
+      <!--</div>-->
+      <!--<div class="showcases__grid&#45;&#45;contents-title">-->
+        <!--You Won’t Believe That These Brands are Vegan-->
+      <!--</div>-->
+    <!--</div>-->
+    <!--<div class="col-4-of-12 showcases__grid&#45;&#45;column">-->
+      <!--<div class="lazyLoadOuter">-->
+        <!--<img drLazyLoad class="showcases__grid&#45;&#45;contents-image" src="https://picsum.photos/360/360?image=300" alt="">-->
+      <!--</div>-->
+      <!--<div class="showcases__grid&#45;&#45;contents-category">-->
+        <!--Electronics-->
+      <!--</div>-->
+      <!--<div class="showcases__grid&#45;&#45;contents-title">-->
+        <!--The New Galaxy-->
+      <!--</div>-->
+    <!--</div>-->
+    <!--&lt;!&ndash;<img src="https://picsum.photos/360/360?image=0" alt="">&ndash;&gt;-->
+    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+    <!--&lt;!&ndash;<div class="showcases__grid&#45;&#45;column col-4-of-12">&ndash;&gt;-->
+      <!--&lt;!&ndash;<img src="https://picsum.photos/360/360?image=100" alt="">&ndash;&gt;-->
+
+    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+    <!--&lt;!&ndash;<div class="showcases__grid&#45;&#45;column col-4-of-12">&ndash;&gt;-->
+      <!--&lt;!&ndash;<img src="https://picsum.photos/360/360?image=200" alt="">&ndash;&gt;-->
+    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+  <!--</div>-->
+
+
+  <!--<div class="showcases__grid&#45;&#45;row row">-->
+    <!--<div class="col-4-of-12 showcases__grid&#45;&#45;column">-->
+      <!--<div class="lazyLoadOuter">-->
+        <!--<img drLazyLoad class="showcases__grid&#45;&#45;contents-image" src="https://picsum.photos/360/360?image=400" alt="">-->
+      <!--</div>-->
+      <!--<div class="showcases__grid&#45;&#45;contents-category">-->
+        <!--Beauty-->
+      <!--</div>-->
+      <!--<div class="showcases__grid&#45;&#45;contents-title">-->
+        <!--Match Your Scent to Your Mood-->
+      <!--</div>-->
+    <!--</div>-->
+    <!--<div class="col-4-of-12 showcases__grid&#45;&#45;column">-->
+      <!--<div class="lazyLoadOuter">-->
+        <!--<img drLazyLoad class="showcases__grid&#45;&#45;contents-image"src="https://picsum.photos/360/360?image=500" alt="">-->
+      <!--</div>-->
+      <!--<div class="showcases__grid&#45;&#45;contents-category">-->
+        <!--Fashion-->
+      <!--</div>-->
+      <!--<div class="showcases__grid&#45;&#45;contents-title">-->
+        <!--Rolex - Timeless Luxury Watches-->
+      <!--</div>-->
+    <!--</div>-->
+    <!--<div class="col-4-of-12 showcases__grid&#45;&#45;column">-->
+      <!--<div class="lazyLoadOuter">-->
+        <!--<img drLazyLoad class="showcases__grid&#45;&#45;contents-image" src="https://picsum.photos/360/360?image=600" alt="">-->
+      <!--</div>-->
+      <!--<div class="showcases__grid&#45;&#45;contents-category">-->
+        <!--Pantry & Household-->
+      <!--</div>-->
+      <!--<div class="showcases__grid&#45;&#45;contents-title">-->
+        <!--Whole Food Protein Bars with Real Ingredients-->
+      <!--</div>-->
+    <!--</div>-->
+    <!--&lt;!&ndash;<div class="showcases__grid&#45;&#45;column col-4-of-12">&ndash;&gt;-->
+     <!--&lt;!&ndash;<img src="https://picsum.photos/360/360?image=300" alt="">&ndash;&gt;-->
+
+    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+    <!--&lt;!&ndash;<div class="showcases__grid&#45;&#45;column col-4-of-12">&ndash;&gt;-->
+      <!--&lt;!&ndash;<img src="https://picsum.photos/360/360?image=400" alt="">&ndash;&gt;-->
+
+    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+    <!--&lt;!&ndash;<div class="showcases__grid&#45;&#45;column col-4-of-12">&ndash;&gt;-->
+      <!--&lt;!&ndash;<img src="https://picsum.photos/360/360?image=500" alt="">&ndash;&gt;-->
+    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+  <!--</div>-->
+</section>

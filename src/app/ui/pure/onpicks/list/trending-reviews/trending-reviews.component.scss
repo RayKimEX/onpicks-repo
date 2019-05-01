@@ -1,0 +1,441 @@
+@import '~src/assets/scss/abstracts/variables';
+
+
+.trending-reviews-halfM {
+
+  onpicks-circle-n-button {
+
+    @include respond(tb){
+      display:none;
+    }
+  }
+  &__title {
+    margin-bottom : 2.4rem;
+  }
+
+  &__delivery-point {
+    margin-top : 0.8rem;
+    position:relative;
+    @include respond(tb){
+      margin-top : 0.4rem;
+    }
+
+
+    &--icon {
+      margin-right : 0.8rem;
+      display:inline-block;
+      width : 1.6rem;
+      height : 1.6rem;
+    }
+
+    &--text {
+      position:absolute;
+      top: -2px;
+
+    }
+  }
+
+  &__price-info {
+    margin-top: 0.8rem;
+    @include respond(tb){
+      margin-top : 0.4rem;
+    }
+
+    &--MSRP {
+      margin-right: 0.2rem;
+      font-size: 1.2rem;
+      color: #a0a0a0;
+      font-weight: 500;
+
+      &-discount {
+        vertical-align: text-top;;
+        text-decoration: line-through;
+
+        @include respond(tb){
+          display:none;
+        }
+      }
+
+      &-mobile-discount {
+        margin-top : 0.4rem;
+        display:none;
+        text-decoration: line-through;
+        @include respond(tb){
+          display: block;
+        }
+      }
+    }
+
+    &--price {
+      margin-right: 0.6rem;
+    }
+
+    &--discount {
+      margin-right: 0.4rem;
+    }
+  }
+
+  &__content {
+    position: relative;
+    overflow: hidden;
+    width: inherit;
+    white-space: nowrap;
+
+    @include respond(tb){
+      overflow-x : auto;
+      margin : 0 -2.4rem;
+      &::-webkit-scrollbar{
+        display :none;
+      }
+    }
+
+    &--outer {
+      position: relative;
+    }
+
+    &-ul {
+      transition: transform .5s ease 0s;
+    }
+
+    &-li{
+      vertical-align: top;
+      display: inline-block;
+      list-style: none;
+        width: 25%;
+        padding : 0 1.2rem;
+
+      @include respond(fb){
+        padding : 0 0.8rem;
+      }
+
+      @include respond(tb){
+        width: 40%;
+        padding : 0 0.6rem;
+        &:first-child {
+          margin-left : 2.4rem;
+        }
+
+        &:last-child {
+          margin-right : 2.4rem;
+        }
+
+      }
+
+
+    }
+  }
+
+  &__item {
+    ui-star-rating {
+      margin-right : 0.4rem;
+    }
+
+    &--name-outer {
+      margin-bottom: 0.8rem;
+      @include respond(tb){
+        margin-bottom : 0.4rem;
+      }
+
+      &-brand {
+        margin-bottom: 0.4rem;
+      }
+
+      &-name {
+        white-space: normal;
+        width: 26.4rem;
+      }
+    }
+
+    &--image {
+      height: 26.4rem;
+      width: 100%;
+      position: relative;
+      margin-bottom :1.6rem;
+      @include respond(sb){
+        height:auto;
+      }
+
+      onpicks-list-active-button {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+      }
+      &-inner {
+        background-color : black;
+        width:100%;
+        position: relative;
+        padding-top: 100%;
+        img {
+          @include imageAspactRatio;
+        }
+        onpicks-list-active-button {
+          position: absolute;
+          right: 0;
+          bottom: 0;
+        }
+
+        svg {
+          position: absolute;
+          top: 1.6rem;
+          right: 1.6rem;
+
+          path {
+            fill: $color-grey;
+          }
+        }
+      }
+
+      &-outer {
+        position: relative;
+        width: 100%;
+
+        &:hover {
+          opacity: 0.5;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
+
+
+.profile {
+  position: absolute;
+  bottom : 0;
+  width: 100%;
+  &-inner {
+    position:relative;
+    margin: 0.8rem;
+
+    &__figure {
+      &--image {
+        @include imageAspactRatio;
+        &--outer {
+          width : 4rem;
+          height : 4rem;
+          border-radius:50%;
+          overflow:hidden;
+        }
+      }
+
+      ui-star-rating {
+        margin-left :1.6rem;
+      }
+
+      figcaption {
+        display:inline-block;
+        position:absolute;
+        margin-left: 1.6rem;
+        top : 0;
+        display:inline-block;
+        color:white;
+      }
+
+      span {
+        position:absolute;
+        bottom: 0.1rem;
+      }
+    }
+  }
+}
+
+.trending-reviews-fullM {
+
+  onpicks-circle-n-button {
+    @include respond(tb){
+      display:none;
+    }
+  }
+  &__title {
+    margin-bottom : 2.4rem;
+  }
+
+  &__delivery-point {
+    margin-top : 0.8rem;
+    position:relative;
+    @include respond(tb){
+      margin-top : 0.4rem;
+    }
+
+    &--icon {
+      margin-right : 0.8rem;
+      display:inline-block;
+      width : 1.6rem;
+      height : 1.6rem;
+    }
+
+    &--text {
+      position:absolute;
+      top: -2px;
+    }
+  }
+
+  &__price-info {
+    margin-top: 0.8rem;
+    @include respond(tb){
+      margin-top : 0.4rem;
+    }
+
+    &--MSRP {
+      margin-right: 0.2rem;
+      font-size: 1.2rem;
+      color: #a0a0a0;
+      font-weight: 500;
+
+      &-discount {
+        vertical-align: text-top;;
+        text-decoration: line-through;
+
+        @include respond(tb){
+          display:none;
+        }
+      }
+
+      &-mobile-discount {
+        display:none;
+        margin-top : 0.4rem;
+        text-decoration: line-through;
+        @include respond(tb){
+          display: block;
+        }
+      }
+    }
+
+    &--price {
+      margin-right: 0.6rem;
+    }
+
+    &--discount {
+      margin-right: 0.4rem;
+    }
+  }
+
+  &__item {
+
+    ui-star-rating {
+      margin-right : 0.4rem;
+    }
+
+    &--name-outer {
+      margin-bottom: 0.8rem;
+      @include respond(tb){
+        margin-bottom : 0.4rem;
+      }
+
+      &-brand {
+        margin-bottom: 0.4rem;
+      }
+
+      &-name {
+        white-space: normal;
+        width: 26.4rem;
+      }
+    }
+
+    &--image {
+      height: 26.4rem;
+      width: 100%;
+      position: relative;
+      margin-bottom :1.6rem;
+      @include respond(sb){
+        height:auto;
+      }
+
+      onpicks-list-active-button {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+      }
+      &-inner {
+        background-color : black;
+        width:100%;
+        position: relative;
+        padding-top: 100%;
+        img {
+          @include imageAspactRatio;
+        }
+        onpicks-list-active-button {
+          position: absolute;
+          right: 0;
+          bottom: 0;
+        }
+
+        svg {
+          position: absolute;
+          top: 1.6rem;
+          right: 1.6rem;
+
+          path {
+            fill: $color-grey;
+          }
+        }
+      }
+
+      &-outer {
+        width: 100%;
+        height:100%;
+
+        padding : 2.4rem;
+        &:hover {
+          opacity: 0.5;
+          cursor: pointer;
+        }
+      }
+
+    }
+  }
+
+  &__content {
+    position: relative;
+    overflow: hidden;
+    width: inherit;;
+    white-space: nowrap;
+    @include respond(tb){
+      white-space: normal;
+    }
+    &--outer {
+      position: relative;
+    }
+
+    ul {
+
+      transition: transform .5s ease 0s;
+      li {
+        width: 28.8rem;
+        @include respond(fb){
+          width : 33%;
+        }
+
+        @include respond(tb){
+          width : 50%;
+        }
+        vertical-align: top;
+        display: inline-block;
+        list-style: none;
+        & > div {
+          width: 26.4rem;
+          @include respond(fb){
+            width: auto;
+          }
+        }
+
+        &:not(:last-child) > div {
+          margin-right: 2.4rem;
+          @include respond(fb){
+            margin-right : 0;
+            // padding-right: 2.4rem;
+          }
+          @include respond(tb){
+            padding-right : 0;
+          }
+        }
+
+        @include respond(tb){
+          &:not(:nth-child(2n)) > div {
+            // padding-right : 2.4rem;
+          }
+        }
+      }
+    }
+  }
+}

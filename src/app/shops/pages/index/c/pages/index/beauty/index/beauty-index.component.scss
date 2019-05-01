@@ -1,0 +1,41 @@
+@import "~src/assets/scss/abstracts/variables";
+
+ui-banner-carousel {
+  height: 40rem;
+  display:block;
+  margin : 0 -2.4rem;
+
+  @include respond(tb){
+    display:none;
+  }
+}
+
+
+
+onpicks-category-list {
+  display:block;
+  margin-top : 5.6rem;
+
+  @include respond(tb){
+    margin-top : 4rem;
+  }
+}
+
+onpicks-today-collection {
+  display:block;
+  margin-top : 5.6rem;
+  @include respond(tb){
+    margin-top : 4rem;
+  }
+}
+
+onpicks-popular-brand {
+  display : block;
+  margin-top : 5.6rem;
+  margin-bottom :5.6rem;
+
+  @include respond(tb){
+    margin-top : 4rem;
+    margin-bottom :4rem;
+  }
+}

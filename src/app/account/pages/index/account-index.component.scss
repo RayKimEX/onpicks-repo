@@ -1,0 +1,75 @@
+@import "~src/assets/scss/abstracts/variables";
+
+router-outlet {
+  @include respond(actb){
+    margin-top : 2.4rem;
+    display:block;
+  }
+}
+
+.account-index {
+  padding : 0 2.4rem;
+}
+
+.account-profile {
+  padding: 3.2rem 0;
+  margin-bottom : 0.8rem;
+
+  @include respond(actb){
+    display:none;
+  }
+  &__info {
+    display : table;
+    // margin-bottom : 4rem;
+    &--image {
+      display:inline-block;
+      width: 10rem;
+      height: 10rem;
+      margin-right : 2.4rem;
+      img {
+        width : 10rem;
+        hegiht : 10rem;
+      }
+    }
+
+    &-description {
+
+      display:table-cell;
+      vertical-align: middle;
+      & > div:not(:last-child) {
+        margin-bottom: 4px;
+      }
+    }
+
+  }
+}
+
+.account-navigator {
+
+  nav {
+    padding-bottom : 2.4rem;
+    border-bottom : 1px solid $color-light-grey;
+    margin-bottom: 2.4rem;
+
+    @include respond(actb){
+      display:none;
+    }
+    ul {
+
+      li {
+        list-style: none;
+        display:inline-block;
+
+        &:not(:last-child){
+          padding-right : 11.08%;
+          // margin-right : 12.5rem;
+        }
+      }
+    }
+  }
+
+
+  hr {
+    margin-bottom: 3.2rem;
+  }
+}

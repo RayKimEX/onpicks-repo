@@ -1,0 +1,39 @@
+@import "~src/assets/scss/abstracts/variables";
+
+.feed-section {
+  // margin-bottom 을 여기서 준 이유는 account-index.html에서는 router-outlet으로 처리되기 때문
+  margin-bottom : 4rem;
+
+  h1 {
+    margin-bottom: 2.4rem;
+  }
+
+  &__row {
+    @include clearfix;
+    &:not(:last-child) {
+      margin-bottom: 2.4rem;
+    }
+  }
+
+  &__grid {
+    line-height: 0;
+  }
+
+  &__col {
+    vertical-align : top;
+
+    display:inline-block;
+    width : 26.4rem;
+    height: 26.4rem;
+    margin-bottom : 2.4rem;
+    img {
+      @include imageAspactRatio;
+    }
+
+    // custom grid
+    &:not(:nth-child(4n)){
+      margin-right : 2.4rem;
+    }
+
+  }
+}

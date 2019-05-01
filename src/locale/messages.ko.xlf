@@ -1,0 +1,1425 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="ko" datatype="plaintext" original="ng2.template">
+    <body>
+
+      <!--Header Section-->
+      <trans-unit id="header__shops" datatype="html">
+        <target>쇼핑</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/header/header.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="header__showcases" datatype="html">
+        <target>쇼케이스</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/header/header.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="header__events" datatype="html">
+        <target>이벤트</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/header/header.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="header__reviews" datatype="html">
+        <target>리뷰</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/header/header.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="header__login" datatype="html">
+        <target>로그인</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/header/header.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="header__signup" datatype="html">
+        <target>회원가입</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/header/header.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="header__placeholder" datatype="html">
+        <target>2018 추석선물 대전</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/header/header.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+        <!--HeaderMenu Section-->
+        <trans-unit id="header-menu__pantry-and-household" datatype="html">
+          <target>식품·생활용품</target>
+          <context-group purpose="location">
+            <context context-type="sourcefile">app/ui/onpicks/header/header.component.html</context>
+            <context context-type="linenumber">52</context>
+          </context-group>
+        </trans-unit>
+        <trans-unit id="header-menu__pantry" datatype="html">
+          <target>식품</target>
+          <context-group purpose="location">
+            <context context-type="sourcefile">app/ui/onpicks/header/header.component.html</context>
+            <context context-type="linenumber">52</context>
+          </context-group>
+        </trans-unit>
+        <trans-unit id="header-menu__beverage" datatype="html">
+          <target>음료</target>
+          <context-group purpose="location">
+            <context context-type="sourcefile">app/ui/onpicks/header/header.component.html</context>
+            <context context-type="linenumber">52</context>
+          </context-group>
+        </trans-unit>
+        <trans-unit id="header-menu__healthy-things" datatype="html">
+          <target>건강용품</target>
+          <context-group purpose="location">
+            <context context-type="sourcefile">app/ui/onpicks/header/header.component.html</context>
+            <context context-type="linenumber">52</context>
+          </context-group>
+        </trans-unit>
+        <trans-unit id="header-menu__pet" datatype="html">
+          <target>애견용품</target>
+          <context-group purpose="location">
+            <context context-type="sourcefile">app/ui/onpicks/header/header.component.html</context>
+            <context context-type="linenumber">52</context>
+          </context-group>
+        </trans-unit>
+
+        <trans-unit id="header-menu__pantry-and-household-more" datatype="html">
+          <target>식품·생활용품 더보기</target>
+          <context-group purpose="location">
+            <context context-type="sourcefile">app/ui/onpicks/header/header.component.html</context>
+            <context context-type="linenumber">52</context>
+          </context-group>
+        </trans-unit>
+
+        <!--Miscell-->
+
+        <trans-unit id="forgot-password__title" datatype="html">
+          <target>비밀번호 재설정</target>
+          <context-group purpose="location">
+            <context context-type="sourcefile">app/ui/pure/onpicks/list/category-list/category-list.component.html</context>
+            <context context-type="linenumber">2</context>
+          </context-group>
+        </trans-unit>
+
+        <trans-unit id="forgot-password__description" datatype="html">
+          <target>Onpicks 가입 시 사용한 이메일 주소를 입력하시면 비밀번호 재설정 링크를 보내드립니다.</target>
+          <context-group purpose="location">
+            <context context-type="sourcefile">app/ui/pure/onpicks/list/category-list/category-list.component.html</context>
+            <context context-type="linenumber">2</context>
+          </context-group>
+        </trans-unit>
+
+        <trans-unit id="forgot-password__btn" datatype="html">
+          <target>재설정 링크 보내기</target>
+          <context-group purpose="location">
+            <context context-type="sourcefile">app/ui/pure/onpicks/list/category-list/category-list.component.html</context>
+            <context context-type="linenumber">2</context>
+          </context-group>
+        </trans-unit>
+
+
+        <trans-unit id="forgot-password__input--placeholder" datatype="html">
+          <target>이메일을 입력해주세요</target>
+          <context-group purpose="location">
+            <context context-type="sourcefile">app/ui/pure/onpicks/list/category-list/category-list.component.html</context>
+            <context context-type="linenumber">2</context>
+          </context-group>
+        </trans-unit>
+
+
+        <trans-unit id="forgot-password__back-to-login" datatype="html">
+          <target>로그인 페이지로 돌아가기</target>
+          <context-group purpose="location">
+            <context context-type="sourcefile">app/ui/pure/onpicks/list/category-list/category-list.component.html</context>
+            <context context-type="linenumber">2</context>
+          </context-group>
+        </trans-unit>
+
+        <trans-unit id="category-list__title" datatype="html">
+          <target>인기 카테고리</target>
+          <context-group purpose="location">
+            <context context-type="sourcefile">app/ui/pure/onpicks/list/category-list/category-list.component.html</context>
+            <context context-type="linenumber">2</context>
+          </context-group>
+        </trans-unit>
+
+        <trans-unit id="today-collection__title" datatype="html">
+          <target>오늘의 컬렉션</target>
+          <context-group purpose="location">
+            <context context-type="sourcefile">app/ui/pure/onpicks/list/today-collection/today-collection.component.html:7</context>
+            <context context-type="linenumber">2</context>
+          </context-group>
+        </trans-unit>
+
+        <trans-unit id="value-list__title" datatype="html">
+          <target>성분 인증</target>
+          <context-group purpose="location">
+            <context context-type="sourcefile">app/ui/pure/onpicks/list/today-collection/today-collection.component.html:7</context>
+            <context context-type="linenumber">2</context>
+          </context-group>
+        </trans-unit>
+
+        <trans-unit id="trending-reviews__title" datatype="html">
+          <target>인기 리뷰</target>
+          <context-group purpose="location">
+            <context context-type="sourcefile">app/ui/pure/onpicks/list/today-collection/today-collection.component.html:7</context>
+            <context context-type="linenumber">2</context>
+          </context-group>
+        </trans-unit>
+
+      <trans-unit id="recommand-products__title" datatype="html">
+        <target>추천 상품</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/pure/onpicks/list/today-collection/today-collection.component.html:7</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="recently-viewed__title" datatype="html">
+        <target>최근 본 상품</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/pure/onpicks/list/today-collection/today-collection.component.html:7</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+
+        <!--Beauty-->
+        <trans-unit id="header-menu__beauty" datatype="html">
+          <target>뷰티</target>
+          <context-group purpose="location">
+            <context context-type="sourcefile">app/ui/onpicks/header/header.component.html</context>
+            <context context-type="linenumber">52</context>
+          </context-group>
+        </trans-unit>
+        <trans-unit id="header-menu__skin-care" datatype="html">
+          <target>스킨케어</target>
+          <context-group purpose="location">
+            <context context-type="sourcefile">app/ui/onpicks/header/header.component.html</context>
+            <context context-type="linenumber">52</context>
+          </context-group>
+        </trans-unit>
+        <trans-unit id="header-menu__hair" datatype="html">
+          <target>헤어</target>
+          <context-group purpose="location">
+            <context context-type="sourcefile">app/ui/onpicks/header/header.component.html</context>
+            <context context-type="linenumber">52</context>
+          </context-group>
+        </trans-unit>
+        <trans-unit id="header-menu__makeup" datatype="html">
+          <target>메이크업</target>
+          <context-group purpose="location">
+            <context context-type="sourcefile">app/ui/onpicks/header/header.component.html</context>
+            <context context-type="linenumber">52</context>
+          </context-group>
+        </trans-unit>
+        <trans-unit id="header-menu__men-grooming" datatype="html">
+          <target>남성화장품</target>
+          <context-group purpose="location">
+            <context context-type="sourcefile">app/ui/onpicks/header/header.component.html</context>
+            <context context-type="linenumber">52</context>
+          </context-group>
+        </trans-unit>
+        <trans-unit id="header-menu__beauty-more" datatype="html">
+          <target>뷰티 더보기</target>
+          <context-group purpose="location">
+            <context context-type="sourcefile">app/ui/onpicks/header/header.component.html</context>
+            <context context-type="linenumber">52</context>
+          </context-group>
+        </trans-unit>
+
+        <!--Fashion-->
+        <trans-unit id="header-menu__fashion" datatype="html">
+          <target>패션</target>
+          <context-group purpose="location">
+            <context context-type="sourcefile">app/ui/onpicks/header/header.component.html</context>
+            <context context-type="linenumber">52</context>
+          </context-group>
+        </trans-unit>
+        <trans-unit id="header-menu__women-wear" datatype="html">
+          <target>여성의류</target>
+          <context-group purpose="location">
+            <context context-type="sourcefile">app/ui/onpicks/header/header.component.html</context>
+            <context context-type="linenumber">52</context>
+          </context-group>
+        </trans-unit>
+        <trans-unit id="header-menu__men-wear" datatype="html">
+          <target>남성의류</target>
+          <context-group purpose="location">
+            <context context-type="sourcefile">app/ui/onpicks/header/header.component.html</context>
+            <context context-type="linenumber">52</context>
+          </context-group>
+        </trans-unit>
+        <trans-unit id="header-menu__kids-baby-wear" datatype="html">
+          <target>유아동의류</target>
+          <context-group purpose="location">
+            <context context-type="sourcefile">app/ui/onpicks/header/header.component.html</context>
+            <context context-type="linenumber">52</context>
+          </context-group>
+        </trans-unit>
+        <trans-unit id="header-menu__sports" datatype="html">
+          <target>스포츠</target>
+          <context-group purpose="location">
+            <context context-type="sourcefile">app/ui/onpicks/header/header.component.html</context>
+            <context context-type="linenumber">52</context>
+          </context-group>
+        </trans-unit>
+        <trans-unit id="header-menu__fashion-more" datatype="html">
+          <target>패션 더보기</target>
+          <context-group purpose="location">
+            <context context-type="sourcefile">app/ui/onpicks/header/header.component.html</context>
+            <context context-type="linenumber">52</context>
+          </context-group>
+        </trans-unit>
+
+        <!--Home-deco-->
+        <trans-unit id="header-menu__home-deco" datatype="html">
+          <target>홈·데코</target>
+          <context-group purpose="location">
+            <context context-type="sourcefile">app/ui/onpicks/header/header.component.html</context>
+            <context context-type="linenumber">52</context>
+          </context-group>
+        </trans-unit>
+        <trans-unit id="header-menu__home-electronics" datatype="html">
+          <target>가전제품</target>
+          <context-group purpose="location">
+            <context context-type="sourcefile">app/ui/onpicks/header/header.component.html</context>
+            <context context-type="linenumber">52</context>
+          </context-group>
+        </trans-unit>
+        <trans-unit id="header-menu__kitchen" datatype="html">
+          <target>주방</target>
+          <context-group purpose="location">
+            <context context-type="sourcefile">app/ui/onpicks/header/header.component.html</context>
+            <context context-type="linenumber">52</context>
+          </context-group>
+        </trans-unit>
+        <trans-unit id="header-menu__bathroom" datatype="html">
+          <target>욕실</target>
+          <context-group purpose="location">
+            <context context-type="sourcefile">app/ui/onpicks/header/header.component.html</context>
+            <context context-type="linenumber">52</context>
+          </context-group>
+        </trans-unit>
+        <trans-unit id="header-menu__bedroom" datatype="html">
+          <target>침실</target>
+          <context-group purpose="location">
+            <context context-type="sourcefile">app/ui/onpicks/header/header.component.html</context>
+            <context context-type="linenumber">52</context>
+          </context-group>
+        </trans-unit>
+        <trans-unit id="header-menu__home-deco-more" datatype="html">
+          <target>홈·데코 더보기</target>
+          <context-group purpose="location">
+            <context context-type="sourcefile">app/ui/onpicks/header/header.component.html</context>
+            <context context-type="linenumber">52</context>
+          </context-group>
+        </trans-unit>
+
+        <!--Digital-->
+        <trans-unit id="header-menu__electronics" datatype="html">
+          <target>디지털</target>
+          <context-group purpose="location">
+            <context context-type="sourcefile">app/ui/onpicks/header/header.component.html</context>
+            <context context-type="linenumber">52</context>
+          </context-group>
+        </trans-unit>
+        <trans-unit id="header-menu__TV" datatype="html">
+          <target>TV</target>
+          <context-group purpose="location">
+            <context context-type="sourcefile">app/ui/onpicks/header/header.component.html</context>
+            <context context-type="linenumber">52</context>
+          </context-group>
+        </trans-unit>
+        <trans-unit id="header-menu__computer-and-tablet" datatype="html">
+          <target>컴퓨터·타블렛</target>
+          <context-group purpose="location">
+            <context context-type="sourcefile">app/ui/onpicks/header/header.component.html</context>
+            <context context-type="linenumber">52</context>
+          </context-group>
+        </trans-unit>
+        <trans-unit id="header-menu__sound-device" datatype="html">
+          <target>음향기기</target>
+          <context-group purpose="location">
+            <context context-type="sourcefile">app/ui/onpicks/header/header.component.html</context>
+            <context context-type="linenumber">52</context>
+          </context-group>
+        </trans-unit>
+        <trans-unit id="header-menu__smart-home" datatype="html">
+          <target>스마트홈</target>
+          <context-group purpose="location">
+            <context context-type="sourcefile">app/ui/onpicks/header/header.component.html</context>
+            <context context-type="linenumber">52</context>
+          </context-group>
+        </trans-unit>
+        <trans-unit id="header-menu__electronics-more" datatype="html">
+          <target>디지털 더보기</target>
+          <context-group purpose="location">
+            <context context-type="sourcefile">app/ui/onpicks/header/header.component.html</context>
+            <context context-type="linenumber">52</context>
+          </context-group>
+        </trans-unit>
+
+        <!--Recommend-->
+        <trans-unit id="header-menu__recommend-category" datatype="html">
+          <target>추천 카테고리</target>
+          <context-group purpose="location">
+            <context context-type="sourcefile">app/ui/onpicks/header/header.component.html</context>
+            <context context-type="linenumber">52</context>
+          </context-group>
+        </trans-unit>
+        <trans-unit id="header-menu__kids-baby" datatype="html">
+          <target>유아동</target>
+          <context-group purpose="location">
+            <context context-type="sourcefile">app/ui/onpicks/header/header.component.html</context>
+            <context context-type="linenumber">52</context>
+          </context-group>
+        </trans-unit>
+        <trans-unit id="header-menu__health-foods" datatype="html">
+          <target>건강기능식품</target>
+          <context-group purpose="location">
+            <context context-type="sourcefile">app/ui/onpicks/header/header.component.html</context>
+            <context context-type="linenumber">52</context>
+          </context-group>
+        </trans-unit>
+
+      <!--Shops Section-->
+      <trans-unit id="shops__popular-goods" datatype="html">
+        <target>이번주 인기 상품</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shops/pages/index/shops-index.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="shops__recently-viewed" datatype="html">
+        <target>최근에 본 상품</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shops/pages/index/shops-index.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="shops__suggestion-goods" datatype="html">
+        <target>당신을 위한 추천 상품</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shops/pages/index/shops-index.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <!--Onpicks Section-->
+      <trans-unit id="popular-brand__title" datatype="html">
+        <target>인기 브랜드</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shops/components/index/popular-brand/popular-brand.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <!--Footer Section-->
+      <trans-unit id="footer__copyright" datatype="html">
+        <target>
+          &copy; 2019 Mojo Ventures Co., Ltd. All Rights Reserved.
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+
+      <trans-unit id="footer__about" datatype="html">
+        <target>회사소개</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="footer__blog" datatype="html">
+        <target>블로그</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="footer__career" datatype="html">
+        <target>채용정보</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="footer__contact" datatype="html">
+        <target>고객센터</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="footer__faq" datatype="html">
+        <target>FAQ</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="footer__privacy" datatype="html">
+        <target>개인정보취급방침</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="footer__termsofuse" datatype="html">
+        <target>이용약관</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="footer__desktop--copyright--cooperation-name1" datatype="html">
+        <target>상호명 : 모조벤처스 주식회사 대표이사: 유한태 이메일 : </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="footer__desktop--copyright--cooperation-name2" datatype="html">
+        <target> 주소: 서울특별시 성동구 성수일로8길 59, 7층 777호</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+
+      <!--Login Page-->
+
+      <trans-unit id="login__social--facebook" datatype="html">
+        <target>페이스북 계정으로 로그인</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="login__social--google" datatype="html">
+        <target>구글 계정으로 로그인</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="login__or-line--text" datatype="html">
+        <target>또는</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="login__input-box--placeholder" datatype="html">
+        <target>이메일을 입력해주세요</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="login__input-box--password" datatype="html">
+        <target>비밀번호를 입력해주세요</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="login__miscell--remember-me" datatype="html">
+        <target>로그인 상태 유지</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="login__miscell--forgot-password" datatype="html">
+        <target>비밀번호가 생각나지 않으세요?</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="login__miscell--login" datatype="html">
+        <target>로그인</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="login__no-account--text" datatype="html">
+        <target>Onpicks 계정이 없으세요?</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+
+
+      <trans-unit id="login__no-account--sign-up" datatype="html">
+        <target>회원가입</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+
+      <!--Signup Page-->
+
+      <trans-unit id="signup__social--facebook" datatype="html">
+        <target>페이스북 계정으로 가입하기</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="signup__social--google" datatype="html">
+        <target>구글 계정으로 가입하기</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+
+      <trans-unit id="signup__input-box--placeholder--email" datatype="html">
+        <target>이메일을 입력해주세요</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="signup__input-box--placeholder--nickname" datatype="html">
+        <target>닉네임을 입력해주세요</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="signup__input-box--placeholder--password" datatype="html">
+        <target>비밀번호를 입력해주세요</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="signup__or-line--text" datatype="html">
+        <target>또는</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="signup__agreement-and-signup" datatype="html">
+        <target>동의하고 가입하기</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="signup__already-account--text" datatype="html">
+        <target>이미 Onpicks 계정이 있나요?</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="signup__already-account--login" datatype="html">
+        <target>로그인</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+
+      <!--Account Page-->
+
+      <trans-unit id="account-profile__modify" datatype="html">
+        <target>수정하기</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="settings-profile__password--title" datatype="html">
+        <target>비밀번호</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="settings-profile__phone--title" datatype="html">
+        <target>전화반호</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="settings-profile__nickname--title" datatype="html">
+        <target>닉네임</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="settings-profile__nickname--description" datatype="html">
+        <target>다른 사용자들에겐 사용자가 설정한 닉네임으로 보여집니다</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="settings-profile__row--description" datatype="html">
+        <target>이 정보는 통계 목적으로 사용되며 다른 회원들에게 절대 공개되지 않습니다.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="settings-profile__save" datatype="html">
+        <target>프로필 저장</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="account-profile__info-description--grade" datatype="html">
+        <target>골드 멤버</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="delivery-address__title" datatype="html">
+        <target>배송지</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="wish-list__title" datatype="html">
+        <target>다음에 구매하기</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="wish-list__description" datatype="html">
+        <target>다음에 구매할 상품이 없습니다. 다음에 구매할 상품을 담아주세요!</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="written-reviews__title" datatype="html">
+        <target>내가 쓴 리뷰</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="written-reviews__description" datatype="html">
+        <target>작성한 리뷰가 없습니다. 다양한 아이템을 최적의 가격으로 쇼핑하여 리뷰를 남겨주세요!</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="available-reviews__title" datatype="html">
+        <target>작성 가능한 리뷰</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="available-reviews__empty-title" datatype="html">
+        <target>작성 가능한 리뷰가 없습니다. 다양한 아이템을 최적의 가격으로 쇼핑하여 리뷰를 남겨주세요! ( 영어 )</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="orders__title" datatype="html">
+        <target>주문·배송조회</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="points__title" datatype="html">
+        <target>포인트·쿠폰</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="orders__description" datatype="html">
+        <target>주문한 상품이 없습니다. Onpicks와 함께 다양한 아이템을 최적의 가격으로 쇼핑하세요!</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="account-navigator__feed" datatype="html">
+        <target>피드</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+
+      <!--Cart Page-->
+
+      <trans-unit id="cart__delivery-multi-purchase" datatype="html">
+        <target>묶음배송 구매하기</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="cart__pack-delivery--title" datatype="html">
+        <target>묶음배송 상품</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="cart__delivery-free-purchase" datatype="html">
+        <target>무료배송 구매하기</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="cart__delivery--total-count" datatype="html">
+        <target>총 결제금액</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="cart__wishlist--empty" datatype="html">
+        <target>다음에 구매할 상품이 없습니다. 다음에 구매할 상품을 담아주세요!</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="cart__wishlist--title" datatype="html">
+        <target>다음에 구매하기</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="cart__section--title" datatype="html">
+        <target>결제 금액</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="cart__section--free-title" datatype="html">
+        <target>무료배송 상품</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="cart__section--free-sub-title" datatype="html">
+        <target>무료배송</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="cart__payment-table--extra-savings" datatype="html">
+        <target>할인금액</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="cart__payment-table--order-total" datatype="html">
+        <target>총 결제금액</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="cart__btn--shopping" datatype="html">
+        <target>계속 쇼핑하기</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="cart__btn--buy-all" datatype="html">
+        <target>전체 구매하기</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <!--Word-->
+
+
+      <trans-unit id="word__search" datatype="html">
+        <target>검색어</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="word__refund" datatype="html">
+        <target>환불정보</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="word__shipping" datatype="html">
+        <target>배송비</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="word__profile" datatype="html">
+        <target>프로필</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="word__return" datatype="html">
+        <target>돌아가기</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="word__logout" datatype="html">
+        <target>로그아웃</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="word__all-categories" datatype="html">
+        <target>모든 카테고리</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="word__categories" datatype="html">
+        <target>카테고리</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="word__category" datatype="html">
+        <target>카테고리</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="word__sort" datatype="html">
+        <target>정렬</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="word__clear-all" datatype="html">
+        <target>모두제거</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="word__confirm-and-pay" datatype="html">
+        <target>결제하기</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="word__order-total" datatype="html">
+        <target>총 결제금액</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="word__savings" datatype="html">
+        <target>할인금액</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="word__shipping-fee" datatype="html">
+        <target>배송비</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="word__subtotal" datatype="html">
+        <target>총 상품금액</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="word__order-summary" datatype="html">
+        <target>최종결제금액</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="word__zip-code" datatype="html">
+        <target>우편번호</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="word__address" datatype="html">
+        <target>주소</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="word__recipient-phone-number" datatype="html">
+        <target>받는분 연락처</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="word__recipient-name" datatype="html">
+        <target>받는분 성함</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="word__recipient" datatype="html">
+        <target>받는분</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="word__shipping-addresses" datatype="html">
+        <target>배송지 정보</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="word__free-shipping" datatype="html">
+        <target>무료</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="word__value" datatype="html">
+        <target>식품인증</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="word__warehouse" datatype="html">
+        <target>출고지</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="word__brand" datatype="html">
+        <target>브랜드</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="word__filter" datatype="html">
+        <target>필터</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="word__my-shopping" datatype="html">
+        <target>나의 쇼핑</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="word__my-review" datatype="html">
+        <target>나의 리뷰</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="word__wish-list" datatype="html">
+        <target>다음에 구매하기</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="word__setting" datatype="html">
+        <target>설정</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="word__remove" datatype="html">
+        <target>삭제하기</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="word__modify" datatype="html">
+        <target>수정하기</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="word__gender" datatype="html">
+        <target>성별</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="word__male" datatype="html">
+        <target>남성</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="word__female" datatype="html">
+        <target>여성</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="word__birthday" datatype="html">
+        <target>생년월일</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="word__height" datatype="html">
+        <target>키</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="word__weight" datatype="html">
+        <target>몸무게</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="word__shopping-bag" datatype="html">
+        <target>쇼핑백</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="word__checkout" datatype="html">
+        <target>주문결제</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="word__checkout-completed" datatype="html">
+        <target>주문완료</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="word__buyer-information" datatype="html">
+        <target>주문자 정보</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="word__buyer-name" datatype="html">
+        <target>주문자</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="word__buyer-phone-number" datatype="html">
+        <target>주문자 연락처</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+
+      <!--Sentence-->
+
+      <trans-unit id="word__delivery-requirements" datatype="html">
+        <target>배송요청사항</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="sentence__save-address" datatype="html">
+        <target>배송지 저장</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="sentence__insert-detail-address" datatype="html">
+        <target>상세주소를 입력하세요</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="sentence__search-zip-code" datatype="html">
+        <target>우편번호 찾기</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="sentence__insert-buyer-name" datatype="html">
+        <target>주문자 성함을 입력해주세요</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="sentence__wish-list" datatype="html">
+        <target>다음에 구매하기</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="sentence__insert-nickname" datatype="html">
+        <target>닉네임을 입력해주세요</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+
+      <trans-unit id="sentence__insert-phone-number" datatype="html">
+        <target>전화번호를 입력해주세요</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="sentence__insert-password" datatype="html">
+        <target>비밀번호를 입력해주세요</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <!--Location Warehouse-->
+
+      <trans-unit id="location-warehouse__LAX" datatype="html">
+        <target>엘에이</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="location-warehouse__JFK" datatype="html">
+        <target>뉴저지</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="location-warehouse__ATL" datatype="html">
+        <target>죠지아</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="location-warehouse__KIX" datatype="html">
+        <target>오사키</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="location-warehouse__HKG" datatype="html">
+        <target>홍콩</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+    </body>
+  </file>
+</xliff>

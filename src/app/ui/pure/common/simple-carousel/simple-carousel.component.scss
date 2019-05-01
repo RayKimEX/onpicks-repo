@@ -1,0 +1,175 @@
+@import '../../../../../assets/scss/abstracts/variables';
+
+$customer-width : 64.8rem;
+$customer-height: 64.8rem;
+
+@keyframes simple-carousel-animate-left {
+  0% {
+    transform : translateX(0);
+  }
+
+  100% {
+    transform : translateX(-$customer-width) ;
+  }
+}
+
+@keyframes simple-carousel-animate-right {
+  0% {
+    transform : translateX(0);
+  }
+
+  100% {
+    transform : translateX($customer-width) ;
+  }
+}
+
+
+
+.ui-simple-carousel {
+
+  &__images {
+
+    &--large {
+      overflow: hidden;
+      width: $customer-width;
+      height: $customer-height;
+
+      position:relative;
+
+      &-next-button {
+        @include verticalCenter;
+        background-color:transparent;
+        border-width: 0;
+        right : 1.8rem;
+        width: 40px;
+        height: 40px;
+
+        svg{
+          cursor : pointer;
+          @include absCenter;
+          left:55%;
+        }
+      }
+
+      &-prev-button {
+        @include verticalCenter;
+        overflow: hidden;
+        border-width: 0;
+        background-color:transparent;;
+        left : 1.8rem;
+
+        width: 40px;
+        height: 40px;
+
+        svg{
+          cursor : pointer;
+          @include absCenter;
+          left : 47.5%;
+        }
+      }
+
+      &-cur {
+        left : 0;
+        position:absolute;
+        display:none;
+        width: $customer-width;
+        height: $customer-height;
+
+        & span {
+          display:block;
+          position: relative;
+          width : 100%;
+
+          padding-top: 100%;
+
+          img {
+            position: absolute;
+            margin: auto;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            max-width: 100%;
+            max-height: 100%;
+          }
+        }
+      }
+
+    }
+
+    &--small {
+      user-select: none;
+      white-space:nowrap;
+      //overflow-x: scroll;;
+      margin-top : 1.6rem;
+      width:64.8rem;
+
+
+      &-border {
+
+        img {
+          opacity :0.5;
+        }
+        &::after {
+          content : '';
+          position:absolute;
+          top : 0;
+          left : 0;
+
+          width : 6.4rem;
+          height: 6.4rem;
+          border: 2px solid $color-black;
+          border-radius : 2px;
+        }
+      }
+
+      & > div {
+        position:relative;
+        display:inline-block;
+        margin-right : 0.8rem;
+        padding : 0;
+        width : 6.4rem;
+        height : 6.4rem;
+        img {
+          border: 1px solid $color-light-grey;
+          border-radius : 2px;
+          width:100%;
+          height:100%;
+        }
+      }
+    }
+  }
+}
+.simple-carousel-animate-left {
+  display:inline-block;
+  animation-name: simple-carousel-animate-left;
+  animation-duration: .5s;
+  animation-fill-mode: both;
+}
+
+.simple-carousel-animate-second-left {
+  display:inline-block;
+  left : 64.8rem;
+  animation-name: simple-carousel-animate-left;
+  animation-duration: .5s;
+  animation-fill-mode: both;
+}
+
+.simple-carousel-animate-right {
+  display:inline-block;
+  animation-name: simple-carousel-animate-right;
+  animation-duration: .5s;
+  animation-fill-mode: both;
+}
+
+.simple-carousel-animate-second-right {
+  display:inline-block;
+  animation-name: simple-carousel-animate-right;
+  left : -64.8rem;
+  animation-duration: .5s;
+  animation-fill-mode: both;
+}
+
+.simple-carousel-active {
+  display:inline-block;
+}

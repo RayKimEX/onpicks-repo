@@ -1,0 +1,31 @@
+<div class="order-navigator subtitle-2-bold u-color-grey">
+  <span class="order-navigator--cart">
+    <a
+      i18n="@@word__shopping-bag"
+      routerLink="/order/cart" class="u-color-grey">
+      쇼핑백
+    </a>
+  </span>
+  <span class="order-navigator--angle-bracket">
+    <svg class="angle-bracket-navigator__angle-bracket"width="6" height="10" viewBox="0 0 6 10">
+      <path fill="#b3b3b3" fill-rule="evenodd" d="M6 5a.997.997 0 0 1-.293.707l-4 4A.999.999 0 1 1 .293 8.293L3.586 5 .293 1.707A.999.999 0 1 1 1.707.293l4 4A.997.997 0 0 1 6 5"/>
+    </svg>
+  </span>
+  <span
+    i18n="@@word__checkout"
+    class="order-navigator--checkout"
+    [ngClass]="{ 'active' : routeSnapshot.snapshot.url[0].path === 'checkout' }">
+    주문결제
+  </span>
+  <span class="order-navigator--angle-bracket">
+    <svg class="angle-bracket-navigator__angle-bracket"width="6" height="10" viewBox="0 0 6 10">
+      <path fill="#b3b3b3" fill-rule="evenodd" d="M6 5a.997.997 0 0 1-.293.707l-4 4A.999.999 0 1 1 .293 8.293L3.586 5 .293 1.707A.999.999 0 1 1 1.707.293l4 4A.997.997 0 0 1 6 5"/>
+    </svg>
+  </span>
+  <span
+    i18n="@@word__checkout-completed"
+    class="order-navigator--checkout-complete"
+    [ngClass]="{ 'active' : routeSnapshot.snapshot.url[0].path.includes('checkout-success') }">
+    주문완료
+  </span>
+</div>

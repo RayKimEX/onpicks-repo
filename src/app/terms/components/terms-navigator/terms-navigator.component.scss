@@ -1,0 +1,23 @@
+@import '~src/assets/scss/abstracts/variables';
+
+.terms-navigator {
+
+  &--item {
+    list-style : none;
+    margin-bottom: 1.6rem;
+    &:last-child {
+      margin-bottom: 5.6rem;
+    }
+  }
+
+  &--help-tel {
+    margin-bottom : 0.4rem;
+  }
+
+  &--help-mail {
+    margin-bottom : 0.8rem;
+  }
+
+  &--operate-time {
+  }
+}

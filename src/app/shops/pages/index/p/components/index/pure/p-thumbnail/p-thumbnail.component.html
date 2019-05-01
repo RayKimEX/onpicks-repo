@@ -1,0 +1,22 @@
+<div class="p-thumbnail u-margin-bottom">
+  <div class="p-thumbnail__large--outer">
+    <!--<ui-banner-carousel [height]="64" [imagesLargeList]="imagesLargeList"></ui-banner-carousel>-->
+    <a
+      (click)="shareProductDetail()"
+      class="p-thumbnail__large--share">
+      <svg height="24" viewBox="-2 -2 24 24" width="24">
+        <path d="M18,4H18A2,2,0,0,1,18,8h0a2,2,0,0,1,0-4m0-2a4,4,0,0,0-.1,8H18a4,4,0,0,0,.11-8Z" transform="translate(-2.01 -2)"></path>
+        <path d="M6,10h0a2,2,0,0,1,0,4H6a2,2,0,0,1,0-4M6,8a4,4,0,0,0-.11,8H6a4,4,0,0,0,.1-8Z" transform="translate(-2.01 -2)"></path>
+        <line fill="none" stroke="#000" stroke-miterlimit="10" stroke-width="2" x1="13.57" x2="7.31" y1="5.21" y2="8.36"></line>
+        <path d="M18,16A2,2,0,0,1,20,18,2,2,0,0,1,18,20H18a2,2,0,0,1,0-4h0m0-2h-.1a4,4,0,0,0,.1,8h.11A4,4,0,0,0,18,14Z" transform="translate(-2.01 -2)"></path>
+        <path d="M6,10a2,2,0,0,1,0,4H6a2,2,0,0,1-2-1.95A2,2,0,0,1,6,10H6M6,8H5.9A4,4,0,0,0,6,16h.1A4,4,0,0,0,6,8Z" transform="translate(-2.01 -2)"></path>
+        <line fill="none" stroke="#000" stroke-miterlimit="10" stroke-width="2" x1="13.57" x2="7.31" y1="14.81" y2="11.66"></line>
+      </svg>
+    </a>
+    <ui-dynamic-carousel
+      [imagesLargeList]="imagesLargeList"
+      [imagesSmallList]="imagesSmallList">
+    </ui-dynamic-carousel>
+  </div>
+</div>
+

@@ -3,9 +3,10 @@ import {
   PipeTransform,
   NgZone,
   ChangeDetectorRef,
-  OnDestroy
+  OnDestroy, Inject, LOCALE_ID
 } from '@angular/core';
 
+// MUST TODO : 크리스가 말한. 한국 날짜는 어떻게 잡히는지 피드백 필요
 @Pipe({
   name: 'timeAgo',
   pure: true
@@ -14,10 +15,17 @@ import {
 export class TimeAgoPipe implements PipeTransform, OnDestroy {
   private timer: number;
 
-  constructor(private changeDetectorRef: ChangeDetectorRef, private ngZone: NgZone) {
+  // 지역에 따라 다르게한다고함. 언어에 따라 URL 다르게가 아님
+  constructor(
+    private changeDetectorRef: ChangeDetectorRef,
+    private ngZone: NgZone,
+    @Inject(LOCALE_ID) public locale: string,
+  ) {
+
   }
 
   transform(value: string) {
+
     this.removeTimer();
     const d = new Date(value);
     const now = new Date();
@@ -37,35 +45,43 @@ export class TimeAgoPipe implements PipeTransform, OnDestroy {
     const weeks = Math.round(Math.abs(days / 7));
     const months = Math.round(Math.abs(days / 30.416));
     const years = Math.round(Math.abs(days / 365));
+
+    // var locale = "en-us";
+    // var month = dateToday.toLocaleString(locale, {month: "long"});
     if (Number.isNaN(seconds)) {
       return '';
     } else if (seconds <= 45) {
-      return 'a few seconds ago';
+      return this.locale === 'en' ? 'a few seconds ago' : '방금 전';
     } else if (seconds <= 90) {
-      return 'a minute ago';
+      return this.locale === 'en' ? 'a minute ago' : '1분 전';
     } else if (minutes <= 45) {
-      return minutes + ' minutes ago';
+      return this.locale === 'en' ? minutes + ' minutes ago' : minutes + '분 전';
     } else if (minutes <= 90) {
-      return 'an hour ago';
+      return this.locale === 'en' ?  'an hour ago' : '1시간 전';
     } else if (hours <= 22) {
-      return hours + ' hours ago';
+      return this.locale === 'en' ? hours + ' hours ago' : hours + '시간 전';
     } else if (hours <= 36) {
-      return 'a day ago';
+      return this.locale === 'en' ? 'a day ago' : '어제';
+    } else if (hours <= 60) {
+      return this.locale === 'en' ? days + ' days ago' : '그저께';
     } else if (days <= 6) {
-      return days + ' days ago';
+      return this.locale === 'en' ? days + ' days ago' : days + '일 전';
     } else if (days <= 13) {
-      return 'a week ago';
+      return this.locale === 'en' ? 'a week ago' : '1주 전';
     } else if (days <= 29) {
-      return weeks + ' weeks ago';
-    } else if (days <= 45) {
-      return 'a month ago';
+      return this.locale === 'en' ? weeks + ' weeks ago' : weeks + '주 전';
+    // } else if (days <= 45) {
+    //   return this.locale === 'en' ? d.toLocaleString('en-us', {month : 'short' }) + ' ' + (d.getDate())  : (d.getMonth() + 1) + '월 ' + (d.getDate()) + '일';
     } else if (days <= 345) {
-      return months + ' months ago';
-    } else if (days <= 545) {
-      return 'a year ago';
-    } else { // (days > 545)
-      return years + ' years ago';
+      return this.locale === 'en' ? d.toLocaleString('en-us', {month : 'short'}) + ' ' + (d.getDate()) : (d.getMonth() + 1) + '월 ' + (d.getDate()) + '일';
+    } else {
+      return this.locale === 'en' ? d.toLocaleString('en-us', {month : 'short' }) + ' ' + (d.getDate()) + ', ' + d.getFullYear()  : d.getFullYear() + '년 ' + (d.getMonth() + 1) + '월 ' + (d.getDate()) + '일';
     }
+    // } else if (days <= 545) {
+    //   return this.locale === 'en' ? d.toLocaleString('en-us', {month : 'short' }) + ' ' + (d.getDate()) + ', ' + d.getFullYear()  : d.getFullYear() + '년 ' + (d.getMonth() + 1) + '월 ' + (d.getDate()) + '일';
+    // } else { // (days > 545)
+    //   return years + ' years ago';
+    // }
   }
 
   ngOnDestroy(): void {

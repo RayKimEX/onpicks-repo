@@ -1,0 +1,406 @@
+<div
+  [ngStyle]="{ display: isShowMobileFilter ? 'block' : 'none'}"
+  class="search-content-mobile">
+  <div class="search-content-mobile__filter">
+    <div class="search-content-mobile__filter--header">
+      <div class="search-content-mobile__filter--vertical-center">
+        <div
+          (click)="state = 'menu'"
+          *ngIf="state !== 'menu' && state !== 'sort'"
+          class="search-content-mobile__filter--back-btn">
+          <svg xmlns="http://www.w3.org/2000/svg" width="8" height="14" viewBox="0 0 8 14">
+            <path fill="#292929" fill-rule="evenodd" d="M7 14a.997.997 0 0 1-.707-.293l-6-6a.999.999 0 0 1 0-1.414l6-6a.999.999 0 1 1 1.414 1.414L2.414 7l5.293 5.293A.999.999 0 0 1 7 14"/>
+          </svg>
+        </div>
+        <div (click)="exitEvent.emit()" *ngIf="state === 'menu' || state === 'sort'"
+          class="search-content-mobile__filter--delete">
+        </div>
+        <div
+          class="search-content-mobile__filter--title subtitle-1-regular">
+          <span
+            i18n="@@word__filter"
+            *ngIf="state === 'menu'">
+            필터
+          </span>
+          <span
+            i18n="@@word__category"
+            *ngIf="state === 'category'">
+            <!--{{searchState === 'search' ? '검색' : ''}} -->
+            카테고리
+          </span>
+          <span
+            i18n="@@word__brand"
+            *ngIf="state === 'brand'">
+            브랜드
+          </span>
+          <span
+            i18n="@@word__value"
+            *ngIf="state === 'value'">
+            식품인증
+          </span>
+          <span
+            i18n="@@word__warehouse"
+            *ngIf="state === 'ex-warehouse'">
+            출고지
+          </span>
+          <span
+            i18n="@@word__sort"
+            *ngIf="state === 'sort'">
+            정렬
+          </span>
+        </div>
+        <div
+          *ngIf="state !== 'sort'"
+          class="search-content-mobile__filter--remove-all">
+          <a
+            i18n="@@word__clear-all"
+            class="subtitle-1-regular u-color-dark-grey"
+            (click)="removeFilter(state)">모두 제거</a>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="state === 'category' && searchState === 'category'" class="category-content">
+      <!--첫번째 카테고리의 경우 0~3번째 코도의 자리만 일치하면, Active로 판단-->
+      <div
+        *ngFor="let firstCategoryCode of normalizedCategoryCodeList"
+        [ngClass]="[
+          ( currentCategoryCode.toString().substring(0,3).indexOf(firstCategoryCode.toString().substring(0,3)) > -1 || currentCategoryCode == firstCategoryCode ) ? 'category-content__depth' : 'category-content__depth fold'
+        ]">
+        <div
+          class="category-content__item-title"
+          [ngClass]="[
+            ( currentCategoryCode.toString().substring(0,3).indexOf(firstCategoryCode.toString().substring(0,3)) > -1 || currentCategoryCode == firstCategoryCode ) ? 'subtitle-2-bold' : 'subtitle-2-regular'
+          ]">
+
+          <span
+            class="category-content__category-indicator"
+            *ngIf="firstCategoryCode / currentCategoryCode  < 1">
+            <!--<svg width="6" height="10" viewBox="0 0 6 10">-->
+            <!--<path fill="#B3B3B3" d="M5 10a.997.997 0 0 1-.707-.293l-4-4a.999.999 0 0 1 0-1.414l4-4a.999.999 0 1 1 1.414 1.414L2.414 5l3.293 3.293A.999.999 0 0 1 5 10" />-->
+            <!--</svg>-->
+          </span>
+          <span>
+            <a
+              (click)="categoryClicked('/shops/c/'+ router.url.split('/')[3] + '/' +categoryList.secondCategory[firstCategoryCode].slug, firstCategoryCode)">
+              {{ categoryList.secondCategory[firstCategoryCode].name[locale] }}
+              <!--(click)="categoryClicked('/shops/c/'+oneCat.slug, oneCat?.code)">-->
+            </a>
+          </span>
+        </div>
+        <!--두번째 카테고리의 경우 0~5번째 코드의 자리만 일치하면, Active로 판단-->
+        <div
+          *ngFor="let secondCategoryCode of categoryList.secondCategory[firstCategoryCode].children"
+          [ngClass]="[
+            ( currentCategoryCode.toString().substring(0,5).indexOf(secondCategoryCode.toString().substring(0,5)) > -1 || currentCategoryCode == secondCategoryCode ) ? 'category-content__depth' : 'category-content__depth fold'
+          ]"
+          style="margin-left: 10px">
+          <div
+            class="category-content__item-title">
+            <a
+              [ngClass]="[
+                ( currentCategoryCode.toString().substring(0,5).indexOf(secondCategoryCode.toString().substring(0,5)) > -1 || currentCategoryCode == secondCategoryCode ) ? 'subtitle-2-bold' : 'subtitle-2-regular'
+              ]"
+
+              (click)="categoryClicked('/shops/c/'+ router.url.split('/')[3] + '/' +categoryList.secondCategory[firstCategoryCode].slug.toLowerCase()+'/'+categoryList.thirdCategory[secondCategoryCode].slug.toLowerCase(), categoryList.thirdCategory[secondCategoryCode].code)">
+              {{ categoryList.thirdCategory[secondCategoryCode].name[locale] }}
+            </a>
+            <span
+              *ngIf="(!(secondCategoryCode / currentCategoryCode < 1)) && (secondCategoryCode / currentCategoryCode < 1 || currentCategoryCode == secondCategoryCode )"
+              style="float:right">
+              <svg xmlns="http://www.w3.org/2000/svg" width="10" height="7" viewBox="0 0 10 7">
+                <path fill="#000" fill-rule="evenodd" d="M4.024 7h-.007a1.413 1.413 0 0 1-1.023-.448L.279 3.708a1.008 1.008 0 0 1 .029-1.421 1 1 0 0 1 1.414.03L4.025 4.73 8.282.305A1 1 0 0 1 9.696.281a1.01 1.01 0 0 1 .023 1.421l-4.68 4.864A1.411 1.411 0 0 1 4.025 7z"/>
+              </svg>
+            </span>
+          </div>
+          <div
+            style="margin-left: 10px"
+            class="category-content__depth subtitle-2-bold"
+            *ngFor="let thirdCategoryCode of categoryList.thirdCategory[secondCategoryCode].children">
+            <div
+              class="category-content__item-title">
+              <a
+                [ngClass]="[
+                  ( currentCategoryCode == thirdCategoryCode ) ? 'subtitle-2-bold' : 'subtitle-2-regular'
+                ]"
+                (click)="categoryClicked('/shops/c/' + router.url.split('/')[3] + '/' + categoryList.secondCategory[firstCategoryCode].slug.toLowerCase()+'/' + categoryList.thirdCategory[secondCategoryCode].slug.toLowerCase()+'/' + categoryList.fourthCategory[thirdCategoryCode].slug.toLowerCase(), categoryList.fourthCategory[thirdCategoryCode].code)">
+                {{ categoryList.fourthCategory[thirdCategoryCode].name[locale] }}
+              </a>
+              <span
+                *ngIf="(!(thirdCategoryCode / currentCategoryCode < 1)) && (thirdCategoryCode / currentCategoryCode < 1 || currentCategoryCode == thirdCategoryCode )"
+                style="float:right">
+                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="7" viewBox="0 0 10 7">
+                  <path fill="#000" fill-rule="evenodd" d="M4.024 7h-.007a1.413 1.413 0 0 1-1.023-.448L.279 3.708a1.008 1.008 0 0 1 .029-1.421 1 1 0 0 1 1.414.03L4.025 4.73 8.282.305A1 1 0 0 1 9.696.281a1.01 1.01 0 0 1 .023 1.421l-4.68 4.864A1.411 1.411 0 0 1 4.025 7z"/>
+                </svg>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="state === 'category' && searchState === 'search'" class="category-content">
+      <!--search쪽은 locale이 알아서 되서 나오기 때문에 그냥 뿌리기만하면됨-->
+      <ng-container *ngIf="categoryList?.length !== 0">
+        <div
+          class="category-content__depth"
+          *ngFor="let oneCat of categoryList">
+          <div *ngIf="searchState === 'search'" class="category-content__item-title subtitle-2-bold">
+            <span
+              class="category-content__category-indicator"
+              *ngIf="oneCat?.code / currentCategoryCode  < 1">
+              <!--<svg width="6" height="10" viewBox="0 0 6 10">-->
+                <!--<path fill="#B3B3B3" d="M5 10a.997.997 0 0 1-.707-.293l-4-4a.999.999 0 0 1 0-1.414l4-4a.999.999 0 1 1 1.414 1.414L2.414 5l3.293 3.293A.999.999 0 0 1 5 10" />-->
+              <!--</svg>-->
+            </span>
+            <span>
+              <a
+                [ngClass]="{'u-color-dark-grey' : (oneCat?.code / currentCategoryCode < 1)}" (click)="categoryClicked('/shops/c/'+oneCat.slug, oneCat?.code)">
+                {{ oneCat.name }}
+                <!--(click)="categoryClicked('/shops/c/'+oneCat.slug, oneCat?.code)">-->
+              </a>
+            </span>
+          </div>
+          <div
+            class="category-content__depth subtitle-2-bold"
+            *ngFor="let twoCat of oneCat?.children"
+            style="margin-left: 10px">
+            <!--<span-->
+              <!--class="category-content__category-indicator"-->
+              <!--*ngIf="twoCat?.code / currentCategoryCode < 1">-->
+              <!--<svg width="6" height="10" viewBox="0 0 6 10">-->
+                <!--<path fill="#B3B3B3" d="M5 10a.997.997 0 0 1-.707-.293l-4-4a.999.999 0 0 1 0-1.414l4-4a.999.999 0 1 1 1.414 1.414L2.414 5l3.293 3.293A.999.999 0 0 1 5 10" />-->
+              <!--</svg>-->
+            <!--</span>-->
+            <div
+              class="category-content__item-title">
+              <a
+                [ngClass]="[
+                  (twoCat?.code / currentCategoryCode < 1) ? 'u-color-dark-grey' : '',
+                  (twoCat?.code / currentCategoryCode < 1 || currentCategoryCode == twoCat?.code ) ? 'subtitle-2-bold' : 'subtitle-2-regular'
+                ]"
+                (click)="categoryClicked('/shops/c/'+oneCat.slug.toLowerCase()+'/'+twoCat.slug.toLowerCase(), twoCat?.code)">{{ twoCat.name }}
+              </a>
+              <span
+                *ngIf="(!(twoCat?.code / currentCategoryCode < 1)) && (twoCat?.code / currentCategoryCode < 1 || currentCategoryCode == twoCat?.code )"
+                style="float:right">
+                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="7" viewBox="0 0 10 7">
+                  <path fill="#000" fill-rule="evenodd" d="M4.024 7h-.007a1.413 1.413 0 0 1-1.023-.448L.279 3.708a1.008 1.008 0 0 1 .029-1.421 1 1 0 0 1 1.414.03L4.025 4.73 8.282.305A1 1 0 0 1 9.696.281a1.01 1.01 0 0 1 .023 1.421l-4.68 4.864A1.411 1.411 0 0 1 4.025 7z"/>
+                </svg>
+              </span>
+            </div>
+            <div
+              style="margin-left: 10px"
+              class="category-content__depth subtitle-2-bold"
+              *ngFor="let threeCat of twoCat?.children">
+              <div
+                class="category-content__item-title">
+                <a
+                  [ngClass]="[
+                    (threeCat?.code / currentCategoryCode < 1) ? 'u-color-dark-grey' : '',
+                    (threeCat?.code / currentCategoryCode < 1 || currentCategoryCode == threeCat?.code ) ? 'subtitle-2-bold' : 'subtitle-2-regular'
+                    ]"
+                  (click)="categoryClicked('/shops/c/'+oneCat.slug.toLowerCase()+'/'+twoCat.slug.toLowerCase()+'/'+threeCat.slug.toLowerCase() ,threeCat?.code)">
+                  {{ threeCat.name }}
+                </a>
+                <span
+                  *ngIf="(!(threeCat?.code / currentCategoryCode < 1)) && (threeCat?.code / currentCategoryCode < 1 || currentCategoryCode == threeCat?.code )"
+                  style="float:right">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="10" height="7" viewBox="0 0 10 7">
+                    <path fill="#000" fill-rule="evenodd" d="M4.024 7h-.007a1.413 1.413 0 0 1-1.023-.448L.279 3.708a1.008 1.008 0 0 1 .029-1.421 1 1 0 0 1 1.414.03L4.025 4.73 8.282.305A1 1 0 0 1 9.696.281a1.01 1.01 0 0 1 .023 1.421l-4.68 4.864A1.411 1.411 0 0 1 4.025 7z"/>
+                  </svg>
+                </span>
+              </div>
+              <div
+                style="margin-left: 10px"
+                class="category-content__depth"
+                *ngFor="let fourCat of threeCat?.children">
+                <div
+                  class="category-content__item-title">
+                  <a
+                    [ngClass]="[(currentCategoryCode == fourCat?.code ) ? 'subtitle-2-bold' : 'subtitle-2-regular']"
+                    (click)="categoryClicked('/shops/c/'+oneCat.slug.toLowerCase()+'/'+twoCat.slug.toLowerCase()+'/'+threeCat.slug.toLowerCase()+'/'+fourCat.slug.toLowerCase() , fourCat?.code)">
+                    {{ fourCat?.name }}
+                  </a>
+                  <span
+                    *ngIf="(!(fourCat?.code / currentCategoryCode < 1)) && (fourCat?.code / currentCategoryCode < 1 || currentCategoryCode == fourCat?.code )"
+                    style="float:right">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="10" height="7" viewBox="0 0 10 7">
+                      <path fill="#000" fill-rule="evenodd" d="M4.024 7h-.007a1.413 1.413 0 0 1-1.023-.448L.279 3.708a1.008 1.008 0 0 1 .029-1.421 1 1 0 0 1 1.414.03L4.025 4.73 8.282.305A1 1 0 0 1 9.696.281a1.01 1.01 0 0 1 .023 1.421l-4.68 4.864A1.411 1.411 0 0 1 4.025 7z"/>
+                    </svg>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </ng-container>
+    </div>
+
+    <div
+      *ngIf="state === 'brand'"
+      class="brand-content">
+
+      <!--<div class="brand-content__search">-->
+        <!--<onpicks-search-box-->
+        <!--(keypress)="brandSearch($event)"-->
+        <!--class="c-brand-navigator__search-box"-->
+        <!--[placeholder]="'검색'">-->
+        <!--</onpicks-search-box>-->
+      <!--</div>-->
+
+      <ul class="brand-content__ul">
+        <li
+          class="brand-content__ul--item"
+          *ngFor="let item of brandList">
+          <div class="brand-content__ul--item--vertical-center">
+            <onpicks-check-box
+              [isChecked]="brandListForCheck[item.slug] !== true ? false : true"
+              (click)="brandClicked(item.slug)"
+              [type]="'checkbox'">
+              <span class="brand-content__ul--item--name subtitle-2-regular">{{item.name}}</span>
+              <span class="subtitle-2-regular u-color-dark-grey">{{item.count}}</span>
+            </onpicks-check-box>
+          </div>
+        </li>
+      </ul>
+      <!--<div class="value-content__apply">-->
+        <!--<onpicks-button-->
+          <!--[width]="'100%'"-->
+          <!--[size]="'big'"-->
+          <!--[type]="'black'">적용하기</onpicks-button>-->
+      <!--</div>-->
+    </div>
+
+    <div
+      *ngIf="state === 'value'"
+      class="value-content">
+      <ul class="value-content__ul">
+        <li
+          class="value-content__ul--item"
+          *ngFor="let item of valueList">
+          <div class="value-content__ul--item--vertical-center">
+            <onpicks-check-box
+              [isChecked]="valueListForCheck[item.slug] !== true ? false : true"
+              (click)="valueClicked(item.slug)"
+              [type]="'checkbox'">
+              <span class="value-content__ul--item--name subtitle-2-regular">{{item.name}}</span>
+              <span class="subtitle-2-regular u-color-dark-grey">{{item.count}}</span>
+            </onpicks-check-box>
+          </div>
+        </li>
+      </ul>
+      <!--<div class="value-content__apply">-->
+        <!--<onpicks-button-->
+          <!--[width]="'100%'"-->
+          <!--[size]="'big'"-->
+          <!--[type]="'black'">적용하기</onpicks-button>-->
+      <!--</div>-->
+    </div>
+
+    <div
+      *ngIf="state === 'ex-warehouse'"
+      class="ex-warehouse-content">
+      <ul class="ex-warehouse-content__ul">
+        <li
+          class="ex-warehouse-content__ul--item"
+          *ngFor="let item of locationList">
+          <div class="ex-warehouse-content__ul--item--vertical-center">
+            <onpicks-check-box
+              (click)="locationClicked(item.slug)"
+              [isChecked]="locationListForCheck[item.slug]"
+              [type]="'checkbox'">
+              <span class="ex-warehouse-content__ul--item--name subtitle-2-regular">{{item.name}}</span>
+              <span class="subtitle-2-regular u-color-dark-grey">{{item.count}}</span>
+            </onpicks-check-box>
+          </div>
+        </li>
+      </ul>
+      <!--<div class="value-content__apply">-->
+        <!--<onpicks-button-->
+          <!--[width]="'100%'"-->
+          <!--[size]="'big'"-->
+          <!--[type]="'black'">적용하기</onpicks-button>-->
+      <!--</div>-->
+    </div>
+
+    <div
+      class="search-content-mobile__sort"
+      *ngIf="state === 'sort'">
+      <ul class="search-content-mobile__sort--ul">
+        <li class="search-content-mobile__sort--li subtitle-2-regular"
+            (click)="sortClicked(sortItem.value)"
+          *ngFor="let sortItem of sortList">
+          <span>{{ sortItem.title[locale] }}</span>
+          <span
+            *ngIf="currentSortSlug === sortItem.value"
+            class="u-float-right">
+            <svg xmlns="http://www.w3.org/2000/svg" width="10" height="7" viewBox="0 0 10 7">
+              <path fill="#000" fill-rule="evenodd" d="M4.024 7h-.007a1.413 1.413 0 0 1-1.023-.448L.279 3.708a1.008 1.008 0 0 1 .029-1.421 1 1 0 0 1 1.414.03L4.025 4.73 8.282.305A1 1 0 0 1 9.696.281a1.01 1.01 0 0 1 .023 1.421l-4.68 4.864A1.411 1.411 0 0 1 4.025 7z"/>
+            </svg>
+          </span>
+        </li>
+      </ul>
+    </div>
+    <div
+      *ngIf="state === 'menu'"
+      class="search-content-mobile__filter--navigate-menu">
+      <div class="search-content-mobile__filter--navigate-menu--item">
+        <div
+          (click)="state = 'category'"
+          class="search-content-mobile__filter--navigate-menu--vertical-center">
+          <span
+            i18n="@@word__category"
+            class="subtitle-2-regular">
+            카테고리
+          </span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="8" height="14" viewBox="0 0 8 14">
+            <path fill="#292929" fill-rule="evenodd" d="M1 14a.999.999 0 0 1-.707-1.707L5.586 7 .293 1.707A.999.999 0 1 1 1.707.293l6 6a.999.999 0 0 1 0 1.414l-6 6A.997.997 0 0 1 1 14"/>
+          </svg>
+        </div>
+      </div>
+      <div
+        (click)="state = 'brand'"
+        class="search-content-mobile__filter--navigate-menu--item">
+        <div class="search-content-mobile__filter--navigate-menu--vertical-center">
+          <span
+            i18n="@@word__brand"
+            class="subtitle-2-regular">
+            브랜드
+          </span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="8" height="14" viewBox="0 0 8 14">
+            <path fill="#292929" fill-rule="evenodd" d="M1 14a.999.999 0 0 1-.707-1.707L5.586 7 .293 1.707A.999.999 0 1 1 1.707.293l6 6a.999.999 0 0 1 0 1.414l-6 6A.997.997 0 0 1 1 14"/>
+          </svg>
+        </div>
+      </div>
+      <div
+        (click)="state = 'value'"
+        class="search-content-mobile__filter--navigate-menu--item">
+        <div class="search-content-mobile__filter--navigate-menu--vertical-center">
+          <span
+            i18n="@@word__value"
+            class="subtitle-2-regular">
+            식품인증
+          </span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="8" height="14" viewBox="0 0 8 14">
+            <path fill="#292929" fill-rule="evenodd" d="M1 14a.999.999 0 0 1-.707-1.707L5.586 7 .293 1.707A.999.999 0 1 1 1.707.293l6 6a.999.999 0 0 1 0 1.414l-6 6A.997.997 0 0 1 1 14"/>
+          </svg>
+        </div>
+      </div>
+      <div
+        (click)="state = 'ex-warehouse'"
+        class="search-content-mobile__filter--navigate-menu--item">
+        <div class="search-content-mobile__filter--navigate-menu--vertical-center">
+          <span
+            i18n="@@word__warehouse"
+            class="subtitle-2-regular">
+            출고지
+          </span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="8" height="14" viewBox="0 0 8 14">
+            <path fill="#292929" fill-rule="evenodd" d="M1 14a.999.999 0 0 1-.707-1.707L5.586 7 .293 1.707A.999.999 0 1 1 1.707.293l6 6a.999.999 0 0 1 0 1.414l-6 6A.997.997 0 0 1 1 14"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,72 @@
+.checkout-no-bank {
+  width : 55.2rem;
+  margin : 3.2rem auto 4rem auto;
+
+  onpicks-order-navigator {
+    display:block;
+    margin-bottom: 3.2rem;
+  }
+
+  &__icon {
+    margin-bottom : 1.6rem;
+  }
+
+  &__description {
+    margin-bottom : 3.2rem;
+    font-size : 1.4rem;
+    line-height : 1.71;
+  }
+
+  &__title {
+    font-size : 1.8rem;
+    font-weight : 700;
+    line-height : 1.33;
+    margin-bottom : 1.6rem;
+  }
+
+  &__order-num {
+    font-size : 1.6rem;
+    font-weight : 700;
+    line-height: 1.5;
+    margin-bottom : 2.4rem;
+  }
+
+  table {
+    width :100%;
+    font-size : 1.6rem;
+    line-height : 1.5;
+    border-collapse: collapse;
+    margin-bottom : 1.6rem;
+
+    tr{
+      border-top : 1px solid #e5e5e5;
+      &:last-child {
+        border-bottom : 1px solid #e5e5e5;
+      }
+    }
+    td {
+      padding : 1.6rem 0.8rem;
+
+    }
+    td:nth-of-type(1) {
+      width : 14.8rem;
+      color : #8d8d8d;
+    }
+
+    td:nth-of-type(2) {
+      width : 40.4rem;
+    }
+
+
+  }
+
+
+  button {
+    width :13.4rem;
+    height : 4.6rem;
+
+    &:first-of-type {
+      margin-right : 1.6rem;
+    }
+  }
+}

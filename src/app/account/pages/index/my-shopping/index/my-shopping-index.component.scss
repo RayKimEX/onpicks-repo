@@ -1,0 +1,22 @@
+@import '~src/assets/scss/abstracts/variables';
+
+
+.my-shopping-index {
+
+}
+
+.my-shopping-navigator{
+
+  @include respond(actb){
+    display:none;
+  }
+  &__item {
+    margin-bottom: 1.6rem;
+  }
+}
+
+.my-shopping-router {
+  @include respond(actb){
+    width :100%;
+  }
+}

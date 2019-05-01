@@ -1,20 +1,24 @@
-$red : #FF0000;
+@import '~src/assets/scss/typography/typography.ko';
+
 $color-grey: #b3b3b3;
 $color-light-grey: #e5e5e5;
 $color-dark-grey: #8d8d8d;
 
-
-$color-black: #3a3a3a;
+$color-black: #292929;
+$color-light-black : #4a4a4a;
 $color-dark-black : #000000;
 
-$color-white :#FFFFFF;
+$color-white : #FFFFFF;
 $color-orange : #F68B1A;
 $color-green : #008489;
+$color-dark-green : #417505;
 
+$color-sky : #c2e4e7;
+$color-blue : #4a90e2;
+$color-pink : #f2cacc;
 
 // FONT
 $default-font-size: 1.6rem;
-
 
 // GRID
 $grid-width: 112.8rem;
@@ -22,10 +26,22 @@ $gutter-vertical: 4rem;
 $gutter-vertical-small: 2.4rem;
 $gutter-horizontal: 2.4rem;
 
-
+// Default-padding
+$default-padding : 8rem;
 
 /********** mixins ***********/
 
+
+@mixin imageAspactRatio {
+  position: absolute;
+  margin: auto;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  max-width: 100%;
+  max-height: 100%;
+}
 
 @mixin clearfix {
   &::after {
@@ -40,6 +56,19 @@ $gutter-horizontal: 2.4rem;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+@mixin justCenter {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+
+@mixin horizontalCenter {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 @mixin verticalCenter {
@@ -63,17 +92,167 @@ $gutter-horizontal: 2.4rem;
   }
 }
 
+
+//@mixin col-1-of-12 {
+//  width: calc((100% - 11 * #{$gutter-horizontal}) / 12);
+//}
+//@mixin col-2-of-12 {
+//  width: calc(2 * ((100% - 11 * #{$gutter-horizontal}) / 12) + 1 * #{$gutter-horizontal});
+//}
+//@mixin col-3-of-12 {
+//  width: calc(3 * ((100% - 11 * #{$gutter-horizontal}) / 12) + 2 * #{$gutter-horizontal});
+//}
+//@mixin col-4-of-12 {
+//  width: calc(4 * ((100% - 11 * #{$gutter-horizontal}) / 12) + 3 * #{$gutter-horizontal});
+//}
+//@mixin col-5-of-12 {
+//  width: calc(5 * ((100% - 11 * #{$gutter-horizontal}) / 12) + 4 * #{$gutter-horizontal});
+//}
+//@mixin col-6-of-12 {
+//  width: calc(6 * ((100% - 11 * #{$gutter-horizontal}) / 12) + 5 * #{$gutter-horizontal});
+//}
+//@mixin col-7-of-12 {
+//  width: calc(7 * ((100% - 11 * #{$gutter-horizontal}) / 12) + 6 * #{$gutter-horizontal});
+//}
+//@mixin col-8-of-12 {
+//  width: calc(8 * ((100% - 11 * #{$gutter-horizontal}) / 12) + 7 * #{$gutter-horizontal});
+//}
+//@mixin col-9-of-12 {
+//  width: calc(9 * ((100% - 11 * #{$gutter-horizontal}) / 12) + 8 * #{$gutter-horizontal});
+//}
+
+
+/********** Grid **********/
+//.row {
+//  max-width : $grid-width;
+//  margin: 0 auto;
+//
+//  @include clearfix;
+//
+//  @include respond(fb) {
+//    margin: 0 3.2rem;
+//  }
+//
+//  [class *= "-nf"]{
+//    float: none !important;
+//
+//  }
+//
+//  /* class이름이 col로 시작한다는 말임 */
+//  [class ^= "col-"]{
+//    float: left;
+//
+//    &:not(:last-child) {
+//      margin-right: $gutter-horizontal;
+//    }
+//
+//    @include respond(tp) {
+//      width: 100% !important;
+//    }
+//  }
+//
+//  .col-1-of-12 {
+//    width: calc((100% - 11 * #{$gutter-horizontal}) / 12);
+//  }
+//
+//  .col-2-of-12 {
+//    width: calc(2 * ((100% - 11 * #{$gutter-horizontal}) / 12) + 1 * #{$gutter-horizontal});
+//  }
+//
+//  .col-3-of-12 {
+//    width: calc(3 * ((100% - 11 * #{$gutter-horizontal}) / 12) + 2 * #{$gutter-horizontal});
+//  }
+//
+//
+//  .col-4-of-12 {
+//    width: calc(4 * ((100% - 11 * #{$gutter-horizontal}) / 12) + 3 * #{$gutter-horizontal});
+//  }
+//
+//  .col-5-of-12 {
+//    width: calc(5 * ((100% - 11 * #{$gutter-horizontal}) / 12) + 4 * #{$gutter-horizontal});
+//  }
+//
+//  .col-6-of-12 {
+//    width: calc(6 * ((100% - 11 * #{$gutter-horizontal}) / 12) + 5 * #{$gutter-horizontal});
+//  }
+//
+//
+//  .col-7-of-12 {
+//    width: calc(7 * ((100% - 11 * #{$gutter-horizontal}) / 12) + 6 * #{$gutter-horizontal});
+//  }
+//
+//  .col-8-of-12 {
+//    width: calc(8 * ((100% - 11 * #{$gutter-horizontal}) / 12) + 7 * #{$gutter-horizontal});
+//  }
+//
+//
+//  .col-9-of-12 {
+//    width: calc(9 * ((100% - 11 * #{$gutter-horizontal}) / 12) + 8 * #{$gutter-horizontal});
+//  }
+//}
+
+
+
+//
+//@mixin respond($breakpoint) {
+//  @if $breakpoint == phone {
+//    @media only screen and (max-width: 37.5em) { @content };    //600px
+//  }
+
+//  @if $breakpoint == tab-port {
+//    @media only screen and (max-width: 56.25em) { @content };     //900px
+//  }
+
+//  @if $breakpoint == desktop {
+//    @media only screen and (max-width: 75em) { @content };    //1200px
+//  }
+
+//  @if $breakpoint == big-desktop {
+//    @media only screen and (min-width: 112.5em) { @content };    //1800
+//  }
+//}
+
+
 @mixin respond($breakpoint) {
+  // 360 ~ 768 - phone
+  // 768 ~ 1024  - ipad
+  // 1024 ~ 1280 - small
   @if $breakpoint == phone {
-    @media only screen and (max-width: 37.5em) { @content };    //600px
+    @media only screen and (max-width: 37.5em) { @content };    //650px
   }
-  @if $breakpoint == tab-port {
-    @media only screen and (max-width: 56.25em) { @content };     //900px
+
+  // 650 / 16
+  // third-break-point : popularCategory, collection, popularBrands
+
+  @if $breakpoint == tb {
+    @media only screen and (max-width: 40em) { @content };    //640px
   }
-  @if $breakpoint == tab-land {
-    @media only screen and (max-width: 75em) { @content };    //1200px
+
+  // 890 / 16
+  // second-break-point : popularCategory, collection, popularBrands/**/
+  @if $breakpoint == sb {
+    @media only screen and (max-width: 55.625em) { @content };     //890px
   }
+
+  // 912 / 16
+  // account-break-point
+  @if $breakpoint == actb {
+    @media only screen and (max-width: 57em) { @content };     //912px
+  }
+
+  // 1192 / 16
+  // first-break-point
+  @if $breakpoint == fb {
+    @media only screen and (max-width: 74.5em) { @content };    //1192px
+  }
+
+  // 1280 / 16
+  @if $breakpoint == desktop {
+    @media only screen and (max-width: 80em) { @content };    //1280px
+  }
+
   @if $breakpoint == big-desktop {
     @media only screen and (min-width: 112.5em) { @content };    //1800
   }
+
 }

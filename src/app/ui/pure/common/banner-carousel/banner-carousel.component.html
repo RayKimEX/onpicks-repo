@@ -1,0 +1,57 @@
+<div class="banner-carousel">
+  <div class="banner-carousel__content--outer">
+
+    <div class="banner-carousel__content">
+      <ul #container>
+        <li #itemList *ngFor="let item of imagesLargeList; index as i">
+          <div class="banner-carousel__item">
+            <div
+              [ngStyle]="{ backgroundImage : isIEOrEdge ? 'url(' + item.imgSrc + ')'  : ''}"
+              [ngClass]=" isIEOrEdge ? 'isIEOrEdge' : ''"
+              class="banner-carousel__item--image-outer">
+              <img *ngIf="!isIEOrEdge"
+                drLazyLoad
+                [relativeOption]="false"
+                src="{{isMobile ? item.imgSrcForMobile : item.imgSrcForDesktop}}"
+                   sizes="100vw"
+                 srcset="{{isMobile ? item.srcSetForMobile : item.srcSetForDesktop}}"
+                alt="{{item.title[0]}} {{item.title[1]}}">
+            </div>
+            <div
+              *ngIf="!(item.title?.length === 0 && item.description?.length === 0)"
+              class="banner-carousel__item--text row"
+                 [ngStyle]="{ marginLeft : item.marginLeftForText }">
+              <div
+                class="banner-carousel__item--text-title-outer">
+                <div
+                  *ngFor="let title of item.title[locale]"
+                  class="banner-carousel__item--text-title"
+                  [ngClass]="item.titleFontType">
+                  {{title}}
+                </div>
+              </div>
+
+              <div *ngFor="let description of item.description[locale]"
+                class="banner-carousel__item--text-description"
+                [ngClass]="item.descriptionFontType">
+                {{description}}
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+      <div *ngIf="imagesLargeList.length > 3" class="circle-navigate" >
+        <div  #circleNavigate class="circle-navigate__outer">
+          <span
+            *ngFor="let item of imagesLargeList.slice(0, imagesLargeList.length - 2); index as i"
+            [ngClass]="{ 'circle-navigate__active' : imageIndex === i + 1 }">
+          </span>
+        </div>
+      </div>
+      <!--<div class="banner-carousel__content&#45;&#45;blur"></div>-->
+    </div>
+    <onpicks-circle-n-button *ngIf="imagesLargeList.length > 3" #buttonNext (click)="nextButton()" ></onpicks-circle-n-button>
+    <onpicks-circle-p-button *ngIf="imagesLargeList.length > 3" #buttonPrev (click)="prevButton()" ></onpicks-circle-p-button>
+
+  </div>
+</div>

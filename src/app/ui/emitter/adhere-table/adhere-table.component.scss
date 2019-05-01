@@ -1,0 +1,146 @@
+@import '~src/assets/scss/abstracts/variables';
+
+
+.adhere-table {
+  &:first-child{
+    border-top : 1px solid $color-light-grey;
+  }
+  // border-bottom: 1px solid $color-light-grey;
+
+  &__sub-title-box {
+    width: 100%;
+    display:table;
+    padding: 1.6rem 2.4rem;
+
+    &--order-date-title {
+      @include respond(actb){
+        display: none;
+      }
+    }
+
+    &--order-number-title {
+      @include respond(actb){
+        display: none;
+      }
+    }
+
+    @include respond(actb){
+      padding : 1.6rem 0rem;
+    }
+    height : 5.2rem;
+
+    div {
+      display: table-cell;
+      vertical-align: middle;
+      span {
+        &:nth-of-type(1) {
+          margin-right: 8px;
+        }
+        &:nth-of-type(2) {
+          margin-right: 3.2rem;
+        }
+        &:nth-of-type(3) {
+          margin-right: 8px;
+        }
+        &:nth-of-type(4) {
+          margin-right: 8px;
+        }
+        &:nth-of-type(5) {
+          float:right;
+        }
+      }
+    }
+  }
+
+  &__item-mobile {
+    padding: 2.4rem 2.4rem 2.4rem 0;
+    border-top : 1px solid $color-light-grey;
+    display :none ;
+    @include respond(actb){
+      display: block;
+    }
+  }
+
+  &__item {
+    padding: 2.4rem 2.4rem 2.4rem 0;
+    border-top : 1px solid $color-light-grey;
+
+    @include respond(actb){
+      display: none;
+    }
+
+    &:last-child{
+      border-bottom : 1px solid $color-light-grey;
+    }
+
+    &--image {
+      display:inline-block;
+      width: 11.2rem;
+      height : 11.2rem;
+      position:relative;
+      vertical-align: top;
+      display:inline-block;
+      margin-right: 2.4rem;
+      @include respond(actb){
+        width : auto;
+        height : auto;
+        position:static;
+        vertical-align: auto;
+      }
+
+      &-inner {
+        width: 11.2rem;
+        height : 11.2rem;
+        position:relative;
+        vertical-align: top;
+        display:inline-block;
+      }
+      a {
+        width:100%;
+        height : 100%;
+        display:inline-block;
+      }
+      img {
+        @include imageAspactRatio;
+      }
+    }
+
+    &-info {
+      vertical-align: top;
+      // width : 48.3%
+      width: 56.07%;
+      display:inline-block;
+
+      div:not(:last-child) {
+        margin-bottom : 4px;
+      }
+    }
+
+    &-state{
+      vertical-align:top;
+      display:inline-block;
+      float:right;
+
+
+
+      &--title {
+        padding-bottom : 4px;
+      }
+
+      &--date {
+        padding-bottom : 4px;
+      }
+
+      &--btn {
+        display:inline-block;
+        margin-top : 12px;
+        float:right;
+
+        @include respond(actb){
+          margin-top : 3.2rem;
+          float: none;
+        }
+      }
+    }
+  }
+}

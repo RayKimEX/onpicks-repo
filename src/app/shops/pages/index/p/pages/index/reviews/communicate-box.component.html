@@ -1,0 +1,244 @@
+
+<!--가장 마지막에 로딩하는것을 loading으로 잡아줌.-->
+<!--여기서는 댓글이 가장 마지막에 다시 로딩함. 그래서 댓글 기준으로 loading바를 받음-->
+<ng-template class="hello" #loading>
+  Loading stuff...
+</ng-template>
+
+<ng-template class="hello" #imaegLoading>
+  Loading stuff...
+</ng-template>
+
+<onpicks-modal
+  class="modal"
+  (exit)="exitShowModal()"
+  [isShow]="isShowModal">
+
+  <h1 class="modal__title h1-bold">신고사유를 선택해주세요.</h1>
+  <div
+    *ngFor="let key of objectKeys(reasonMap)"
+    class="modal__item subtitle-2-regular">
+    {{reasonMap[key]['ko']}}
+    <onpicks-check-box
+      (boxEvent)="textReportReasonForModal = $event"
+      class="modal__item--check-box"
+      [value]="key"
+      [type]="'radio'">
+    </onpicks-check-box>
+  </div>
+  <onpicks-button
+    (click)="reportReview(productSlugForModal, reviewIndexForModal, textReportReasonForModal)"
+    class="modal__btn"
+    [width]="'10.1rem'"
+    [size]="'big'"
+    [type]="'black'">
+    신고하기
+  </onpicks-button>
+</onpicks-modal>
+
+
+
+<ng-container *ngIf="{
+    review : (currentData$ | async)?.list[reviewsId],
+    results : (currentData$ | async)?.results,
+    pictures : (currentData$ | async)?.list[reviewsId]?.pictures,
+    isAuthenticated : (userState$ | async)?.isAuthenticated
+  } as data; else loading">
+
+<!--async 쓰고싶은데, 동적으로 현재 데이터가 있는지 없는지 판단해서, 넣고 안놓고는 어떻게하지? async유지하면서? -->
+
+<!--nested 한 값은, ?을 연속으로 넣어서 null체크해줌-->
+<!--1056px로 넣은 이유는 가독성을 위해 dumb값을 넣은것임.-->
+
+<!--MUST TODO : -->
+<div
+  #communicateBox
+  [ngStyle]="{ width : data.pictures?.length === 0 || (data.pictures ? data.pictures[0] : '1056px') === '' ? '660px' : '1056px'}"
+  class="communicate-box">
+  <!--[ngStyle]="{ width : data.review['pictures'].length === 0 ? ''}"-->
+
+  <div class="communicate-box__inner">
+
+    <div class="communicate-box__mobile--figure">
+      <figure>
+        <span class="communicate-box-only__figure--image-outer">
+          <img drLazyLoad src="{{data.review?.author?.avatar}}" alt="{{data.review?.author?.nickname}}" class="story__img">
+        </span>
+
+        <figcaption
+          class="communicate-box-only__caption subtitle-1-bold">
+          {{data.review?.author?.nickname}}
+        </figcaption>
+
+        <ui-star-rating
+          [star-point]="data?.review?.rating">
+        </ui-star-rating>
+
+        <span
+          class="communicate-box-only__figure--created-date subtitle-2-regular u-color-dark-grey">
+          {{data.review?.modified | timeAgo}}
+        </span>
+      </figure>
+    </div>
+
+    <!-- MUST TODO : 이 부분이 검은색을 보여주게 하는부분. 그러나 이부분을 동적으로 크기를 적게하고 그렇게 하려면, 서버에서 값을 가져와야함. 인스타그램이 그런식으로 되어있음.-->
+    <!-- 예를들면 height가 648일때, 이 이미지의 width는 몇이 되어야 하는가에 대한 정보들.-->
+    <!-- 근데 이것을 클라이언트 사이드에서 해야하는지 백앤드에서 해야하는지 고민-->
+    <div *ngIf="isViewImage && data?.pictures?.length > 0 as asPictures;"
+         class="communicate-box__image">
+      <img
+        [drLazyLoad]="{ method : 'pure-transition'}" src="{{data.pictures[0]}}" alt="">
+    </div>
+    <div
+      #communicateBoxOnly
+      [ngStyle]="{ width : data.pictures?.length === 0 || (data.pictures ? data.pictures[0] : '1056px') === ''  ? '660px' : '408px'}"
+      class="communicate-box-only">
+      <div class="communicate-box-only__inner">
+
+        <div class="communicate-box-only__figure">
+          <figure>
+            <span class="communicate-box-only__figure--image-outer">
+              <img drLazyLoad src="{{data.review?.author?.avatar}}" alt="Person on a tour" class="story__img">
+            </span>
+            <figcaption class="communicate-box-only__caption subtitle-1-bold">{{data.review?.author?.nickname}}</figcaption>
+
+            <ui-star-rating [star-point]="data.review?.rating"></ui-star-rating>
+            <span class="communicate-box-only__figure--created-date subtitle-2-regular u-color-dark-grey">{{data.review?.modified | timeAgo}}</span>
+          </figure>
+          <div class="communicate-box-only__figure--option subtitle-1-regular u-color-grey">
+            <!--맛: 믹스베이 세트 : 1번세츠 ( 12팩 )-->
+          </div>
+        </div>
+        <div #scrollOuter class="communicate-box-only__reviews">
+          <div class="communicate-box-only__reviews--my-reviews body-1-regular">
+            {{data.review?.text}}
+          </div>
+          <div class="communicate-box-only__reviews--other-reviews">
+            <!--TODO : 해당 로직은, 이미 로딩한것은 로딩 안해도 되도록 변경해야함.-->
+            <div *ngIf="data.review?.comments?.results as asComments; else loading">
+              <div *ngFor="let item of asComments" class="communicate-box-only__reviews--other-reviews-item">
+                <span class="subtitle-1-bold">{{item.author.nickname}}</span>
+                <span class="body-1-regular">{{item.text}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="communicate-box-only__feature">
+          <a>
+            <svg
+              width="18"
+              height="20"
+              viewBox="0 0 18 20">
+              <path
+                [ngClass]="{ 'communicate-box-only__feature--thumbs-up-active' : data.review?.mark_as_voted}"
+                fill="#767676"
+                fill-rule="evenodd"
+                d="M15.969 10.309c-.004.027-.003.058-.009.085v.004l-.002.009L15 16a1.985 1.985 0 0 1-1 1.724 1.985 1.985 0 0 1-.982.276H6V8a2.995 2.995 0 0 0 2.916-2.322C8.967 5.459 9 5.234 9 5V3a1 1 0 0 1 1-1 2 2 0 0 1 2 2v3a1 1 0 0 0 1 1h1c.114 0 .224.016.332.034.021.004.04.002.061.005l.001.001a1.978 1.978 0 0 1 .728.305c.033.023.059.05.089.073.072.056.145.11.208.174.026.026.045.057.07.084.061.069.123.138.174.215.012.017.019.037.03.055.057.091.111.184.153.284l.006.02a2.008 2.008 0 0 1 .148.746c0 .103-.014.208-.031.313M2.5 17.847A.984.984 0 0 1 2 17V9c0-.366.206-.672.5-.846A.972.972 0 0 1 3 8h1v10H3a.97.97 0 0 1-.5-.153m15.427-8.599a4.04 4.04 0 0 0-.168-.61l-.011-.04-.059-.143a3.688 3.688 0 0 0-.259-.502 1.642 1.642 0 0 0-.106-.176 3.608 3.608 0 0 0-.307-.393 2.657 2.657 0 0 0-.178-.201 3.504 3.504 0 0 0-.372-.322 2.363 2.363 0 0 0-.221-.17 3.994 3.994 0 0 0-1.461-.612l-.137-.028-.083-.006A3.873 3.873 0 0 0 14 6V4c0-2.206-1.794-4-4-4-1.654 0-3 1.346-3 3v2c0 .059-.01.135-.032.227A.99.99 0 0 1 6 6H3c-.524 0-1.036.146-1.52.434A2.967 2.967 0 0 0 0 9v8c0 1.058.553 2.017 1.48 2.567.484.288.996.433 1.52.433h10.002a4.02 4.02 0 0 0 2.002-.546 4.003 4.003 0 0 0 1.991-3.254l.935-5.455.019-.113.003-.049.004-.038a3.665 3.665 0 0 0-.029-1.297"/>
+            </svg>
+            <span
+              (click)="toggleVoteReviews(data.review.product, data.review.id, data.review?.mark_as_voted, data?.isAuthenticated)"
+              [ngClass]="{ 'communicate-box-only__feature--recommend--active' : data.review?.mark_as_voted}"
+              class="communicate-box-only__feature--recommend action-1-medium">
+              {{data.review?.mark_as_voted ? '추천함' : '추천하기'}}
+            </span>
+          </a>
+          <a>
+            <img src="http://img.onpicks.com/share-icon.jpg" alt="">
+            <span
+              class="communicate-box-only__feature--item action-1-medium"
+              (click)="shareReview()">
+              공유하기
+            </span>
+          </a>
+          <a>
+            <span
+              (click)="showReportModal(data.review.id, data.review.product, data?.isAuthenticated)"
+
+              class="communicate-box-only__feature--report action-1-medium-grey">
+              신고하기
+            </span>
+          </a>
+        </div>
+        <div
+          class="communicate-box-only__input-reviews">
+          <input
+            type="text"
+            (focus)="isFocusForCommentTyping(data?.isAuthenticated)"
+            (keypress)="commentTyping($event, fDesktop)"
+            value=""
+            #fDesktop
+            [placeholder]="data?.isAuthenticated ? '댓글 달기': '로그인 후 이용 가능합니다.'">
+        </div>
+      </div>
+    </div>
+    <div
+      [ngStyle]="{display: isShowMobileReview === false  ? 'none' : 'block'}"
+      class="communicate-box-only__input-reviews--mobile">
+      <input
+        type="text"
+        (keypress)="commentTyping($event, fMobile)"
+        value=""
+        #fMobile
+        placeholder="댓글 달기">
+      <a (click)="registrationTyping(f)">
+        <div class="communicate-box-only__input-reviews--mobile--registration">
+          <span class="subtitle-1-bold u-color-green">등록</span>
+        </div>
+      </a>
+    </div>
+    <button class="communicate-box__prev-button"
+            *ngIf="(data.results ? data.results[0] : '') != reviewsId"
+            (click)="prevButton(data.results[currentReviewIndex - 1])">
+      <svg width="15" height="26" viewBox="0 0 15 26">
+        <path fill="none" fill-rule="evenodd" stroke="#E5E5E5" stroke-width="2" d="M14 1L2 13.098 14 25"/>
+      </svg>
+    </button>
+
+    <button
+      *ngIf="(data.results ? data.results[data.results?.length - 1] : '') != reviewsId"
+      class="communicate-box__next-button"
+            (click)="nextButton(data.results[currentReviewIndex + 1])">
+      <svg width="15" height="26" viewBox="0 0 15 26">
+        <path fill="none" fill-rule="evenodd" stroke="#E5E5E5" stroke-width="2" d="M1 25l12-12.098L1 1"/>
+      </svg>
+    </button>
+
+
+
+    <div
+      [ngStyle]="{display : isShowMobileReview ? 'none' : ''}"
+      class="communicate-box__mobile--sticky-menu">
+      <div class="communicate-box__mobile--sticky-menu--inner">
+        <a
+          (click)="toggleVoteReviews(data.review.product, data.review.id, data.review?.mark_as_voted, data?.isAuthenticated)">
+          <svg
+            width="18"
+            height="20"
+            viewBox="0 0 18 20">
+            <path
+              [ngClass]="{ 'communicate-box-only__feature--thumbs-up-active' : data.review?.mark_as_voted}"
+              fill="#767676"
+              fill-rule="evenodd"
+              d="M15.969 10.309c-.004.027-.003.058-.009.085v.004l-.002.009L15 16a1.985 1.985 0 0 1-1 1.724 1.985 1.985 0 0 1-.982.276H6V8a2.995 2.995 0 0 0 2.916-2.322C8.967 5.459 9 5.234 9 5V3a1 1 0 0 1 1-1 2 2 0 0 1 2 2v3a1 1 0 0 0 1 1h1c.114 0 .224.016.332.034.021.004.04.002.061.005l.001.001a1.978 1.978 0 0 1 .728.305c.033.023.059.05.089.073.072.056.145.11.208.174.026.026.045.057.07.084.061.069.123.138.174.215.012.017.019.037.03.055.057.091.111.184.153.284l.006.02a2.008 2.008 0 0 1 .148.746c0 .103-.014.208-.031.313M2.5 17.847A.984.984 0 0 1 2 17V9c0-.366.206-.672.5-.846A.972.972 0 0 1 3 8h1v10H3a.97.97 0 0 1-.5-.153m15.427-8.599a4.04 4.04 0 0 0-.168-.61l-.011-.04-.059-.143a3.688 3.688 0 0 0-.259-.502 1.642 1.642 0 0 0-.106-.176 3.608 3.608 0 0 0-.307-.393 2.657 2.657 0 0 0-.178-.201 3.504 3.504 0 0 0-.372-.322 2.363 2.363 0 0 0-.221-.17 3.994 3.994 0 0 0-1.461-.612l-.137-.028-.083-.006A3.873 3.873 0 0 0 14 6V4c0-2.206-1.794-4-4-4-1.654 0-3 1.346-3 3v2c0 .059-.01.135-.032.227A.99.99 0 0 1 6 6H3c-.524 0-1.036.146-1.52.434A2.967 2.967 0 0 0 0 9v8c0 1.058.553 2.017 1.48 2.567.484.288.996.433 1.52.433h10.002a4.02 4.02 0 0 0 2.002-.546 4.003 4.003 0 0 0 1.991-3.254l.935-5.455.019-.113.003-.049.004-.038a3.665 3.665 0 0 0-.029-1.297"/>
+          </svg>
+        </a>
+        <a (click)="showMobileReview(data?.isAuthenticated)">
+          <svg width="18" height="18" viewBox="0 0 18 18">
+            <path fill="#767676" fill-rule="evenodd" d="M13.007 12h-1.044l-.228.262L10.226 14l-.522.6-.204.235-.087.1L9 15.41l-.413-.475-.087-.1-.204-.235-.52-.6-1.51-1.738L6.037 12H2.858a.84.84 0 0 1-.486-.159.871.871 0 0 1-.269-.3.876.876 0 0 1-.093-.322c-.002-.026-.01-.05-.01-.076V2.857a.857.857 0 0 1 .489-.765A.836.836 0 0 1 2.858 2H15.143c.134 0 .256.037.368.092a.86.86 0 0 1 .489.765V11.143c0 .026-.008.05-.01.076a.875.875 0 0 1-.092.322.884.884 0 0 1-.27.3.84.84 0 0 1-.485.159h-2.136zm4.658-10.478A2.851 2.851 0 0 0 15.143 0H2.858A2.852 2.852 0 0 0 .335 1.522 2.872 2.872 0 0 0 0 2.857V11.143c0 .459.116.92.335 1.335A2.852 2.852 0 0 0 2.858 14h2.268l1.659 1.911.292.335 1.147 1.319c.045.066.096.125.153.177.036.034.082.053.123.081A.87.87 0 0 0 9 18a.865.865 0 0 0 .5-.177c.041-.028.087-.047.123-.081a1.01 1.01 0 0 0 .154-.177l1.146-1.319.292-.335L12.874 14h2.269a2.851 2.851 0 0 0 2.522-1.522c.219-.415.335-.876.335-1.335V2.857c0-.459-.116-.92-.335-1.335z"/>
+          </svg>
+        </a>
+        <a
+          (click)="shareReview()">
+          <svg width="20" height="20" viewBox="0 0 20 20">
+            <path fill="#767676" fill-rule="evenodd" d="M16.035 18.02l-.055.001a2.014 2.014 0 0 1-1.998-1.947 2.004 2.004 0 0 1 1.948-2.053l.054-.001c1.073 0 1.97.874 1.997 1.948a2.001 2.001 0 0 1-1.946 2.052m-10.06-7.769c-.005.045-.009.09-.017.134-.02.105-.05.207-.086.305-.007.018-.01.035-.018.052a2 2 0 0 1-1.803 1.257L3.996 12c-.932 0-1.729-.66-1.94-1.537l-.008-.024c-.02-.086-.026-.176-.034-.265-.004-.054-.012-.108-.012-.164 0-.055.008-.108.012-.163.008-.089.014-.179.034-.265l.007-.025A2.015 2.015 0 0 1 3.996 8.02l.055.001c.822.022 1.515.54 1.803 1.258.007.017.011.035.018.053.036.098.065.199.086.303.008.045.012.091.017.137.01.078.017.157.018.238a1.926 1.926 0 0 1-.019.241M15.98 2l.055.001a2.001 2.001 0 0 1 1.946 2.052A2.011 2.011 0 0 1 15.984 6l-.054-.001a2.002 2.002 0 0 1-1.948-2.051A2.014 2.014 0 0 1 15.98 2m.004 10.02l-.107.002a3.974 3.974 0 0 0-2.896 1.372l-5.075-2.55c.004-.019.004-.04.008-.06.021-.107.028-.216.041-.326.013-.111.04-.218.042-.332.001-.04-.009-.077-.009-.116 0-.039.01-.076.01-.115-.004-.114-.03-.221-.043-.332-.013-.109-.02-.22-.04-.326-.005-.02-.005-.041-.009-.061l5.075-2.549A3.978 3.978 0 0 0 15.984 8a4 4 0 0 0 .104-7.999L15.98 0a4.002 4.002 0 0 0-3.997 3.895c-.009.326.033.64.1.945L7.005 7.39A3.975 3.975 0 0 0 4 6l-.108.001A3.987 3.987 0 0 0 .73 7.716l-.01.016a4.002 4.002 0 0 0-.323.567c-.02.041-.044.079-.062.121a4.182 4.182 0 0 0-.175.524c-.022.081-.05.158-.067.241-.032.148-.044.302-.058.455-.009.093-.032.181-.034.276 0 .032.007.062.007.094S0 10.074 0 10.106c.002.095.025.183.034.274.014.155.026.308.058.456.017.082.045.161.067.241.05.179.103.355.175.524.018.042.043.08.062.121a3.948 3.948 0 0 0 .334.583 3.98 3.98 0 0 0 3.162 1.714l.108.002a3.972 3.972 0 0 0 3.006-1.391l5.076 2.551a3.934 3.934 0 0 0-.099.945 4.002 4.002 0 0 0 4.105 3.893 3.998 3.998 0 0 0 3.892-4.103 4 4 0 0 0-3.996-3.896"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+</ng-container>
+<div class="communicate-box__outer">
+
+</div>
+

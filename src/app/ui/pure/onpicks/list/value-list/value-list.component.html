@@ -1,0 +1,77 @@
+<div class="row-list-scroll popular-brand" *ngIf="valueList.length !== 0">
+  <h1
+    [ngStyle]="{ padding : type === 'product' ? 0 : '' }"
+    i18n="@@value-list__title"
+    class="popular-brand__title h1-bold">성분 인증|Value</h1>
+  <div class="popular-brand__content--outer">
+
+    <onpicks-circle-n-button
+      *ngIf="isShowButton && imageIndex < (valueList?.length - 6)"
+      (click)="nextButton()"
+      [right]="'-2rem'">
+    </onpicks-circle-n-button>
+
+    <onpicks-circle-p-button
+      *ngIf="isShowButton && -imageIndex !== 0"
+      (click)="prevButton()"
+      [left]="'-2rem'">
+    </onpicks-circle-p-button>
+    <div class="popular-brand__content">
+      <ul
+        #container
+        class="popular-brand__ul" >
+        <ng-container *ngFor="let item of valueList; index as valueIndex">
+          <li
+            #itemList
+            [ngClass]="type === 'product' ? 'col-3-of-12-list-scroll value-list__item' : 'col-2-of-12-list-scroll value-list__item' "
+            [ngStyle]="{ marginLeft : type === 'product' ? 0 : '' }"
+            *ngIf="isThirdBreakPoint ? true : pressedPrev ? valueIndex < imageIndex + 7 : valueIndex < imageIndex + 6"
+            class="col-2-of-12-list-scroll value-list__item">
+            <div class="value-list__item--inner">
+              <!--(click)="navigate(item?.brand?.slug)"-->
+              <div
+                (click)="navigate(item.slug)"
+                class="value-list__image--outer">
+                <img drCleanLoad src="{{item.icon}}" alt="{{currentDescriptionTitle}}">
+              </div>
+              <div class="value-list__item--title">
+                <div
+                  (click)="navigate(item.slug)"
+                  class="value-list__item--title--middle subtitle-2-bold">
+                  {{item.name}}
+                </div>
+              </div>
+
+              <div
+                (mouseover)=
+                  "currentDescription = item.about;
+                    currentDescriptionTitle = item.name;
+                    currentDescriptionIndex = valueIndex;
+                    isShowDescription = true"
+                (click)=
+                  "currentDescription = item.about;
+                    currentDescriptionTitle = item.name;
+                    currentDescriptionIndex = valueIndex;
+                    isShowDescription = true"
+                (mouseleave)="isThirdBreakPoint ? '' : (isShowDescription = false)"
+                class="value-list__item--description-icon subtitle-2-bold">!</div>
+            </div>
+          </li>
+        </ng-container>
+      </ul>
+    </div>
+    <div
+      [ngStyle]="{
+        left : ((isThirdBreakPoint ? '10%' : ((currentDescriptionIndex - imageIndex) === 5 ? 4 : (currentDescriptionIndex - imageIndex))) * translateXWidth) + 'px',
+        display : isShowDescription ? 'block' : 'none'}"
+      class="value-list__description">
+      <div class="value-list__description--title subtitle-2-bold">
+        {{currentDescriptionTitle}}<span *ngIf="locale === 'ko'">(이)란?</span>
+      </div>
+      <div class="value-list__description--content body-2-regular">
+        {{currentDescription}}
+      </div>
+    </div>
+  </div>
+
+</div>

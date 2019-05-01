@@ -1,0 +1,70 @@
+<ng-template #loading>
+  <onpicks-loading-icon></onpicks-loading-icon>
+</ng-template>
+
+<div class="written-reviews" [ngStyle]="{ minHeight : contentHeight }">
+  <ng-container
+    *ngIf="(writtenReviews$ | async)?.results as reivewsData; else loading">
+
+    <h1 i18n="@@written-reviews__title" class="h1-bold written-reviews__title">내가 쓴 리뷰</h1>
+    <ng-container *ngIf="reivewsData.length === 0">
+      <div
+        i18n="@@written-reviews__description"
+        class="u-margin-bottom subtitle-1-regular u-color-dark-grey">
+        작성 가능한 리뷰가 없습니다. 다양한 아이템을 최적의 가격으로 쇼핑하여 리뷰를 남겨주세요!
+      </div>
+      <ui-mini-list
+        i18n-setTitle="@@recommand-products__title"
+        [mobileType]="'full'"
+        [carouselLength]="3"
+        setTitle=" "
+        [infoList]="weeklyBest$ | async"
+      ></ui-mini-list>
+    </ng-container>
+
+    <div class="written-reviews__item" *ngFor="let item of reivewsData">
+      <figure class="written-reviews__item--figure u-margin-bottom--small">
+        <div class="written-reviews__item--figure-image">
+          <img [drLazyLoad]="{method:'animation'}" src="{{item?.author?.avatar}}" alt="Person on a tour" class="story__img">
+        </div>
+        <div class="written-reviews__item--figure-caption">
+          <figcaption class="written-reviews__item--figcaption subtitle-1-bold">{{item?.author?.nickname}}</figcaption>
+          <ui-star-rating [star-point]="item.rating" class="written-reviews__item--star-rating"></ui-star-rating>
+          <span class="written-reviews__item-figure-caption-date subtitle-2-regular u-color-grey">{{item.modified | timeAgo}}</span>
+        </div>
+      </figure>
+      <!--<div class="subtitle-1-regular u-color-grey">사이즈: 엑스라지 · 컬러: 아쿠아그린 · 맛: 바닐라 초콜렛 · {{item.helpfulCount}} 명이 추천하였습니다 </div>-->
+      <div class="written-reviews__item--content-outer">
+
+        <div class="written-reviews__item--content body-1-regular"
+           [ngStyle]="{'width' : item.picture === '' ? 'auto' : 'calc(100% - 10.4rem)'}">
+          {{item.text}}
+        </div>
+
+        <span class="written-reviews__item--image"
+              *ngIf="item.picture !== ''">
+          <img
+            [drLazyLoad] = "{ method : 'animation' }"
+            src="{{item.picture}}" alt="">
+        </span>
+
+      </div>
+
+      <div class="written-reviews__link-to-product">
+        <a [routerLink]="'/shops/p/' + item.product.slug">
+          <div class="written-reviews__link-to-product--inner">
+            <div class="written-reviews__link-to-product--image">
+              <img drLazyLoad src="{{item.product.thumbnail}}" alt="">
+            </div>
+            <div class="written-reviews__link-to-product--description body-3-regular">
+              {{item.product.title}}
+            </div>
+          </div>
+        </a>
+      </div>
+
+    </div>
+  </ng-container>
+</div>
+
+

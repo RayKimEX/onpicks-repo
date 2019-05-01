@@ -1,0 +1,142 @@
+@import '~src/assets/scss/abstracts/variables';
+
+.login {
+  width: 45.6rem;
+  margin: 3.2rem auto 4rem auto ;
+  padding: 2.4rem;
+  border : solid 1px #e5e5e5;
+
+  @include respond(tb){
+    width : 100%;
+    border : 0;
+    margin: 0 auto 4rem auto ;
+  }
+
+  input {
+    width : 100%;
+    border-raidus : 2px;
+    border : solid 1px #e5e5e5;
+    margin-bottom : 1.6rem;
+    padding: 1rem  1.6rem;
+    line-height : 1.43;
+    font-size : 1.4rem;
+    &::placeholder {
+      line-height : 1.43;
+      font-size : 1.4rem;
+      color : #b3b3b3;
+    }
+  }
+
+  &__or-line {
+
+    overflow : hidden;
+    text-align : center;
+    margin-bottom :1.6rem;
+
+    &--active {
+      padding : 1rem;
+      position : relative;
+
+      &::before {
+        content : '';
+        position : absolute;
+        top : 50%;
+        width : 700px;
+        right : 100%;
+        border-bottom : 1px solid #e5e5e5;
+      }
+
+      &::after {
+        content : '';
+        position : absolute;
+        top : 50%;
+        left : 100%;
+        width : 700px;
+        border-bottom : 1px solid #e5e5e5;
+      }
+    }
+
+    &--text {
+      font-size : 1.4rem;
+      line-height : 1.71;
+      color : #8d8d8d;
+    }
+  }
+
+  // TODO : application/json형식으로 로그인 요청하면, request method에 다 보이는데, applicatoin/from-encoded ㅗ 보내면 어떻게 되는 지 확인 ?
+  &__social {
+
+    &--btn {
+      width : 100%;
+      height : 4.6rem;
+      border-radius : 4px;
+      margin-bottom : 1.6rem;
+
+      svg {
+        float : left;
+        margin-left :1.6rem;
+      }
+      span {
+        @include absCenter;
+      }
+    }
+
+    &--naver {
+      position:relative;
+      background-color : #03c63b;
+    }
+
+    &--kakao {
+      position:relative;
+      background-color : #ffeb01;
+    }
+
+    &--facebook {
+      position:relative;
+      background-color : #385084;
+    }
+
+    &--google {
+      position:relative;
+      background-color : $color-white;
+      border: solid 1px #e5e5e5;
+    }
+  }
+
+  &__miscell {
+    font-size : 1.4rem;
+    color : #8d8d8d;
+    margin-bottom : 1.6rem ;
+
+    &--forgot-password {
+      float:right;
+    }
+  }
+
+  &__no-account {
+    text-align : center;
+
+    &--text {
+      span:nth-of-type(1){
+        margin-right : 2.4rem;
+      }
+    }
+  }
+
+  &__line {
+    border-bottom : solid 1px #e5e5e5;
+    margin-bottom : 2.4rem;
+  }
+
+
+  &__btn {
+    font-size : 1.4rem;
+    width : 100%;
+    height : 4.6rem;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    border-radius : 4px;
+    margin-bottom : 2.4rem;
+  }
+
+}

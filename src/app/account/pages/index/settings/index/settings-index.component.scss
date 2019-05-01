@@ -1,0 +1,28 @@
+@import '~src/assets/scss/abstracts/variables';
+
+
+.account-settings-navigator {
+
+
+  @include respond(actb){
+    display:none;
+  }
+  &__item:not(:last-child) {
+    margin-bottom : 1.6rem;
+  }
+
+
+}
+
+
+.account-settings-router {
+  @include respond(actb){
+    display:block;
+    width : 63rem;
+    margin : 0 auto;
+  }
+
+  @include respond(tb){
+    width : 100%;
+  }
+}

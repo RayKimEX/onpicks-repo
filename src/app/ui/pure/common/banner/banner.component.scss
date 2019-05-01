@@ -1,0 +1,58 @@
+@import '~src/assets/scss/abstracts/variables';
+
+.banner {
+  height:inherit;
+  position:relative;
+  @include respond(tb){
+    display:none;
+  }
+
+  &__text {
+
+    z-index : 1;
+    clear:both;
+    left: 8rem;
+    position: absolute;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+
+    &-title-outer {
+      margin-bottom : 1.6rem;
+      @include respond(tb){
+        display:none;
+      }
+    }
+    &-description {
+      @include respond(tb){
+        display:none;
+      }
+    }
+  }
+
+  &__image-outer {
+    height: inherit;
+    width:100%;
+    overflow:hidden;
+    float:left;
+
+    img {
+      width:100%;
+      height:inherit;
+      object-fit : cover;
+      object-position: center;
+      //background-size: cover;
+      //background: url("https://picsum.photos/1920/440?image=96") center;
+    }
+
+    svg {
+      position:absolute;
+      top : 1.6rem;
+      right : 1.6rem;
+
+      path {
+        fill : $color-grey;
+      }
+    }
+  }
+}

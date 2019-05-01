@@ -1,0 +1,475 @@
+@import '~src/assets/scss/abstracts/variables';
+
+.ui-mini-list-halfM {
+
+  onpicks-circle-n-button {
+
+    @include respond(tb){
+      display:none;
+    }
+  }
+  &__title {
+    margin-bottom : 2.4rem;
+  }
+
+  &__delivery-point {
+    margin-top : 0.8rem;
+    position:relative;
+    @include respond(tb){
+      margin-top : 0.4rem;
+    }
+
+    &--icon {
+      margin-right : 0.8rem;
+      display:inline-block;
+      width : 1.6rem;
+      height : 1.6rem;
+    }
+
+    &--text {
+      position:absolute;
+      top: -2px;
+
+    }
+  }
+
+  &__price-info {
+    margin-top: 0.8rem;
+
+    @include respond(tb){
+      margin-top : 0.4rem;
+    }
+    &--MSRP {
+
+      margin-right: 0.2rem;
+      font-size: 1.2rem;
+      color: #a0a0a0;
+      font-weight: 500;
+
+      &-discount {
+
+        vertical-align: text-top;;
+        text-decoration: line-through;
+        @include respond(tb){
+          display: none;
+        }
+      }
+
+      &-mobile-discount {
+
+        margin-top : 0.4rem;
+        display: none;
+        text-decoration: line-through;
+        @include respond(tb){
+          display: block;
+        }
+      }
+    }
+
+    &--price {
+      margin-right: 0.6rem;
+    }
+
+    &--discount {
+      margin-right: 0.4rem;
+    }
+  }
+
+  &__content {
+
+    position: relative;
+    overflow: hidden;
+    width: inherit;
+    white-space: nowrap;
+
+    @include respond(tb){
+      overflow-x : auto;
+
+      &::-webkit-scrollbar{
+        display :none;
+      }
+    }
+
+    &--outer {
+      position: relative;
+    }
+
+    &-ul {
+      transition: transform .5s ease 0s;
+    }
+
+    &-li{
+
+      vertical-align: top;
+      display: inline-block;
+      list-style: none;
+      width: 26.4rem;
+
+      &:not(:last-child){
+        margin-right: 2.4rem;
+      }
+      @include respond(fb){
+        width: 25%;
+        margin-right : 0 !important;
+        padding : 0 1.2rem;
+      }
+
+      @include respond(tb){
+        width: 40%;
+        margin-right : 0 !important;
+        padding : 0 1.2rem;
+      }
+    }
+  }
+
+  &__item {
+    &--stock {
+      position:relative;
+      top : 0;
+      width: 44.5%;
+      height: 24px;
+      border-radius: 4px;
+      background-color : $color-orange;
+      margin-left:-2.4rem;
+      margin-top :-2.4rem;
+
+      @include respond(fb){
+        margin-left:-1.6rem;
+        margin-top :-1.6rem;
+        height: 1.6rem;
+      }
+
+      &--inner {
+        @include subtitle-2-bold;
+        @include respond(fb){
+          @include subtitle-3-bold;
+        }
+
+
+        @include absCenter;
+      }
+    }
+
+    &--stock-empty {
+      position:relative;
+      top : 0;
+      width: 44.5%;
+      height: 24px;
+      border-radius: 4px;
+      background-color : $color-grey;
+      margin-left:-2.4rem;
+      margin-top :-2.4rem;
+
+      @include respond(fb){
+        margin-left:-1.6rem;
+        margin-top :-1.6rem;
+        height: 1.6rem;
+      }
+    }
+
+    ui-star-rating {
+      margin-right : 0.4rem;
+    }
+
+    &--name-outer {
+      margin-bottom: 0.8rem;
+
+      @include respond(tb){
+        margin-bottom : 0.4rem;
+      }
+
+      &-brand {
+        margin-bottom: 0.4rem;
+      }
+
+      &-name {
+        white-space: normal;
+        width: 26.4rem;
+      }
+    }
+
+    &--image {
+
+      height: 26.4rem;
+      width: 100%;
+      position: relative;
+      margin-bottom :1.6rem;
+
+      @include respond(fb){
+        height:auto;
+      }
+
+      onpicks-list-active-button {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+      }
+      &-inner {
+        width:100%;
+        position: relative;
+        padding-top: 100%;
+
+        img {
+          position: absolute;
+          margin: auto;
+          top: 0;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          max-width: 100%;
+          max-height: 100%;
+        }
+
+        onpicks-list-active-button {
+          position: absolute;
+          right: 0;
+          bottom: 0;
+        }
+
+        svg {
+          position: absolute;
+          top: 1.6rem;
+          right: 1.6rem;
+
+          path {
+            fill: $color-grey;
+          }
+        }
+      }
+
+      &-outer {
+        width: 100%;
+        height:100%;
+
+        padding : 2.4rem;
+
+        @include respond(fb){
+          padding : 1.6rem;
+        }
+        &:hover {
+          opacity: 0.5;
+          cursor: pointer;
+        }
+      }
+
+    }
+  }
+
+
+}
+
+
+
+
+.ui-mini-list-fullM {
+
+
+  onpicks-circle-n-button {
+
+    @include respond(tb){
+      display:none;
+    }
+  }
+  &__title {
+    margin-bottom : 2.4rem;
+  }
+
+  &__delivery-point {
+    margin-top : 0.8rem;
+    position:relative;
+    @include respond(tb){
+      margin-top : 0.4rem;
+    }
+
+    &--icon {
+      margin-right : 0.8rem;
+      display:inline-block;
+      width : 1.6rem;
+      height : 1.6rem;
+    }
+
+    &--text {
+      position:absolute;
+      top: -2px;
+
+    }
+  }
+
+  &__price-info {
+    margin-top: 0.8rem;
+    @include respond(tb){
+      margin-top : 0.4rem;
+    }
+
+    &--MSRP {
+      margin-right: 0.2rem;
+      font-size: 1.2rem;
+      color: #a0a0a0;
+      font-weight: 500;
+
+      &-discount {
+        vertical-align: text-top;;
+        text-decoration: line-through;
+        @include respond(tb){
+          display: none;
+        }
+      }
+
+      &-mobile-discount {
+        display: none;
+        margin-top:0.4rem;
+        text-decoration: line-through;
+        @include respond(tb){
+          display: block;
+        }
+      }
+    }
+
+    &--price {
+      margin-right: 0.6rem;
+    }
+
+    &--discount {
+      margin-right: 0.4rem;
+    }
+  }
+
+  &__item {
+
+    ui-star-rating {
+      margin-right : 0.4rem;
+    }
+
+    &--name-outer {
+      margin-bottom: 0.8rem;
+      @include respond(tb){
+        margin-bottom : 0.4rem;
+      }
+
+      &-brand {
+        margin-bottom: 0.4rem;
+      }
+
+      &-name {
+        white-space: normal;
+        width: 26.4rem;
+      }
+    }
+
+    &--image {
+      height: 26.4rem;
+      width: 100%;
+      position: relative;
+      margin-bottom :1.6rem;
+      @include respond(sb){
+        height:auto;
+      }
+
+      onpicks-list-active-button {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+      }
+      &-inner {
+        width:100%;
+        position: relative;
+        padding-top: 100%;
+        img {
+          position: absolute;
+          margin: auto;
+          top: 0;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          max-width: 100%;
+          max-height: 100%;
+        }
+        onpicks-list-active-button {
+          position: absolute;
+          right: 0;
+          bottom: 0;
+        }
+
+        svg {
+          position: absolute;
+          top: 1.6rem;
+          right: 1.6rem;
+
+          path {
+            fill: $color-grey;
+          }
+        }
+      }
+
+      &-outer {
+        width: 100%;
+        height:100%;
+        padding : 2.4rem;
+
+        &:hover {
+          opacity: 0.5;
+          cursor: pointer;
+        }
+      }
+
+    }
+  }
+
+  &__content {
+
+    position: relative;
+    overflow: hidden;
+    width: inherit;;
+    white-space: nowrap;
+
+    @include respond(tb){
+      white-space: normal;
+    }
+    &--outer {
+      position: relative;
+    }
+
+
+    &-li{
+      width: 28.8rem;
+      @include respond(fb){
+        width : 33%;
+      }
+
+      @include respond(tb){
+        width : 50%;
+      }
+      vertical-align: top;
+      display: inline-block;
+      list-style: none;
+      & > div {
+        width: 26.4rem;
+        @include respond(fb){
+          width: auto;
+        }
+      }
+
+      &:not(:last-child) > div {
+        margin-right: 2.4rem;
+        @include respond(fb){
+          margin-right : 0;
+          // padding-right: 2.4rem;
+        }
+        @include respond(tb){
+          padding-right : 0;
+        }
+      }
+
+      @include respond(tb){
+        &:not(:nth-child(2n)) > div {
+          // padding-right : 2.4rem;
+        }
+      }
+    }
+    ul {
+
+      transition: transform .5s ease 0s;
+
+    }
+  }
+}

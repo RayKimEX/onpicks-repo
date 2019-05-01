@@ -1,0 +1,19 @@
+@import '~src/assets/scss/abstracts/variables';
+
+.order-navigator {
+  margin-top : 1.6rem;
+  padding : 1.6rem 0;
+  border-bottom : 1px solid #e5e5e5;
+
+  span:not(:last-child) {
+    margin-right: 1.6rem;
+  }
+  &--cart {
+
+  }
+
+  .active {
+    font-weight : 700;
+    color: $color-black;
+  }
+}

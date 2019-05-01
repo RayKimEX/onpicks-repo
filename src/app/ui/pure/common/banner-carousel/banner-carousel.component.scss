@@ -1,0 +1,164 @@
+@import '~src/assets/scss/abstracts/variables';
+
+
+.isIEOrEdge {
+  background-size: cover;
+  background-position: center center;
+}
+
+.banner-carousel {
+
+  top: 0;
+  margin-top: 0;
+  height:inherit;
+  padding-top: 0;
+
+
+
+  onpicks-circle-n-button {
+    transition : opacity .3s ease 0s;
+    opacity : 0;
+  }
+
+  onpicks-circle-p-button {
+    transition : opacity .3s ease 0s;
+    opacity : 0;
+  }
+
+  &__item {
+    height:inherit;
+    position:relative;
+
+    &--text {
+
+      z-index : 1;
+
+      @include respond(fb){
+        margin: 0 2.4rem;
+      }
+
+      position: inherit;
+      top: 50%;
+      -webkit-transform: translateY(-50%);
+      transform: translateY(-50%);
+
+      &-title-outer {
+        margin-bottom : 1.6rem;
+        @include respond(tb){
+          display:none;
+        }
+      }
+      &-description {
+        @include respond(tb){
+          display:none;
+        }
+      }
+    }
+
+    &--image-outer {
+      position:absolute;
+      height: inherit;
+      width:100%;
+      overflow:hidden;
+      float:left;
+
+      img {
+        width:100%;
+        height:inherit;
+        object-fit : cover;
+        object-position: center;
+
+
+      }
+
+      svg {
+        position:absolute;
+        top : 1.6rem;
+        right : 1.6rem;
+
+        path {
+          fill : $color-grey;
+        }
+      }
+    }
+  }
+
+  &__content {
+    // position:absolute;
+    width:100%;
+    height:inherit;
+    position:absolute;
+    white-space: nowrap;
+    overflow:hidden;
+
+    &--blur {
+      bottom:0;
+      z-index:0;
+      position:absolute;
+      display:block;
+      width:100%;
+      height : 50%;
+      background-image: linear-gradient(-180deg, rgba(0, 0, 0, 0) 3%, rgb(0, 0, 0) 100%) !important;
+    }
+    &--outer {
+      height: inherit;
+      position:relative;
+    }
+    .circle-navigate{
+
+      position : relative;
+      bottom : 50px;
+
+      &__active {
+        opacity: 1 !important;
+        box-shadow: 0 0 10px 0 rgb(0, 0, 0) !important;
+        background-color: #ffffff !important;
+      }
+
+      &__outer {
+        transition : opacity .3s ease 0s;
+        opacity : 0;
+        @include horizontalCenter;
+        display:inline-block;
+
+
+        span{
+          z-index:100;
+          width : 8px;
+          height : 8px;
+          border-radius : 50%;
+          opacity: 0.2;
+          box-shadow: 0 0 10px 0 rgb(0, 0, 0);
+          background-color: #ffffff;
+          display : inline-block;
+
+          &:not(:last-child){
+
+            margin-right: 0.8rem;
+          }
+        }
+      }
+    }
+
+    ul{
+      padding:0;      transition: transform .5s ease 0s;
+      li {
+        width:100%;
+        height:inherit;
+        vertical-align : top;
+        display: inline-block;
+        list-style: none;
+
+        & > div {
+          width :100%;
+        }
+
+        &:not(:last-child) > div {
+          margin-right : 2.4rem;
+        }
+      }
+    }
+  }
+  @include clearfix;
+}
+

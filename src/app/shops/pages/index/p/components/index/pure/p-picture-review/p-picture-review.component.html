@@ -1,0 +1,56 @@
+<div class="p-customer" [ngStyle]="{ display : (reviews$ | async)?.results.length > 0 ? 'block' : 'none'}" style="margin-bottom: 5.7rem;">
+  <div class="p-customer__title">
+    <h1 class="h1-bold">사진 후기</h1>
+    <!--<span class=" u-float-right"><a href="#" class="subtitle-1-regular u-color-grey">모두보기</a></span>-->
+  </div>
+
+  <div class="p-customer__images">
+    <div class="p-customer__images--large">
+      <div *ngFor="let item of imagesLargeList; index as i;" #imageLargeOuter [ngClass]="{'u-opacity-half' : i !== this.imageIndex + 1 }"
+           class="p-customer__images--large-cur">
+        <span>
+          <img drLazyLoad [src]="item.url" alt="">
+        </span>
+
+        <div *ngIf="i === this.imageIndex + 1" class="p-customer__images--profile">
+          <div class="p-customer__images--profile-opacity-box"></div>
+          <div class="p-customer__images--profile-box">
+            <div class="p-customer__images--profile-box-inner">
+              <figure>
+                <span class="p-customer__images--profile-image-outer">
+                  <img drLazyLoad src="{{item?.author?.avatar}}" alt="Person on a tour" class="story__img">
+                </span>
+
+                <figcaption class="p-customer__figure subtitle-1-bold u-color-white">{{imageIndex}}{{item?.author?.nickname}}</figcaption>
+                <!--<!--[@divState] (load) ---->
+                <ui-star-rating [star-point]="item?.rating"></ui-star-rating>
+                <span class="p-customer__figure--date subtitle-2-regular u-color-white">{{item?.modified | date : 'longDate'}}</span>
+              </figure>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <onpicks-circle-p-button
+        [left]="'1.8rem'"
+        *ngIf="imageIndex !== 0"
+        (click)="prevButton()" >
+      </onpicks-circle-p-button>
+      <onpicks-circle-n-button
+        [right]="'1.8rem'"
+        *ngIf="imageIndex < imageLargeOuterArray.length - 3 && imageLargeOuterArray.length !== 0"
+        (click)="nextButton()">
+      </onpicks-circle-n-button>
+    </div>
+    <div #imagesSmallOuter class="p-customer__images--small">
+      <div
+        #imageSmallOuter
+        (click)="clickImageSmall(imageSmallOuter)"
+        *ngFor="let item of imagesSmallList; let i = index"
+        [attr.data-index]="i"
+        [ngClass]="{'p-customer__images--small-border' : i == this.imageIndex }" >
+        <img drLazyLoad [src]="item">
+      </div>
+    </div>
+  </div>
+</div>

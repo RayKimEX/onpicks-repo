@@ -1,0 +1,46 @@
+<div class="ui-simple-carousel__images">
+
+  <div class="ui-simple-carousel__images--large">
+    <ul>
+      <li
+        *ngFor="let item of imagesLargeList; index as i"
+        #imageLargeOuter
+        [ngClass]="{'simple-carousel-active' : i === this.imageIndex}"
+        class="ui-simple-carousel__images--large-cur">
+        <span>
+          <img [src]="item" alt="">
+        </span>
+
+      </li>
+    </ul>
+    <button
+      *ngIf="!(imagesLargeList.length === 1)"
+      class="ui-simple-carousel__images--large-prev-button"
+      (click)="prevButton()">
+      <svg width="15" height="26" viewBox="0 0 15 26">
+        <path fill="none" fill-rule="evenodd" stroke="#E5E5E5" stroke-width="2" d="M14 1L2 13.098 14 25"/>
+      </svg>
+    </button>
+    <button
+      *ngIf="!(imagesLargeList.length === 1)"
+      class="ui-simple-carousel__images--large-next-button"
+      (click)="nextButton()">
+      <svg width="15" height="26" viewBox="0 0 15 26">
+        <path fill="none" fill-rule="evenodd" stroke="#E5E5E5" stroke-width="2" d="M1 25l12-12.098L1 1"/>
+      </svg>
+    </button>
+  </div>
+  <div #imagesSmallOuter class="ui-simple-carousel__images--small">
+    <div #imageSmallOuter
+         (click)="clickImageSmall(imageSmallOuter)"
+         *ngFor="let item of imagesSmallList; index as i;"
+         [attr.data-index]="i"
+         [ngClass]="{'ui-simple-carousel__images--small-border' : i == this.imageIndex }" >
+      <img drLazyLoad [src]="item">
+    </div>
+  </div>
+
+</div>
+
+
+

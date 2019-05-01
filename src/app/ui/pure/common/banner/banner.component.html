@@ -1,0 +1,32 @@
+<div class="banner">
+  <div
+    class="banner__image-outer">
+    <img
+      drLazyLoad
+      [relativeOption]="false"
+      src="{{bannerInfo.imgSrc}}"
+      alt="{{bannerInfo.title[0]}} {{bannerInfo.title[1]}}">
+  </div>
+  <div
+    *ngIf="!(bannerInfo.title?.length === 0 && bannerInfo.description?.length === 0)"
+    class="banner__text row"
+    [ngStyle]="{ marginLeft : bannerInfo.marginLeftForText }"
+  >
+    <div
+      class="banner__text-title-outer">
+      <div
+        *ngFor="let title of bannerInfo.title"
+        class="banner__text-title"
+        [ngClass]="bannerInfo.titleFontType">
+        {{title}}
+      </div>
+    </div>
+
+    <div *ngFor="let description of bannerInfo.description"
+         class="banner__text-description"
+         [ngClass]="bannerInfo.descriptionFontType"
+    >
+      {{description}}
+    </div>
+  </div>
+</div>

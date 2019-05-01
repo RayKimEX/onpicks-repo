@@ -1,0 +1,76 @@
+@import '~src/assets/scss/abstracts/variables';
+
+.button-outer {
+
+  display:table;
+  // 이것을 준 이유는 parent에서 border-collapse : collapse를 주면 border-radius가 먹히지 않기 때문에 주었음
+  // https://stackoverflow.com/questions/10666573/border-radius-of-table-is-not-working
+  border-collapse: separate;
+  text-align:center;
+  transition-duration: .25s;
+  transition-property: all;
+  transition-timing-function: ease-in-out;
+  background-color:$color-white;
+  width : 4rem;
+  height : 4rem;
+  opacity : 0.9;
+  border : solid 1px #292929;
+  border-radius : 2rem;
+  position:relative;
+
+  .touch__amount-down {
+    cursor : pointer;
+    border-radius: 50%;
+    width: 35px;
+    height: 38px;
+    position: absolute;
+    left:0
+  }
+
+  .touch__amount-up {
+    cursor : pointer;
+    border-radius: 50%;
+    width: 35px;
+    height: 38px;
+    position: absolute;
+    right:0
+  }
+
+
+  ui-plus-minus-icon:nth-child(2) {
+    display:inline-block;
+    @include absCenter;
+    &::after {
+      content :'';
+      width:20px;
+      height : 40px;
+    }
+  }
+
+  .extendUI {
+    display:none;
+    width:100%;
+
+    vertical-align: middle;
+    ui-plus-minus-icon:nth-child(1) {
+      display:inline-block;
+      position: absolute;
+
+      border-radius : 50%;
+      left: 1.9rem;
+      top : 50%;
+      transform: translateY(-50%);
+    }
+
+    &__number {
+
+      display:inline-block;
+      margin-bottom: 2px;
+      font-size : 1.4rem;
+      line-height : 1.43;
+      letter-spacing: 0.2px;
+      font-weight :700;
+      color : #292929;
+    }
+  }
+}

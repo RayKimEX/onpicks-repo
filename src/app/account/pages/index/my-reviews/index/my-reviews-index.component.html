@@ -1,0 +1,30 @@
+<div class="row">
+  <div class="col-3-of-12 my-reviews-navigator">
+    <nav class="">
+      <ul>
+        <li>
+          <button
+            i18n="@@written-reviews__title"
+            class="subtitle-2-bold u-color-grey"
+            routerLinkActive="u-color-black"
+            routerLink="written" >
+            내가 쓴 리뷰
+          </button>
+        </li>
+        <li>
+          <button
+            i18n="@@available-reviews__title"
+            class="subtitle-2-bold u-color-grey"
+            routerLinkActive="u-color-black"
+            routerLink="available">
+            작성 가능한 리뷰
+          </button>
+        </li>
+      </ul>
+    </nav>
+  </div>
+
+  <div class="col-9-of-12 my-reviews-router">
+    <router-outlet></router-outlet>
+  </div>
+</div>

@@ -5,6 +5,7 @@ import { ShowcasesRoutingModule } from './showcases-routing.module';
 import {UiModule} from '../ui/ui.module';
 import {DirectivesModule} from '../core/directives/directives.module';
 import {PipeModule} from '../core/pipe/pipe.module';
+import {ShowcasesComponent} from './pages/showcases/showcases.component';
 
 @NgModule({
   imports: [
@@ -14,6 +15,8 @@ import {PipeModule} from '../core/pipe/pipe.module';
     DirectivesModule,
     PipeModule
   ],
-  declarations: []
+  declarations: [
+    ShowcasesComponent
+  ]
 })
 export class ShowcasesModule { }

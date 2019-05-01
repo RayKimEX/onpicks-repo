@@ -1,0 +1,46 @@
+@import '~src/assets/scss/abstracts/variables';
+
+.c-header{
+
+  margin : 0 -2.4rem;
+  height : 6rem;
+  @include respond(desktop){
+    display:none;
+  }
+  &__category {
+    position: relative;
+    height:inherit;
+    margin : 0 8rem;
+    @include respond(sb){
+      width : calc(100% - 4rem);
+      margin : 0 2rem;
+    }
+
+
+    &--ul {
+      width:100%;
+      @include verticalCenter;
+
+    }
+
+    &--li{
+      list-style : none;
+      display:inline-block;
+      &:not(:last-child){
+        margin-right : 7.2rem;
+      }
+      @include respond(sb){
+        text-align:center;
+        margin-right : 0 !important;
+        width : 14.28%;
+      }
+    }
+  }
+}
+
+
+.c-category-content {
+  &__title {
+    margin-top : 2.4rem;
+  }
+}

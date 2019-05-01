@@ -1,0 +1,48 @@
+<div class="free-delivery-notibox" *ngLet="cartInfo as data;">
+  <ul  class="free-delivery-notibox__innerBox">
+    <ng-container *ngFor="let item of cartInfo">
+      <li class="free-delivery-notibox__item" *ngIf="item.subtotal !== 0 || cartInfo.length === 0">
+        <span
+          class="free-delivery-notibox__item--region-icon"
+          [ngClass]=
+          "[
+            (locationMap[item.location.code].nickname === 'la')  ? 'icon-la' : '',
+            (locationMap[item.location.code].nickname === 'new')  ? 'icon-new' : '',
+            (locationMap[item.location.code].nickname === 'osaka')  ? 'icon-osaka' : '',
+            (locationMap[item.location.code].nickname === 'gorgia')  ? 'icon-gorgia' : '',
+            (locationMap[item.location.code].nickname === 'hong')  ? 'icon-hong' : ''
+          ]">
+        </span>
+        <div class="free-delivery-notibox__item--info">
+          <span
+            *ngIf="(item.location.free_shipping_threshold - (item.subtotal - item.shipping_fee)) >= 0"
+            class="subtitle-2-regular">
+            {{item.location.name}} 무료배송까지 {{item.location.free_shipping_threshold - (item.subtotal - item.shipping_fee) | onpicksCurrency: (currency| async)}} 남았습니다.
+          </span>
+          <span
+            class="subtitle-2-regular"
+            *ngIf="(item.location.free_shipping_threshold - (item.subtotal - item.shipping_fee)) < 0">
+            무료배송 조건이 충족되었습니다.
+          </span>
+          <ui-progressive-bar
+            [progressWidth]="((((item.subtotal - item.shipping_fee) / item.location.free_shipping_threshold) * 100) <= 100 ? (((item.subtotal - item.shipping_fee) / item.location.free_shipping_threshold) * 100) : 100)   + '%'">
+          </ui-progressive-bar>
+        </div>
+      </li>
+    </ng-container>
+  </ul>
+  <div class="free-delivery-notibox__amount-box">
+    <span class="free-delivery-notibox__amount-box--title subtitle-2-regular u-color-grey">총 상품금액</span>
+    <span class="free-delivery-notibox__amount-box--price subtitle-2-bold">{{totalItems | onpicksCurrency: (currency| async)}}</span>
+    <onpicks-button
+      (click)="goCart()"
+      class="free-delivery-notibox__amount-box--button"
+      [width]="'10.4rem'"
+      [type]="'black'"
+      [padding]="false"
+      [size]="'small'">쇼핑백 보기
+    </onpicks-button>
+  </div>
+</div>
+
+

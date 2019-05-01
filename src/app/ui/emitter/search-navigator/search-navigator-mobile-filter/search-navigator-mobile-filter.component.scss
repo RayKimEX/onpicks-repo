@@ -1,0 +1,257 @@
+@import '~src/assets/scss/abstracts/variables';
+
+.category-content {
+  padding : 0 1.6rem;
+  //&__depth {
+  //  padding : 1.6rem 0;
+  //}
+  &__item-title {
+    padding : 1.6rem 0;
+  }
+}
+
+.fold {
+  height : 5rem;
+  overflow:hidden;
+}
+
+.brand-content {
+  overflow-y: auto;
+  height: calc(100vh - 6rem);
+  padding-left: 1.6rem;
+  padding-right: 1.6rem;
+  padding-bottom : 7.8rem;
+
+  &__search {
+    padding-top : 2.4rem;
+    padding-bottom : 1.6rem;
+    border-bottom : 1px solid $color-light-grey;
+  }
+
+  &__ul {
+    list-style: none;
+
+    &:before {
+      background : linear-gradient(180deg,#fff,hsla(0,0%,100%,0));
+
+      content: "";
+      height: 2rem;
+      pointer-events: none;
+      position: absolute;
+      width: 100%;
+      z-index: 2;
+    }
+
+    &:after {
+      background : linear-gradient(0deg,#fff,hsla(0,0%,100%,0));
+
+      bottom : 0;
+      content: "";
+      height: 2rem;
+      pointer-events: none;
+      position: absolute;
+      width: 100%;
+      z-index: 2;
+    }
+
+    &--item {
+      height: 6rem;
+      display:table;
+
+      &--vertical-center {
+        display:table-cell;
+        vertical-align: middle;
+      }
+
+      &--name {
+        margin-right : 0.4rem;
+      }
+    }
+  }
+}
+
+.value-content {
+  overflow-y: auto;
+  height: calc(100vh - 6rem);
+  padding-left: 1.6rem;
+  padding-right: 1.6rem;
+  padding-bottom : 7.8rem;
+
+  &__apply {
+    background-color: $color-white;
+    z-index:2;
+    left:0;
+    width:100%;
+    position:fixed;
+    bottom : 0;
+    border-top : 1px solid $color-light-grey;
+    padding:1.6rem;
+  }
+
+  &__ul {
+    list-style: none;
+    &--item {
+      height: 6rem;
+      display:table;
+
+      &--vertical-center {
+        display:table-cell;
+        vertical-align: middle;
+      }
+
+      &--name {
+        margin-right : 0.4rem;
+      }
+    }
+  }
+}
+
+.ex-warehouse-content {
+  overflow-y: auto;
+  height: calc(100vh - 6rem);
+  padding-left: 1.6rem;
+  padding-right: 1.6rem;
+  padding-bottom : 7.8rem;
+  &__ul {
+    list-style: none;
+    &--item {
+      height: 6rem;
+      display:table;
+
+      &--vertical-center {
+        display:table-cell;
+        vertical-align: middle;
+      }
+
+      &--name {
+        margin-right : 0.4rem;
+      }
+    }
+  }
+}
+
+.search-content-mobile {
+  margin : 0 -2.4rem;
+  position:fixed;
+  z-index:9999;
+  overflow-y:auto;
+
+  top:0;
+  width : 100%;
+  height: 100%;
+  background-color : $color-white;
+
+  &__sort {
+    padding : 0 1.6rem;
+
+    &--ul {
+      list-style: none;
+    }
+
+    &--li {
+      padding : 1.6rem 0;
+      border-bottom : 1px solid $color-light-grey;
+    }
+  }
+
+  &__filter {
+
+    &--back-btn{
+      float:left;
+      display:inline-block;
+      cursor:pointer;
+    }
+
+    &--navigate-menu {
+      padding-left: 1.6rem;
+      padding-right: 1.6rem;
+      svg {
+        float : right;
+      }
+
+      &--vertical-center {
+        display:table-cell;
+        vertical-align: middle;
+      }
+
+      &--item {
+        width: 100%;
+        display: table;
+        height:5.6rem;
+        border-bottom : 1px solid $color-light-grey;
+        cursor:pointer;
+      }
+    }
+    &--header {
+
+      background-color: $color-white;
+      padding-left: 1.6rem;
+      padding-right: 1.6rem;
+      display:table;
+
+      height:6rem;
+      width:100%;
+      border-bottom : 1px solid $color-light-grey;
+    }
+    &--vertical-center {
+      display:table-cell;
+      position:relative;
+      vertical-align: middle;
+      text-align: center;
+    }
+    &--title{
+      @include absCenter;
+    }
+
+    &--remove-all {
+      display : inline-block;
+      right : 0;
+      @include verticalCenter;
+    }
+
+    &--delete {
+      float:left;
+      display:inline-block;
+      cursor : pointer;
+      width:2.6rem;
+      height:2.6rem;
+      // top: 0rem;
+      // right: 0rem;
+      // position:absolute;
+      // margin-bottom : 0.8rem;
+
+
+      &:hover {
+        opacity : 0.5;
+      }
+      &--outer {
+        display: block;
+        width : 100%;
+        height : 2.6rem;
+
+      }
+
+      &::before,
+      &::after {
+        margin-top : 2rem;
+        margin-left: -9px;
+        width: 1.6rem;
+        height: 2px;
+        background-color: $color-black;
+        display: inline-block;
+      }
+
+      &::before,
+      &::after {
+        content: "";
+        position: absolute;
+        //
+        //right : 0;
+      }
+
+      &::before { top : 0.8rem; transform: rotate(135deg) }
+      &::after { top : 0.8rem; transform: rotate(-135deg) }
+    }
+  }
+
+}

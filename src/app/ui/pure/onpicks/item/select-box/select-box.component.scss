@@ -1,0 +1,125 @@
+@import '~src/assets/scss/abstracts/variables';
+
+
+//<div class="onpicks-sort-box">
+//<button class="onpicks-sort-box__fore-button">
+//                                        Most Helpful
+//<svg>
+//
+//</svg>
+//</button>
+//<div class="onpicks-sort-box__dropdown">
+//<div class="onpicks-sort-box__dropdown--design">
+//<div>
+//<div class="onpicks-sort-box__dropdown--element">
+//<label for="">
+
+
+.onpicks-select-box {
+  position:relative;
+  display:inherit;
+  width : inherit;
+  height:100%;
+  background-color: $color-white !important;
+
+  &__select-box {
+
+    -webkit-appearance: none;
+    background : transparent;
+    border : 0;
+    width: 100%;
+    padding : 1.1rem 1.6rem;
+    &--outer {
+      display:inline-block;
+      width : 8.3rem;
+      background:url(https://img.onpicks.com/assets/arrow_for_select_box_png.png) no-repeat right;
+      background-size : 18px 10px;
+      background-position : 80%;
+      border-radius : 2px;
+      border : 1px solid $color-light-grey;
+    }
+  }
+
+  &__fore-button {
+    border-radius: 2px;
+    border : solid 1px $color-light-grey;
+    display:inherit;
+    color: #292929;
+    width : inherit;
+    height:100%;
+    padding: 10px 16px 10px 16px;
+    text-align: left;
+    background-color: transparent;
+
+    svg {
+      pointer-events: none;
+      float : right;
+      margin-top : 3px;
+
+    }
+  }
+
+  &__dropdown {
+    display:none;
+    left:0;
+    top : 39px;
+    width:100%;
+    position:absolute;
+
+    &--shape {
+      position:relative;
+      background-color:white;
+      z-index: 5;
+      border-radius: 2px;
+      border : solid 1px #e5e5e5;
+      box-shadow: 0 6px 12px 0 rgba(227, 227, 227, 0.5);
+    }
+
+    &--element {
+      position:relative;
+      z-index : 10;
+      transition: background-color .2s;
+      &:not(:last-child) {
+        border-bottom:  solid 1px $color-light-grey;
+      }
+
+      &:hover {
+        background-color: #e5e5e5;
+      }
+      &-outer {
+        display: block;
+        height:100%;
+        width:100%;
+      }
+
+      &-label {
+        cursor:pointer;
+        width:100%;
+        display:block;
+        // top right bottom left
+        padding: 10px 16px 10px 16px;
+        input {
+          display : none;
+        }
+      }
+
+      &-text {
+        white-space : nowrap;
+
+      }
+    }
+  }
+}
+//border-radius: 2px;
+//border : solid 1px $color-light-grey;
+
+
+//text-indent : 1.6rem;
+//width : 100%;
+//           height:4rem;
+//margin-bottom:1.6rem;
+//font-size:1.4rem;
+//line-height:1.43;
+//letter-spacing: 0.03rem;
+//
+//background-color:$color-white;

@@ -1,0 +1,88 @@
+<div class="account-index">
+  <div class="row account-profile">
+    <div class="account-profile__info" *ngLet="(user$ | async) as userData">
+      <div class="account-profile__info--image">
+        <img src="{{ userData?.avatar === ''? 'http://img.onpicks.com/assets/default_avatar.png' : userData?.avatar }}" alt="">
+      </div>
+      <div class="account-profile__info-description">
+        <div class="account-profile__info-description--name h1-bold" >
+          {{ userData?.nickname }}
+        </div>
+        <div
+          i18n="@@account-profile__info-description--grade"
+          class="account-profile__info-description--grade subtitle-2-regular">
+          골드 멤버
+        </div>
+        <div
+          i18n="@@account-profile__modify"
+          routerLink="/account/settings/profile"
+          class="account-profile__info-description--modify subtitle-2-regular u-color-grey u-button-effect">
+          수정하기
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row account-navigator">
+    <nav>
+      <ul>
+        <li>
+          <button
+            i18n="@@account-navigator__feed"
+            class="subtitle-2-bold u-color-grey"
+            routerLinkActive="u-color-black"
+            routerLink="/account/feed">
+            피드
+          </button>
+        </li>
+        <li>
+          <button
+            i18n="@@word__my-shopping"
+            class="subtitle-2-bold u-color-grey"
+            routerLinkActive="u-color-black"
+            routerLink="/account/my-shopping">
+            나의 쇼핑
+          </button>
+        </li>
+        <li>
+          <button
+            i18n="@@word__my-review"
+            class="subtitle-2-bold u-color-grey"
+            routerLinkActive="u-color-black"
+            routerLink="/account/my-reviews">
+            나의 리뷰
+          </button>
+        </li>
+        <li>
+          <button
+            i18n="@@word__wish-list"
+            class="subtitle-2-bold u-color-grey"
+            routerLinkActive="u-color-black"
+            routerLink="/account/wish-list">
+            다음에 구매하기
+          </button>
+        </li>
+        <li>
+          <button
+            i18n="@@word__setting"
+            class="subtitle-2-bold u-color-grey"
+            routerLinkActive="u-color-black"
+            routerLink="/account/settings">
+            설정
+          </button>
+        </li>
+        <li>
+          <button
+            i18n="@@word__logout"
+            (click)="logout()"
+            class="subtitle-2-bold u-color-grey">
+            로그아웃
+          </button>
+        </li>
+      </ul>
+    </nav>
+  </div>
+
+  <router-outlet></router-outlet>
+</div>
+

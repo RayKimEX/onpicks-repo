@@ -1,0 +1,27 @@
+<div class="row my-shopping-index">
+  <div class="col-3-of-12 my-shopping-navigator">
+    <div>
+      <button
+        i18n="@@orders__title"
+        class="my-shopping-navigator__item subtitle-2-bold u-color-grey"
+        routerLink="orders"
+        [ngClass]="{ 'u-color-black' : ((url$ | async)[3] === 'orders') || ((url$ | async)[3] === 'orders-detail')}">
+        주문·배송조회
+      </button>
+    </div>
+    <div>
+      <button
+        i18n="@@points__title"
+        class="my-shopping-navigator__item subtitle-2-bold u-color-grey"
+        routerLink="credits"
+        routerLinkActive="u-color-black">
+        포인트·쿠폰
+      </button>
+    </div>
+  </div>
+
+  <div class="col-9-of-12 my-shopping-router">
+    <router-outlet></router-outlet>
+  </div>
+</div>
+

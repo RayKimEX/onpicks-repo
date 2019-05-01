@@ -1,0 +1,35 @@
+@import '~src/assets/scss/abstracts/variables';
+
+
+
+.p-refund {
+  margin-bottom : 1.6rem;
+  onpicks-sort-box {
+    float : right;
+  }
+  h1 {
+    display:inline-block;
+    margin-bottom : 2.4rem;
+  }
+
+  &__fold {
+    display:inline-block;
+    float:right;
+  }
+
+  &__title {
+    margin-bottom : 1.6rem;
+  }
+
+  &__section {
+    padding-bottom : 2.4rem;
+    margin-bottom : 2.4rem;
+    border-bottom : 1px solid $color-light-grey;
+  }
+
+  ul {
+    li {
+      margin-left : 2rem;
+    }
+  }
+}

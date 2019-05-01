@@ -1,0 +1,152 @@
+@import '~src/assets/scss/abstracts/variables';
+
+.normal-checkbox {
+  display: inline-block;
+  position: relative;
+  padding-left: 27px;
+  cursor: pointer;
+  font-size: 1.4rem;
+  user-select: none;
+
+  &__input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+
+  &__checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 18px;
+    width: 18px;
+    border-radius : 2px;
+    border: solid 1px $color-light-grey;
+
+    &:after {
+      content: "";
+      position: absolute;
+      opacity: 0;
+      left: 5px;
+      top: 2px;
+      width: 6px;
+      height: 9px;
+      border: solid black;
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg);
+    }
+  }
+}
+
+
+.radio-checkbox {
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  font-size: 1.4rem;
+  user-select: none;
+
+  &--radius {
+    display: table;
+    position: relative;
+    cursor: pointer;
+    font-size: 1.4rem;
+    user-select: none;
+
+    height:4.8rem;
+    width : 100%;
+
+
+    text-align: center;
+
+  }
+
+  &__content {
+    vertical-align: text-top;
+    margin-left : 0.8rem;
+
+    &--radius {
+      display:table-cell;
+      vertical-align: middle;
+      border-radius : 2.4rem;
+      background-color : $color-white;
+      color : $color-black;
+      border: 1px solid $color-light-grey;
+      // transition : color .5s, background-color .5s;
+    }
+  }
+
+  &__input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+
+  &__checkmark {
+    display:inline-block;
+    top: 0;
+    left: 0;
+    height: 18px;
+    width: 18px;
+    border-radius : 2px;
+    border : solid 1px #979797;
+
+    &:after {
+      display:inline-block;
+      content: "";
+      opacity : 0;
+      margin-left: 4px;
+      margin-bottom: 3px;
+      //left: 4px;
+      //top: 0px;
+      width: 8px;
+      height: 12px;
+      border: solid black;
+      border-width: 0 3px 3px 0;
+      transform: rotate(45deg);
+    }
+  }
+}
+
+/* On mouse-over, add a grey background color */
+.radio-checkbox:hover input ~ .radio-checkbox__checkmark:after {
+  opacity : 0.2;
+}
+
+/* Show the checkmark when checked */
+.radio-checkbox input:checked ~ .radio-checkbox__checkmark:after {
+  opacity : 1;
+}
+
+
+
+/* On mouse-over, add a grey background color */
+.radio-checkbox--radius:hover input ~ .radio-checkbox__content--radius {
+
+}
+
+/* Show the checkmark when checked */
+.radio-checkbox--radius input:checked ~ .radio-checkbox__content--radius {
+  background-color: $color-black;
+  color: $color-white;
+}
+
+
+/* On mouse-over, add a grey background color */
+.normal-checkbox:hover input ~ .normal-checkbox__checkmark:after {
+  opacity : 0.2;
+}
+
+/* Show the checkmark when checked */
+.normal-checkbox input:checked ~ .normal-checkbox__checkmark:after {
+  opacity : 1;
+
+}
+
+.normal-checkbox input:checked ~ .normal-checkbox__checkmark {
+  border : solid 1px #979797;
+}

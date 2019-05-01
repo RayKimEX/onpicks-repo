@@ -1,0 +1,20 @@
+@import '~src/assets/scss/abstracts/variables';
+
+
+
+.prev-button {
+  @include verticalCenter;
+  z-index : 5;
+  left : 1.8rem;
+  cursor : pointer;
+  width: 40px;
+  height: 40px;
+  border-width:0;
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px 0 rgba(220, 220, 220, 0.5);
+  border-radius : 50%;
+  svg{
+    @include absCenter;
+    left : 47.5%;
+  }
+}

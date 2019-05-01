@@ -1,0 +1,91 @@
+<div
+  [ngStyle]="{ display: isShow ? 'block' : 'none'}"
+  class="write-review">
+
+  <div class="write-review__outer"></div>
+  <div class="write-review__content">
+
+    <div class="write-review__content--inner">
+
+      <div class="write-review__info">
+          <span (click)="exitEvent.emit();" class="write-review__info--exit-btn">
+            <span class="write-review__info--exit-btn-inner"></span>
+          </span>
+        <h1 class="write-review__info--title h1-bold">리뷰쓰기</h1>
+        <span class="write-review__info--description subtitle-2-regular u-color-dark-grey">포토리뷰 작성시 250P지급</span>
+        <div class="write-review__info--item">
+          <div class="write-review__info--image">
+            <img drLazyLoad src="{{_data?.reviewData?.thumbnail}}" alt="">
+          </div>
+          <div class="write-review__info--product">
+            <div class="write-review__info--product-div subtitle-3-bold">{{_data?.reviewData?.brand}}</div>
+            <div class="write-review__info--product-div body-3-regular">{{_data?.reviewData?.title}}</div>
+            <div class="write-review__info--product-div subtitle-3-regular u-color-dark-grey">사이즈: 라지 · 컬러: 블랙</div>
+            <div class="write-review__info--product-div subtitle-2-bold">{{_data?.reviewData?.price + _data?.reviewData?.discount | onpicksCurrency:(currency| async)}}</div>
+          </div>
+        </div>
+
+      </div>
+      <div class="write-review__rating">
+        <h1 class="write-review__rating--title h1-bold">만족도를 평가해주세요</h1>
+        <ui-star-rating
+          (outputStarPoint)="starRating = $event"
+          [size]="28">
+        </ui-star-rating>
+      </div>
+      <div class="write-review__photo">
+        <h1 class="write-review__photo--title h1-bold">사진을 올려주세요</h1>
+        <ng-container [ngSwitch]="errorStatus">
+          <div *ngSwitchCase="0" class="write-review__photo--description subtitle-2-regular u-color-dark-grey">사진은 최대 20MB 이하의 JPG, PNG, GIF 파일 10장까지 첨부 가능합니다.</div>
+          <div *ngSwitchCase="1" class="write-review__photo--description subtitle-2-regular u-color-orange">사진은 최대 10장까지 첨부가 가능합니다.</div>
+          <div *ngSwitchCase="2" class="write-review__photo--description subtitle-2-regular u-color-orange">사진은 최대 20mb 이하만 첨부가 가능합니다</div>
+        </ng-container>
+
+        <div class="write-review__photo--images">
+          <ul>
+            <li class="write-review__photo--images-item" *ngFor="let item of imageFileList; index as i">
+              <div class="write-review__photo--images-item-outer">
+                <img drLazyLoad #imageViewList (load)="imgLoaded($event)" [ngStyle]="{transform : item.rotate}" [src]="item.blobData | safeHtml" alt="">
+              </div>
+
+
+              <div (click)="deleteImageFile(i)"  class="write-review__photo--images-exit">
+                <span class="write-review__photo--images-exit-inner"></span>
+              </div>
+            </li>
+
+            <ng-container *ngIf="viewDragArea">
+              <li
+                class="write-review__photo--upload"
+                (drop)="dropFiles($event)"
+                [ngStyle]="{ backgroundColor : isDraggedEnter ? '#e5e5e5' : '#FFFFFF' }"
+                (dragenter)="dragEnter($event)"
+                (dragleave)="dragLeave($event)"
+                (dragover)="onDragOver($event)">
+                <label for="flie_id"></label>
+                <img src="" alt="">
+                <div></div>
+
+                <input id="flie_id" type="file" (change)="dropFiles($event)">
+              </li>
+            </ng-container>
+          </ul>
+        </div>
+      </div>
+      <div class="write-review__review">
+        <h1 class="write-review__review--title h1-bold">리뷰를 작성해주세요</h1>
+        <div class="write-review__review--description subtitle-2-regular u-color-dark-grey">개인정보, 허위, 악의 등등 적절하지 아니한 내용의 게시물은 임의로 삭제될 수 있습니다</div>
+        <textarea
+          #reviewTextView
+          class="write-review__review--textarea body-1-regular"
+          placeholder="이 상품을 사용하면서 느꼈던 장점과 단점을 10자 이상으로 작성해주세요."
+          name=""
+          id="" cols="35" rows="6"></textarea>
+      </div>
+      <onpicks-button
+        (click)='publishReview(_data?.reviewData?.product, _data?.reviewData?.review )'
+        [type]="'black'"
+        [width]="'10.3rem'">등록하기</onpicks-button>
+    </div>
+  </div>
+</div>

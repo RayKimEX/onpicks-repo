@@ -1,0 +1,249 @@
+<footer class="footer">
+  <div class="footer__desktop">
+    <div class="footer__desktop--first-floor">
+      <nav class="footer__desktop--nav">
+        <ul>
+          <li>
+            <a
+              href="http://www.mojostudio.io/"
+              class="subtitle-2-regular u-color-white"
+              target="_blank"
+              i18n="@@footer__about" >
+              회사소개|About Us
+            </a>
+          </li>
+          <li>
+            <a
+              href="mailto:help@onpicks.com"
+              class="subtitle-2-regular u-color-white"
+              i18n="@@footer__contact">
+              고객센터|Contact
+            </a>
+          </li>
+          <li>
+            <a
+              routerLink="/help/faq"
+              class="subtitle-2-regular u-color-white"
+              i18n="@@footer__faq">
+              FAQ|FAQ
+            </a>
+          </li>
+          <li>
+            <a
+              routerLink="/terms/privacy"
+              class="subtitle-2-regular u-color-white"
+              i18n="@@footer__privacy">
+              개인정보처리방침|Privacy Policy
+            </a>
+          </li>
+          <li>
+            <a
+              routerLink="/terms"
+              class="subtitle-2-regular u-color-white"
+              i18n="@@footer__termsofuse">
+              이용약관|Terms of Use
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <div class="footer__desktop--miscell u-float-right">
+
+        <emitter-change-preference
+          [position]="'footer'"
+          [type]="'region'"
+          [color]="'white'"
+          class="footer__desktop--miscell--item subtitle-2-regular">
+          {{ region === 'kr' ? 'KOR' : 'USA' }}
+        </emitter-change-preference>
+        <emitter-change-preference
+          [position]="'footer'"
+          [color]="'white'"
+          [type]="'currency'"
+          class="footer__desktop--miscell--item subtitle-2-regular">
+          {{ (currency | async) === 'KRW' ? 'KRW ₩' : 'USD $' }}
+        </emitter-change-preference>
+        <!--<emitter-change-preference-->
+          <!--[position]="'footer'"-->
+          <!--[color]="'white'"-->
+          <!--[type]="'locale'"-->
+          <!--class="footer__desktop&#45;&#45;miscell&#45;&#45;item subtitle-2-regular">-->
+          <!--{{ locale === 'ko' ? '한국어' : '영어' }}-->
+        <!--</emitter-change-preference>-->
+      </div>
+      <hr>
+    </div>
+
+    <div class="footer__desktop--second-floor subtitle-2-regular u-color-white">
+      <div class="footer__desktop--copyright">
+        <div *ngIf="region === 'kr'" class="footer__desktop--copyright--cooperation-name">
+          <span i18n="@@footer__desktop--copyright--cooperation-name1">상호명 : 모조벤처스 주식회사   대표이사: 유한태 이메일 : </span><a class="a-tag-color" href="mailto:help@onpicks.com">help@onpicks.com</a><span i18n="@@footer__desktop--copyright--cooperation-name2">   주소: 서울특별시 성동구 성수일로8길 59, 7층 777호</span>
+        </div>
+        <div *ngIf="region === 'kr'" class="footer__desktop--copyright--business-number">
+          사업자등록번호 : 366-86-01451  통신판매업신고번호 : 제 2019-서울성동-760 호 <a (click)="openBizCommPop('366-86-01451')" class="a-tag-color">사업자 정보 확인</a>
+        </div>
+        <div *ngIf="region === 'kr'" class="footer__desktop--copyright--customer-center">
+          고객센터 : 1800 - 8109  평일 10:00 ~ 18:00 / 점심시간 13:00 ~ 14:00 (토/일/공휴일 휴무)
+        </div>
+        <div class="footer__desktop--copyright--copyright-text" i18n="@@footer__copyright">
+        </div>
+      </div>
+      <!--(click)="javascript:window.open('https://mark.inicis.com/mark/popup_v1.php?mid=onpicks001','mark','scrollbars=no,resizable=no,width=565,height=683');"-->
+
+      <div [ngStyle]="{ marginTop : region === 'us' ? '-1.6rem' : '' }" class="footer__miscell">
+        <div class="u-button-effect" (click)="inicisOpen('escrow')">
+          <img class="footer__desktop--inicis-icon" src='http://image.inicis.com/mkt/certmark/escrow/escrow_74x74_gray.png' alt="클릭하시면 이니시스 결제시스템의 유효성을 확인하실 수 있습니다.">
+        </div>
+        <div class="u-button-effect" (click)="inicisOpen('inicis')">
+          <img class="footer__desktop--inicis-icon" src='http://image.inicis.com/mkt/certmark/inipay/inipay_74x74_gray.png' alt="클릭하시면 이니시스 결제시스템의 유효성을 확인하실 수 있습니다.">
+        </div>
+        <!--https://webmastertool.naver.com/guide/advanced_sd.naver#chapter3.1-->
+        <!--네이버 채널 등록을 위한 HTML Schema 변경-->
+        <span itemscope="" itemtype="http://schema.org/Organization" class="footer__miscell--share">
+          <link itemprop="url" href="http://www.onpicks.com">
+          <a itemprop="sameAs" href="https://www.instagram.com/onpicks_official/" target="_blank" class="footer__miscell--instargram" >
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+              <path fill="#FFF" fill-rule="evenodd" d="M12 0c3.259 0 3.668.014 4.948.072 1.277.058 2.15.261 2.912.558.79.307 1.459.717 2.126 1.384A5.883 5.883 0 0 1 23.37 4.14c.297.763.5 1.635.558 2.912C23.986 8.332 24 8.741 24 12c0 3.259-.014 3.668-.072 4.948-.058 1.277-.261 2.15-.558 2.912a5.883 5.883 0 0 1-1.384 2.126 5.883 5.883 0 0 1-2.126 1.384c-.763.297-1.635.5-2.912.558-1.28.058-1.689.072-4.948.072-3.259 0-3.668-.014-4.948-.072-1.277-.058-2.15-.261-2.912-.558a5.883 5.883 0 0 1-2.126-1.384A5.882 5.882 0 0 1 .63 19.86c-.297-.763-.5-1.635-.558-2.912C.014 15.668 0 15.259 0 12c0-3.259.014-3.668.072-4.948C.13 5.775.333 4.902.63 4.14a5.882 5.882 0 0 1 1.384-2.126A5.882 5.882 0 0 1 4.14.63C4.903.333 5.775.13 7.052.072 8.332.014 8.741 0 12 0zm0 2.162c-3.204 0-3.584.012-4.849.07-1.17.053-1.805.249-2.228.413-.56.218-.96.478-1.38.898-.42.42-.68.82-.898 1.38-.164.423-.36 1.058-.413 2.228-.058 1.265-.07 1.645-.07 4.849s.012 3.584.07 4.849c.053 1.17.249 1.805.413 2.228.218.56.478.96.898 1.38.42.42.82.68 1.38.898.423.164 1.058.36 2.228.413 1.265.058 1.645.07 4.849.07s3.584-.012 4.849-.07c1.17-.053 1.805-.249 2.228-.413.56-.218.96-.478 1.38-.898.42-.42.68-.82.898-1.38.164-.423.36-1.058.413-2.228.058-1.265.07-1.645.07-4.849s-.012-3.584-.07-4.849c-.053-1.17-.249-1.805-.413-2.228a3.718 3.718 0 0 0-.898-1.38c-.42-.42-.82-.68-1.38-.898-.423-.164-1.058-.36-2.228-.413-1.265-.058-1.645-.07-4.849-.07zm0 3.676a6.162 6.162 0 1 1 0 12.324 6.162 6.162 0 0 1 0-12.324zM12 16a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm7.846-10.406a1.44 1.44 0 1 1-2.88 0 1.44 1.44 0 0 1 2.88 0z"/>
+            </svg>
+          </a>
+          <a itemprop="sameAs" href="https://www.facebook.com/onpicks.official/" target="_blank" class="footer__miscell--facebook">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+              <path fill="#FFF" fill-rule="evenodd" d="M12.82 24H1.324A1.325 1.325 0 0 1 0 22.675V1.325C0 .593.593 0 1.325 0h21.35C23.407 0 24 .593 24 1.325v21.35c0 .732-.593 1.325-1.325 1.325H16.56v-9.294h3.12l.466-3.622H16.56V8.77c0-1.048.29-1.763 1.795-1.763h1.918v-3.24c-.332-.045-1.47-.143-2.795-.143-2.766 0-4.659 1.688-4.659 4.788v2.67H9.692v3.623h3.127V24z"/>
+            </svg>
+          </a>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer__mobile">
+    <div class="footer__mobile--first-floor">
+      <div class="footer__mobile--first-floor--miscell">
+        <emitter-change-preference
+          [type]="'region'"
+          [color]="'white'"
+          class="footer__mobile--first-floor--miscell--item subtitle-2-regular">
+          {{ region === 'kr' ? 'KOR' : 'USA' }}
+        </emitter-change-preference>
+        <emitter-change-preference
+          [color]="'white'"
+          [type]="'currency'"
+          class="footer__mobile--first-floor--miscell--item subtitle-2-regular">
+          {{ (currency | async) === 'KRW' ? 'KRW ₩' : 'USD $' }}
+        </emitter-change-preference>
+        <!--<emitter-change-preference-->
+          <!--[color]="'white'"-->
+          <!--[type]="'locale'"-->
+          <!--class="footer__mobile&#45;&#45;first-floor&#45;&#45;miscell&#45;&#45;item subtitle-2-regular">-->
+          <!--{{ locale === 'ko' ? '한글' : 'ENG' }}-->
+        <!--</emitter-change-preference>-->
+        <!--<span class="footer__mobile&#45;&#45;first-floor&#45;&#45;miscell&#45;&#45;nation subtitle-2-regular u-color-white">usa</span>-->
+        <!--<span class="footer__mobile&#45;&#45;first-floor&#45;&#45;miscell&#45;&#45;currency subtitle-2-regular u-color-white">usd&nbsp;$</span>-->
+        <!--<span class="footer__mobile&#45;&#45;first-floor&#45;&#45;miscell&#45;&#45;language subtitle-2-regular u-color-white">eng</span>-->
+      </div>
+      <div class="footer__miscell u-float-right">
+        <a class="footer__miscell--instargram" href="https://www.instagram.com/onpicks_official/" target="_blank">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+            <path fill="#FFF" fill-rule="evenodd" d="M12 0c3.259 0 3.668.014 4.948.072 1.277.058 2.15.261 2.912.558.79.307 1.459.717 2.126 1.384A5.883 5.883 0 0 1 23.37 4.14c.297.763.5 1.635.558 2.912C23.986 8.332 24 8.741 24 12c0 3.259-.014 3.668-.072 4.948-.058 1.277-.261 2.15-.558 2.912a5.883 5.883 0 0 1-1.384 2.126 5.883 5.883 0 0 1-2.126 1.384c-.763.297-1.635.5-2.912.558-1.28.058-1.689.072-4.948.072-3.259 0-3.668-.014-4.948-.072-1.277-.058-2.15-.261-2.912-.558a5.883 5.883 0 0 1-2.126-1.384A5.882 5.882 0 0 1 .63 19.86c-.297-.763-.5-1.635-.558-2.912C.014 15.668 0 15.259 0 12c0-3.259.014-3.668.072-4.948C.13 5.775.333 4.902.63 4.14a5.882 5.882 0 0 1 1.384-2.126A5.882 5.882 0 0 1 4.14.63C4.903.333 5.775.13 7.052.072 8.332.014 8.741 0 12 0zm0 2.162c-3.204 0-3.584.012-4.849.07-1.17.053-1.805.249-2.228.413-.56.218-.96.478-1.38.898-.42.42-.68.82-.898 1.38-.164.423-.36 1.058-.413 2.228-.058 1.265-.07 1.645-.07 4.849s.012 3.584.07 4.849c.053 1.17.249 1.805.413 2.228.218.56.478.96.898 1.38.42.42.82.68 1.38.898.423.164 1.058.36 2.228.413 1.265.058 1.645.07 4.849.07s3.584-.012 4.849-.07c1.17-.053 1.805-.249 2.228-.413.56-.218.96-.478 1.38-.898.42-.42.68-.82.898-1.38.164-.423.36-1.058.413-2.228.058-1.265.07-1.645.07-4.849s-.012-3.584-.07-4.849c-.053-1.17-.249-1.805-.413-2.228a3.718 3.718 0 0 0-.898-1.38c-.42-.42-.82-.68-1.38-.898-.423-.164-1.058-.36-2.228-.413-1.265-.058-1.645-.07-4.849-.07zm0 3.676a6.162 6.162 0 1 1 0 12.324 6.162 6.162 0 0 1 0-12.324zM12 16a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm7.846-10.406a1.44 1.44 0 1 1-2.88 0 1.44 1.44 0 0 1 2.88 0z"/>
+          </svg>
+        </a>
+        <a class="footer__miscell--facebook" href="https://www.facebook.com/onpicks.official/" target="_blank">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+            <path fill="#FFF" fill-rule="evenodd" d="M12.82 24H1.324A1.325 1.325 0 0 1 0 22.675V1.325C0 .593.593 0 1.325 0h21.35C23.407 0 24 .593 24 1.325v21.35c0 .732-.593 1.325-1.325 1.325H16.56v-9.294h3.12l.466-3.622H16.56V8.77c0-1.048.29-1.763 1.795-1.763h1.918v-3.24c-.332-.045-1.47-.143-2.795-.143-2.766 0-4.659 1.688-4.659 4.788v2.67H9.692v3.623h3.127V24z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+    <div class="footer__mobile--second-floor">
+      <div class="footer__mobile--second-floor--outer">
+        <div class="footer__mobile--second-floor--outer--inner">
+          <!--<li><a href="" routerLink="/help/blog" i18n="@@footer__desktop--blog">Blog</a></li>-->
+          <!--<li><a href="" routerLink="/help/career" i18n="@@footer__desktop--career">Career</a></li>-->
+          <div class="footer__mobile--second-floor--outer--inner--item">
+            <a
+              href="http://www.mojostudio.io/"
+              class="subtitle-2-regular u-color-white"
+              target="_blank"
+              i18n="@@footer__about" >
+              회사소개|About Us
+            </a>
+          </div>
+          <div class="footer__mobile--second-floor--outer--inner--item">
+            <a
+              href="mailto:help@onpicks.com"
+              class="subtitle-2-regular u-color-white"
+              i18n="@@footer__contact">
+              고객센터|Contact
+            </a>
+          </div>
+          <div class="footer__mobile--second-floor--outer--inner--item">
+            <a
+              routerLink="/help/faq"
+              class="subtitle-2-regular u-color-white"
+              i18n="@@footer__faq">
+              FAQ|FAQ
+            </a>
+          </div>
+          <div class="footer__mobile--second-floor--outer--inner--item">
+            <a
+              routerLink="/terms/privacy"
+              class="subtitle-2-regular u-color-white"
+              i18n="@@footer__privacy">
+              개인정보처리방침|Privacy Policy
+            </a>
+          </div>
+          <div class="footer__mobile--second-floor--outer--inner--item">
+            <a
+              routerLink="/terms"
+              class="subtitle-2-regular u-color-white"
+              i18n="@@footer__termsofuse">
+              이용약관|Terms of Use
+            </a>
+          </div>
+        </div>
+        <div (click)="inicisOpen('inicis')" class="footer__mobile--second-floor--outer--inicis-icon--inicis u-button-effect">
+          <img src='http://image.inicis.com/mkt/certmark/inipay/inipay_74x74_gray.png' alt="클릭하시면 이니시스 결제시스템의 유효성을 확인하실 수 있습니다.">
+        </div>
+        <div (click)="inicisOpen('escrow')" class="footer__mobile--second-floor--outer--inicis-icon--escrow u-button-effect">
+          <img src='http://image.inicis.com/mkt/certmark/escrow/escrow_74x74_gray.png' alt="클릭하시면 이니시스 결제시스템의 유효성을 확인하실 수 있습니다.">
+        </div>
+      </div>
+    </div>
+    <div class="footer__mobile--third-floor">
+      <div *ngIf="region === 'kr'">
+        <div>
+          <div class="u-button-effect" (click)="this.isShowMobileToggleBusinessInfo = !this.isShowMobileToggleBusinessInfo">
+            <span
+              [ngClass]="[ isShowMobileToggleBusinessInfo ? 'subtitle-2-bold' : 'subtitle-2-regular' ]"
+              class="u-color-white">
+              모조벤처스 주식회사 사업자 정보
+            </span>
+            <svg *ngIf="!isShowMobileToggleBusinessInfo" class="footer__mobile--third-floor--triangle-svg" width="10" height="8" viewBox="0 0 10 8">
+              <polyline points="1 2 5 6 9 2" fill="none" stroke="#b3b3b3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+            </svg>
+            <svg *ngIf="isShowMobileToggleBusinessInfo" class="footer__mobile--third-floor--triangle-svg-up"  width="10" height="6" viewBox="0 0 10 6">
+              <path fill="#B3B3B3" fill-rule="evenodd" d="M9 6a.997.997 0 0 1-.707-.293L5 2.414 1.707 5.707A.999.999 0 1 1 .293 4.293l4-4a.999.999 0 0 1 1.414 0l4 4A.999.999 0 0 1 9 6"/>
+            </svg>
+          </div>
+        </div>
+        <div
+          [ngStyle]="{display : isShowMobileToggleBusinessInfo ? 'block' : 'none'}"
+          class="footer__mobile--third-floor--toggle-info subtitle-3-regular u-color-white">
+          <div>상호명 : 모조벤처스 주식회사</div>
+          <div>대표이사: 유한태</div>
+          <div>이메일 : <a href="mailto:help@onpicks.com" class="a-tag-color">help@onpicks.com</a></div>
+          <div>주소: 서울특별시 성동구 성수일로8길 59, 7층 777호</div>
+          <div>사업자등록번호 : 366-86-01451</div>
+          <div>통신판매업신고번호 : 제 2019-서울성동-760 호</div>
+          <div><a (click)="openBizCommPop('366-86-01451')" class="a-tag-color">사업자 정보 확인</a></div>
+          <br>
+          <div>고객센터 : 1800 - 8109  평일 10:00 ~ 18:00</div>
+          <div>점심시간 13:00 ~ 14:00 (토/일/공휴일 휴무)</div>
+        </div>
+      </div>
+      <div
+        class="footer__desktop--copyright--copyright-text subtitle-3-regular u-color-white"
+        i18n="@@footer__copyright">
+      </div>
+    </div>
+  </div>
+</footer>

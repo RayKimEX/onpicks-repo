@@ -1,0 +1,67 @@
+
+<button *ngIf="type === 'white'" class="onpicks-button btn--white"
+
+        [ngClass]="[
+          padding ? 'btn--padding' : '',
+          size == 'big' ? 'btn--big' : 'btn--small',
+          size == 'big' ? 'button-bold' : 'subtitle-2-regular'
+        ]"
+
+        [ngStyle]="{
+          'width' : (width === undefined ? '100%' : width),
+          'marginLeft' : marginLeft
+        }"
+>
+  <ng-container *ngTemplateOutlet="tempOutlet"></ng-container>
+</button>
+
+<button *ngIf="type === 'black'" class="onpicks-button btn--black"
+        [ngClass]="[
+          padding ? 'btn--padding' : '',
+          size == 'big' ? 'btn--big' : 'btn--small',
+          size == 'big' ? 'button-bold' : 'subtitle-2-regular'
+        ]"
+
+        [ngStyle]="{
+          'width' : (width === undefined ? '100%' : width),
+          'marginLeft' : marginLeft
+        }"
+>
+  <ng-container *ngTemplateOutlet="tempOutlet"></ng-container>
+</button>
+
+<button *ngIf="type === 'green'" class="onpicks-button btn--green"
+        [ngClass]="[
+          padding ? 'btn--padding' : '',
+          size == 'big' ? 'btn--big' : 'btn--small',
+          size == 'big' ? 'button-bold' : 'subtitle-2-regular'
+        ]"
+
+        [ngStyle]="{
+          'width' : (width === undefined ? '100%' : width),
+          'marginLeft' : marginLeft
+        }"
+>
+  <ng-container *ngTemplateOutlet="tempOutlet"></ng-container>
+</button>
+
+
+<button
+  *ngIf="type === 'grey'" class="onpicks-button btn--grey"
+        [ngStyle]="{
+          'width' : (width === undefined ? '100%' : width),
+          'marginLeft' : marginLeft
+        }"
+
+        [ngClass]="[
+          padding ? 'btn--padding' : '',
+          size == 'big' ? 'btn--big' : 'btn--small',
+          size == 'big' ? 'button-bold' : 'subtitle-2-regular'
+        ]"
+>
+  <ng-container *ngTemplateOutlet="tempOutlet"></ng-container>
+</button>
+
+<ng-template #tempOutlet>
+  <ng-content></ng-content>
+</ng-template>

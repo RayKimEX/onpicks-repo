@@ -1,0 +1,239 @@
+@import '~src/assets/scss/abstracts/variables';
+
+onpicks-search-box {
+  float : right;
+}
+
+onpicks-circle-n-button {
+  right : -9rem;
+  position: absolute;
+  width:10rem;
+  height:10rem;
+  background-color: black;
+  border : 1px solid red;
+}
+
+.modal {
+  &__title {
+    margin-bottom : 0.8rem;
+  }
+
+  &__item {
+    padding : 1.6rem 0;
+    border-bottom : 1px solid $color-light-grey;
+
+    &--check-box {
+      float : right;
+    }
+  }
+
+  &__btn {
+    display:inline-block;
+    margin-top : 2.4rem;
+  }
+}
+
+.p-reviews {
+
+  &__title {
+    margin-right : 1.2rem;
+    display :inline-block;
+    margin-bottom : 2.4rem;
+  }
+
+  &__small-header {
+    margin-bottom: 2.4rem;
+
+    onpicks-sort-box {
+      float:right;
+      margin-top : -5px;
+    }
+  }
+
+  &__image {
+    width : 10.4rem;
+    height : 10.4rem;
+    float:right;
+    & > img {
+      @include imageAspactRatio;
+    }
+  }
+
+  &__content{
+
+    min-height: 10.4rem;
+    display:inline-block;
+    &-outer {
+      margin-top : 0.8rem;
+    }
+  }
+
+  hr {
+    margin : 2.6rem 0;
+  }
+  position : relative;
+
+  & > h4 {
+    display: inline-block;
+    margin-right: 1.6rem;
+  }
+
+
+  &__table {
+    width : 100%;
+    border-collapse: collapse;
+    border-spacing : 0;
+    &--point {
+      margin-left : 0.8rem;
+    }
+
+    & tr {
+      border-bottom : 0.4rem solid transparent;;
+    }
+
+    & td {
+
+      &:first-child {
+        width : 7.2rem;
+      }
+      &:nth-child(2){
+        width : auto;
+      }
+      &:last-child{
+        text-align : right;
+        width : 6rem;
+      }
+    }
+
+    &--line {
+      position:relative;
+      height : 2.4rem;
+      background-color : #e5e5e5;
+
+      &-current {
+        position: absolute;
+        width : 0rem;
+        height : 2.4rem;
+        border-radius : 2px;
+        background-color : $color-black;
+      }
+    }
+  }
+
+  select {
+    float : right;
+    @include sortDropbox;
+  }
+
+  &__figure {
+    position:relative;
+
+    &--outer {
+      position:relative;
+      display:inline-block;
+      width:4rem;
+      height:4.2rem;
+      margin-right:1.6rem;
+      border-radius : 50%;
+      overflow:hidden;
+      img {
+        @include imageAspactRatio;
+      }
+    }
+
+
+    &--caption {
+
+      position:absolute;
+      display: inline-block;
+
+      & > figcaption {
+        margin-bottom: 1px;
+      }
+
+      &-date {
+        margin-left : 0.8rem;
+      }
+
+    }
+  }
+
+
+
+  &__option {
+    margin-top:2.4rem;
+
+    &--thumbs-up-active {
+      fill : $color-green;
+    }
+
+
+    &--active {
+
+      color : $color-green;
+    }
+    &--feature {
+      position:relative;
+      margin-left: 0.8rem;
+      margin-right: 3.2rem;
+      top:-0.5rem;
+      @include respond(tb){
+        display:none;
+      }
+
+      &--icon {
+        @include respond(tb){
+          &:not(:last-child){
+            margin-right:1.6rem;
+          }
+        }
+      }
+    }
+
+    &--report {
+      float : right;
+    }
+  }
+
+
+  &__pagination {
+    &--outer {
+      text-align : center;
+    }
+    margin-left : -1.2rem;
+    user-select: none;
+    li {
+      position:relative;
+      font-size:1.6rem;
+      display : inline-block;
+      list-style : none;
+      margin-right : 2.6rem;
+
+      div {
+        text-align:center;
+        display : inline-block;
+        width : 3.2rem;
+
+        cursor:pointer;
+
+        svg {
+          position:absolute;
+          top : 1px;
+        }
+      }
+    }
+
+    &--number-bold {
+      color : black;
+      font-weight : 700;
+    }
+
+    &--finite-num {
+      position:relative;
+      top : -0.5rem;
+    }
+  }
+
+}
+
+

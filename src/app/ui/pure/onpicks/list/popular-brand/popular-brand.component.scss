@@ -1,0 +1,74 @@
+@import "~src/assets/scss/abstracts/variables";
+
+.popular-brand {
+  width: 100%;
+
+
+  &__content {
+
+    white-space: nowrap;
+    overflow: hidden;
+    @include respond(tb){
+      overflow-x : auto;
+      &::-webkit-scrollbar{
+        display :none;
+      }
+    }
+    &--outer {
+      position:relative;
+    }
+  }
+
+  &__ul {
+
+    transition: transform .5s ease 0s;
+
+    @include respond(tb){
+      transition : none;
+    }
+  }
+
+  &__title {
+    margin-bottom : 2.4rem;
+
+    @include respond(tb){
+      margin-bottom : 1.6rem;
+    }
+
+  }
+
+  &__image--outer {
+    display:inline-block;
+    width: 100%;
+    height:16.8rem;
+    margin-bottom : 2.4rem;
+
+    @include respond(tb){
+      margin-bottom : 1.6rem;
+    }
+
+    @include respond(fb){
+      height: 100%;
+    }
+
+    img {
+      width:100%;
+      height:100%;
+      border-radius : 50%;
+    }
+  }
+
+  &__item {
+    float : none !important;
+    display:inline-block;
+    img {
+      user-select: none;
+    }
+    &--name {
+      text-align: center;
+      width:9rem;
+      margin : 0 auto;
+      display:block;
+    }
+  }
+}

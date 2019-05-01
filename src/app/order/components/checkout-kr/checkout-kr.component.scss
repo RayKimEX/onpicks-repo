@@ -1,0 +1,617 @@
+@import '~src/assets/scss/abstracts/variables';
+
+.modal {
+  &__body {
+    padding-bottom : 2.4rem;
+    margin-bottom : 2.4rem;
+    border-bottom : 1px solid $color-light-grey;
+  }
+}
+
+onpicks-input-box {
+  width : 40.8rem;
+  @include respond(sb){
+    width:100%;
+  }
+}
+
+.checkout-mobile {
+  display:none;
+  @include respond(tb){
+    display:block;
+  }
+
+  &__price {
+    &--description {
+      padding : 1.6rem 0;
+      border-bottom : 1px solid $color-light-grey;
+
+      & > div:not(:last-child){
+        margin-bottom : 0.8rem;
+      }
+    }
+
+    &--all {
+      padding : 1.6rem 0;
+      border-bottom : 1px solid $color-light-grey;
+      margin-bottom : 1.6rem;
+    }
+  }
+
+
+  &__final-price {
+    padding : 2.4rem 0;
+    border-bottom : 1px solid $color-light-grey;
+    &--title {
+      display:inline-block;
+    }
+
+    &--price {
+      display:inline-block;
+      float : right;
+    }
+
+    &--svg {
+      margin-left : 0.5rem;
+    }
+  }
+  &__price-info--items {
+    clear:both;
+    &--item {
+      padding: 1.6rem 0;
+      &:not(:first-child){
+        border-top: 1px solid $color-light-grey;
+      }
+
+      &:last-child{
+        border-bottom : 1px solid $color-light-grey;
+      }
+      &-info{
+        &--title {
+          margin-bottom : 4px;
+        }
+        &-description {
+          margin-bottom : 4px;
+
+        }
+
+        &--price {
+
+        }
+        width : calc(100% - ( 11.2rem + 1.6rem ) );
+        display:inline-block;
+        vertical-align: top;
+      }
+
+
+      &--image-and-font-line-fixed{
+
+      }
+      &--image {
+        padding : 0.8rem;
+        height :11.2rem;
+        width : 11.2rem;
+        display:inline-block;
+        margin-right : 1.6rem;
+        &-inner {
+          width : 100%;
+          padding-top : 100%;
+
+          img {
+            @include imageAspactRatio;
+          }
+        }
+
+      }
+
+    }
+  }
+}
+
+.checkout {
+  margin-top : 3.2rem;
+
+  @include respond(tb){
+    margin-top : 0;
+  }
+
+  &_warning {
+    margin-top : 0.8rem;
+  }
+  &-order-info {
+    padding-bottom : 8px;
+    border-bottom : 1px solid $color-light-grey;
+
+    &__title {
+      margin-bottom : 2.4rem;
+
+      @include respond(tb){
+        margin-top : 3.2rem;
+      }
+    }
+
+    &__sub-title {
+      margin-bottom : 0.8rem;
+      &--outer{
+        margin-bottom : 1.6rem;
+      }
+    }
+
+    &__input {
+      display:inline-block;
+    }
+  }
+
+  &-addition-info {
+
+    border-bottom : 1px solid $color-light-grey;
+    padding-bottom : 2.4rem;
+
+    &__outer {
+      margin-bottom : 1.6rem;
+    }
+
+    &__title {
+      margin-top : 2.4rem;
+      margin-bottom : 2.4rem;
+    }
+
+    &__sub-title {
+      margin-bottom : 0.8rem;
+    }
+
+    &__input {
+      display:inline-block;
+    }
+
+    &__description {
+      margin-top : 0.8rem;
+    }
+
+    &__description2 {
+      margin-bottom : 1.6rem;
+    }
+
+    &__checkbox {
+      display:inline-block;
+      margin-bottom : 1.2rem;
+    }
+
+    &__question {
+      margin-bottom : 1.6rem;
+    }
+  }
+
+  &-left {
+    &__info{
+
+      onpicks-select-box {
+        display:block;
+        width: 40.8rem;
+        @include respond(sb){
+          width : 100%;
+        }
+        margin-bottom : 8px;
+      }
+
+      &--coupon-btn{
+        margin-left : 1.6rem;
+      }
+
+      &--checkout {
+        margin-top : 2.4rem;
+        margin-bottom : 4rem;
+        &-btn {
+          display:block;
+
+
+          &:not(:last-child){
+            margin-bottom : 1.6rem;
+          }
+
+          @include respond(tb){
+            display:inline-block;
+            width : 50%;
+            padding : 0 0.8rem;
+            margin-bottom : 1.6rem;
+          }
+        }
+
+
+        &-title{
+          font-size : 1.8rem;
+          line-height : 1.39;
+          letter-spacing : 0.3px;
+          font-weight : 700;
+          margin-bottom : 2.4rem;
+        }
+
+        &-tag {
+          font-size : 1.4rem;
+          line-height : 1.71;
+          letter-spacing : 0.3px;
+          margin-bottom : 8px;
+
+          &:last-of-type {
+            margin-bottom : 2.4rem;
+          }
+        }
+
+        &-input {
+          display: inline-block;
+          height: 4rem;
+          font-size: 1.4rem;
+          line-height: 1.43;
+          letter-spacing: 0.3px;
+          padding: 1rem 1.6rem;
+          margin-bottom: 2.4rem;
+
+          width : calc(100% - 10.1rem);
+
+          &::placeholder {
+            color: #b3b3b3;
+          }
+        }
+      }
+
+      &--delivery{
+        padding-bottom : 3rem;
+        border-bottom: 1px solid #e5e5e5;
+
+        &__col {
+          border-radius : 4px;
+          //width : 26.4rem;
+          //height : 26.4rem;
+          // padding:2.4rem;
+          margin-bottom : 2.4rem;
+          float:left;
+
+          width : 50%;
+          padding : 0 1.2rem;
+          @include respond(tb){
+            padding : 0 0.8rem;
+            margin-bottom : 1.6rem;
+          }
+          //&:not(:nth-child(2n)) {
+          //  margin-right : 2.4rem;
+          //}
+
+          //@include respond(fb){
+          //  width : 50%;
+          //  padding : 0 1.2rem;
+          //}
+          &--padding {
+            display:table;
+            padding:2.4rem;
+            position:relative;
+            height : 26.4rem;
+            width : 100%;
+
+            @include respond(tb){
+              padding : 1.6rem;
+            }
+          }
+
+          &--name {
+            margin-bottom : 8px;
+          }
+
+          &--address {
+            margin-bottom : 8px;
+          }
+
+
+          &-bottom {
+            width : 100%;
+            display:table-row;
+            height: 1px;
+            &--isDefault {
+              margin-bottom : 0.8rem;
+            }
+
+            &--modify {
+              display: inline-block;
+            }
+
+            &--remove {
+              display: inline-block;
+              float: right;
+            }
+          }
+
+        }
+
+        &__row {
+
+          @include clearfix;
+          margin-bottom: 2.4rem;
+          padding-bottom : 1.6rem;
+          border-bottom : 1px solid $color-light-grey;
+        }
+
+        .isActive {
+          border : 1px solid $color-green;
+        }
+
+        .isNotActive {
+          border : 1px solid $color-light-grey;
+        }
+
+        &-title{
+          margin-top: 2.4rem;
+          margin-bottom : 2.4rem;
+        }
+
+        &-search-btn {
+          margin-left : 1.6rem;
+        }
+
+        &-save-btn {
+          display:inline-block;
+          margin-top : 1.6rem;
+          margin-bottom : 2.4rem;
+        }
+
+        &-tag {
+          margin-top : 2.4rem;
+          margin-bottom : 8px;
+          &--outer {
+            margin-bottom : 1.6rem;
+          }
+        }
+
+        &-description {
+          font-size : 1.4rem;
+          color : #8d8d8d;
+        }
+
+        &-searchBox {
+          height : 4rem;
+          display:block;
+          padding : 0;
+          border : 0;
+          &-outer {
+            display:none;
+          }
+
+          &-option {
+
+            padding : 1.6rem 2.4rem;
+            border : 1px solid #e5e5e5;
+            border-top : 0;
+            margin-bottom : 1.6rem;
+            font-size : 1.4rem;
+            line-height : 1.43;
+            &-list {
+              max-height : 44rem;
+              overflow-y: auto;
+
+
+              &-outer {
+                padding : 2.4rem;
+                border : 1px solid #e5e5e5;
+                margin-bottom: 1.6rem;
+              }
+              & > div{
+
+                //div:not(:first-child) {
+                //  div{
+                //    margin-top : 2.4rem;
+                //  }
+                //}
+                table {
+
+                  //font-size : 1.4rem;
+                  //line-height : 1.43;
+                  tr:nth-of-type(1) {
+                    td:nth-of-type(1) { padding-bottom: 8px;}
+                    td:nth-of-type(2) { padding-bottom: 8px;}
+                  }
+
+                  td:nth-of-type(1) { vertical-align: text-top; color : #8d8d8d; width : 55px}
+                  td:nth-of-type(2) {
+
+                    color : $color-black;
+                    button {
+                      text-align : left;
+                    }
+                    button:hover {
+                      text-decoration-line: underline;
+                    }
+                  }
+                }
+              }
+
+              &-1 {
+                font-size : 1.6rem;
+                line-height : 1.25;
+                font-weight : 700;
+                color : #292929;
+                margin-bottom : 1.6rem;
+              }
+
+              //&-2{
+              //  display: table;
+              //  font-size : 1.4rem;
+              //  line-height : 1.43;
+              //  color : #292929;
+              //  margin-bottom : 0.8rem;
+              //  span {
+              //    display:table-cell;
+              //    color : #8d8d8d;
+              //  }
+              //}
+              //
+              //&-3{
+              //  display: table;
+              //  font-size : 1.4rem;
+              //  line-height : 1.43;
+              //  color : #292929;
+              //  margin-bottom : 2.4rem;
+              //  span {
+              //    display:table-cell;
+              //    color : #8d8d8d;
+              //  }
+              //}
+            }
+
+            &-no-result {
+              color : #292929;
+            }
+
+            &-init {
+
+              &-main {
+                color : #292929;
+                padding-bottom : 10px;
+                border-bottom : 1px solid #e5e5e5;
+              }
+
+              &-title {
+                margin-top : 10px;
+                color : #292929;
+                margin-bottom : 8px;
+              }
+
+              &-sub{
+                color : #8d8d8d;
+              }
+            }
+          }
+        }
+
+        &-input {
+          display : block;
+          height : 4rem;
+          &:last-of-type {
+            margin-top: 1.6rem;
+          }
+
+          &::placeholder {
+            color : #b3b3b3;
+          }
+
+          &-address {
+            display:inline-block;
+            height : 4rem;
+            width : 27.8rem;
+            margin-bottom : 1.6rem;
+
+            @media only screen and (max-width: 56.4375em) { //1127px
+              width : calc(100% - 13rem);
+            };
+
+            &::placeholder {
+              color : #b3b3b3;
+            }
+          }
+
+
+        }
+      }
+    }
+  }
+
+  &-right {
+
+    &__menu {
+      @include respond(tb){
+        display:none;
+      }
+
+      border : 1px solid #e5e5e5;
+      padding : 2.4rem;
+
+      &--title {
+        margin-bottom : 18px;
+      }
+
+      &--checkout {
+        border-top : 1px solid #e5e5e5;
+        padding-top : 2.4rem;
+        &-button {
+          width: 50.4rem;
+          height : 4.6rem;
+        }
+      }
+
+      &--price {
+        padding-top : 2.2rem;
+        border-top : 1px solid #e5e5e5;
+        border-bottom : 1px solid #e5e5e5;
+        &-productall {
+          margin-bottom : 4px;
+          &-tag {
+
+          }
+          &-value {
+            float : right;
+          }
+        }
+
+        &-delivery {
+          margin-bottom : 4px;
+          &-tag {
+
+          }
+          &-value {
+            float : right;
+          }
+        }
+        &-discount {
+          margin-bottom : 1.6rem;
+
+          &-value {
+            falot : right;
+          }
+        }
+
+        &-all {
+          margin-bottom : 2.5rem;
+          &-value {
+            float : right;
+          }
+        }
+      }
+
+      &--item {
+
+        border-top : 1px solid #e5e5e5;
+        position : relative;
+        padding : 2.4rem 0;
+
+        &-image {
+
+          display: inline-block;
+          width: 11.2rem;
+          height: 11.2rem;
+          img {
+            @include imageAspactRatio;
+          }
+        }
+
+        &-info {
+          vertical-align: top;
+          margin-left : 2.4rem;
+          display : inline-block;
+          width : calc(100% - 13.6rem);
+          &-brand {
+            margin-bottom : 4px;
+          }
+
+          &-name {
+            margin-bottom : 4px;
+          }
+
+          &-option {
+            margin-bottom : 4px;
+          }
+
+          &-price {
+
+          }
+        }
+      }
+    }
+  }
+}

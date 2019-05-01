@@ -1,0 +1,447 @@
+@import '~src/assets/scss/abstracts/variables';
+
+
+
+:host(onpicks-communicate-box) {   z-index :8000; width:100%; position:fixed }
+
+.communicate-box__outer {
+  position: fixed;
+  width: 100%;
+  height : 100vh;
+  will-change: transform ;
+  background-color : black;
+  opacity : 0.5;
+  z-index :8001;
+  top : 0;
+  left : 0;
+
+  @include respond(desktop) {
+    background-color:white;
+    opacity: 1;
+  }
+}
+.modal {
+  &__title {
+    margin-bottom : 0.8rem;
+  }
+
+  &__item {
+    padding : 1.6rem 0;
+    border-bottom : 1px solid $color-light-grey;
+
+    &--check-box {
+      float : right;
+    }
+  }
+
+  &__btn {
+    display:inline-block;
+    margin-top : 2.4rem;
+  }
+
+}
+
+
+.communicate-box{
+  transform: translate(-50%, -50%);
+  position: fixed;
+  top : 50%;
+  left : 50%;
+  z-index : 8002;
+  width : 66rem;
+  height : 64.8rem;
+  background-color : $color-white;
+  transition-property: width;
+  transition-duration: .3s;
+
+  @include respond(desktop) {
+    transform: none;
+    padding-top : 6rem;
+    top: 0;
+    left: 0;
+    width: 100% !important;
+    height:100%;
+    overflow:auto;
+    background-color: #FFFFFF;
+  }
+
+  &__inner{
+    @include respond(desktop){
+      width:74.8rem;
+      margin: 1.6rem auto 0 auto;
+    }
+
+    @include respond(sb){
+      width :100%;
+      padding : 0;
+
+    }
+
+  }
+
+  &__mobile {
+
+
+    &--sticky-menu {
+      text-align: center;
+      display:none;
+      @include respond(tb){
+        z-index : 9999;
+        display:table;
+        position:fixed;
+        bottom : 0;
+        left:0;
+        width :100%;
+        height : 4.8rem;
+        background-color : $color-white;
+        border-top : 1px solid $color-light-grey;
+      }
+      
+      &--inner{
+        display:table-cell;
+        vertical-align: middle;
+      }
+
+      svg {
+        margin-right : 3.8rem;
+      }
+    }
+
+    &--figure {
+
+      display:none;
+      @include respond(desktop){
+        display:block;
+      }
+
+      margin-right :1.6rem;
+      position: relative;
+      border-bottom : 1px solid $color-light-grey;
+
+      &--option {
+        margin-bottom : 2.4rem;
+      }
+
+      &--created-date{
+        position: absolute;
+        bottom: -0.5px;
+        margin-left: 0.8rem;
+      }
+      figure {
+
+        position:relative;
+
+        margin-bottom: 1.6rem;
+        img {
+        }
+
+        ui-star-rating {
+          margin-left: 1.6rem;
+        }
+        figcaption {
+          position: absolute;
+          margin-left: 1.6rem;
+          top: 0;
+          display: inline-block;
+        }
+      }
+
+      &--image-outer {
+        width: 4rem;
+        height: 4rem;
+        border-radius: 50%;
+        overflow: hidden;
+        img {
+          width: 4rem;
+          height: 4rem;
+        }
+      }
+
+      &--profile-box {
+        position: absolute;
+        width: 45.6rem;
+        height: 7.4rem;
+        background-color: transparent;
+        bottom: 0;
+
+        &-inner {
+
+        }
+      }
+    }
+  }
+
+
+  &__image {
+    display:inline-block;
+    // min-height : 45rem;
+    width : 64.8rem;
+    height: 64.8rem;
+    position: relative;
+    margin-right : 40.8rem;
+    background-color :$color-black;
+    @include respond(desktop) {
+      width: 100%;
+      margin-right : 0;
+    }
+    img {
+      @include imageAspactRatio;
+    }
+  }
+
+  &__next-button {
+    @include respond(tb){
+      display:none;
+    }
+    @include verticalCenter;
+    background-color:transparent;
+    border-width: 0;
+    right : -5.6rem;
+    width: 40px;
+    height: 40px;
+    //background-color: #ffffff;
+    //box-shadow: 0 2px 4px 0 rgba(220, 220, 220, 0.5);
+    //border-radius : 50%;
+
+    svg{
+      cursor : pointer;
+      @include absCenter;
+      left:55%;
+    }
+  }
+
+  &__prev-button {
+    @include respond(tb){
+      display:none;
+    }
+    @include verticalCenter;
+    overflow: hidden;
+    border-width: 0;
+    background-color:transparent;;
+    left : -5.6rem;
+
+    width: 40px;
+    height: 40px;
+    //background-color: #ffffff;
+    //box-shadow: 0 2px 4px 0 rgba(220, 220, 220, 0.5);
+    //border-radius : 50%;
+    svg{
+      cursor : pointer;
+      @include absCenter;
+      left : 47.5%;
+    }
+  }
+
+  &-only {
+    z-index : 9999;
+    display:inline-block;
+    vertical-align: top;
+    position:absolute;
+    right : 0;
+    height : 64.8rem;
+    background-color : $color-white;
+    transition-property: width;
+    transition-duration: .3s;
+
+    @include respond(desktop){
+      width :100% !important;
+      height: auto !important;
+      position: static;
+    }
+
+    &__reviews {
+      height : 38rem;
+      padding-right :1.6rem;
+      overflow-y: scroll;
+
+      @include respond(sb){
+        padding-right : 0;
+        height : auto;
+        min-height : 10rem;
+        margin-bottom : 4.2rem;
+      }
+
+      &--my-reviews {
+        margin-top : 0.8rem;
+        margin-bottom : 1.6rem;
+      }
+
+      &--other-reviews-item {
+        margin-bottom: 8px;
+        overflow-wrap : break-word;
+        span:nth-of-type(1){
+          margin-right : 8px;
+        }
+      }
+    }
+
+    &__input-reviews {
+
+      @include respond(tb){
+        display:none;
+      }
+
+      @mixin input_review{
+        input {
+          margin-top : 1.6rem;
+          font-size : 1.6rem;
+          line-height: 1.75;
+          letter-spacing: 0.5px;
+          width : 100%;
+
+          border:0;
+
+          @include respond(tb){
+            margin-top : 0;
+            width : calc(100% - 6.4rem);
+          }
+          &::placeholder{
+
+            color:$color-grey
+          }
+        }
+      }
+
+      &--mobile {
+        display:none;
+        position:fixed;
+        z-index: 9999;
+        background-color : $color-white;
+        width:100%;
+        bottom : 0;
+        height: 6rem;
+        border-top : 1px solid $color-light-grey;
+        @include input_review;
+        input {
+          padding-top:1.6rem;
+          padding-bottom : 1.6rem;
+          padding-left: 1.6rem;
+        }
+
+        &--registration {
+          vertical-align: top;
+          display:inline-block;
+          position:relative;
+          width : 6.4rem;
+          height : 6.4rem;
+          & > span {
+            @include absCenter;
+          }
+        }
+      }
+
+      @include input_review;
+
+    }
+
+    &__feature {
+      padding-top:1.6rem;
+      padding-bottom : 1.6rem;
+      border-top : 1px solid $color-light-grey;
+      border-bottom : 1px solid $color-light-grey;
+
+      @include respond(tb){
+        display:none;
+      }
+      a {
+        img {
+          vertical-align: top;
+        }
+      }
+
+
+      &--thumbs-up-active{
+        fill : $color-green;
+      }
+      &--recommend {
+        position:relative;
+        margin-left: 0.8rem;
+        margin-right: 3.2rem;
+        &--active {
+          color : $color-green;
+        }
+      }
+      &--item {
+        position:relative;
+        margin-left: 0.8rem;
+        margin-right: 3.2rem;
+
+
+      }
+
+      &--report {
+        float : right;
+      }
+    }
+
+    &__inner {
+      padding : 3.2rem;
+
+      @include respond(sb){
+        padding : 0 1.6rem 1.6rem 1.6rem;
+      }
+    }
+
+    &__figure {
+
+      @include respond(desktop){
+        display:none;
+      }
+
+      margin-right :1.6rem;
+      position: relative;
+      border-bottom : 1px solid $color-light-grey;
+
+      &--option {
+        margin-bottom : 2.4rem;
+      }
+
+      &--created-date{
+        position: absolute;
+        bottom: -0.5px;
+        margin-left: 0.8rem;
+      }
+      figure {
+
+        position:relative;
+
+        margin-bottom: 1.6rem;
+        img {
+        }
+
+        ui-star-rating {
+          margin-left: 1.6rem;
+        }
+        figcaption {
+          position: absolute;
+          margin-left: 1.6rem;
+          top: 0;
+          display: inline-block;
+        }
+      }
+
+      &--image-outer {
+        width: 4rem;
+        height: 4rem;
+        border-radius: 50%;
+        overflow: hidden;
+        img {
+          @include imageAspactRatio;
+        }
+      }
+
+      &--profile-box {
+        position: absolute;
+        width: 45.6rem;
+        height: 7.4rem;
+        background-color: transparent;
+        bottom: 0;
+
+        &-inner {
+
+        }
+      }
+    }
+  }
+
+}

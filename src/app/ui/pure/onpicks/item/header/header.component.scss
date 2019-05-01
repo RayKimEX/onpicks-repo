@@ -1,0 +1,572 @@
+@import '~src/assets/scss/abstracts/variables';
+
+
+@mixin repeat-li-position(){
+  & > div {
+    display:table-cell;
+    vertical-align: middle;
+    position:relative;
+    span {
+      margin-left : 0.8rem;
+      @include verticalCenter;
+    }
+    img {
+      width : 4rem;
+      height : 4rem;
+    }
+  }
+}
+
+.navigation__menu-toggle:checked ~ .header-menu__outer {
+  display:block;
+}
+
+
+
+.navigation__menu-toggle:checked ~ .header-menu__background {
+  display:block;
+}
+.header-menu__background {
+  display:none;
+  position:fixed;
+  top: 0;
+  width : 100%;
+  height : 100%;
+  z-index : 0;
+  background-color : #000000;
+  opacity : 0.5;
+}
+
+.navigation {
+  display:table-cell;
+  width:100%;
+  vertical-align: middle;
+  position:relative;
+
+
+  &__menu-toggle {
+    display:none;
+  }
+
+  &__menu-toggle:checked + .header-menu__outer {
+    display:block;
+  }
+
+
+
+  &__icon {
+    float:right;
+  }
+  &__searchbox {
+    display: none;
+    &-el {
+      display:none;
+      float:left;
+      width : calc(100% - 4rem);
+    }
+    &-label {
+      float: right;
+      display:inline-block;
+      width : 50px;
+      hegiht : 30px;
+      cursor: pointer;
+    }
+  }
+
+  &__checkbox {
+    display: none;
+  }
+
+  &__button {
+    float:left;
+    display:inline-block;
+    background-color: $color-white;
+    height: 2.4rem;
+    width: 2.4rem;
+    right: 6rem;
+    z-index: 2000;
+    cursor: pointer;
+  }
+
+  //ICON
+  &__menu-icon {
+    position: relative;
+    top: 1rem;
+    &,
+    &::before,
+    &::after {
+      width: 1.6rem;
+      height: 2px;
+      background-color: $color-black;
+      display: inline-block;
+    }
+
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      transition: all .2s;
+      transition: all .2s;
+    }
+
+    &::before { top: -.6rem; }
+    &::after { top: .6rem; }
+  }
+
+  &__button:hover &__menu-icon::before {
+    top: -0.7rem;
+  }
+
+  &__button:hover &__menu-icon::after {
+    top: 0.7rem;
+  }
+
+  &__checkbox:checked + &__button &__menu-icon {
+    background-color: transparent;
+  }
+
+  &__checkbox:checked + &__button &__menu-icon::before {
+    top: 0;
+    transform: rotate(135deg);
+  }
+
+  &__checkbox:checked + &__button &__menu-icon::after {
+    top: 0;
+    transform: rotate(-135deg);
+  }
+
+
+
+  // &__checkbox:checked
+}
+
+
+:host(ui-header) {
+  @include respond(desktop) {
+    z-index:9000; position:fixed; top : 0px; width:100%;
+  }
+}
+.header {
+  z-index:11;
+  position:relative;
+  background-color : $color-white;
+  &__mobile-hamburger {
+    display : none;
+    overflow-y: auto;
+    width : 100%;
+    position : fixed;
+    top : 6rem;
+    padding: 0 1.6rem;
+    background-color : $color-white;
+    height : calc(100% - 6rem);
+
+    &--return-menu {
+      margin-left : 1.4rem;
+      display:inline-block;
+    }
+    nav {
+      height : 100%;
+    }
+    &--ul {
+      display:block;
+      list-style: none;
+
+
+      &:not(:last-child){
+        border-bottom : 1px solid $color-light-grey;
+      }
+
+      &--not-login {
+        height: 8.36%;
+        display:block;
+        list-style: none;
+        border-bottom : 1px solid $color-light-grey;
+      }
+    }
+
+
+    &--li {
+      display:table;
+      width : 100%;
+      height : 56px;
+
+
+      &--not-login {
+        display:table;
+        width : 100%;
+        height : 100%;
+
+        @include repeat-li-position;
+      }
+
+      @include repeat-li-position;
+    }
+  }
+  &__main-menu {
+    z-index : 11;
+    position:relative;
+    background-color :#ffffff;
+    @include respond(desktop) {
+      display:none;
+    }
+  }
+
+  &__mobile-menu {
+    display:none;
+    @include respond(desktop) {
+      display:table;
+      padding: 0 1.6rem;
+      background-color: $color-white;
+      height: 6rem;
+      width:100%;
+      border-bottom : 1px solid $color-light-grey;
+    }
+
+    &--search-icon {
+      margin-top : 3px;
+      margin-right : 2.2rem;
+      cursor: pointer;
+      &:hover {
+        opacity : 0.5;
+      }
+      @include respond(phone){
+        margin-right: 1rem;
+      }
+    }
+
+    &--shopping-bag-icon {
+      float:right;
+      cursor: pointer;
+      &:hover {
+        opacity : 0.5;
+      }
+    }
+
+    &--onpicks-icon {
+      display:inline-block;
+      vertical-align: bottom;
+      left: 50%;
+      position: absolute;
+      transform: translateX(-50%);
+    }
+  }
+
+  &__alert {
+    opacity : 0;
+    pointer-events: none;
+    position:fixed;
+    top : 11rem;
+    height: 50px;
+    width : 100%;
+    z-index : 9999;
+    background-color : $color-sky;
+
+    transition : opacity .2s;
+    &--message {
+      @include absCenter;
+    }
+  }
+
+  &__progressive-bar {
+    position:fixed;
+    top : 0;
+    width : 100%;
+    height : 2px;
+    background-color : $color-light-grey;
+
+    &--inner {
+      width : 50%;
+      height : 2px;
+      background-color : $color-black;
+    }
+  }
+
+
+  .active {
+    color: $color-black;
+  }
+
+  hr {
+    margin : 0;
+  }
+
+  & > .row {
+    margin-bottom : 0;
+  }
+
+  &__miscell {
+    display : table;
+    position : relative;
+    width :100%;
+    height : 4rem;
+    border-bottom: 1px solid $color-light-grey;
+
+
+    & span {
+      vertical-align: middle;
+    }
+
+    &--profile {
+
+
+      &--image{
+        margin-right : 8px;
+        display:inline-block;
+        vertical-align: middle;
+        img {
+          width : 2.2rem;
+          height : 2.2rem;
+          border-radius: 50%;
+        }
+      }
+
+      &--login {
+        margin-right : 1.6rem;
+        font-size : 1.4rem;
+        color : $color-black;
+        letter-spacing:0.03rem;
+      }
+
+      &--slash {
+        margin-right : 1.6rem;
+        font-size : 1.4rem;
+        color : $color-grey;
+        font-weight:500;
+        letter-spacing:0.03rem;
+      }
+
+      &--signup{
+
+        margin-right : 2.4rem;
+        font-size : 1.4rem;
+        color : $color-black;
+        letter-spacing:0.03rem;
+      }
+    }
+
+    &--inner {
+      display: table-cell;
+      position:relative;
+      vertical-align: middle;
+    }
+    &--item {
+      display: inline-block;
+      padding: 3px 0px;
+
+      text-transform: uppercase;
+      margin-right : 0.8rem;
+      font-size : 1.4rem;
+      letter-spacing: 0.03rem;
+      color: $color-black;
+    }
+
+    &--favorites {
+      margin-right : 2.4rem;
+      svg {
+        vertical-align: middle;
+        //position:relative;
+        //top : 20px;
+      }
+    }
+
+    &--shopping-bag {
+      svg {
+        vertical-align: middle;
+        //position:relative;
+        //top : 20px;
+      }
+    }
+  }
+
+  &__main-nav {
+    height : 7rem;
+    position: relative;
+    border-bottom: 1px solid $color-light-grey;
+
+    &--outer {
+      position:relative;
+      top : 25%;
+      display:table;
+    }
+
+    onpicks-search-box {
+      display:block;
+      float:right;
+      width: 46.4rem;
+      position:relative;
+      top : -7px;
+    }
+
+
+    svg {
+      margin-right : 6.4rem;
+    }
+
+    &--router {
+
+      display : table-cell;
+      vertical-align:middle;
+      li {
+
+        display : inline-block;
+        text-transform : uppercase;
+        list-style : none;
+        margin-right : 4.8rem;
+
+        transition : opacity 0.5s;
+
+        &:first-child {
+          color : $color-black;
+        }
+
+        &:not(:first-child){
+          color : $color-grey;
+        }
+      }
+    }
+  }
+
+
+  &-menu {
+
+    &__recommend {
+      max-width: $grid-width;
+      margin: 0 auto;
+      height: 7.2rem;
+      position: relative;
+      &--ul {
+        @include verticalCenter;
+        list-style: none;
+        &-item {
+
+          a {
+            color: $color-black;
+          }
+
+          float: left;
+          display: inline-block;
+          width: 26.4rem;
+          vertical-align: middle;
+
+          &:not(:last-child) {
+            margin-right: 2.4rem;
+          }
+        }
+
+      }
+    }
+
+    &__outer {
+      display:none;
+
+      background-color : $color-white;
+      z-index : 500;
+      position:absolute;
+      padding-top : 2rem;
+      width:100%;
+      nav {
+        border-bottom: 1px solid #d8d8d8;
+        max-width : $grid-width;
+        margin: 0 auto;
+        @include clearfix;
+      }
+      //
+      &:nth-of-type(1){
+          content:' ';
+          display:block;
+          position:fixed;
+          top: 0;
+          width : 100%;
+          margin-top : 51rem;
+          height : 100%;
+          z-index : 0;
+          background-color : #000000;
+          opacity : 0.5;
+      }
+    }
+
+    &__item {
+      float:left;
+      //position:relative;
+      display: inline-block;
+      width : 26.4rem;
+
+      list-style : none;
+      &--category {
+
+      }
+
+      &:not(:last-child){
+        margin-right : 2.4rem;
+      }
+
+      &--title{
+
+        height : 12rem;
+        display:block;
+
+        &-pantry-and-household{
+          background-position: right bottom;
+          background-repeat: no-repeat;
+          background-size : 8.8rem 8rem;
+          background-image: url('https://img.onpicks.com/assets/menu/pantry-and-household.jpg?d=w176-h160');
+          border-bottom: 2px solid $color-green;
+        }
+
+        &-beauty {
+          background-position: right bottom;
+          background-repeat: no-repeat;
+          background-size : 8.8rem 8rem;
+          background-image: url('https://img.onpicks.com/assets/menu/beauty.jpg?d=w176-h160');
+          border-bottom: 2px solid $color-pink;
+        }
+
+        &-baby {
+          background-position: right bottom;
+          background-repeat: no-repeat;
+          background-size : 8.8rem 8rem;
+          background-image: url('https://img.onpicks.com/assets/menu/baby.jpg?d=w176-h160');
+          border-bottom: 2px solid $color-orange;
+        }
+
+        &-health {
+          background-position: right bottom;
+          background-repeat: no-repeat;
+          background-size : 8.8rem 8rem;
+          background-image: url('https://img.onpicks.com/assets/menu/health.jpg?d=w176-h160');
+          border-bottom: 2px solid $color-dark-green;
+        }
+
+        &-electronics {
+          border-bottom: 2px solid #4a90e2;
+        }
+      }
+
+      // TODO : CSS ORDER 정리 ( 가독성이 현재 떨어짐 )
+      li {
+
+        &:last-child {
+          a{
+            color: $color-green;
+            font-weight : 700;
+          }
+          margin-top : 0.6rem;
+          margin-bottom: 2.4rem;
+        }
+
+        &:not(:last-child){
+          margin-bottom : 0.8rem;
+        }
+        &:first-child {
+          margin-bottom: 1.6rem;
+        }
+      }
+    }
+  }
+
+}
+
+
+
+
