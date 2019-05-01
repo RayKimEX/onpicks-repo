@@ -84,6 +84,9 @@ export class CartComponent {
       productArray.push(item.product);
     });
 
+    // 키트에 하나도 없으면 checkout으로 못가게
+    if ( productArray.length === 0 ) { return };
+
     this.httpClient.post<any>( this.BASE_URL + '/api/cart/checkout/', { products : productArray }).
     subscribe(
       data => {
