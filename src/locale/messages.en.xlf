@@ -711,7 +711,7 @@
 
 
       <trans-unit id="settings-profile__nickname--description" datatype="html">
-        <target>다른 사용자들에겐 사용자가 설정한 닉네임으로 보여집니다 ( 영어 )</target>
+        <target>Nickname will be displayed to other members.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
           <context context-type="linenumber">52</context>
@@ -720,7 +720,7 @@
 
 
       <trans-unit id="settings-profile__row--description" datatype="html">
-        <target>이 정보는 통계 목적으로 사용되며 다른 회원들에게 절대 공개되지 않습니다 ( 영어 )</target>
+        <target>This information is for statistical purposes only. It will not be disclosed or shared with any third party. </target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
           <context context-type="linenumber">52</context>
@@ -760,7 +760,7 @@
       </trans-unit>
 
       <trans-unit id="wish-list__description" datatype="html">
-        <target>다음에 구매할 상품이 없습니다. 다음에 구매할 상품을 담아주세요! ( 영어 )</target>
+        <target>Your Wish List is Empty. </target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
           <context context-type="linenumber">52</context>
@@ -776,7 +776,7 @@
       </trans-unit>
 
       <trans-unit id="written-reviews__description" datatype="html">
-        <target>작성한 리뷰가 없습니다. 다양한 아이템을 최적의 가격으로 쇼핑하여 리뷰를 남겨주세요! ( 영어 )</target>
+        <target>You haven’t posted any reviews yet. Start shopping, save on your favorite products and post your reviews!</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
           <context context-type="linenumber">52</context>
@@ -784,7 +784,7 @@
       </trans-unit>
 
       <trans-unit id="available-reviews__title" datatype="html">
-        <target>Available Reviews</target>
+        <target>Write a Review</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
           <context context-type="linenumber">52</context>
@@ -792,7 +792,7 @@
       </trans-unit>
 
       <trans-unit id="available-reviews__empty-title" datatype="html">
-        <target>작성 가능한 리뷰가 없습니다. 다양한 아이템을 최적의 가격으로 쇼핑하여 리뷰를 남겨주세요! ( 영어 )</target>
+        <target>You have no reviews to write. Start shopping, save on your favorite products and post your reviews!</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
           <context context-type="linenumber">52</context>
@@ -867,7 +867,7 @@
       </trans-unit>
 
       <trans-unit id="cart__wishlist--empty" datatype="html">
-        <target>다음에 구매할 상품이 없습니다. 다음에 구매할 상품을 담아주세요! ( 영어 )</target>
+        <target>Your Wish List is Empty. </target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
           <context context-type="linenumber">52</context>
@@ -1086,7 +1086,7 @@
       </trans-unit>
 
       <trans-unit id="word__delivery-requirements" datatype="html">
-        <target>배송요청사항 ( 영어 )</target>
+        <target>Delivery Instructions</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
           <context context-type="linenumber">52</context>
@@ -1353,7 +1353,7 @@
       </trans-unit>
 
       <trans-unit id="sentence__save-address" datatype="html">
-        <target>배송지 저장 ( 영어 )</target>
+        <target>Save Shipping Address</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
           <context context-type="linenumber">52</context>
@@ -1361,7 +1361,7 @@
       </trans-unit>
 
       <trans-unit id="sentence__insert-detail-address" datatype="html">
-        <target>상세주소를 입력하세요 ( 영어 )</target>
+        <target>Street Address 2</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
           <context context-type="linenumber">52</context>
@@ -1369,7 +1369,7 @@
       </trans-unit>
 
       <trans-unit id="sentence__search-zip-code" datatype="html">
-        <target>우편번호 찾기 ( 영어 )</target>
+        <target>Zip Code</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
           <context context-type="linenumber">52</context>
@@ -1377,7 +1377,7 @@
       </trans-unit>
 
       <trans-unit id="sentence__insert-buyer-name" datatype="html">
-        <target>주문자 성함을 입력해주세요 ( 영어 )</target>
+        <target>Name</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
           <context context-type="linenumber">52</context>
