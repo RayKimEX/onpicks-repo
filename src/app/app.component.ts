@@ -234,9 +234,10 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit, DoCheck {
 
   plusFriendChat() {
     // @ts-ignore
-    Kakao.PlusFriend.chat({
-      plusFriendId: '_haxhDj' // 플러스친구 홈 URL에 명시된 id로 설정합니다.
-    });
+    window.location.href = 'https://pf.kakao.com/_haxhDj';
+    // Kakao.PlusFriend.chat({
+    //   plusFriendId: '_haxhDj' // 플러스친구 홈 URL에 명시된 id로 설정합니다.
+    // });
   }
 
   goCartEvent(){
