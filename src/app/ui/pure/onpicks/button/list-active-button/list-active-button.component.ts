@@ -47,8 +47,8 @@ export class ListActiveButtonComponent implements OnInit, AfterViewInit, OnDestr
 
   ngAfterViewInit() {
     this.tempEvent = fromEvent(this.outer.nativeElement, 'transitionend').subscribe( v => {
+
       // @ts-ignore
-      console.log(v);
       if (v.propertyName === 'width' ) { this.extendButtonPressed = false };
     });
   }
