@@ -110,7 +110,6 @@ export class ValueListComponent implements OnInit, AfterViewInit {
   onResize(event) {
     const computedStyle = getComputedStyle(( this.itemList.first.nativeElement ), null);
     this.translateXWidth =  parseInt(computedStyle.width, 10 ) + parseInt(computedStyle.marginRight, 10);
-    console.log(computedStyle.width);
   }
 
   @HostListener('document:touchend', ['$event'])

@@ -126,7 +126,7 @@
     &--stock {
       position:relative;
       top : 0;
-      width: 44.5%;
+      width: 9.4rem;
       height: 24px;
       border-radius: 4px;
       background-color : $color-orange;
@@ -136,14 +136,11 @@
       @include respond(fb){
         margin-left:-1.6rem;
         margin-top :-1.6rem;
-        height: 1.6rem;
+        //height: 1.6rem;
       }
 
       &--inner {
         @include subtitle-2-bold;
-        @include respond(fb){
-          @include subtitle-3-bold;
-        }
 
 
         @include absCenter;
