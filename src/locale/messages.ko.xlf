@@ -1336,14 +1336,6 @@
         </context-group>
       </trans-unit>
 
-      <trans-unit id="sentence__search-word" datatype="html">
-        <target>프리미엄 해외직구를 경험해보세요</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
-          <context context-type="linenumber">52</context>
-        </context-group>
-      </trans-unit>
-
       <trans-unit id="word__delivery-requirements" datatype="html">
         <target>배송요청사항</target>
         <context-group purpose="location">
