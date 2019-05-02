@@ -16,9 +16,10 @@ import {
 } from 'rxjs/operators';
 import {UiService} from '../../../../../../core/service/ui/ui.service';
 import {BreakpointObserver, BreakpointState} from '../../../../../../../../node_modules/@angular/cdk/layout';
-import {LOCATION_MAP, RESPONSIVE_MAP} from '../../../../../../core/global-constant/app.config';
+import {CURRENCY, LOCATION_MAP, RESPONSIVE_MAP} from '../../../../../../core/global-constant/app.config';
 import {DisplayAlertMessage, UpdateGlobalKakaoPlusFriendForDetailPage, UpdateGlobalKakaoPlusFriendForNormal, UpdateGlobalKakaoPlusFriendForPurchase} from '../../../../../../core/store/ui/ui.actions';
 import {TryAddOrCreateToCart} from '../../../../../../core/store/cart/cart.actions';
+import {BehaviorSubject} from 'rxjs';
 
 @Component({
   selector: 'onpicks-p',
@@ -102,6 +103,7 @@ export class PIndexComponent implements OnInit, OnDestroy {
 
   discountPercent;
   constructor(
+    @Inject( CURRENCY ) public currency: BehaviorSubject<any>,
     @Inject(LOCATION_MAP) public locationMap: any,
     @Inject(RESPONSIVE_MAP) public responsiveMap,
     private breakpointObserver:  BreakpointObserver,

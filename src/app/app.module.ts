@@ -165,7 +165,7 @@ export function getCurrency() {
     },
     {
       provide: LOCALE_ID,
-      useValue : 'en'
+      useValue : 'ko'
     },
     {
       provide: DOMAIN_HOST,
