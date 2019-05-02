@@ -1,3 +1,15 @@
-<p>
-  checkout-us works!
-</p>
+<form [formGroup]="initialGroup" action="/charge" method="post" #paymentForm>
+  <div class="form-row">
+    <label for="card-element">
+      Credit or debit card
+    </label>
+    <div id="card-element" #cardElement>
+      <!-- A Stripe Element will be inserted here. -->
+    </div>
+
+    <!-- Used to display Element errors. -->
+    <div #cardErrors role="alert"></div>
+  </div>
+
+  <button>Submit Payment</button>
+</form>

@@ -689,7 +689,7 @@
       </trans-unit>
 
       <trans-unit id="settings-profile__phone--title" datatype="html">
-        <target>전화반호</target>
+        <target>전화번호</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
           <context context-type="linenumber">52</context>
@@ -705,7 +705,7 @@
       </trans-unit>
 
       <trans-unit id="settings-profile__nickname--description" datatype="html">
-        <target>다른 사용자들에겐 사용자가 설정한 닉네임으로 보여집니다</target>
+        <target>다른 사용자들에겐 사용자가 설정한 닉네임으로 보여집니다.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
           <context context-type="linenumber">52</context>

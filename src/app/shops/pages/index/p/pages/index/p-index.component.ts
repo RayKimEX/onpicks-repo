@@ -104,8 +104,8 @@ export class PIndexComponent implements OnInit, OnDestroy {
   discountPercent;
   constructor(
     @Inject( CURRENCY ) public currency: BehaviorSubject<any>,
-    @Inject(LOCATION_MAP) public locationMap: any,
-    @Inject(RESPONSIVE_MAP) public responsiveMap,
+    @Inject( LOCATION_MAP ) public locationMap: any,
+    @Inject( RESPONSIVE_MAP ) public responsiveMap,
     private breakpointObserver:  BreakpointObserver,
     private cd: ChangeDetectorRef,
     private store: Store<any>,
