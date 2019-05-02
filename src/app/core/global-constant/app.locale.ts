@@ -132,7 +132,7 @@ export const MENU_MAP_CONST = {
             en : 'Skin Care'
           },
           slug : 'skincare',
-          href : 'beauty/skincare'
+          href : 'beauty/skin-care'
         },
         {
           name : {
@@ -140,7 +140,7 @@ export const MENU_MAP_CONST = {
             en : 'Hair'
           },
           slug : 'hair',
-          href : 'beauty/hair'
+          href : 'beauty/hair-care'
         },
         {
           name : {
