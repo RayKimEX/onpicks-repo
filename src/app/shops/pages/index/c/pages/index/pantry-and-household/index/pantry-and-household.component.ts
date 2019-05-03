@@ -94,7 +94,7 @@ export class PantryAndHouseholdComponent implements OnInit {
         ko : '퍼스널케어',
         en : 'Personal Care'
       },
-      href : '/shops/c/pantry-and-household/grocery'
+      href : '/shops/c/pantry-and-household/personal-care'
     },
     {
       imgSrc : 'http://img.onpicks.com/categories/category-health.png',

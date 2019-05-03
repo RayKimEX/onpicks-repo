@@ -1,6 +1,7 @@
 import {Component, OnInit, ChangeDetectionStrategy, Inject, AfterViewInit, ViewChild, ElementRef} from '@angular/core';
 import {DOMAIN_HOST, REGION_ID} from '../../../core/global-constant/app.config';
 import {FormControl, FormGroup} from '@angular/forms';
+import {HttpClient} from '../../../../../node_modules/@angular/common/http';
 
 @Component({
   selector: 'onpicks-checkout-us',
@@ -15,10 +16,13 @@ export class CheckoutUsComponent implements OnInit, AfterViewInit {
 
   constructor(
     @Inject( DOMAIN_HOST ) private BASE_URL: string,
+    private httpClient: HttpClient
   ) { }
 
   paymentScript;
   initialGroup: FormGroup;
+  stripe;
+  stripeCard;
 
   ngOnInit() {
     this.initialGroup = new FormGroup({
@@ -28,16 +32,15 @@ export class CheckoutUsComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-
     const that = this;
     this.paymentScript = document.createElement('script');
     this.paymentScript.src = 'https://js.stripe.com/v3/';
     this.paymentScript.async = true;
-    this.paymentScript.onload = function() {
+    this.paymentScript.onload = function () {
 
       // @ts-ignore
-      const stripe = Stripe('pk_test_BdWhs6G5bNDS9XJ9aW5B0J4E00kl5O2qBD');
-      const elements = stripe.elements();
+      that.stripe = Stripe('pk_test_BdWhs6G5bNDS9XJ9aW5B0J4E00kl5O2qBD');
+      const elements = that.stripe.elements();
       console.log(elements);
 
       // Custom styling can be passed to options when creating an Element.
@@ -50,12 +53,12 @@ export class CheckoutUsComponent implements OnInit, AfterViewInit {
       };
 
       // Create an instance of the card Element.
-      const card = elements.create('card', {style});
+      that.stripeCard = elements.create('card', {style});
 
       // Add an instance of the card Element into the `card-element` <div>.
-      card.mount(that.cardElement.nativeElement);
+      that.stripeCard.mount(that.cardElement.nativeElement);
 
-      card.addEventListener('change', ({error}) => {
+      that.stripeCard.addEventListener('change', ({error}) => {
         const displayError = that.cardErrors.nativeElement;
         console.log(that.cardErrors.nativeElement);
         if (error) {
@@ -64,30 +67,20 @@ export class CheckoutUsComponent implements OnInit, AfterViewInit {
           displayError.textContent = '';
         }
       });
-
-
-      const form = that.paymentForm.nativeElement;
-
-      form.action = window.location.origin + '/api/orders/payments/stripe_create_charging'
-      form.addEventListener('submit', async (event) => {
-        event.preventDefault();
-
-        const {token, error} = await stripe.createToken(card);
-
-        if (error) {
-          // Inform the customer that there was an error.
-          const errorElement = that.cardErrors.nativeElement;
-          errorElement.textContent = error.message;
-        } else {
-          // Send the token to your server.
-          // @ts-ignore
-          that.stripeTokenHandler(token);
-        }
-      });
     };
     document.head.appendChild(this.paymentScript);
-
   }
+
+  stripePayemnt() {
+    const {token, error} = this.stripe.createToken(this.stripeCard);
+    // const form = this.paymentForm.nativeElement;
+    this.httpClient.post<any>(this.BASE_URL + '/api/orders/US-100000000/payments/stripe_create_charging/', {stripeToken: token})
+    .subscribe( response => {
+      console.log(response);
+    });
+  };
+
+
 
   stripeTokenHandler(token) {
     // Insert the token ID into the form so it gets submitted to the server
