@@ -321,28 +321,32 @@ export class CheckoutKrComponent implements OnInit, AfterViewInit, OnDestroy {
 
       this.formData.buyer_name = this.inputOrderName.nativeElement.children[0].value;
       this.formData.buyer_contact = this.inputOrderNumber.nativeElement.children[0].value;
+
       // 0인 경우가 배송지 default이므로,
       // full_name 수신자 성함
       // 서버에 저장된 배송지 정보가 없을 경우
+
       if ( this.deliveryData.length === 0 ) {
+
         // inputRecipientName
         // inputRecipientNumber
         // inputZipnumber
         // inputJuso
         // inputDetailJuso
+
         this.formData = {
           ...this.formData,
           ...this.setDeliveryInfo()
         };
 
-        console.log(this.formData);
-
       } else {
+
         this.formData.phone_number = this.deliveryData[0].phone_number;
         this.formData.full_name = this.deliveryData[0].full_name;
         this.formData.zip_code = this.deliveryData[0].zip_code;
         this.formData.street_address_1 = this.deliveryData[0].street_address_1;
         this.formData.street_address_2 = this.deliveryData[0].street_address_2;
+
       }
 
       this.formData.customs_id_number = this.checkoutAdditionNumber.nativeElement.children[0].value;
@@ -374,7 +378,6 @@ export class CheckoutKrComponent implements OnInit, AfterViewInit, OnDestroy {
               this.paymentScript.src = response.pay_script;
               this.paymentScript.async = true;
               this.paymentScript.onload = function() {
-
                 // @ts-ignore
                 INIStdPay.pay(form);
               };
@@ -390,7 +393,6 @@ export class CheckoutKrComponent implements OnInit, AfterViewInit, OnDestroy {
               });
             } else {
               form.innerHTML = '';
-
               Object.keys(response.form_data).forEach(key => {
                 const input = document.createElement('input');
                 input.type = 'text';
@@ -402,7 +404,6 @@ export class CheckoutKrComponent implements OnInit, AfterViewInit, OnDestroy {
               // @ts-ignore
               INIStdPay.pay(form);
             }
-
           }
         });
     }
@@ -473,7 +474,6 @@ export class CheckoutKrComponent implements OnInit, AfterViewInit, OnDestroy {
 
   removeDeliveryInfo(index) {
     if ( index === 0  ) { alert( '기본 배송지는 삭제할 수 없습니다. '); return;}
-    alert()
     this.orderDataService.deleteDeliveryData( this.userStore.id, this.deliveryData[index].id )
       .subscribe( v => {
         this.deliveryData.splice(index , 1);
@@ -635,7 +635,7 @@ export class CheckoutKrComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   getCurrentText(event) {
-    if( this.isShowDeliveryModal === true ) {
+    if ( this.isShowDeliveryModal === true ) {
       this.renderer.setProperty(this.inputJuso.first.nativeElement.children[0], 'value', event.target.innerText);
       this.renderer.setProperty(this.inputZipnumber.first.nativeElement.children[0], 'value', event.target.getAttribute('data-zipnumber'));
       this.isShowSearchBox = false;

@@ -1,5 +1,5 @@
 import {Component, OnInit, ChangeDetectionStrategy, Inject, AfterViewInit, ViewChild, ElementRef} from '@angular/core';
-import {REGION_ID} from '../../../core/global-constant/app.config';
+import {DOMAIN_HOST, REGION_ID} from '../../../core/global-constant/app.config';
 import {FormControl, FormGroup} from '@angular/forms';
 
 @Component({
@@ -14,7 +14,7 @@ export class CheckoutUsComponent implements OnInit, AfterViewInit {
   @ViewChild('paymentForm', { read : ElementRef}) paymentForm;
 
   constructor(
-
+    @Inject( DOMAIN_HOST ) private BASE_URL: string,
   ) { }
 
   paymentScript;
@@ -52,7 +52,6 @@ export class CheckoutUsComponent implements OnInit, AfterViewInit {
       // Create an instance of the card Element.
       const card = elements.create('card', {style});
 
-      console.log(that.cardElement)
       // Add an instance of the card Element into the `card-element` <div>.
       card.mount(that.cardElement.nativeElement);
 
@@ -68,6 +67,8 @@ export class CheckoutUsComponent implements OnInit, AfterViewInit {
 
 
       const form = that.paymentForm.nativeElement;
+
+      form.action = window.location.origin + '/api/orders/payments/stripe_create_charging'
       form.addEventListener('submit', async (event) => {
         event.preventDefault();
 

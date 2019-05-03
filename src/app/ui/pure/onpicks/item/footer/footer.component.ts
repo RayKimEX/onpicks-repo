@@ -18,8 +18,8 @@ export class FooterComponent implements OnInit {
     @Inject(LOCALE_ID) public locale: string,
     @Inject(REGION_ID) public region: string,
     @Inject(CURRENCY) public currency: BehaviorSubject<any>,
-
     private cd: ChangeDetectorRef
+
   ) {
 
   }
@@ -39,9 +39,9 @@ export class FooterComponent implements OnInit {
 
   inicisOpen(xFlag) {
     if ( xFlag === 'inicis') {
-      window.open('https://mark.inicis.com/mark/popup_v1.php?mid=onpicks001', 'mark', 'scrollbars=no,resizable=no,width=565,height=683');
+      window.open('https://mark.inicis.com/mark/popup_v1.php?mid=onpicks002', 'mark', 'scrollbars=no,resizable=no,width=565,height=683');
     } else {
-      window.open('https://mark.inicis.com/mark/escrow_popup.php?mid=onpicks001', 'mark', 'scrollbars=no,resizable=no,width=565,height=683');
+      window.open('https://mark.inicis.com/mark/escrow_popup.php?mid=onpicks002', 'mark', 'scrollbars=no,resizable=no,width=565,height=683');
     }
   }
 }
