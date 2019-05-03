@@ -351,8 +351,8 @@ export class CheckoutKrComponent implements OnInit, AfterViewInit, OnDestroy {
 
       this.formData.customs_id_number = this.checkoutAdditionNumber.nativeElement.children[0].value;
 
-      this.formData.city = 'helloCity';
-      this.formData.country = 'helloCountry';
+      this.formData.city = '';
+      this.formData.country = '';
 
       this.httpClient.post<any>( this.BASE_URL + '/api/orders/', this.formData )
         .subscribe( response => {
@@ -457,7 +457,7 @@ export class CheckoutKrComponent implements OnInit, AfterViewInit, OnDestroy {
       'zip_code': '',
       'street_address_1': '',
       'street_address_2': '',
-      'city': 'hellocity',
+      'city': '',
       'state': '',
       'phone_number': '',
       // default를 false로 주던 true로주던 값이 API에서 허용 안되도록 막힘
@@ -517,7 +517,7 @@ export class CheckoutKrComponent implements OnInit, AfterViewInit, OnDestroy {
       'zip_code': '',
       'street_address_1': '',
       'street_address_2': '',
-      'city': 'hellocity',
+      'city': '',
       'state': '',
       'phone_number': '',
       // default를 false로 주던 true로주던 값이 API에서 허용 안되도록 막힘

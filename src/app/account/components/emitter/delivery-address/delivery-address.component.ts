@@ -234,7 +234,7 @@ export class DeliveryAddressComponent implements OnInit, AfterViewInit, OnDestro
       'zip_code': '',
       'street_address_1': '',
       'street_address_2': '',
-      'city': 'hellocity',
+      'city': '',
       'state': '',
       'phone_number': '',
       // default를 false로 주던 true로주던 값이 API에서 허용 안되도록 막힘
@@ -289,7 +289,7 @@ export class DeliveryAddressComponent implements OnInit, AfterViewInit, OnDestro
       'zip_code': '',
       'street_address_1': '',
       'street_address_2': '',
-      'city': 'hellocity',
+      'city': '',
       'state': '',
       'phone_number': '',
       // default를 false로 주던 true로주던 값이 API에서 허용 안되도록 막힘
