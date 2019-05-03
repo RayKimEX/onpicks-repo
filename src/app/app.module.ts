@@ -57,14 +57,16 @@ function getCookie(cname) {
   return '';
 }
 
+
 function setCookie(cname, cvalue ) {
   // const d = new Date();
   // d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
   // const expires = 'expires=' + d.toUTCString();
-  document.cookie = cname + '=' + cvalue + ';domain=.onpicks.com;path=/';
+  document.cookie = cname + '=' + cvalue + ';domain=' + window.location.origin.substring(window.location.origin.indexOf('//') + 2, window.location.origin.indexOf('onpicks') - 1) + '.onpicks.com;path=/';
 
   return 'KRW';
 }
+
 
 export function getCurrency() {
   console.log('@@@@@@@@@@@!@@')
