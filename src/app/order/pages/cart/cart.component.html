@@ -365,7 +365,6 @@
                     *ngIf="item.shipping_fee > 0"
                     class="cart__delivery-multi-purchase--remain-description subtitle-2-regular">
                     {{ item.location.name }} 무료배송까지 {{ item.location.free_shipping_threshold - (item.subtotal - item.shipping_fee) | onpicksCurrency : syncedData.currencyInfo }} 남았습니다
-                    {{ item.location.free_shipping_threshold  }}
                   </div>
                 </ng-container>
 
