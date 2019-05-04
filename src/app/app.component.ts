@@ -1,4 +1,4 @@
-import {AfterViewInit, ChangeDetectionStrategy, Component, DoCheck, ElementRef, Inject, LOCALE_ID, OnDestroy, OnInit, Renderer2, ViewChild} from '@angular/core';
+import {AfterViewInit, ChangeDetectionStrategy, Component, DoCheck, ElementRef, Inject, isDevMode, LOCALE_ID, OnDestroy, OnInit, Renderer2, ViewChild} from '@angular/core';
 import {select, Store} from '@ngrx/store';
 import {AppState} from './core/store/app.reducer';
 import {TryGetAuthUser} from './core/store/auth/auth.actions';
@@ -283,7 +283,11 @@ function setCookie(cname, cvalue ) {
   // const d = new Date();
   // d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
   // const expires = 'expires=' + d.toUTCString();
-  document.cookie = cname + '=' + cvalue + ';domain=.onpicks.com;path=/';
+  if (isDevMode()) {
+    document.cookie = cname + '=' + cvalue + ';path=/';
+  } else {
+    document.cookie = cname + '=' + cvalue + ';domain=.onpicks.com;path=/';
+  }
 
   return 'KRW';
 }

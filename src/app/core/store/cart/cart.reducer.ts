@@ -141,6 +141,7 @@ export function CartReducer(state = initialState, action: CartActions.CartAction
         state.cartInfo.pack[action.payload.packIndex] = addTemp;
       } else {
         const addForFreeTemp = state.cartInfo.free;
+        console.log(state.cartInfo.free);
         addForFreeTemp.subtotal = action.payload.cartInfo.results.slice(0, 1)[0].subtotal;
         state.cartInfo.free = addForFreeTemp;
       }

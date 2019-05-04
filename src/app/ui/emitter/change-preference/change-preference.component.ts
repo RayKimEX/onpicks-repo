@@ -5,7 +5,7 @@ import {
   EventEmitter,
   HostListener,
   Inject,
-  Input, LOCALE_ID,
+  Input, isDevMode, LOCALE_ID,
   OnInit,
   Output,
   Renderer2
@@ -178,7 +178,11 @@ function setCookie(cname, cvalue ) {
   // const d = new Date();
   // d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
   // const expires = 'expires=' + d.toUTCString();
-  document.cookie = cname + '=' + cvalue + ';domain=.onpicks.com;path=/';
+  if (isDevMode()) {
+    document.cookie = cname + '=' + cvalue + ';path=/';
+  } else {
+    document.cookie = cname + '=' + cvalue + ';domain=.onpicks.com;path=/';
+  }
 
   return 'KRW';
 }

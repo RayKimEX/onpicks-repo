@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 
-import { LOCALE_ID, NgModule } from '@angular/core';
+import {isDevMode, LOCALE_ID, NgModule} from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
@@ -62,7 +62,12 @@ function setCookie(cname, cvalue ) {
   // const d = new Date();
   // d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
   // const expires = 'expires=' + d.toUTCString();
-  document.cookie = cname + '=' + cvalue + ';domain=.onpicks.com;path=/';
+
+  if (isDevMode()) {
+    document.cookie = cname + '=' + cvalue + ';path=/';
+  } else {
+    document.cookie = cname + '=' + cvalue + ';domain=.onpicks.com;path=/';
+  }
 
   return 'KRW';
 }
@@ -169,7 +174,7 @@ export function getCurrency() {
     },
     {
       provide: LOCALE_ID,
-      useValue : 'en'
+      useValue : 'ko'
     },
     {
       // https://localhost

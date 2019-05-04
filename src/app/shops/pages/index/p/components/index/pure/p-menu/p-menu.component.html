@@ -130,7 +130,7 @@
       <onpicks-button
         i18n="@@sentence__add-to-cart"
         *ngIf="!(_data.in_stock === false || _data.in_stock === true && _data.stock_quantity === 0)"
-        (click)="addToCart(_data?.ship_alone ? 'free' : locationMap[_data?.location.code].sequence)"
+        (click)="addToCart(_data?.shipping_fee === 0 ? 'free' : locationMap[_data?.location.code].sequence)"
         [type]="'black'"
         [marginLeft]="'1.2rem'"
         [size]="'big'"
