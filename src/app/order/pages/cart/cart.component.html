@@ -204,7 +204,6 @@
               </div>
               <div class="cart-mobile__table--item-option--manage-amount">
                 <onpicks-list-active-button
-                  <!--[limitCount]="syncedData?.cartList[itemForFree.product]?.stock_quantity"-->
                   (addEvent)="addToCart(syncedData?.cartList[itemForFree.product]?.quantity, itemForFree.product, 'free')"
                   (subtractEvent)="subtractFromCart(syncedData?.cartList[itemForFree.product]?.quantity, itemForFree.product, 'free')"
                   [amount]="syncedData?.cartList[itemForFree.product]?.quantity"
@@ -254,7 +253,6 @@
           <td>
             <div class="cart__free-table--amount">
               <onpicks-list-active-button
-                <!--[limitCount]="syncedData?.cartList[itemForFree.product]?.stock_quantity"-->
                 (addEvent)="addToCart(syncedData?.cartList[itemForFree.product]?.quantity, itemForFree.product, 'free')"
                 (subtractEvent)="subtractFromCart(syncedData?.cartList[itemForFree.product]?.quantity, itemForFree.product, 'free')"
                 [amount]="syncedData?.cartList[itemForFree.product]?.quantity"
@@ -446,7 +444,6 @@
                   </div>
                   <div class="cart-mobile__table--item-option--manage-amount">
                     <onpicks-list-active-button
-                      <!--[limitCount]="syncedData?.cartList[itemChild.product]?.stock_quantity"-->
                       (addEvent)="addToCart(syncedData?.cartList[itemChild.product]?.quantity, itemChild.product, locationMap[item.location.code].sequence)"
                       (subtractEvent)="subtractFromCart(syncedData?.cartList[itemChild.product]?.quantity, itemChild.product, locationMap[item.location.code].sequence)"
                       [amount]="syncedData?.cartList[itemChild.product]?.quantity"
@@ -493,7 +490,6 @@
               <td>
                 <div class="cart__multi-table--amount">
                   <onpicks-list-active-button
-                    <!--[limitCount]="syncedData?.cartList[itemChild.product]?.stock_quantity"-->
                     (addEvent)="addToCart(syncedData?.cartList[itemChild.product]?.quantity, itemChild.product, locationMap[item.location.code].sequence)"
                     (subtractEvent)="subtractFromCart(syncedData?.cartList[itemChild.product]?.quantity, itemChild.product, locationMap[item.location.code].sequence)"
                     [amount]="syncedData?.cartList[itemChild.product]?.quantity"
