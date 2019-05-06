@@ -1,11 +1,11 @@
 import {
   AfterViewInit,
-  ChangeDetectionStrategy,
+  ChangeDetectionStrategy, ChangeDetectorRef,
   Component,
   ElementRef,
   EventEmitter,
   HostListener,
-  Input, OnDestroy,
+  Input, OnChanges, OnDestroy,
   OnInit,
   Output,
   Renderer2,

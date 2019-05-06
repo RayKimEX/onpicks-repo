@@ -49,46 +49,6 @@ export class PIndexComponent implements OnInit, OnDestroy {
 
   numberOptionList = {
     list : [
-      {
-        title : '1',
-        value : 1,
-      },
-      {
-        title : '2',
-        value : 2,
-      },
-      {
-        title : '3',
-        value : 3,
-      },
-      {
-        title : '4',
-        value : 4,
-      },
-      {
-        title : '5',
-        value : 5,
-      },
-      {
-        title : '6',
-        value : 6,
-      },
-      {
-        title : '7',
-        value : 7,
-      },
-      {
-        title : '8',
-        value : 8,
-      },
-      {
-        title : '9',
-        value : 9,
-      },
-      {
-        title : '10',
-        value : 10,
-      }
     ]
   }
 
@@ -142,6 +102,10 @@ export class PIndexComponent implements OnInit, OnDestroy {
         }
         if ( v !== undefined && v !== null ) {
           this.discountPercent = 100 - Math.round((v.price / v.msrp * 100));
+
+          for ( var i = 1; i <= (v.stock_quantity <= 10 ? v.stock_quantity : 10); i ++ ) {
+            this.numberOptionList.list.push({ title : i, value : i });
+          }
         }
       })
     );

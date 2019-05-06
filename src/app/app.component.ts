@@ -62,6 +62,18 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit, DoCheck {
     this.store.dispatch(new TryGetWishListInfo());
 
     this.breakpointObserver
+      .observe([this.responsiveMap['tb']])
+      .subscribe((state: BreakpointState) => {
+        if (state.matches) {
+          this.isDesktopBreakPoint = true;
+          // this.cd.markForCheck();
+        } else {
+          // this.mobileAlertTop = '11rem';
+          this.isDesktopBreakPoint = false;
+        }
+      });
+
+    this.breakpointObserver
       .observe([this.responsiveMap['desktop']])
       .subscribe((state: BreakpointState) => {
         if (state.matches) {

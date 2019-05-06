@@ -107,9 +107,6 @@ export function CartReducer(state = initialState, action: CartActions.CartAction
       return {
 
         ...state,
-        wishList: {
-          ...state.wishList
-        },
         cartList : {
           ...state.cartList,
           [action.payload.data.slug]: {
