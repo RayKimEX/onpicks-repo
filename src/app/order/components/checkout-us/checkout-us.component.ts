@@ -72,26 +72,20 @@ export class CheckoutUsComponent implements OnInit, AfterViewInit {
   }
 
   stripePayemnt() {
-    const {token, error} = this.stripe.createToken(this.stripeCard);
-    // const form = this.paymentForm.nativeElement;
-    this.httpClient.post<any>(this.BASE_URL + '/api/orders/US-100000000/payments/stripe_create_charging/', {stripeToken: token})
-    .subscribe( response => {
-      console.log(response);
+    const that = this;
+    this.stripe.createToken(this.stripeCard).then(function(result) {
+
+      if (result.error) {
+        // Inform the customer that there was an error.
+        const displayError = that.cardErrors.nativeElement;
+        displayError.textContent = result.error.message;
+      } else {
+        that.httpClient.post<any>(that.BASE_URL + '/api/orders/US-100000000/payments/stripe_create_charging/', {stripeToken: result.token.id}, {responseType: 'json' })
+        .subscribe( response => {
+            console.log(response);
+        });
+      }
     });
-  };
 
-
-
-  stripeTokenHandler(token) {
-    // Insert the token ID into the form so it gets submitted to the server
-    const form = this.paymentForm.nativeElement;
-    const hiddenInput = document.createElement('input');
-    hiddenInput.setAttribute('type', 'hidden');
-    hiddenInput.setAttribute('name', 'stripeToken');
-    hiddenInput.setAttribute('value', token.id);
-    form.appendChild(hiddenInput);
-
-    // Submit the form
-    form.submit();
   }
 }

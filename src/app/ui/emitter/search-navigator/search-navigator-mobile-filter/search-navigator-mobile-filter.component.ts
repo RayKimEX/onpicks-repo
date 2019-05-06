@@ -61,7 +61,7 @@ export class SearchNavigatorMobileFilterComponent implements OnInit {
     this.exitEvent.emit();
     // this.orderedFilterListForCheck[]
     if ( this.searchState === 'search' ) {
-      this.router.navigate(['/shops/search'], { queryParams: {ordering: xSortSlug}, queryParamsHandling: 'merge'} );
+      this.router.navigate(['/shops/search'], { queryParams: {page : 1, ordering: xSortSlug}, queryParamsHandling: 'merge'} );
     } else {
       this.router.navigate(['./'], { relativeTo: this.route, queryParams: {ordering: xSortSlug}, queryParamsHandling: 'merge'} );
     }
@@ -104,7 +104,7 @@ export class SearchNavigatorMobileFilterComponent implements OnInit {
         queryParamsHandling: 'merge'
       });
     } else {
-      this.router.navigate(['./'], { relativeTo: this.route, queryParams: {brand: xBrandSlug}, queryParamsHandling: 'merge'} );
+      this.router.navigate(['./'], { relativeTo: this.route, queryParams: { brand: xBrandSlug}, queryParamsHandling: 'merge'} );
     }
 
   }
@@ -125,7 +125,7 @@ export class SearchNavigatorMobileFilterComponent implements OnInit {
         queryParamsHandling: 'merge'
       });
     } else {
-      this.router.navigate(['./'], { relativeTo: this.route, queryParams: {location: xLocationSlug}, queryParamsHandling: 'merge'} );
+      this.router.navigate(['./'], { relativeTo: this.route, queryParams: {  location: xLocationSlug}, queryParamsHandling: 'merge'} );
     }
   }
 
@@ -161,7 +161,7 @@ export class SearchNavigatorMobileFilterComponent implements OnInit {
     // this.router.navigate( ['/shops/search'], {queryParams: {category: xCategoryCode}, queryParamsHandling: 'merge'});
 
     if ( this.searchState === 'search' ) {
-      this.router.navigate( ['/shops/search'], {queryParams: {category: xCategoryCode}, queryParamsHandling: 'merge'});
+      this.router.navigate( ['/shops/search'], {queryParams: {page : 1, category: xCategoryCode}, queryParamsHandling: 'merge'});
     } else {
       this.router.navigateByUrl(navigateUrlForCategory);
     }

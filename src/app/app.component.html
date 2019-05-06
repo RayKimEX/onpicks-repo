@@ -24,7 +24,7 @@
 
 <div *ngIf="region === 'kr'">
   <a
-    [ngStyle]="{ bottom : globalKakaoPosition }"
+    [ngStyle]="{ bottom : isDesktopBreakPoint ? globalKakaoPosition : '3rem' }"
     class="kakao-plus-friend"
     (click)="plusFriendChat()">
     <div class="kakao-plus-friend__image"></div>
@@ -54,5 +54,3 @@
     </div>
   </div>
 </onpicks-modal>
-
-

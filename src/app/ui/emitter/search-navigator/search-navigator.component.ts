@@ -576,7 +576,7 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
     this.currentSortSlug = xSortSlug;
     // this.orderedFilterListForCheck[]
     if( this.searchState === 'search') {
-      this.router.navigate(['/shops/search'], { queryParams: {ordering: xSortSlug}, queryParamsHandling: 'merge'} );
+      this.router.navigate(['/shops/search'], { queryParams: {page : 1, ordering: xSortSlug}, queryParamsHandling: 'merge'} );
     } else {
       this.router.navigate(['./'], { relativeTo: this.route, queryParams: {ordering: xSortSlug}, queryParamsHandling: 'merge'} );
     }
@@ -587,7 +587,7 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
   }
 
   categoryClicked( xCategoryCode ) {
-    this.router.navigate( ['/shops/search'], { queryParams: {category: xCategoryCode}, queryParamsHandling: 'merge'} );
+    this.router.navigate( ['/shops/search'], { queryParams: {page : 1, category: xCategoryCode}, queryParamsHandling: 'merge'} );
   }
 
   removeSpecificFilter(xType, xKey) {

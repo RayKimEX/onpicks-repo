@@ -78,7 +78,7 @@
             ]">
           </span>
 
-          <span *ngIf="_data?.shipping_fee == 0" class="p-menu__delivery--first-info subtitle-2-regular">
+          <span *ngIf="_data?.individual_shipping" class="p-menu__delivery--first-info subtitle-2-regular">
             <strong>{{_data?.location?.name}}</strong> &nbsp;출고,
             <span class="p-menu__delivery--first-info subtitle-2-bold"> 무료배송</span>
           </span>
@@ -130,7 +130,7 @@
       <onpicks-button
         i18n="@@sentence__add-to-cart"
         *ngIf="!(_data.in_stock === false || _data.in_stock === true && _data.stock_quantity === 0)"
-        (click)="addToCart(_data?.shipping_fee === 0 ? 'free' : locationMap[_data?.location.code].sequence)"
+        (click)="addToCart(_data?.individual_shipping ? 'free' : locationMap[_data?.location.code].sequence)"
         [type]="'black'"
         [marginLeft]="'1.2rem'"
         [size]="'big'"

@@ -47,6 +47,8 @@
     <div
       class="onpicks-select-box__select-box--outer">
       <select
+        #selectedAmount
+        (change)="clickNativeSelectBox(selectedAmount.value)"
         class="onpicks-select-box__select-box subtitle-2-regular">
         <option *ngFor="let item of _sortList.list;" [value]="item.value">
           {{ multiLanguage ? item.title[locale] : item.title }}

@@ -135,10 +135,14 @@
           </onpicks-input-box>
           <div
             *ngIf="checkBitWise(EMPTY_ORDER_NUMBER)"
-            class="checkout_warning subtitle-2-regular u-color-orange">주문자 연락처를 입력해주세요</div>
+            class="checkout_warning subtitle-2-regular u-color-orange">
+            주문자 연락처를 입력해주세요
+          </div>
           <div
             *ngIf="checkBitWise(INVALID_ORDER_NUMBER)"
-            class="checkout_warning subtitle-2-regular u-color-orange">숫자만 입력가능합니다</div>
+            class="checkout_warning subtitle-2-regular u-color-orange">
+            숫자만 입력가능합니다
+          </div>
         </div>
       </div>
 
@@ -198,6 +202,7 @@
               (click)="isShowDeliveryView = !isShowDeliveryView"
               [width]="isShowDeliveryView ? '13.6rem' : '10.9rem'"
               [type]="'white'"
+              [padding]="false"
               [size]="'small'">{{isShowDeliveryView ? '배송지 추가 닫기' : '+배송지 추가'}}
             </onpicks-button>
 

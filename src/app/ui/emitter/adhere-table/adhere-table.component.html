@@ -49,6 +49,7 @@
       <onpicks-button
         *ngIf="item.status === 'completed' && item?.review_published === false"
         [type]="'green'"
+        [padding]="false"
         (click)="viewModal('write_review', item, results.code, data)"
         [width]="'11.4rem'">리뷰 쓰기
       </onpicks-button>
@@ -56,6 +57,7 @@
       <onpicks-button
         *ngIf="item.status === 'pending' || item.status === 'paid'"
         [type]="'white'"
+        [padding]="false"
         (click)="cancelPurchase( results.code, item.product, resultsIndex, itemIndex)"
         [width]="'11.4rem'">주문 취소
       </onpicks-button>
@@ -63,6 +65,7 @@
       <onpicks-button
         *ngIf="item.status === 'fulfilled'"
         [type]="'white'"
+        [padding]="false"
         (click)="openTraceDelivery(item.tracking_url)"
         [width]="'11.4rem'">배송 추적
       </onpicks-button>
@@ -70,12 +73,14 @@
       <onpicks-button
         *ngIf="item.status === 'delivered'"
         [type]="'white'"
+        [padding]="false"
         (click)="completePurchase( results.code, item.product, resultsIndex, itemIndex )"
         [width]="'11.4rem'">구매 확정
       </onpicks-button>
       <onpicks-button
         *ngIf="item.status === 'delivered'"
         [type]="'white'"
+        [padding]="false"
         (click)="returnPurchase( results.code, item.product, resultsIndex, itemIndex)"
         [marginLeft]="'0.8rem'"
         [width]="'11.4rem'">반품 요청
@@ -107,6 +112,7 @@
         <onpicks-button
           *ngIf="item.status === 'completed' && item?.review_published === false"
           [type]="'green'"
+          [padding]="false"
           (click)="viewModal('write_review', item, results.code, data)"
           [width]="'8.8rem'">리뷰 쓰기
         </onpicks-button>
@@ -114,6 +120,7 @@
         <onpicks-button
           *ngIf="item.status === 'pending' || item.status === 'paid'"
           [type]="'white'"
+          [padding]="false"
           (click)="cancelPurchase( results.code, item.product, resultsIndex, itemIndex)"
           [width]="'8.8rem'">주문 취소
         </onpicks-button>
@@ -121,6 +128,7 @@
         <onpicks-button
           *ngIf="item.status === 'fulfilled'"
           [type]="'white'"
+          [padding]="false"
           (click)="openTraceDelivery(item.tracking_url)"
           [width]="'8.8rem'">배송 추적
         </onpicks-button>
@@ -128,6 +136,7 @@
         <onpicks-button
           *ngIf="item.status === 'delivered'"
           [type]="'white'"
+          [padding]="false"
           (click)="completePurchase( results.code, item.product, resultsIndex, itemIndex )"
           [width]="'8.8rem'">구매 확정
         </onpicks-button>
@@ -135,6 +144,7 @@
         <onpicks-button
           *ngIf="item.status === 'delivered'"
           [type]="'white'"
+          [padding]="false"
           [marginLeft]="'0.8rem'"
           (click)="returnPurchase( results.code, item.product, resultsIndex, itemIndex)"
           [width]="'8.8rem'">반품 요청

@@ -59,6 +59,7 @@ export class SelectBoxComponent implements OnInit, OnChanges {
   // changeEvent는 value만 들어감
   @Output('changeEvent') changeEvent = new EventEmitter();
   @ViewChild('HTMLdropDown') HTMLdropDown;
+  @ViewChild('HTMLdropDown') HTMLdropDown;
 
   @Input('sortList') set sortList(xData) {
     this._sortList = xData;
@@ -121,6 +122,17 @@ export class SelectBoxComponent implements OnInit, OnChanges {
       this.isOpen = false;
       this.renderer.setStyle( this.HTMLdropDown.nativeElement, 'display', 'none');
     }
+  }
+
+  clickNativeSelectBox(inputValue) {
+
+    this.changeEvent.emit({ value : inputValue, index : null});
+
+    // this._selectedElement.value =
+    // this._selectedElement.title = inputValue.name;
+    // this.isOpen = false;
+    // this.renderer.setStyle( this.HTMLdropDown.nativeElement, 'display', 'none');
+    // this.changeEvent.emit({ value : inputValue.value, index : inputValue.dataset.index});
   }
 
   clickSelectBoxElement(inputValue) {

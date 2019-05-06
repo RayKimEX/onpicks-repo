@@ -127,7 +127,7 @@
         <onpicks-button
           i18n="@@sentence__add-to-cart"
           class="mobile-menu__add-to-cart-button"
-          (click)="addToCart(data?.shipping_fee === 0 ? 'free' : locationMap[data?.location.code].sequence, data)"
+          (click)="addToCart(data?.individual_shipping ? 'free' : locationMap[data?.location.code].sequence, data)"
           [type]="'black'"
           [marginLeft]="'1.2rem'"
           [size]="'big'"
@@ -139,7 +139,7 @@
     </div>
 
     <div class="mobile-row">
-      <ui-mini-list [infoList]="weeklyBest$ | async" [setTitle]="'이 상품 구매자가 함께 본 상품'"></ui-mini-list>
+      <ui-mini-list [infoList]="alsoViewed$ | async" [setTitle]="'이 상품 구매자가 함께 본 상품'"></ui-mini-list>
     </div>
   </ng-container>
 </div>

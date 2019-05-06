@@ -43,7 +43,7 @@
             <span class="u-bold">{{item.location.name}}</span>&nbsp;출고&nbsp;·&nbsp;
           </div>
           <div class="wish-list__table--delivery-info-price subtitle-2-bold"
-               *ngIf="item.shipping_fee == 0">&nbsp;
+               *ngIf="item.individual_shipping">&nbsp;
             무료 배송
           </div>
           <div
@@ -66,7 +66,7 @@
           옵션 선택하기
         </button>
         <button
-          (click)="moveWishListToCart(1, item.product, item.ship_alone ? 'free' : locationMap[item?.location.code]?.sequence, item.id, wishListIndex)"
+          (click)="moveWishListToCart(1, item.product, item.individual_shipping ? 'free' : locationMap[item?.location.code]?.sequence, item.id, wishListIndex)"
           *ngIf="item.attributes.length === 0"
           class="btn btn--white btn--small wish-list__table--btn">
           쇼핑백에 담기
@@ -82,7 +82,7 @@
 </div>
 
 <!--<div class="cart__wishlist-table&#45;&#45;delivery-info-price subtitle-2-regular"-->
-     <!--*ngIf="!item.ship_alone">묶음배송 · {{item.location.base_shipping_fee | onpicksCurrency:(currency| async)}}</div>-->
+     <!--*ngIf="!item.individual_shipping">묶음배송 · {{item.location.base_shipping_fee | onpicksCurrency:(currency| async)}}</div>-->
 <!--<div class="cart__wishlist-table&#45;&#45;delivery-info-description subtitle-2-regular u-color-dark-grey">뉴저지 묶음배송 상품으로 {{item.location.location.free_shipping_threshold | onpicksCurrency: (currency| async)}} 이상 주문시 배송료 무료</div>-->
 <!--</div>-->
 <!--</td>-->
@@ -92,7 +92,7 @@
     <!--class="btn btn&#45;&#45;white btn&#45;&#45;small cart__wishlist-table&#45;&#45;btn"-->
     <!--[routerLink]="'/shops/p/' + item.product">옵션 선택하기</button>-->
   <!--<button-->
-    <!--(click)="moveWishListToCart(1, item.product, item.ship_alone ? 'free' : locationMap[item?.location.code]?.sequence, item.id, i)"-->
+    <!--(click)="moveWishListToCart(1, item.product, item.individual_shipping ? 'free' : locationMap[item?.location.code]?.sequence, item.id, i)"-->
     <!--*ngIf="item.attributes.length === 0"-->
     <!--class="btn btn&#45;&#45;white btn&#45;&#45;small cart__wishlist-table&#45;&#45;btn"-->
   <!--&gt;쇼핑백에 담기</button>-->

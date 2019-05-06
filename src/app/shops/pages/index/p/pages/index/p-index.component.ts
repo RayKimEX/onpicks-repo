@@ -38,6 +38,8 @@ export class PIndexComponent implements OnInit, OnDestroy {
   pPictureReviews$;
   weeklyBest$;
 
+  alsoViewed$;
+
   /****************/
   isFB = false;
   previousYOffset = 0;
@@ -150,7 +152,7 @@ export class PIndexComponent implements OnInit, OnDestroy {
       this.pUI = xPUI;
       if ( this.pUI.isShowCommunicateBox === true ) {
         this.isShowMobileMenu = false;
-      };
+      }
     })
 
     this.cartStore$ = this.store.pipe(select(state => state.cart))
@@ -159,6 +161,7 @@ export class PIndexComponent implements OnInit, OnDestroy {
       });
     this.pPictureReviews$ = this.pDataService.getPictureReviewsData(this.route.snapshot.params.id).pipe( tap( v => console.log(v)));
     this.weeklyBest$ = this.uiService.getWeeklyBestGoods();
+    this.alsoViewed$ = this.uiService.getAlsoViewedGoods(this.route.snapshot.params.id);
   }
 
   @HostListener('window:scroll', ['$event']) private onScroll($event: Event): void {
@@ -239,6 +242,11 @@ export class PIndexComponent implements OnInit, OnDestroy {
       packIndex: xPackIndex,
       increaseOrCreate: currentProductSlug in this.cartStore.cartList
     }));
+  }
+
+  amountSelect(xValue ) {
+    console.log(xValue);
+    this.currentSelectOption.amount = xValue.value;
   }
 
   ngOnDestroy() {
