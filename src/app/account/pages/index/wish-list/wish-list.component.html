@@ -66,7 +66,7 @@
           옵션 선택하기
         </button>
         <button
-          (click)="moveWishListToCart(1, item.product, item.individual_shipping ? 'free' : locationMap[item?.location.code]?.sequence, item.id, wishListIndex)"
+          (click)="moveWishListToCart(1, item, item.individual_shipping ? 'free' : locationMap[item?.location.code]?.sequence, item.id, wishListIndex)"
           *ngIf="item.attributes.length === 0"
           class="btn btn--white btn--small wish-list__table--btn">
           쇼핑백에 담기

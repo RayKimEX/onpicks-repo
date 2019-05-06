@@ -238,10 +238,10 @@ export class PMenuComponent implements OnInit, OnDestroy, AfterViewInit, OnChang
 
     this.store.dispatch(new TryAddOrCreateToCart({
       isPopUp : true,
-      productSlug: currentProductSlug,
+      data: this._data,
       amount: this.currentSelectOption.amount,
       packIndex: xPackIndex,
-      increaseOrCreate: currentProductSlug in this.cartStore.cartList
+      increaseOrCreate: this._data.slug in this.cartStore.cartList
     }));
   }
 

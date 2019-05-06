@@ -214,6 +214,7 @@ export class PIndexComponent implements OnInit, OnDestroy {
   }
 
   addToCart(xPackIndex, data) {
+    console.log(data);
     let keyForSlug = '';
     this.keyListForSlug.forEach( (value, index) => {
       if ( (this.keyListForSlug.length - 1) === index ){
@@ -237,10 +238,10 @@ export class PIndexComponent implements OnInit, OnDestroy {
 
     this.store.dispatch(new TryAddOrCreateToCart({
       isPopUp : true,
-      productSlug: currentProductSlug,
+      data: data,
       amount: this.currentSelectOption.amount,
       packIndex: xPackIndex,
-      increaseOrCreate: currentProductSlug in this.cartStore.cartList
+      increaseOrCreate: data.slug in this.cartStore.cartList
     }));
   }
 

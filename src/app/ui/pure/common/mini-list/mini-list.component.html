@@ -102,7 +102,7 @@
                     <onpicks-list-active-button
                       *ngIf="!(item.in_stock === false || item.in_stock === true && item.stock_quantity === 0)"
                       [amount]="cartStore?.cartList[item.slug] === undefined ? 0 : cartStore?.cartList[item.slug]?.quantity"
-                      (addEvent)="addToCart($event, item.slug, item.individual_shipping ? 'free' : locationMap[item.location.code].sequence)"
+                      (addEvent)="addToCart($event, item, item.individual_shipping ? 'free' : locationMap[item.location.code].sequence)"
                       (subtractEvent)="subtractFromCart($event, item.slug, item.individual_shipping ? 'free' : locationMap[item.location.code].sequence)">
                     </onpicks-list-active-button>
                   </div>

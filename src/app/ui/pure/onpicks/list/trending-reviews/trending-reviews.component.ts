@@ -50,18 +50,18 @@ export class TrendingReviewsComponent implements OnInit {
 
 
 
-  addToCart(xAmount, xProductSlug, xPackIndex) {
-
-    xAmount++;
-    // 만약 카트 아이디가. 카트스토어 카트리스트에 있다면, increase cart를 하고, create cart를 하지 않는다.
-    this.store.dispatch(new TryAddOrCreateToCart({
-      isPopUp : true,
-      productSlug: xProductSlug,
-      amount: xAmount,
-      packIndex: xPackIndex,
-      increaseOrCreate: xProductSlug in this.cartStore.cartList
-    }));
-  }
+  // addToCart(xAmount, xProductSlug, xPackIndex) {
+  //
+  //   xAmount++;
+  //   // 만약 카트 아이디가. 카트스토어 카트리스트에 있다면, increase cart를 하고, create cart를 하지 않는다.
+  //   this.store.dispatch(new TryAddOrCreateToCart({
+  //     isPopUp : true,
+  //     productSlug: xProductSlug,
+  //     amount: xAmount,
+  //     packIndex: xPackIndex,
+  //     increaseOrCreate: xProductSlug in this.cartStore.cartList
+  //   }));
+  // }
 
   subtractFromCart(xAmount, xProductSlug, xPackIndex) {
     xAmount--;

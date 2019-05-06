@@ -136,32 +136,36 @@ export class CartComponent {
     this.store.dispatch(new TryDeleteFromCart({ productSlug : xProductSlug, itemIndex : xItemIndex, packIndex : xPackIndex, packType : xType}));
   }
 
-  addToCart(xAmount, xProductSlug, xPackIndex) {
+  addToCart(xAmount, xData, xPackIndex) {
     xAmount++;
 
+    console.log(xData);
+    if ( xData.slug === undefined ) {
+      xData.slug = xData.product;
+    }
     // 만약 카트 아이디가. 카트스토어 카트리스트에 있다면, increase cart를 하고, create cart를 하지 않는다.
 
     this.store.dispatch( new TryAddOrCreateToCart(
       {
         isPopUp : false,
-        productSlug : xProductSlug,
+        data : xData,
         amount : xAmount,
         packIndex : xPackIndex,
-        increaseOrCreate : xProductSlug in this.cartStore.cartList
+        increaseOrCreate : xData.slug in this.cartStore.cartList
       }) );
   }
 
-  moveWishListToCart(xAmount, xProductSlug, xPackIndex, xIndex) {
+  moveWishListToCart(xAmount, xData, xPackIndex, xIndex) {
     this.store.dispatch( new TryAddOrCreateToCart(
       {
         isPopUp : false,
-        productSlug : xProductSlug,
+        data : xData,
         amount : xAmount,
         packIndex : xPackIndex,
-        increaseOrCreate : xProductSlug in this.cartStore.cartList
+        increaseOrCreate : xData.slug in this.cartStore.cartList
       }) );
 
-    this.store.dispatch( new TryDeleteWishList( { wishListSlug : xProductSlug, index : xIndex}));
+    this.store.dispatch( new TryDeleteWishList( { wishListSlug : xData.slug, index : xIndex}));
   }
 
   subtractFromCart(xAmount, xProductSlug, xPackIndex ) {

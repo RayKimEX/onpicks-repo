@@ -59,7 +59,6 @@ export class SelectBoxComponent implements OnInit, OnChanges {
   // changeEvent는 value만 들어감
   @Output('changeEvent') changeEvent = new EventEmitter();
   @ViewChild('HTMLdropDown') HTMLdropDown;
-  @ViewChild('HTMLdropDown') HTMLdropDown;
 
   @Input('sortList') set sortList(xData) {
     this._sortList = xData;

@@ -62,7 +62,7 @@ export class TryAddOrCreateToCart implements Action {
 
   constructor( public payload: {
     isPopUp,
-    productSlug,
+    data,
     amount,
     packIndex,
     increaseOrCreate
