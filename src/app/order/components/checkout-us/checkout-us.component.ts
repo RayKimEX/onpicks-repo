@@ -1,7 +1,10 @@
-import {Component, OnInit, ChangeDetectionStrategy, Inject, AfterViewInit, ViewChild, ElementRef} from '@angular/core';
-import {DOMAIN_HOST, REGION_ID} from '../../../core/global-constant/app.config';
+import {Component, OnInit, ChangeDetectionStrategy, Inject, AfterViewInit, ViewChild, ElementRef, ChangeDetectorRef} from '@angular/core';
+import {DOMAIN_HOST, REGION_ID, RESPONSIVE_MAP} from '../../../core/global-constant/app.config';
 import {FormControl, FormGroup} from '@angular/forms';
 import {HttpClient} from '../../../../../node_modules/@angular/common/http';
+import {BreakpointObserver, BreakpointState} from '../../../../../node_modules/@angular/cdk/layout';
+import {tap} from 'rxjs/operators';
+import {OrderDataService} from '../../../core/service/data-pages/order/order-data.service';
 
 @Component({
   selector: 'onpicks-checkout-us',
@@ -11,23 +14,56 @@ import {HttpClient} from '../../../../../node_modules/@angular/common/http';
 })
 export class CheckoutUsComponent implements OnInit, AfterViewInit {
   @ViewChild('cardElement', {read : ElementRef}) cardElement;
+  @ViewChild('cardNumber', {read : ElementRef}) cardNumber;
+  @ViewChild('cardExpiry', {read : ElementRef}) cardExpiry;
+  @ViewChild('cardCvc', {read : ElementRef}) cardCvc;
   @ViewChild('cardErrors', {read : ElementRef}) cardErrors;
   @ViewChild('paymentForm', { read : ElementRef}) paymentForm;
 
   constructor(
     @Inject( DOMAIN_HOST ) private BASE_URL: string,
+    @Inject(RESPONSIVE_MAP) public responsiveMap,
+    private orderDataService: OrderDataService,
+    private breakpointObserver:  BreakpointObserver,
+    private cd: ChangeDetectorRef,
     private httpClient: HttpClient
-  ) { }
+  ) {
+    this.checkoutStore$ = this.orderDataService.getCheckoutData().pipe(
+      tap( v => console.log(v)),
+    );
+  }
+
+  checkoutStore$;
 
   paymentScript;
   initialGroup: FormGroup;
   stripe;
+
+
   stripeCard;
+  stripeCardNumber;
+  stripeCardExpiry;
+  stripeCardCvc;
+
+  /*********checkout-mobile*******/
+  isThirdBreakPoint = false;
 
   ngOnInit() {
     this.initialGroup = new FormGroup({
       dummy: new FormControl( null),
     });
+
+    this.breakpointObserver
+      .observe([this.responsiveMap['tb']])
+      .subscribe((state: BreakpointState) => {
+        if (state.matches) {
+          this.isThirdBreakPoint = false;
+          this.cd.markForCheck();
+        } else {
+          this.isThirdBreakPoint = true;
+          this.cd.markForCheck();
+        }
+      });
     // <script src="https://js.stripe.com/v3/"></script>
   }
 
@@ -47,9 +83,19 @@ export class CheckoutUsComponent implements OnInit, AfterViewInit {
       const style = {
         base: {
           // Add your base input styles here. For example:
-          fontSize: '16px',
-          color: '#32325d'
+          fontSize: '1.1rem',
+          color: '#292929',
+          fontStyle: '-apple-system, BlinkMacSystemFont, Roboto, Arial, sans-serif',
+          fontWeight: '100',
+          letterSpacing: '0.2px',
+          '::placeholder': {
+            color: '#b3b3b3',
+          },
+          height: '40px',
         },
+        invalid: {
+          color : '#00ff00'
+        }
       };
 
       // Create an instance of the card Element.
@@ -60,13 +106,42 @@ export class CheckoutUsComponent implements OnInit, AfterViewInit {
 
       that.stripeCard.addEventListener('change', ({error}) => {
         const displayError = that.cardErrors.nativeElement;
-        console.log(that.cardErrors.nativeElement);
+
         if (error) {
           displayError.textContent = error.message;
         } else {
           displayError.textContent = '';
         }
       });
+
+      // console.log(that.stripeCardNumber);
+      //
+      // that.stripeCardExpiry = elements.create('cardExpiry', {style});
+      //
+      // that.stripeCardExpiry.mount(that.cardExpiry.nativeElement);
+      //
+      // that.stripeCardExpiry.addEventListener('change', ({error}) => {
+      //   const displayError = that.cardErrors.nativeElement;
+      //
+      //   if (error) {
+      //     displayError.textContent = error.message;
+      //   } else {
+      //     displayError.textContent = '';
+      //   }
+      // });
+      //
+      // that.stripeCardCvc = elements.create('cardCvc', {style});
+      // that.stripeCardCvc.mount(that.cardCvc.nativeElement);
+      //
+      // that.stripeCardCvc.addEventListener('change', ({error}) => {
+      //   const displayError = that.cardErrors.nativeElement;
+      //
+      //   if (error) {
+      //     displayError.textContent = error.message;
+      //   } else {
+      //     displayError.textContent = '';
+      //   }
+      // });
     };
     document.head.appendChild(this.paymentScript);
   }
@@ -80,7 +155,8 @@ export class CheckoutUsComponent implements OnInit, AfterViewInit {
         const displayError = that.cardErrors.nativeElement;
         displayError.textContent = result.error.message;
       } else {
-        that.httpClient.post<any>(that.BASE_URL + '/api/orders/US-100000000/payments/stripe_create_charging/', {stripeToken: result.token.id}, {responseType: 'json' })
+        that.httpClient.post<any>(that.BASE_URL + '/api/orders/US-100000000/payments/stripe_create_charging/',
+          {stripeToken: result.token.id}, {responseType: 'json' })
         .subscribe( response => {
             console.log(response);
         });

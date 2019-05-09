@@ -41,6 +41,9 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit, DoCheck {
   clearSetTimeout;
   isDesktopBreakPoint = false;
 
+  // kakao speach bubble
+  isKakaoSpeachBubble = true;
+
   deltaHeight = 0;
   previousUrl = [];
 
@@ -245,6 +248,7 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit, DoCheck {
   }
 
   plusFriendChat() {
+
     // @ts-ignore
     window.location.href = 'https://pf.kakao.com/_haxhDj';
     // Kakao.PlusFriend.chat({
