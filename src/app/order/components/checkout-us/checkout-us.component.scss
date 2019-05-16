@@ -3,10 +3,30 @@
 .checkout {
   margin-top: 3.2rem;
 
+  onpicks-select-box {
+    width : 40.8rem;
+  }
+
+  &--block {
+    position:relative;
+    padding-bottom : 1.6rem;
+  }
+
+  &--error {
+    color : $color-red;
+    position:absolute;
+  }
+
+  &--state-select-box {
+    width : 100%;
+    display:block;
+    margin-bottom : 1.6rem;
+  }
 
   &--credits-svg {
     margin-bottom : 1.6rem;
   }
+
   &--title {
     padding-bottom : 2.4rem;  @include clearfix;
 
@@ -18,7 +38,6 @@
 
   &--input {
     display:block;
-    padding-bottom : 1.6rem;
   }
 
   &__billing {
@@ -44,7 +63,7 @@
         display:none;
       }
 
-      border : 1px solid #e5e5e5;
+      border : 1px solid $color-light-grey;
       padding : 2.4rem;
 
       &--title {
@@ -52,7 +71,7 @@
       }
 
       &--checkout {
-        border-top : 1px solid #e5e5e5;
+        border-top : 1px solid $color-light-grey;
         padding-top : 2.4rem;
         &-button {
           width: 50.4rem;
@@ -62,8 +81,8 @@
 
       &--price {
         padding-top : 2.2rem;
-        border-top : 1px solid #e5e5e5;
-        border-bottom : 1px solid #e5e5e5;
+        border-top : 1px solid $color-light-grey;
+        border-bottom : 1px solid $color-light-grey;
         &-productall {
           margin-bottom : 4px;
           &-tag {
@@ -101,7 +120,7 @@
 
       &--item {
 
-        border-top : 1px solid #e5e5e5;
+        border-top : 1px solid $color-light-grey;
         position : relative;
         padding : 2.4rem 0;
 
@@ -169,12 +188,11 @@
   //-webkit-transition: box-shadow 150ms ease;
   //transition: box-shadow 150ms ease;
 
-
 }
 
-.__PrivateStripeElement {
+.card-errors {
+  margin-top : 0.8rem;
 }
-
 
 
 

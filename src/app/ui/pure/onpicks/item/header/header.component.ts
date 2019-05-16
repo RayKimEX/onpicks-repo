@@ -29,6 +29,7 @@ import {BreakpointObserver, BreakpointState} from '../../../../../../../node_mod
 import {TryLogout} from '../../../../../core/store/auth/auth.actions';
 import {MENU_MAP} from '../../../../../core/global-constant/app.locale';
 import {ShowCurrencyModal} from '../../../../../core/store/modal/modal.actions';
+import {CATEGORY_CODE_MAP, CATEGORY_MAP} from '../../../../../core/global-constant/app.category-database-long';
 
 @Component({
   selector: 'ui-header',
@@ -90,6 +91,7 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
     @Inject(LOCALE_ID) public locale: string,
     @Inject(CURRENCY) public currency: BehaviorSubject<any>,
     @Inject(MENU_MAP) public menuMap,
+    @Inject( CATEGORY_MAP )  public categoryMap,
     @Inject(RESPONSIVE_MAP) public ResponsiveMap,
     @Inject(REGION_ID) public region: string,
     private renderer: Renderer2,
@@ -98,7 +100,7 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
     public router: Router,
     private route: ActivatedRoute,
     private breakpointObserver:  BreakpointObserver,
-    private cd: ChangeDetectorRef
+    private cd: ChangeDetectorRef,
   ) {
     this.breakpointObserver
       .observe([this.ResponsiveMap['desktop']])

@@ -535,8 +535,6 @@ export class CheckoutKrComponent implements OnInit, AfterViewInit, OnDestroy {
       this.deliveryData[this.updateDeliveryIndex].id,
       temp
     ).subscribe( v => {
-
-
       this.exitModifyDeliveryModal();
       this.cd.markForCheck();
     }, error => {
@@ -701,8 +699,6 @@ export class CheckoutKrComponent implements OnInit, AfterViewInit, OnDestroy {
         this.errorStatus |= this.EMPTY_DELIVERY_ADDRESS;
       }
     }
-
-
 
     if ( this.checkoutAdditionNumber.nativeElement.children[0].value === '') {
       if ( this.errorStatus === 0 ) {this.checkoutAdditionNumber.nativeElement.children[0].focus();}

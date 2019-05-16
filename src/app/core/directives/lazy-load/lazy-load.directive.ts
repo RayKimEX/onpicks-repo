@@ -1,13 +1,13 @@
 import {
   AfterViewInit,
   Directive,
-  ElementRef, EventEmitter,
+  ElementRef,
   HostBinding,
   Input,
-  OnChanges, Output,
+  OnChanges,
   Renderer2, SimpleChanges
 } from '@angular/core';
-import {fromEvent, Observable} from 'rxjs';
+import {fromEvent} from 'rxjs';
 
 @Directive({
   selector: '[drLazyLoad]'
@@ -27,7 +27,7 @@ export class LazyLoadDirective implements AfterViewInit, OnChanges {
 
   }
 
-  ngOnChanges( changes: SimpleChanges){
+  ngOnChanges( changes: SimpleChanges) {
     this.srcAttr = this.src;
   }
 
@@ -103,7 +103,6 @@ export class LazyLoadDirective implements AfterViewInit, OnChanges {
 
       return;
     }
-
   }
 
   private canLazyLoad() {
@@ -133,7 +132,4 @@ export class LazyLoadDirective implements AfterViewInit, OnChanges {
   private loadImage() {
     this.srcAttr = this.src;
   }
-
 }
-
-

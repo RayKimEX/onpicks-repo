@@ -208,13 +208,13 @@ textarea {
 }
 
 .u-cursor-pointer {
-  cursor : pointer;
+  cursor : pointer !important;
 }
 
 .u-button-effect-normal {
-  color : $color-black;
-  cursor: pointer;
-  display : block;
+  color : $color-black !important;
+  cursor: pointer !important;
+  display : block !important;
   &:hover{
     //transition-property: opacity;
     //transition-duration: .2s;
@@ -357,6 +357,14 @@ textarea {
 
 .u-color-black {
   color : $color-black !important;
+}
+
+.u-color-red {
+  color : $color-red !important;
+}
+
+.u-border-red-color {
+  border-color : $color-red !important;
 }
 
 .u-active {

@@ -213,7 +213,32 @@
   }
 
   &__mobile-menu {
-    display:none;
+
+    &--category-navigator {
+      padding: 0 1.6rem;
+      display:none;
+      @include respond(sb){
+        display:table;
+        height: 4rem;
+        width : 100%;
+        border-bottom : 1px solid $color-light-grey;
+        onpicks-sort-box {
+          display:table-cell;
+          vertical-align: middle;
+        }
+      }
+
+      //&--content {
+      //
+      //}
+    }
+
+    &--outer{
+      display:none;
+      @include respond(desktop) {
+        display:block;
+      }
+    }
     @include respond(desktop) {
       display:table;
       padding: 0 1.6rem;

@@ -9,39 +9,81 @@
           Shipping
         </h1>
 
-        <div class="checkout--subtitle subtitle-2-regular">*Full Name</div>
-        <onpicks-input-box
-          class="checkout--input"
-          [placeholder]="'Enter'">
-        </onpicks-input-box>
+        <div class="checkout--block">
+          <div class="checkout--subtitle subtitle-2-regular">*Full Name</div>
+          <onpicks-input-box
+            #inputFullName
+            [width]="'40.8rem'"
+            [errorEffect]="checkBitWise(EMPTY_FULL_NAME)"
+            (focusout)="fullNameCheck()"
+            class="checkout--input"
+            [placeholder]="'Enter'">
+          </onpicks-input-box>
+          <div *ngIf="checkBitWise(EMPTY_FULL_NAME)" class="checkout--error">This is a required field.</div>
+        </div>
 
-        <div class="checkout--subtitle subtitle-2-regular">*Address (We do not ship to P.O. Boxes or AFO/FPO addresses)</div>
-        <onpicks-input-box
-          class="checkout--input"
-          [placeholder]="'Enter'">
-        </onpicks-input-box>
+        <div class="checkout--block">
+          <div class="checkout--subtitle subtitle-2-regular">*Address (We do not ship to P.O. Boxes or AFO/FPO addresses)</div>
+          <onpicks-input-box
+            #inputAddressName
+            [width]="'40.8rem'"
+            [errorEffect]="checkBitWise(EMPTY_ADDRESS_NAME)"
+            (focusout)="addressNameCheck()"
+            class="checkout--input"
+            [placeholder]="'Enter'">
+          </onpicks-input-box>
+          <div *ngIf="checkBitWise(EMPTY_ADDRESS_NAME)" class="checkout--error">This is a required field.</div>
+        </div>
 
-        <div class="checkout--subtitle subtitle-2-regular">Floor, Suite, Apt #</div>
-        <onpicks-input-box
-          class="checkout--input"
-          [placeholder]="'(Optional)'">
-        </onpicks-input-box>
+        <div class="checkout--block">
+          <div class="checkout--subtitle subtitle-2-regular">Floor, Suite, Apt #</div>
+          <onpicks-input-box
+            #inputFloor
+            [width]="'40.8rem'"
+            class="checkout--input"
+            [placeholder]="'(Optional)'">
+          </onpicks-input-box>
+        </div>
 
-        <div class="checkout--subtitle subtitle-2-regular">*Zip Code</div>
-        <onpicks-input-box
-          class="checkout--input"
-          [placeholder]="'Enter'">
-        </onpicks-input-box>
+        <div class="checkout--block">
+          <div class="checkout--subtitle subtitle-2-regular">*Zip Code</div>
+          <onpicks-input-box
+            #inputZipCode
+            [width]="'40.8rem'"
+            [maxlength]="5"
+            [errorEffect]="checkBitWise(INCORRECT_ZIP_CODE)"
+            (focusout)="callGeocodingAPI()"
+            class="checkout--input"
+            [placeholder]="'Enter'">
+          </onpicks-input-box>
+          <div *ngIf="checkBitWise(INCORRECT_ZIP_CODE)" class="checkout--error">Please enter a valid 5-digit zip code.</div>
+        </div>
 
-        <div class="checkout--subtitle subtitle-2-regular">*State</div>
-        <!--<onpicks-select-box>-->
-        <!--</onpicks-select-box>-->
 
-        <div class="checkout--subtitle subtitle-2-regular">*City</div>
-        <onpicks-input-box
-          class="checkout--input"
-          [placeholder]="'(Optional)'">
-        </onpicks-input-box>
+        <div class="checkout--block">
+          <div class="checkout--subtitle subtitle-2-regular">*State</div>
+          <onpicks-select-box
+            (changeEvent)="currentState($event)"
+            class="checkout--state-select-box"
+            [sortList]="stateList"
+            [selectedElement]="{ value : findState }">
+          </onpicks-select-box>
+          <div *ngIf="checkBitWise(EMPTY_STATE)" class="checkout--error">This is a required field.</div>
+        </div>
+
+        <div class="checkout--block">
+          <div class="checkout--subtitle subtitle-2-regular">*City</div>
+          <onpicks-input-box
+            #inputCity
+            (focusout)="cityCheck()"
+            [errorEffect]="checkBitWise(EMPTY_CITY)"
+            [value]="inputCityValue"
+            [width]="'40.8rem'"
+            class="checkout--input"
+            [placeholder]="'Enter'">
+          </onpicks-input-box>
+          <div *ngIf="checkBitWise(EMPTY_CITY)" class="checkout--error">This is a required field.</div>
+        </div>
       </div>
 
       <div class="checkout__billing">
@@ -53,6 +95,7 @@
         </svg>
 
         <div #cardElement id="card-element"></div>
+        <div #cardErrors class="card-errors subtitle-2-regular"></div>
 
 
         <!--<div class="checkout&#45;&#45;subtitle subtitle-2-regular">*Credit Card Number</div>-->
@@ -84,6 +127,9 @@
         <h1 class="checkout--title h1-bold">
           Check out with
         </h1>
+        <div #paypalPayment>
+
+        </div>
       </div>
 
 
@@ -108,7 +154,7 @@
           <div class="checkout-right__menu--item-info-brand subtitle-3-bold">{{item.brand}}</div>
           <div class="checkout-right__menu--item-info-name body-3-regular">{{item.title}}</div>
           <div *ngIf="item.infoOption !== ''" class="checkout-right__menu--item-info-option subtitle-3-regular u-color-grey">{{item.infoOption}}</div>
-          <div class="checkout-right__menu--item-info-price subtitle-2-bold">{{item.price + item.discount | onpicksCurrency: currencyInfo}} / {{item.quantity}}개</div>
+          <div class="checkout-right__menu--item-info-price subtitle-2-bold">{{item.price + item.discount | onpicksCurrency: currencyInfo}} / {{item.quantity}}ct</div>
         </div>
       </div>
 
@@ -127,7 +173,7 @@
             class="checkout-right__menu--price-delivery-tag subtitle-1-regular">
             배송비
           </span>
-          <span class="checkout-right__menu--price-delivery-value subtitle-1-regular">{{data.total_shipping_costs === 0 ? ('무료') : (data.total_shipping_costs | onpicksCurrency : currencyInfo)}}</span>
+          <span class="checkout-right__menu--price-delivery-value subtitle-1-regular">{{data.total_shipping_costs === 0 ? ('free') : (data.total_shipping_costs | onpicksCurrency : currencyInfo)}}</span>
         </div>
         <div class="checkout-right__menu--price-discount">
           <span
