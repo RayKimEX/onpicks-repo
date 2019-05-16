@@ -74,7 +74,9 @@
           margin-bottom: 8px;
         }
         &--right {
-          display:inline-block;
+          div {
+            text-align: right;
+          }
         }
       }
 

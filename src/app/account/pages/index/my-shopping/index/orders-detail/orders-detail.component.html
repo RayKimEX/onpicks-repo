@@ -27,8 +27,11 @@
       </div>
       <div class="checkout-section__item-method">
         <span class="checkout-section__item-method--title subtitle-1-regular">결제방법</span>
-        <span class="checkout-section__item-method--margin subtitle-1-regular">{{data.payment_method_display}} &nbsp;<span *ngIf="data.payment_detail.deposit_until != null">입금기한: {{data.payment_detail.deposit_until | date :'longDate'}}까지</span></span>
-        <div class="checkout-section__item-method--right subtitle-1-regular">{{data.payment_detail.deposit_until != null ? '입금은행 정보:' : '' }} {{data.payment_detail.information}}</div>
+        <span class="checkout-section__item-method--margin subtitle-1-regular">{{data.payment_method_display}}</span>
+      </div>
+      <div class="checkout-section__item-method--right subtitle-1-regular" *ngIf="data.payment_method == 'vaccount'">
+        <div>입금정보: {{data.payment_detail.bank + ' / ' + data.payment_detail.account_number + ' / ' + data.payment_detail.recipient}}</div>
+        <div>입금기한: {{data.payment_detail.deposit_until | date :'longDate'}} 까지</div>
       </div>
     </div>
   </section>
