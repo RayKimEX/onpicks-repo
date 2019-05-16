@@ -116,7 +116,8 @@ ui-footer {
 router-outlet {
 
   @include respond(desktop){
-    padding-top : 9.9rem;
+    padding-top : 6.7rem;
+    // padding-top : 9.9rem;
     display:block;
   }
 }
