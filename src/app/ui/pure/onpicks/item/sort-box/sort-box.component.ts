@@ -33,6 +33,7 @@ export class SortBoxComponent implements OnInit, AfterViewInit {
   clickout(event) {
     if ( this.eRef.nativeElement.contains(event.target)) {
     } else {
+      if ( this.showBox === false ) { return; }
       this.isOpen = false;
       this.renderer.setStyle( this.HTMLdropDown.nativeElement, 'display', 'none');
     }

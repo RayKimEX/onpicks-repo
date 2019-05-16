@@ -21,11 +21,10 @@
   display:block;
 }
 
-
-
 .navigation__menu-toggle:checked ~ .header-menu__background {
   display:block;
 }
+
 .header-menu__background {
   display:none;
   position:fixed;
@@ -43,7 +42,6 @@
   vertical-align: middle;
   position:relative;
 
-
   &__menu-toggle {
     display:none;
   }
@@ -52,11 +50,10 @@
     display:block;
   }
 
-
-
   &__icon {
     float:right;
   }
+
   &__searchbox {
     display: none;
     &-el {
@@ -189,7 +186,7 @@
     &--li {
       display:table;
       width : 100%;
-      height : 56px;
+      height : 5.6rem;
 
 
       &--not-login {
@@ -222,15 +219,71 @@
         height: 4rem;
         width : 100%;
         border-bottom : 1px solid $color-light-grey;
-        onpicks-sort-box {
+        & > div {
           display:table-cell;
           vertical-align: middle;
         }
+        onpicks-sort-box {
+
+        }
       }
 
-      //&--content {
-      //
-      //}
+      &--item {
+        display:table;
+        padding: 0 1.6rem;
+        height : 5.6rem;
+        border-bottom : 1px solid $color-light-grey;
+      }
+
+      &--content {
+        height: 100vh;
+
+        &--return{
+          padding : 0 1.6rem;
+          height: 5.6rem;
+          display:table;
+          width:100%;
+          border-bottom : 1px solid $color-light-grey;
+          &--inner {
+            display: table-cell;
+            vertical-align: middle;
+            & > div {
+              padding-left: 1.6rem;
+              display:inline-block;
+            }
+          }
+
+        }
+
+        &--title {
+          padding : 0 1.6rem;
+          display : table-cell;
+          vertical-align: middle;
+          height : 5.6rem;
+          width: 100vw;
+          border-bottom : 1px solid $color-light-grey;
+          img {
+            height : 4rem;
+            width : 4rem;
+          }
+
+          &--name {
+            width:calc( 100% - 5.6rem );
+            height:4rem;
+            display:inline-block;
+
+            & > div {
+              display: table;
+              width:100%;
+              height :100%;
+
+              & > div {
+                padding-left : 0.8rem;
+              }
+            }
+          }
+        }
+      }
     }
 
     &--outer{

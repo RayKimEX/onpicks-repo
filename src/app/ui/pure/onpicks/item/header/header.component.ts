@@ -1,6 +1,5 @@
 // Angular Core
 import {ActivatedRoute, Router} from '@angular/router';
-import {APP_BASE_HREF} from '@angular/common';
 import {
   ChangeDetectionStrategy,
   AfterViewInit,
@@ -30,6 +29,7 @@ import {TryLogout} from '../../../../../core/store/auth/auth.actions';
 import {MENU_MAP} from '../../../../../core/global-constant/app.locale';
 import {ShowCurrencyModal} from '../../../../../core/store/modal/modal.actions';
 import {CATEGORY_CODE_MAP, CATEGORY_MAP} from '../../../../../core/global-constant/app.category-database-long';
+import {normalize, schema} from 'normalizr';
 
 @Component({
   selector: 'ui-header',
@@ -72,6 +72,24 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
   currentName;
   currentTitle;
   currentUrl;
+
+  /*****************************/
+  isOpenCategoryNavigator = false;
+  normalizedCategory;
+  // categoryDepth = {
+  //   1 : {
+  //     code : 1000000
+  //   }
+  // };
+
+  categoryNavigatedInfo = [
+    {
+      depth : 1,
+      code : 1000000
+    }
+  ]
+  categoryNavigateCurrentDepth = 1;
+
   /*****************************/
 
   scrollForAlert$ = null;
@@ -88,12 +106,12 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
   isShowSettingMenu = false;
 
   constructor(
-    @Inject(LOCALE_ID) public locale: string,
-    @Inject(CURRENCY) public currency: BehaviorSubject<any>,
-    @Inject(MENU_MAP) public menuMap,
+    @Inject( LOCALE_ID ) public locale: string,
+    @Inject( CURRENCY ) public currency: BehaviorSubject<any>,
+    @Inject( MENU_MAP ) public menuMap,
     @Inject( CATEGORY_MAP )  public categoryMap,
-    @Inject(RESPONSIVE_MAP) public ResponsiveMap,
-    @Inject(REGION_ID) public region: string,
+    @Inject( RESPONSIVE_MAP ) public ResponsiveMap,
+    @Inject( REGION_ID ) public region: string,
     private renderer: Renderer2,
     private authService: AuthService,
     private store: Store<AppState>,
@@ -102,6 +120,9 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
     private breakpointObserver:  BreakpointObserver,
     private cd: ChangeDetectorRef,
   ) {
+    this.normalizedCategory = this.normalizer(this.categoryMap);
+    console.log(this.normalizedCategory);
+
     this.breakpointObserver
       .observe([this.ResponsiveMap['desktop']])
       .subscribe((state: BreakpointState) => {
@@ -218,20 +239,7 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   hoverMenu(xInputChecked, xMenuToggle) {
-
-    console.log('ddd');
-    // this.renderer.appendChild(document.body, this.tempDiv);
-    // this.renderer.setStyle(this.tempDiv, 'top', '0');
-    // this.renderer.setStyle(this.tempDiv, 'position', 'absolute');
-    // this.renderer.setStyle(this.tempDiv, 'display', 'block');
-    // this.renderer.setStyle(this.tempDiv, 'width', '100%');
-    // this.renderer.setStyle(this.tempDiv, 'height', document.body.clientHeight + 'px');
-    // this.renderer.setStyle(this.tempDiv, 'z-index', '10');
-    // this.renderer.setStyle(this.tempDiv, 'background-color', '#000000');
-    // this.renderer.setStyle(this.tempDiv, 'opacity', '0.5');
-    // this.renderer.setProperty(xInputChecked, 'checked', true);
     this.renderer.setProperty(xMenuToggle, 'checked', true);
-    // this.renderer.setStyle(this.menuRef.nativeElement, 'display', 'block');
   }
 
   showPreparingMessage() {
@@ -299,6 +307,15 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   }
 
+  categoryNavigatorToggle() {
+    this.isOpenCategoryNavigator = !this.isOpenCategoryNavigator;
+    if ( this.isOpenCategoryNavigator ) {
+      this.renderer.addClass(document.body , 'u-open-modal');
+    } else {
+      this.renderer.removeClass(document.body , 'u-open-modal');
+    }
+  }
+
   logout( xInputChecked ) {
     this.store.dispatch(new TryLogout());
     this.renderer.setProperty(xInputChecked, 'checked', false);
@@ -310,6 +327,57 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
   showCurrencyGlobalModal( xMenuToggle ) {
     this.renderer.setProperty(xMenuToggle, 'checked', false);
     this.store.dispatch(new ShowCurrencyModal());
+  }
+
+  returnCategory() {
+    this.categoryNavigateCurrentDepth--;
+  }
+
+  navigateCategory(xItem, xCanNavigate) {
+    if ( !xCanNavigate ) { return; }
+
+    // console.log(this.categoryNavigatedInfo.length);
+    this.categoryNavigateCurrentDepth++;
+    if ( this.categoryNavigatedInfo.length >= 3) {
+      this.categoryNavigatedInfo[this.categoryNavigateCurrentDepth - 1] = {
+        depth : this.categoryNavigateCurrentDepth,
+        code : xItem
+      };
+    } else {
+      this.categoryNavigatedInfo.push({ depth : this.categoryNavigateCurrentDepth, code : xItem })
+    }
+
+  }
+
+  normalizer ( data ) {
+    const slug = new schema.Entity('slug', {
+
+    });
+
+    const fourthCategory = new schema.Entity('4', {
+
+    }, { idAttribute: 'code' });
+
+    const thirdCategory = new schema.Entity('3', {
+      children : [fourthCategory]
+    }, { idAttribute: 'code' });
+
+    // // // Define your comments schema
+    const secondCategory = new schema.Entity( '2', {
+      children : [thirdCategory]
+    }, { idAttribute: 'code' });
+
+    const firstCategory = new schema.Entity( '1', {
+      // idAttribute: () => slug
+      children : [secondCategory]
+    }, { idAttribute: 'code' });
+
+    const object = new schema.Array(firstCategory);
+
+    console.log('%%%%%%%%%%%%%%');
+    console.log(object);
+    console.log(data);
+    return normalize(data, object);
   }
 }
 

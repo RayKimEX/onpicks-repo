@@ -114,6 +114,7 @@ export class CartComponent {
   denormalizr ( data ){
 
     const array = []
+    console.log(data);
     Object.keys(data).forEach( key => {
       array.push(data[key]);
     });
