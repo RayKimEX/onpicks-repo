@@ -88,14 +88,24 @@
       </div>
 
       <onpicks-button
-        *ngIf="!isExpendMobileMenu"
-        (click)="expandMobileMenu()"
         class="mobile-menu__button"
-        [width]="'13.4rem'"
+        *ngIf="!isExpendMobileMenu && !(data.in_stock === false || data.in_stock === true && data.stock_quantity === 0)"
+        (click)="expandMobileMenu()"
         [type]="'black'"
+        [size]="'big'"
         [padding]="false"
-        [size]="'big'" >
+        [width]="'13.4rem'">
         옵션 선택하기
+      </onpicks-button>
+      <onpicks-button
+        i18n="@@word__out-of-stock"
+        class="mobile-menu__button"
+        *ngIf="!isExpendMobileMenu && (data.in_stock === false || data.in_stock === true && data.stock_quantity === 0)"
+        [type]="'grey'"
+        [size]="'big'"
+        [padding]="false"
+        [width]="'13.4rem'">
+        품 절
       </onpicks-button>
 
       <div *ngIf="isExpendMobileMenu" class="mobile-menu__options">
