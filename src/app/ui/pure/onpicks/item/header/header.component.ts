@@ -105,6 +105,10 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
   mobileAlertTop = '11rem';
   isShowSettingMenu = false;
 
+
+  activeUrl$;
+  activeUrl;
+
   constructor(
     @Inject( LOCALE_ID ) public locale: string,
     @Inject( CURRENCY ) public currency: BehaviorSubject<any>,
@@ -137,6 +141,7 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
     this.uiActiveUrl$ =  this.store.pipe(select(state => state.ui.activeUrl))
       .subscribe(val => {
         this.currentUrl = val;
+        console.log(this.currentUrl);
       });
 
     this.uiCategoryStore$ = this.store.pipe(select(state => state.ui.currentCategoryList))
@@ -214,6 +219,7 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy() {
+    this.uiActiveUrl$.unsubscribe();
     // this.cart$.unsubscribe();
   }
 

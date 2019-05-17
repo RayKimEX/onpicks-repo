@@ -47,6 +47,9 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit, DoCheck {
   deltaHeight = 0;
   previousUrl = [];
 
+
+  activeUrl;
+
   constructor(
     @Inject(CATEGORY_CODE_MAP) public categoryMap,
     @Inject(RESPONSIVE_MAP) public responsiveMap,
@@ -92,6 +95,7 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit, DoCheck {
       this.isCategoryLoaded = val.currentCategoryList.isLoaded;
       this.categoryLoadType = val.currentCategoryList.type;
       this.globalKakaoPosition = val.globalKakaoPosition;
+      this.activeUrl = val.activeUrl;
     })
 
     this.modalState$ = this.store.pipe(select( 'modal'));

@@ -2,7 +2,7 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component, Inject,
-  Input, LOCALE_ID,
+  LOCALE_ID,
   OnDestroy,
   OnInit,
   Renderer2
@@ -10,7 +10,7 @@ import {
 import {
   Location
 } from '@angular/common';
-import {ActivatedRoute, ActivatedRouteSnapshot, NavigationEnd, Router, RouterEvent} from '@angular/router';
+import {ActivatedRoute, NavigationEnd, Router, RouterEvent} from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import {
   TryAddOrCreateToCart,
@@ -151,7 +151,6 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
       en : ''
     }
   }
-
   constructor(
     @Inject( CURRENCY ) public currency: BehaviorSubject<any>,
     @Inject( LOCATION_MAP ) public locationMap: any,
@@ -186,7 +185,6 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
         // this.categoryList = val;
         this.normalizedCategoryInfoList = val.entities;
         this.normalizedCategoryCodeList = val.result;
-        console.log('###################################');
         console.log(val.result);
         this.previous = val.previous;
         this.currentSlug = val.currentSlug;
