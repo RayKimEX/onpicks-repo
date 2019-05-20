@@ -84,6 +84,7 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
   uiStore$;
   queryParams$;
   searchData$;
+  routerEvent$;
 
   // subscribe ``value``
   queryParams = {term: '', brand: [], value: [], location: []};
@@ -211,7 +212,7 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
 
     // this.router.events.pipe( merge(this.route.queryParams) )
     // this.router.events.pipe(concat(this.route.queryParams))
-    this.router.events.subscribe( (event: RouterEvent) => {
+    this.routerEvent$ = this.router.events.subscribe( (event: RouterEvent) => {
 
       if (event instanceof NavigationEnd ) {
         const url = this.router.url;
@@ -399,6 +400,7 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
     this.uiStore$.unsubscribe();
     this.queryParams$.unsubscribe();
     this.cartStore$.unsubscribe();
+    this.routerEvent$.unsubscribe();
   }
 
   ngOnInit() {
