@@ -73,10 +73,21 @@
                         mobileType === 'half' ?
                         'ui-mini-list-halfM__item--stock' :
                         'ui-mini-list-fullM__item--stock']">
-                        <span *ngIf="locale === 'ko'" class="ui-mini-list-halfM__item--stock--inner u-color-white">
+                        <span
+                          *ngIf="locale === 'ko'"
+                          [ngClass]="[
+                            mobileType === 'half' ?
+                            'ui-mini-list-halfM__item--stock--inner' :
+                            'ui-mini-list-fullM__item--stock--inner']"
+                          class="u-color-white">
                           품절임박 {{item.stock_quantity}}개
                         </span>
-                        <span *ngIf="locale === 'en'" class="ui-mini-list-halfM__item--stock--inner u-color-white">
+                        <span *ngIf="locale === 'en'"
+                              [ngClass]="[
+                              mobileType === 'half' ?
+                              'ui-mini-list-halfM__item--stock--inner' :
+                              'ui-mini-list-fullM__item--stock--inner']"
+                              class="u-color-white">
                           Only {{item.stock_quantity}} Left
                         </span>
                       </div>
@@ -85,7 +96,11 @@
                         'ui-mini-list-halfM__item--stock-empty' :
                         'ui-mini-list-fullM__item--stock-empty']">
                         <span
-                          class="ui-mini-list-halfM__item--stock--inner u-color-white">
+                          [ngClass]="[
+                        mobileType === 'half' ?
+                        'ui-mini-list-halfM__item--stock--inner' :
+                        'ui-mini-list-fullM__item--stock--inner']"
+                          class="u-color-white">
                           품절
                         </span>
                       </div>

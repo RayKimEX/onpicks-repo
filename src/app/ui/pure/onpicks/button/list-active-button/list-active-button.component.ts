@@ -28,8 +28,12 @@ export class ListActiveButtonComponent implements OnInit, AfterViewInit, OnDestr
   @Output('subtractEvent') subtractEvent = new EventEmitter<number>();
   @Input('isFixExtend') isFixExtend = false;
   @Input('amount') amount = 0;
-  @Input('limitCount') limitCount = 10;
+  @Input('limitCount') set _limitCount(xLimitCount) {
+    if ( xLimitCount === null ) { return; }
+    this.limitCount = xLimitCount > 10 ? 10 : xLimitCount ;
+  }
 
+  limitCount = 10;
   plusOpactiy = 1;
   minusOpacity = 1;
   mouseHover = false;

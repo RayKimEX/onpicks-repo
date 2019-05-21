@@ -397,8 +397,8 @@
               i18n="@@cart__delivery-multi-purchase"
               (click)="setCheckoutList(item.items)"
               class="cart__delivery-multi-purchase--btn"
+              [width]="'inherit'"
               [type]="'white'"
-              [width]="'auto'"
               [size]="'big'">
               묶음배송 구매하기
             </onpicks-button>
@@ -586,43 +586,43 @@
           <div class="cart-mobile__table">
             <div
               class="cart-mobile__table--item"
-              *ngFor="let itemForFree of syncedData?.wishList index as itemForFreeIndex">
+              *ngFor="let itemForSave of syncedData?.wishList index as itemForSaveIndex">
               <div class="cart-mobile__table--item--image-and-font-line-fixed">
 
                 <div class="cart-mobile__table--item--image">
                   <div class="cart-mobile__table--item--image-inner">
-                    <img drLazyLoad src="{{itemForFree.thumbnail}}" alt="{{itemForFree.title}}">
+                    <img drLazyLoad src="{{itemForSave.thumbnail}}" alt="{{itemForSave.title}}">
                   </div>
                 </div>
 
                 <div class="cart-mobile__table--item-info">
 
                   <div class="cart-mobile__table--item-info--title subtitle-3-bold">
-                    {{itemForFree.brand}}
+                    {{itemForSave.brand}}
                   </div>
                   <div class="cart-mobile__table--item-info--description body-3-regular">
-                    {{itemForFree.title}}
+                    {{itemForSave.title}}
                   </div>
                   <div class="cart-mobile__table--item-info--price subtitle-2-bold">
-                    {{itemForFree.price | onpicksCurrency : syncedData.currencyInfo}}
+                    {{itemForSave.price | onpicksCurrency : syncedData.currencyInfo}}
                   </div>
                   <div style="margin-top:0.8rem;">
                     <span
                       class="cart__wishlist-table--delivery-info-image"
                       [ngClass]=
                         "[
-                      (locationMap[itemForFree?.location.code]?.nickname === 'la')  ? 'icon-small-la' : '',
-                      (locationMap[itemForFree?.location.code]?.nickname === 'new')  ? 'icon-small-new' : '',
-                      (locationMap[itemForFree?.location.code]?.nickname === 'osaka')  ? 'icon-small-osaka' : '',
-                      (locationMap[itemForFree?.location.code]?.nickname === 'gorgia')  ? 'icon-small-gorgia' : '',
-                      (locationMap[itemForFree?.location.code]?.nickname === 'hong')  ? 'icon-small-hong' : ''
+                      (locationMap[itemForSave?.location.code]?.nickname === 'la')  ? 'icon-small-la' : '',
+                      (locationMap[itemForSave?.location.code]?.nickname === 'new')  ? 'icon-small-new' : '',
+                      (locationMap[itemForSave?.location.code]?.nickname === 'osaka')  ? 'icon-small-osaka' : '',
+                      (locationMap[itemForSave?.location.code]?.nickname === 'gorgia')  ? 'icon-small-gorgia' : '',
+                      (locationMap[itemForSave?.location.code]?.nickname === 'hong')  ? 'icon-small-hong' : ''
                     ]">
                     </span>
                     <div class="cart__wishlist-table--delivery-info-where subtitle-2-regular">
-                      <span class="u-bold">{{itemForFree.location.name}}</span> 출고 ·</div>
-                    <div class="cart__wishlist-table--delivery-info-price subtitle-2-bold" *ngIf="itemForFree.shipping_fee == 0">&nbsp;무료배송</div>
+                      <span class="u-bold">{{itemForSave.location.name}}</span> 출고 ·</div>
+                    <div class="cart__wishlist-table--delivery-info-price subtitle-2-bold" *ngIf="itemForSave.shipping_fee == 0">&nbsp;무료배송</div>
                     <div class="cart__wishlist-table--delivery-info-price subtitle-2-regular"
-                         *ngIf="itemForFree.shipping_fee > 0">&nbsp;묶음배송 </div>
+                         *ngIf="itemForSave.shipping_fee > 0">&nbsp;묶음배송 </div>
                   </div>
                 </div>
               </div>
@@ -631,8 +631,9 @@
                   <onpicks-button
                     [width]="'11.4rem'"
                     [type]="'white'"
-                    (click)="moveWishListToCart(1, itemForFree, itemForFree.individual_shipping ? 'free' : locationMap[itemForFree?.location.code]?.sequence, i)"
-                    *ngIf="itemForFree.attributes.length === 0"
+                    (click)="moveWishListToCart(1, itemForSave, itemForSave.ship_alone ? 'free' : locationMap[itemForSave?.location.code]?.sequence, i)"
+                    *ngIf="itemForSave.attributes.length === 0"
+                    [padding]="false"
                     [size]="'small'">
                     쇼핑백에 담기
                   </onpicks-button>
@@ -641,8 +642,9 @@
                     [marginLeft]="'0.8rem'"
                     [type]="'white'"
                     [width]="'11.4rem'"
-                    (click)="deleteWishList(itemForFree.product, i)"
-                    *ngIf="itemForFree.attributes.length === 0"
+                    [padding]="false"
+                    (click)="deleteWishList(itemForSave.slug, i)"
+                    *ngIf="itemForSave.attributes.length === 0"
                     [size]="'small'">
                     삭제하기
                   </onpicks-button>
