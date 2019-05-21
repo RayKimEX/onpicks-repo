@@ -144,7 +144,7 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
       .subscribe(val => {
         this.currentUrl = val;
 
-        if ( this.currentUrl.length === 0 ){ return; }
+        if ( this.currentUrl.length === 0 || this.currentUrl.length <= 3 ) { return; }
         console.log( this.currentUrl);
         console.log( this.categoryCodeMap[this.currentUrl[3]]);
         console.log( this.currentUrl[3]);
@@ -375,6 +375,14 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
       this.categoryNavigatedInfo
         .push({ depth : this.categoryNavigateCurrentDepth, code : xItem, slug : xSlug });
     }
+  }
+
+  goToHome(xMenuToggle){
+    
+    this.isOpenCategoryNavigator = false;
+    this.renderer.setProperty(xMenuToggle, 'checked', false);
+    this.renderer.removeClass(document.body , 'u-open-modal');
+    this.router.navigate(['/shops']);
   }
 
   navigateFirstCategory(xSlug){

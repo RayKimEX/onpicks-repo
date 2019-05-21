@@ -287,12 +287,15 @@
           </div>
         </li>
       </ul>
-      <!--<div class="value-content__apply">-->
-        <!--<onpicks-button-->
-          <!--[width]="'100%'"-->
-          <!--[size]="'big'"-->
-          <!--[type]="'black'">적용하기</onpicks-button>-->
-      <!--</div>-->
+      <div class="value-content__apply">
+        <onpicks-button
+          (click)="applyValueFilter()"
+          [width]="'100%'"
+          [size]="'big'"
+          [type]="'black'">
+          적용하기
+        </onpicks-button>
+      </div>
     </div>
 
     <div
