@@ -332,10 +332,11 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   categoryNavigatorToggle() {
-    this.isOpenCategoryNavigator = !this.isOpenCategoryNavigator;
     if ( this.isOpenCategoryNavigator ) {
+      this.isOpenCategoryNavigator = false;
       this.renderer.addClass(document.body , 'u-open-modal');
     } else {
+      this.isOpenCategoryNavigator = true;
       this.renderer.removeClass(document.body , 'u-open-modal');
     }
   }
@@ -378,7 +379,7 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   goToHome(xMenuToggle){
-    
+
     this.isOpenCategoryNavigator = false;
     this.renderer.setProperty(xMenuToggle, 'checked', false);
     this.renderer.removeClass(document.body , 'u-open-modal');
