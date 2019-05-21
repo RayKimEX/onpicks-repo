@@ -408,6 +408,43 @@
               </div>
             </div>
           </div>
+          <div class="search-content__mobile-sort-list">
+            <ng-container *ngFor="let keys of objectKeys(currentParamList)">
+              <ng-container *ngIf="typeOf(currentParamList[keys]) === 'string'">
+                <div class="search-content__mobile-sort-list--item ">
+                  <div
+                    (click)="removeSpecificFilter(keys, currentParamList[keys])"
+                    class="c-filter-navigator__content-ul--item-remove-outer">
+                      <span
+                        class="c-filter-navigator__content-ul--item-remove">
+                      </span>
+                  </div>
+                  <div
+                    class="u-inline-block subtitle-2-regular">
+                    {{currentParamList[keys]}}
+                  </div>
+                </div>
+              </ng-container>
+              <ng-container *ngIf="isArray(currentParamList[keys]) === true">
+                <ng-container *ngFor="let item of currentParamList[keys]">
+                  <div class="search-content__mobile-sort-list--item ">
+                    <div
+                      (click)="removeSpecificFilter(keys, item)"
+                      class="c-filter-navigator__content-ul--item-remove-outer">
+                        <span
+                          class="c-filter-navigator__content-ul--item-remove">
+                        </span>
+                    </div>
+                    <div
+                      class="u-inline-block subtitle-2-regular">
+                      {{item}}
+                    </div>
+                  </div>
+                </ng-container>
+              </ng-container>
+            </ng-container>
+          </div>
+
           <div class="search-content__content--outer">
             <div class="search-content__content">
               <ul #container *ngLet="(currency| async) as currencyAync">

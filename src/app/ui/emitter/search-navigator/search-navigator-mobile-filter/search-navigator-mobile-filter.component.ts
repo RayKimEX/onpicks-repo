@@ -89,7 +89,7 @@ export class SearchNavigatorMobileFilterComponent implements OnInit {
 
 
   brandClicked(xBrandSlug) {
-    this.exitEvent.emit();
+
     if (this.brandListForCheck[xBrandSlug] === true) {
       this.brandListForCheck[xBrandSlug] = false;
       const index = this.queryParams.brand.indexOf(xBrandSlug);
@@ -97,16 +97,19 @@ export class SearchNavigatorMobileFilterComponent implements OnInit {
     } else {
       this.queryParams.brand.push(xBrandSlug);
     }
+  }
 
-    if( this.searchState === 'search') {
+  applyBrandFilter() {
+    if ( this.searchState === 'search' ) {
       this.router.navigate(['/shops/search'], {
         queryParams: {page: null, brand: this.queryParams.brand.length === 0 ? null : this.queryParams.brand},
         queryParamsHandling: 'merge'
       });
     } else {
-      this.router.navigate(['./'], { relativeTo: this.route, queryParams: { brand: xBrandSlug}, queryParamsHandling: 'merge'} );
+      // category 일때
+      this.router.navigate(['./'], { relativeTo: this.route, queryParams: { brand: this.queryParams.brand}, queryParamsHandling: 'merge'} );
     }
-
+    this.exitEvent.emit();
   }
 
   locationClicked(xLocationSlug) {

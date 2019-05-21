@@ -17,7 +17,10 @@
 </onpicks-free-delivery-notibox>
 
 <div class="onpicks-padding">
-  <router-outlet [ngStyle]="{ 'paddingTop' : activeUrl[2] === 'c' ? '7.6rem' : '9.9rem'  }"></router-outlet>
+  <router-outlet
+    [ngStyle]="{ 'paddingTop' : (isSecondBreakPoint && activeUrl[2] === 'c') ? '9.9rem' : '6rem', 'display' : (isDesktopBreakPoint && activeUrl[2] === 'c') ? 'block' : ''}">
+
+  </router-outlet>
 </div>
 
 <ui-footer [ngStyle]="{ paddingTop : deltaHeight }">

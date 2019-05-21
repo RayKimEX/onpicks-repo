@@ -34,6 +34,9 @@ import {Title} from '@angular/platform-browser';
 
 export class SearchNavigatorComponent implements OnInit, OnDestroy {
 
+  objectKeys = Object.keys;
+  isArray = Array.isArray;
+
   locationList;
   locationListForCheck = {};
   brandList;
@@ -84,6 +87,7 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
   uiStore$;
   queryParams$;
   searchData$;
+  routerEvent$;
 
   // subscribe ``value``
   queryParams = {term: '', brand: [], value: [], location: []};
@@ -209,11 +213,13 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
 
     // this.router.events.pipe( merge(this.route.queryParams) )
     // this.router.events.pipe(concat(this.route.queryParams))
-    this.router.events.subscribe( (event: RouterEvent) => {
+    this.routerEvent$ = this.router.events.subscribe( (event: RouterEvent) => {
 
       if (event instanceof NavigationEnd ) {
+        console.log('@@@@@@@@@@@@@@@@@@@@');
         const url = this.router.url;
         this.currentUrl = url;
+        console.log(this.currentUrl);
         if ( url.indexOf('/search') > -1 || url.indexOf('/c/') > -1) {
 
         } else {
@@ -397,6 +403,7 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
     this.uiStore$.unsubscribe();
     this.queryParams$.unsubscribe();
     this.cartStore$.unsubscribe();
+    this.routerEvent$.unsubscribe();
   }
 
   ngOnInit() {
@@ -604,7 +611,13 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
       }
     }
 
-    this.router.navigate( ['/shops/search'], {queryParams: this.currentParamList});
+    // this.queryParams
+
+    if( this.searchState === 'search') {
+      this.router.navigate( ['/shops/search'], {queryParams: this.currentParamList});
+    } else {
+      this.router.navigate(['./'], { relativeTo: this.route, queryParams: this.currentParamList } );
+    }
   }
 
   // TODO : 리뷰 검색, 브랜드 검색 2차 스콥때 하기
@@ -660,6 +673,11 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
 
 
     return normalize(data, object);
+  }
+
+
+  typeOf( val ) {
+    return typeof val;
   }
 }
 

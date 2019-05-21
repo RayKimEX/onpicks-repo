@@ -27,7 +27,7 @@ export class SortBoxComponent implements OnInit, AfterViewInit {
 
   @Output('changeEvent') changeEvent = new EventEmitter();
 
-  isOpen = false;
+  @Input('isOpen') isOpen = false;
 
   @HostListener('document:click', ['$event'])
   clickout(event) {

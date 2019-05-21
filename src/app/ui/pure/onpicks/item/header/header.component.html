@@ -196,13 +196,20 @@
         <div>
           <onpicks-sort-box
             (click)="categoryNavigatorToggle()"
+            [isOpen]="isOpenCategoryNavigator"
             [sortList]="[{
                 title : {
-                  ko : categoryMap['1000000']['name']['ko'],
-                  en : categoryMap['1000000']['name']['en']
+                  ko : categoryMap[categoryCodeMap[currentUrl[3]].code]['name']['ko'],
+                  en : categoryMap[categoryCodeMap[currentUrl[3]].code]['name']['en']
                }, value : 0
              }
             ]"
+            [selectedElement]="{
+                title : {
+                  ko : categoryMap[categoryCodeMap[currentUrl[3]].code]['name']['ko'],
+                  en : categoryMap[categoryCodeMap[currentUrl[3]].code]['name']['en']
+               }, value : 0
+             }"
             [showBox]="false">
           </onpicks-sort-box>
         </div>
@@ -221,30 +228,33 @@
             </div>
           </div>
         </div>
-        <div class="header__mobile-menu--category-navigator--content--title">
-          <div *ngIf="categoryNavigateCurrentDepth === 1">
+        <div
+          class="header__mobile-menu--category-navigator--content--title">
+          <div
+            (click)="navigateFirstCategory( categoryMap[categoryCodeMap[currentUrl[3]].code]['slug'])"
+            *ngIf="categoryNavigateCurrentDepth === 1">
             <!--height : 5.6rem;-->
-            <img [src]="'https://img.onpicks.com/assets/menu/' + categoryMap['1000000'].slug + '.jpg?d=w80-h80'" alt="">
+            <img [src]="'https://img.onpicks.com/assets/menu/' + categoryMap[categoryCodeMap[currentUrl[3]].code].slug + '.jpg?d=w80-h80'" alt="">
             <div class="header__mobile-menu--category-navigator--content--title--name">
               <div>
                 <div class="u-vertical-center-with-table-cell subtitle-2-regular">
-                  {{ categoryMap['1000000']['name'][locale] }}
+                  {{ categoryMap[categoryCodeMap[currentUrl[3]].code]['name'][locale] }}
                 </div>
               </div>
             </div>
           </div>
-          <div *ngIf="categoryNavigateCurrentDepth !== 1" class="subtitle-2-bold">
+          <div
+            (click)="navigateAllCategory(normalizedCategory.entities[categoryNavigateCurrentDepth][categoryNavigatedInfo[categoryNavigateCurrentDepth - 1].code].slug)"
+            *ngIf="categoryNavigateCurrentDepth !== 1" class="subtitle-2-bold">
             {{normalizedCategory.entities[categoryNavigateCurrentDepth][categoryNavigatedInfo[categoryNavigateCurrentDepth - 1].code].name[locale]}} 모두보기
           </div>
         </div>
-        <!--{{'11'}}-->
-        <!--hello1-->
 
         <div
           class="header__mobile-menu--category-navigator--item u-full-width"
           *ngFor="let item of normalizedCategory.entities[categoryNavigateCurrentDepth][categoryNavigatedInfo[categoryNavigateCurrentDepth - 1].code].children">
           <div
-            (click)="navigateCategory(item, normalizedCategory.entities[categoryNavigateCurrentDepth + 1][item].children.length !== 0)"
+            (click)="navigateCategory(item, normalizedCategory.entities[categoryNavigateCurrentDepth + 1][item].slug, normalizedCategory.entities[categoryNavigateCurrentDepth + 1][item].children.length !== 0)"
             class="u-vertical-center-with-table-cell subtitle-2-regular">
             <span>{{ normalizedCategory.entities[categoryNavigateCurrentDepth + 1][item].name[locale] }}</span>
             <svg *ngIf="normalizedCategory.entities[categoryNavigateCurrentDepth + 1][item].children.length !== 0" class="u-float-right" xmlns="http://www.w3.org/2000/svg" width="8" height="14" viewBox="0 0 8 14">

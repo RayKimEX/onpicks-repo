@@ -84,8 +84,9 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
 
   categoryNavigatedInfo = [
     {
-      depth : 1,
-      code : 1000000
+      depth : 0,
+      code : 0,
+      slug : ''
     }
   ]
   categoryNavigateCurrentDepth = 1;
@@ -116,6 +117,7 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
     @Inject( CATEGORY_MAP )  public categoryMap,
     @Inject( RESPONSIVE_MAP ) public ResponsiveMap,
     @Inject( REGION_ID ) public region: string,
+    @Inject( CATEGORY_CODE_MAP ) public categoryCodeMap,
     private renderer: Renderer2,
     private authService: AuthService,
     private store: Store<AppState>,
@@ -141,6 +143,22 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
     this.uiActiveUrl$ =  this.store.pipe(select(state => state.ui.activeUrl))
       .subscribe(val => {
         this.currentUrl = val;
+
+        if ( this.currentUrl.length === 0 ){ return; }
+        console.log( this.currentUrl);
+        console.log( this.categoryCodeMap[this.currentUrl[3]]);
+        console.log( this.currentUrl[3]);
+        console.log( this.categoryNavigatedInfo[0].slug);
+        if ( this.currentUrl[3] !== this.categoryNavigatedInfo[0].slug ) {
+          this.categoryNavigatedInfo.length = 0;
+          this.categoryNavigateCurrentDepth = 1;
+          this.categoryNavigatedInfo.push({
+            depth : 1,
+            code : this.categoryCodeMap[this.currentUrl[3]].code,
+            slug : this.currentUrl[3]
+          });
+        }
+
         console.log(this.currentUrl);
       });
 
@@ -339,20 +357,81 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
     this.categoryNavigateCurrentDepth--;
   }
 
-  navigateCategory(xItem, xCanNavigate) {
-    if ( !xCanNavigate ) { return; }
+  navigateCategory(xItem, xSlug, xCanNavigate) {
+    if ( !xCanNavigate ) {
+      this.navigateAllCategory(xSlug, xCanNavigate);
+      return;
+    }
 
     // console.log(this.categoryNavigatedInfo.length);
     this.categoryNavigateCurrentDepth++;
     if ( this.categoryNavigatedInfo.length >= 3) {
       this.categoryNavigatedInfo[this.categoryNavigateCurrentDepth - 1] = {
         depth : this.categoryNavigateCurrentDepth,
-        code : xItem
+        code : xItem,
+        slug : xSlug,
       };
     } else {
-      this.categoryNavigatedInfo.push({ depth : this.categoryNavigateCurrentDepth, code : xItem })
+      this.categoryNavigatedInfo
+        .push({ depth : this.categoryNavigateCurrentDepth, code : xItem, slug : xSlug });
     }
+  }
 
+  navigateFirstCategory(xSlug){
+    this.router.navigate(['/shops/c/' + xSlug]);
+    this.categoryNavigatorToggle();
+  }
+
+  navigateAllCategory(xSlug, xCanNavigate = true) {
+    // currentUrl[2]가 c일때만 보이므로 3일때는 1depth슬러그를 무조건 불러옴
+    console.log(xCanNavigate);
+
+    // secondCategorySelected
+    if ( xCanNavigate ){
+      if ( this.categoryNavigateCurrentDepth === 2 ) {
+          this.router.navigate(['/shops/c/' + this.currentUrl[3] + '/' + xSlug ],
+          {relativeTo: this.route});
+        this.categoryNavigatorToggle();
+      } else if ( this.categoryNavigateCurrentDepth === 3 ) {
+        this.router.navigate(
+          ['/shops/c/' + this.currentUrl[3] + '/' +
+          this.categoryNavigatedInfo[this.categoryNavigateCurrentDepth - 2].slug + '/' +
+          this.categoryNavigatedInfo[this.categoryNavigateCurrentDepth - 1].slug
+          ],
+          {relativeTo: this.route});
+        this.categoryNavigatorToggle();
+      } else if ( this.categoryNavigateCurrentDepth === 4 ) {
+        this.router.navigate(
+          ['/shops/c/' + this.currentUrl[3] + '/' +
+          this.categoryNavigatedInfo[this.categoryNavigateCurrentDepth - 3].slug + '/' +
+          this.categoryNavigatedInfo[this.categoryNavigateCurrentDepth - 2].slug + '/' +
+          this.categoryNavigatedInfo[this.categoryNavigateCurrentDepth - 1].slug
+          ],
+          {relativeTo: this.route});
+        this.categoryNavigatorToggle();
+      }
+    } else {
+      if ( this.categoryNavigateCurrentDepth === 2 ) {
+        console.log(this.categoryNavigatedInfo[this.categoryNavigateCurrentDepth - 1].slug)
+        console.log(this.categoryNavigatedInfo[this.categoryNavigateCurrentDepth - 2].slug)
+        this.router.navigate(
+          ['/shops/c/' + this.currentUrl[3] + '/' +
+          this.categoryNavigatedInfo[this.categoryNavigateCurrentDepth - 1].slug + '/' +
+          xSlug
+          ],
+          {relativeTo: this.route});
+        this.categoryNavigatorToggle();
+      } else if ( this.categoryNavigateCurrentDepth === 3 ) {
+        this.router.navigate(
+          ['/shops/c/' + this.currentUrl[3] + '/' +
+          this.categoryNavigatedInfo[this.categoryNavigateCurrentDepth - 2].slug + '/' +
+          this.categoryNavigatedInfo[this.categoryNavigateCurrentDepth - 1].slug + '/' +
+          xSlug
+          ],
+          {relativeTo: this.route});
+        this.categoryNavigatorToggle();
+      }
+    }
   }
 
   normalizer ( data ) {
