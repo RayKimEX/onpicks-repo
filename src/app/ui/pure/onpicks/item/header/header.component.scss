@@ -236,7 +236,8 @@
       }
 
       &--content {
-        height: 100vh;
+        height: calc(100vh - 10rem );
+        overflow-y : scroll;
 
         &--return{
           padding : 0 1.6rem;
