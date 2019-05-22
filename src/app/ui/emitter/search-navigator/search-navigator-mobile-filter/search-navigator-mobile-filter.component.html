@@ -23,12 +23,6 @@
             필터
           </span>
           <span
-            i18n="@@word__category"
-            *ngIf="state === 'category'">
-            <!--{{searchState === 'search' ? '검색' : ''}} -->
-            카테고리
-          </span>
-          <span
             i18n="@@word__brand"
             *ngIf="state === 'brand'">
             브랜드
@@ -264,12 +258,15 @@
           </div>
         </li>
       </ul>
-      <!--<div class="value-content__apply">-->
-        <!--<onpicks-button-->
-          <!--[width]="'100%'"-->
-          <!--[size]="'big'"-->
-          <!--[type]="'black'">적용하기</onpicks-button>-->
-      <!--</div>-->
+      <div class="value-content__apply">
+        <onpicks-button
+          (click)="applyBrandFilter()"
+          [width]="'100%'"
+          [size]="'big'"
+          [type]="'black'">
+          적용하기
+        </onpicks-button>
+      </div>
     </div>
 
     <div
@@ -290,12 +287,15 @@
           </div>
         </li>
       </ul>
-      <!--<div class="value-content__apply">-->
-        <!--<onpicks-button-->
-          <!--[width]="'100%'"-->
-          <!--[size]="'big'"-->
-          <!--[type]="'black'">적용하기</onpicks-button>-->
-      <!--</div>-->
+      <div class="value-content__apply">
+        <onpicks-button
+          (click)="applyValueFilter()"
+          [width]="'100%'"
+          [size]="'big'"
+          [type]="'black'">
+          적용하기
+        </onpicks-button>
+      </div>
     </div>
 
     <div
@@ -345,20 +345,6 @@
     <div
       *ngIf="state === 'menu'"
       class="search-content-mobile__filter--navigate-menu">
-      <div class="search-content-mobile__filter--navigate-menu--item">
-        <div
-          (click)="state = 'category'"
-          class="search-content-mobile__filter--navigate-menu--vertical-center">
-          <span
-            i18n="@@word__category"
-            class="subtitle-2-regular">
-            카테고리
-          </span>
-          <svg xmlns="http://www.w3.org/2000/svg" width="8" height="14" viewBox="0 0 8 14">
-            <path fill="#292929" fill-rule="evenodd" d="M1 14a.999.999 0 0 1-.707-1.707L5.586 7 .293 1.707A.999.999 0 1 1 1.707.293l6 6a.999.999 0 0 1 0 1.414l-6 6A.997.997 0 0 1 1 14"/>
-          </svg>
-        </div>
-      </div>
       <div
         (click)="state = 'brand'"
         class="search-content-mobile__filter--navigate-menu--item">

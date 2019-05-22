@@ -386,6 +386,23 @@ onpicks-check-box {
     }
   }
 
+  &__mobile-sort-list{
+    display:none;
+    margin-top : 2.4rem;
+    margin-bottom : 2.4rem;
+    @include respond(sb){
+      display:block;
+    }
+
+    &--item{
+      display:inline-block;
+      &:not(:last-of-type){
+        margin-right:1.6rem;
+      }
+
+    }
+  }
+
   &__mobile-sorting {
     display:none;
     text-align: center;

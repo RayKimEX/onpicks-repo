@@ -1,4 +1,4 @@
-import {AfterViewInit, ChangeDetectionStrategy, Component, DoCheck, ElementRef, Inject, isDevMode, LOCALE_ID, OnDestroy, OnInit, Renderer2, ViewChild} from '@angular/core';
+import {AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, DoCheck, ElementRef, Inject, isDevMode, LOCALE_ID, OnDestroy, OnInit, Renderer2, ViewChild} from '@angular/core';
 import {select, Store} from '@ngrx/store';
 import {AppState} from './core/store/app.reducer';
 import {TryGetAuthUser} from './core/store/auth/auth.actions';
@@ -40,12 +40,16 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit, DoCheck {
   //
   clearSetTimeout;
   isDesktopBreakPoint = false;
+  isSecondBreakPoint = false;
 
   // kakao speach bubble
   isKakaoSpeachBubble = true;
 
   deltaHeight = 0;
   previousUrl = [];
+
+
+  activeUrl;
 
   constructor(
     @Inject(CATEGORY_CODE_MAP) public categoryMap,
@@ -58,21 +62,23 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit, DoCheck {
     private router: Router,
     private uiService: UiService,
     private renderer: Renderer2,
-    private breakpointObserver:  BreakpointObserver
+    private breakpointObserver:  BreakpointObserver,
+    private cd: ChangeDetectorRef
   ) {
     this.store.dispatch(new TryGetAuthUser());
     this.store.dispatch(new TryGetCartInfo());
     this.store.dispatch(new TryGetWishListInfo());
 
     this.breakpointObserver
-      .observe([this.responsiveMap['tb']])
+      .observe([this.responsiveMap['sb']])
       .subscribe((state: BreakpointState) => {
         if (state.matches) {
-          this.isDesktopBreakPoint = true;
-          // this.cd.markForCheck();
+          this.isSecondBreakPoint = true;
+          this.cd.markForCheck();
         } else {
           // this.mobileAlertTop = '11rem';
-          this.isDesktopBreakPoint = false;
+          this.isSecondBreakPoint = false;
+          this.cd.markForCheck();
         }
       });
 
@@ -81,10 +87,11 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit, DoCheck {
       .subscribe((state: BreakpointState) => {
         if (state.matches) {
           this.isDesktopBreakPoint = true;
-          // this.cd.markForCheck();
+          this.cd.markForCheck();
         } else {
           // this.mobileAlertTop = '11rem';
           this.isDesktopBreakPoint = false;
+          this.cd.markForCheck();
         }
       });
 
@@ -92,6 +99,7 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit, DoCheck {
       this.isCategoryLoaded = val.currentCategoryList.isLoaded;
       this.categoryLoadType = val.currentCategoryList.type;
       this.globalKakaoPosition = val.globalKakaoPosition;
+      this.activeUrl = val.activeUrl;
     })
 
     this.modalState$ = this.store.pipe(select( 'modal'));

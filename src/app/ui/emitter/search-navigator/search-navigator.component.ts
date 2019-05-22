@@ -2,7 +2,7 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component, Inject,
-  Input, LOCALE_ID,
+  LOCALE_ID,
   OnDestroy,
   OnInit,
   Renderer2
@@ -10,7 +10,7 @@ import {
 import {
   Location
 } from '@angular/common';
-import {ActivatedRoute, ActivatedRouteSnapshot, NavigationEnd, Router, RouterEvent} from '@angular/router';
+import {ActivatedRoute, NavigationEnd, Router, RouterEvent} from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import {
   TryAddOrCreateToCart,
@@ -33,6 +33,9 @@ import {Title} from '@angular/platform-browser';
 })
 
 export class SearchNavigatorComponent implements OnInit, OnDestroy {
+
+  objectKeys = Object.keys;
+  isArray = Array.isArray;
 
   locationList;
   locationListForCheck = {};
@@ -152,7 +155,6 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
       en : ''
     }
   }
-
   constructor(
     @Inject( CURRENCY ) public currency: BehaviorSubject<any>,
     @Inject( LOCATION_MAP ) public locationMap: any,
@@ -187,7 +189,6 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
         // this.categoryList = val;
         this.normalizedCategoryInfoList = val.entities;
         this.normalizedCategoryCodeList = val.result;
-        console.log('###################################');
         console.log(val.result);
         this.previous = val.previous;
         this.currentSlug = val.currentSlug;
@@ -215,8 +216,10 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
     this.routerEvent$ = this.router.events.subscribe( (event: RouterEvent) => {
 
       if (event instanceof NavigationEnd ) {
+        console.log('@@@@@@@@@@@@@@@@@@@@');
         const url = this.router.url;
         this.currentUrl = url;
+        console.log(this.currentUrl);
         if ( url.indexOf('/search') > -1 || url.indexOf('/c/') > -1) {
 
         } else {
@@ -608,7 +611,13 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
       }
     }
 
-    this.router.navigate( ['/shops/search'], {queryParams: this.currentParamList});
+    // this.queryParams
+
+    if( this.searchState === 'search') {
+      this.router.navigate( ['/shops/search'], {queryParams: this.currentParamList});
+    } else {
+      this.router.navigate(['./'], { relativeTo: this.route, queryParams: this.currentParamList } );
+    }
   }
 
   // TODO : 리뷰 검색, 브랜드 검색 2차 스콥때 하기
@@ -664,6 +673,11 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
 
 
     return normalize(data, object);
+  }
+
+
+  typeOf( val ) {
+    return typeof val;
   }
 }
 

@@ -68,7 +68,6 @@ export class SearchNavigatorMobileFilterComponent implements OnInit {
   }
 
   valueClicked(xValueSlug) {
-    this.exitEvent.emit();
     if (this.valueListForCheck[xValueSlug] === true) {
       this.valueListForCheck[xValueSlug] = false;
       const index = this.queryParams.value.indexOf(xValueSlug);
@@ -76,20 +75,23 @@ export class SearchNavigatorMobileFilterComponent implements OnInit {
     } else {
       this.queryParams.value.push(xValueSlug);
     }
+  }
 
+  applyValueFilter() {
     if ( this.searchState === 'search') {
       this.router.navigate(['/shops/search'], {
         queryParams: { page: null, value: this.queryParams.value.length === 0 ? null : this.queryParams.value},
         queryParamsHandling: 'merge'
       });
     } else {
-      this.router.navigate(['./'], { relativeTo: this.route, queryParams: {value: xValueSlug}, queryParamsHandling: 'merge'} );
+      this.router.navigate(['./'], { relativeTo: this.route, queryParams: {value: this.queryParams.value}, queryParamsHandling: 'merge'} );
     }
+    this.exitEvent.emit();
   }
 
 
   brandClicked(xBrandSlug) {
-    this.exitEvent.emit();
+
     if (this.brandListForCheck[xBrandSlug] === true) {
       this.brandListForCheck[xBrandSlug] = false;
       const index = this.queryParams.brand.indexOf(xBrandSlug);
@@ -97,16 +99,19 @@ export class SearchNavigatorMobileFilterComponent implements OnInit {
     } else {
       this.queryParams.brand.push(xBrandSlug);
     }
+  }
 
-    if( this.searchState === 'search') {
+  applyBrandFilter() {
+    if ( this.searchState === 'search' ) {
       this.router.navigate(['/shops/search'], {
         queryParams: {page: null, brand: this.queryParams.brand.length === 0 ? null : this.queryParams.brand},
         queryParamsHandling: 'merge'
       });
     } else {
-      this.router.navigate(['./'], { relativeTo: this.route, queryParams: { brand: xBrandSlug}, queryParamsHandling: 'merge'} );
+      // category 일때
+      this.router.navigate(['./'], { relativeTo: this.route, queryParams: { brand: this.queryParams.brand}, queryParamsHandling: 'merge'} );
     }
-
+    this.exitEvent.emit();
   }
 
   locationClicked(xLocationSlug) {
