@@ -334,10 +334,10 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
   categoryNavigatorToggle() {
     if ( this.isOpenCategoryNavigator ) {
       this.isOpenCategoryNavigator = false;
-      this.renderer.addClass(document.body , 'u-open-modal');
+      this.renderer.removeClass(document.body , 'u-open-modal');
     } else {
       this.isOpenCategoryNavigator = true;
-      this.renderer.removeClass(document.body , 'u-open-modal');
+      this.renderer.addClass(document.body , 'u-open-modal');
     }
   }
 
