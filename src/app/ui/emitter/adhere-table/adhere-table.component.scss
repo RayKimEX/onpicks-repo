@@ -90,7 +90,6 @@
         margin-right : 1.6rem;
       }
       @include respond(actb){
-        width : auto;
         height : auto;
         position:static;
         vertical-align: auto;
@@ -118,6 +117,7 @@
       // width : 48.3%
       // width: 56.07%;
       display:inline-block;
+      width : calc( 100% - 12.8rem );
 
       div:not(:last-child) {
         margin-bottom : 4px;
