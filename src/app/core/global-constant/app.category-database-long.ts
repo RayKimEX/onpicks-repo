@@ -3,5297 +3,5296 @@ import {InjectionToken} from '@angular/core';
 export const CATEGORY_CODE_MAP = new InjectionToken<any>( './core/global-constant/app.category-database');
 export const CATEGORY_MAP = new InjectionToken<any>( './core/global-constant/app.category-database');
 
-export const CATEGORY_MAP_CONST = {
-  '1000000': {
-    'slug': 'pantry-and-household',
-    'code': 1000000,
-    'name': {
-      'en': 'Pantry & Household',
-      'ko': '식품·생활용품',
-      'zh_hans': null
+export const CATEGORY_MAP_CONST = JSON.parse(`{
+  "1000000": {
+    "slug": "pantry-and-household",
+    "code": 1000000,
+    "name": {
+      "en": "Pantry & Household",
+      "ko": "식품·생활용품",
+      "zh_hans": null
     },
-    'children': [
+    "children": [
       {
-        'slug': 'grocery',
-        'code': 1010000,
-        'name': {
-          'en': 'Grocery',
-          'ko': '식품',
-          'zh_hans': null
+        "slug": "grocery",
+        "code": 1010000,
+        "name": {
+          "en": "Grocery",
+          "ko": "식품",
+          "zh_hans": null
         },
-        'children': [
+        "children": [
           {
-            'slug': 'beverages',
-            'code': 1010100,
-            'name': {
-              'en': 'Beverages',
-              'ko': '음료',
-              'zh_hans': null
+            "slug": "beverages",
+            "code": 1010100,
+            "name": {
+              "en": "Beverages",
+              "ko": "음료",
+              "zh_hans": null
             },
-            'children': [
+            "children": [
               {
-                'slug': 'water',
-                'code': 1010101,
-                'name': {
-                  'en': 'Water',
-                  'ko': '물',
-                  'zh_hans': null
+                "slug": "water",
+                "code": 1010101,
+                "name": {
+                  "en": "Water",
+                  "ko": "물",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'sports-and-energy-drinks',
-                'code': 1010102,
-                'name': {
-                  'en': 'Sports & Energy Drinks',
-                  'ko': '스포츠음료',
-                  'zh_hans': null
+                "slug": "sports-and-energy-drinks",
+                "code": 1010102,
+                "name": {
+                  "en": "Sports & Energy Drinks",
+                  "ko": "스포츠음료",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'soft-drinks',
-                'code': 1010103,
-                'name': {
-                  'en': 'Soft Drinks',
-                  'ko': '청량음료',
-                  'zh_hans': null
+                "slug": "soft-drinks",
+                "code": 1010103,
+                "name": {
+                  "en": "Soft Drinks",
+                  "ko": "청량음료",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'coffee',
-                'code': 1010104,
-                'name': {
-                  'en': 'Coffee',
-                  'ko': '커피',
-                  'zh_hans': null
+                "slug": "coffee",
+                "code": 1010104,
+                "name": {
+                  "en": "Coffee",
+                  "ko": "커피",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'tea',
-                'code': 1010105,
-                'name': {
-                  'en': 'Tea',
-                  'ko': '차',
-                  'zh_hans': null
+                "slug": "tea",
+                "code": 1010105,
+                "name": {
+                  "en": "Tea",
+                  "ko": "차",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'milk',
-                'code': 1010106,
-                'name': {
-                  'en': 'Milk',
-                  'ko': '우유',
-                  'zh_hans': null
+                "slug": "milk",
+                "code": 1010106,
+                "name": {
+                  "en": "Milk",
+                  "ko": "우유",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'non-dairy-milk',
-                'code': 1010107,
-                'name': {
-                  'en': 'Non-dairy Milk',
-                  'ko': '비유제품 우유',
-                  'zh_hans': null
+                "slug": "non-dairy-milk",
+                "code": 1010107,
+                "name": {
+                  "en": "Non-dairy Milk",
+                  "ko": "비유제품 우유",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'juice',
-                'code': 1010108,
-                'name': {
-                  'en': 'Juice',
-                  'ko': '주스',
-                  'zh_hans': null
+                "slug": "juice",
+                "code": 1010108,
+                "name": {
+                  "en": "Juice",
+                  "ko": "주스",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'drink-mixes-and-syrup',
-                'code': 1010109,
-                'name': {
-                  'en': 'Drink Mixes & Syrup',
-                  'ko': '음료 믹스·시럽',
-                  'zh_hans': null
+                "slug": "drink-mixes-and-syrup",
+                "code": 1010109,
+                "name": {
+                  "en": "Drink Mixes & Syrup",
+                  "ko": "음료 믹스·시럽",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               }
             ]
           },
           {
-            'slug': 'snack-foods',
-            'code': 1010200,
-            'name': {
-              'en': 'Snack Foods',
-              'ko': '스낵',
-              'zh_hans': null
+            "slug": "snack-foods",
+            "code": 1010200,
+            "name": {
+              "en": "Snack Foods",
+              "ko": "스낵",
+              "zh_hans": null
             },
-            'children': [
+            "children": [
               {
-                'slug': 'chips-and-pretzels',
-                'code': 1010201,
-                'name': {
-                  'en': 'Chips & Pretzels',
-                  'ko': '프루츠컵·스퀴즈',
-                  'zh_hans': null
+                "slug": "fruit-cups-and-squeezes",
+                "code": 1010201,
+                "name": {
+                  "en": "Fruit Cups & Squeezes",
+                  "ko": "프루츠컵·스퀴즈",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
+              },
+              {
+                "slug": "chips-and-pretzels",
+                "code": 1010202,
+                "name": {
+                  "en": "Chips & Pretzels",
+                  "ko": "칩·프레첼",
+                  "zh_hans": null
+                },
+                "children": []
+              },
+              {
+                "slug": "cookies",
+                "code": 1010203,
+                "name": {
+                  "en": "Cookies",
+                  "ko": "쿠키",
+                  "zh_hans": null
+                },
+                "children": []
+              },
+              {
+                "slug": "bread-and-crackers",
+                "code": 1010204,
+                "name": {
+                  "en": "Bread & Crackers",
+                  "ko": "빵·크래커",
+                  "zh_hans": null
+                },
+                "children": []
+              },
+              {
+                "slug": "fruit-and-vegetable-snacks",
+                "code": 1010205,
+                "name": {
+                  "en": "Fruit & Vegetable Snacks",
+                  "ko": "과일·야채스낵",
+                  "zh_hans": null
+                },
+                "children": []
+              },
+              {
+                "slug": "protein-and-granola-bars",
+                "code": 1010206,
+                "name": {
+                  "en": "Protein & Granola Bars",
+                  "ko": "프로틴·곡물바",
+                  "zh_hans": null
+                },
+                "children": []
+              },
+              {
+                "slug": "ice-cream-cones-and-toppings",
+                "code": 1010207,
+                "name": {
+                  "en": "Ice Cream Cones & Toppings",
+                  "ko": "아이스크림콘·토핑",
+                  "zh_hans": null
+                },
+                "children": []
+              },
+              {
+                "slug": "jerky-and-dried-meats",
+                "code": 1010208,
+                "name": {
+                  "en": "Jerky & Dried Meats",
+                  "ko": "육포·건어물",
+                  "zh_hans": null
+                },
+                "children": []
+              },
+              {
+                "slug": "nuts-seeds-and-trail-mix",
+                "code": 1010209,
+                "name": {
+                  "en": "Nuts, Seeds & Trail Mix",
+                  "ko": "견과류·믹스",
+                  "zh_hans": null
+                },
+                "children": []
+              },
+              {
+                "slug": "popcorn-and-puffed-snacks",
+                "code": 1010210,
+                "name": {
+                  "en": "Popcorn & Puffed Snacks",
+                  "ko": "팝콘",
+                  "zh_hans": null
+                },
+                "children": []
+              },
+              {
+                "slug": "pudding-and-gelatin",
+                "code": 1010211,
+                "name": {
+                  "en": "Pudding & Gelatin",
+                  "ko": "푸딩·젤라틴",
+                  "zh_hans": null
+                },
+                "children": []
               }
             ]
           },
           {
-            'slug': 'snack-foods',
-            'code': 1010202,
-            'name': {
-              'en': 'Snack Foods',
-              'ko': 'Snack Foods',
-              'zh_hans': null
+            "slug": "candy-gum-and-chocolate",
+            "code": 1010300,
+            "name": {
+              "en": "Candy, Gum & Chocolate",
+              "ko": "캔디·껌·초콜릿",
+              "zh_hans": null
             },
-            'children': [
+            "children": [
               {
-                'slug': 'cookies',
-                'code': 1010203,
-                'name': {
-                  'en': 'Cookies',
-                  'ko': '쿠키',
-                  'zh_hans': null
+                "slug": "chocolate",
+                "code": 1010301,
+                "name": {
+                  "en": "Chocolate",
+                  "ko": "초콜릿",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'bread-and-crackers',
-                'code': 1010204,
-                'name': {
-                  'en': 'Bread & Crackers',
-                  'ko': '빵·크래커',
-                  'zh_hans': null
+                "slug": "chewing-gum",
+                "code": 1010302,
+                "name": {
+                  "en": "Chewing Gum",
+                  "ko": "껌",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'fruit-and-vegetable-snacks',
-                'code': 1010205,
-                'name': {
-                  'en': 'Fruit & Vegetable Snacks',
-                  'ko': '과일·야채스낵',
-                  'zh_hans': null
+                "slug": "candy",
+                "code": 1010303,
+                "name": {
+                  "en": "Candy",
+                  "ko": "캔디",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'protein-and-granola-bars',
-                'code': 1010206,
-                'name': {
-                  'en': 'Protein & Granola Bars',
-                  'ko': '프로틴·곡물바',
-                  'zh_hans': null
+                "slug": "other-sweets",
+                "code": 1010304,
+                "name": {
+                  "en": "Other Sweets",
+                  "ko": "디저트",
+                  "zh_hans": null
                 },
-                'children': []
-              },
-              {
-                'slug': 'ice-cream-cones-and-toppings',
-                'code': 1010207,
-                'name': {
-                  'en': 'Ice Cream Cones & Toppings',
-                  'ko': '아이스크림콘·토핑',
-                  'zh_hans': null
-                },
-                'children': []
-              },
-              {
-                'slug': 'jerky-and-dried-meats',
-                'code': 1010208,
-                'name': {
-                  'en': 'Jerky & Dried Meats',
-                  'ko': '육포·건어물',
-                  'zh_hans': null
-                },
-                'children': []
-              },
-              {
-                'slug': 'nuts-seeds-and-trail-mix',
-                'code': 1010209,
-                'name': {
-                  'en': 'Nuts, Seeds & Trail Mix',
-                  'ko': '견과류·믹스',
-                  'zh_hans': null
-                },
-                'children': []
-              },
-              {
-                'slug': 'popcorn-and-puffed-snacks',
-                'code': 1010210,
-                'name': {
-                  'en': 'Popcorn & Puffed Snacks',
-                  'ko': '팝콘',
-                  'zh_hans': null
-                },
-                'children': []
-              },
-              {
-                'slug': 'pudding-and-gelatin',
-                'code': 1010211,
-                'name': {
-                  'en': 'Pudding & Gelatin',
-                  'ko': '푸딩·젤라틴',
-                  'zh_hans': null
-                },
-                'children': []
+                "children": []
               }
             ]
           },
           {
-            'slug': 'candy-gum-and-chocolate',
-            'code': 1010300,
-            'name': {
-              'en': 'Candy, Gum & Chocolate',
-              'ko': '캔디·껌·초콜릿',
-              'zh_hans': null
+            "slug": "breakfast-foods",
+            "code": 1010400,
+            "name": {
+              "en": "Breakfast Foods",
+              "ko": "아침식사",
+              "zh_hans": null
             },
-            'children': [
+            "children": [
               {
-                'slug': 'chocolate',
-                'code': 1010301,
-                'name': {
-                  'en': 'Chocolate',
-                  'ko': '초콜릿',
-                  'zh_hans': null
+                "slug": "cold-cereals",
+                "code": 1010401,
+                "name": {
+                  "en": "Cold Cereals",
+                  "ko": "콜드시리얼",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'chewing-gum',
-                'code': 1010302,
-                'name': {
-                  'en': 'Chewing Gum',
-                  'ko': '껌',
-                  'zh_hans': null
+                "slug": "hot-cereals-and-oats",
+                "code": 1010402,
+                "name": {
+                  "en": "Hot Cereals & Oats",
+                  "ko": "핫시리얼·오트밀",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'candy',
-                'code': 1010303,
-                'name': {
-                  'en': 'Candy',
-                  'ko': '캔디',
-                  'zh_hans': null
+                "slug": "toaster-pastries",
+                "code": 1010403,
+                "name": {
+                  "en": "Toaster Pastries",
+                  "ko": "토스터페이스트리",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'other-sweets',
-                'code': 1010304,
-                'name': {
-                  'en': 'Other Sweets',
-                  'ko': '디저트',
-                  'zh_hans': null
+                "slug": "granola-and-museli",
+                "code": 1010404,
+                "name": {
+                  "en": "Granola & Museli",
+                  "ko": "그래놀라·무슬리",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
+              },
+              {
+                "slug": "meal-replacement-proein-and-granola-bars",
+                "code": 1010405,
+                "name": {
+                  "en": "Meal Replacement, Proein & Granola Bars",
+                  "ko": "식사대용프로틴바·그래놀라바",
+                  "zh_hans": null
+                },
+                "children": []
               }
             ]
           },
           {
-            'slug': 'breakfast-foods',
-            'code': 1010400,
-            'name': {
-              'en': 'Breakfast Foods',
-              'ko': '아침식사',
-              'zh_hans': null
+            "slug": "soups-meals-and-side-dishes",
+            "code": 1010500,
+            "name": {
+              "en": "Soups, Meals & Side Dishes",
+              "ko": "식사·후식",
+              "zh_hans": null
             },
-            'children': [
+            "children": [
               {
-                'slug': 'cold-cereals',
-                'code': 1010401,
-                'name': {
-                  'en': 'Cold Cereals',
-                  'ko': '콜드시리얼',
-                  'zh_hans': null
+                "slug": "macaroni-and-cheese",
+                "code": 1010501,
+                "name": {
+                  "en": "Macaroni & Cheese",
+                  "ko": "마카로니·치즈",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'hot-cereals-and-oats',
-                'code': 1010402,
-                'name': {
-                  'en': 'Hot Cereals & Oats',
-                  'ko': '핫시리얼·오트밀',
-                  'zh_hans': null
+                "slug": "soups",
+                "code": 1010502,
+                "name": {
+                  "en": "Soups",
+                  "ko": "수프",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'toaster-pastries',
-                'code': 1010403,
-                'name': {
-                  'en': 'Toaster Pastries',
-                  'ko': '토스터페이스트리',
-                  'zh_hans': null
+                "slug": "broth",
+                "code": 1010503,
+                "name": {
+                  "en": "Broth",
+                  "ko": "죽",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'granola-and-museli',
-                'code': 1010404,
-                'name': {
-                  'en': 'Granola & Museli',
-                  'ko': '그래놀라·무슬리',
-                  'zh_hans': null
+                "slug": "chilis-and-stews",
+                "code": 1010504,
+                "name": {
+                  "en": "Chilis & Stews",
+                  "ko": "칠리·스튜",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'meal-replacement-proein-and-granola-bars',
-                'code': 1010405,
-                'name': {
-                  'en': 'Meal Replacement, Proein & Granola Bars',
-                  'ko': '식사대용프로틴바·그래놀라바',
-                  'zh_hans': null
+                "slug": "asian-meals",
+                "code": 1010505,
+                "name": {
+                  "en": "Asian Meals",
+                  "ko": "아시아식사",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
+              },
+              {
+                "slug": "italian-meals",
+                "code": 1010506,
+                "name": {
+                  "en": "Italian Meals",
+                  "ko": "이탈리아식사",
+                  "zh_hans": null
+                },
+                "children": []
+              },
+              {
+                "slug": "mexican-meals-and-taco-kits",
+                "code": 1010507,
+                "name": {
+                  "en": "Mexican Meals & Taco Kits",
+                  "ko": "멕시코식사·타코",
+                  "zh_hans": null
+                },
+                "children": []
+              },
+              {
+                "slug": "indian-meals",
+                "code": 1010508,
+                "name": {
+                  "en": "Indian Meals",
+                  "ko": "인도식사",
+                  "zh_hans": null
+                },
+                "children": []
+              },
+              {
+                "slug": "potatoes-and-stuffings",
+                "code": 1010509,
+                "name": {
+                  "en": "Potatoes & Stuffings",
+                  "ko": "감자·속재료",
+                  "zh_hans": null
+                },
+                "children": []
               }
             ]
           },
           {
-            'slug': 'soups-meals-and-side-dishes',
-            'code': 1010500,
-            'name': {
-              'en': 'Soups, Meals & Side Dishes',
-              'ko': '식사·후식',
-              'zh_hans': null
+            "slug": "pantry",
+            "code": 1010600,
+            "name": {
+              "en": "Pantry",
+              "ko": "주방",
+              "zh_hans": null
             },
-            'children': [
+            "children": [
               {
-                'slug': 'macaroni-and-cheese',
-                'code': 1010501,
-                'name': {
-                  'en': 'Macaroni & Cheese',
-                  'ko': '마카로니·치즈',
-                  'zh_hans': null
+                "slug": "spices-and-seasonings",
+                "code": 1010601,
+                "name": {
+                  "en": "Spices & Seasonings",
+                  "ko": "양념·향신료",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'soups',
-                'code': 1010502,
-                'name': {
-                  'en': 'Soups',
-                  'ko': '수프',
-                  'zh_hans': null
+                "slug": "salt-and-pepper",
+                "code": 1010602,
+                "name": {
+                  "en": "Salt & Pepper",
+                  "ko": "소금·후추",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'broth',
-                'code': 1010503,
-                'name': {
-                  'en': 'Broth',
-                  'ko': '죽',
-                  'zh_hans': null
+                "slug": "condiments",
+                "code": 1010603,
+                "name": {
+                  "en": "Condiments",
+                  "ko": "조미료",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'chilis-and-stews',
-                'code': 1010504,
-                'name': {
-                  'en': 'Chilis & Stews',
-                  'ko': '칠리·스튜',
-                  'zh_hans': null
+                "slug": "oils",
+                "code": 1010604,
+                "name": {
+                  "en": "Oils",
+                  "ko": "오일",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'asian-meals',
-                'code': 1010505,
-                'name': {
-                  'en': 'Asian Meals',
-                  'ko': '아시아식사',
-                  'zh_hans': null
+                "slug": "vinegars",
+                "code": 1010605,
+                "name": {
+                  "en": "Vinegars",
+                  "ko": "식초",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'italian-meals',
-                'code': 1010506,
-                'name': {
-                  'en': 'Italian Meals',
-                  'ko': '이탈리아식사',
-                  'zh_hans': null
+                "slug": "salad-dressings",
+                "code": 1010606,
+                "name": {
+                  "en": "Salad Dressings",
+                  "ko": "샐러드드레싱",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'mexican-meals-and-taco-kits',
-                'code': 1010507,
-                'name': {
-                  'en': 'Mexican Meals & Taco Kits',
-                  'ko': '멕시코식사·타코',
-                  'zh_hans': null
+                "slug": "salad-toppings",
+                "code": 1010607,
+                "name": {
+                  "en": "Salad Toppings",
+                  "ko": "샐러드토핑",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'indian-meals',
-                'code': 1010508,
-                'name': {
-                  'en': 'Indian Meals',
-                  'ko': '인도식사',
-                  'zh_hans': null
+                "slug": "sauces-and-marinades",
+                "code": 1010608,
+                "name": {
+                  "en": "Sauces & Marinades",
+                  "ko": "소스·마리네이드",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'potatoes-and-stuffings',
-                'code': 1010509,
-                'name': {
-                  'en': 'Potatoes & Stuffings',
-                  'ko': '감자·속재료',
-                  'zh_hans': null
+                "slug": "salsas-and-dips",
+                "code": 1010609,
+                "name": {
+                  "en": "Salsas & Dips",
+                  "ko": "살사·딥스",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
+              },
+              {
+                "slug": "butters",
+                "code": 1010610,
+                "name": {
+                  "en": "Butters",
+                  "ko": "버터",
+                  "zh_hans": null
+                },
+                "children": []
+              },
+              {
+                "slug": "jams-jellies-and-preserves",
+                "code": 1010611,
+                "name": {
+                  "en": "Jams, Jellies & Preserves",
+                  "ko": "잼·젤리",
+                  "zh_hans": null
+                },
+                "children": []
+              },
+              {
+                "slug": "sweet-spreads",
+                "code": 1010612,
+                "name": {
+                  "en": "Sweet Spreads",
+                  "ko": "스위트스프레드",
+                  "zh_hans": null
+                },
+                "children": []
+              },
+              {
+                "slug": "flours-and-meals",
+                "code": 1010613,
+                "name": {
+                  "en": "Flours & Meals",
+                  "ko": "곡물분말",
+                  "zh_hans": null
+                },
+                "children": []
+              },
+              {
+                "slug": "sugar-and-other-sweeteners",
+                "code": 1010614,
+                "name": {
+                  "en": "Sugar & Other Sweeteners",
+                  "ko": "설탕·감미료",
+                  "zh_hans": null
+                },
+                "children": []
+              },
+              {
+                "slug": "baking-ingredients",
+                "code": 1010615,
+                "name": {
+                  "en": "Baking Ingredients",
+                  "ko": "제빵재료",
+                  "zh_hans": null
+                },
+                "children": []
+              },
+              {
+                "slug": "baking-mixes",
+                "code": 1010616,
+                "name": {
+                  "en": "Baking Mixes",
+                  "ko": "제빵분말",
+                  "zh_hans": null
+                },
+                "children": []
+              },
+              {
+                "slug": "honey-and-syrups",
+                "code": 1010617,
+                "name": {
+                  "en": "Honey & Syrups",
+                  "ko": "꿀·시럽",
+                  "zh_hans": null
+                },
+                "children": []
               }
             ]
           },
           {
-            'slug': 'pantry',
-            'code': 1010600,
-            'name': {
-              'en': 'Pantry',
-              'ko': '주방',
-              'zh_hans': null
+            "slug": "pasta-and-pasta-sauce",
+            "code": 1010700,
+            "name": {
+              "en": "Pasta & Pasta Sauce",
+              "ko": "파스타·파스타소스",
+              "zh_hans": null
             },
-            'children': [
+            "children": [
               {
-                'slug': 'spices-and-seasonings',
-                'code': 1010601,
-                'name': {
-                  'en': 'Spices & Seasonings',
-                  'ko': '양념·향신료',
-                  'zh_hans': null
+                "slug": "pasta-and-noodles",
+                "code": 1010701,
+                "name": {
+                  "en": "Pasta & Noodles",
+                  "ko": "파스타",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'salt-and-pepper',
-                'code': 1010602,
-                'name': {
-                  'en': 'Salt & Pepper',
-                  'ko': '소금·후추',
-                  'zh_hans': null
+                "slug": "pasta-sauces",
+                "code": 1010702,
+                "name": {
+                  "en": "Pasta Sauces",
+                  "ko": "파스타소스",
+                  "zh_hans": null
                 },
-                'children': []
-              },
-              {
-                'slug': 'condiments',
-                'code': 1010603,
-                'name': {
-                  'en': 'Condiments',
-                  'ko': '조미료',
-                  'zh_hans': null
-                },
-                'children': []
-              },
-              {
-                'slug': 'oils',
-                'code': 1010604,
-                'name': {
-                  'en': 'Oils',
-                  'ko': '오일',
-                  'zh_hans': null
-                },
-                'children': []
-              },
-              {
-                'slug': 'vinegars',
-                'code': 1010605,
-                'name': {
-                  'en': 'Vinegars',
-                  'ko': '식초',
-                  'zh_hans': null
-                },
-                'children': []
-              },
-              {
-                'slug': 'salad-dressings',
-                'code': 1010606,
-                'name': {
-                  'en': 'Salad Dressings',
-                  'ko': '샐러드드레싱',
-                  'zh_hans': null
-                },
-                'children': []
-              },
-              {
-                'slug': 'salad-toppings',
-                'code': 1010607,
-                'name': {
-                  'en': 'Salad Toppings',
-                  'ko': '샐러드토핑',
-                  'zh_hans': null
-                },
-                'children': []
-              },
-              {
-                'slug': 'sauces-and-marinades',
-                'code': 1010608,
-                'name': {
-                  'en': 'Sauces & Marinades',
-                  'ko': '소스·마리네이드',
-                  'zh_hans': null
-                },
-                'children': []
-              },
-              {
-                'slug': 'salsas-and-dips',
-                'code': 1010609,
-                'name': {
-                  'en': 'Salsas & Dips',
-                  'ko': '살사·딥스',
-                  'zh_hans': null
-                },
-                'children': []
-              },
-              {
-                'slug': 'butters',
-                'code': 1010610,
-                'name': {
-                  'en': 'Butters',
-                  'ko': '버터',
-                  'zh_hans': null
-                },
-                'children': []
-              },
-              {
-                'slug': 'jams-jellies-and-preserves',
-                'code': 1010611,
-                'name': {
-                  'en': 'Jams, Jellies & Preserves',
-                  'ko': '잼·젤리',
-                  'zh_hans': null
-                },
-                'children': []
-              },
-              {
-                'slug': 'sweet-spreads',
-                'code': 1010612,
-                'name': {
-                  'en': 'Sweet Spreads',
-                  'ko': '스위트스프레드',
-                  'zh_hans': null
-                },
-                'children': []
-              },
-              {
-                'slug': 'flours-and-meals',
-                'code': 1010613,
-                'name': {
-                  'en': 'Flours & Meals',
-                  'ko': '곡물분말',
-                  'zh_hans': null
-                },
-                'children': []
-              },
-              {
-                'slug': 'sugar-and-other-sweeteners',
-                'code': 1010614,
-                'name': {
-                  'en': 'Sugar & Other Sweeteners',
-                  'ko': '설탕·감미료',
-                  'zh_hans': null
-                },
-                'children': []
-              },
-              {
-                'slug': 'baking-ingredients',
-                'code': 1010615,
-                'name': {
-                  'en': 'Baking Ingredients',
-                  'ko': '제빵재료',
-                  'zh_hans': null
-                },
-                'children': []
-              },
-              {
-                'slug': 'baking-mixes',
-                'code': 1010616,
-                'name': {
-                  'en': 'Baking Mixes',
-                  'ko': '제빵분말',
-                  'zh_hans': null
-                },
-                'children': []
-              },
-              {
-                'slug': 'honey-and-syrups',
-                'code': 1010617,
-                'name': {
-                  'en': 'Honey & Syrups',
-                  'ko': '꿀·시럽',
-                  'zh_hans': null
-                },
-                'children': []
+                "children": []
               }
             ]
           },
           {
-            'slug': 'pasta-and-pasta-sauce',
-            'code': 1010700,
-            'name': {
-              'en': 'Pasta & Pasta Sauce',
-              'ko': '파스타·파스타소스',
-              'zh_hans': null
+            "slug": "canned-and-jarred-food",
+            "code": 1010800,
+            "name": {
+              "en": "Canned & Jarred Food",
+              "ko": "통조림",
+              "zh_hans": null
             },
-            'children': [
+            "children": [
               {
-                'slug': 'pasta-and-noodles',
-                'code': 1010701,
-                'name': {
-                  'en': 'Pasta & Noodles',
-                  'ko': '파스타',
-                  'zh_hans': null
+                "slug": "canned-beans",
+                "code": 1010801,
+                "name": {
+                  "en": "Canned Beans",
+                  "ko": "콩통조림",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'pasta-sauces',
-                'code': 1010702,
-                'name': {
-                  'en': 'Pasta Sauces',
-                  'ko': '파스타소스',
-                  'zh_hans': null
+                "slug": "canned-fruit",
+                "code": 1010802,
+                "name": {
+                  "en": "Canned Fruit",
+                  "ko": "과일통조림",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
+              },
+              {
+                "slug": "canned-meat-and-seafood",
+                "code": 1010803,
+                "name": {
+                  "en": "Canned Meat & Seafood",
+                  "ko": "해산물·육류통조림",
+                  "zh_hans": null
+                },
+                "children": []
+              },
+              {
+                "slug": "canned-vegetables",
+                "code": 1010804,
+                "name": {
+                  "en": "Canned Vegetables",
+                  "ko": "야채통조림",
+                  "zh_hans": null
+                },
+                "children": []
+              },
+              {
+                "slug": "canned-tomatoes-and-paste",
+                "code": 1010805,
+                "name": {
+                  "en": "Canned Tomatoes & Paste",
+                  "ko": "토마토통조림",
+                  "zh_hans": null
+                },
+                "children": []
+              },
+              {
+                "slug": "pickled-vegetables-and-olives",
+                "code": 1010806,
+                "name": {
+                  "en": "Pickled Vegetables & Olives",
+                  "ko": "피클·올리브통조림",
+                  "zh_hans": null
+                },
+                "children": []
               }
             ]
           },
           {
-            'slug': 'canned-and-jarred-food',
-            'code': 1010800,
-            'name': {
-              'en': 'Canned & Jarred Food',
-              'ko': '통조림',
-              'zh_hans': null
+            "slug": "cooking-and-baking-supplies",
+            "code": 1010900,
+            "name": {
+              "en": "Cooking & Baking Supplies",
+              "ko": "제과제빵",
+              "zh_hans": null
             },
-            'children': [
+            "children": [
               {
-                'slug': 'canned-beans',
-                'code': 1010801,
-                'name': {
-                  'en': 'Canned Beans',
-                  'ko': '콩통조림',
-                  'zh_hans': null
+                "slug": "baking-mixes",
+                "code": 1010901,
+                "name": {
+                  "en": "Baking Mixes",
+                  "ko": "제빵분말",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'canned-fruit',
-                'code': 1010802,
-                'name': {
-                  'en': 'Canned Fruit',
-                  'ko': '과일통조림',
-                  'zh_hans': null
+                "slug": "baking-ingredients",
+                "code": 1010902,
+                "name": {
+                  "en": "Baking Ingredients",
+                  "ko": "제빵재료",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'canned-meat-and-seafood',
-                'code': 1010803,
-                'name': {
-                  'en': 'Canned Meat & Seafood',
-                  'ko': '해산물·육류통조림',
-                  'zh_hans': null
+                "slug": "breadcrumbs",
+                "code": 1010903,
+                "name": {
+                  "en": "Breadcrumbs",
+                  "ko": "빵가루",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'canned-vegetables',
-                'code': 1010804,
-                'name': {
-                  'en': 'Canned Vegetables',
-                  'ko': '야채통조림',
-                  'zh_hans': null
+                "slug": "doughs-shells-and-crusts",
+                "code": 1010904,
+                "name": {
+                  "en": "Doughs, Shells & Crusts",
+                  "ko": "도우·크러스트",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'canned-tomatoes-and-paste',
-                'code': 1010805,
-                'name': {
-                  'en': 'Canned Tomatoes & Paste',
-                  'ko': '토마토통조림',
-                  'zh_hans': null
+                "slug": "extracts",
+                "code": 1010905,
+                "name": {
+                  "en": "Extracts",
+                  "ko": "추출물",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'pickled-vegetables-and-olives',
-                'code': 1010806,
-                'name': {
-                  'en': 'Pickled Vegetables & Olives',
-                  'ko': '피클·올리브통조림',
-                  'zh_hans': null
+                "slug": "flours-and-meals",
+                "code": 1010906,
+                "name": {
+                  "en": "Flours & Meals",
+                  "ko": "곡물 분말",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
+              },
+              {
+                "slug": "frosting-and-decoration",
+                "code": 1010907,
+                "name": {
+                  "en": "Frosting & Decoration",
+                  "ko": "데코레이션",
+                  "zh_hans": null
+                },
+                "children": []
+              },
+              {
+                "slug": "marshmallows",
+                "code": 1010908,
+                "name": {
+                  "en": "Marshmallows",
+                  "ko": "마시멜로우",
+                  "zh_hans": null
+                },
+                "children": []
+              },
+              {
+                "slug": "sugar-and-other-sweeteners",
+                "code": 1010909,
+                "name": {
+                  "en": "Sugar & Other Sweeteners",
+                  "ko": "설탕·감미료",
+                  "zh_hans": null
+                },
+                "children": []
+              },
+              {
+                "slug": "honey-and-syrups",
+                "code": 1010910,
+                "name": {
+                  "en": "Honey & Syrups",
+                  "ko": "꿀·시럽",
+                  "zh_hans": null
+                },
+                "children": []
               }
             ]
           },
           {
-            'slug': 'cooking-and-baking-supplies',
-            'code': 1010900,
-            'name': {
-              'en': 'Cooking & Baking Supplies',
-              'ko': '제과제빵',
-              'zh_hans': null
+            "slug": "rice-beans-and-grains",
+            "code": 1011000,
+            "name": {
+              "en": "Rice, Beans & Grains",
+              "ko": "쌀·콩·곡물",
+              "zh_hans": null
             },
-            'children': [
+            "children": [
               {
-                'slug': 'baking-mixes',
-                'code': 1010901,
-                'name': {
-                  'en': 'Baking Mixes',
-                  'ko': '제빵분말',
-                  'zh_hans': null
+                "slug": "dry-beans",
+                "code": 1011001,
+                "name": {
+                  "en": "Dry Beans",
+                  "ko": "콩",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'baking-ingredients',
-                'code': 1010902,
-                'name': {
-                  'en': 'Baking Ingredients',
-                  'ko': '제빵재료',
-                  'zh_hans': null
+                "slug": "grains",
+                "code": 1011002,
+                "name": {
+                  "en": "Grains",
+                  "ko": "곡물",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'breadcrumbs',
-                'code': 1010903,
-                'name': {
-                  'en': 'Breadcrumbs',
-                  'ko': '빵가루',
-                  'zh_hans': null
+                "slug": "quinoa",
+                "code": 1011003,
+                "name": {
+                  "en": "Quinoa",
+                  "ko": "퀴노아",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'doughs-shells-and-crusts',
-                'code': 1010904,
-                'name': {
-                  'en': 'Doughs, Shells & Crusts',
-                  'ko': '도우·크러스트',
-                  'zh_hans': null
+                "slug": "rice",
+                "code": 1011004,
+                "name": {
+                  "en": "Rice",
+                  "ko": "쌀",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'extracts',
-                'code': 1010905,
-                'name': {
-                  'en': 'Extracts',
-                  'ko': '추출물',
-                  'zh_hans': null
+                "slug": "couscous",
+                "code": 1011005,
+                "name": {
+                  "en": "Couscous",
+                  "ko": "쿠스쿠스",
+                  "zh_hans": null
                 },
-                'children': []
-              },
-              {
-                'slug': 'flours-and-meals',
-                'code': 1010906,
-                'name': {
-                  'en': 'Flours & Meals',
-                  'ko': '곡물 분말',
-                  'zh_hans': null
-                },
-                'children': []
-              },
-              {
-                'slug': 'frosting-and-decoration',
-                'code': 1010907,
-                'name': {
-                  'en': 'Frosting & Decoration',
-                  'ko': '데코레이션',
-                  'zh_hans': null
-                },
-                'children': []
-              },
-              {
-                'slug': 'marshmallows',
-                'code': 1010908,
-                'name': {
-                  'en': 'Marshmallows',
-                  'ko': '마시멜로우',
-                  'zh_hans': null
-                },
-                'children': []
-              },
-              {
-                'slug': 'sugar-and-other-sweeteners',
-                'code': 1010909,
-                'name': {
-                  'en': 'Sugar & Other Sweeteners',
-                  'ko': '설탕·감미료',
-                  'zh_hans': null
-                },
-                'children': []
-              },
-              {
-                'slug': 'honey-and-syrups',
-                'code': 1010910,
-                'name': {
-                  'en': 'Honey & Syrups',
-                  'ko': '꿀·시럽',
-                  'zh_hans': null
-                },
-                'children': []
+                "children": []
               }
             ]
           },
           {
-            'slug': 'rice-beans-and-grains',
-            'code': 1011000,
-            'name': {
-              'en': 'Rice, Beans & Grains',
-              'ko': '쌀·콩·곡물',
-              'zh_hans': null
+            "slug": "international-food",
+            "code": 1011100,
+            "name": {
+              "en": "International Food",
+              "ko": "해외식품",
+              "zh_hans": null
             },
-            'children': [
+            "children": [
               {
-                'slug': 'dry-beans',
-                'code': 1011001,
-                'name': {
-                  'en': 'Dry Beans',
-                  'ko': '콩',
-                  'zh_hans': null
+                "slug": "indian-cuisine",
+                "code": 1011101,
+                "name": {
+                  "en": "Indian Cuisine",
+                  "ko": "인도요리",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'grains',
-                'code': 1011002,
-                'name': {
-                  'en': 'Grains',
-                  'ko': '곡물',
-                  'zh_hans': null
+                "slug": "chinese-cuisine",
+                "code": 1011102,
+                "name": {
+                  "en": "Chinese Cuisine",
+                  "ko": "중식",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'quinoa',
-                'code': 1011003,
-                'name': {
-                  'en': 'Quinoa',
-                  'ko': '퀴노아',
-                  'zh_hans': null
+                "slug": "japanese-cuisine",
+                "code": 1011103,
+                "name": {
+                  "en": "Japanese Cuisine",
+                  "ko": "일식",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'rice',
-                'code': 1011004,
-                'name': {
-                  'en': 'Rice',
-                  'ko': '쌀',
-                  'zh_hans': null
+                "slug": "korean-cuisine",
+                "code": 1011104,
+                "name": {
+                  "en": "Korean Cuisine",
+                  "ko": "한식",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'couscous',
-                'code': 1011005,
-                'name': {
-                  'en': 'Couscous',
-                  'ko': '쿠스쿠스',
-                  'zh_hans': null
+                "slug": "asian-cuisine",
+                "code": 1011105,
+                "name": {
+                  "en": "Asian Cuisine",
+                  "ko": "아시아요리",
+                  "zh_hans": null
                 },
-                'children': []
-              }
-            ]
-          },
-          {
-            'slug': 'international-food',
-            'code': 1011100,
-            'name': {
-              'en': 'International Food',
-              'ko': '해외식품',
-              'zh_hans': null
-            },
-            'children': [
-              {
-                'slug': 'indian-cuisine',
-                'code': 1011101,
-                'name': {
-                  'en': 'Indian Cuisine',
-                  'ko': '인도요리',
-                  'zh_hans': null
-                },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'chinese-cuisine',
-                'code': 1011102,
-                'name': {
-                  'en': 'Chinese Cuisine',
-                  'ko': '중식',
-                  'zh_hans': null
+                "slug": "mexican-cuisine",
+                "code": 1011106,
+                "name": {
+                  "en": "Mexican Cuisine",
+                  "ko": "멕시코요리",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'japanese-cuisine',
-                'code': 1011103,
-                'name': {
-                  'en': 'Japanese Cuisine',
-                  'ko': '일식',
-                  'zh_hans': null
+                "slug": "latin-american-cuisine",
+                "code": 1011107,
+                "name": {
+                  "en": "Latin American Cuisine",
+                  "ko": "라틴요리",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'korean-cuisine',
-                'code': 1011104,
-                'name': {
-                  'en': 'Korean Cuisine',
-                  'ko': '한식',
-                  'zh_hans': null
+                "slug": "australiancuisine",
+                "code": 1011108,
+                "name": {
+                  "en": "Australiancuisine",
+                  "ko": "호주요리",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'asian-cuisine',
-                'code': 1011105,
-                'name': {
-                  'en': 'Asian Cuisine',
-                  'ko': '아시아요리',
-                  'zh_hans': null
+                "slug": "european-cuisine",
+                "code": 1011109,
+                "name": {
+                  "en": "European Cuisine",
+                  "ko": "유럽요리",
+                  "zh_hans": null
                 },
-                'children': []
-              },
-              {
-                'slug': 'mexican-cuisine',
-                'code': 1011106,
-                'name': {
-                  'en': 'Mexican Cuisine',
-                  'ko': '멕시코요리',
-                  'zh_hans': null
-                },
-                'children': []
-              },
-              {
-                'slug': 'latin-american-cuisine',
-                'code': 1011107,
-                'name': {
-                  'en': 'Latin American Cuisine',
-                  'ko': '라틴요리',
-                  'zh_hans': null
-                },
-                'children': []
-              },
-              {
-                'slug': 'australiancuisine',
-                'code': 1011108,
-                'name': {
-                  'en': 'Australiancuisine',
-                  'ko': '호주요리',
-                  'zh_hans': null
-                },
-                'children': []
-              },
-              {
-                'slug': 'european-cuisine',
-                'code': 1011109,
-                'name': {
-                  'en': 'European Cuisine',
-                  'ko': '유럽요리',
-                  'zh_hans': null
-                },
-                'children': []
+                "children": []
               }
             ]
           }
         ]
       },
       {
-        'slug': 'household-supplies',
-        'code': 1020000,
-        'name': {
-          'en': 'Household Supplies',
-          'ko': '생활용품',
-          'zh_hans': null
+        "slug": "household-supplies",
+        "code": 1020000,
+        "name": {
+          "en": "Household Supplies",
+          "ko": "생활용품",
+          "zh_hans": null
         },
-        'children': [
+        "children": [
           {
-            'slug': 'paper-and-plastic-products',
-            'code': 1020100,
-            'name': {
-              'en': 'Paper & Plastic Products',
-              'ko': '화장지·일회용품',
-              'zh_hans': null
+            "slug": "paper-and-plastic-products",
+            "code": 1020100,
+            "name": {
+              "en": "Paper & Plastic Products",
+              "ko": "화장지·일회용품",
+              "zh_hans": null
             },
-            'children': [
+            "children": [
               {
-                'slug': 'paper-towels',
-                'code': 1020101,
-                'name': {
-                  'en': 'Paper Towels',
-                  'ko': '종이타월',
-                  'zh_hans': null
+                "slug": "paper-towels",
+                "code": 1020101,
+                "name": {
+                  "en": "Paper Towels",
+                  "ko": "종이타월",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'toilet-paper',
-                'code': 1020102,
-                'name': {
-                  'en': 'Toilet Paper',
-                  'ko': '화장지',
-                  'zh_hans': null
+                "slug": "toilet-paper",
+                "code": 1020102,
+                "name": {
+                  "en": "Toilet Paper",
+                  "ko": "화장지",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'facial-tissues',
-                'code': 1020103,
-                'name': {
-                  'en': 'Facial Tissues',
-                  'ko': '미용티슈',
-                  'zh_hans': null
+                "slug": "facial-tissues",
+                "code": 1020103,
+                "name": {
+                  "en": "Facial Tissues",
+                  "ko": "미용티슈",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'disposable-tableware',
-                'code': 1020104,
-                'name': {
-                  'en': 'Disposable Tableware',
-                  'ko': '일회용식탁용품',
-                  'zh_hans': null
+                "slug": "disposable-tableware",
+                "code": 1020104,
+                "name": {
+                  "en": "Disposable Tableware",
+                  "ko": "일회용식탁용품",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'paper-napkins',
-                'code': 1020105,
-                'name': {
-                  'en': 'Paper Napkins',
-                  'ko': '넵킨',
-                  'zh_hans': null
+                "slug": "paper-napkins",
+                "code": 1020105,
+                "name": {
+                  "en": "Paper Napkins",
+                  "ko": "넵킨",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'disposable-coffee-filters',
-                'code': 1020106,
-                'name': {
-                  'en': 'Disposable Coffee Filters',
-                  'ko': '일회용커피필터',
-                  'zh_hans': null
+                "slug": "disposable-coffee-filters",
+                "code": 1020106,
+                "name": {
+                  "en": "Disposable Coffee Filters",
+                  "ko": "일회용커피필터",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               }
             ]
           },
           {
-            'slug': 'laundry',
-            'code': 1020200,
-            'name': {
-              'en': 'Laundry',
-              'ko': '세탁',
-              'zh_hans': null
+            "slug": "laundry",
+            "code": 1020200,
+            "name": {
+              "en": "Laundry",
+              "ko": "세탁",
+              "zh_hans": null
             },
-            'children': [
+            "children": [
               {
-                'slug': 'laundry-detergent',
-                'code': 1020201,
-                'name': {
-                  'en': 'Laundry Detergent',
-                  'ko': '세제',
-                  'zh_hans': null
+                "slug": "laundry-detergent",
+                "code": 1020201,
+                "name": {
+                  "en": "Laundry Detergent",
+                  "ko": "세제",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'fabric-softener',
-                'code': 1020202,
-                'name': {
-                  'en': 'Fabric Softener',
-                  'ko': '섬유유연제',
-                  'zh_hans': null
+                "slug": "fabric-softener",
+                "code": 1020202,
+                "name": {
+                  "en": "Fabric Softener",
+                  "ko": "섬유유연제",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'dryer-sheets-and-balls',
-                'code': 1020203,
-                'name': {
-                  'en': 'Dryer Sheets & Balls',
-                  'ko': '건조시트·볼',
-                  'zh_hans': null
+                "slug": "dryer-sheets-and-balls",
+                "code": 1020203,
+                "name": {
+                  "en": "Dryer Sheets & Balls",
+                  "ko": "건조시트·볼",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'stain-removers',
-                'code': 1020204,
-                'name': {
-                  'en': 'Stain Removers',
-                  'ko': '얼룩제거제',
-                  'zh_hans': null
+                "slug": "stain-removers",
+                "code": 1020204,
+                "name": {
+                  "en": "Stain Removers",
+                  "ko": "얼룩제거제",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'scent-boosters',
-                'code': 1020205,
-                'name': {
-                  'en': 'Scent Boosters',
-                  'ko': '세탁방향제',
-                  'zh_hans': null
+                "slug": "scent-boosters",
+                "code": 1020205,
+                "name": {
+                  "en": "Scent Boosters",
+                  "ko": "세탁방향제",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'bleach',
-                'code': 1020206,
-                'name': {
-                  'en': 'Bleach',
-                  'ko': '표백제',
-                  'zh_hans': null
+                "slug": "bleach",
+                "code": 1020206,
+                "name": {
+                  "en": "Bleach",
+                  "ko": "표백제",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'washing-machine-cleaners',
-                'code': 1020207,
-                'name': {
-                  'en': 'Washing Machine Cleaners',
-                  'ko': '세탁조청소',
-                  'zh_hans': null
+                "slug": "washing-machine-cleaners",
+                "code": 1020207,
+                "name": {
+                  "en": "Washing Machine Cleaners",
+                  "ko": "세탁조청소",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'other-laundry-care',
-                'code': 1020208,
-                'name': {
-                  'en': 'Other Laundry Care',
-                  'ko': '기타세탁용품',
-                  'zh_hans': null
+                "slug": "other-laundry-care",
+                "code": 1020208,
+                "name": {
+                  "en": "Other Laundry Care",
+                  "ko": "기타세탁용품",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               }
             ]
           },
           {
-            'slug': 'cleaning-products',
-            'code': 1020300,
-            'name': {
-              'en': 'Cleaning Products',
-              'ko': '청소용품',
-              'zh_hans': null
+            "slug": "cleaning-products",
+            "code": 1020300,
+            "name": {
+              "en": "Cleaning Products",
+              "ko": "청소용품",
+              "zh_hans": null
             },
-            'children': [
+            "children": [
               {
-                'slug': 'all-purpose-cleaners',
-                'code': 1020301,
-                'name': {
-                  'en': 'All-purpose Cleaners',
-                  'ko': '다목적클리너',
-                  'zh_hans': null
+                "slug": "all-purpose-cleaners",
+                "code": 1020301,
+                "name": {
+                  "en": "All-purpose Cleaners",
+                  "ko": "다목적클리너",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'cleaning-wipes',
-                'code': 1020302,
-                'name': {
-                  'en': 'Cleaning Wipes',
-                  'ko': '청소용티슈',
-                  'zh_hans': null
+                "slug": "cleaning-wipes",
+                "code": 1020302,
+                "name": {
+                  "en": "Cleaning Wipes",
+                  "ko": "청소용티슈",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'bleach',
-                'code': 1020303,
-                'name': {
-                  'en': 'Bleach',
-                  'ko': '표백제',
-                  'zh_hans': null
+                "slug": "bleach",
+                "code": 1020303,
+                "name": {
+                  "en": "Bleach",
+                  "ko": "표백제",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'sponges-and-brushes',
-                'code': 1020304,
-                'name': {
-                  'en': 'Sponges & Brushes',
-                  'ko': '스펀지·브러쉬',
-                  'zh_hans': null
+                "slug": "sponges-and-brushes",
+                "code": 1020304,
+                "name": {
+                  "en": "Sponges & Brushes",
+                  "ko": "스펀지·브러쉬",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'dishwashing-detergent',
-                'code': 1020305,
-                'name': {
-                  'en': 'Dishwashing Detergent',
-                  'ko': '주방세제',
-                  'zh_hans': null
+                "slug": "dishwashing-detergent",
+                "code": 1020305,
+                "name": {
+                  "en": "Dishwashing Detergent",
+                  "ko": "주방세제",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'dish-soap',
-                'code': 1020306,
-                'name': {
-                  'en': 'Dish Soap',
-                  'ko': '주방비누',
-                  'zh_hans': null
+                "slug": "dish-soap",
+                "code": 1020306,
+                "name": {
+                  "en": "Dish Soap",
+                  "ko": "주방비누",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'bathroom-cleaners',
-                'code': 1020307,
-                'name': {
-                  'en': 'Bathroom Cleaners',
-                  'ko': '욕실청소',
-                  'zh_hans': null
+                "slug": "bathroom-cleaners",
+                "code": 1020307,
+                "name": {
+                  "en": "Bathroom Cleaners",
+                  "ko": "욕실청소",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'kitchen-cleaners',
-                'code': 1020308,
-                'name': {
-                  'en': 'Kitchen Cleaners',
-                  'ko': '주방청소',
-                  'zh_hans': null
+                "slug": "kitchen-cleaners",
+                "code": 1020308,
+                "name": {
+                  "en": "Kitchen Cleaners",
+                  "ko": "주방청소",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'produce-wash',
-                'code': 1020309,
-                'name': {
-                  'en': 'Produce Wash',
-                  'ko': '식품세척',
-                  'zh_hans': null
+                "slug": "produce-wash",
+                "code": 1020309,
+                "name": {
+                  "en": "Produce Wash",
+                  "ko": "식품세척",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'drain-cleaners',
-                'code': 1020310,
-                'name': {
-                  'en': 'Drain Cleaners',
-                  'ko': '배수관청소',
-                  'zh_hans': null
+                "slug": "drain-cleaners",
+                "code": 1020310,
+                "name": {
+                  "en": "Drain Cleaners",
+                  "ko": "배수관청소",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'floor-cleaners',
-                'code': 1020311,
-                'name': {
-                  'en': 'Floor Cleaners',
-                  'ko': '거실청소',
-                  'zh_hans': null
+                "slug": "floor-cleaners",
+                "code": 1020311,
+                "name": {
+                  "en": "Floor Cleaners",
+                  "ko": "거실청소",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'specialty-cleaners',
-                'code': 1020312,
-                'name': {
-                  'en': 'Specialty Cleaners',
-                  'ko': '특수청소',
-                  'zh_hans': null
+                "slug": "specialty-cleaners",
+                "code": 1020312,
+                "name": {
+                  "en": "Specialty Cleaners",
+                  "ko": "특수청소",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'glass-cleaners',
-                'code': 1020313,
-                'name': {
-                  'en': 'Glass Cleaners',
-                  'ko': '유리청소',
-                  'zh_hans': null
+                "slug": "glass-cleaners",
+                "code": 1020313,
+                "name": {
+                  "en": "Glass Cleaners",
+                  "ko": "유리청소",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               }
             ]
           },
           {
-            'slug': 'cleaning-tools',
-            'code': 1020400,
-            'name': {
-              'en': 'Cleaning Tools',
-              'ko': '청소도구',
-              'zh_hans': null
+            "slug": "cleaning-tools",
+            "code": 1020400,
+            "name": {
+              "en": "Cleaning Tools",
+              "ko": "청소도구",
+              "zh_hans": null
             },
-            'children': [
+            "children": [
               {
-                'slug': 'sponges-and-brushes',
-                'code': 1020401,
-                'name': {
-                  'en': 'Sponges & Brushes',
-                  'ko': '스펀지·브러쉬',
-                  'zh_hans': null
+                "slug": "sponges-and-brushes",
+                "code": 1020401,
+                "name": {
+                  "en": "Sponges & Brushes",
+                  "ko": "스펀지·브러쉬",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'mops-and-accessories',
-                'code': 1020402,
-                'name': {
-                  'en': 'Mops & Accessories',
-                  'ko': '대걸레·액세서리',
-                  'zh_hans': null
+                "slug": "mops-and-accessories",
+                "code": 1020402,
+                "name": {
+                  "en": "Mops & Accessories",
+                  "ko": "대걸레·액세서리",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'dusting-tools-and-cloths',
-                'code': 1020403,
-                'name': {
-                  'en': 'Dusting Tools & Cloths',
-                  'ko': '먼지청소',
-                  'zh_hans': null
+                "slug": "dusting-tools-and-cloths",
+                "code": 1020403,
+                "name": {
+                  "en": "Dusting Tools & Cloths",
+                  "ko": "먼지청소",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'cleaning-gloves',
-                'code': 1020404,
-                'name': {
-                  'en': 'Cleaning Gloves',
-                  'ko': '청소용장갑',
-                  'zh_hans': null
+                "slug": "cleaning-gloves",
+                "code": 1020404,
+                "name": {
+                  "en": "Cleaning Gloves",
+                  "ko": "청소용장갑",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'brooms',
-                'code': 1020405,
-                'name': {
-                  'en': 'Brooms',
-                  'ko': '빗자루',
-                  'zh_hans': null
+                "slug": "brooms",
+                "code": 1020405,
+                "name": {
+                  "en": "Brooms",
+                  "ko": "빗자루",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'bowl-brushes-and-plungers',
-                'code': 1020406,
-                'name': {
-                  'en': 'Bowl Brushes & Plungers',
-                  'ko': '볼브러쉬·플런저',
-                  'zh_hans': null
+                "slug": "bowl-brushes-and-plungers",
+                "code": 1020406,
+                "name": {
+                  "en": "Bowl Brushes & Plungers",
+                  "ko": "볼브러쉬·플런저",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'dustbins',
-                'code': 1020407,
-                'name': {
-                  'en': 'Dustbins',
-                  'ko': '휴지통',
-                  'zh_hans': null
+                "slug": "dustbins",
+                "code": 1020407,
+                "name": {
+                  "en": "Dustbins",
+                  "ko": "휴지통",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               }
             ]
           },
           {
-            'slug': 'food-storage-and-trash-bags',
-            'code': 1020500,
-            'name': {
-              'en': 'Food Storage & Trash Bags',
-              'ko': '보관용기·팩',
-              'zh_hans': null
+            "slug": "food-storage-and-trash-bags",
+            "code": 1020500,
+            "name": {
+              "en": "Food Storage & Trash Bags",
+              "ko": "보관용기·팩",
+              "zh_hans": null
             },
-            'children': [
+            "children": [
               {
-                'slug': 'food-storage-bags',
-                'code': 1020501,
-                'name': {
-                  'en': 'Food Storage Bags',
-                  'ko': '비닐팩',
-                  'zh_hans': null
+                "slug": "food-storage-bags",
+                "code": 1020501,
+                "name": {
+                  "en": "Food Storage Bags",
+                  "ko": "비닐팩",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'foil',
-                'code': 1020502,
-                'name': {
-                  'en': 'Foil',
-                  'ko': '호일',
-                  'zh_hans': null
+                "slug": "foil",
+                "code": 1020502,
+                "name": {
+                  "en": "Foil",
+                  "ko": "호일",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'food-storage-containers',
-                'code': 1020503,
-                'name': {
-                  'en': 'Food Storage Containers',
-                  'ko': '음식보관용기',
-                  'zh_hans': null
+                "slug": "food-storage-containers",
+                "code": 1020503,
+                "name": {
+                  "en": "Food Storage Containers",
+                  "ko": "음식보관용기",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'plastic-wrap',
-                'code': 1020504,
-                'name': {
-                  'en': 'Plastic Wrap',
-                  'ko': '비닐랩',
-                  'zh_hans': null
+                "slug": "plastic-wrap",
+                "code": 1020504,
+                "name": {
+                  "en": "Plastic Wrap",
+                  "ko": "비닐랩",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'wax-and-parchment-paper',
-                'code': 1020505,
-                'name': {
-                  'en': 'Wax & Parchment Paper',
-                  'ko': '왁스·파치먼트페이퍼',
-                  'zh_hans': null
+                "slug": "wax-and-parchment-paper",
+                "code": 1020505,
+                "name": {
+                  "en": "Wax & Parchment Paper",
+                  "ko": "왁스·파치먼트페이퍼",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'trash-bags',
-                'code': 1020506,
-                'name': {
-                  'en': 'Trash Bags',
-                  'ko': '쓰레기봉투',
-                  'zh_hans': null
+                "slug": "trash-bags",
+                "code": 1020506,
+                "name": {
+                  "en": "Trash Bags",
+                  "ko": "쓰레기봉투",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               }
             ]
           },
           {
-            'slug': 'home-fragrance',
-            'code': 1020600,
-            'name': {
-              'en': 'Home Fragrance',
-              'ko': '방향',
-              'zh_hans': null
+            "slug": "home-fragrance",
+            "code": 1020600,
+            "name": {
+              "en": "Home Fragrance",
+              "ko": "방향",
+              "zh_hans": null
             },
-            'children': [
+            "children": [
               {
-                'slug': 'air-fresheners',
-                'code': 1020601,
-                'name': {
-                  'en': 'Air Fresheners',
-                  'ko': '방향제',
-                  'zh_hans': null
+                "slug": "air-fresheners",
+                "code": 1020601,
+                "name": {
+                  "en": "Air Fresheners",
+                  "ko": "방향제",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'candles',
-                'code': 1020602,
-                'name': {
-                  'en': 'Candles',
-                  'ko': '향초',
-                  'zh_hans': null
+                "slug": "candles",
+                "code": 1020602,
+                "name": {
+                  "en": "Candles",
+                  "ko": "향초",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'fragrance-diffusers',
-                'code': 1020603,
-                'name': {
-                  'en': 'Fragrance Diffusers',
-                  'ko': '디퓨저',
-                  'zh_hans': null
+                "slug": "fragrance-diffusers",
+                "code": 1020603,
+                "name": {
+                  "en": "Fragrance Diffusers",
+                  "ko": "디퓨저",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               }
             ]
           },
           {
-            'slug': 'light-bulbs',
-            'code': 1020700,
-            'name': {
-              'en': 'Light Bulbs',
-              'ko': '백열전구',
-              'zh_hans': null
+            "slug": "light-bulbs",
+            "code": 1020700,
+            "name": {
+              "en": "Light Bulbs",
+              "ko": "백열전구",
+              "zh_hans": null
             },
-            'children': []
+            "children": []
           },
           {
-            'slug': 'insect-and-pest-control',
-            'code': 1020800,
-            'name': {
-              'en': 'Insect & Pest Control',
-              'ko': '방충용품',
-              'zh_hans': null
+            "slug": "insect-and-pest-control",
+            "code": 1020800,
+            "name": {
+              "en": "Insect & Pest Control",
+              "ko": "방충용품",
+              "zh_hans": null
             },
-            'children': [
+            "children": [
               {
-                'slug': 'indoor-pest-control',
-                'code': 1020801,
-                'name': {
-                  'en': 'Indoor Pest Control',
-                  'ko': '실내용해충',
-                  'zh_hans': null
+                "slug": "indoor-pest-control",
+                "code": 1020801,
+                "name": {
+                  "en": "Indoor Pest Control",
+                  "ko": "실내용해충",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'outdoor-pest-control',
-                'code': 1020802,
-                'name': {
-                  'en': 'Outdoor Pest Control',
-                  'ko': '야외용해충',
-                  'zh_hans': null
+                "slug": "outdoor-pest-control",
+                "code": 1020802,
+                "name": {
+                  "en": "Outdoor Pest Control",
+                  "ko": "야외용해충",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'insect-repellent',
-                'code': 1020803,
-                'name': {
-                  'en': 'Insect Repellent',
-                  'ko': '방충제',
-                  'zh_hans': null
+                "slug": "insect-repellent",
+                "code": 1020803,
+                "name": {
+                  "en": "Insect Repellent",
+                  "ko": "방충제",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               }
             ]
           }
         ]
       },
       {
-        'slug': 'personal-care',
-        'code': 1030000,
-        'name': {
-          'en': 'Personal Care',
-          'ko': '퍼스날케어',
-          'zh_hans': null
+        "slug": "personal-care",
+        "code": 1030000,
+        "name": {
+          "en": "Personal Care",
+          "ko": "퍼스날케어",
+          "zh_hans": null
         },
-        'children': [
+        "children": [
           {
-            'slug': 'oral-and-personal-care',
-            'code': 1030100,
-            'name': {
-              'en': 'Oral & Personal Care',
-              'ko': '위생용품',
-              'zh_hans': null
+            "slug": "oral-and-personal-care",
+            "code": 1030100,
+            "name": {
+              "en": "Oral & Personal Care",
+              "ko": "위생용품",
+              "zh_hans": null
             },
-            'children': [
+            "children": [
               {
-                'slug': 'deodorant',
-                'code': 1030101,
-                'name': {
-                  'en': 'Deodorant',
-                  'ko': '데오드란트',
-                  'zh_hans': null
+                "slug": "deodorant",
+                "code": 1030101,
+                "name": {
+                  "en": "Deodorant",
+                  "ko": "데오드란트",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'ear-care',
-                'code': 1030102,
-                'name': {
-                  'en': 'Ear Care',
-                  'ko': '귀건강',
-                  'zh_hans': null
+                "slug": "ear-care",
+                "code": 1030102,
+                "name": {
+                  "en": "Ear Care",
+                  "ko": "귀건강",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'eye-care',
-                'code': 1030103,
-                'name': {
-                  'en': 'Eye Care',
-                  'ko': '눈건강',
-                  'zh_hans': null
+                "slug": "eye-care",
+                "code": 1030103,
+                "name": {
+                  "en": "Eye Care",
+                  "ko": "눈건강",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'feminine-care',
-                'code': 1030104,
-                'name': {
-                  'en': 'Feminine Care',
-                  'ko': '여성청결제',
-                  'zh_hans': null
+                "slug": "feminine-care",
+                "code": 1030104,
+                "name": {
+                  "en": "Feminine Care",
+                  "ko": "여성청결제",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'toothbrushes',
-                'code': 1030105,
-                'name': {
-                  'en': 'Toothbrushes',
-                  'ko': '칫솔',
-                  'zh_hans': null
+                "slug": "toothbrushes",
+                "code": 1030105,
+                "name": {
+                  "en": "Toothbrushes",
+                  "ko": "칫솔",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'toothpaste',
-                'code': 1030106,
-                'name': {
-                  'en': 'Toothpaste',
-                  'ko': '치약',
-                  'zh_hans': null
+                "slug": "toothpaste",
+                "code": 1030106,
+                "name": {
+                  "en": "Toothpaste",
+                  "ko": "치약",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'mouthwash',
-                'code': 1030107,
-                'name': {
-                  'en': 'Mouthwash',
-                  'ko': '구강청결제',
-                  'zh_hans': null
+                "slug": "mouthwash",
+                "code": 1030107,
+                "name": {
+                  "en": "Mouthwash",
+                  "ko": "구강청결제",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'dental-floss',
-                'code': 1030108,
-                'name': {
-                  'en': 'Dental Floss',
-                  'ko': '치실',
-                  'zh_hans': null
+                "slug": "dental-floss",
+                "code": 1030108,
+                "name": {
+                  "en": "Dental Floss",
+                  "ko": "치실",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'manual-toothbrushes',
-                'code': 1030109,
-                'name': {
-                  'en': 'Manual Toothbrushes',
-                  'ko': '일반칫솔',
-                  'zh_hans': null
+                "slug": "manual-toothbrushes",
+                "code": 1030109,
+                "name": {
+                  "en": "Manual Toothbrushes",
+                  "ko": "일반칫솔",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'electric-toothbrushes',
-                'code': 1030110,
-                'name': {
-                  'en': 'Electric Toothbrushes',
-                  'ko': '전동칫솔',
-                  'zh_hans': null
+                "slug": "electric-toothbrushes",
+                "code": 1030110,
+                "name": {
+                  "en": "Electric Toothbrushes",
+                  "ko": "전동칫솔",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'other-oral-care',
-                'code': 1030111,
-                'name': {
-                  'en': 'Other Oral Care',
-                  'ko': '구강관리',
-                  'zh_hans': null
+                "slug": "other-oral-care",
+                "code": 1030111,
+                "name": {
+                  "en": "Other Oral Care",
+                  "ko": "구강관리",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'razors',
-                'code': 1030112,
-                'name': {
-                  'en': 'Razors',
-                  'ko': '면도기',
-                  'zh_hans': null
+                "slug": "razors",
+                "code": 1030112,
+                "name": {
+                  "en": "Razors",
+                  "ko": "면도기",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'shaving-cream',
-                'code': 1030113,
-                'name': {
-                  'en': 'Shaving Cream',
-                  'ko': '면도크림',
-                  'zh_hans': null
+                "slug": "shaving-cream",
+                "code": 1030113,
+                "name": {
+                  "en": "Shaving Cream",
+                  "ko": "면도크림",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'waxing-and-hair-removal',
-                'code': 1030114,
-                'name': {
-                  'en': 'Waxing & Hair Removal',
-                  'ko': '왁싱·제모',
-                  'zh_hans': null
+                "slug": "waxing-and-hair-removal",
+                "code": 1030114,
+                "name": {
+                  "en": "Waxing & Hair Removal",
+                  "ko": "왁싱·제모",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'safer-sex-and-contraceptives',
-                'code': 1030115,
-                'name': {
-                  'en': 'Safer Sex & Contraceptives',
-                  'ko': '피임기구',
-                  'zh_hans': null
+                "slug": "safer-sex-and-contraceptives",
+                "code": 1030115,
+                "name": {
+                  "en": "Safer Sex & Contraceptives",
+                  "ko": "피임기구",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'cotton-balls-and-rounds',
-                'code': 1030116,
-                'name': {
-                  'en': 'Cotton Balls & Rounds',
-                  'ko': '코튼볼',
-                  'zh_hans': null
+                "slug": "cotton-balls-and-rounds",
+                "code": 1030116,
+                "name": {
+                  "en": "Cotton Balls & Rounds",
+                  "ko": "코튼볼",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'incontinence',
-                'code': 1030117,
-                'name': {
-                  'en': 'Incontinence',
-                  'ko': '요실금',
-                  'zh_hans': null
+                "slug": "incontinence",
+                "code": 1030117,
+                "name": {
+                  "en": "Incontinence",
+                  "ko": "요실금",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'wet-shave',
-                'code': 1030118,
-                'name': {
-                  'en': 'Wet Shave',
-                  'ko': '면도',
-                  'zh_hans': null
+                "slug": "wet-shave",
+                "code": 1030118,
+                "name": {
+                  "en": "Wet Shave",
+                  "ko": "면도",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'electric-shavers',
-                'code': 1030119,
-                'name': {
-                  'en': 'Electric Shavers',
-                  'ko': '전기면도',
-                  'zh_hans': null
+                "slug": "electric-shavers",
+                "code": 1030119,
+                "name": {
+                  "en": "Electric Shavers",
+                  "ko": "전기면도",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               }
             ]
           },
           {
-            'slug': 'tools-and-accessories',
-            'code': 1030200,
-            'name': {
-              'en': 'Tools & Accessories',
-              'ko': '뷰티액세서리',
-              'zh_hans': null
+            "slug": "tools-and-accessories",
+            "code": 1030200,
+            "name": {
+              "en": "Tools & Accessories",
+              "ko": "뷰티액세서리",
+              "zh_hans": null
             },
-            'children': [
+            "children": [
               {
-                'slug': 'bath-sponges-and-tools',
-                'code': 1030201,
-                'name': {
-                  'en': 'Bath Sponges & Tools',
-                  'ko': '목욕용품·스펀지',
-                  'zh_hans': null
+                "slug": "bath-sponges-and-tools",
+                "code": 1030201,
+                "name": {
+                  "en": "Bath Sponges & Tools",
+                  "ko": "목욕용품·스펀지",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'eye-masks',
-                'code': 1030202,
-                'name': {
-                  'en': 'Eye Masks',
-                  'ko': '아이마스크',
-                  'zh_hans': null
+                "slug": "eye-masks",
+                "code": 1030202,
+                "name": {
+                  "en": "Eye Masks",
+                  "ko": "아이마스크",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'beauty-and-spa-tools',
-                'code': 1030203,
-                'name': {
-                  'en': 'Beauty & Spa Tools',
-                  'ko': '스파용품',
-                  'zh_hans': null
+                "slug": "beauty-and-spa-tools",
+                "code": 1030203,
+                "name": {
+                  "en": "Beauty & Spa Tools",
+                  "ko": "스파용품",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'cotton-balls-and-rounds',
-                'code': 1030204,
-                'name': {
-                  'en': 'Cotton Balls & Rounds',
-                  'ko': '화장솜',
-                  'zh_hans': null
+                "slug": "cotton-balls-and-rounds",
+                "code": 1030204,
+                "name": {
+                  "en": "Cotton Balls & Rounds",
+                  "ko": "화장솜",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'mirrors',
-                'code': 1030205,
-                'name': {
-                  'en': 'Mirrors',
-                  'ko': '거울',
-                  'zh_hans': null
+                "slug": "mirrors",
+                "code": 1030205,
+                "name": {
+                  "en": "Mirrors",
+                  "ko": "거울",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'toiletry-kits-and-cases',
-                'code': 1030206,
-                'name': {
-                  'en': 'Toiletry Kits & Cases',
-                  'ko': '화장품주머니',
-                  'zh_hans': null
+                "slug": "toiletry-kits-and-cases",
+                "code": 1030206,
+                "name": {
+                  "en": "Toiletry Kits & Cases",
+                  "ko": "화장품주머니",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'tweezers',
-                'code': 1030207,
-                'name': {
-                  'en': 'Tweezers',
-                  'ko': '핀셋',
-                  'zh_hans': null
+                "slug": "tweezers",
+                "code": 1030207,
+                "name": {
+                  "en": "Tweezers",
+                  "ko": "핀셋",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'facial-tissues',
-                'code': 1030208,
-                'name': {
-                  'en': 'Facial Tissues',
-                  'ko': '미용티슈',
-                  'zh_hans': null
+                "slug": "facial-tissues",
+                "code": 1030208,
+                "name": {
+                  "en": "Facial Tissues",
+                  "ko": "미용티슈",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'nail-care-tools',
-                'code': 1030209,
-                'name': {
-                  'en': 'Nail Care Tools',
-                  'ko': '네일케어',
-                  'zh_hans': null
+                "slug": "nail-care-tools",
+                "code": 1030209,
+                "name": {
+                  "en": "Nail Care Tools",
+                  "ko": "네일케어",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'top-beauty-tools-and-accessories',
-                'code': 1030210,
-                'name': {
-                  'en': 'Top Beauty Tools & Accessories',
-                  'ko': '뷰티베스트',
-                  'zh_hans': null
+                "slug": "top-beauty-tools-and-accessories",
+                "code": 1030210,
+                "name": {
+                  "en": "Top Beauty Tools & Accessories",
+                  "ko": "뷰티베스트",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               }
             ]
           },
           {
-            'slug': 'hair-care-products',
-            'code': 1030300,
-            'name': {
-              'en': 'Hair Care Products',
-              'ko': '헤어케어',
-              'zh_hans': null
+            "slug": "hair-care-products",
+            "code": 1030300,
+            "name": {
+              "en": "Hair Care Products",
+              "ko": "헤어케어",
+              "zh_hans": null
             },
-            'children': [
+            "children": [
               {
-                'slug': 'shampoos',
-                'code': 1030301,
-                'name': {
-                  'en': 'Shampoos',
-                  'ko': '샴푸',
-                  'zh_hans': null
+                "slug": "shampoos",
+                "code": 1030301,
+                "name": {
+                  "en": "Shampoos",
+                  "ko": "샴푸",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'conditioners',
-                'code': 1030302,
-                'name': {
-                  'en': 'Conditioners',
-                  'ko': '컨디셔너',
-                  'zh_hans': null
+                "slug": "conditioners",
+                "code": 1030302,
+                "name": {
+                  "en": "Conditioners",
+                  "ko": "컨디셔너",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'styling-products',
-                'code': 1030303,
-                'name': {
-                  'en': 'Styling Products',
-                  'ko': '스타일링',
-                  'zh_hans': null
+                "slug": "styling-products",
+                "code": 1030303,
+                "name": {
+                  "en": "Styling Products",
+                  "ko": "스타일링",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'scalp-treatments',
-                'code': 1030304,
-                'name': {
-                  'en': 'Scalp Treatments',
-                  'ko': '두피관리',
-                  'zh_hans': null
+                "slug": "scalp-treatments",
+                "code": 1030304,
+                "name": {
+                  "en": "Scalp Treatments",
+                  "ko": "두피관리",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'hair-color',
-                'code': 1030305,
-                'name': {
-                  'en': 'Hair Color',
-                  'ko': '염색',
-                  'zh_hans': null
+                "slug": "hair-color",
+                "code": 1030305,
+                "name": {
+                  "en": "Hair Color",
+                  "ko": "염색",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'hair-loss-products',
-                'code': 1030306,
-                'name': {
-                  'en': 'Hair Loss Products',
-                  'ko': '탈모관리',
-                  'zh_hans': null
+                "slug": "hair-loss-products",
+                "code": 1030306,
+                "name": {
+                  "en": "Hair Loss Products",
+                  "ko": "탈모관리",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'hair-perms-and-texturizers',
-                'code': 1030307,
-                'name': {
-                  'en': 'Hair Perms & Texturizers',
-                  'ko': '펌·텍스처',
-                  'zh_hans': null
+                "slug": "hair-perms-and-texturizers",
+                "code": 1030307,
+                "name": {
+                  "en": "Hair Perms & Texturizers",
+                  "ko": "펌·텍스처",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'hair-relaxers-and-treatments',
-                'code': 1030308,
-                'name': {
-                  'en': 'Hair Relaxers & Treatments',
-                  'ko': '트리트먼트',
-                  'zh_hans': null
+                "slug": "hair-relaxers-and-treatments",
+                "code": 1030308,
+                "name": {
+                  "en": "Hair Relaxers & Treatments",
+                  "ko": "트리트먼트",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'multicultural-hair-care-products',
-                'code': 1030309,
-                'name': {
-                  'en': 'Multicultural Hair Care Products',
-                  'ko': '다문화 제품',
-                  'zh_hans': null
+                "slug": "multicultural-hair-care-products",
+                "code": 1030309,
+                "name": {
+                  "en": "Multicultural Hair Care Products",
+                  "ko": "다문화 제품",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'innovative-hair-care',
-                'code': 1030310,
-                'name': {
-                  'en': 'Innovative Hair Care',
-                  'ko': '집중관리',
-                  'zh_hans': null
+                "slug": "innovative-hair-care",
+                "code": 1030310,
+                "name": {
+                  "en": "Innovative Hair Care",
+                  "ko": "집중관리",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               }
             ]
           },
           {
-            'slug': 'hair-tools-and-accessories',
-            'code': 1030400,
-            'name': {
-              'en': 'Hair Tools & Accessories',
-              'ko': '헤어액세서리',
-              'zh_hans': null
+            "slug": "hair-tools-and-accessories",
+            "code": 1030400,
+            "name": {
+              "en": "Hair Tools & Accessories",
+              "ko": "헤어액세서리",
+              "zh_hans": null
             },
-            'children': [
+            "children": [
               {
-                'slug': 'brushes',
-                'code': 1030401,
-                'name': {
-                  'en': 'Brushes',
-                  'ko': '브러쉬',
-                  'zh_hans': null
+                "slug": "brushes",
+                "code": 1030401,
+                "name": {
+                  "en": "Brushes",
+                  "ko": "브러쉬",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'dryers-irons-and-diffusers',
-                'code': 1030402,
-                'name': {
-                  'en': 'Dryers, Irons & Diffusers',
-                  'ko': '드라이어·고데기',
-                  'zh_hans': null
+                "slug": "dryers-irons-and-diffusers",
+                "code": 1030402,
+                "name": {
+                  "en": "Dryers, Irons & Diffusers",
+                  "ko": "드라이어·고데기",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'hair-rollers',
-                'code': 1030403,
-                'name': {
-                  'en': 'Hair Rollers',
-                  'ko': '롤러',
-                  'zh_hans': null
+                "slug": "hair-rollers",
+                "code": 1030403,
+                "name": {
+                  "en": "Hair Rollers",
+                  "ko": "롤러",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'hair-accessories',
-                'code': 1030404,
-                'name': {
-                  'en': 'Hair Accessories',
-                  'ko': '액세서리',
-                  'zh_hans': null
+                "slug": "hair-accessories",
+                "code": 1030404,
+                "name": {
+                  "en": "Hair Accessories",
+                  "ko": "액세서리",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'haircutting-tools',
-                'code': 1030405,
-                'name': {
-                  'en': 'Haircutting Tools',
-                  'ko': '이발용품',
-                  'zh_hans': null
+                "slug": "haircutting-tools",
+                "code": 1030405,
+                "name": {
+                  "en": "Haircutting Tools",
+                  "ko": "이발용품",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'combs',
-                'code': 1030406,
-                'name': {
-                  'en': 'Combs',
-                  'ko': '빗',
-                  'zh_hans': null
+                "slug": "combs",
+                "code": 1030406,
+                "name": {
+                  "en": "Combs",
+                  "ko": "빗",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               }
             ]
           },
           {
-            'slug': 'makeup',
-            'code': 1030500,
-            'name': {
-              'en': 'Makeup',
-              'ko': '메이크업',
-              'zh_hans': null
+            "slug": "makeup",
+            "code": 1030500,
+            "name": {
+              "en": "Makeup",
+              "ko": "메이크업",
+              "zh_hans": null
             },
-            'children': [
+            "children": [
               {
-                'slug': 'body-art-and-makeup',
-                'code': 1030501,
-                'name': {
-                  'en': 'Body Art & Makeup',
-                  'ko': '바디아트',
-                  'zh_hans': null
+                "slug": "body-art-and-makeup",
+                "code": 1030501,
+                "name": {
+                  "en": "Body Art & Makeup",
+                  "ko": "바디아트",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'makeup-brushes',
-                'code': 1030502,
-                'name': {
-                  'en': 'Makeup Brushes',
-                  'ko': '메이크업브러쉬',
-                  'zh_hans': null
+                "slug": "makeup-brushes",
+                "code": 1030502,
+                "name": {
+                  "en": "Makeup Brushes",
+                  "ko": "메이크업브러쉬",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'face-makeup',
-                'code': 1030503,
-                'name': {
-                  'en': 'Face Makeup',
-                  'ko': '페이스메이크업',
-                  'zh_hans': null
+                "slug": "face-makeup",
+                "code": 1030503,
+                "name": {
+                  "en": "Face Makeup",
+                  "ko": "페이스메이크업",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'lip-makeup',
-                'code': 1030504,
-                'name': {
-                  'en': 'Lip Makeup',
-                  'ko': '립메이크업',
-                  'zh_hans': null
+                "slug": "lip-makeup",
+                "code": 1030504,
+                "name": {
+                  "en": "Lip Makeup",
+                  "ko": "립메이크업",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'makeup-sets',
-                'code': 1030505,
-                'name': {
-                  'en': 'Makeup Sets',
-                  'ko': '메이크업세트',
-                  'zh_hans': null
+                "slug": "makeup-sets",
+                "code": 1030505,
+                "name": {
+                  "en": "Makeup Sets",
+                  "ko": "메이크업세트",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'eyeliner-and-brow-pencils',
-                'code': 1030506,
-                'name': {
-                  'en': 'Eyeliner & Brow Pencils',
-                  'ko': '아이라이너·브로우펜슬',
-                  'zh_hans': null
+                "slug": "eyeliner-and-brow-pencils",
+                "code": 1030506,
+                "name": {
+                  "en": "Eyeliner & Brow Pencils",
+                  "ko": "아이라이너·브로우펜슬",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'mascara-and-lashes',
-                'code': 1030507,
-                'name': {
-                  'en': 'Mascara & Lashes',
-                  'ko': '마스카라·래쉬',
-                  'zh_hans': null
+                "slug": "mascara-and-lashes",
+                "code": 1030507,
+                "name": {
+                  "en": "Mascara & Lashes",
+                  "ko": "마스카라·래쉬",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'eye-shadow',
-                'code': 1030508,
-                'name': {
-                  'en': 'Eye Shadow',
-                  'ko': '아이섀도',
-                  'zh_hans': null
+                "slug": "eye-shadow",
+                "code": 1030508,
+                "name": {
+                  "en": "Eye Shadow",
+                  "ko": "아이섀도",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'makeup-sponges',
-                'code': 1030509,
-                'name': {
-                  'en': 'Makeup Sponges',
-                  'ko': '메이크업스펀지',
-                  'zh_hans': null
+                "slug": "makeup-sponges",
+                "code": 1030509,
+                "name": {
+                  "en": "Makeup Sponges",
+                  "ko": "메이크업스펀지",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'makeup-tools',
-                'code': 1030510,
-                'name': {
-                  'en': 'Makeup Tools',
-                  'ko': '메이크업용품',
-                  'zh_hans': null
+                "slug": "makeup-tools",
+                "code": 1030510,
+                "name": {
+                  "en": "Makeup Tools",
+                  "ko": "메이크업용품",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               }
             ]
           },
           {
-            'slug': 'nail-care',
-            'code': 1030600,
-            'name': {
-              'en': 'Nail Care',
-              'ko': '네일케어',
-              'zh_hans': null
+            "slug": "nail-care",
+            "code": 1030600,
+            "name": {
+              "en": "Nail Care",
+              "ko": "네일케어",
+              "zh_hans": null
             },
-            'children': [
+            "children": [
               {
-                'slug': 'cuticle-care',
-                'code': 1030601,
-                'name': {
-                  'en': 'Cuticle Care',
-                  'ko': '큐티클케어',
-                  'zh_hans': null
+                "slug": "cuticle-care",
+                "code": 1030601,
+                "name": {
+                  "en": "Cuticle Care",
+                  "ko": "큐티클케어",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'nail-care-tools',
-                'code': 1030602,
-                'name': {
-                  'en': 'Nail Care Tools',
-                  'ko': '네일케어용품',
-                  'zh_hans': null
+                "slug": "nail-care-tools",
+                "code": 1030602,
+                "name": {
+                  "en": "Nail Care Tools",
+                  "ko": "네일케어용품",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'nail-polish',
-                'code': 1030603,
-                'name': {
-                  'en': 'Nail Polish',
-                  'ko': '매니큐어',
-                  'zh_hans': null
+                "slug": "nail-polish",
+                "code": 1030603,
+                "name": {
+                  "en": "Nail Polish",
+                  "ko": "매니큐어",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'nail-polish-remover',
-                'code': 1030604,
-                'name': {
-                  'en': 'Nail Polish Remover',
-                  'ko': '매니큐어리무버',
-                  'zh_hans': null
+                "slug": "nail-polish-remover",
+                "code": 1030604,
+                "name": {
+                  "en": "Nail Polish Remover",
+                  "ko": "매니큐어리무버",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               }
             ]
           },
           {
-            'slug': 'skin-care',
-            'code': 1030700,
-            'name': {
-              'en': 'Skin Care',
-              'ko': '스킨케어',
-              'zh_hans': null
+            "slug": "skin-care",
+            "code": 1030700,
+            "name": {
+              "en": "Skin Care",
+              "ko": "스킨케어",
+              "zh_hans": null
             },
-            'children': [
+            "children": [
               {
-                'slug': 'bath-salts-and-bubbles',
-                'code': 1030701,
-                'name': {
-                  'en': 'Bath Salts & Bubbles',
-                  'ko': '입욕제',
-                  'zh_hans': null
+                "slug": "bath-salts-and-bubbles",
+                "code": 1030701,
+                "name": {
+                  "en": "Bath Salts & Bubbles",
+                  "ko": "입욕제",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'makeup-remover',
-                'code': 1030702,
-                'name': {
-                  'en': 'Makeup Remover',
-                  'ko': '메이크업리무버',
-                  'zh_hans': null
+                "slug": "makeup-remover",
+                "code": 1030702,
+                "name": {
+                  "en": "Makeup Remover",
+                  "ko": "메이크업리무버",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'hand-soap',
-                'code': 1030703,
-                'name': {
-                  'en': 'Hand Soap',
-                  'ko': '핸드워시',
-                  'zh_hans': null
+                "slug": "hand-soap",
+                "code": 1030703,
+                "name": {
+                  "en": "Hand Soap",
+                  "ko": "핸드워시",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'lip-care',
-                'code': 1030704,
-                'name': {
-                  'en': 'Lip Care',
-                  'ko': '립케어',
-                  'zh_hans': null
+                "slug": "lip-care",
+                "code": 1030704,
+                "name": {
+                  "en": "Lip Care",
+                  "ko": "립케어",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'suncare',
-                'code': 1030705,
-                'name': {
-                  'en': 'Suncare',
-                  'ko': '선케어',
-                  'zh_hans': null
+                "slug": "suncare",
+                "code": 1030705,
+                "name": {
+                  "en": "Suncare",
+                  "ko": "선케어",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'toners-and-astringents',
-                'code': 1030706,
-                'name': {
-                  'en': 'Toners & Astringents',
-                  'ko': '스킨토너',
-                  'zh_hans': null
+                "slug": "toners-and-astringents",
+                "code": 1030706,
+                "name": {
+                  "en": "Toners & Astringents",
+                  "ko": "스킨토너",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'body-powder',
-                'code': 1030707,
-                'name': {
-                  'en': 'Body Powder',
-                  'ko': '바디파우더',
-                  'zh_hans': null
+                "slug": "body-powder",
+                "code": 1030707,
+                "name": {
+                  "en": "Body Powder",
+                  "ko": "바디파우더",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'body-moisturizers',
-                'code': 1030708,
-                'name': {
-                  'en': 'Body Moisturizers',
-                  'ko': '바디모이스처',
-                  'zh_hans': null
+                "slug": "body-moisturizers",
+                "code": 1030708,
+                "name": {
+                  "en": "Body Moisturizers",
+                  "ko": "바디모이스처",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'massage-oil-and-aromatherapy',
-                'code': 1030709,
-                'name': {
-                  'en': 'Massage Oil & Aromatherapy',
-                  'ko': '마사지오일·아로마',
-                  'zh_hans': null
+                "slug": "massage-oil-and-aromatherapy",
+                "code": 1030709,
+                "name": {
+                  "en": "Massage Oil & Aromatherapy",
+                  "ko": "마사지오일·아로마",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'hand-sanitizers-and-wipes',
-                'code': 1030710,
-                'name': {
-                  'en': 'Hand Sanitizers & Wipes',
-                  'ko': '손세정제',
-                  'zh_hans': null
+                "slug": "hand-sanitizers-and-wipes",
+                "code": 1030710,
+                "name": {
+                  "en": "Hand Sanitizers & Wipes",
+                  "ko": "손세정제",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'facial-cleansers',
-                'code': 1030711,
-                'name': {
-                  'en': 'Facial Cleansers',
-                  'ko': '클랜저',
-                  'zh_hans': null
+                "slug": "facial-cleansers",
+                "code": 1030711,
+                "name": {
+                  "en": "Facial Cleansers",
+                  "ko": "클랜저",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'facial-moisturizers-and-treatment',
-                'code': 1030712,
-                'name': {
-                  'en': 'Facial Moisturizers & Treatment',
-                  'ko': '보습·미백',
-                  'zh_hans': null
+                "slug": "facial-moisturizers-and-treatment",
+                "code": 1030712,
+                "name": {
+                  "en": "Facial Moisturizers & Treatment",
+                  "ko": "보습·미백",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'soap-and-body-wash',
-                'code': 1030713,
-                'name': {
-                  'en': 'Soap & Body Wash',
-                  'ko': '바디워시',
-                  'zh_hans': null
+                "slug": "soap-and-body-wash",
+                "code": 1030713,
+                "name": {
+                  "en": "Soap & Body Wash",
+                  "ko": "바디워시",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'shaving-cream',
-                'code': 1030714,
-                'name': {
-                  'en': 'Shaving Cream',
-                  'ko': '쉐이빙크림',
-                  'zh_hans': null
+                "slug": "shaving-cream",
+                "code": 1030714,
+                "name": {
+                  "en": "Shaving Cream",
+                  "ko": "쉐이빙크림",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               }
             ]
           },
           {
-            'slug': 'mens-essentials',
-            'code': 1030800,
-            'name': {
-              'en': `Men's Essentials`,
-              'ko': '남성용품',
-              'zh_hans': null
+            "slug": "mens-essentials",
+            "code": 1030800,
+            "name": {
+              "en": "Men's Essentials",
+              "ko": "남성용품",
+              "zh_hans": null
             },
-            'children': [
+            "children": [
               {
-                'slug': 'beard-and-shave',
-                'code': 1030801,
-                'name': {
-                  'en': 'Beard & Shave',
-                  'ko': '면도',
-                  'zh_hans': null
+                "slug": "beard-and-shave",
+                "code": 1030801,
+                "name": {
+                  "en": "Beard & Shave",
+                  "ko": "면도",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'body',
-                'code': 1030802,
-                'name': {
-                  'en': 'Body',
-                  'ko': '바디',
-                  'zh_hans': null
+                "slug": "body",
+                "code": 1030802,
+                "name": {
+                  "en": "Body",
+                  "ko": "바디",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'face',
-                'code': 1030803,
-                'name': {
-                  'en': 'Face',
-                  'ko': '페이스',
-                  'zh_hans': null
+                "slug": "face",
+                "code": 1030803,
+                "name": {
+                  "en": "Face",
+                  "ko": "페이스",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'hair',
-                'code': 1030804,
-                'name': {
-                  'en': 'Hair',
-                  'ko': '헤어',
-                  'zh_hans': null
+                "slug": "hair",
+                "code": 1030804,
+                "name": {
+                  "en": "Hair",
+                  "ko": "헤어",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'cologne',
-                'code': 1030805,
-                'name': {
-                  'en': 'Cologne',
-                  'ko': '향수',
-                  'zh_hans': null
+                "slug": "cologne",
+                "code": 1030805,
+                "name": {
+                  "en": "Cologne",
+                  "ko": "향수",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'wellness',
-                'code': 1030806,
-                'name': {
-                  'en': 'Wellness',
-                  'ko': '건강',
-                  'zh_hans': null
+                "slug": "wellness",
+                "code": 1030806,
+                "name": {
+                  "en": "Wellness",
+                  "ko": "건강",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               }
             ]
           }
         ]
       },
       {
-        'slug': 'health',
-        'code': 1040000,
-        'name': {
-          'en': 'Health',
-          'ko': '건강',
-          'zh_hans': null
+        "slug": "health",
+        "code": 1040000,
+        "name": {
+          "en": "Health",
+          "ko": "건강",
+          "zh_hans": null
         },
-        'children': [
+        "children": [
           {
-            'slug': 'medicine-cabinet',
-            'code': 1040100,
-            'name': {
-              'en': 'Medicine Cabinet',
-              'ko': '의약품',
-              'zh_hans': null
+            "slug": "medicine-cabinet",
+            "code": 1040100,
+            "name": {
+              "en": "Medicine Cabinet",
+              "ko": "의약품",
+              "zh_hans": null
             },
-            'children': [
+            "children": [
               {
-                'slug': 'allergy-sinus-and-asthma',
-                'code': 1040101,
-                'name': {
-                  'en': 'Allergy, Sinus & Asthma',
-                  'ko': '알러지·천식',
-                  'zh_hans': null
+                "slug": "allergy-sinus-and-asthma",
+                "code": 1040101,
+                "name": {
+                  "en": "Allergy, Sinus & Asthma",
+                  "ko": "알러지·천식",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'childrens-medicine',
-                'code': 1040102,
-                'name': {
-                  'en': `Children's Medicine`,
-                  'ko': '어린이용약품',
-                  'zh_hans': null
+                "slug": "childrens-medicine",
+                "code": 1040102,
+                "name": {
+                  "en": "Children's Medicine",
+                  "ko": "어린이용약품",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'cold-sore-and-blister-treatments',
-                'code': 1040103,
-                'name': {
-                  'en': 'Cold Sore & Blister Treatments',
-                  'ko': '물집·발진',
-                  'zh_hans': null
+                "slug": "cold-sore-and-blister-treatments",
+                "code": 1040103,
+                "name": {
+                  "en": "Cold Sore & Blister Treatments",
+                  "ko": "물집·발진",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'cough-and-cold',
-                'code': 1040104,
-                'name': {
-                  'en': 'Cough & Cold',
-                  'ko': '감기',
-                  'zh_hans': null
+                "slug": "cough-and-cold",
+                "code": 1040104,
+                "name": {
+                  "en": "Cough & Cold",
+                  "ko": "감기",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'diabetes',
-                'code': 1040105,
-                'name': {
-                  'en': 'Diabetes',
-                  'ko': '당뇨',
-                  'zh_hans': null
+                "slug": "diabetes",
+                "code": 1040105,
+                "name": {
+                  "en": "Diabetes",
+                  "ko": "당뇨",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'digestion-and-nausea',
-                'code': 1040106,
-                'name': {
-                  'en': 'Digestion & Nausea',
-                  'ko': '소화불량',
-                  'zh_hans': null
+                "slug": "digestion-and-nausea",
+                "code": 1040106,
+                "name": {
+                  "en": "Digestion & Nausea",
+                  "ko": "소화불량",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'foot-healthcare',
-                'code': 1040107,
-                'name': {
-                  'en': 'Foot Healthcare',
-                  'ko': '발건강',
-                  'zh_hans': null
+                "slug": "foot-healthcare",
+                "code": 1040107,
+                "name": {
+                  "en": "Foot Healthcare",
+                  "ko": "발건강",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'incontinence',
-                'code': 1040108,
-                'name': {
-                  'en': 'Incontinence',
-                  'ko': '요실금',
-                  'zh_hans': null
+                "slug": "incontinence",
+                "code": 1040108,
+                "name": {
+                  "en": "Incontinence",
+                  "ko": "요실금",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'pain-relievers',
-                'code': 1040109,
-                'name': {
-                  'en': 'Pain Relievers',
-                  'ko': '진통제',
-                  'zh_hans': null
+                "slug": "pain-relievers",
+                "code": 1040109,
+                "name": {
+                  "en": "Pain Relievers",
+                  "ko": "진통제",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'sleep-and-snoring',
-                'code': 1040110,
-                'name': {
-                  'en': 'Sleep & Snoring',
-                  'ko': '수면·코골이',
-                  'zh_hans': null
+                "slug": "sleep-and-snoring",
+                "code": 1040110,
+                "name": {
+                  "en": "Sleep & Snoring",
+                  "ko": "수면·코골이",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'smoking-cessation',
-                'code': 1040111,
-                'name': {
-                  'en': 'Smoking Cessation',
-                  'ko': '금연용품',
-                  'zh_hans': null
+                "slug": "smoking-cessation",
+                "code": 1040111,
+                "name": {
+                  "en": "Smoking Cessation",
+                  "ko": "금연용품",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'therapeutic-ointments-and-powders',
-                'code': 1040112,
-                'name': {
-                  'en': 'Therapeutic Ointments & Powders',
-                  'ko': '연고',
-                  'zh_hans': null
+                "slug": "therapeutic-ointments-and-powders",
+                "code": 1040112,
+                "name": {
+                  "en": "Therapeutic Ointments & Powders",
+                  "ko": "연고",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'thermometers',
-                'code': 1040113,
-                'name': {
-                  'en': 'Thermometers',
-                  'ko': '체온계',
-                  'zh_hans': null
+                "slug": "thermometers",
+                "code": 1040113,
+                "name": {
+                  "en": "Thermometers",
+                  "ko": "체온계",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'ear-care',
-                'code': 1040114,
-                'name': {
-                  'en': 'Ear Care',
-                  'ko': '귀건강',
-                  'zh_hans': null
+                "slug": "ear-care",
+                "code": 1040114,
+                "name": {
+                  "en": "Ear Care",
+                  "ko": "귀건강",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'eye-care',
-                'code': 1040115,
-                'name': {
-                  'en': 'Eye Care',
-                  'ko': '눈건강',
-                  'zh_hans': null
+                "slug": "eye-care",
+                "code": 1040115,
+                "name": {
+                  "en": "Eye Care",
+                  "ko": "눈건강",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               }
             ]
           },
           {
-            'slug': 'medical-supplies-and-equipment',
-            'code': 1040200,
-            'name': {
-              'en': 'Medical Supplies & Equipment',
-              'ko': '의료용품',
-              'zh_hans': null
+            "slug": "medical-supplies-and-equipment",
+            "code": 1040200,
+            "name": {
+              "en": "Medical Supplies & Equipment",
+              "ko": "의료용품",
+              "zh_hans": null
             },
-            'children': [
+            "children": [
               {
-                'slug': 'pills-cases-and-splitters',
-                'code': 1040201,
-                'name': {
-                  'en': 'Pills Cases & Splitters',
-                  'ko': '약케이스',
-                  'zh_hans': null
+                "slug": "pills-cases-and-splitters",
+                "code": 1040201,
+                "name": {
+                  "en": "Pills Cases & Splitters",
+                  "ko": "약케이스",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'bathroom-aids-and-safety',
-                'code': 1040202,
-                'name': {
-                  'en': 'Bathroom Aids & Safety',
-                  'ko': '욕실안전',
-                  'zh_hans': null
+                "slug": "bathroom-aids-and-safety",
+                "code": 1040202,
+                "name": {
+                  "en": "Bathroom Aids & Safety",
+                  "ko": "욕실안전",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'beds-and-accessories',
-                'code': 1040203,
-                'name': {
-                  'en': 'Beds & Accessories',
-                  'ko': '침대·액세서리',
-                  'zh_hans': null
+                "slug": "beds-and-accessories",
+                "code": 1040203,
+                "name": {
+                  "en": "Beds & Accessories",
+                  "ko": "침대·액세서리",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'braces-splints-and-slings',
-                'code': 1040204,
-                'name': {
-                  'en': 'Braces, Splints & Slings',
-                  'ko': '보조기',
-                  'zh_hans': null
+                "slug": "braces-splints-and-slings",
+                "code": 1040204,
+                "name": {
+                  "en": "Braces, Splints & Slings",
+                  "ko": "보조기",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'daily-living-aids',
-                'code': 1040205,
-                'name': {
-                  'en': 'Daily Living Aids',
-                  'ko': '상비약품',
-                  'zh_hans': null
+                "slug": "daily-living-aids",
+                "code": 1040205,
+                "name": {
+                  "en": "Daily Living Aids",
+                  "ko": "상비약품",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'mobility-aids-and-equipment',
-                'code': 1040206,
-                'name': {
-                  'en': 'Mobility Aids & Equipment',
-                  'ko': '이동장비',
-                  'zh_hans': null
+                "slug": "mobility-aids-and-equipment",
+                "code": 1040206,
+                "name": {
+                  "en": "Mobility Aids & Equipment",
+                  "ko": "이동장비",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'occupational-and-physical-therapy-aids',
-                'code': 1040207,
-                'name': {
-                  'en': 'Occupational & Physical Therapy Aids',
-                  'ko': '치료장비',
-                  'zh_hans': null
+                "slug": "occupational-and-physical-therapy-aids",
+                "code": 1040207,
+                "name": {
+                  "en": "Occupational & Physical Therapy Aids",
+                  "ko": "치료장비",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'pen-lights',
-                'code': 1040208,
-                'name': {
-                  'en': 'Pen Lights',
-                  'ko': '손전등',
-                  'zh_hans': null
+                "slug": "pen-lights",
+                "code": 1040208,
+                "name": {
+                  "en": "Pen Lights",
+                  "ko": "손전등",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'tests',
-                'code': 1040209,
-                'name': {
-                  'en': 'Tests',
-                  'ko': '테스터',
-                  'zh_hans': null
+                "slug": "tests",
+                "code": 1040209,
+                "name": {
+                  "en": "Tests",
+                  "ko": "테스터",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'first-aid',
-                'code': 1040210,
-                'name': {
-                  'en': 'First Aid',
-                  'ko': '구급약품',
-                  'zh_hans': null
+                "slug": "first-aid",
+                "code": 1040210,
+                "name": {
+                  "en": "First Aid",
+                  "ko": "구급약품",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'dehumidifiers',
-                'code': 1040211,
-                'name': {
-                  'en': 'Dehumidifiers',
-                  'ko': '제습기',
-                  'zh_hans': null
+                "slug": "dehumidifiers",
+                "code": 1040211,
+                "name": {
+                  "en": "Dehumidifiers",
+                  "ko": "제습기",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'humidifiers',
-                'code': 1040212,
-                'name': {
-                  'en': 'Humidifiers',
-                  'ko': '가습기',
-                  'zh_hans': null
+                "slug": "humidifiers",
+                "code": 1040212,
+                "name": {
+                  "en": "Humidifiers",
+                  "ko": "가습기",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'health-monitors',
-                'code': 1040213,
-                'name': {
-                  'en': 'Health Monitors',
-                  'ko': '헬스모니터',
-                  'zh_hans': null
+                "slug": "health-monitors",
+                "code": 1040213,
+                "name": {
+                  "en": "Health Monitors",
+                  "ko": "헬스모니터",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               }
             ]
           },
           {
-            'slug': 'sports-nutrition-and-diet',
-            'code': 1040300,
-            'name': {
-              'en': 'Sports Nutrition & Diet',
-              'ko': '헬스·다이어트',
-              'zh_hans': null
+            "slug": "sports-nutrition-and-diet",
+            "code": 1040300,
+            "name": {
+              "en": "Sports Nutrition & Diet",
+              "ko": "헬스·다이어트",
+              "zh_hans": null
             },
-            'children': [
+            "children": [
               {
-                'slug': 'protein-and-meal-replacement',
-                'code': 1040301,
-                'name': {
-                  'en': 'Protein & Meal Replacement',
-                  'ko': '프로틴·식사대용',
-                  'zh_hans': null
+                "slug": "protein-and-meal-replacement",
+                "code": 1040301,
+                "name": {
+                  "en": "Protein & Meal Replacement",
+                  "ko": "프로틴·식사대용",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'energy-and-endurance',
-                'code': 1040302,
-                'name': {
-                  'en': 'Energy & Endurance',
-                  'ko': '에너지·지구력',
-                  'zh_hans': null
+                "slug": "energy-and-endurance",
+                "code": 1040302,
+                "name": {
+                  "en": "Energy & Endurance",
+                  "ko": "에너지·지구력",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'weight-loss-supplements-and-cleanses',
-                'code': 1040303,
-                'name': {
-                  'en': 'Weight Loss Supplements & Cleanses',
-                  'ko': '체중감량',
-                  'zh_hans': null
+                "slug": "weight-loss-supplements-and-cleanses",
+                "code": 1040303,
+                "name": {
+                  "en": "Weight Loss Supplements & Cleanses",
+                  "ko": "체중감량",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'mass-gainers',
-                'code': 1040304,
-                'name': {
-                  'en': 'Mass Gainers',
-                  'ko': '체중증가',
-                  'zh_hans': null
+                "slug": "mass-gainers",
+                "code": 1040304,
+                "name": {
+                  "en": "Mass Gainers",
+                  "ko": "체중증가",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'amino-acids-and-creatine',
-                'code': 1040305,
-                'name': {
-                  'en': 'Amino Acids & Creatine',
-                  'ko': '크레아틴·아미노산',
-                  'zh_hans': null
+                "slug": "amino-acids-and-creatine",
+                "code": 1040305,
+                "name": {
+                  "en": "Amino Acids & Creatine",
+                  "ko": "크레아틴·아미노산",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'on-the-go-nutrition',
-                'code': 1040306,
-                'name': {
-                  'en': 'On-the-Go Nutrition',
-                  'ko': '테이크아웃',
-                  'zh_hans': null
+                "slug": "on-the-go-nutrition",
+                "code": 1040306,
+                "name": {
+                  "en": "On-the-Go Nutrition",
+                  "ko": "테이크아웃",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'slimfast-campaign',
-                'code': 1040307,
-                'name': {
-                  'en': 'Slimfast Campaign',
-                  'ko': '슬림패스트캠페인',
-                  'zh_hans': null
+                "slug": "slimfast-campaign",
+                "code": 1040307,
+                "name": {
+                  "en": "Slimfast Campaign",
+                  "ko": "슬림패스트캠페인",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               }
             ]
           },
           {
-            'slug': 'vitamins-and-dietary-supplements',
-            'code': 1040400,
-            'name': {
-              'en': 'Vitamins & Dietary Supplements',
-              'ko': '건강기능식품',
-              'zh_hans': null
+            "slug": "vitamins-and-dietary-supplements",
+            "code": 1040400,
+            "name": {
+              "en": "Vitamins & Dietary Supplements",
+              "ko": "건강기능식품",
+              "zh_hans": null
             },
-            'children': [
+            "children": [
               {
-                'slug': 'minerals',
-                'code': 1040401,
-                'name': {
-                  'en': 'Minerals',
-                  'ko': '미네랄',
-                  'zh_hans': null
+                "slug": "minerals",
+                "code": 1040401,
+                "name": {
+                  "en": "Minerals",
+                  "ko": "미네랄",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'supplements',
-                'code': 1040402,
-                'name': {
-                  'en': 'Supplements',
-                  'ko': '영양제',
-                  'zh_hans': null
+                "slug": "supplements",
+                "code": 1040402,
+                "name": {
+                  "en": "Supplements",
+                  "ko": "영양제",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'letter-vitamins',
-                'code': 1040403,
-                'name': {
-                  'en': 'Letter Vitamins',
-                  'ko': '비타민',
-                  'zh_hans': null
+                "slug": "letter-vitamins",
+                "code": 1040403,
+                "name": {
+                  "en": "Letter Vitamins",
+                  "ko": "비타민",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'fish-oils-and-omegas',
-                'code': 1040404,
-                'name': {
-                  'en': 'Fish Oils & Omegas',
-                  'ko': '오메가3·피쉬오일',
-                  'zh_hans': null
+                "slug": "fish-oils-and-omegas",
+                "code": 1040404,
+                "name": {
+                  "en": "Fish Oils & Omegas",
+                  "ko": "오메가3·피쉬오일",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'probiotics',
-                'code': 1040405,
-                'name': {
-                  'en': 'Probiotics',
-                  'ko': '프로바이오틱스',
-                  'zh_hans': null
+                "slug": "probiotics",
+                "code": 1040405,
+                "name": {
+                  "en": "Probiotics",
+                  "ko": "프로바이오틱스",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'multivitamins',
-                'code': 1040406,
-                'name': {
-                  'en': 'Multivitamins',
-                  'ko': '종합비타민',
-                  'zh_hans': null
+                "slug": "multivitamins",
+                "code": 1040406,
+                "name": {
+                  "en": "Multivitamins",
+                  "ko": "종합비타민",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'protein-and-meal-replacements',
-                'code': 1040407,
-                'name': {
-                  'en': 'Protein & Meal Replacements',
-                  'ko': '프로틴·식사대용',
-                  'zh_hans': null
+                "slug": "protein-and-meal-replacements",
+                "code": 1040407,
+                "name": {
+                  "en": "Protein & Meal Replacements",
+                  "ko": "프로틴·식사대용",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'pill-cases-and-splitters',
-                'code': 1040408,
-                'name': {
-                  'en': 'Pill Cases & Splitters',
-                  'ko': '약케이스',
-                  'zh_hans': null
+                "slug": "pill-cases-and-splitters",
+                "code": 1040408,
+                "name": {
+                  "en": "Pill Cases & Splitters",
+                  "ko": "약케이스",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'amino-acids-and-creatine',
-                'code': 1040409,
-                'name': {
-                  'en': 'Amino Acids & Creatine',
-                  'ko': '크레아틴·아미노산',
-                  'zh_hans': null
+                "slug": "amino-acids-and-creatine",
+                "code": 1040409,
+                "name": {
+                  "en": "Amino Acids & Creatine",
+                  "ko": "크레아틴·아미노산",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'weight-loss-supplements',
-                'code': 1040410,
-                'name': {
-                  'en': 'Weight Loss Supplements',
-                  'ko': '체중감량',
-                  'zh_hans': null
+                "slug": "weight-loss-supplements",
+                "code": 1040410,
+                "name": {
+                  "en": "Weight Loss Supplements",
+                  "ko": "체중감량",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'new-and-noteworthy-vitamins-and-supplements',
-                'code': 1040411,
-                'name': {
-                  'en': 'New & Noteworthy Vitamins & Supplements',
-                  'ko': '베스트·추천',
-                  'zh_hans': null
+                "slug": "new-and-noteworthy-vitamins-and-supplements",
+                "code": 1040411,
+                "name": {
+                  "en": "New & Noteworthy Vitamins & Supplements",
+                  "ko": "베스트·추천",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'herbs-and-homeopathy',
-                'code': 1040412,
-                'name': {
-                  'en': 'Herbs & Homeopathy',
-                  'ko': '허브',
-                  'zh_hans': null
+                "slug": "herbs-and-homeopathy",
+                "code": 1040412,
+                "name": {
+                  "en": "Herbs & Homeopathy",
+                  "ko": "허브",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               }
             ]
           }
         ]
       },
       {
-        'slug': 'baby',
-        'code': 1050000,
-        'name': {
-          'en': 'Baby',
-          'ko': '유아동',
-          'zh_hans': null
+        "slug": "baby",
+        "code": 1050000,
+        "name": {
+          "en": "Baby",
+          "ko": "유아동",
+          "zh_hans": null
         },
-        'children': [
+        "children": [
           {
-            'slug': 'baby-food-and-formula',
-            'code': 1050100,
-            'name': {
-              'en': 'Baby Food & Formula',
-              'ko': '이유식·분유',
-              'zh_hans': null
+            "slug": "baby-food-and-formula",
+            "code": 1050100,
+            "name": {
+              "en": "Baby Food & Formula",
+              "ko": "이유식·분유",
+              "zh_hans": null
             },
-            'children': [
+            "children": [
               {
-                'slug': 'baby-and-toddler-snacks',
-                'code': 1050101,
-                'name': {
-                  'en': 'Baby & Toddler Snacks',
-                  'ko': '유아스낵',
-                  'zh_hans': null
+                "slug": "baby-and-toddler-snacks",
+                "code": 1050101,
+                "name": {
+                  "en": "Baby & Toddler Snacks",
+                  "ko": "유아스낵",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'baby-food',
-                'code': 1050102,
-                'name': {
-                  'en': 'Baby Food',
-                  'ko': '이유식',
-                  'zh_hans': null
+                "slug": "baby-food",
+                "code": 1050102,
+                "name": {
+                  "en": "Baby Food",
+                  "ko": "이유식",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'baby-formula',
-                'code': 1050103,
-                'name': {
-                  'en': 'Baby Formula',
-                  'ko': '분유',
-                  'zh_hans': null
+                "slug": "baby-formula",
+                "code": 1050103,
+                "name": {
+                  "en": "Baby Formula",
+                  "ko": "분유",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'toddler-juices-and-milk',
-                'code': 1050104,
-                'name': {
-                  'en': 'Toddler Juices & Milk',
-                  'ko': '유아주스·우유',
-                  'zh_hans': null
+                "slug": "toddler-juices-and-milk",
+                "code": 1050104,
+                "name": {
+                  "en": "Toddler Juices & Milk",
+                  "ko": "유아주스·우유",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               }
             ]
           },
           {
-            'slug': 'diapering',
-            'code': 1050200,
-            'name': {
-              'en': 'Diapering',
-              'ko': '기저귀·교체용품',
-              'zh_hans': null
+            "slug": "diapering",
+            "code": 1050200,
+            "name": {
+              "en": "Diapering",
+              "ko": "기저귀·교체용품",
+              "zh_hans": null
             },
-            'children': [
+            "children": [
               {
-                'slug': 'diapers',
-                'code': 1050201,
-                'name': {
-                  'en': 'Diapers',
-                  'ko': '기저귀',
-                  'zh_hans': null
+                "slug": "diapers",
+                "code": 1050201,
+                "name": {
+                  "en": "Diapers",
+                  "ko": "기저귀",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'baby-wipes',
-                'code': 1050202,
-                'name': {
-                  'en': 'Baby Wipes',
-                  'ko': '아기티슈',
-                  'zh_hans': null
+                "slug": "baby-wipes",
+                "code": 1050202,
+                "name": {
+                  "en": "Baby Wipes",
+                  "ko": "아기티슈",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'baby-wipe-holders-and-warmers',
-                'code': 1050203,
-                'name': {
-                  'en': 'Baby Wipe Holders & Warmers',
-                  'ko': '아기티슈워머',
-                  'zh_hans': null
+                "slug": "baby-wipe-holders-and-warmers",
+                "code": 1050203,
+                "name": {
+                  "en": "Baby Wipe Holders & Warmers",
+                  "ko": "아기티슈워머",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'changing-table-accessories',
-                'code': 1050204,
-                'name': {
-                  'en': 'Changing Table Accessories',
-                  'ko': '아기탁자',
-                  'zh_hans': null
+                "slug": "changing-table-accessories",
+                "code": 1050204,
+                "name": {
+                  "en": "Changing Table Accessories",
+                  "ko": "아기탁자",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'cloth-diapers',
-                'code': 1050205,
-                'name': {
-                  'en': 'Cloth Diapers',
-                  'ko': '천기저귀',
-                  'zh_hans': null
+                "slug": "cloth-diapers",
+                "code": 1050205,
+                "name": {
+                  "en": "Cloth Diapers",
+                  "ko": "천기저귀",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'cloth-diaper-accessories',
-                'code': 1050206,
-                'name': {
-                  'en': 'Cloth Diaper Accessories',
-                  'ko': '천기저귀액세서리',
-                  'zh_hans': null
+                "slug": "cloth-diaper-accessories",
+                "code": 1050206,
+                "name": {
+                  "en": "Cloth Diaper Accessories",
+                  "ko": "천기저귀액세서리",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'diaper-bags',
-                'code': 1050207,
-                'name': {
-                  'en': 'Diaper Bags',
-                  'ko': '기저귀가방',
-                  'zh_hans': null
+                "slug": "diaper-bags",
+                "code": 1050207,
+                "name": {
+                  "en": "Diaper Bags",
+                  "ko": "기저귀가방",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'diaper-cakes',
-                'code': 1050208,
-                'name': {
-                  'en': 'Diaper Cakes',
-                  'ko': '기저귀케이크',
-                  'zh_hans': null
+                "slug": "diaper-cakes",
+                "code": 1050208,
+                "name": {
+                  "en": "Diaper Cakes",
+                  "ko": "기저귀케이크",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'diaper-changing-pads',
-                'code': 1050209,
-                'name': {
-                  'en': 'Diaper Changing Pads',
-                  'ko': '기저귀교체패드',
-                  'zh_hans': null
+                "slug": "diaper-changing-pads",
+                "code": 1050209,
+                "name": {
+                  "en": "Diaper Changing Pads",
+                  "ko": "기저귀교체패드",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'diaper-creams-and-ointments',
-                'code': 1050210,
-                'name': {
-                  'en': 'Diaper Creams & Ointments',
-                  'ko': '기저귀크림',
-                  'zh_hans': null
+                "slug": "diaper-creams-and-ointments",
+                "code": 1050210,
+                "name": {
+                  "en": "Diaper Creams & Ointments",
+                  "ko": "기저귀크림",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'diaper-pails-and-refills',
-                'code': 1050211,
-                'name': {
-                  'en': 'Diaper Pails & Refills',
-                  'ko': '기저귀휴지통',
-                  'zh_hans': null
+                "slug": "diaper-pails-and-refills",
+                "code": 1050211,
+                "name": {
+                  "en": "Diaper Pails & Refills",
+                  "ko": "기저귀휴지통",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'diaper-stackers-and-caddies',
-                'code': 1050212,
-                'name': {
-                  'en': 'Diaper Stackers & Caddies',
-                  'ko': '기저귀정리함',
-                  'zh_hans': null
+                "slug": "diaper-stackers-and-caddies",
+                "code": 1050212,
+                "name": {
+                  "en": "Diaper Stackers & Caddies",
+                  "ko": "기저귀정리함",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               }
             ]
           },
           {
-            'slug': 'baby-gear',
-            'code': 1050300,
-            'name': {
-              'en': 'Baby Gear',
-              'ko': '유아용품',
-              'zh_hans': null
+            "slug": "baby-gear",
+            "code": 1050300,
+            "name": {
+              "en": "Baby Gear",
+              "ko": "유아용품",
+              "zh_hans": null
             },
-            'children': [
+            "children": [
               {
-                'slug': 'baby-monitors',
-                'code': 1050301,
-                'name': {
-                  'en': 'Baby Monitors',
-                  'ko': '아기모니터',
-                  'zh_hans': null
+                "slug": "baby-monitors",
+                "code": 1050301,
+                "name": {
+                  "en": "Baby Monitors",
+                  "ko": "아기모니터",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'baby-seats',
-                'code': 1050302,
-                'name': {
-                  'en': 'Baby Seats',
-                  'ko': '아기의자',
-                  'zh_hans': null
+                "slug": "baby-seats",
+                "code": 1050302,
+                "name": {
+                  "en": "Baby Seats",
+                  "ko": "아기의자",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'bouncers-and-walkers',
-                'code': 1050303,
-                'name': {
-                  'en': 'Bouncers & Walkers',
-                  'ko': '보행기',
-                  'zh_hans': null
+                "slug": "bouncers-and-walkers",
+                "code": 1050303,
+                "name": {
+                  "en": "Bouncers & Walkers",
+                  "ko": "보행기",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'car-seats',
-                'code': 1050304,
-                'name': {
-                  'en': 'Car Seats',
-                  'ko': '카시트',
-                  'zh_hans': null
+                "slug": "car-seats",
+                "code": 1050304,
+                "name": {
+                  "en": "Car Seats",
+                  "ko": "카시트",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'carriers',
-                'code': 1050305,
-                'name': {
-                  'en': 'Carriers',
-                  'ko': '캐리어',
-                  'zh_hans': null
+                "slug": "carriers",
+                "code": 1050305,
+                "name": {
+                  "en": "Carriers",
+                  "ko": "캐리어",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'harnesses-and-leashes',
-                'code': 1050306,
-                'name': {
-                  'en': 'Harnesses & Leashes',
-                  'ko': '아기띠',
-                  'zh_hans': null
+                "slug": "harnesses-and-leashes",
+                "code": 1050306,
+                "name": {
+                  "en": "Harnesses & Leashes",
+                  "ko": "아기띠",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'play-mats-and-activity-gyms',
-                'code': 1050307,
-                'name': {
-                  'en': 'Play Mats & Activity Gyms',
-                  'ko': '아기매트',
-                  'zh_hans': null
+                "slug": "play-mats-and-activity-gyms",
+                "code": 1050307,
+                "name": {
+                  "en": "Play Mats & Activity Gyms",
+                  "ko": "아기매트",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'playards-and-travel-beds',
-                'code': 1050308,
-                'name': {
-                  'en': 'Playards & Travel Beds',
-                  'ko': '아기침대',
-                  'zh_hans': null
+                "slug": "playards-and-travel-beds",
+                "code": 1050308,
+                "name": {
+                  "en": "Playards & Travel Beds",
+                  "ko": "아기침대",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'strollers',
-                'code': 1050309,
-                'name': {
-                  'en': 'Strollers',
-                  'ko': '유모차',
-                  'zh_hans': null
+                "slug": "strollers",
+                "code": 1050309,
+                "name": {
+                  "en": "Strollers",
+                  "ko": "유모차",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               }
             ]
           },
           {
-            'slug': 'baby-gear-accessories',
-            'code': 1050400,
-            'name': {
-              'en': 'Baby Gear Accessories',
-              'ko': '유아액세서리',
-              'zh_hans': null
+            "slug": "baby-gear-accessories",
+            "code": 1050400,
+            "name": {
+              "en": "Baby Gear Accessories",
+              "ko": "유아액세서리",
+              "zh_hans": null
             },
-            'children': [
+            "children": [
               {
-                'slug': 'car-seat-and-stroller-toys',
-                'code': 1050401,
-                'name': {
-                  'en': 'Car Seat & Stroller Toys',
-                  'ko': '카시트·유모차 장난감',
-                  'zh_hans': null
+                "slug": "car-seat-and-stroller-toys",
+                "code": 1050401,
+                "name": {
+                  "en": "Car Seat & Stroller Toys",
+                  "ko": "카시트·유모차 장난감",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'car-seat-accessories',
-                'code': 1050402,
-                'name': {
-                  'en': 'Car Seat Accessories',
-                  'ko': '카시트액세서리',
-                  'zh_hans': null
+                "slug": "car-seat-accessories",
+                "code": 1050402,
+                "name": {
+                  "en": "Car Seat Accessories",
+                  "ko": "카시트액세서리",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'carrier-accessories',
-                'code': 1050403,
-                'name': {
-                  'en': 'Carrier Accessories',
-                  'ko': '캐리어액세서리',
-                  'zh_hans': null
+                "slug": "carrier-accessories",
+                "code": 1050403,
+                "name": {
+                  "en": "Carrier Accessories",
+                  "ko": "캐리어액세서리",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'crib-netting',
-                'code': 1050404,
-                'name': {
-                  'en': 'Crib Netting',
-                  'ko': '침대커튼',
-                  'zh_hans': null
+                "slug": "crib-netting",
+                "code": 1050404,
+                "name": {
+                  "en": "Crib Netting",
+                  "ko": "침대커튼",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'shopping-cart-covers',
-                'code': 1050405,
-                'name': {
-                  'en': 'Shopping Cart Covers',
-                  'ko': '쇼핑카트덮개',
-                  'zh_hans': null
+                "slug": "shopping-cart-covers",
+                "code": 1050405,
+                "name": {
+                  "en": "Shopping Cart Covers",
+                  "ko": "쇼핑카트덮개",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'stroller-accessories',
-                'code': 1050406,
-                'name': {
-                  'en': 'Stroller Accessories',
-                  'ko': '유모차액세서리',
-                  'zh_hans': null
+                "slug": "stroller-accessories",
+                "code": 1050406,
+                "name": {
+                  "en": "Stroller Accessories",
+                  "ko": "유모차액세서리",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               }
             ]
           },
           {
-            'slug': 'feeding-and-nursing',
-            'code': 1050500,
-            'name': {
-              'en': 'Feeding & Nursing',
-              'ko': '수유·이유용품',
-              'zh_hans': null
+            "slug": "feeding-and-nursing",
+            "code": 1050500,
+            "name": {
+              "en": "Feeding & Nursing",
+              "ko": "수유·이유용품",
+              "zh_hans": null
             },
-            'children': [
+            "children": [
               {
-                'slug': 'baby-bottles-and-accessories',
-                'code': 1050501,
-                'name': {
-                  'en': 'Baby Bottles & Accessories',
-                  'ko': '젖병·액세서리',
-                  'zh_hans': null
+                "slug": "baby-bottles-and-accessories",
+                "code": 1050501,
+                "name": {
+                  "en": "Baby Bottles & Accessories",
+                  "ko": "젖병·액세서리",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'baby-food',
-                'code': 1050502,
-                'name': {
-                  'en': 'Baby Food',
-                  'ko': '이유식',
-                  'zh_hans': null
+                "slug": "baby-food",
+                "code": 1050502,
+                "name": {
+                  "en": "Baby Food",
+                  "ko": "이유식",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'baby-formula',
-                'code': 1050503,
-                'name': {
-                  'en': 'Baby Formula',
-                  'ko': '분유',
-                  'zh_hans': null
+                "slug": "baby-formula",
+                "code": 1050503,
+                "name": {
+                  "en": "Baby Formula",
+                  "ko": "분유",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'bibs-and-burp-cloths',
-                'code': 1050504,
-                'name': {
-                  'en': 'Bibs & Burp Cloths',
-                  'ko': '턱받이',
-                  'zh_hans': null
+                "slug": "bibs-and-burp-cloths",
+                "code": 1050504,
+                "name": {
+                  "en": "Bibs & Burp Cloths",
+                  "ko": "턱받이",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'breast-pump',
-                'code': 1050505,
-                'name': {
-                  'en': 'Breast Pump',
-                  'ko': '유축기',
-                  'zh_hans': null
+                "slug": "breast-pump",
+                "code": 1050505,
+                "name": {
+                  "en": "Breast Pump",
+                  "ko": "유축기",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'breast-pump-accessories',
-                'code': 1050506,
-                'name': {
-                  'en': 'Breast Pump Accessories',
-                  'ko': '유축기액세서리',
-                  'zh_hans': null
+                "slug": "breast-pump-accessories",
+                "code": 1050506,
+                "name": {
+                  "en": "Breast Pump Accessories",
+                  "ko": "유축기액세서리",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'food-and-formula-prep',
-                'code': 1050507,
-                'name': {
-                  'en': 'Food & Formula Prep',
-                  'ko': '유아용식기',
-                  'zh_hans': null
+                "slug": "food-and-formula-prep",
+                "code": 1050507,
+                "name": {
+                  "en": "Food & Formula Prep",
+                  "ko": "유아용식기",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'food-storage-and-on-the-go',
-                'code': 1050508,
-                'name': {
-                  'en': 'Food Storage & On-the Go',
-                  'ko': '보관용기',
-                  'zh_hans': null
+                "slug": "food-storage-and-on-the-go",
+                "code": 1050508,
+                "name": {
+                  "en": "Food Storage & On-the Go",
+                  "ko": "보관용기",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'highchairs-and-boosters',
-                'code': 1050509,
-                'name': {
-                  'en': 'Highchairs & Boosters',
-                  'ko': '보조의자',
-                  'zh_hans': null
+                "slug": "highchairs-and-boosters",
+                "code": 1050509,
+                "name": {
+                  "en": "Highchairs & Boosters",
+                  "ko": "보조의자",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'kids-tabletop',
-                'code': 1050510,
-                'name': {
-                  'en': `Kid's Tabletop`,
-                  'ko': '아기식탁',
-                  'zh_hans': null
+                "slug": "kids-tabletop",
+                "code": 1050510,
+                "name": {
+                  "en": "Kid's Tabletop",
+                  "ko": "아기식탁",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'lunch-bags',
-                'code': 1050511,
-                'name': {
-                  'en': 'Lunch Bags',
-                  'ko': '런치백',
-                  'zh_hans': null
+                "slug": "lunch-bags",
+                "code": 1050511,
+                "name": {
+                  "en": "Lunch Bags",
+                  "ko": "런치백",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'nursing-accessories',
-                'code': 1050512,
-                'name': {
-                  'en': 'Nursing Accessories',
-                  'ko': '식기액세서리',
-                  'zh_hans': null
+                "slug": "nursing-accessories",
+                "code": 1050512,
+                "name": {
+                  "en": "Nursing Accessories",
+                  "ko": "식기액세서리",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'pacifiers-and-teethers',
-                'code': 1050513,
-                'name': {
-                  'en': 'Pacifiers & Teethers',
-                  'ko': '젖꼭지',
-                  'zh_hans': null
+                "slug": "pacifiers-and-teethers",
+                "code": 1050513,
+                "name": {
+                  "en": "Pacifiers & Teethers",
+                  "ko": "젖꼭지",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'sippys-and-cups',
-                'code': 1050514,
-                'name': {
-                  'en': 'Sippys & Cups',
-                  'ko': '역류방지컵',
-                  'zh_hans': null
+                "slug": "sippys-and-cups",
+                "code": 1050514,
+                "name": {
+                  "en": "Sippys & Cups",
+                  "ko": "역류방지컵",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               }
             ]
           },
           {
-            'slug': 'babyproofing',
-            'code': 1050600,
-            'name': {
-              'en': 'Babyproofing',
-              'ko': '아기안전',
-              'zh_hans': null
+            "slug": "babyproofing",
+            "code": 1050600,
+            "name": {
+              "en": "Babyproofing",
+              "ko": "아기안전",
+              "zh_hans": null
             },
-            'children': [
+            "children": [
               {
-                'slug': 'baby-monitors',
-                'code': 1050601,
-                'name': {
-                  'en': 'Baby Monitors',
-                  'ko': '아기모니터',
-                  'zh_hans': null
+                "slug": "baby-monitors",
+                "code": 1050601,
+                "name": {
+                  "en": "Baby Monitors",
+                  "ko": "아기모니터",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'bath-safety',
-                'code': 1050602,
-                'name': {
-                  'en': 'Bath Safety',
-                  'ko': '욕실안전',
-                  'zh_hans': null
+                "slug": "bath-safety",
+                "code": 1050602,
+                "name": {
+                  "en": "Bath Safety",
+                  "ko": "욕실안전",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'edge-and-corner-guards',
-                'code': 1050603,
-                'name': {
-                  'en': 'Edge & Corner Guards',
-                  'ko': '모서리안전',
-                  'zh_hans': null
+                "slug": "edge-and-corner-guards",
+                "code": 1050603,
+                "name": {
+                  "en": "Edge & Corner Guards",
+                  "ko": "모서리안전",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'electrical-safety',
-                'code': 1050604,
-                'name': {
-                  'en': 'Electrical Safety',
-                  'ko': '전기안전',
-                  'zh_hans': null
+                "slug": "electrical-safety",
+                "code": 1050604,
+                "name": {
+                  "en": "Electrical Safety",
+                  "ko": "전기안전",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'gates-and-rails',
-                'code': 1050605,
-                'name': {
-                  'en': 'Gates & Rails',
-                  'ko': '문·난간',
-                  'zh_hans': null
+                "slug": "gates-and-rails",
+                "code": 1050605,
+                "name": {
+                  "en": "Gates & Rails",
+                  "ko": "문·난간",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'kitchen-safety',
-                'code': 1050606,
-                'name': {
-                  'en': 'Kitchen Safety',
-                  'ko': '주방안전',
-                  'zh_hans': null
+                "slug": "kitchen-safety",
+                "code": 1050606,
+                "name": {
+                  "en": "Kitchen Safety",
+                  "ko": "주방안전",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'outdoor-safety',
-                'code': 1050607,
-                'name': {
-                  'en': 'Outdoor Safety',
-                  'ko': '실외안전',
-                  'zh_hans': null
+                "slug": "outdoor-safety",
+                "code": 1050607,
+                "name": {
+                  "en": "Outdoor Safety",
+                  "ko": "실외안전",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'rails-and-rail-guards',
-                'code': 1050608,
-                'name': {
-                  'en': 'Rails & Rail Guards',
-                  'ko': '난간안전',
-                  'zh_hans': null
+                "slug": "rails-and-rail-guards",
+                "code": 1050608,
+                "name": {
+                  "en": "Rails & Rail Guards",
+                  "ko": "난간안전",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'sleep-positioners',
-                'code': 1050609,
-                'name': {
-                  'en': 'Sleep Positioners',
-                  'ko': '수면 포지셔너',
-                  'zh_hans': null
+                "slug": "sleep-positioners",
+                "code": 1050609,
+                "name": {
+                  "en": "Sleep Positioners",
+                  "ko": "수면 포지셔너",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               }
             ]
           },
           {
-            'slug': 'baby-care',
-            'code': 1050700,
-            'name': {
-              'en': 'Baby Care',
-              'ko': '아기스킨케어',
-              'zh_hans': null
+            "slug": "baby-care",
+            "code": 1050700,
+            "name": {
+              "en": "Baby Care",
+              "ko": "아기스킨케어",
+              "zh_hans": null
             },
-            'children': [
+            "children": [
               {
-                'slug': 'baby-bubble-bath',
-                'code': 1050701,
-                'name': {
-                  'en': 'Baby Bubble Bath',
-                  'ko': '아기거품목욕',
-                  'zh_hans': null
+                "slug": "baby-bubble-bath",
+                "code": 1050701,
+                "name": {
+                  "en": "Baby Bubble Bath",
+                  "ko": "아기거품목욕",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'baby-oil-and-lotion',
-                'code': 1050702,
-                'name': {
-                  'en': 'Baby Oil & Lotion',
-                  'ko': '베이비로션·오일',
-                  'zh_hans': null
+                "slug": "baby-oil-and-lotion",
+                "code": 1050702,
+                "name": {
+                  "en": "Baby Oil & Lotion",
+                  "ko": "베이비로션·오일",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'baby-powder',
-                'code': 1050703,
-                'name': {
-                  'en': 'Baby Powder',
-                  'ko': '베이비파우더',
-                  'zh_hans': null
+                "slug": "baby-powder",
+                "code": 1050703,
+                "name": {
+                  "en": "Baby Powder",
+                  "ko": "베이비파우더",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'baby-shampoo-and-wash',
-                'code': 1050704,
-                'name': {
-                  'en': 'Baby Shampoo & Wash',
-                  'ko': '아기샴푸',
-                  'zh_hans': null
+                "slug": "baby-shampoo-and-wash",
+                "code": 1050704,
+                "name": {
+                  "en": "Baby Shampoo & Wash",
+                  "ko": "아기샴푸",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               }
             ]
           },
           {
-            'slug': 'potty-training',
-            'code': 1050800,
-            'name': {
-              'en': 'Potty Training',
-              'ko': '배변훈련',
-              'zh_hans': null
+            "slug": "potty-training",
+            "code": 1050800,
+            "name": {
+              "en": "Potty Training",
+              "ko": "배변훈련",
+              "zh_hans": null
             },
-            'children': [
+            "children": [
               {
-                'slug': 'potties',
-                'code': 1050801,
-                'name': {
-                  'en': 'Potties',
-                  'ko': '유아용변기',
-                  'zh_hans': null
+                "slug": "potties",
+                "code": 1050801,
+                "name": {
+                  "en": "Potties",
+                  "ko": "유아용변기",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'potty-training-aids',
-                'code': 1050802,
-                'name': {
-                  'en': 'Potty Training Aids',
-                  'ko': '배변훈련용품',
-                  'zh_hans': null
+                "slug": "potty-training-aids",
+                "code": 1050802,
+                "name": {
+                  "en": "Potty Training Aids",
+                  "ko": "배변훈련용품",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'seat-covers',
-                'code': 1050803,
-                'name': {
-                  'en': 'Seat Covers',
-                  'ko': '변기커버',
-                  'zh_hans': null
+                "slug": "seat-covers",
+                "code": 1050803,
+                "name": {
+                  "en": "Seat Covers",
+                  "ko": "변기커버",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'step-stools',
-                'code': 1050804,
-                'name': {
-                  'en': 'Step Stools',
-                  'ko': '발판',
-                  'zh_hans': null
+                "slug": "step-stools",
+                "code": 1050804,
+                "name": {
+                  "en": "Step Stools",
+                  "ko": "발판",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'training-pants',
-                'code': 1050805,
-                'name': {
-                  'en': 'Training Pants',
-                  'ko': '트레이닝팬츠',
-                  'zh_hans': null
+                "slug": "training-pants",
+                "code": 1050805,
+                "name": {
+                  "en": "Training Pants",
+                  "ko": "트레이닝팬츠",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               }
             ]
           },
           {
-            'slug': 'baby-bathing',
-            'code': 1050900,
-            'name': {
-              'en': 'Baby Bathing',
-              'ko': '아기목욕',
-              'zh_hans': null
+            "slug": "baby-bathing",
+            "code": 1050900,
+            "name": {
+              "en": "Baby Bathing",
+              "ko": "아기목욕",
+              "zh_hans": null
             },
-            'children': [
+            "children": [
               {
-                'slug': 'baby-bath-accessories',
-                'code': 1050901,
-                'name': {
-                  'en': 'Baby Bath Accessories',
-                  'ko': '아기목욕액세서리',
-                  'zh_hans': null
+                "slug": "baby-bath-accessories",
+                "code": 1050901,
+                "name": {
+                  "en": "Baby Bath Accessories",
+                  "ko": "아기목욕액세서리",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'baby-grooming',
-                'code': 1050902,
-                'name': {
-                  'en': 'Baby Grooming',
-                  'ko': '아기단장',
-                  'zh_hans': null
+                "slug": "baby-grooming",
+                "code": 1050902,
+                "name": {
+                  "en": "Baby Grooming",
+                  "ko": "아기단장",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'baby-tubs',
-                'code': 1050903,
-                'name': {
-                  'en': 'Baby Tubs',
-                  'ko': '아기욕조',
-                  'zh_hans': null
+                "slug": "baby-tubs",
+                "code": 1050903,
+                "name": {
+                  "en": "Baby Tubs",
+                  "ko": "아기욕조",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'baby-washcloths-and-towels',
-                'code': 1050904,
-                'name': {
-                  'en': 'Baby Washcloths & Towels',
-                  'ko': '목욕가운·타월',
-                  'zh_hans': null
+                "slug": "baby-washcloths-and-towels",
+                "code": 1050904,
+                "name": {
+                  "en": "Baby Washcloths & Towels",
+                  "ko": "목욕가운·타월",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'bath-toys',
-                'code': 1050905,
-                'name': {
-                  'en': 'Bath Toys',
-                  'ko': '욕조장난감',
-                  'zh_hans': null
+                "slug": "bath-toys",
+                "code": 1050905,
+                "name": {
+                  "en": "Bath Toys",
+                  "ko": "욕조장난감",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               }
             ]
           },
           {
-            'slug': 'baby-gifts',
-            'code': 1051000,
-            'name': {
-              'en': 'Baby Gifts',
-              'ko': '아기선물',
-              'zh_hans': null
+            "slug": "baby-gifts",
+            "code": 1051000,
+            "name": {
+              "en": "Baby Gifts",
+              "ko": "아기선물",
+              "zh_hans": null
             },
-            'children': [
+            "children": [
               {
-                'slug': 'baby-gift-sets-and-baskets',
-                'code': 1051001,
-                'name': {
-                  'en': 'Baby Gift Sets & Baskets',
-                  'ko': '유아선물세트',
-                  'zh_hans': null
+                "slug": "baby-gift-sets-and-baskets",
+                "code": 1051001,
+                "name": {
+                  "en": "Baby Gift Sets & Baskets",
+                  "ko": "유아선물세트",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'keepsakes-and-albums',
-                'code': 1051002,
-                'name': {
-                  'en': 'Keepsakes & Albums',
-                  'ko': '기념품·앨범',
-                  'zh_hans': null
+                "slug": "keepsakes-and-albums",
+                "code": 1051002,
+                "name": {
+                  "en": "Keepsakes & Albums",
+                  "ko": "기념품·앨범",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'new-mom-gifts',
-                'code': 1051003,
-                'name': {
-                  'en': 'New Mom Gifts',
-                  'ko': '첫출산 선물',
-                  'zh_hans': null
+                "slug": "new-mom-gifts",
+                "code": 1051003,
+                "name": {
+                  "en": "New Mom Gifts",
+                  "ko": "첫출산 선물",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'toy-banks',
-                'code': 1051004,
-                'name': {
-                  'en': 'Toy Banks',
-                  'ko': '장난감은행',
-                  'zh_hans': null
+                "slug": "toy-banks",
+                "code": 1051004,
+                "name": {
+                  "en": "Toy Banks",
+                  "ko": "장난감은행",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'toys',
-                'code': 1051005,
-                'name': {
-                  'en': 'Toys',
-                  'ko': 'Toys',
-                  'zh_hans': null
+                "slug": "toys",
+                "code": 1051005,
+                "name": {
+                  "en": "Toys",
+                  "ko": "Toys",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               }
             ]
           }
         ]
       },
       {
-        'slug': 'pet-supplies',
-        'code': 1060000,
-        'name': {
-          'en': 'Pet Supplies',
-          'ko': '반려용품',
-          'zh_hans': null
+        "slug": "pet-supplies",
+        "code": 1060000,
+        "name": {
+          "en": "Pet Supplies",
+          "ko": "반려용품",
+          "zh_hans": null
         },
-        'children': [
+        "children": [
           {
-            'slug': 'dog-supplies',
-            'code': 1060100,
-            'name': {
-              'en': 'Dog Supplies',
-              'ko': '강아지',
-              'zh_hans': null
+            "slug": "dog-supplies",
+            "code": 1060100,
+            "name": {
+              "en": "Dog Supplies",
+              "ko": "강아지",
+              "zh_hans": null
             },
-            'children': [
+            "children": [
               {
-                'slug': 'collars-harnesses-and-leashes',
-                'code': 1060101,
-                'name': {
-                  'en': 'Collars, Harnesses & Leashes',
-                  'ko': '강아지끈',
-                  'zh_hans': null
+                "slug": "collars-harnesses-and-leashes",
+                "code": 1060101,
+                "name": {
+                  "en": "Collars, Harnesses & Leashes",
+                  "ko": "강아지끈",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'dog-apparel',
-                'code': 1060102,
-                'name': {
-                  'en': 'Dog Apparel',
-                  'ko': '강아지옷',
-                  'zh_hans': null
+                "slug": "dog-apparel",
+                "code": 1060102,
+                "name": {
+                  "en": "Dog Apparel",
+                  "ko": "강아지옷",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'dog-beds',
-                'code': 1060103,
-                'name': {
-                  'en': 'Dog Beds',
-                  'ko': '강아지침구',
-                  'zh_hans': null
+                "slug": "dog-beds",
+                "code": 1060103,
+                "name": {
+                  "en": "Dog Beds",
+                  "ko": "강아지침구",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'dog-bowls-and-feeders',
-                'code': 1060104,
-                'name': {
-                  'en': 'Dog Bowls & Feeders',
-                  'ko': '강아지식기',
-                  'zh_hans': null
+                "slug": "dog-bowls-and-feeders",
+                "code": 1060104,
+                "name": {
+                  "en": "Dog Bowls & Feeders",
+                  "ko": "강아지식기",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'travel-supplies',
-                'code': 1060105,
-                'name': {
-                  'en': 'Travel Supplies',
-                  'ko': '강아지여행용품',
-                  'zh_hans': null
+                "slug": "travel-supplies",
+                "code": 1060105,
+                "name": {
+                  "en": "Travel Supplies",
+                  "ko": "강아지여행용품",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'cleaning-supplies',
-                'code': 1060106,
-                'name': {
-                  'en': 'Cleaning Supplies',
-                  'ko': '강아지목욕용품',
-                  'zh_hans': null
+                "slug": "cleaning-supplies",
+                "code": 1060106,
+                "name": {
+                  "en": "Cleaning Supplies",
+                  "ko": "강아지목욕용품",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'crates-and-kennels',
-                'code': 1060107,
-                'name': {
-                  'en': 'Crates & Kennels',
-                  'ko': '강아지집',
-                  'zh_hans': null
+                "slug": "crates-and-kennels",
+                "code": 1060107,
+                "name": {
+                  "en": "Crates & Kennels",
+                  "ko": "강아지집",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'flea-and-tick-control',
-                'code': 1060108,
-                'name': {
-                  'en': 'Flea & Tick Control',
-                  'ko': '벼룩·진드기관리',
-                  'zh_hans': null
+                "slug": "flea-and-tick-control",
+                "code": 1060108,
+                "name": {
+                  "en": "Flea & Tick Control",
+                  "ko": "벼룩·진드기관리",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'dog-food',
-                'code': 1060109,
-                'name': {
-                  'en': 'Dog Food',
-                  'ko': '강아지사료',
-                  'zh_hans': null
+                "slug": "dog-food",
+                "code": 1060109,
+                "name": {
+                  "en": "Dog Food",
+                  "ko": "강아지사료",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'grooming',
-                'code': 1060110,
-                'name': {
-                  'en': 'Grooming',
-                  'ko': '강아지단장',
-                  'zh_hans': null
+                "slug": "grooming",
+                "code": 1060110,
+                "name": {
+                  "en": "Grooming",
+                  "ko": "강아지단장",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'dog-houses',
-                'code': 1060111,
-                'name': {
-                  'en': 'Dog Houses',
-                  'ko': '그루밍',
-                  'zh_hans': null
+                "slug": "dog-houses",
+                "code": 1060111,
+                "name": {
+                  "en": "Dog Houses",
+                  "ko": "그루밍",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'medication-and-health-supplies',
-                'code': 1060112,
-                'name': {
-                  'en': 'Medication & Health Supplies',
-                  'ko': '강아지건강용품',
-                  'zh_hans': null
+                "slug": "medication-and-health-supplies",
+                "code": 1060112,
+                "name": {
+                  "en": "Medication & Health Supplies",
+                  "ko": "강아지건강용품",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'modern-furniture',
-                'code': 1060113,
-                'name': {
-                  'en': 'Modern Furniture',
-                  'ko': '강아지가구',
-                  'zh_hans': null
+                "slug": "modern-furniture",
+                "code": 1060113,
+                "name": {
+                  "en": "Modern Furniture",
+                  "ko": "강아지가구",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'dog-technology',
-                'code': 1060114,
-                'name': {
-                  'en': 'Dog Technology',
-                  'ko': '강아지기술용품',
-                  'zh_hans': null
+                "slug": "dog-technology",
+                "code": 1060114,
+                "name": {
+                  "en": "Dog Technology",
+                  "ko": "강아지기술용품",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'toys',
-                'code': 1060115,
-                'name': {
-                  'en': 'Toys',
-                  'ko': '장난감',
-                  'zh_hans': null
+                "slug": "toys",
+                "code": 1060115,
+                "name": {
+                  "en": "Toys",
+                  "ko": "장난감",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'training-and-behavior',
-                'code': 1060116,
-                'name': {
-                  'en': 'Training & Behavior',
-                  'ko': '훈련',
-                  'zh_hans': null
+                "slug": "training-and-behavior",
+                "code": 1060116,
+                "name": {
+                  "en": "Training & Behavior",
+                  "ko": "훈련",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'treats',
-                'code': 1060117,
-                'name': {
-                  'en': 'Treats',
-                  'ko': '강아지치료',
-                  'zh_hans': null
+                "slug": "treats",
+                "code": 1060117,
+                "name": {
+                  "en": "Treats",
+                  "ko": "강아지치료",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'gates-and-ramps',
-                'code': 1060118,
-                'name': {
-                  'en': 'Gates & Ramps',
-                  'ko': '문·통로',
-                  'zh_hans': null
+                "slug": "gates-and-ramps",
+                "code": 1060118,
+                "name": {
+                  "en": "Gates & Ramps",
+                  "ko": "문·통로",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'poop-bags-and-housebreaking',
-                'code': 1060119,
-                'name': {
-                  'en': 'Poop Bags & Housebreaking',
-                  'ko': '배변봉지',
-                  'zh_hans': null
+                "slug": "poop-bags-and-housebreaking",
+                "code": 1060119,
+                "name": {
+                  "en": "Poop Bags & Housebreaking",
+                  "ko": "배변봉지",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               }
             ]
           },
           {
-            'slug': 'cat-supplies',
-            'code': 1060200,
-            'name': {
-              'en': 'Cat Supplies',
-              'ko': '고양이',
-              'zh_hans': null
+            "slug": "cat-supplies",
+            "code": 1060200,
+            "name": {
+              "en": "Cat Supplies",
+              "ko": "고양이",
+              "zh_hans": null
             },
-            'children': [
+            "children": [
               {
-                'slug': 'cat-beds',
-                'code': 1060201,
-                'name': {
-                  'en': 'Cat Beds',
-                  'ko': '고양이침대',
-                  'zh_hans': null
+                "slug": "cat-beds",
+                "code": 1060201,
+                "name": {
+                  "en": "Cat Beds",
+                  "ko": "고양이침대",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'carriers',
-                'code': 1060202,
-                'name': {
-                  'en': 'Carriers',
-                  'ko': '캐리어',
-                  'zh_hans': null
+                "slug": "carriers",
+                "code": 1060202,
+                "name": {
+                  "en": "Carriers",
+                  "ko": "캐리어",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'cleaning-supplies',
-                'code': 1060203,
-                'name': {
-                  'en': 'Cleaning Supplies',
-                  'ko': '목욕용품',
-                  'zh_hans': null
+                "slug": "cleaning-supplies",
+                "code": 1060203,
+                "name": {
+                  "en": "Cleaning Supplies",
+                  "ko": "목욕용품",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'flea-and-tick-control',
-                'code': 1060204,
-                'name': {
-                  'en': 'Flea & Tick Control',
-                  'ko': '벼룩·진드기관리',
-                  'zh_hans': null
+                "slug": "flea-and-tick-control",
+                "code": 1060204,
+                "name": {
+                  "en": "Flea & Tick Control",
+                  "ko": "벼룩·진드기관리",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'cat-food',
-                'code': 1060205,
-                'name': {
-                  'en': 'Cat Food',
-                  'ko': '고양이사료',
-                  'zh_hans': null
+                "slug": "cat-food",
+                "code": 1060205,
+                "name": {
+                  "en": "Cat Food",
+                  "ko": "고양이사료",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'cat-grooming',
-                'code': 1060206,
-                'name': {
-                  'en': 'Cat Grooming',
-                  'ko': '고양이단장',
-                  'zh_hans': null
+                "slug": "cat-grooming",
+                "code": 1060206,
+                "name": {
+                  "en": "Cat Grooming",
+                  "ko": "고양이단장",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'health-supplies',
-                'code': 1060207,
-                'name': {
-                  'en': 'Health Supplies',
-                  'ko': '건강용품',
-                  'zh_hans': null
+                "slug": "health-supplies",
+                "code": 1060207,
+                "name": {
+                  "en": "Health Supplies",
+                  "ko": "건강용품",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'litter',
-                'code': 1060208,
-                'name': {
-                  'en': 'Litter',
-                  'ko': '고양이배변',
-                  'zh_hans': null
+                "slug": "litter",
+                "code": 1060208,
+                "name": {
+                  "en": "Litter",
+                  "ko": "고양이배변",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'litter-boxes',
-                'code': 1060209,
-                'name': {
-                  'en': 'Litter Boxes',
-                  'ko': '배변박스',
-                  'zh_hans': null
+                "slug": "litter-boxes",
+                "code": 1060209,
+                "name": {
+                  "en": "Litter Boxes",
+                  "ko": "배변박스",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'scratchers',
-                'code': 1060210,
-                'name': {
-                  'en': 'Scratchers',
-                  'ko': '스크래쳐',
-                  'zh_hans': null
+                "slug": "scratchers",
+                "code": 1060210,
+                "name": {
+                  "en": "Scratchers",
+                  "ko": "스크래쳐",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'cat-toys',
-                'code': 1060211,
-                'name': {
-                  'en': 'Cat Toys',
-                  'ko': '고양이장난감',
-                  'zh_hans': null
+                "slug": "cat-toys",
+                "code": 1060211,
+                "name": {
+                  "en": "Cat Toys",
+                  "ko": "고양이장난감",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'training-and-behavior-aids',
-                'code': 1060212,
-                'name': {
-                  'en': 'Training & Behavior Aids',
-                  'ko': '고양이훈련',
-                  'zh_hans': null
+                "slug": "training-and-behavior-aids",
+                "code": 1060212,
+                "name": {
+                  "en": "Training & Behavior Aids",
+                  "ko": "고양이훈련",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'cat-treats',
-                'code': 1060213,
-                'name': {
-                  'en': 'Cat Treats',
-                  'ko': '고양이치료',
-                  'zh_hans': null
+                "slug": "cat-treats",
+                "code": 1060213,
+                "name": {
+                  "en": "Cat Treats",
+                  "ko": "고양이치료",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'cat-trees-and-condos',
-                'code': 1060214,
-                'name': {
-                  'en': 'Cat Trees & Condos',
-                  'ko': '캣타워',
-                  'zh_hans': null
+                "slug": "cat-trees-and-condos",
+                "code": 1060214,
+                "name": {
+                  "en": "Cat Trees & Condos",
+                  "ko": "캣타워",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'collars-harnesses-and-leashes',
-                'code': 1060215,
-                'name': {
-                  'en': 'Collars, Harnesses & Leashes',
-                  'ko': '고양이끈',
-                  'zh_hans': null
+                "slug": "collars-harnesses-and-leashes",
+                "code": 1060215,
+                "name": {
+                  "en": "Collars, Harnesses & Leashes",
+                  "ko": "고양이끈",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               },
               {
-                'slug': 'feeding-and-watering-supplies',
-                'code': 1060216,
-                'name': {
-                  'en': 'Feeding & Watering Supplies',
-                  'ko': '고양이식기',
-                  'zh_hans': null
+                "slug": "feeding-and-watering-supplies",
+                "code": 1060216,
+                "name": {
+                  "en": "Feeding & Watering Supplies",
+                  "ko": "고양이식기",
+                  "zh_hans": null
                 },
-                'children': []
+                "children": []
               }
             ]
           }
         ]
       },
       {
-        'slug': 'office-supplies',
-        'code': 1070000,
-        'name': {
-          'en': 'Office Supplies',
-          'ko': '사무용품',
-          'zh_hans': null
+        "slug": "office-supplies",
+        "code": 1070000,
+        "name": {
+          "en": "Office Supplies",
+          "ko": "사무용품",
+          "zh_hans": null
         },
-        'children': [
+        "children": [
           {
-            'slug': 'pens-pencils-and-markers',
-            'code': 1070100,
-            'name': {
-              'en': 'Pens, Pencils & Markers',
-              'ko': '필기구',
-              'zh_hans': null
+            "slug": "pens-pencils-and-markers",
+            "code": 1070100,
+            "name": {
+              "en": "Pens, Pencils & Markers",
+              "ko": "필기구",
+              "zh_hans": null
             },
-            'children': []
+            "children": []
           },
           {
-            'slug': 'tape-and-adhesives',
-            'code': 1070200,
-            'name': {
-              'en': 'Tape & Adhesives',
-              'ko': '테이프·접착제',
-              'zh_hans': null
+            "slug": "tape-and-adhesives",
+            "code": 1070200,
+            "name": {
+              "en": "Tape & Adhesives",
+              "ko": "테이프·접착제",
+              "zh_hans": null
             },
-            'children': []
+            "children": []
           },
           {
-            'slug': 'office-paper',
-            'code': 1070300,
-            'name': {
-              'en': 'Office Paper',
-              'ko': '종이',
-              'zh_hans': null
+            "slug": "office-paper",
+            "code": 1070300,
+            "name": {
+              "en": "Office Paper",
+              "ko": "종이",
+              "zh_hans": null
             },
-            'children': []
+            "children": []
           },
           {
-            'slug': 'presentation-boards',
-            'code': 1070400,
-            'name': {
-              'en': 'Presentation Boards',
-              'ko': '프레젠테이션보드',
-              'zh_hans': null
+            "slug": "presentation-boards",
+            "code": 1070400,
+            "name": {
+              "en": "Presentation Boards",
+              "ko": "프레젠테이션보드",
+              "zh_hans": null
             },
-            'children': []
+            "children": []
           },
           {
-            'slug': 'workspace-organizers',
-            'code': 1070500,
-            'name': {
-              'en': 'Workspace Organizers',
-              'ko': '정리함',
-              'zh_hans': null
+            "slug": "workspace-organizers",
+            "code": 1070500,
+            "name": {
+              "en": "Workspace Organizers",
+              "ko": "정리함",
+              "zh_hans": null
             },
-            'children': []
+            "children": []
           },
           {
-            'slug': 'staplers-and-punches',
-            'code': 1070600,
-            'name': {
-              'en': 'Staplers & Punches',
-              'ko': '스테이플러',
-              'zh_hans': null
+            "slug": "staplers-and-punches",
+            "code": 1070600,
+            "name": {
+              "en": "Staplers & Punches",
+              "ko": "스테이플러",
+              "zh_hans": null
             },
-            'children': []
+            "children": []
           },
           {
-            'slug': 'labels-indexes-and-stamps',
-            'code': 1070700,
-            'name': {
-              'en': 'Labels, Indexes & Stamps',
-              'ko': '라벨·인덱스',
-              'zh_hans': null
+            "slug": "labels-indexes-and-stamps",
+            "code": 1070700,
+            "name": {
+              "en": "Labels, Indexes & Stamps",
+              "ko": "라벨·인덱스",
+              "zh_hans": null
             },
-            'children': []
+            "children": []
           },
           {
-            'slug': 'filing-products',
-            'code': 1070800,
-            'name': {
-              'en': 'Filing Products',
-              'ko': '서류철',
-              'zh_hans': null
+            "slug": "filing-products",
+            "code": 1070800,
+            "name": {
+              "en": "Filing Products",
+              "ko": "서류철",
+              "zh_hans": null
             },
-            'children': []
+            "children": []
           },
           {
-            'slug': 'binders-and-binding-systems',
-            'code': 1070900,
-            'name': {
-              'en': 'Binders & Binding Systems',
-              'ko': '바인더',
-              'zh_hans': null
+            "slug": "binders-and-binding-systems",
+            "code": 1070900,
+            "name": {
+              "en": "Binders & Binding Systems",
+              "ko": "바인더",
+              "zh_hans": null
             },
-            'children': []
+            "children": []
           },
           {
-            'slug': 'scissors-cutters-and-measuring-devices',
-            'code': 1071000,
-            'name': {
-              'en': 'Scissors, Cutters & Measuring Devices',
-              'ko': '문구용품',
-              'zh_hans': null
+            "slug": "scissors-cutters-and-measuring-devices",
+            "code": 1071000,
+            "name": {
+              "en": "Scissors, Cutters & Measuring Devices",
+              "ko": "문구용품",
+              "zh_hans": null
             },
-            'children': []
+            "children": []
           },
           {
-            'slug': 'envelopes-and-shipping-supplies',
-            'code': 1071100,
-            'name': {
-              'en': 'Envelopes & Shipping Supplies',
-              'ko': '봉투',
-              'zh_hans': null
+            "slug": "envelopes-and-shipping-supplies",
+            "code": 1071100,
+            "name": {
+              "en": "Envelopes & Shipping Supplies",
+              "ko": "봉투",
+              "zh_hans": null
             },
-            'children': []
+            "children": []
           },
           {
-            'slug': 'calendars-and-planners',
-            'code': 1071200,
-            'name': {
-              'en': 'Calendars & Planners',
-              'ko': '캘린더·플래너',
-              'zh_hans': null
+            "slug": "calendars-and-planners",
+            "code": 1071200,
+            "name": {
+              "en": "Calendars & Planners",
+              "ko": "캘린더·플래너",
+              "zh_hans": null
             },
-            'children': []
+            "children": []
           },
           {
-            'slug': 'stationery',
-            'code': 1071300,
-            'name': {
-              'en': 'Stationery',
-              'ko': '기타 문구류',
-              'zh_hans': null
+            "slug": "stationery",
+            "code": 1071300,
+            "name": {
+              "en": "Stationery",
+              "ko": "기타 문구류",
+              "zh_hans": null
             },
-            'children': []
+            "children": []
           }
         ]
       }
     ]
   },
-  '2000000' : {
-    'slug': 'beauty',
-    'code': 2000000,
-    'name': {
-      'en': 'Beauty',
-      'ko': '뷰티',
-      'zh_hans': null
+  "2000000" : {
+    "slug": "beauty",
+    "code": 2000000,
+    "name": {
+        "en": "Beauty",
+        "ko": "뷰티",
+        "zh_hans": null
     },
-    'children': [
-      {
-        'slug': 'skin-care',
-        'code': 2010000,
-        'name': {
-          'en': 'Skin Care',
-          'ko': '스킨케어',
-          'zh_hans': null
-        },
-        'children': [
-          {
-            'slug': 'skin-and-toner',
-            'code': 2010100,
-            'name': {
-              'en': 'Skin & Toner',
-              'ko': '스킨·토너',
-              'zh_hans': null
+    "children": [
+        {
+            "slug": "skin-care",
+            "code": 2010000,
+            "name": {
+                "en": "Skin Care",
+                "ko": "스킨케어",
+                "zh_hans": null
             },
-            'children': [
-              {
-                'slug': 'skin',
-                'code': 2010101,
-                'name': {
-                  'en': 'Skin',
-                  'ko': '스킨',
-                  'zh_hans': null
+            "children": [
+                {
+                    "slug": "skin-and-toner",
+                    "code": 2010100,
+                    "name": {
+                        "en": "Skin & Toner",
+                        "ko": "스킨·토너",
+                        "zh_hans": null
+                    },
+                    "children": [
+                        {
+                            "slug": "skin",
+                            "code": 2010101,
+                            "name": {
+                                "en": "Skin",
+                                "ko": "스킨",
+                                "zh_hans": null
+                            },
+                            "children": []
+                        },
+                        {
+                            "slug": "toner",
+                            "code": 2010102,
+                            "name": {
+                                "en": "Toner",
+                                "ko": "토너",
+                                "zh_hans": null
+                            },
+                            "children": []
+                        }
+                    ]
                 },
-                'children': []
-              },
-              {
-                'slug': 'toner',
-                'code': 2010102,
-                'name': {
-                  'en': 'Toner',
-                  'ko': '토너',
-                  'zh_hans': null
+                {
+                    "slug": "mist",
+                    "code": 2010200,
+                    "name": {
+                        "en": "Mist",
+                        "ko": "미스트",
+                        "zh_hans": null
+                    },
+                    "children": []
                 },
-                'children': []
-              }
+                {
+                    "slug": "face-moisturizer-and-treatment",
+                    "code": 2010300,
+                    "name": {
+                        "en": "Face Moisturizer & Treatment",
+                        "ko": "페이스 모이스쳐·트리트먼트",
+                        "zh_hans": null
+                    },
+                    "children": [
+                        {
+                            "slug": "lotion",
+                            "code": 2010301,
+                            "name": {
+                                "en": "Lotion",
+                                "ko": "로션",
+                                "zh_hans": null
+                            },
+                            "children": []
+                        },
+                        {
+                            "slug": "emulsion",
+                            "code": 2010302,
+                            "name": {
+                                "en": "Emulsion",
+                                "ko": "에멀젼",
+                                "zh_hans": null
+                            },
+                            "children": []
+                        },
+                        {
+                            "slug": "oil",
+                            "code": 2010303,
+                            "name": {
+                                "en": "Oil",
+                                "ko": "오일",
+                                "zh_hans": null
+                            },
+                            "children": []
+                        },
+                        {
+                            "slug": "essence",
+                            "code": 2010304,
+                            "name": {
+                                "en": "Essence",
+                                "ko": "에센스",
+                                "zh_hans": null
+                            },
+                            "children": []
+                        },
+                        {
+                            "slug": "ample",
+                            "code": 2010305,
+                            "name": {
+                                "en": "Ample",
+                                "ko": "엠플",
+                                "zh_hans": null
+                            },
+                            "children": []
+                        },
+                        {
+                            "slug": "serum",
+                            "code": 2010306,
+                            "name": {
+                                "en": "Serum",
+                                "ko": "세럼",
+                                "zh_hans": null
+                            },
+                            "children": []
+                        }
+                    ]
+                },
+                {
+                    "slug": "cream-and-gel",
+                    "code": 2010400,
+                    "name": {
+                        "en": "Cream & Gel",
+                        "ko": "크림·젤",
+                        "zh_hans": null
+                    },
+                    "children": []
+                },
+                {
+                    "slug": "mask-and-pack",
+                    "code": 2010500,
+                    "name": {
+                        "en": "Mask & Pack",
+                        "ko": "마스크·팩",
+                        "zh_hans": null
+                    },
+                    "children": []
+                },
+                {
+                    "slug": "eye-care",
+                    "code": 2010600,
+                    "name": {
+                        "en": "Eye Care",
+                        "ko": "아이케어",
+                        "zh_hans": null
+                    },
+                    "children": []
+                },
+                {
+                    "slug": "lip-care",
+                    "code": 2010700,
+                    "name": {
+                        "en": "Lip Care",
+                        "ko": "립케어",
+                        "zh_hans": null
+                    },
+                    "children": []
+                },
+                {
+                    "slug": "sun-care",
+                    "code": 2010800,
+                    "name": {
+                        "en": "Sun Care",
+                        "ko": "선케어",
+                        "zh_hans": null
+                    },
+                    "children": [
+                        {
+                            "slug": "stick-and-balm",
+                            "code": 2010801,
+                            "name": {
+                                "en": "Stick & Balm",
+                                "ko": "스틱·밤",
+                                "zh_hans": null
+                            },
+                            "children": []
+                        },
+                        {
+                            "slug": "cream-and-gel",
+                            "code": 2010802,
+                            "name": {
+                                "en": "Cream & Gel",
+                                "ko": "크림·젤",
+                                "zh_hans": null
+                            },
+                            "children": []
+                        }
+                    ]
+                }
             ]
-          },
-          {
-            'slug': 'mist',
-            'code': 2010200,
-            'name': {
-              'en': 'Mist',
-              'ko': '미스트',
-              'zh_hans': null
+        },
+        {
+            "slug": "cleansing-and-peeling",
+            "code": 2020000,
+            "name": {
+                "en": "Cleansing & Peeling",
+                "ko": "클렌징/필링",
+                "zh_hans": null
             },
-            'children': []
-          },
-          {
-            'slug': 'face-moisturizer-and-treatment',
-            'code': 2010300,
-            'name': {
-              'en': 'Face Moisturizer & Treatment',
-              'ko': '페이스 모이스쳐·트리트먼트',
-              'zh_hans': null
-            },
-            'children': [
-              {
-                'slug': 'lotion',
-                'code': 2010301,
-                'name': {
-                  'en': 'Lotion',
-                  'ko': '로션',
-                  'zh_hans': null
+            "children": [
+                {
+                    "slug": "cleansing-foam-and-gel",
+                    "code": 2020100,
+                    "name": {
+                        "en": "Cleansing Foam & Gel",
+                        "ko": "클렌징 폼·젤",
+                        "zh_hans": null
+                    },
+                    "children": []
                 },
-                'children': []
-              },
-              {
-                'slug': 'emulsion',
-                'code': 2010302,
-                'name': {
-                  'en': 'Emulsion',
-                  'ko': '에멀젼',
-                  'zh_hans': null
+                {
+                    "slug": "cleansing-water",
+                    "code": 2020200,
+                    "name": {
+                        "en": "Cleansing Water",
+                        "ko": "클렌징 워터",
+                        "zh_hans": null
+                    },
+                    "children": []
                 },
-                'children': []
-              },
-              {
-                'slug': 'oil',
-                'code': 2010303,
-                'name': {
-                  'en': 'Oil',
-                  'ko': '오일',
-                  'zh_hans': null
+                {
+                    "slug": "cleansing-oil",
+                    "code": 2020300,
+                    "name": {
+                        "en": "Cleansing Oil",
+                        "ko": "클렌징 오일",
+                        "zh_hans": null
+                    },
+                    "children": []
                 },
-                'children': []
-              },
-              {
-                'slug': 'essence',
-                'code': 2010304,
-                'name': {
-                  'en': 'Essence',
-                  'ko': '에센스',
-                  'zh_hans': null
+                {
+                    "slug": "cleansing-lotion-and-cream",
+                    "code": 2020400,
+                    "name": {
+                        "en": "Cleansing Lotion & Cream",
+                        "ko": "클렌징 로션·크림",
+                        "zh_hans": null
+                    },
+                    "children": []
                 },
-                'children': []
-              },
-              {
-                'slug': 'ample',
-                'code': 2010305,
-                'name': {
-                  'en': 'Ample',
-                  'ko': '엠플',
-                  'zh_hans': null
+                {
+                    "slug": "cleansing-soap",
+                    "code": 2020500,
+                    "name": {
+                        "en": "Cleansing Soap",
+                        "ko": "클렌징 비누",
+                        "zh_hans": null
+                    },
+                    "children": []
                 },
-                'children': []
-              },
-              {
-                'slug': 'serum',
-                'code': 2010306,
-                'name': {
-                  'en': 'Serum',
-                  'ko': '세럼',
-                  'zh_hans': null
+                {
+                    "slug": "cleansing-wipe",
+                    "code": 2020600,
+                    "name": {
+                        "en": "Cleansing Wipe",
+                        "ko": "클렌징 티슈",
+                        "zh_hans": null
+                    },
+                    "children": []
                 },
-                'children': []
-              }
+                {
+                    "slug": "lip-and-eye-cleanser",
+                    "code": 2020700,
+                    "name": {
+                        "en": "Lip & Eye Cleanser",
+                        "ko": "립·아이 리무버",
+                        "zh_hans": null
+                    },
+                    "children": []
+                },
+                {
+                    "slug": "scrubs-and-peeling",
+                    "code": 2020800,
+                    "name": {
+                        "en": "Scrubs & Peeling",
+                        "ko": "스크럽·필링",
+                        "zh_hans": null
+                    },
+                    "children": []
+                }
             ]
-          },
-          {
-            'slug': 'cream-and-gel',
-            'code': 2010400,
-            'name': {
-              'en': 'Cream & Gel',
-              'ko': '크림·젤',
-              'zh_hans': null
+        },
+        {
+            "slug": "sun-care",
+            "code": 2030000,
+            "name": {
+                "en": "Sun Care",
+                "ko": "선케어",
+                "zh_hans": null
             },
-            'children': []
-          },
-          {
-            'slug': 'mask-and-pack',
-            'code': 2010500,
-            'name': {
-              'en': 'Mask & Pack',
-              'ko': '마스크·팩',
-              'zh_hans': null
-            },
-            'children': []
-          },
-          {
-            'slug': 'eye-care',
-            'code': 2010600,
-            'name': {
-              'en': 'Eye Care',
-              'ko': '아이케어',
-              'zh_hans': null
-            },
-            'children': []
-          },
-          {
-            'slug': 'lip-care',
-            'code': 2010700,
-            'name': {
-              'en': 'Lip Care',
-              'ko': '립케어',
-              'zh_hans': null
-            },
-            'children': []
-          },
-          {
-            'slug': 'sun-care',
-            'code': 2010800,
-            'name': {
-              'en': 'Sun Care',
-              'ko': '선케어',
-              'zh_hans': null
-            },
-            'children': [
-              {
-                'slug': 'stick-and-balm',
-                'code': 2010801,
-                'name': {
-                  'en': 'Stick & Balm',
-                  'ko': '스틱·밤',
-                  'zh_hans': null
+            "children": [
+                {
+                    "slug": "face",
+                    "code": 2030100,
+                    "name": {
+                        "en": "Face",
+                        "ko": "페이스",
+                        "zh_hans": null
+                    },
+                    "children": [
+                        {
+                            "slug": "stick-and-balm",
+                            "code": 2030101,
+                            "name": {
+                                "en": "Stick & Balm",
+                                "ko": "스틱·밤",
+                                "zh_hans": null
+                            },
+                            "children": []
+                        },
+                        {
+                            "slug": "cream-and-gel",
+                            "code": 2030102,
+                            "name": {
+                                "en": "Cream & Gel",
+                                "ko": "크림·젤",
+                                "zh_hans": null
+                            },
+                            "children": []
+                        }
+                    ]
                 },
-                'children': []
-              },
-              {
-                'slug': 'cream-and-gel',
-                'code': 2010802,
-                'name': {
-                  'en': 'Cream & Gel',
-                  'ko': '크림·젤',
-                  'zh_hans': null
-                },
-                'children': []
-              }
+                {
+                    "slug": "body",
+                    "code": 2030200,
+                    "name": {
+                        "en": "Body",
+                        "ko": "바디",
+                        "zh_hans": null
+                    },
+                    "children": [
+                        {
+                            "slug": "stick-and-balm",
+                            "code": 2030201,
+                            "name": {
+                                "en": "Stick & Balm",
+                                "ko": "스틱·밤",
+                                "zh_hans": null
+                            },
+                            "children": []
+                        },
+                        {
+                            "slug": "cream-and-gel",
+                            "code": 2030202,
+                            "name": {
+                                "en": "Cream & Gel",
+                                "ko": "크림·젤",
+                                "zh_hans": null
+                            },
+                            "children": []
+                        }
+                    ]
+                }
             ]
-          }
-        ]
-      },
-      {
-        'slug': 'cleansing-and-peeling',
-        'code': 2020000,
-        'name': {
-          'en': 'Cleansing & Peeling',
-          'ko': '클렌징/필링',
-          'zh_hans': null
         },
-        'children': [
-          {
-            'slug': 'cleansing-foam-and-gel',
-            'code': 2020100,
-            'name': {
-              'en': 'Cleansing Foam & Gel',
-              'ko': '클렌징 폼·젤',
-              'zh_hans': null
+        {
+            "slug": "makeup",
+            "code": 2040000,
+            "name": {
+                "en": "Makeup",
+                "ko": "메이크업",
+                "zh_hans": null
             },
-            'children': []
-          },
-          {
-            'slug': 'cleansing-water',
-            'code': 2020200,
-            'name': {
-              'en': 'Cleansing Water',
-              'ko': '클렌징 워터',
-              'zh_hans': null
-            },
-            'children': []
-          },
-          {
-            'slug': 'cleansing-oil',
-            'code': 2020300,
-            'name': {
-              'en': 'Cleansing Oil',
-              'ko': '클렌징 오일',
-              'zh_hans': null
-            },
-            'children': []
-          },
-          {
-            'slug': 'cleansing-lotion-and-cream',
-            'code': 2020400,
-            'name': {
-              'en': 'Cleansing Lotion & Cream',
-              'ko': '클렌징 로션·크림',
-              'zh_hans': null
-            },
-            'children': []
-          },
-          {
-            'slug': 'cleansing-soap',
-            'code': 2020500,
-            'name': {
-              'en': 'Cleansing Soap',
-              'ko': '클렌징 비누',
-              'zh_hans': null
-            },
-            'children': []
-          },
-          {
-            'slug': 'cleansing-wipe',
-            'code': 2020600,
-            'name': {
-              'en': 'Cleansing Wipe',
-              'ko': '클렌징 티슈',
-              'zh_hans': null
-            },
-            'children': []
-          },
-          {
-            'slug': 'lip-and-eye-cleanser',
-            'code': 2020700,
-            'name': {
-              'en': 'Lip & Eye Cleanser',
-              'ko': '립·아이 리무버',
-              'zh_hans': null
-            },
-            'children': []
-          },
-          {
-            'slug': 'scrubs-and-peeling',
-            'code': 2020800,
-            'name': {
-              'en': 'Scrubs & Peeling',
-              'ko': '스크럽·필링',
-              'zh_hans': null
-            },
-            'children': []
-          }
-        ]
-      },
-      {
-        'slug': 'sun-care',
-        'code': 2030000,
-        'name': {
-          'en': 'Sun Care',
-          'ko': '선케어',
-          'zh_hans': null
-        },
-        'children': [
-          {
-            'slug': 'face',
-            'code': 2030100,
-            'name': {
-              'en': 'Face',
-              'ko': '페이스',
-              'zh_hans': null
-            },
-            'children': [
-              {
-                'slug': 'stick-and-balm',
-                'code': 2030101,
-                'name': {
-                  'en': 'Stick & Balm',
-                  'ko': '스틱·밤',
-                  'zh_hans': null
+            "children": [
+                {
+                    "slug": "face",
+                    "code": 2040100,
+                    "name": {
+                        "en": "Face",
+                        "ko": "페이스",
+                        "zh_hans": null
+                    },
+                    "children": [
+                        {
+                            "slug": "makeup-base",
+                            "code": 2040101,
+                            "name": {
+                                "en": "Makeup Base",
+                                "ko": "메이크업 베이스",
+                                "zh_hans": null
+                            },
+                            "children": []
+                        },
+                        {
+                            "slug": "primer",
+                            "code": 2040102,
+                            "name": {
+                                "en": "Primer",
+                                "ko": "프라이머",
+                                "zh_hans": null
+                            },
+                            "children": []
+                        },
+                        {
+                            "slug": "bb-and-cc-cream",
+                            "code": 2040103,
+                            "name": {
+                                "en": "BB & CC Cream",
+                                "ko": "BB·CC 크림",
+                                "zh_hans": null
+                            },
+                            "children": []
+                        },
+                        {
+                            "slug": "foundation",
+                            "code": 2040104,
+                            "name": {
+                                "en": "Foundation",
+                                "ko": "파운데이션",
+                                "zh_hans": null
+                            },
+                            "children": []
+                        },
+                        {
+                            "slug": "cushion-and-powder-and-pact",
+                            "code": 2040105,
+                            "name": {
+                                "en": "Cushion & Powder & Pact",
+                                "ko": "쿠션·파우더·팩트",
+                                "zh_hans": null
+                            },
+                            "children": []
+                        },
+                        {
+                            "slug": "concealer",
+                            "code": 2040106,
+                            "name": {
+                                "en": "Concealer",
+                                "ko": "컨실러",
+                                "zh_hans": null
+                            },
+                            "children": []
+                        },
+                        {
+                            "slug": "blusher",
+                            "code": 2040107,
+                            "name": {
+                                "en": "Blusher",
+                                "ko": "블러셔",
+                                "zh_hans": null
+                            },
+                            "children": []
+                        },
+                        {
+                            "slug": "highlighter-and-shading",
+                            "code": 2040108,
+                            "name": {
+                                "en": "Highlighter & Shading",
+                                "ko": "하이라이터·셰이딩",
+                                "zh_hans": null
+                            },
+                            "children": []
+                        }
+                    ]
                 },
-                'children': []
-              },
-              {
-                'slug': 'cream-and-gel',
-                'code': 2030102,
-                'name': {
-                  'en': 'Cream & Gel',
-                  'ko': '크림·젤',
-                  'zh_hans': null
+                {
+                    "slug": "eye",
+                    "code": 2040200,
+                    "name": {
+                        "en": "Eye",
+                        "ko": "아이",
+                        "zh_hans": null
+                    },
+                    "children": [
+                        {
+                            "slug": "eyeshadow",
+                            "code": 2040201,
+                            "name": {
+                                "en": "Eyeshadow",
+                                "ko": "아이섀도",
+                                "zh_hans": null
+                            },
+                            "children": []
+                        },
+                        {
+                            "slug": "eyeliner",
+                            "code": 2040202,
+                            "name": {
+                                "en": "Eyeliner",
+                                "ko": "아이라이너",
+                                "zh_hans": null
+                            },
+                            "children": []
+                        },
+                        {
+                            "slug": "eyebrow",
+                            "code": 2040203,
+                            "name": {
+                                "en": "Eyebrow",
+                                "ko": "아이브로우",
+                                "zh_hans": null
+                            },
+                            "children": []
+                        },
+                        {
+                            "slug": "mascara",
+                            "code": 2040204,
+                            "name": {
+                                "en": "Mascara",
+                                "ko": "마스카라",
+                                "zh_hans": null
+                            },
+                            "children": []
+                        }
+                    ]
                 },
-                'children': []
-              }
+                {
+                    "slug": "lip",
+                    "code": 2040300,
+                    "name": {
+                        "en": "Lip",
+                        "ko": "립",
+                        "zh_hans": null
+                    },
+                    "children": [
+                        {
+                            "slug": "lipstick",
+                            "code": 2040301,
+                            "name": {
+                                "en": "Lipstick",
+                                "ko": "립스틱",
+                                "zh_hans": null
+                            },
+                            "children": []
+                        },
+                        {
+                            "slug": "lip-tint",
+                            "code": 2040302,
+                            "name": {
+                                "en": "Lip Tint",
+                                "ko": "립틴트",
+                                "zh_hans": null
+                            },
+                            "children": []
+                        },
+                        {
+                            "slug": "lip-glosse",
+                            "code": 2040303,
+                            "name": {
+                                "en": "Lip Glosse",
+                                "ko": "립글로스",
+                                "zh_hans": null
+                            },
+                            "children": []
+                        },
+                        {
+                            "slug": "lip-treatment-and-balm",
+                            "code": 2040304,
+                            "name": {
+                                "en": "Lip Treatment & Balm",
+                                "ko": "립케어·립밤",
+                                "zh_hans": null
+                            },
+                            "children": []
+                        }
+                    ]
+                },
+                {
+                    "slug": "makeup-brush-and-applicator",
+                    "code": 2040400,
+                    "name": {
+                        "en": "Makeup Brush & Applicator",
+                        "ko": "메이크업 브러쉬·도구",
+                        "zh_hans": null
+                    },
+                    "children": []
+                }
             ]
-          },
-          {
-            'slug': 'body',
-            'code': 2030200,
-            'name': {
-              'en': 'Body',
-              'ko': '바디',
-              'zh_hans': null
+        },
+        {
+            "slug": "body-care",
+            "code": 2050000,
+            "name": {
+                "en": "Body Care",
+                "ko": "바디케어",
+                "zh_hans": null
             },
-            'children': [
-              {
-                'slug': 'stick-and-balm',
-                'code': 2030201,
-                'name': {
-                  'en': 'Stick & Balm',
-                  'ko': '스틱·밤',
-                  'zh_hans': null
+            "children": [
+                {
+                    "slug": "body-wash",
+                    "code": 2050100,
+                    "name": {
+                        "en": "Body Wash",
+                        "ko": "바디워시",
+                        "zh_hans": null
+                    },
+                    "children": []
                 },
-                'children': []
-              },
-              {
-                'slug': 'cream-and-gel',
-                'code': 2030202,
-                'name': {
-                  'en': 'Cream & Gel',
-                  'ko': '크림·젤',
-                  'zh_hans': null
+                {
+                    "slug": "body-lotion",
+                    "code": 2050200,
+                    "name": {
+                        "en": "Body Lotion",
+                        "ko": "바디로션",
+                        "zh_hans": null
+                    },
+                    "children": []
                 },
-                'children': []
-              }
+                {
+                    "slug": "body-cream-and-gel",
+                    "code": 2050300,
+                    "name": {
+                        "en": "Body Cream & Gel",
+                        "ko": "바디크림·젤",
+                        "zh_hans": null
+                    },
+                    "children": []
+                },
+                {
+                    "slug": "body-oil-and-essence",
+                    "code": 2050400,
+                    "name": {
+                        "en": "Body Oil & Essence",
+                        "ko": "바디오일·에센스",
+                        "zh_hans": null
+                    },
+                    "children": []
+                },
+                {
+                    "slug": "body-scrub",
+                    "code": 2050500,
+                    "name": {
+                        "en": "Body Scrub",
+                        "ko": "바디스크럽",
+                        "zh_hans": null
+                    },
+                    "children": []
+                },
+                {
+                    "slug": "body-mist",
+                    "code": 2050600,
+                    "name": {
+                        "en": "Body Mist",
+                        "ko": "바디미스트",
+                        "zh_hans": null
+                    },
+                    "children": []
+                },
+                {
+                    "slug": "hand-and-foot-treatment",
+                    "code": 2050700,
+                    "name": {
+                        "en": "Hand & Foot Treatment",
+                        "ko": "핸드·풋케어",
+                        "zh_hans": null
+                    },
+                    "children": []
+                },
+                {
+                    "slug": "bath-salt-and-bubble",
+                    "code": 2050800,
+                    "name": {
+                        "en": "Bath Salt & Bubble",
+                        "ko": "입욕제",
+                        "zh_hans": null
+                    },
+                    "children": []
+                },
+                {
+                    "slug": "feminine-care",
+                    "code": 2050900,
+                    "name": {
+                        "en": "Feminine Care",
+                        "ko": "여성청결제",
+                        "zh_hans": null
+                    },
+                    "children": []
+                },
+                {
+                    "slug": "deodorant",
+                    "code": 2051000,
+                    "name": {
+                        "en": "Deodorant",
+                        "ko": "데오드란트",
+                        "zh_hans": null
+                    },
+                    "children": []
+                },
+                {
+                    "slug": "other-body-product",
+                    "code": 2051100,
+                    "name": {
+                        "en": "Other Body Product",
+                        "ko": "바디 기타",
+                        "zh_hans": null
+                    },
+                    "children": []
+                }
             ]
-          }
-        ]
-      },
-      {
-        'slug': 'makeup',
-        'code': 2040000,
-        'name': {
-          'en': 'Makeup',
-          'ko': '메이크업',
-          'zh_hans': null
         },
-        'children': [
-          {
-            'slug': 'face',
-            'code': 2040100,
-            'name': {
-              'en': 'Face',
-              'ko': '페이스',
-              'zh_hans': null
+        {
+            "slug": "hair-care",
+            "code": 2060000,
+            "name": {
+                "en": "Hair Care",
+                "ko": "헤어케어",
+                "zh_hans": null
             },
-            'children': [
-              {
-                'slug': 'makeup-base',
-                'code': 2040101,
-                'name': {
-                  'en': 'Makeup Base',
-                  'ko': '메이크업 베이스',
-                  'zh_hans': null
+            "children": [
+                {
+                    "slug": "shampoo",
+                    "code": 2060100,
+                    "name": {
+                        "en": "Shampoo",
+                        "ko": "샴푸",
+                        "zh_hans": null
+                    },
+                    "children": []
                 },
-                'children': []
-              },
-              {
-                'slug': 'primer',
-                'code': 2040102,
-                'name': {
-                  'en': 'Primer',
-                  'ko': '프라이머',
-                  'zh_hans': null
+                {
+                    "slug": "conditioner-and-treatment",
+                    "code": 2060200,
+                    "name": {
+                        "en": "Conditioner & Treatment",
+                        "ko": "린스·트리트먼트",
+                        "zh_hans": null
+                    },
+                    "children": []
                 },
-                'children': []
-              },
-              {
-                'slug': 'bb-and-cc-cream',
-                'code': 2040103,
-                'name': {
-                  'en': 'BB & CC Cream',
-                  'ko': 'BB·CC 크림',
-                  'zh_hans': null
+                {
+                    "slug": "essence-and-oil",
+                    "code": 2060300,
+                    "name": {
+                        "en": "Essence & Oil",
+                        "ko": "에센스·오일",
+                        "zh_hans": null
+                    },
+                    "children": []
                 },
-                'children': []
-              },
-              {
-                'slug': 'foundation',
-                'code': 2040104,
-                'name': {
-                  'en': 'Foundation',
-                  'ko': '파운데이션',
-                  'zh_hans': null
+                {
+                    "slug": "mist",
+                    "code": 2060400,
+                    "name": {
+                        "en": "Mist",
+                        "ko": "미스트",
+                        "zh_hans": null
+                    },
+                    "children": []
                 },
-                'children': []
-              },
-              {
-                'slug': 'cushion-and-powder-and-pact',
-                'code': 2040105,
-                'name': {
-                  'en': 'Cushion & Powder & Pact',
-                  'ko': '쿠션·파우더·팩트',
-                  'zh_hans': null
+                {
+                    "slug": "styling-product",
+                    "code": 2060500,
+                    "name": {
+                        "en": "Styling Product",
+                        "ko": "스타일링",
+                        "zh_hans": null
+                    },
+                    "children": []
                 },
-                'children': []
-              },
-              {
-                'slug': 'concealer',
-                'code': 2040106,
-                'name': {
-                  'en': 'Concealer',
-                  'ko': '컨실러',
-                  'zh_hans': null
-                },
-                'children': []
-              },
-              {
-                'slug': 'blusher',
-                'code': 2040107,
-                'name': {
-                  'en': 'Blusher',
-                  'ko': '블러셔',
-                  'zh_hans': null
-                },
-                'children': []
-              },
-              {
-                'slug': 'highlighter-and-shading',
-                'code': 2040108,
-                'name': {
-                  'en': 'Highlighter & Shading',
-                  'ko': '하이라이터·셰이딩',
-                  'zh_hans': null
-                },
-                'children': []
-              }
+                {
+                    "slug": "other-hair-product",
+                    "code": 2060600,
+                    "name": {
+                        "en": "Other Hair Product",
+                        "ko": "헤어기타",
+                        "zh_hans": null
+                    },
+                    "children": []
+                }
             ]
-          },
-          {
-            'slug': 'eye',
-            'code': 2040200,
-            'name': {
-              'en': 'Eye',
-              'ko': '아이',
-              'zh_hans': null
+        },
+        {
+            "slug": "fragrance",
+            "code": 2070000,
+            "name": {
+                "en": "Fragrance",
+                "ko": "향수",
+                "zh_hans": null
             },
-            'children': [
-              {
-                'slug': 'eyeshadow',
-                'code': 2040201,
-                'name': {
-                  'en': 'Eyeshadow',
-                  'ko': '아이섀도',
-                  'zh_hans': null
+            "children": [
+                {
+                    "slug": "women",
+                    "code": 2070100,
+                    "name": {
+                        "en": "Women",
+                        "ko": "여자향수",
+                        "zh_hans": null
+                    },
+                    "children": []
                 },
-                'children': []
-              },
-              {
-                'slug': 'eyeliner',
-                'code': 2040202,
-                'name': {
-                  'en': 'Eyeliner',
-                  'ko': '아이라이너',
-                  'zh_hans': null
+                {
+                    "slug": "men",
+                    "code": 2070200,
+                    "name": {
+                        "en": "Men",
+                        "ko": "남자향수",
+                        "zh_hans": null
+                    },
+                    "children": []
                 },
-                'children': []
-              },
-              {
-                'slug': 'eyebrow',
-                'code': 2040203,
-                'name': {
-                  'en': 'Eyebrow',
-                  'ko': '아이브로우',
-                  'zh_hans': null
-                },
-                'children': []
-              },
-              {
-                'slug': 'mascara',
-                'code': 2040204,
-                'name': {
-                  'en': 'Mascara',
-                  'ko': '마스카라',
-                  'zh_hans': null
-                },
-                'children': []
-              }
+                {
+                    "slug": "fragrance-set",
+                    "code": 2070300,
+                    "name": {
+                        "en": "Fragrance Set",
+                        "ko": "향수세트",
+                        "zh_hans": null
+                    },
+                    "children": []
+                }
             ]
-          },
-          {
-            'slug': 'lip',
-            'code': 2040300,
-            'name': {
-              'en': 'Lip',
-              'ko': '립',
-              'zh_hans': null
+        },
+        {
+            "slug": "candle-and-diffuser",
+            "code": 2080000,
+            "name": {
+                "en": "Candle & Diffuser",
+                "ko": "캔들·디퓨저",
+                "zh_hans": null
             },
-            'children': [
-              {
-                'slug': 'lipstick',
-                'code': 2040301,
-                'name': {
-                  'en': 'Lipstick',
-                  'ko': '립스틱',
-                  'zh_hans': null
+            "children": [
+                {
+                    "slug": "candle",
+                    "code": 2080100,
+                    "name": {
+                        "en": "Candle",
+                        "ko": "캔들",
+                        "zh_hans": null
+                    },
+                    "children": []
                 },
-                'children': []
-              },
-              {
-                'slug': 'lip-tint',
-                'code': 2040302,
-                'name': {
-                  'en': 'Lip Tint',
-                  'ko': '립틴트',
-                  'zh_hans': null
-                },
-                'children': []
-              },
-              {
-                'slug': 'lip-glosse',
-                'code': 2040303,
-                'name': {
-                  'en': 'Lip Glosse',
-                  'ko': '립글로스',
-                  'zh_hans': null
-                },
-                'children': []
-              },
-              {
-                'slug': 'lip-treatment-and-balm',
-                'code': 2040304,
-                'name': {
-                  'en': 'Lip Treatment & Balm',
-                  'ko': '립케어·립밤',
-                  'zh_hans': null
-                },
-                'children': []
-              }
+                {
+                    "slug": "diffuser",
+                    "code": 2080200,
+                    "name": {
+                        "en": "Diffuser",
+                        "ko": "디퓨저",
+                        "zh_hans": null
+                    },
+                    "children": []
+                }
             ]
-          },
-          {
-            'slug': 'makeup-brush-and-applicator',
-            'code': 2040400,
-            'name': {
-              'en': 'Makeup Brush & Applicator',
-              'ko': '메이크업 브러쉬·도구',
-              'zh_hans': null
-            },
-            'children': []
-          }
-        ]
-      },
-      {
-        'slug': 'body-care',
-        'code': 2050000,
-        'name': {
-          'en': 'Body Care',
-          'ko': '바디케어',
-          'zh_hans': null
         },
-        'children': [
-          {
-            'slug': 'body-wash',
-            'code': 2050100,
-            'name': {
-              'en': 'Body Wash',
-              'ko': '바디워시',
-              'zh_hans': null
+        {
+            "slug": "mens-grooming",
+            "code": 2090000,
+            "name": {
+                "en": "Men's Grooming",
+                "ko": "남성",
+                "zh_hans": null
             },
-            'children': []
-          },
-          {
-            'slug': 'body-lotion',
-            'code': 2050200,
-            'name': {
-              'en': 'Body Lotion',
-              'ko': '바디로션',
-              'zh_hans': null
-            },
-            'children': []
-          },
-          {
-            'slug': 'body-cream-and-gel',
-            'code': 2050300,
-            'name': {
-              'en': 'Body Cream & Gel',
-              'ko': '바디크림·젤',
-              'zh_hans': null
-            },
-            'children': []
-          },
-          {
-            'slug': 'body-oil-and-essence',
-            'code': 2050400,
-            'name': {
-              'en': 'Body Oil & Essence',
-              'ko': '바디오일·에센스',
-              'zh_hans': null
-            },
-            'children': []
-          },
-          {
-            'slug': 'body-scrub',
-            'code': 2050500,
-            'name': {
-              'en': 'Body Scrub',
-              'ko': '바디스크럽',
-              'zh_hans': null
-            },
-            'children': []
-          },
-          {
-            'slug': 'body-mist',
-            'code': 2050600,
-            'name': {
-              'en': 'Body Mist',
-              'ko': '바디미스트',
-              'zh_hans': null
-            },
-            'children': []
-          },
-          {
-            'slug': 'hand-and-foot-treatment',
-            'code': 2050700,
-            'name': {
-              'en': 'Hand & Foot Treatment',
-              'ko': '핸드·풋케어',
-              'zh_hans': null
-            },
-            'children': []
-          },
-          {
-            'slug': 'bath-salt-and-bubble',
-            'code': 2050800,
-            'name': {
-              'en': 'Bath Salt & Bubble',
-              'ko': '입욕제',
-              'zh_hans': null
-            },
-            'children': []
-          },
-          {
-            'slug': 'feminine-care',
-            'code': 2050900,
-            'name': {
-              'en': 'Feminine Care',
-              'ko': '여성청결제',
-              'zh_hans': null
-            },
-            'children': []
-          },
-          {
-            'slug': 'deodorant',
-            'code': 2051000,
-            'name': {
-              'en': 'Deodorant',
-              'ko': '데오드란트',
-              'zh_hans': null
-            },
-            'children': []
-          },
-          {
-            'slug': 'other-body-product',
-            'code': 2051100,
-            'name': {
-              'en': 'Other Body Product',
-              'ko': '바디 기타',
-              'zh_hans': null
-            },
-            'children': []
-          }
-        ]
-      },
-      {
-        'slug': 'hair-care',
-        'code': 2060000,
-        'name': {
-          'en': 'Hair Care',
-          'ko': '헤어케어',
-          'zh_hans': null
+            "children": [
+                {
+                    "slug": "skin",
+                    "code": 2090100,
+                    "name": {
+                        "en": "Skin",
+                        "ko": "스킨케어",
+                        "zh_hans": null
+                    },
+                    "children": []
+                },
+                {
+                    "slug": "body",
+                    "code": 2090200,
+                    "name": {
+                        "en": "Body",
+                        "ko": "바디케어",
+                        "zh_hans": null
+                    },
+                    "children": []
+                },
+                {
+                    "slug": "hair",
+                    "code": 2090300,
+                    "name": {
+                        "en": "Hair",
+                        "ko": "헤어케어",
+                        "zh_hans": null
+                    },
+                    "children": []
+                },
+                {
+                    "slug": "makeup",
+                    "code": 2090400,
+                    "name": {
+                        "en": "Makeup",
+                        "ko": "메이크업",
+                        "zh_hans": null
+                    },
+                    "children": []
+                },
+                {
+                    "slug": "cologne-and-deodorant",
+                    "code": 2090500,
+                    "name": {
+                        "en": "Cologne & Deodorant",
+                        "ko": "향수·데오드란트",
+                        "zh_hans": null
+                    },
+                    "children": []
+                },
+                {
+                    "slug": "shave",
+                    "code": 2090600,
+                    "name": {
+                        "en": "Shave",
+                        "ko": "쉐이빙·잡화",
+                        "zh_hans": null
+                    },
+                    "children": []
+                }
+            ]
         },
-        'children': [
-          {
-            'slug': 'shampoo',
-            'code': 2060100,
-            'name': {
-              'en': 'Shampoo',
-              'ko': '샴푸',
-              'zh_hans': null
+        {
+            "slug": "k-beauty",
+            "code": 2100000,
+            "name": {
+                "en": "K Beauty",
+                "ko": "K Beauty",
+                "zh_hans": null
             },
-            'children': []
-          },
-          {
-            'slug': 'conditioner-and-treatment',
-            'code': 2060200,
-            'name': {
-              'en': 'Conditioner & Treatment',
-              'ko': '린스·트리트먼트',
-              'zh_hans': null
-            },
-            'children': []
-          },
-          {
-            'slug': 'essence-and-oil',
-            'code': 2060300,
-            'name': {
-              'en': 'Essence & Oil',
-              'ko': '에센스·오일',
-              'zh_hans': null
-            },
-            'children': []
-          },
-          {
-            'slug': 'mist',
-            'code': 2060400,
-            'name': {
-              'en': 'Mist',
-              'ko': '미스트',
-              'zh_hans': null
-            },
-            'children': []
-          },
-          {
-            'slug': 'styling-product',
-            'code': 2060500,
-            'name': {
-              'en': 'Styling Product',
-              'ko': '스타일링',
-              'zh_hans': null
-            },
-            'children': []
-          },
-          {
-            'slug': 'other-hair-product',
-            'code': 2060600,
-            'name': {
-              'en': 'Other Hair Product',
-              'ko': '헤어기타',
-              'zh_hans': null
-            },
-            'children': []
-          }
-        ]
-      },
-      {
-        'slug': 'fragrance',
-        'code': 2070000,
-        'name': {
-          'en': 'Fragrance',
-          'ko': '향수',
-          'zh_hans': null
-        },
-        'children': [
-          {
-            'slug': 'women',
-            'code': 2070100,
-            'name': {
-              'en': 'Women',
-              'ko': '여자향수',
-              'zh_hans': null
-            },
-            'children': []
-          },
-          {
-            'slug': 'men',
-            'code': 2070200,
-            'name': {
-              'en': 'Men',
-              'ko': '남자향수',
-              'zh_hans': null
-            },
-            'children': []
-          },
-          {
-            'slug': 'fragrance-set',
-            'code': 2070300,
-            'name': {
-              'en': 'Fragrance Set',
-              'ko': '향수세트',
-              'zh_hans': null
-            },
-            'children': []
-          }
-        ]
-      },
-      {
-        'slug': 'candle-and-diffuser',
-        'code': 2080000,
-        'name': {
-          'en': 'Candle & Diffuser',
-          'ko': '캔들·디퓨저',
-          'zh_hans': null
-        },
-        'children': [
-          {
-            'slug': 'candle',
-            'code': 2080100,
-            'name': {
-              'en': 'Candle',
-              'ko': '캔들',
-              'zh_hans': null
-            },
-            'children': []
-          },
-          {
-            'slug': 'diffuser',
-            'code': 2080200,
-            'name': {
-              'en': 'Diffuser',
-              'ko': '디퓨저',
-              'zh_hans': null
-            },
-            'children': []
-          }
-        ]
-      },
-      {
-        'slug': 'mens-grooming',
-        'code': 2090000,
-        'name': {
-          'en': `Men's Grooming`,
-          'ko': '남성',
-          'zh_hans': null
-        },
-        'children': [
-          {
-            'slug': 'skin',
-            'code': 2090100,
-            'name': {
-              'en': 'Skin',
-              'ko': '스킨케어',
-              'zh_hans': null
-            },
-            'children': []
-          },
-          {
-            'slug': 'body',
-            'code': 2090200,
-            'name': {
-              'en': 'Body',
-              'ko': '바디케어',
-              'zh_hans': null
-            },
-            'children': []
-          },
-          {
-            'slug': 'hair',
-            'code': 2090300,
-            'name': {
-              'en': 'Hair',
-              'ko': '헤어케어',
-              'zh_hans': null
-            },
-            'children': []
-          },
-          {
-            'slug': 'makeup',
-            'code': 2090400,
-            'name': {
-              'en': 'Makeup',
-              'ko': '메이크업',
-              'zh_hans': null
-            },
-            'children': []
-          },
-          {
-            'slug': 'cologne-and-deodorant',
-            'code': 2090500,
-            'name': {
-              'en': 'Cologne & Deodorant',
-              'ko': '향수·데오드란트',
-              'zh_hans': null
-            },
-            'children': []
-          },
-          {
-            'slug': 'shave',
-            'code': 2090600,
-            'name': {
-              'en': 'Shave',
-              'ko': '쉐이빙·잡화',
-              'zh_hans': null
-            },
-            'children': []
-          }
-        ]
-      },
-      {
-        'slug': 'k-beauty',
-        'code': 2100000,
-        'name': {
-          'en': 'K Beauty',
-          'ko': 'K Beauty',
-          'zh_hans': null
-        },
-        'children': []
-      }
+            "children": []
+        }
     ]
   }
-};
+}`);
 
 
 
