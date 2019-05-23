@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Inject, Input, LOCALE_ID, OnInit, Output} from '@angular/core';
 import {AccountDataService} from '../../../core/service/data-pages/account/account-data.service';
 
 @Component({
@@ -14,8 +14,9 @@ export class AdhereTableComponent implements OnInit {
   @Output('viewModal') viewModalEmitter = new EventEmitter<any>();
 
   constructor(
+    @Inject(LOCALE_ID) public locale: string,
     private accountDataService: AccountDataService,
-    private cd: ChangeDetectorRef
+    private cd: ChangeDetectorRef,
   ) {
 
   }
@@ -63,7 +64,6 @@ export class AdhereTableComponent implements OnInit {
   }
 
   openTraceDelivery(xTracingUrl) {
-
     const temp = xTracingUrl.indexOf('test') > -1 ? 'http://' + xTracingUrl.substring(xTracingUrl.indexOf('test') + 5, xTracingUrl.length) :  xTracingUrl;
 
     window.open( temp, '_blank', 'width:750, height:500');

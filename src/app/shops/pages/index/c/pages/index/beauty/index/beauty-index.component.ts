@@ -1,6 +1,7 @@
-import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Inject, OnInit} from '@angular/core';
 import {UiService} from '../../../../../../../../core/service/ui/ui.service';
 import {Meta, Title} from '@angular/platform-browser';
+import {IMAGE_HOST} from '../../../../../../../../core/global-constant/app.config';
 
 @Component({
   selector: 'onpicks-beauty',
@@ -11,26 +12,26 @@ import {Meta, Title} from '@angular/platform-browser';
 export class BeautyIndexComponent implements OnInit {
   pantryAndHouseHoldBannerImages = [
     {
-      imgSrc : 'https://img.onpicks.com/banners/beauty/2019-04-01/beauty-banner1.jpg',
-      imgSrcForDesktop : 'https://img.onpicks.com/banners/beauty/2019-04-01/beauty-banner1.jpg',
+      imgSrc : this.imageHost + '/ad/beauty/2019-04-01/beauty1.jpg',
+      imgSrcForDesktop : this.imageHost + '/ad/beauty/2019-04-01/beauty1.jpg',
       // marginLeftForText : '6.2%',
       title : [],
       description : []
     },
     // {
-    //   imgSrc : 'https://img.onpicks.com/banners/beauty/2019-04-01/beauty-banner2.jpg',
+    //   imgSrc : 'https://img.onpicks.com/ad/beauty/2019-04-01/beauty-banner2.jpg',
     //   // marginLeftForText : '6.2%',
     //   title : [],
     //   description : []
     // },
     // {
-    //   imgSrc : 'https://img.onpicks.com/banners/beauty/2019-04-01/beauty-banner3.jpg',
+    //   imgSrc : 'https://img.onpicks.com/ad/beauty/2019-04-01/beauty-banner3.jpg',
     //   // marginLeftForText : '6.2%',
     //   title : [],
     //   description : []
     // },
     // {
-    //   imgSrc : 'https://img.onpicks.com/banners/beauty/2019-04-01/beauty-banner4.jpg',
+    //   imgSrc : 'https://img.onpicks.com/ad/beauty/2019-04-01/beauty-banner4.jpg',
     //   // marginLeftForText : '6.2%',
     //   title : [],
     //   description : []
@@ -39,7 +40,7 @@ export class BeautyIndexComponent implements OnInit {
 
   popularPantryCategory = [
     {
-      imgSrc : 'http://img.onpicks.com/categories/category-skincare.png',
+      imgSrc : this.imageHost + '/categories/category-skincare.png',
       name : {
         ko : '스킨케어',
         en : 'Skin Care'
@@ -47,7 +48,7 @@ export class BeautyIndexComponent implements OnInit {
       href : '/shops/c/beauty/skin-care'
     },
     {
-      imgSrc : 'http://img.onpicks.com/categories/category-hair.png',
+      imgSrc : this.imageHost + '/categories/category-hair.png',
       name : {
         ko : '헤어케어',
         en : 'Hair'
@@ -55,7 +56,7 @@ export class BeautyIndexComponent implements OnInit {
       href : '/shops/c/beauty/hair-care'
     },
     {
-      imgSrc : 'http://img.onpicks.com/categories/category-fragrance.png',
+      imgSrc : this.imageHost + '/categories/category-fragrance.png',
       name : {
         ko : '향수',
         en : 'Fragrance'
@@ -63,7 +64,7 @@ export class BeautyIndexComponent implements OnInit {
       href : '/shops/c/beauty/fragrance'
     },
     {
-      imgSrc : 'http://img.onpicks.com/categories/cateogry-makeup.png',
+      imgSrc : this.imageHost + '/categories/cateogry-makeup.png',
       name : {
         ko : '메이크업',
         en : 'Makeup'
@@ -71,7 +72,7 @@ export class BeautyIndexComponent implements OnInit {
       href : '/shops/c/beauty/makeup'
     },
     {
-      imgSrc : 'http://img.onpicks.com/categories/category-body.png',
+      imgSrc : this.imageHost + '/categories/category-body.png',
       name : {
         ko : '바디케어',
         en : 'Body Care'
@@ -83,8 +84,8 @@ export class BeautyIndexComponent implements OnInit {
   todayCollection = [
     {
       imgSrc : {
-        ko : 'https://img.onpicks.com/collections/ko/flower.jpg?d=w528-h352',
-        en : 'https://img.onpicks.com/collections/en/flower.jpg?d=w528-h352'
+        ko : this.imageHost + '/collections/ko/flower.jpg?d=w528-h352',
+        en : this.imageHost + '/collections/en/flower.jpg?d=w528-h352'
       },
       todayCategoryName : {
         ko : '뷰티',
@@ -106,8 +107,8 @@ export class BeautyIndexComponent implements OnInit {
     },
     {
       imgSrc : {
-        ko : 'https://img.onpicks.com/collections/ko/byredo.jpg?d=w528-h352',
-        en : 'https://img.onpicks.com/collections/en/byredo.jpg?d=w528-h352',
+        ko : this.imageHost + '/collections/ko/byredo.jpg?d=w528-h352',
+        en : this.imageHost + '/collections/en/byredo.jpg?d=w528-h352',
       },
       todayCategoryName : {
         ko : '뷰티',
@@ -131,6 +132,7 @@ export class BeautyIndexComponent implements OnInit {
   popularBrand$;
 
   constructor(
+    @Inject(IMAGE_HOST) public imageHost: string,
     private uiDataService: UiService,
     private titleService: Title,
     private meta: Meta

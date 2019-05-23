@@ -35,7 +35,7 @@
             <ng-container *ngIf="auth.isAuthenticated === true">
               <span class="header__miscell--profile--image">
                 <a routerLink="/account">
-                  <img src="{{auth?.user?.avatar === ''? 'http://img.onpicks.com/assets/default_avatar.png' : auth.user.avatar}}"  alt="">
+                  <img [src]="auth?.user?.avatar === ''? imageHost + '/assets/default_avatar.png' : auth.user.avatar"  alt="">
                 </a>
               </span>
 
@@ -234,7 +234,7 @@
             (click)="navigateFirstCategory( categoryMap[categoryCodeMap[currentUrl[3]].code]['slug'])"
             *ngIf="categoryNavigateCurrentDepth === 1">
             <!--height : 5.6rem;-->
-            <img [src]="'https://img.onpicks.com/assets/menu/' + categoryMap[categoryCodeMap[currentUrl[3]].code].slug + '.jpg?d=w80-h80'" alt="">
+            <img [src]="imageHost + '/assets/menu/' + categoryMap[categoryCodeMap[currentUrl[3]].code].slug + '.jpg?d=w80-h80'" alt="">
             <div class="header__mobile-menu--category-navigator--content--title--name">
               <div>
                 <div class="u-vertical-center-with-table-cell subtitle-2-regular">
@@ -388,7 +388,7 @@
             <div
               (click)="routeForMobile('/shops/c/' + item.href, inputCheckedForToggle)">
               <div class="u-button-effect">
-                <img [src]="'https://img.onpicks.com/assets/menu/' + item.slug + '.jpg?d=w80-h80'" alt="">
+                <img [src]="imageHost + '/assets/menu/' + item.slug + '.jpg?d=w80-h80'" alt="">
                 <span>{{item.name[locale]}}</span>
               </div>
             </div>

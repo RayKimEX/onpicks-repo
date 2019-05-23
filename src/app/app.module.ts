@@ -22,7 +22,7 @@ import {AuthEffects} from './core/store/auth/auth.effects';
 import {
   BREAKPOINT,
   CURRENCY,
-  DOMAIN_HOST,
+  DOMAIN_HOST, IMAGE_HOST,
   LOCATION_MAP,
   LOCATION_MAP_CONST, REGION_ID,
   RESPONSIVE_MAP,
@@ -73,6 +73,17 @@ function setCookie(cname, cvalue ) {
   return 'KRW';
 }
 
+export function getImageHost() {
+  if ( window.location.origin === 'http://localhost' ) {
+    return 'http://img.staging.onpicks.com.s3.amazonaws.com';
+  }
+
+  if ( window.location.origin === 'https://staging.onpicks.com' ) {
+    return 'https://img.staging.onpicks.com.s3.amazonaws.com';
+  }
+
+  return 'https://img.onpicks.com';
+}
 
 export function getCurrency() {
   console.log('@@@@@@@@@@@!@@')
@@ -182,6 +193,10 @@ export function getCurrency() {
       // https://localhost
       provide: DOMAIN_HOST,
       useValue : window.location.origin
+    },
+    {
+      provide: IMAGE_HOST,
+      useFactory : getImageHost
     },
     {
       provide: CURRENCY,

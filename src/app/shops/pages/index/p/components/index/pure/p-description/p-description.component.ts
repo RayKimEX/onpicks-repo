@@ -1,4 +1,5 @@
-import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Inject, Input, OnInit} from '@angular/core';
+import {IMAGE_HOST} from '../../../../../../../../core/global-constant/app.config';
 
 @Component({
   selector: 'onpicks-p-description',
@@ -11,7 +12,7 @@ export class PDescriptionComponent implements OnInit {
   @Input('location') location;
 
   shopsBannerImage = {
-    imgSrc : 'https://img.onpicks.com/assets/beauty_banner1.jpg',
+    imgSrc : this.imageHost + '/assets/beauty_banner1.jpg',
     // marginLeftForText : '6.2%',
     title : [
       '모든 피부에 적합한',
@@ -25,7 +26,9 @@ export class PDescriptionComponent implements OnInit {
     descriptionFontType : 'subtitle-1-regular'
   };
 
-  constructor() { }
+  constructor(
+    @Inject(IMAGE_HOST) public imageHost: string,
+  ) { }
 
   ngOnInit() {
   }

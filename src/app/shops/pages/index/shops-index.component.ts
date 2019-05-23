@@ -1,7 +1,8 @@
-import {AfterViewInit, ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
+import {AfterViewInit, ChangeDetectionStrategy, Component, Inject, OnInit} from '@angular/core';
 import {UiService} from '../../../core/service/ui/ui.service';
 import {tap} from 'rxjs/operators';
 import {Title} from '@angular/platform-browser';
+import {IMAGE_HOST} from '../../../core/global-constant/app.config';
 
 @Component({
   selector: 'onpicks-shops-index',
@@ -13,7 +14,7 @@ import {Title} from '@angular/platform-browser';
 export class ShopsIndexComponent implements OnInit, AfterViewInit {
 
   shopsBannerImage = {
-    imgSrc : 'https://img.onpicks.com/banners/pantry-and-household/2019-02-27/PAH-banner1.jpg?d=w2576-h800',
+    imgSrc : this.imageHost + '/ad/pantry-and-household/2019-02-27/PAH1.jpg?d=w2576-h800',
     // marginLeftForText : '6.2%',
     title : {
       ko : [
@@ -40,10 +41,10 @@ export class ShopsIndexComponent implements OnInit, AfterViewInit {
 
   shopsCarouselBannerImages = [
     {
-      imgSrcForDesktop : 'https://img.onpicks.com/banners/main/2019-04-01/main-banner1.jpg',
-      srcSetForDesktop : 'https://img.onpicks.com/banners/main/2019-04-01/main-banner1.jpg?d=w1920-h400 1920w,https://img.onpicks.com/banners/main/2019-04-01/main-banner1.jpg?d=w2400-h500 2400w, https://img.onpicks.com/banners/main/2019-04-01/main-banner1.jpg 3840w',
-      imgSrcForMobile : 'https://img.onpicks.com/banners/main/2019-04-01/main-mobile-banner1.jpg',
-      srcSetForMobile : 'https://img.onpicks.com/banners/main/2019-04-01/main-mobile-banner1.jpg 640w',
+      imgSrcForDesktop : this.imageHost + '/ad/main/2019-04-01/main1.jpg',
+      srcSetForDesktop : this.imageHost + '/ad/main/2019-04-01/main1.jpg?d=w1920-h400 1920w,' + this.imageHost + '/ad/main/2019-04-01/main1.jpg?d=w2400-h500 2400w,' + this.imageHost + '/ad/main/2019-04-01/main1.jpg 3840w',
+      imgSrcForMobile : this.imageHost + '/ad/main/2019-04-01/main-mobile1.jpg',
+      srcSetForMobile : this.imageHost + '/ad/main/2019-04-01/main-mobile1.jpg 640w',
       // marginLeftForText : '6.2%',
       title : [],
       titleFontType : '',
@@ -51,11 +52,11 @@ export class ShopsIndexComponent implements OnInit, AfterViewInit {
       descriptionFontType : ''
     },
     {
-      // imgSrc : 'https://img.onpicks.com/banners/main/2019-04-01/main-banner2.jpg',
-      imgSrcForDesktop : 'https://img.onpicks.com/banners/main/2019-04-01/main-banner2.jpg',
-      srcSetForDesktop : 'https://img.onpicks.com/banners/main/2019-04-01/main-banner2.jpg?d=w1920-h400 1920w,https://img.onpicks.com/banners/main/2019-04-01/main-banner2.jpg?d=w2400-h500 2400w, https://img.onpicks.com/banners/main/2019-04-01/main-banner2.jpg 3840w',
-      imgSrcForMobile : 'https://img.onpicks.com/banners/main/2019-04-01/main-mobile-banner2.jpg',
-      srcSetForMobile : 'https://img.onpicks.com/banners/main/2019-04-01/main-mobile-banner2.jpg 640w',
+      // imgSrc : 'https://img.onpicks.com/ad/main/2019-04-01/main2.jpg',
+      imgSrcForDesktop : this.imageHost + '/ad/main/2019-04-01/main2.jpg',
+      srcSetForDesktop : this.imageHost + '/ad/main/2019-04-01/main2.jpg?d=w1920-h400 1920w,' + this.imageHost + '/ad/main/2019-04-01/main2.jpg?d=w2400-h500 2400w,' + this.imageHost + '/ad/main/2019-04-01/main2.jpg 3840w',
+      imgSrcForMobile : this.imageHost + '/ad/main/2019-04-01/main-mobile2.jpg',
+      srcSetForMobile : this.imageHost + '/ad/main/2019-04-01/main-mobile2.jpg 640w',
       // marginLeftForText : '6.2%',
       title : [],
       titleFontType : '',
@@ -67,7 +68,7 @@ export class ShopsIndexComponent implements OnInit, AfterViewInit {
   // https://s3.ap-northeast-2.amazonaws.com/img.onpicks.com/onpicks_banner_banner_3840x800.png
   popularCategory = [
     {
-      imgSrc : 'http://img.onpicks.com/categories/category-grocery.png',
+      imgSrc : this.imageHost + '/categories/category-grocery.png',
       name : {
         ko : '식품',
         en : 'Grocery'
@@ -75,7 +76,7 @@ export class ShopsIndexComponent implements OnInit, AfterViewInit {
       href : '/shops/c/pantry-and-household/grocery'
     },
     {
-      imgSrc : 'http://img.onpicks.com/categories/category-household.png',
+      imgSrc : this.imageHost + '/categories/category-household.png',
       name : {
         ko : '생활용품',
         en : 'Household'
@@ -83,7 +84,7 @@ export class ShopsIndexComponent implements OnInit, AfterViewInit {
       href : '/shops/c/pantry-and-household/household-supplies'
     },
     {
-      imgSrc : 'http://img.onpicks.com/categories/category-body.png',
+      imgSrc : this.imageHost + '/categories/category-body.png',
       name : {
         ko : '바디케어',
         en : 'Body Care'
@@ -91,7 +92,7 @@ export class ShopsIndexComponent implements OnInit, AfterViewInit {
       href : '/shops/c/beauty/body-care'
     },
     {
-      imgSrc : 'http://img.onpicks.com/categories/category-health.png',
+      imgSrc : this.imageHost + '/categories/category-health.png',
       name : {
         ko : '건강',
         en : 'Health'
@@ -99,7 +100,7 @@ export class ShopsIndexComponent implements OnInit, AfterViewInit {
       href : '/shops/c/pantry-and-household/health'
     },
     {
-      imgSrc : 'http://img.onpicks.com/categories/cateogry-makeup.png',
+      imgSrc : this.imageHost + '/categories/cateogry-makeup.png',
       name : {
         ko : '메이크업',
         en : 'Makeup'
@@ -107,7 +108,7 @@ export class ShopsIndexComponent implements OnInit, AfterViewInit {
       href : '/shops/c/beauty/makeup'
     },
     {
-      imgSrc : 'http://img.onpicks.com/categories/category-fragrance.png',
+      imgSrc : this.imageHost + '/categories/category-fragrance.png',
       name : {
         ko : '향수',
         en : 'Fragrance'
@@ -120,8 +121,8 @@ export class ShopsIndexComponent implements OnInit, AfterViewInit {
   todayCollection = [
     {
       imgSrc : {
-        ko : 'http://img.onpicks.com/collections/ko/paleo.jpg?d=w528-h352',
-        en : 'http://img.onpicks.com/collections/en/paleo.jpg?d=w528-h352',
+        ko : this.imageHost + '/collections/ko/paleo.jpg?d=w528-h352',
+        en : this.imageHost + '/collections/en/paleo.jpg?d=w528-h352',
       },
       todayCategoryName : {
         ko : '식품·생활용품',
@@ -142,8 +143,8 @@ export class ShopsIndexComponent implements OnInit, AfterViewInit {
     },
     {
       imgSrc : {
-        ko : 'http://img.onpicks.com/collections/ko/USDA.jpg?d=w528-h352',
-        en : 'http://img.onpicks.com/collections/en/USDA.jpg?d=w528-h352'
+        ko : this.imageHost + '/collections/ko/USDA.jpg?d=w528-h352',
+        en : this.imageHost + '/collections/en/USDA.jpg?d=w528-h352'
       },
       todayCategoryName : {
         ko : '식품·생활용품',
@@ -166,8 +167,8 @@ export class ShopsIndexComponent implements OnInit, AfterViewInit {
     },
     {
       imgSrc : {
-        ko : 'http://img.onpicks.com/collections/ko/gluten.jpg?d=w528-h352',
-        en : 'http://img.onpicks.com/collections/en/gluten.jpg?d=w528-h352'
+        ko : this.imageHost + '/collections/ko/gluten.jpg?d=w528-h352',
+        en : this.imageHost + '/collections/en/gluten.jpg?d=w528-h352'
       },
       todayCategoryName : {
         ko : '식품·생활용품',
@@ -188,8 +189,8 @@ export class ShopsIndexComponent implements OnInit, AfterViewInit {
     },
     {
       imgSrc : {
-        ko : 'https://img.onpicks.com/collections/ko/flower.jpg?d=w528-h352',
-        en : 'https://img.onpicks.com/collections/en/flower.jpg?d=w528-h352'
+        ko : this.imageHost + '/collections/ko/flower.jpg?d=w528-h352',
+        en : this.imageHost + '/collections/en/flower.jpg?d=w528-h352'
       },
       todayCategoryName : {
         ko : '뷰티',
@@ -211,8 +212,8 @@ export class ShopsIndexComponent implements OnInit, AfterViewInit {
     },
     {
       imgSrc : {
-        ko : 'https://img.onpicks.com/collections/ko/byredo.jpg?d=w528-h352',
-        en : 'https://img.onpicks.com/collections/en/byredo.jpg?d=w528-h352',
+        ko : this.imageHost + '/collections/ko/byredo.jpg?d=w528-h352',
+        en : this.imageHost + '/collections/en/byredo.jpg?d=w528-h352',
       },
       todayCategoryName : {
         ko : '뷰티',
@@ -243,7 +244,8 @@ export class ShopsIndexComponent implements OnInit, AfterViewInit {
 
   constructor(
     private uiDataService: UiService,
-    private titleService: Title
+    private titleService: Title,
+    @Inject(IMAGE_HOST) public imageHost: string,
   ) {
     this.titleService.setTitle( '온픽스, 건강하고 아름다운 삶을 위한 선택' );
     this.weeklyBest$ = this.uiDataService.getWeeklyBestGoods().pipe( tap( v => {
