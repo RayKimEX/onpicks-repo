@@ -404,6 +404,7 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
     this.queryParams$.unsubscribe();
     this.cartStore$.unsubscribe();
     this.routerEvent$.unsubscribe();
+    this.searchData$.unsubscribe();
   }
 
   ngOnInit() {
