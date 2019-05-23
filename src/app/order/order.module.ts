@@ -14,6 +14,7 @@ import {CartToCheckoutService} from './share/cart-to-checkout.service';
 import {ReactiveFormsModule} from '@angular/forms';
 import { CheckoutKrComponent } from './components/checkout-kr/checkout-kr.component';
 import { CheckoutUsComponent } from './components/checkout-us/checkout-us.component';
+import { CheckoutFailureComponent } from './pages/checkout-failure/checkout-failure.component';
 
 @NgModule({
   imports: [
@@ -31,7 +32,8 @@ import { CheckoutUsComponent } from './components/checkout-us/checkout-us.compon
     CheckoutSuccessComponent,
     CheckoutSuccessVirtualAccountComponent,
     CheckoutKrComponent,
-    CheckoutUsComponent
+    CheckoutUsComponent,
+    CheckoutFailureComponent
   ],
   providers: [
     CartToCheckoutService

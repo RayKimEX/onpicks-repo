@@ -4,6 +4,7 @@ import {CartComponent} from './pages/cart/cart.component';
 import {CheckoutComponent} from './pages/checkout/checkout.component';
 import {CheckoutSuccessVirtualAccountComponent} from './pages/checkout-success-virtual-account/checkout-success-virtual-account.component';
 import {CheckoutSuccessComponent} from './pages/checkout-success/checkout-success.component';
+import {CheckoutFailureComponent} from './pages/checkout-failure/checkout-failure.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,10 @@ const routes: Routes = [
       {
         path: 'checkout',
         component: CheckoutComponent,
+      },
+      {
+        path: 'checkout-failure',
+        component: CheckoutFailureComponent,
       },
       {
         path: 'checkout-success',
