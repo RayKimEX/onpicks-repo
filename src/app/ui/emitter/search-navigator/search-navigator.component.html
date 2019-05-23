@@ -453,31 +453,32 @@
 
                     <div class="search-content__item--image">
                       <div
-                        routerLink="/shops/p/{{item.slug}}"
                         class="search-content__item--image-outer">
-                        <div *ngIf="item.in_stock === true && item.stock_quantity <= 10 && item.stock_quantity !== 0"
-                        class="search-content__item--stock">
-                          <span *ngIf="locale === 'ko'" class="search-content__item--stock--inner subtitle-2-bold u-color-white">
-                            품절임박 {{item.stock_quantity}}개
-                          </span>
-                            <span *ngIf="locale === 'en'" class="search-content__item--stock--inner subtitle-2-bold u-color-white">
-                            Only {{item.stock_quantity}} Left
-                          </span>
-                        </div>
-                        <div *ngIf="item.in_stock === false || item.in_stock === true && item.stock_quantity === 0"
-                        class="search-content__item--stock-empty">
-                          <span class="search-content__item--stock--inner subtitle-2-bold u-color-white">
-                            품절
-                          </span>
-                        </div>
-                        <div class="search-content__item--image-inner">
-                          <img
-                            drLazyLoad
-                            [relativeOption]="false"
-                            src="{{item.thumbnail}}"
-                            alt="{{item.title}}">
-                          <!--카트정보가 어떤식으로 들어갈지 알아야, 대충이라도 작업할 수 있음.-->
-                        </div>
+                        <a routerLink="/shops/p/{{item.slug}}">
+                          <div *ngIf="item.in_stock === true && item.stock_quantity <= 10 && item.stock_quantity !== 0"
+                          class="search-content__item--stock">
+                            <span *ngIf="locale === 'ko'" class="search-content__item--stock--inner subtitle-2-bold u-color-white">
+                              품절임박 {{item.stock_quantity}}개
+                            </span>
+                              <span *ngIf="locale === 'en'" class="search-content__item--stock--inner subtitle-2-bold u-color-white">
+                              Only {{item.stock_quantity}} Left
+                            </span>
+                          </div>
+                          <div *ngIf="item.in_stock === false || item.in_stock === true && item.stock_quantity === 0"
+                          class="search-content__item--stock-empty">
+                            <span class="search-content__item--stock--inner subtitle-2-bold u-color-white">
+                              품절
+                            </span>
+                          </div>
+                          <div class="search-content__item--image-inner">
+                            <img
+                              drLazyLoad
+                              [relativeOption]="false"
+                              src="{{item.thumbnail}}"
+                              alt="{{item.title}}">
+                            <!--카트정보가 어떤식으로 들어갈지 알아야, 대충이라도 작업할 수 있음.-->
+                          </div>
+                        </a>
                       </div>
                       <ng-container
                         [ngSwitch]="item.attributes.length">

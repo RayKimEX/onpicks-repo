@@ -63,56 +63,57 @@
                         'ui-mini-list-fullM__item--image'
                       ]">
                     <div
-                      [routerLink]="'/shops/p/' + item.slug"
                       [ngClass]="[
                         mobileType === 'half' ?
                         'ui-mini-list-halfM__item--image-outer' :
                         'ui-mini-list-fullM__item--image-outer'
                       ]">
-                      <div *ngIf="item.in_stock === true && item.stock_quantity <= 10 && item.stock_quantity !== 0" [ngClass]="[
-                        mobileType === 'half' ?
-                        'ui-mini-list-halfM__item--stock' :
-                        'ui-mini-list-fullM__item--stock']">
-                        <span
-                          *ngIf="locale === 'ko'"
-                          [ngClass]="[
-                            mobileType === 'half' ?
-                            'ui-mini-list-halfM__item--stock--inner' :
-                            'ui-mini-list-fullM__item--stock--inner']"
-                          class="u-color-white">
-                          품절임박 {{item.stock_quantity}}개
-                        </span>
-                        <span *ngIf="locale === 'en'"
-                              [ngClass]="[
+                      <a [routerLink]="'/shops/p/' + item.slug">
+                        <div *ngIf="item.in_stock === true && item.stock_quantity <= 10 && item.stock_quantity !== 0" [ngClass]="[
+                          mobileType === 'half' ?
+                          'ui-mini-list-halfM__item--stock' :
+                          'ui-mini-list-fullM__item--stock']">
+                          <span
+                            *ngIf="locale === 'ko'"
+                            [ngClass]="[
                               mobileType === 'half' ?
                               'ui-mini-list-halfM__item--stock--inner' :
                               'ui-mini-list-fullM__item--stock--inner']"
-                              class="u-color-white">
-                          Only {{item.stock_quantity}} Left
-                        </span>
-                      </div>
-                      <div *ngIf="item.in_stock === false || item.in_stock === true && item.stock_quantity === 0" [ngClass]="[
-                        mobileType === 'half' ?
-                        'ui-mini-list-halfM__item--stock-empty' :
-                        'ui-mini-list-fullM__item--stock-empty']">
-                        <span
+                            class="u-color-white">
+                            품절임박 {{item.stock_quantity}}개
+                          </span>
+                          <span *ngIf="locale === 'en'"
+                                [ngClass]="[
+                                mobileType === 'half' ?
+                                'ui-mini-list-halfM__item--stock--inner' :
+                                'ui-mini-list-fullM__item--stock--inner']"
+                                class="u-color-white">
+                            Only {{item.stock_quantity}} Left
+                          </span>
+                        </div>
+                        <div *ngIf="item.in_stock === false || item.in_stock === true && item.stock_quantity === 0" [ngClass]="[
+                          mobileType === 'half' ?
+                          'ui-mini-list-halfM__item--stock-empty' :
+                          'ui-mini-list-fullM__item--stock-empty']">
+                          <span
+                            [ngClass]="[
+                          mobileType === 'half' ?
+                          'ui-mini-list-halfM__item--stock--inner' :
+                          'ui-mini-list-fullM__item--stock--inner']"
+                            class="u-color-white">
+                            품절
+                          </span>
+                        </div>
+                        <div
                           [ngClass]="[
-                        mobileType === 'half' ?
-                        'ui-mini-list-halfM__item--stock--inner' :
-                        'ui-mini-list-fullM__item--stock--inner']"
-                          class="u-color-white">
-                          품절
-                        </span>
-                      </div>
-                      <div
-                        [ngClass]="[
-                        mobileType === 'half' ?
-                        'ui-mini-list-halfM__item--image-inner' :
-                        'ui-mini-list-fullM__item--image-inner'
-                      ]">
+                          mobileType === 'half' ?
+                          'ui-mini-list-halfM__item--image-inner' :
+                          'ui-mini-list-fullM__item--image-inner'
+                        ]">
 
-                          <img drLazyLoad [relativeOption]="false" src="{{item.thumbnail}}" alt="{{item.title}}">
-                      </div>
+                            <img drLazyLoad [relativeOption]="false" src="{{item.thumbnail}}" alt="{{item.title}}">
+                        </div>
+                      </a>
                     </div>
                     <onpicks-list-active-button
                       *ngIf="!(item.in_stock === false || item.in_stock === true && item.stock_quantity === 0)"

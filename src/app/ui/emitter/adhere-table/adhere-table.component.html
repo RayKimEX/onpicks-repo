@@ -35,7 +35,7 @@
 
       <div class="adhere-table__item-info">
         <div class="adhere-table__item-info--title subtitle-2-bold">{{item.brand}}</div>
-        <div class="adhere-table__item-info--name body-3-regular">{{item.title}}</div>
+        <div [routerLink]="'/shops/p/' + item.product" class="adhere-table__item-info--name body-3-regular">{{item.title}}</div>
         <!--<div class="adhere-table__item-info&#45;&#45;option subtitle-3-regular u-color-grey">카카오 다크 초콜릿</div>-->
         <div class="adhere-table__item-info--price subtitle-2-bold">{{item.price + item.discount | onpicksCurrency : 'KRW' }}</div>
         <div class="adhere-table__item-state--title subtitle-2-bold">{{item.status_display}}</div>
@@ -97,7 +97,10 @@
 
     <div class="adhere-table__item-info">
       <div class="adhere-table__item-info--title subtitle-2-bold">{{item.brand}}</div>
-      <div class="adhere-table__item-info--name body-3-regular">{{item.title}}</div>
+
+      <div  class="adhere-table__item-info--name u-button-effect-normal body-3-regular">
+        <a [routerLink]="'/shops/p/' + item.product">{{item.title}}</a>
+      </div>
       <!--<div class="adhere-table__item-info&#45;&#45;option subtitle-3-regular u-color-grey">카카오 다크 초콜릿</div>-->
       <div class="adhere-table__item-info--price u-inline-block subtitle-2-bold">{{item.price + item.discount | onpicksCurrency : 'KRW' }}</div>
       <div *ngIf="locale === 'en'" class="adhere-table__item-info--price--quantity subtitle-2-regular">Qty: {{item.quantity}}</div>
