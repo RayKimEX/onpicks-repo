@@ -15,11 +15,11 @@ export class PantryAndHouseholdComponent implements OnInit {
 
   pantryAndHouseHoldBannerImages =  [
     {
-      imgSrc : this.imageHost + '/ad/pantry-and-household/2019-02-27/PAH1.jpg?d=w2576-h800',
-      imgSrcForDesktop : this.imageHost + '/ad/pantry-and-household/2019-02-27/PAH1.jpg',
+      imgSrc : this.imageHost + '/intro/pantry-and-household/2019-02-27/PAH1.jpg?d=w2576-h800',
+      imgSrcForDesktop : this.imageHost + '/intro/pantry-and-household/2019-02-27/PAH1.jpg',
       // srcSetForDesktop : '',
-      // imgSrcForMobile : 'https://img.onpicks.com/ad/main/2019-04-01/main-mobile1.jpg',
-      // srcSetForMobile : 'https://img.onpicks.com/ad/main/2019-04-01/main-mobile1.jpg 640w',
+      // imgSrcForMobile : 'https://img.onpicks.com/intro/main/2019-04-01/main-mobile1.jpg',
+      // srcSetForMobile : 'https://img.onpicks.com/intro/main/2019-04-01/main-mobile1.jpg 640w',
       // marginLeftForText : '6.2%',
       title : {
         ko : [
@@ -43,10 +43,10 @@ export class PantryAndHouseholdComponent implements OnInit {
       descriptionFontType : 'subtitle-1-regular'
     },
     {
-      imgSrc : this.imageHost + '/ad/pantry-and-household/2019-02-27/PAH2.jpg?d=w2576-h800',
-      imgSrcForDesktop : this.imageHost + '/ad/pantry-and-household/2019-02-27/PAH2.jpg',
-      // imgSrcForMobile : 'https://img.onpicks.com/ad/main/2019-04-01/main-mobile1.jpg',
-      // srcSetForMobile : 'https://img.onpicks.com/ad/main/2019-04-01/main-mobile1.jpg 640w',
+      imgSrc : this.imageHost + '/intro/pantry-and-household/2019-02-27/PAH2.jpg?d=w2576-h800',
+      imgSrcForDesktop : this.imageHost + '/intro/pantry-and-household/2019-02-27/PAH2.jpg',
+      // imgSrcForMobile : 'https://img.onpicks.com/intro/main/2019-04-01/main-mobile1.jpg',
+      // srcSetForMobile : 'https://img.onpicks.com/intro/main/2019-04-01/main-mobile1.jpg 640w',
       // marginLeftForText : '6.2%',
       title : {
         ko : [

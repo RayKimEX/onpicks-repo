@@ -12,26 +12,26 @@ import {IMAGE_HOST} from '../../../../../../../../core/global-constant/app.confi
 export class BeautyIndexComponent implements OnInit {
   pantryAndHouseHoldBannerImages = [
     {
-      imgSrc : this.imageHost + '/ad/beauty/2019-04-01/beauty1.jpg',
-      imgSrcForDesktop : this.imageHost + '/ad/beauty/2019-04-01/beauty1.jpg',
+      imgSrc : this.imageHost + '/intro/beauty/2019-04-01/beauty1.jpg',
+      imgSrcForDesktop : this.imageHost + '/intro/beauty/2019-04-01/beauty1.jpg',
       // marginLeftForText : '6.2%',
       title : [],
       description : []
     },
     // {
-    //   imgSrc : 'https://img.onpicks.com/ad/beauty/2019-04-01/beauty-banner2.jpg',
+    //   imgSrc : 'https://img.onpicks.com/intro/beauty/2019-04-01/beauty-banner2.jpg',
     //   // marginLeftForText : '6.2%',
     //   title : [],
     //   description : []
     // },
     // {
-    //   imgSrc : 'https://img.onpicks.com/ad/beauty/2019-04-01/beauty-banner3.jpg',
+    //   imgSrc : 'https://img.onpicks.com/intro/beauty/2019-04-01/beauty-banner3.jpg',
     //   // marginLeftForText : '6.2%',
     //   title : [],
     //   description : []
     // },
     // {
-    //   imgSrc : 'https://img.onpicks.com/ad/beauty/2019-04-01/beauty-banner4.jpg',
+    //   imgSrc : 'https://img.onpicks.com/intro/beauty/2019-04-01/beauty-banner4.jpg',
     //   // marginLeftForText : '6.2%',
     //   title : [],
     //   description : []
