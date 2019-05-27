@@ -104,7 +104,7 @@
       <!--<div class="adhere-table__item-info&#45;&#45;option subtitle-3-regular u-color-grey">카카오 다크 초콜릿</div>-->
       <div class="adhere-table__item-info--price u-inline-block subtitle-2-bold">{{item.price + item.discount | onpicksCurrency : 'KRW' }}</div>
       <div *ngIf="locale === 'en'" class="adhere-table__item-info--price--quantity subtitle-2-regular">Qty: {{item.quantity}}</div>
-      <div *ngIf="locale === 'kr'" class="u-inline-block subtitle-2-bold">&nbsp;/ {{item.quantity}}개</div>
+      <div *ngIf="locale === 'ko'" class="u-inline-block subtitle-2-bold">&nbsp;/ {{item.quantity}}개</div>
     </div>
 
     <div class="adhere-table__item-state">
