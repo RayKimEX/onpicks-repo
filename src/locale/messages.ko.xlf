@@ -1407,6 +1407,22 @@
 
       <!--Sentence-->
 
+      <trans-unit id="sentence__view-shopping-bag" datatype="html">
+        <target>쇼핑백 보기</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="sentence__shop-more-pay-less" datatype="html">
+        <target>담을수록 추가 할인</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
       <trans-unit id="sentence__shop-more-pay-less" datatype="html">
         <target>담을수록 추가 할인</target>
         <context-group purpose="location">

@@ -21,9 +21,7 @@ export class SignupComponent implements OnInit {
     @Inject(REGION_ID) public region: string,
     private store: Store<AppState>,
     private authService: AuthService,
-    private titleService: Title,
   ) {
-    this.titleService.setTitle('온픽스, 건강하고 아름다운 삶을 위한 선택');
   }
 
   ngOnInit() {

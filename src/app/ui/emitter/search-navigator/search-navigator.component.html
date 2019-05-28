@@ -524,11 +524,12 @@
                     </ui-star-rating>
                     <span class="subtitle-3-regular u-color-dark-grey">{{item.review_count}}</span>
                     <br>
+                    <span class="search-content__price-info--MSRP-mobile subtitle-3-regular u-color-grey" *ngIf="locale == 'en'">MSRP</span>
                     <span class="search-content__price-info--MSRP-mobile-discount subtitle-3-regular u-color-grey">{{item.msrp | onpicksCurrency : currencyAync}}</span>
                     <div class="search-content__price-info">
                       <span class="search-content__price-info--discount subtitle-1-bold u-color-orange">{{item.discount_rate | percentPipe}}%</span>
                       <span class="search-content__price-info--price subtitle-1-bold">{{item.price | onpicksCurrency : currencyAync}}</span>
-                      <span class="search-content__price-info--MSRP" *ngIf="locale == 'en'">MSRP</span>
+                      <span class="search-content__price-info--MSRP subtitle-3-regular u-color-grey" *ngIf="locale == 'en'">MSRP</span>
                       <span class="search-content__price-info--MSRP-discount subtitle-3-regular u-color-grey">{{item.msrp | onpicksCurrency : currencyAync}}</span>
                     </div>
                     <div class="search-content__delivery-point">

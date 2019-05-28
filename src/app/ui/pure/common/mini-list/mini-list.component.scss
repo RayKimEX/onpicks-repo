@@ -15,7 +15,7 @@
   &__delivery-point {
     margin-top : 0.8rem;
     position:relative;
-    @include respond(tb){
+    @include respond(sb){
       margin-top : 0.4rem;
     }
 
@@ -27,25 +27,32 @@
     }
 
     &--text {
-      position:absolute;
-      top: -2px;
-
+      vertical-align: text-bottom;
+      white-space: normal;
     }
   }
 
   &__price-info {
+    white-space: normal;
     margin-top: 0.8rem;
 
-    @include respond(tb){
+    @include respond(sb){
       margin-top : 0.4rem;
     }
     &--MSRP {
-
       margin-right: 0.2rem;
-      font-size: 1.2rem;
-      color: #a0a0a0;
-      font-weight: 500;
 
+      @include respond(tb){
+        display:none;
+      }
+
+      &-mobile {
+        display:none;
+        @include respond(tb){
+          margin-right : 0.4rem;
+          display:inline-block;
+        }
+      }
       &-discount {
 
         vertical-align: text-top;;
@@ -61,7 +68,7 @@
         display: none;
         text-decoration: line-through;
         @include respond(tb){
-          display: block;
+          display: inline-block;
         }
       }
     }
@@ -107,6 +114,9 @@
 
       &:not(:last-child){
         margin-right: 2.4rem;
+        @include respond(desktop){
+          margin-right: 0;
+        }
       }
       @include respond(fb){
         width: 25%;
@@ -150,7 +160,7 @@
     &--stock-empty {
       position:relative;
       top : 0;
-      width: 44.5%;
+      width: 9.4rem;
       height: 24px;
       border-radius: 4px;
       background-color : $color-grey;
@@ -160,7 +170,6 @@
       @include respond(fb){
         margin-left:-1.6rem;
         margin-top :-1.6rem;
-        height: 1.6rem;
       }
     }
 
@@ -171,7 +180,7 @@
     &--name-outer {
       margin-bottom: 0.8rem;
 
-      @include respond(tb){
+      @include respond(sb){
         margin-bottom : 0.4rem;
       }
 
@@ -275,7 +284,7 @@
   &__delivery-point {
     margin-top : 0.8rem;
     position:relative;
-    @include respond(tb){
+    @include respond(sb){
       margin-top : 0.4rem;
     }
 
@@ -287,24 +296,28 @@
     }
 
     &--text {
-      position:absolute;
-      top: -2px;
-
+      vertical-align: text-bottom;
+      white-space: normal;
     }
   }
 
   &__price-info {
     margin-top: 0.8rem;
-    @include respond(tb){
+    @include respond(sb){
       margin-top : 0.4rem;
     }
 
     &--MSRP {
       margin-right: 0.2rem;
-      font-size: 1.2rem;
-      color: #a0a0a0;
-      font-weight: 500;
 
+      &-mobile {
+        display:none;
+
+        @include respond(tb){
+          margin-right : 0.4rem;
+          display:inline-block;
+        }
+      }
       &-discount {
         vertical-align: text-top;;
         text-decoration: line-through;
@@ -318,7 +331,7 @@
         margin-top:0.4rem;
         text-decoration: line-through;
         @include respond(tb){
-          display: block;
+          display: inline-block;
         }
       }
     }
@@ -362,7 +375,7 @@
     &--stock-empty {
       position:relative;
       top : 0;
-      width: 44.5%;
+      width: 9.4rem;
       height: 24px;
       border-radius: 4px;
       background-color : $color-grey;
@@ -372,7 +385,6 @@
       @include respond(fb){
         margin-left:-1.6rem;
         margin-top :-1.6rem;
-        height: 1.6rem;
       }
     }
     ui-star-rating {
@@ -381,7 +393,7 @@
 
     &--name-outer {
       margin-bottom: 0.8rem;
-      @include respond(tb){
+      @include respond(sb){
         margin-bottom : 0.4rem;
       }
 

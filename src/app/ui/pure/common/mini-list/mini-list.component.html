@@ -43,7 +43,7 @@
             class="ui-mini-list-halfM__content-ul"
             #container>
             <ng-container *ngFor="let item of infoList; index as i">
-              <li
+              <li #itemList
                 [ngClass]="[
                     mobileType === 'half' ?
                     'ui-mini-list-halfM__content-li' :
@@ -161,6 +161,16 @@
                   <span
                     [ngClass]="[
                         mobileType === 'half' ?
+                        'ui-mini-list-halfM__price-info--MSRP-mobile' :
+                        'ui-mini-list-fullM__price-info--MSRP-mobile'
+                      ]"
+                    class="subtitle-3-regular u-color-grey"
+                    *ngIf="locale == 'en'">
+                      MSRP
+                  </span>
+                  <span
+                    [ngClass]="[
+                        mobileType === 'half' ?
                         'ui-mini-list-halfM__price-info--MSRP-mobile-discount' :
                         'ui-mini-list-fullM__price-info--MSRP-mobile-discount'
                       ]"
@@ -197,6 +207,7 @@
                         'ui-mini-list-halfM__price-info--MSRP' :
                         'ui-mini-list-fullM__price-info--MSRP'
                       ]"
+                      class="subtitle-3-regular u-color-grey"
                       *ngIf="locale == 'en'">
                       MSRP
                     </span>

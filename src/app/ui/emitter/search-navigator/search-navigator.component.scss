@@ -520,6 +520,7 @@ onpicks-check-box {
 
 
   &__price-info {
+    word-break: break-all;
     margin-top: 0.8rem;
     @include respond(tb){
       margin-top : 0.4rem;
@@ -527,9 +528,10 @@ onpicks-check-box {
 
     &--MSRP {
       margin-right: 0.2rem;
-      font-size: 1.2rem;
-      color: #a0a0a0;
-      font-weight: 500;
+
+      @include respond(tb){
+        display:none;
+      }
 
       &-discount {
         vertical-align: text-top;;
@@ -539,12 +541,20 @@ onpicks-check-box {
         }
       }
 
+      &-mobile {
+        display:none;
+        margin-right: 0.2rem;
+        @include respond(tb){
+          display: inline-block;
+        }
+      }
+
       &-mobile-discount {
         display: none;
         margin-top:0.4rem;
         text-decoration: line-through;
         @include respond(tb){
-          display: block;
+          display: inline-block;
         }
       }
     }

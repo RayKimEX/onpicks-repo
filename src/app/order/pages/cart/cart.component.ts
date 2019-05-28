@@ -50,9 +50,7 @@ export class CartComponent {
     private httpClient: HttpClient,
     private cd: ChangeDetectorRef,
     private uiService: UiService,
-    private titleService: Title
   ) {
-    this.titleService.setTitle('온픽스, 건강하고 아름다운 삶을 위한 선택');
     this.cartStore$ = this.store.pipe(
       select( state => state.cart ),
       tap( state => this.cartStore = state),

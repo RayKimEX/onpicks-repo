@@ -1428,6 +1428,14 @@
 
       <!--Sentence-->
 
+      <trans-unit id="sentence__view-shopping-bag" datatype="html">
+        <target>View Shopping Bag</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
       <trans-unit id="sentence__shop-more-pay-less" datatype="html">
         <target>Shop more, pay less</target>
         <context-group purpose="location">

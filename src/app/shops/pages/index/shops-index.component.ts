@@ -2,7 +2,7 @@ import {AfterViewInit, ChangeDetectionStrategy, Component, Inject, LOCALE_ID, On
 import {UiService} from '../../../core/service/ui/ui.service';
 import {tap} from 'rxjs/operators';
 import {Title} from '@angular/platform-browser';
-import {IMAGE_HOST} from '../../../core/global-constant/app.config';
+import {IMAGE_HOST, REGION_ID} from '../../../core/global-constant/app.config';
 import {TITLE_MAP} from '../../../core/global-constant/app.locale';
 
 @Component({
@@ -40,31 +40,46 @@ export class ShopsIndexComponent implements OnInit, AfterViewInit {
     descriptionFontType : 'subtitle-1-regular'
   };
 
-  shopsCarouselBannerImages = [
-    {
-      imgSrcForDesktop : this.imageHost + '/intro/main/2019-04-01/main1.jpg',
-      srcSetForDesktop : this.imageHost + '/intro/main/2019-04-01/main1.jpg?d=w1920-h400 1920w,' + this.imageHost + '/intro/main/2019-04-01/main1.jpg?d=w2400-h500 2400w,' + this.imageHost + '/intro/main/2019-04-01/main1.jpg 3840w',
-      imgSrcForMobile : this.imageHost + '/intro/main/2019-04-01/main-mobile1.jpg',
-      srcSetForMobile : this.imageHost + '/intro/main/2019-04-01/main-mobile1.jpg 640w',
-      // marginLeftForText : '6.2%',
-      title : [],
-      titleFontType : '',
-      description : [],
-      descriptionFontType : ''
-    },
-    {
-      // imgSrc : 'https://img.onpicks.com/intro/main/2019-04-01/main2.jpg',
-      imgSrcForDesktop : this.imageHost + '/intro/main/2019-04-01/main2.jpg',
-      srcSetForDesktop : this.imageHost + '/intro/main/2019-04-01/main2.jpg?d=w1920-h400 1920w,' + this.imageHost + '/intro/main/2019-04-01/main2.jpg?d=w2400-h500 2400w,' + this.imageHost + '/intro/main/2019-04-01/main2.jpg 3840w',
-      imgSrcForMobile : this.imageHost + '/intro/main/2019-04-01/main-mobile2.jpg',
-      srcSetForMobile : this.imageHost + '/intro/main/2019-04-01/main-mobile2.jpg 640w',
-      // marginLeftForText : '6.2%',
-      title : [],
-      titleFontType : '',
-      description : [],
-      descriptionFontType : ''
-    }
-  ];
+  shopsCarouselBannerImages = {
+    kr : [
+        {
+          imgSrcForDesktop : this.imageHost + '/intro/main/2019-04-01/main1.jpg',
+          srcSetForDesktop : this.imageHost + '/intro/main/2019-04-01/main1.jpg?d=w1920-h400 1920w,' + this.imageHost + '/intro/main/2019-04-01/main1.jpg?d=w2400-h500 2400w,' + this.imageHost + '/intro/main/2019-04-01/main1.jpg 3840w',
+          imgSrcForMobile : this.imageHost + '/intro/main/2019-04-01/main-mobile1.jpg',
+          srcSetForMobile : this.imageHost + '/intro/main/2019-04-01/main-mobile1.jpg 640w',
+          // marginLeftForText : '6.2%',
+          title : [],
+          titleFontType : '',
+          description : [],
+          descriptionFontType : ''
+        },
+        {
+          // imgSrc : 'https://img.onpicks.com/intro/main/2019-04-01/main2.jpg',
+          imgSrcForDesktop : this.imageHost + '/intro/main/2019-04-01/main2.jpg',
+          srcSetForDesktop : this.imageHost + '/intro/main/2019-04-01/main2.jpg?d=w1920-h400 1920w,' + this.imageHost + '/intro/main/2019-04-01/main2.jpg?d=w2400-h500 2400w,' + this.imageHost + '/intro/main/2019-04-01/main2.jpg 3840w',
+          imgSrcForMobile : this.imageHost + '/intro/main/2019-04-01/main-mobile2.jpg',
+          srcSetForMobile : this.imageHost + '/intro/main/2019-04-01/main-mobile2.jpg 640w',
+          // marginLeftForText : '6.2%',
+          title : [],
+          titleFontType : '',
+          description : [],
+          descriptionFontType : ''
+        }
+    ],
+    us : [
+      {
+        imgSrcForDesktop : this.imageHost + '/intro/main/us/main1.jpg',
+        srcSetForDesktop : this.imageHost + '/intro/main/us/main1.jpg?d=w1920-h400 1920w,' + this.imageHost + '/intro/main/2019-04-01/main1.jpg?d=w2400-h500 2400w,' + this.imageHost + '/intro/main/2019-04-01/main1.jpg 3840w',
+        imgSrcForMobile : this.imageHost + '/intro/main/us/main-mobile1.jpg',
+        srcSetForMobile : this.imageHost + '/intro/main/us/main-mobile1.jpg 640w',
+        // marginLeftForText : '6.2%',
+        title : [],
+        titleFontType : '',
+        description : [],
+        descriptionFontType : ''
+      }
+    ]
+  }
 
   // https://s3.ap-northeast-2.amazonaws.com/img.onpicks.com/onpicks_banner_banner_3840x800.png
   popularCategory = [
@@ -206,7 +221,6 @@ export class ShopsIndexComponent implements OnInit, AfterViewInit {
         ko : '인간 벚꽃이 되어 당신 주변에 이른 봄을 선물하는 건 어떨까요?',
         en : 'Discover our top selection of essential spring fragrances.'
       },
-
       filterSlug : {
         router : 'shops/c/beauty/fragrance',
       }
@@ -245,6 +259,7 @@ export class ShopsIndexComponent implements OnInit, AfterViewInit {
 
   constructor(
     @Inject(IMAGE_HOST) public imageHost: string,
+    @Inject(REGION_ID) public region: string,
     private uiDataService: UiService,
   ) {
     this.weeklyBest$ = this.uiDataService.getWeeklyBestGoods().pipe( tap( v => {

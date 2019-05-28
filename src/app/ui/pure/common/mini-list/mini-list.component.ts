@@ -1,14 +1,15 @@
 import {
+  AfterViewChecked,
   AfterViewInit,
   ChangeDetectionStrategy, ChangeDetectorRef,
-  Component,
+  Component, HostListener,
   Inject,
   Input,
   LOCALE_ID,
   OnDestroy,
   OnInit,
   Renderer2,
-  ViewChild,
+  ViewChild, ViewChildren,
 } from '@angular/core';
 import {APP_BASE_HREF} from '@angular/common';
 import {select, Store} from '@ngrx/store';
@@ -24,8 +25,8 @@ import {BreakpointObserver, BreakpointState} from '../../../../../../node_module
   styleUrls: ['./mini-list.component.scss'],
   changeDetection : ChangeDetectionStrategy.OnPush
 })
-export class MiniListComponent implements OnInit, OnDestroy {
-
+export class MiniListComponent implements OnInit, OnDestroy, AfterViewChecked {
+  @ViewChildren('itemList') itemList;
   @ViewChild('insertTitle') insertTitle;
   @ViewChild('container') container;
   @Input('carouselLength') carouselLength = 4;
@@ -41,6 +42,7 @@ export class MiniListComponent implements OnInit, OnDestroy {
   cartStore;
 
   translateXWidth = 288;
+  isFirstCalcTranslateXWidth = false;
   isFirstBreakPoint = false;
 
   constructor(
@@ -74,7 +76,21 @@ export class MiniListComponent implements OnInit, OnDestroy {
         }
       });
   }
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    const computedStyle = getComputedStyle(( this.itemList.first.nativeElement ), null);
+    this.translateXWidth =  parseInt(computedStyle.width, 10 ) + parseInt(computedStyle.marginRight, 10);
+  }
+  ngAfterViewChecked() {
 
+    if (this.itemList.first === undefined || this.isFirstCalcTranslateXWidth ){
+      return ;
+    }
+
+    const computedStyle = getComputedStyle(( this.itemList.first.nativeElement ), null);
+    this.translateXWidth =  parseInt(computedStyle.width, 10 ) + parseInt(computedStyle.marginRight, 10);
+    this.isFirstCalcTranslateXWidth = true;
+  }
 
   goBrandFilter(xBrand) {
     this.router.navigate(['/shops/search'], { queryParams: { page: 1, ordering: 'most_popular', brand: xBrand}, queryParamsHandling: 'merge'} );
