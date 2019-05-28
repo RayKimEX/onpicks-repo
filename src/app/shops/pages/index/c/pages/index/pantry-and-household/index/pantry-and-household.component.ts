@@ -1,8 +1,9 @@
-import {ChangeDetectionStrategy, Component, Inject, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Inject, LOCALE_ID, OnInit} from '@angular/core';
 import {ActivatedRoute, Params} from '@angular/router';
 import {UiService} from '../../../../../../../../core/service/ui/ui.service';
 import {Meta, Title} from '@angular/platform-browser';
 import {IMAGE_HOST} from '../../../../../../../../core/global-constant/app.config';
+import {TITLE_MAP} from '../../../../../../../../core/global-constant/app.locale';
 
 @Component({
   selector: 'onpicks-pantry-and-household',
@@ -198,12 +199,14 @@ export class PantryAndHouseholdComponent implements OnInit {
 
   constructor(
     @Inject(IMAGE_HOST) public imageHost: string,
+    @Inject(TITLE_MAP) public titleMap: string,
+    @Inject(LOCALE_ID) public locale: string,
     public route: ActivatedRoute,
     private uiDataService: UiService,
     private titleService: Title,
     private meta: Meta
   ) {
-    this.titleService.setTitle('식품·생활용품')
+    this.titleService.setTitle(this.titleMap['pantry-and-household'][this.locale]);
     // this.meta.addTag({ name: 'description', content: '프리미엄 라이프스타일' });
     this.popularBrand$ = this.uiDataService.getPopularBrands('pantry-and-household');
   }

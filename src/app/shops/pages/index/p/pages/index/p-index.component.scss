@@ -60,8 +60,9 @@ onpicks-loading-icon {
     display:inline-block;
     &--price {
       &--svg{
+        vertical-align: text-bottom;
         display:inline-block;
-        margin-right : 0.8rem;
+        margin-right : 0.4rem;
       }
 
       &-discount {
@@ -83,6 +84,9 @@ onpicks-loading-icon {
 
 
     &--reviews {
+      &--read-reviews {
+        margin-left: 0.8rem;
+      }
     }
   }
 

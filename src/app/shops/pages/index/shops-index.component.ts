@@ -1,8 +1,9 @@
-import {AfterViewInit, ChangeDetectionStrategy, Component, Inject, OnInit} from '@angular/core';
+import {AfterViewInit, ChangeDetectionStrategy, Component, Inject, LOCALE_ID, OnInit} from '@angular/core';
 import {UiService} from '../../../core/service/ui/ui.service';
 import {tap} from 'rxjs/operators';
 import {Title} from '@angular/platform-browser';
 import {IMAGE_HOST} from '../../../core/global-constant/app.config';
+import {TITLE_MAP} from '../../../core/global-constant/app.locale';
 
 @Component({
   selector: 'onpicks-shops-index',
@@ -243,11 +244,9 @@ export class ShopsIndexComponent implements OnInit, AfterViewInit {
   valueList$;
 
   constructor(
-    private uiDataService: UiService,
-    private titleService: Title,
     @Inject(IMAGE_HOST) public imageHost: string,
+    private uiDataService: UiService,
   ) {
-    this.titleService.setTitle( '온픽스, 건강하고 아름다운 삶을 위한 선택' );
     this.weeklyBest$ = this.uiDataService.getWeeklyBestGoods().pipe( tap( v => {
       console.log(v);
     }) );

@@ -37,7 +37,7 @@ import 'hammerjs';
 import {BehaviorSubject} from 'rxjs';
 import {CATEGORY_CODE_MAP, CATEGORY_CODE_MAP_CONST, CATEGORY_MAP, CATEGORY_MAP_CONST} from './core/global-constant/app.category-database-long';
 import {CATEGORY_SECOND_MAP, CATEGORY_SECOND_MAP_CONST} from './core/global-constant/app.category-database-short';
-import {MENU_MAP, MENU_MAP_CONST, PREFERENCE_MAP, PREFERENCE_MAP_CONST, REPORT_REASON_MAP, REPORT_REASON_MAP_CONST} from './core/global-constant/app.locale';
+import {MENU_MAP, MENU_MAP_CONST, PREFERENCE_MAP, PREFERENCE_MAP_CONST, REPORT_REASON_MAP, REPORT_REASON_MAP_CONST, TITLE_MAP, TITLE_MAP_CONST} from './core/global-constant/app.locale';
 import {STATE_LIST, STATE_LIST_CONST} from './core/global-constant/app.database';
 // export function getBaseHref(platformLocation: PlatformLocation): string {
 //   return platformLocation.getBaseHrefFromDOM();
@@ -218,6 +218,10 @@ export function getCurrency() {
     {
       provide: CATEGORY_CODE_MAP,
       useValue : CATEGORY_CODE_MAP_CONST,
+    },
+    {
+      provide : TITLE_MAP,
+      useValue : TITLE_MAP_CONST
     },
     {
       provide : MENU_MAP,

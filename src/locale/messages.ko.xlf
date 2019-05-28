@@ -1397,8 +1397,48 @@
         </context-group>
       </trans-unit>
 
+      <trans-unit id="word__order-number" datatype="html">
+        <target>주문번호</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
 
-      <!--Sentence-->w
+      <!--Sentence-->
+
+      <trans-unit id="sentence__shop-more-pay-less" datatype="html">
+        <target>담을수록 추가 할인</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="sentence__people-also-looked-at" datatype="html">
+        <target>이 상품 구매자가 함께 본 상품</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+
+      <trans-unit id="sentence__select--option" datatype="html">
+        <target>옵션 선택하기</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="sentence__thank-you-for-order" datatype="html">
+        <target>주문이 완료되었습니다</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
 
       <trans-unit id="sentence__please-sign-in-to-onpicks" datatype="html">
         <target>로그인 후 이용 가능합니다</target>

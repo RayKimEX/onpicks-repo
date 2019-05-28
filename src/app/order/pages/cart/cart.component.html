@@ -375,11 +375,24 @@
                 </ng-container>
 
               </ng-container>
-              <div
-                *ngIf="!((item.location.free_shipping_threshold - (item.subtotal - item.shipping_fee)) > 0)"
-                class="cart__delivery-multi-purchase--remain-description subtitle-2-bold">
-                {{item.location.name}} 무료배송 조건이 충족되었습니다.
-              </div>
+              <ng-container [ngSwitch]="locale">
+                <ng-container *ngSwitchCase="'ko'">
+                  <div
+                    *ngIf="!((item.location.free_shipping_threshold - (item.subtotal - item.shipping_fee)) > 0)"
+                    class="cart__delivery-multi-purchase--remain-description subtitle-2-bold">
+                    {{item.location.name}} 무료배송 조건이 충족되었습니다.
+                  </div>
+                </ng-container>
+
+                <ng-container *ngSwitchCase="'en'">
+                  <div
+                    *ngIf="!((item.location.free_shipping_threshold - (item.subtotal - item.shipping_fee)) > 0)"
+                    class="cart__delivery-multi-purchase--remain-description subtitle-2-bold">
+                    You've earned {{item.location.name}} FREE shipping!
+                  </div>
+                </ng-container>
+              </ng-container>
+
               <ui-progressive-bar
                 [progressWidth]="
                   ((((item.subtotal - item.shipping_fee) /

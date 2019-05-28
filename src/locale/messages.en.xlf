@@ -1416,8 +1416,50 @@
         </context-group>
       </trans-unit>
 
+      <trans-unit id="word__order-number" datatype="html">
+        <target>Order Number</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+
 
       <!--Sentence-->
+
+      <trans-unit id="sentence__shop-more-pay-less" datatype="html">
+        <target>Shop more, pay less</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="sentence__people-also-looked-at" datatype="html">
+        <target>People Also Looked At</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+
+      <trans-unit id="sentence__select--option" datatype="html">
+        <target>Select Option</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="sentence__thank-you-for-order" datatype="html">
+        <target>Thank you for your order.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
 
       <trans-unit id="sentence__please-sign-in-to-onpicks" datatype="html">
         <target>Please sign in to Onpicks</target>

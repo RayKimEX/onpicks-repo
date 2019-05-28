@@ -5,7 +5,7 @@ import {select, Store} from '@ngrx/store';
 import {
   ChangeDetectionStrategy, ChangeDetectorRef,
   Component,
-  ElementRef, HostListener, Inject, OnDestroy, OnInit,
+  ElementRef, HostListener, Inject, LOCALE_ID, OnDestroy, OnInit,
   Renderer2,
   ViewChild
 } from '@angular/core';
@@ -68,6 +68,7 @@ export class PIndexComponent implements OnInit, OnDestroy {
     @Inject( CURRENCY ) public currency: BehaviorSubject<any>,
     @Inject( LOCATION_MAP ) public locationMap: any,
     @Inject( RESPONSIVE_MAP ) public responsiveMap,
+    @Inject( LOCALE_ID ) public locale: string,
     private breakpointObserver:  BreakpointObserver,
     private cd: ChangeDetectorRef,
     private store: Store<any>,

@@ -1,7 +1,8 @@
-import {ChangeDetectionStrategy, Component, Inject, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Inject, LOCALE_ID, OnInit} from '@angular/core';
 import {UiService} from '../../../../../../../../core/service/ui/ui.service';
 import {Meta, Title} from '@angular/platform-browser';
 import {IMAGE_HOST} from '../../../../../../../../core/global-constant/app.config';
+import {TITLE_MAP} from '../../../../../../../../core/global-constant/app.locale';
 
 @Component({
   selector: 'onpicks-beauty',
@@ -133,11 +134,13 @@ export class BeautyIndexComponent implements OnInit {
 
   constructor(
     @Inject(IMAGE_HOST) public imageHost: string,
+    @Inject(TITLE_MAP) public titleMap: string,
+    @Inject(LOCALE_ID) public locale: string,
     private uiDataService: UiService,
     private titleService: Title,
     private meta: Meta
   ) {
-    this.titleService.setTitle('뷰티');
+    this.titleService.setTitle(this.titleMap['beauty'][this.locale]);
     // this.meta.addTag({ name: 'description', content: '유러피안 럭셔리 뷰티' });
     this.popularBrand$ = this.uiDataService.getPopularBrands('beauty');
   }

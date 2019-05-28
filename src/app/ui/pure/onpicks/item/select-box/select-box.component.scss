@@ -32,7 +32,7 @@
     &--outer {
       display:inline-block;
       width : 8.3rem;
-      background:url(https://img.onpicks.com/assets/arrow_for_select_box_png.png) no-repeat right;
+      background:url(https://img.onpicks.com/assets/misc/arrow_for_select.png) no-repeat right;
       background-size : 18px 10px;
       background-position : 80%;
       border-radius : 2px;
@@ -41,6 +41,9 @@
   }
 
   &__fore-button {
+    transition-property: border, box-shadow;
+    transition-duration: 200ms;
+    transition-timing-function: ease;
     border-radius: 2px;
     border : solid 1px $color-light-grey;
     display:inherit;
@@ -109,6 +112,20 @@
       }
     }
   }
+}
+
+
+.error-shadow {
+
+  &:focus {
+    box-shadow: $color-red 0px 0px 6px 0px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: $color-red;
+    border-image: initial;
+    outline: none;
+  }
+
 }
 //border-radius: 2px;
 //border : solid 1px $color-light-grey;

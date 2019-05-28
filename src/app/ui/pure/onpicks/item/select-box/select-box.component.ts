@@ -23,6 +23,7 @@ export class SelectBoxComponent implements OnInit, OnChanges {
   @Input('scrollMin') scrollMin;
   @Input('multiLanguage') multiLanguage = false;
   @Input('isNativeSelectBox') isNativeSelectBox = false;
+  @Input('errorEffect') errorEffect = false;
   @Input('selectedElement') set selectedElement(xSelectedElement) {
 
     setTimeout( () => {

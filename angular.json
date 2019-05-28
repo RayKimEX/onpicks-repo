@@ -37,7 +37,7 @@
             "scripts": []
           },
           "configurations": {
-            "production": {
+            "production-en": {
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
@@ -45,7 +45,7 @@
                 },
                 {
                   "replace": "src/index.html",
-                  "with": "src/index.prod.html"
+                  "with": "src/index.prod-en.html"
                 }
               ],
               "optimization": true,
@@ -58,7 +58,7 @@
               "vendorChunk": false,
               "buildOptimizer": true
             },
-            "staging": {
+            "production-ko": {
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
@@ -66,7 +66,7 @@
                 },
                 {
                   "replace": "src/index.html",
-                  "with": "src/index.staging.html"
+                  "with": "src/index.prod-ko.html"
                 }
               ],
               "optimization": true,
@@ -79,36 +79,74 @@
               "vendorChunk": false,
               "buildOptimizer": true
             },
-            "ko": {
+            "staging-en": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                },
+                {
+                  "replace": "src/index.html",
+                  "with": "src/index.staging-en.html"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true
+            },
+            "staging-ko": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                },
+                {
+                  "replace": "src/index.html",
+                  "with": "src/index.staging-ko.html"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true
+            },
+            "local-ko": {
+              "fileReplacements": [
+                {
+                  "replace": "src/index.html",
+                  "with": "src/index.local-ko.html"
+                }
+              ],
               "outputPath": "dist/ko/",
               "i18nFile": "src/locale/messages.ko.xlf",
-              "aot": true,
               "i18nFormat": "xlf",
               "i18nLocale": "ko",
               "i18nMissingTranslation": "error"
             },
-            "en": {
-              "outputPath": "dist/en/",
-              "i18nFile": "src/locale/messages.en.xlf",
-              "aot": true,
-              "i18nFormat": "xlf",
-              "i18nLocale": "en",
-              "i18nMissingTranslation": "error"
-            },
-            "serveKo": {
-              "outputPath": "dist/ko/",
-              "i18nFile": "src/locale/messages.ko.xlf",
-              "i18nFormat": "xlf",
-              "i18nLocale": "ko",
-              "i18nMissingTranslation": "error"
-            },
-            "serveEn": {
+            "local-en": {
+              "fileReplacements": [
+                {
+                  "replace": "src/index.html",
+                  "with": "src/index.local-en.html"
+                }
+              ],
               "outputPath": "dist/en/",
               "i18nFile": "src/locale/messages.en.xlf",
               "i18nFormat": "xlf",
               "i18nLocale": "en",
               "i18nMissingTranslation": "error"
-            }
+            },
           }
         },
         "serve": {
@@ -120,11 +158,11 @@
             "production": {
               "browserTarget": "onpicks:build:production"
             },
-            "ko": {
-              "browserTarget": "onpicks:build:serveKo"
+            "local-ko": {
+              "browserTarget": "onpicks:build:local-ko"
             },
-            "en": {
-              "browserTarget": "onpicks:build:serveEn"
+            "local-en": {
+              "browserTarget": "onpicks:build:local-en"
             }
           }
         },

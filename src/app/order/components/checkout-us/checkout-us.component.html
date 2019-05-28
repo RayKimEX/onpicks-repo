@@ -15,7 +15,7 @@
             #inputFullName
             [width]="'40.8rem'"
             [errorEffect]="checkBitWise(EMPTY_FULL_NAME)"
-            (focusout)="fullNameCheck()"
+            (focusout)="fullNameCheck(true)"
             class="checkout--input"
             [placeholder]="'Enter'">
           </onpicks-input-box>
@@ -28,7 +28,7 @@
             #inputAddressName
             [width]="'40.8rem'"
             [errorEffect]="checkBitWise(EMPTY_ADDRESS_NAME)"
-            (focusout)="addressNameCheck()"
+            (focusout)="addressNameCheck(true)"
             class="checkout--input"
             [placeholder]="'Enter'">
           </onpicks-input-box>
@@ -63,10 +63,11 @@
         <div class="checkout--block">
           <div class="checkout--subtitle subtitle-2-regular">*State</div>
           <onpicks-select-box
+            [errorEffect]="checkBitWise(EMPTY_STATE)"
             (changeEvent)="currentState($event)"
             class="checkout--state-select-box"
             [sortList]="stateList"
-            [selectedElement]="{ value : findState }">
+            [selectedElement]="{ value : stripePaymentData.state }">
           </onpicks-select-box>
           <div *ngIf="checkBitWise(EMPTY_STATE)" class="checkout--error">This is a required field.</div>
         </div>
@@ -75,14 +76,26 @@
           <div class="checkout--subtitle subtitle-2-regular">*City</div>
           <onpicks-input-box
             #inputCity
-            (focusout)="cityCheck()"
+            (focusout)="cityCheck(true)"
             [errorEffect]="checkBitWise(EMPTY_CITY)"
-            [value]="inputCityValue"
             [width]="'40.8rem'"
             class="checkout--input"
             [placeholder]="'Enter'">
           </onpicks-input-box>
           <div *ngIf="checkBitWise(EMPTY_CITY)" class="checkout--error">This is a required field.</div>
+        </div>
+
+        <div class="checkout--block">
+          <div class="checkout--subtitle subtitle-2-regular">*Phone</div>
+          <onpicks-input-box
+            #inputPhone
+            (focusout)="phoneCheck(true)"
+            [errorEffect]="checkBitWise(INVALID_PHONE_NUMBER)"
+            [width]="'40.8rem'"
+            class="checkout--input"
+            [placeholder]="'Enter'">
+          </onpicks-input-box>
+          <div *ngIf="checkBitWise(INVALID_PHONE_NUMBER)" class="checkout--error">Please enter a valid 10-digit phone number including area code</div>
         </div>
       </div>
 

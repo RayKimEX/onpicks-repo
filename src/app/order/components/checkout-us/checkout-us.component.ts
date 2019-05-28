@@ -28,6 +28,7 @@ export class CheckoutUsComponent implements OnInit, AfterViewInit {
   @ViewChild('inputAddressName', { read : ElementRef}) inputAddressName;
   @ViewChild('inputFloor', { read : ElementRef}) inputFloor;
   @ViewChild('inputCity', { read : ElementRef}) inputCity;
+  @ViewChild('inputPhone', { read : ElementRef}) inputPhone;
 
   @ViewChild('paypalPayment') paypalPayment;
 
@@ -51,10 +52,10 @@ export class CheckoutUsComponent implements OnInit, AfterViewInit {
 
   readonly EMPTY_FULL_NAME = 0b000000000001;
   readonly EMPTY_ADDRESS_NAME = 0b000000000010;
-  readonly PARTIAL_ZIP_CODE = 0b000000000100;
   readonly INCORRECT_ZIP_CODE = 0b000000001000;
   readonly EMPTY_STATE = 0b000000100000;
   readonly EMPTY_CITY = 0b000001000000;
+  readonly INVALID_PHONE_NUMBER = 0b000010000000;
 
   errorStatus = 0;
 
@@ -63,7 +64,6 @@ export class CheckoutUsComponent implements OnInit, AfterViewInit {
   paypalScript;
   initialGroup: FormGroup;
   stripe;
-  findState = null;
 
 
   /***********City Input*************/
@@ -76,9 +76,10 @@ export class CheckoutUsComponent implements OnInit, AfterViewInit {
     'street_address_1': '',
     'street_address_2': '',
     'city': '',
-    'state': '',
+    'state': null,
     'country': '',
-    'zip_code': ''
+    'zip_code': '',
+    'phone_number': ''
   }
 
   stripeCard;
@@ -207,17 +208,20 @@ export class CheckoutUsComponent implements OnInit, AfterViewInit {
 
   currentState(xData) {
     this.inputZipCode.nativeElement.children[0].value = '';
-    this.inputCityValue = '';
+    this.inputCity.nativeElement.children[0].value = '';
     this.stripePaymentData.state = xData.value;
     console.log(xData);
   }
 
   stripePayemnt() {
 
-    this.fullNameCheck();
-    this.addressNameCheck();
-    this.cityCheck();
-    this.zipCodeCheck();
+    this.fullNameCheck(false);
+    this.addressNameCheck(false);
+    this.stateCheck();
+    this.cityCheck(false);
+    this.zipCodeCheck(false);
+    this.phoneCheck(false);
+
 
     if( this.errorStatus !== 0 ) { return; }
 
@@ -226,10 +230,9 @@ export class CheckoutUsComponent implements OnInit, AfterViewInit {
     this.stripePaymentData.street_address_1 = this.inputAddressName.nativeElement.children[0].value;
     this.stripePaymentData.street_address_2 = this.inputFloor.nativeElement.children[0].value;
     this.stripePaymentData.zip_code = this.inputZipCode.nativeElement.children[0].value;
+    this.stripePaymentData.phone_number = this.inputPhone.nativeElement.children[0].value;
 
-
-    console.log('###########################')
-
+    console.log(this.stripePaymentData.phone_number);
     const that = this;
     this.stripe.createToken(this.stripeCard).then(function(result) {
 
@@ -259,16 +262,20 @@ export class CheckoutUsComponent implements OnInit, AfterViewInit {
   }
 
   callGeocodingAPI() {
-    if ( this.inputZipCode.nativeElement.children[0].value.length < 5 ){
-      this.errorStatus &= ~this.INCORRECT_ZIP_CODE;
-      this.errorStatus |= this.PARTIAL_ZIP_CODE;
+    console.log(this.inputZipCode.nativeElement.children[0].value.length);
+    if ( this.inputZipCode.nativeElement.children[0].value.length !== 0 && this.inputZipCode.nativeElement.children[0].value.length < 5 ){
+      this.errorStatus |= this.INCORRECT_ZIP_CODE;
       return ;
+    } else if (this.inputZipCode.nativeElement.children[0].value.length === 0) {
+      this.errorStatus &= ~this.INCORRECT_ZIP_CODE;
+      return;
+    } else {
+      this.errorStatus &= ~this.INCORRECT_ZIP_CODE;
     }
 
     this.httpClient.get('https://maps.googleapis.com/maps/api/geocode/json?address=' + this.inputZipCode.nativeElement.children[0].value + '&key=AIzaSyDNrW4gjz_0GmK6aQmCWv7ebp_xqfO3VdE&language=en')
       .subscribe( val => {
         if ( val['status'] === 'ZERO_RESULTS' ) {
-          this.errorStatus &= ~this.PARTIAL_ZIP_CODE;
           this.errorStatus |= this.INCORRECT_ZIP_CODE;
           return ;
         }
@@ -290,7 +297,7 @@ export class CheckoutUsComponent implements OnInit, AfterViewInit {
               typeValidCnt++;
               console.log('#' + typeValidCnt);
               if ( typeValidCnt === 2 ) {
-                this.inputCityValue = item.long_name;
+                this.inputCity.nativeElement.children[0].value = item.long_name;
                 cityFind = true;
                 console.log(this.inputCityValue);
               }
@@ -301,7 +308,7 @@ export class CheckoutUsComponent implements OnInit, AfterViewInit {
               typeValidCnt++;
               console.log('#' + typeValidCnt);
               if ( typeValidCnt === 2 ) {
-                this.inputCityValue = item.long_name;
+                this.inputCity.nativeElement.children[0].value = item.long_name;
                 console.log(this.inputCityValue);
                 cityFind = true;
               }
@@ -310,38 +317,60 @@ export class CheckoutUsComponent implements OnInit, AfterViewInit {
             if ( type === 'political' || type === 'administrative_area_level_1') {
               typeValidCnt++;
               if ( typeValidCnt === 2 ) {
-                this.findState = item.short_name;
+                this.stripePaymentData.state = item.short_name;
               }
             }
           });
 
+
           this.cd.markForCheck();
         });
+        this.stateCheck();
+        this.cityCheck(false);
+        this.zipCodeCheck(false);
       });
   }
 
-  zipCodeCheck() {
-    if ( this.inputZipCode.nativeElement.children[0].value.length < 5 ){
-      this.errorStatus &= ~this.INCORRECT_ZIP_CODE;
-      this.errorStatus |= this.PARTIAL_ZIP_CODE;
+  zipCodeCheck(isFocusOut) {
+    if (isFocusOut && this.inputZipCode.nativeElement.children[0].value === '') {
+      return;
+    }
+
+    if ( this.inputZipCode.nativeElement.children[0].value.length < 5 ) {
+      this.errorStatus |= this.INCORRECT_ZIP_CODE;
     } else {
-      this.errorStatus &= ~this.PARTIAL_ZIP_CODE;
+      this.errorStatus &= ~this.INCORRECT_ZIP_CODE;
     }
   }
 
   /* validation */
 
-  fullNameCheck() {
-    console.log(this.inputFullName.nativeElement.children[0].value);
+  stateCheck() {
+    // EMPTY_STATE
+    if ( this.stripePaymentData.state === null ) {
+      this.errorStatus |= this.EMPTY_STATE;
+    } else {
+      this.errorStatus &= ~this.EMPTY_STATE;
+    }
+  }
+
+  fullNameCheck(isFocusOut) {
+    if (isFocusOut && this.inputFullName.nativeElement.children[0].value === '') {
+      return;
+    }
+
     if ( this.inputFullName.nativeElement.children[0].value === '' ) {
       this.errorStatus |= this.EMPTY_FULL_NAME;
     } else {
       this.errorStatus &= ~this.EMPTY_FULL_NAME;
     }
-    console.log(this.errorStatus);
   }
 
-  addressNameCheck() {
+  addressNameCheck(isFocusOut) {
+    if (isFocusOut && this.inputAddressName.nativeElement.children[0].value === '') {
+      return;
+    }
+
     if ( this.inputAddressName.nativeElement.children[0].value === '') {
       this.errorStatus |= this.EMPTY_ADDRESS_NAME;
     } else {
@@ -349,12 +378,36 @@ export class CheckoutUsComponent implements OnInit, AfterViewInit {
     }
   }
 
-  cityCheck() {
-    console.log(this.inputCity);
+  cityCheck(isFocusOut) {
+    if (isFocusOut && this.inputCity.nativeElement.children[0].value === '') {
+      return;
+    }
+
     if ( this.inputCity.nativeElement.children[0].value === '') {
       this.errorStatus |= this.EMPTY_CITY;
     } else {
       this.errorStatus &= ~this.EMPTY_CITY;
     }
+
+    this.cd.markForCheck();
+  }
+
+  phoneCheck(isFocusOut) {
+
+    if (isFocusOut && this.inputPhone.nativeElement.children[0].value === '') {
+      return;
+    }
+    const patt1 = new RegExp('^[0-9]{3}-[0-9]{3}-[0-9]{4}$');
+    const patt2 = new RegExp('^[0-9]{10}$');
+
+    console.log(patt2.test(this.inputPhone.nativeElement.children[0].value));
+    if ( patt1.test( this.inputPhone.nativeElement.children[0].value)) {
+      this.errorStatus &= ~this.INVALID_PHONE_NUMBER;
+    } else if ( patt2.test(this.inputPhone.nativeElement.children[0].value)) {
+      this.errorStatus &= ~this.INVALID_PHONE_NUMBER;
+    } else {
+      this.errorStatus |= this.INVALID_PHONE_NUMBER;
+    }
+
   }
 }

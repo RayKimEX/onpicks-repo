@@ -2,6 +2,24 @@
 // 신고하기 기능
 import {InjectionToken} from '@angular/core';
 
+
+export const TITLE_MAP = new InjectionToken<any>( './core/global-constant/app.locale');
+export const TITLE_MAP_CONST = {
+  'main' : {
+    ko : '온픽스, 건강하고 아름다운 삶을 위한 선택',
+    en : 'Onpicks, Everyone deserves to have healthier choices'
+  },
+  'pantry-and-household' : {
+    ko : '식품·생활용품',
+    en : 'Pantry & Household'
+  },
+  'beauty' : {
+    ko : '뷰티',
+    en : 'Beauty'
+  }
+}
+
+
 export const PREFERENCE_MAP = new InjectionToken<any>( './core/global-constant/app.locale');
 export const PREFERENCE_MAP_CONST = {
   locale : {
