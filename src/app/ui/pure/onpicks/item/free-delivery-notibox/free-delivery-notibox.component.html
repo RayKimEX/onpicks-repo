@@ -28,7 +28,7 @@
               <div
                 *ngIf="(item.location.free_shipping_threshold - (item.subtotal - item.shipping_fee)) >= 0"
                 class="subtitle-2-regular">
-                {{item.location.free_shipping_threshold - (item.subtotal - item.shipping_fee) | onpicksCurrency : syncedData.currencyInfo}} to {{item.location.name}} Free Shipping
+                {{item.location.free_shipping_threshold - (item.subtotal - item.shipping_fee) | onpicksCurrency :  (currency| async)}} to {{item.location.name}} Free Shipping
               </div>
             </ng-container>
 
@@ -64,9 +64,8 @@
       (click)="goCart()"
       i18n="@@sentence__view-shopping-bag"
       class="free-delivery-notibox__amount-box--button"
-      [width]="'10.4rem'"
+      [width]="'auto'"
       [type]="'black'"
-      [padding]="false"
       [size]="'small'">
       쇼핑백 보기
     </onpicks-button>
