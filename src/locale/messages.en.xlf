@@ -1424,6 +1424,47 @@
         </context-group>
       </trans-unit>
 
+      <trans-unit id="word__privacy-notice" datatype="html">
+        <target>Privacy Notice</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="word__terms-of-use" datatype="html">
+        <target>Terms of Use</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+
+      <trans-unit id="word__cs-center" datatype="html">
+        <target>CS Center 1800-8109</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="word__cs-lunch-time" datatype="html">
+        <target>Lunch Hours 13:00~14:00</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="word__cs-off-time" datatype="html">
+        <target>Sat, Sun Off</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
 
 
       <!--Sentence-->

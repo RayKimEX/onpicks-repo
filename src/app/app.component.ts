@@ -257,11 +257,11 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit, DoCheck {
     // _haxhDj
     // TODO : 해당 아래코드를 AppComponent OnInit에 하지 말고, App.Module의 FactoryProvider를 통해 가능한지 ?
 
-    if ( this.locale !== 'ko' ) {
-      require( 'style-loader!./../assets/scss/typography/typography.ko.scss');
-    } else {
-      require( 'style-loader!./../assets/scss/typography/typography.en.scss');
-    }
+    // if ( this.locale !== 'ko' ) {
+    //   require( 'style-loader!./../assets/scss/typography/typography.ko.scss');
+    // } else {
+    //   require( 'style-loader!./../assets/scss/typography/typography.en.scss');
+    // }
   }
 
   plusFriendChat() {

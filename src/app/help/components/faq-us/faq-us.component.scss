@@ -1,0 +1,30 @@
+@import '~src/assets/scss/abstracts/variables';
+
+
+
+.faq__contents {
+  @include respond(actb){
+    width : 100%;
+  }
+}
+.faq__title {
+  margin-bottom : 2.4rem;
+}
+
+.faq__sub-title {
+  margin-bottom: 1.6rem;
+}
+
+
+p {
+  margin-bottom: 2.4rem;
+  white-space : pre-line;
+}
+
+ul {
+  margin-bottom: 2.4rem;
+
+  li {
+    margin-left : 2.4rem;
+  }
+}

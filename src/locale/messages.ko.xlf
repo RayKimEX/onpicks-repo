@@ -1405,6 +1405,48 @@
         </context-group>
       </trans-unit>
 
+
+      <trans-unit id="word__privacy-notice" datatype="html">
+        <target>개인정보 처리 방침</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="word__terms-of-use" datatype="html">
+        <target>이용약관</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="word__cs-center" datatype="html">
+        <target>고객 센터 1800-8109</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="word__cs-lunch-time" datatype="html">
+        <target>점심시간 13:00 ~ 14:00</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="word__cs-off-time" datatype="html">
+        <target>토, 일, 공휴일 휴무</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+
       <!--Sentence-->
 
       <trans-unit id="sentence__coming-soon" datatype="html">
