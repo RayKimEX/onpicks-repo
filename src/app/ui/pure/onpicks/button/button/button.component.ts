@@ -11,8 +11,11 @@ export class ButtonComponent implements OnInit {
   @Input('type') type;
   @Input('size') size;
   @Input('text') text;
+  @Input('float') float;
   @Input('marginLeft') marginLeft;
   @Input('padding') padding = true;
+
+
 
   constructor() {
 

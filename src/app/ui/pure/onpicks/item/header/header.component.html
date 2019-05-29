@@ -297,17 +297,17 @@
               </div>
             </div>
           </li>
-          <li class="header__mobile-hamburger--li">
+          <li *ngIf="region === 'kr'" class="header__mobile-hamburger--li">
             <div
               (click)="routeForMobile('/account/settings/delivery-address', inputCheckedForToggle)">
               <div
-                i18n="@@word__shipping"
+                i18n="@@delivery-address__title"
                 class="u-button-effect">
-                배송비
+                배송지
               </div>
             </div>
           </li>
-          <li class="header__mobile-hamburger--li">
+          <li *ngIf="region === 'kr'" class="header__mobile-hamburger--li">
             <div
               (click)="routeForMobile('/account/settings/refund', inputCheckedForToggle)">
               <div

@@ -1407,6 +1407,14 @@
 
       <!--Sentence-->
 
+      <trans-unit id="sentence__coming-soon" datatype="html">
+        <target>해당 카테고리는 준비중 입니다.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
       <trans-unit id="sentence__view-shopping-bag" datatype="html">
         <target>쇼핑백 보기</target>
         <context-group purpose="location">

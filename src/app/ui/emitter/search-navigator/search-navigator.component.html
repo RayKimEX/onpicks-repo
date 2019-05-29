@@ -384,9 +384,9 @@
                   [sortList]="sortList">
                 </onpicks-sort-box>
               </ng-container>
-              <ng-container *ngIf="currentList.length === 0">
+              <div i18n="@@sentence__coming-soon" *ngIf="currentList.length === 0" >
                 해당 카테고리는 준비중 입니다.
-              </ng-container>
+              </div>
             </ng-container>
           </h1>
           <div class="search-content__mobile-filter">
