@@ -1,6 +1,6 @@
 @import '~src/assets/scss/abstracts/variables';
 
-terms__contents {
+.terms__contents {
   @include respond(actb){
     width : 100%;
   }

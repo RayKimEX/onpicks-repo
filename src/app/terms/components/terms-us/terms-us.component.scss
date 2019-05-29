@@ -1,5 +1,11 @@
 @import '~src/assets/scss/abstracts/variables';
 
+.terms__contents {
+  @include respond(actb){
+    width : 100%;
+  }
+}
+
 h1 {
   @include h1-bold;
   margin-bottom : 2.4rem;
