@@ -17,18 +17,27 @@
 </onpicks-free-delivery-notibox>
 
 <div class="onpicks-padding">
-  <router-outlet></router-outlet>
+  <router-outlet
+    [ngStyle]="{ 'paddingTop' : (isSecondBreakPoint && activeUrl[2] === 'c') ? '9.9rem' : '6rem', 'display' : (isDesktopBreakPoint) ? 'block' : ''}">
+
+  </router-outlet>
 </div>
 
-<ui-footer [ngStyle]="{ paddingTop : deltaHeight }"></ui-footer>
+<ui-footer [ngStyle]="{ paddingTop : deltaHeight }">
+
+</ui-footer>
 
 <div *ngIf="region === 'kr'">
+  <span *ngIf="isKakaoSpeachBubble" class="kakao-speach-bubble u-cursor-pointer" (click)="isKakaoSpeachBubble = false"></span>
   <a
-    [ngStyle]="{ bottom : globalKakaoPosition }"
+    [ngStyle]="{ bottom : isDesktopBreakPoint ? globalKakaoPosition : '3rem' }"
     class="kakao-plus-friend"
     (click)="plusFriendChat()">
-    <img src="https://img.onpicks.com/assets/social/kakao-plus-friend.png"/>
+
+    <div class="kakao-plus-friend__image"></div>
   </a>
+
+  <!--kakao-plus-friend-desktop.jpg-->
 </div>
 
 <onpicks-modal
@@ -52,5 +61,3 @@
     </div>
   </div>
 </onpicks-modal>
-
-

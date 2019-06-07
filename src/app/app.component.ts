@@ -1,4 +1,4 @@
-import {AfterViewInit, ChangeDetectionStrategy, Component, DoCheck, ElementRef, Inject, LOCALE_ID, OnDestroy, OnInit, Renderer2, ViewChild} from '@angular/core';
+import {AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, DoCheck, ElementRef, Inject, isDevMode, LOCALE_ID, OnDestroy, OnInit, Renderer2, ViewChild} from '@angular/core';
 import {select, Store} from '@ngrx/store';
 import {AppState} from './core/store/app.reducer';
 import {TryGetAuthUser} from './core/store/auth/auth.actions';
@@ -12,8 +12,9 @@ import {BehaviorSubject, fromEvent} from 'rxjs';
 import {BreakpointObserver, BreakpointState} from '../../node_modules/@angular/cdk/layout';
 import {CURRENCY, REGION_ID, RESPONSIVE_MAP} from './core/global-constant/app.config';
 import {HideCurrencyModal} from './core/store/modal/modal.actions';
-import {PREFERENCE_MAP} from './core/global-constant/app.locale';
+import {PREFERENCE_MAP, TITLE_MAP} from './core/global-constant/app.locale';
 import {HttpClient} from '@angular/common/http';
+import {Title} from '@angular/platform-browser';
 
 @Component({
   selector: 'onpicks-root',
@@ -40,36 +41,60 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit, DoCheck {
   //
   clearSetTimeout;
   isDesktopBreakPoint = false;
+  isSecondBreakPoint = false;
+
+  // kakao speach bubble
+  isKakaoSpeachBubble = true;
 
   deltaHeight = 0;
   previousUrl = [];
 
+
+  activeUrl;
+
   constructor(
     @Inject(CATEGORY_CODE_MAP) public categoryMap,
     @Inject(RESPONSIVE_MAP) public responsiveMap,
-    @Inject(LOCALE_ID) public locale: string,
     @Inject(PREFERENCE_MAP) public preferenceMap,
     @Inject(REGION_ID) public region: string,
+    @Inject(TITLE_MAP) public titleMap: string,
+    @Inject(LOCALE_ID) public locale: string,
     @Inject(CURRENCY) public currency: BehaviorSubject<any>,
+    private titleService: Title,
     private store: Store<AppState>,
     private router: Router,
     private uiService: UiService,
     private renderer: Renderer2,
-    private breakpointObserver:  BreakpointObserver
+    private breakpointObserver:  BreakpointObserver,
+    private cd: ChangeDetectorRef
   ) {
     this.store.dispatch(new TryGetAuthUser());
     this.store.dispatch(new TryGetCartInfo());
     this.store.dispatch(new TryGetWishListInfo());
 
     this.breakpointObserver
+      .observe([this.responsiveMap['sb']])
+      .subscribe((state: BreakpointState) => {
+        if (state.matches) {
+          this.isSecondBreakPoint = true;
+          this.cd.markForCheck();
+        } else {
+          // this.mobileAlertTop = '11rem';
+          this.isSecondBreakPoint = false;
+          this.cd.markForCheck();
+        }
+      });
+
+    this.breakpointObserver
       .observe([this.responsiveMap['desktop']])
       .subscribe((state: BreakpointState) => {
         if (state.matches) {
           this.isDesktopBreakPoint = true;
-          // this.cd.markForCheck();
+          this.cd.markForCheck();
         } else {
           // this.mobileAlertTop = '11rem';
           this.isDesktopBreakPoint = false;
+          this.cd.markForCheck();
         }
       });
 
@@ -77,6 +102,7 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit, DoCheck {
       this.isCategoryLoaded = val.currentCategoryList.isLoaded;
       this.categoryLoadType = val.currentCategoryList.type;
       this.globalKakaoPosition = val.globalKakaoPosition;
+      this.activeUrl = val.activeUrl;
     })
 
     this.modalState$ = this.store.pipe(select( 'modal'));
@@ -164,7 +190,13 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit, DoCheck {
       }
 
       // category가 /c/안에 url이 아닐때 return;
-      if ( url[2] !== 'c' ) { return; };
+      if ( url[2] !== 'c' ) {
+        this.titleService.setTitle(this.titleMap['main'][this.locale]);
+        return;
+      } else {
+
+      }
+
 
       // twoDepth
       // example : shops/c/pantry/house
@@ -225,18 +257,20 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit, DoCheck {
     // _haxhDj
     // TODO : 해당 아래코드를 AppComponent OnInit에 하지 말고, App.Module의 FactoryProvider를 통해 가능한지 ?
 
-    if ( this.locale !== 'ko' ) {
-      require( 'style-loader!./../assets/scss/typography/typography.ko.scss');
-    } else {
-      require( 'style-loader!./../assets/scss/typography/typography.en.scss');
-    }
+    // if ( this.locale !== 'ko' ) {
+    //   require( 'style-loader!./../assets/scss/typography/typography.ko.scss');
+    // } else {
+    //   require( 'style-loader!./../assets/scss/typography/typography.en.scss');
+    // }
   }
 
   plusFriendChat() {
+
     // @ts-ignore
-    Kakao.PlusFriend.chat({
-      plusFriendId: '_haxhDj' // 플러스친구 홈 URL에 명시된 id로 설정합니다.
-    });
+    window.location.href = 'https://pf.kakao.com/_haxhDj';
+    // Kakao.PlusFriend.chat({
+    //   plusFriendId: '_haxhDj' // 플러스친구 홈 URL에 명시된 id로 설정합니다.
+    // });
   }
 
   goCartEvent(){
@@ -282,7 +316,11 @@ function setCookie(cname, cvalue ) {
   // const d = new Date();
   // d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
   // const expires = 'expires=' + d.toUTCString();
-  document.cookie = cname + '=' + cvalue + ';path=/';
+  if (isDevMode()) {
+    document.cookie = cname + '=' + cvalue + ';path=/';
+  } else {
+    document.cookie = cname + '=' + cvalue + ';domain=.onpicks.com;path=/';
+  }
 
   return 'KRW';
 }

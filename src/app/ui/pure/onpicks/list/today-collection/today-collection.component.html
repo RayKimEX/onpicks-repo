@@ -19,10 +19,12 @@
         <li #itemList *ngFor="let item of todayCollection" class="col-3-of-12-list-scroll today-collection__item">
           <div class="today-collection__image--outer">
             <a (click)="navigateForCollection(item.filterSlug)">
-              <img drCleanLoad src="{{item.imgSrc}}" alt="{{item.todayTitle[locale]}}">
+              <img drCleanLoad src="{{item.imgSrc[locale]}}" alt="{{item.todayTitle[locale]}}">
             </a>
           </div>
-          <div class="today-collection__item--category-name subtitle-3-bold u-color-green">
+          <div
+            class="today-collection__item--category-name subtitle-3-bold"
+            [ngClass]="{ 'u-color-green' : item.categoryCode === 1000000, 'u-color-pink' : item.categoryCode === 2000000 }">
             {{item.todayCategoryName[locale]}}
           </div>
           <h2 class="today-collection__item--title subtitle-1-bold">

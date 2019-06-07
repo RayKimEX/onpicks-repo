@@ -90,12 +90,15 @@
       <!--(click)="javascript:window.open('https://mark.inicis.com/mark/popup_v1.php?mid=onpicks001','mark','scrollbars=no,resizable=no,width=565,height=683');"-->
 
       <div [ngStyle]="{ marginTop : region === 'us' ? '-1.6rem' : '' }" class="footer__miscell">
-        <div class="u-button-effect" (click)="inicisOpen('escrow')">
-          <img class="footer__desktop--inicis-icon" src='http://image.inicis.com/mkt/certmark/escrow/escrow_74x74_gray.png' alt="클릭하시면 이니시스 결제시스템의 유효성을 확인하실 수 있습니다.">
-        </div>
-        <div class="u-button-effect" (click)="inicisOpen('inicis')">
-          <img class="footer__desktop--inicis-icon" src='http://image.inicis.com/mkt/certmark/inipay/inipay_74x74_gray.png' alt="클릭하시면 이니시스 결제시스템의 유효성을 확인하실 수 있습니다.">
-        </div>
+        <ng-container *ngIf="region === 'kr'">
+          <div class="u-button-effect" (click)="inicisOpen('escrow')">
+            <img class="footer__desktop--inicis-icon" src='http://image.inicis.com/mkt/certmark/escrow/escrow_74x74_gray.png' alt="클릭하시면 이니시스 결제시스템의 유효성을 확인하실 수 있습니다.">
+          </div>
+          <div class="u-button-effect" (click)="inicisOpen('inicis')">
+            <img class="footer__desktop--inicis-icon" src='http://image.inicis.com/mkt/certmark/inipay/inipay_74x74_gray.png' alt="클릭하시면 이니시스 결제시스템의 유효성을 확인하실 수 있습니다.">
+          </div>
+        </ng-container>
+
         <!--https://webmastertool.naver.com/guide/advanced_sd.naver#chapter3.1-->
         <!--네이버 채널 등록을 위한 HTML Schema 변경-->
         <span itemscope="" itemtype="http://schema.org/Organization" class="footer__miscell--share">
@@ -200,12 +203,15 @@
             </a>
           </div>
         </div>
-        <div (click)="inicisOpen('inicis')" class="footer__mobile--second-floor--outer--inicis-icon--inicis u-button-effect">
-          <img src='http://image.inicis.com/mkt/certmark/inipay/inipay_74x74_gray.png' alt="클릭하시면 이니시스 결제시스템의 유효성을 확인하실 수 있습니다.">
-        </div>
-        <div (click)="inicisOpen('escrow')" class="footer__mobile--second-floor--outer--inicis-icon--escrow u-button-effect">
-          <img src='http://image.inicis.com/mkt/certmark/escrow/escrow_74x74_gray.png' alt="클릭하시면 이니시스 결제시스템의 유효성을 확인하실 수 있습니다.">
-        </div>
+        <ng-container *ngIf="region === 'kr'">
+          <div (click)="inicisOpen('inicis')" class="footer__mobile--second-floor--outer--inicis-icon--inicis u-button-effect">
+            <img src='http://image.inicis.com/mkt/certmark/inipay/inipay_74x74_gray.png' alt="클릭하시면 이니시스 결제시스템의 유효성을 확인하실 수 있습니다.">
+          </div>
+          <div (click)="inicisOpen('escrow')" class="footer__mobile--second-floor--outer--inicis-icon--escrow u-button-effect">
+            <img src='http://image.inicis.com/mkt/certmark/escrow/escrow_74x74_gray.png' alt="클릭하시면 이니시스 결제시스템의 유효성을 확인하실 수 있습니다.">
+          </div>
+        </ng-container>
+
       </div>
     </div>
     <div class="footer__mobile--third-floor">

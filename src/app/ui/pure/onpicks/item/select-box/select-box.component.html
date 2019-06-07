@@ -1,6 +1,8 @@
 <div class="onpicks-select-box">
   <ng-container *ngIf="!isNativeSelectBox">
-    <button (click)="clickSortBox()" class="onpicks-select-box__fore-button subtitle-2-regular">
+    <button
+      [ngClass]="{ 'error-shadow' : errorEffect, 'u-border-red-color' : errorEffect  }"
+      (click)="clickSortBox()" class="onpicks-select-box__fore-button subtitle-2-regular">
       {{ multiLanguage ? _selectedElement?.title[locale] : _selectedElement?.title }}
       <svg *ngIf="isOpen" width="18" height="12" viewBox="0 0 18 12">
         <polyline points="1 9.5 9 1.5 17 9.5" fill="none" stroke="#979797" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
@@ -47,11 +49,16 @@
     <div
       class="onpicks-select-box__select-box--outer">
       <select
+        #selectedAmount
+        (change)="clickNativeSelectBox(selectedAmount.value)"
         class="onpicks-select-box__select-box subtitle-2-regular">
         <option *ngFor="let item of _sortList.list;" [value]="item.value">
           {{ multiLanguage ? item.title[locale] : item.title }}
         </option>
       </select>
+      <!--<svg width="18" height="12" viewBox="0 0 18 12">-->
+        <!--<polyline points="1 1.5 9 9.5 17 1.5" fill="none" stroke="#979797" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>-->
+      <!--</svg>-->
     </div>
   </ng-container>
 </div>

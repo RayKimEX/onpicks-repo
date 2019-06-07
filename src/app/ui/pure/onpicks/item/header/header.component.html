@@ -35,7 +35,7 @@
             <ng-container *ngIf="auth.isAuthenticated === true">
               <span class="header__miscell--profile--image">
                 <a routerLink="/account">
-                  <img src="{{auth?.user?.avatar === ''? 'http://img.onpicks.com/assets/default_avatar.png' : auth.user.avatar}}"  alt="">
+                  <img [src]="auth?.user?.avatar === ''? imageHost + '/assets/default_avatar.png' : auth.user.avatar"  alt="">
                 </a>
               </span>
 
@@ -53,7 +53,7 @@
       </div>
       <div class="header__main-nav u-default-site-padding">
         <div class="header__main-nav--outer">
-          <a class="header__main-nav--logo" href="" routerLink="/shops">
+          <a class="header__main-nav--logo" href="" routerLink="/shops" >
             <svg width="108.23" height="30" viewBox="0 0 108.23 30">
               <path d="M56.63,0a2.57,2.57,0,1,1-2.57,2.6A2.57,2.57,0,0,1,56.63,0Z"/>
               <path d="M45.18,6.73a5.92,5.92,0,0,0-4.94,2.18V7.07H35.8V30h4.45V22A5.78,5.78,0,0,0,45,24c4.66,0,7.79-3.69,7.79-8.7S50,6.73,45.18,6.73ZM44.37,20a4.08,4.08,0,0,1-4.07-3.79,6.48,6.48,0,0,1,0-1.76,4.06,4.06,0,0,1,4.07-3.76c2.29,0,4.1,1.72,4.1,4.64S46.66,20,44.37,20Z"/>
@@ -108,64 +108,67 @@
         <onpicks-search-box
           (enter)="search($event)"
           [top]="-1"
+          i18n-placeholder="@@sentence__search-word"
           placeholder="프리미엄 해외직구를 경험해보세요.">
         </onpicks-search-box>
       </div>
     </div>
 
-    <div class="header__mobile-menu">
-      <div class="navigation">
-        <div
-          class="navigation__toggle"
-          #mobileToggle>
-          <input
-            #inputCheckedForToggle
-            type="checkbox"
-            class="navigation__checkbox"
-            id="navi-toggle">
-          <label
-            (click)="showMenuForMobile(inputCheckedForToggle)"
-            for="navi-toggle"
-            class="navigation__button">
-            <span class="navigation__menu-icon">&nbsp;</span>
-          </label>
-        </div>
+
+    <div class="header__mobile-menu--outer">
+      <div class="header__mobile-menu">
+        <div class="navigation">
+          <div
+            class="navigation__toggle"
+            #mobileToggle>
+            <input
+              #inputCheckedForToggle
+              type="checkbox"
+              class="navigation__checkbox"
+              id="navi-toggle">
+            <label
+              (click)="showMenuForMobile(inputCheckedForToggle)"
+              for="navi-toggle"
+              class="navigation__button">
+              <span class="navigation__menu-icon">&nbsp;</span>
+            </label>
+          </div>
 
 
-        <onpicks-search-box
-          i18n-placeholder="@@word__search"
-          placeholder="'검색어'"
-          [isMobile]="true"
-          (enter)="search($event)"
-          #mobileSearchBox
-          (deleteText)="clickMobileSearch()"
-          class="navigation__searchbox-el">
-        </onpicks-search-box>
+          <onpicks-search-box
+            i18n-placeholder="@@word__search"
+            placeholder="'검색어'"
+            [isMobile]="true"
+            (enter)="search($event)"
+            #mobileSearchBox
+            (deleteText)="clickMobileSearch()"
+            class="navigation__searchbox-el">
+          </onpicks-search-box>
 
-        <div class="navigation__icon" #mobileIconOuter>
-          <a routerLink="/shops">
-            <svg
-              #mobileLogo
-              class="header__mobile-menu--onpicks-icon"
-              width="94"
-              height="26"
-              viewBox="0 0 94 26">
-              <g fill="#000" fill-rule="evenodd">
-                <path d="M49.513 0c1.244 0 2.217 1.005 2.217 2.255 0 1.195-.973 2.2-2.217 2.2-1.216 0-2.216-1.005-2.216-2.2 0-1.25 1-2.255 2.216-2.255M7.468 17.523c-2.01 0-3.639-1.855-3.639-4.144 0-2.288 1.63-4.144 3.639-4.144s3.638 1.856 3.638 4.144c0 2.289-1.63 4.144-3.638 4.144m0-11.736C3.213 5.787 0 8.957 0 13.38c0 4.392 3.213 7.592 7.468 7.592 4.254 0 7.467-3.2 7.467-7.592 0-4.421-3.213-7.592-7.467-7.592M38.949 17.346c-1.761 0-3.22-1.212-3.508-3.279a5.53 5.53 0 0 1 0-1.529c.288-2.062 1.747-3.25 3.508-3.25 1.968 0 3.53 1.484 3.53 4.014 0 2.56-1.562 4.044-3.53 4.044m.698-11.52c-2.027 0-3.562.861-4.26 1.89V6.122H31.56v19.864H35.393v-6.923c.694.96 2.141 1.745 4.11 1.745 4.023 0 6.715-3.2 6.715-7.534 0-4.247-2.403-7.446-6.57-7.446M47.56 20.531l.017-14.456 3.889.005-.017 14.456zM67.121 15.003v-.03l-3.528-.004-.005-.002-.001.002c-.324 1.116-1.32 2.435-3.306 2.433-1.521-.002-2.87-.864-3.418-2.44a4.979 4.979 0 0 1-.261-1.648c.003-2.615 1.67-4.053 3.659-4.05 1.93.001 2.835 1.236 3.184 2.442l2.568.003h1.021l.001-.091c0-.37-.037-.732-.11-1.084l-.003-.016c-.295-1.4-1.142-2.627-2.336-3.5a6.719 6.719 0 0 0-2.59-1.174 7.616 7.616 0 0 0-1.708-.195H60.177c-4.18-.005-7.459 3.194-7.464 7.66-.005 4.437 3.324 7.673 7.564 7.678h.078c3.28.004 6.016-2.064 6.635-4.81l.017-.06-.004-.001a5.36 5.36 0 0 0 .118-1.113M93.098 15.998a3.992 3.992 0 0 0-1.327-2.778c-.702-.64-1.678-1.122-2.927-1.382l-2.046-.444a2.006 2.006 0 0 1-.836-.34 1.17 1.17 0 0 1-.386-.479c-.06-.142-.093-.3-.092-.475 0-.823.82-1.439 1.843-1.437 1.622.001 2.238 1.069 2.363 1.917h.111l3.194.004c0-.306-.027-.604-.081-.894a4.398 4.398 0 0 0-.447-1.315c-.7-1.334-2.234-2.677-5.166-2.68l-.13.001c-3.033.056-5.252 2.174-5.255 4.723 0 .051.001.101.003.152.026.85.279 1.634.778 2.3.456.607 1.117 1.115 2 1.482.377.157.792.288 1.25.39l1.9.443c.329.07.598.166.815.283.27.145.457.323.574.524.108.184.158.388.158.605-.001.764-.616 1.44-1.902 1.438-1.617-.002-2.461-.965-2.611-2.048h-.741l-2.646-.004v.001c0 .194.013.386.036.574.111 1.062.77 2.614 2.387 3.583a6.013 6.013 0 0 0 3.362.887c.079.002.158.004.239.004 3.771.004 5.587-2.403 5.59-4.754 0-.094-.004-.188-.01-.281"/>
-                <path d="M76.135 12.404l6.576 8.017h-4.905l-5.498-6.771-.001 6.775-3.874-.005L68.457 0l3.874.005-.023 11.587 5.228-5.634h4.636zM24.478 5.823c-1.483 0-3.128.625-4.02 2.007V6.175H16.63v14.354h3.827v-.017h.027V12.28c0-1.658.984-2.967 2.663-2.967 1.852 0 2.633 1.251 2.633 2.85v8.35h3.85v-9.018c0-3.142-1.62-5.672-5.152-5.672"/>
-              </g>
-            </svg>
-          </a>
+          <div class="navigation__icon" #mobileIconOuter>
+            <a (click)="goToHome(inputCheckedForToggle)">
+              <svg
+                #mobileLogo
+                class="header__mobile-menu--onpicks-icon"
+                width="94"
+                height="26"
+                viewBox="0 0 94 26">
+                <g fill="#000" fill-rule="evenodd">
+                  <path d="M49.513 0c1.244 0 2.217 1.005 2.217 2.255 0 1.195-.973 2.2-2.217 2.2-1.216 0-2.216-1.005-2.216-2.2 0-1.25 1-2.255 2.216-2.255M7.468 17.523c-2.01 0-3.639-1.855-3.639-4.144 0-2.288 1.63-4.144 3.639-4.144s3.638 1.856 3.638 4.144c0 2.289-1.63 4.144-3.638 4.144m0-11.736C3.213 5.787 0 8.957 0 13.38c0 4.392 3.213 7.592 7.468 7.592 4.254 0 7.467-3.2 7.467-7.592 0-4.421-3.213-7.592-7.467-7.592M38.949 17.346c-1.761 0-3.22-1.212-3.508-3.279a5.53 5.53 0 0 1 0-1.529c.288-2.062 1.747-3.25 3.508-3.25 1.968 0 3.53 1.484 3.53 4.014 0 2.56-1.562 4.044-3.53 4.044m.698-11.52c-2.027 0-3.562.861-4.26 1.89V6.122H31.56v19.864H35.393v-6.923c.694.96 2.141 1.745 4.11 1.745 4.023 0 6.715-3.2 6.715-7.534 0-4.247-2.403-7.446-6.57-7.446M47.56 20.531l.017-14.456 3.889.005-.017 14.456zM67.121 15.003v-.03l-3.528-.004-.005-.002-.001.002c-.324 1.116-1.32 2.435-3.306 2.433-1.521-.002-2.87-.864-3.418-2.44a4.979 4.979 0 0 1-.261-1.648c.003-2.615 1.67-4.053 3.659-4.05 1.93.001 2.835 1.236 3.184 2.442l2.568.003h1.021l.001-.091c0-.37-.037-.732-.11-1.084l-.003-.016c-.295-1.4-1.142-2.627-2.336-3.5a6.719 6.719 0 0 0-2.59-1.174 7.616 7.616 0 0 0-1.708-.195H60.177c-4.18-.005-7.459 3.194-7.464 7.66-.005 4.437 3.324 7.673 7.564 7.678h.078c3.28.004 6.016-2.064 6.635-4.81l.017-.06-.004-.001a5.36 5.36 0 0 0 .118-1.113M93.098 15.998a3.992 3.992 0 0 0-1.327-2.778c-.702-.64-1.678-1.122-2.927-1.382l-2.046-.444a2.006 2.006 0 0 1-.836-.34 1.17 1.17 0 0 1-.386-.479c-.06-.142-.093-.3-.092-.475 0-.823.82-1.439 1.843-1.437 1.622.001 2.238 1.069 2.363 1.917h.111l3.194.004c0-.306-.027-.604-.081-.894a4.398 4.398 0 0 0-.447-1.315c-.7-1.334-2.234-2.677-5.166-2.68l-.13.001c-3.033.056-5.252 2.174-5.255 4.723 0 .051.001.101.003.152.026.85.279 1.634.778 2.3.456.607 1.117 1.115 2 1.482.377.157.792.288 1.25.39l1.9.443c.329.07.598.166.815.283.27.145.457.323.574.524.108.184.158.388.158.605-.001.764-.616 1.44-1.902 1.438-1.617-.002-2.461-.965-2.611-2.048h-.741l-2.646-.004v.001c0 .194.013.386.036.574.111 1.062.77 2.614 2.387 3.583a6.013 6.013 0 0 0 3.362.887c.079.002.158.004.239.004 3.771.004 5.587-2.403 5.59-4.754 0-.094-.004-.188-.01-.281"/>
+                  <path d="M76.135 12.404l6.576 8.017h-4.905l-5.498-6.771-.001 6.775-3.874-.005L68.457 0l3.874.005-.023 11.587 5.228-5.634h4.636zM24.478 5.823c-1.483 0-3.128.625-4.02 2.007V6.175H16.63v14.354h3.827v-.017h.027V12.28c0-1.658.984-2.967 2.663-2.967 1.852 0 2.633 1.251 2.633 2.85v8.35h3.85v-9.018c0-3.142-1.62-5.672-5.152-5.672"/>
+                </g>
+              </svg>
+            </a>
 
-          <a routerLink="/order/cart">
-            <svg class="header__mobile-menu--shopping-bag-icon"
-                 height="24"
-                 viewBox="0 0 24 24"
-                 width="24">
-              <path d="M19.85,9a2.18,2.18,0,0,0-.19-.48A2.83,2.83,0,0,0,17.14,7H17A5,5,0,1,0,7,7H6.86A2.83,2.83,0,0,0,4.34,8.52,2.18,2.18,0,0,0,4.15,9,2.83,2.83,0,0,0,4,9.86v9.28a2.9,2.9,0,0,0,.34,1.34A2.83,2.83,0,0,0,6.86,22H17.14a2.83,2.83,0,0,0,2.52-1.52A2.9,2.9,0,0,0,20,19.14V9.86A2.83,2.83,0,0,0,19.85,9ZM9.24,5.83a3,3,0,0,1,1.63-1.61A2.92,2.92,0,0,1,12,4a3,3,0,0,1,3,3H9A3,3,0,0,1,9.24,5.83ZM18,10v9.14a.86.86,0,0,1-.86.86H6.86A.86.86,0,0,1,6,19.14V9.86A.86.86,0,0,1,6.86,9H17.14a.86.86,0,0,1,.86.86Z" fill="#161616">
-              </path>
-            </svg>
-          </a>
+            <a routerLink="/order/cart">
+              <svg class="header__mobile-menu--shopping-bag-icon"
+                   height="24"
+                   viewBox="0 0 24 24"
+                   width="24">
+                <path d="M19.85,9a2.18,2.18,0,0,0-.19-.48A2.83,2.83,0,0,0,17.14,7H17A5,5,0,1,0,7,7H6.86A2.83,2.83,0,0,0,4.34,8.52,2.18,2.18,0,0,0,4.15,9,2.83,2.83,0,0,0,4,9.86v9.28a2.9,2.9,0,0,0,.34,1.34A2.83,2.83,0,0,0,6.86,22H17.14a2.83,2.83,0,0,0,2.52-1.52A2.9,2.9,0,0,0,20,19.14V9.86A2.83,2.83,0,0,0,19.85,9ZM9.24,5.83a3,3,0,0,1,1.63-1.61A2.92,2.92,0,0,1,12,4a3,3,0,0,1,3,3H9A3,3,0,0,1,9.24,5.83ZM18,10v9.14a.86.86,0,0,1-.86.86H6.86A.86.86,0,0,1,6,19.14V9.86A.86.86,0,0,1,6.86,9H17.14a.86.86,0,0,1,.86.86Z" fill="#161616">
+                </path>
+              </svg>
+            </a>
             <svg
               (click)="clickMobileSearch()"
               #mobileSearchIcon
@@ -186,9 +189,82 @@
                 y2="17.5">
               </line>
             </svg>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="currentUrl[2] === 'c'" class="header__mobile-menu--category-navigator">
+        <div>
+          <onpicks-sort-box
+            (click)="categoryNavigatorToggle()"
+            [isOpen]="isOpenCategoryNavigator"
+            [sortList]="[{
+                title : {
+                  ko : categoryMap[categoryCodeMap[currentUrl[3]].code]['name']['ko'],
+                  en : categoryMap[categoryCodeMap[currentUrl[3]].code]['name']['en']
+               }, value : 0
+             }
+            ]"
+            [selectedElement]="{
+                title : {
+                  ko : categoryMap[categoryCodeMap[currentUrl[3]].code]['name']['ko'],
+                  en : categoryMap[categoryCodeMap[currentUrl[3]].code]['name']['en']
+               }, value : 0
+             }"
+            [showBox]="false">
+          </onpicks-sort-box>
+        </div>
+      </div>
+      <div
+        *ngIf="isOpenCategoryNavigator"
+        class="header__mobile-menu--category-navigator--content">
+        <div class="header__mobile-menu--category-navigator--content--return"
+             *ngIf="categoryNavigateCurrentDepth !== 1">
+          <div (click)="returnCategory()" class="header__mobile-menu--category-navigator--content--return--inner">
+            <svg xmlns="http://www.w3.org/2000/svg" width="8" height="14" viewBox="0 0 8 14">
+              <path fill="#B3B3B3" fill-rule="evenodd" d="M7 14a.997.997 0 0 1-.707-.293l-6-6a.999.999 0 0 1 0-1.414l6-6a.999.999 0 1 1 1.414 1.414L2.414 7l5.293 5.293A.999.999 0 0 1 7 14"/>
+            </svg>
+            <div class="subtitle-2-regular u-color-dark-grey">
+              돌아가기
+            </div>
+          </div>
+        </div>
+        <div
+          class="header__mobile-menu--category-navigator--content--title">
+          <div
+            (click)="navigateFirstCategory( categoryMap[categoryCodeMap[currentUrl[3]].code]['slug'])"
+            *ngIf="categoryNavigateCurrentDepth === 1">
+            <!--height : 5.6rem;-->
+            <img [src]="imageHost + '/assets/menu/' + categoryMap[categoryCodeMap[currentUrl[3]].code].slug + '.jpg?d=w80-h80'" alt="">
+            <div class="header__mobile-menu--category-navigator--content--title--name">
+              <div>
+                <div class="u-vertical-center-with-table-cell subtitle-2-regular">
+                  {{ categoryMap[categoryCodeMap[currentUrl[3]].code]['name'][locale] }}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            (click)="navigateAllCategory(normalizedCategory.entities[categoryNavigateCurrentDepth][categoryNavigatedInfo[categoryNavigateCurrentDepth - 1].code].slug)"
+            *ngIf="categoryNavigateCurrentDepth !== 1" class="subtitle-2-bold">
+            {{normalizedCategory.entities[categoryNavigateCurrentDepth][categoryNavigatedInfo[categoryNavigateCurrentDepth - 1].code].name[locale]}} 모두보기
+          </div>
+        </div>
+
+        <div
+          class="header__mobile-menu--category-navigator--item u-full-width"
+          *ngFor="let item of normalizedCategory.entities[categoryNavigateCurrentDepth][categoryNavigatedInfo[categoryNavigateCurrentDepth - 1].code].children">
+          <div
+            (click)="navigateCategory(item, normalizedCategory.entities[categoryNavigateCurrentDepth + 1][item].slug, normalizedCategory.entities[categoryNavigateCurrentDepth + 1][item].children.length !== 0)"
+            class="u-vertical-center-with-table-cell subtitle-2-regular">
+            <span>{{ normalizedCategory.entities[categoryNavigateCurrentDepth + 1][item].name[locale] }}</span>
+            <svg *ngIf="normalizedCategory.entities[categoryNavigateCurrentDepth + 1][item].children.length !== 0" class="u-float-right" xmlns="http://www.w3.org/2000/svg" width="8" height="14" viewBox="0 0 8 14">
+              <path fill="#292929" fill-rule="evenodd" d="M1 14a.999.999 0 0 1-.707-1.707L5.586 7 .293 1.707A.999.999 0 1 1 1.707.293l6 6a.999.999 0 0 1 0 1.414l-6 6A.997.997 0 0 1 1 14"/>
+            </svg>
+          </div>
         </div>
       </div>
     </div>
+
     <!--*ngIf="!(currentUrl[2].indexOf('search') > -1)"-->
     <!-- && (currentUrl.length > 2 ? !(currentUrl[2].indexOf('search') > -1) : true )? 'block' : 'none'}-->
     <div
@@ -221,17 +297,17 @@
               </div>
             </div>
           </li>
-          <li class="header__mobile-hamburger--li">
+          <li *ngIf="region === 'kr'" class="header__mobile-hamburger--li">
             <div
               (click)="routeForMobile('/account/settings/delivery-address', inputCheckedForToggle)">
               <div
-                i18n="@@word__shipping"
+                i18n="@@delivery-address__title"
                 class="u-button-effect">
-                배송비
+                배송지
               </div>
             </div>
           </li>
-          <li class="header__mobile-hamburger--li">
+          <li *ngIf="region === 'kr'" class="header__mobile-hamburger--li">
             <div
               (click)="routeForMobile('/account/settings/refund', inputCheckedForToggle)">
               <div
@@ -272,7 +348,6 @@
             </li>
             <li class="header__mobile-hamburger--li">
               <div
-
                 (click)="routeForMobile('/account/my-reviews/written', inputCheckedForToggle)">
                 <div
                   i18n="@@word__my-review"
@@ -313,7 +388,7 @@
             <div
               (click)="routeForMobile('/shops/c/' + item.href, inputCheckedForToggle)">
               <div class="u-button-effect">
-                <img [src]="'https://img.onpicks.com/assets/menu/' + item.slug + '.jpg?d=w80-h80'" alt="">
+                <img [src]="imageHost + '/assets/menu/' + item.slug + '.jpg?d=w80-h80'" alt="">
                 <span>{{item.name[locale]}}</span>
               </div>
             </div>

@@ -2,28 +2,71 @@
 // 신고하기 기능
 import {InjectionToken} from '@angular/core';
 
+
+export const TITLE_MAP = new InjectionToken<any>( './core/global-constant/app.locale');
+export const TITLE_MAP_CONST = {
+  'main' : {
+    ko : '온픽스, 건강하고 아름다운 삶을 위한 선택',
+    en : 'Onpicks, Everyone deserves to have healthier choices'
+  },
+  'pantry-and-household' : {
+    ko : '식품·생활용품',
+    en : 'Pantry & Household'
+  },
+  'beauty' : {
+    ko : '뷰티',
+    en : 'Beauty'
+  }
+}
+
+
 export const PREFERENCE_MAP = new InjectionToken<any>( './core/global-constant/app.locale');
 export const PREFERENCE_MAP_CONST = {
-  locale : {
-    title : '언어를 선택해주세요',
+  region : {
+    title : {
+      ko : '배송지역을 선택해주세요',
+      en : 'Choose Shipping Destination'
+    },
     list : {
-      en : 'English',
-      ko : '한국어'
+      kr : {
+        ko : '한국',
+        en : 'Korea'
+      },
+      us : {
+        ko : '미국',
+        en : 'United States'
+      }
+    }
+  },
+  locale : {
+    title : {
+      ko : '언어를 선택해주세요',
+      en : 'Choose Language'
+    },
+    list : {
+      en : {
+        ko : '영어',
+        en : 'English'
+      },
+      ko : {
+        ko : '한국어',
+        en : 'Korean'
+      }
     }
   },
   currency : {
     title : {
       ko : '통화를 선택해주세요',
-      en : '통화를 선택해주세요(English)'
+      en : 'Choose Currency'
     },
     list : {
       USD : {
         ko : '미국 달러 - $',
-        en : '미국 달러 - $(English)'
+        en : 'USD - $'
       },
       KRW : {
         ko : '한국 원 - ₩',
-        en : '한국 원 - ₩(English)'
+        en : 'KRW - ₩'
       },
     }
   }
@@ -33,31 +76,31 @@ export const REPORT_REASON_MAP = new InjectionToken<any>( './core/global-constan
 export const REPORT_REASON_MAP_CONST = {
   'irrelevant' : {
     ko : '주제와 관련 없음',
-    en : '',
+    en : 'Off Topic',
     // 중국어
     zh : '',
   },
   'inappropriate' : {
     ko : '음란, 욕설 및 비방',
-    en : '',
+    en : 'Abuse',
     // 중국어
     zh : '',
   },
   'advertising' : {
     ko : '스팸 및 광고성',
-    en : '',
+    en : 'Spam',
     // 중국어
     zh : '',
   },
   'piracy' : {
     ko : '복제 등 저작권 침해 우려',
-    en : '',
+    en : 'Copyright Infringement',
     // 중국어
     zh : '',
   },
   'others' : {
     ko : '기타',
-    en : '',
+    en : 'Other',
     // 중국어
     zh : '',
   },
@@ -132,7 +175,7 @@ export const MENU_MAP_CONST = {
             en : 'Skin Care'
           },
           slug : 'skincare',
-          href : 'beauty/skincare'
+          href : 'beauty/skin-care'
         },
         {
           name : {
@@ -140,7 +183,7 @@ export const MENU_MAP_CONST = {
             en : 'Hair'
           },
           slug : 'hair',
-          href : 'beauty/hair'
+          href : 'beauty/hair-care'
         },
         {
           name : {

@@ -5,7 +5,7 @@ import {
   EventEmitter,
   HostListener,
   Inject,
-  Input, LOCALE_ID,
+  Input, isDevMode, LOCALE_ID,
   OnInit,
   Output,
   Renderer2
@@ -17,6 +17,7 @@ import { CURRENCY, RESPONSIVE_MAP } from '../../../core/global-constant/app.conf
 import {BehaviorSubject} from 'rxjs';
 import {BreakpointObserver, BreakpointState} from '../../../../../node_modules/@angular/cdk/layout';
 import {ShowCurrencyModal} from '../../../core/store/modal/modal.actions';
+import {PREFERENCE_MAP} from '../../../core/global-constant/app.locale';
 
 @Component({
   selector: 'emitter-change-preference',
@@ -33,62 +34,12 @@ export class ChangePreferenceComponent implements OnInit {
 
   isShowModal = false;
 
-  preferenceList = {
-    region : {
-      title : {
-        ko : '배송지역을 선택해주세요',
-        en : 'Choose Shipping Destination'
-      },
-      list : {
-        kr : {
-          ko : '한국',
-          en : 'Korea'
-        },
-        us : {
-          ko : '미국',
-          en : 'United States'
-        }
-      }
-    },
-    locale : {
-      title : {
-        ko : '언어를 선택해주세요',
-        en : 'Choose Language'
-      },
-      list : {
-        en : {
-          ko : '영어',
-          en : 'English'
-        },
-        ko : {
-          ko : '한국어',
-          en : 'Korean'
-        }
-      }
-    },
-    currency : {
-      title : {
-        ko : '통화를 선택해주세요',
-        en : 'Choose Currency'
-      },
-      list : {
-        USD : {
-          ko : '미국 달러 - $',
-          en : 'USD - $'
-        },
-        KRW : {
-          ko : '한국 원 - ₩',
-          en : 'KRW - ₩'
-        },
-      }
-    }
-  }
-
   isDesktopBreakPoint = false;
 
   constructor(
     @Inject(CURRENCY) public currency: BehaviorSubject<any>,
     @Inject(RESPONSIVE_MAP) public responsiveMap,
+    @Inject(PREFERENCE_MAP) public preferenceList,
     @Inject(LOCALE_ID) public locale: string,
     private breakpointObserver:  BreakpointObserver,
     private store: Store<any>,
@@ -173,9 +124,16 @@ export class ChangePreferenceComponent implements OnInit {
 }
 
 
+
 function setCookie(cname, cvalue ) {
   // const d = new Date();
   // d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
   // const expires = 'expires=' + d.toUTCString();
-  document.cookie = cname + '=' + cvalue + ';path=/';
+  if (isDevMode()) {
+    document.cookie = cname + '=' + cvalue + ';path=/';
+  } else {
+    document.cookie = cname + '=' + cvalue + ';domain=.onpicks.com;path=/';
+  }
+
+  return 'KRW';
 }

@@ -356,7 +356,7 @@
       </div>
 
       <div class="col-9-of-12 search-content">
-        <div *ngIf="currentList !== null; else loading"  >
+        <div *ngIf="currentList !== null; else loading">
           <h1 class="search-content__title h1-bold">
             <div *ngIf="searchState == 'search'">
               <span *ngIf="searchState == 'search' && queryParams.term !== undefined">
@@ -376,7 +376,7 @@
 
             <ng-container  *ngIf="searchState == 'category'">
               <ng-container *ngIf="currentList.length !== 0">
-               <span>{{currentName[locale]}} {{totalCount}}</span>건
+                <span>{{currentName[locale]}} {{totalCount}}</span><span i18n="@@word__results">건</span>
                 <onpicks-sort-box
                   class="search-content__sort-box"
                   [selectedElement]="{ value : currentSortSlug}"
@@ -384,9 +384,11 @@
                   [sortList]="sortList">
                 </onpicks-sort-box>
               </ng-container>
-              <ng-container *ngIf="currentList.length === 0">
+              <div
+                i18n="@@sentence__coming-soon"
+                *ngIf="currentList.length === 0" >
                 해당 카테고리는 준비중 입니다.
-              </ng-container>
+              </div>
             </ng-container>
           </h1>
           <div class="search-content__mobile-filter">
@@ -408,6 +410,43 @@
               </div>
             </div>
           </div>
+          <div class="search-content__mobile-sort-list">
+            <ng-container *ngFor="let keys of objectKeys(currentParamList)">
+              <ng-container *ngIf="typeOf(currentParamList[keys]) === 'string'">
+                <div class="search-content__mobile-sort-list--item ">
+                  <div
+                    (click)="removeSpecificFilter(keys, currentParamList[keys])"
+                    class="c-filter-navigator__content-ul--item-remove-outer">
+                      <span
+                        class="c-filter-navigator__content-ul--item-remove">
+                      </span>
+                  </div>
+                  <div
+                    class="u-inline-block subtitle-2-regular">
+                    {{currentParamList[keys]}}
+                  </div>
+                </div>
+              </ng-container>
+              <ng-container *ngIf="isArray(currentParamList[keys]) === true">
+                <ng-container *ngFor="let item of currentParamList[keys]">
+                  <div class="search-content__mobile-sort-list--item ">
+                    <div
+                      (click)="removeSpecificFilter(keys, item)"
+                      class="c-filter-navigator__content-ul--item-remove-outer">
+                        <span
+                          class="c-filter-navigator__content-ul--item-remove">
+                        </span>
+                    </div>
+                    <div
+                      class="u-inline-block subtitle-2-regular">
+                      {{item}}
+                    </div>
+                  </div>
+                </ng-container>
+              </ng-container>
+            </ng-container>
+          </div>
+
           <div class="search-content__content--outer">
             <div class="search-content__content">
               <ul #container *ngLet="(currency| async) as currencyAync">
@@ -416,28 +455,32 @@
 
                     <div class="search-content__item--image">
                       <div
-                        routerLink="/shops/p/{{item.slug}}"
                         class="search-content__item--image-outer">
-                        <div *ngIf="item.in_stock === true && item.stock_quantity <= 10 && item.stock_quantity !== 0"
-                        class="search-content__item--stock">
-                          <span class="search-content__item--stock--inner subtitle-2-bold u-color-white">
-                            매진임박 {{item.stock_quantity}}개
-                          </span>
-                        </div>
-                        <div *ngIf="item.in_stock === false || item.in_stock === true && item.stock_quantity === 0"
-                        class="search-content__item--stock-empty">
-                          <span class="search-content__item--stock--inner subtitle-2-bold u-color-white">
-                            품절
-                          </span>
-                        </div>
-                        <div class="search-content__item--image-inner">
-                          <img
-                            drLazyLoad
-                            [relativeOption]="false"
-                            src="{{item.thumbnail}}"
-                            alt="{{item.title}}">
-                          <!--카트정보가 어떤식으로 들어갈지 알아야, 대충이라도 작업할 수 있음.-->
-                        </div>
+                        <a routerLink="/shops/p/{{item.slug}}">
+                          <div *ngIf="item.in_stock === true && item.stock_quantity <= 10 && item.stock_quantity !== 0"
+                          class="search-content__item--stock">
+                            <span *ngIf="locale === 'ko'" class="search-content__item--stock--inner subtitle-2-bold u-color-white">
+                              품절임박 {{item.stock_quantity}}개
+                            </span>
+                              <span *ngIf="locale === 'en'" class="search-content__item--stock--inner subtitle-2-bold u-color-white">
+                              Only {{item.stock_quantity}} Left
+                            </span>
+                          </div>
+                          <div *ngIf="item.in_stock === false || item.in_stock === true && item.stock_quantity === 0"
+                          class="search-content__item--stock-empty">
+                            <span class="search-content__item--stock--inner subtitle-2-bold u-color-white">
+                              품절
+                            </span>
+                          </div>
+                          <div class="search-content__item--image-inner">
+                            <img
+                              drLazyLoad
+                              [relativeOption]="false"
+                              src="{{item.thumbnail}}"
+                              alt="{{item.title}}">
+                            <!--카트정보가 어떤식으로 들어갈지 알아야, 대충이라도 작업할 수 있음.-->
+                          </div>
+                        </a>
                       </div>
                       <ng-container
                         [ngSwitch]="item.attributes.length">
@@ -445,8 +488,8 @@
                           [limitCount]="item.stock_quantity"
                           *ngIf="!(item.in_stock === false || item.in_stock === true && item.stock_quantity === 0)"
                           [amount]="cartStore.cartList[item.slug] === undefined ? 0 : cartStore.cartList[item.slug]?.quantity"
-                          (addEvent)="addToCart($event, item.slug, item.ship_alone ? 'free' : locationMap[item.location.code].sequence)"
-                          (subtractEvent)="subtractFromCart($event, item.slug, item.ship_alone ? 'free' : locationMap[item.location.code].sequence)">
+                          (addEvent)="addToCart($event, item, item.individual_shipping ? 'free' : locationMap[item.location.code].sequence)"
+                          (subtractEvent)="subtractFromCart($event, item.slug, item.individual_shipping ? 'free' : locationMap[item.location.code].sequence)">
                         </onpicks-list-active-button>
 
                         <!--<div-->
@@ -483,11 +526,12 @@
                     </ui-star-rating>
                     <span class="subtitle-3-regular u-color-dark-grey">{{item.review_count}}</span>
                     <br>
+                    <span class="search-content__price-info--MSRP-mobile subtitle-3-regular u-color-grey" *ngIf="locale == 'en'">MSRP</span>
                     <span class="search-content__price-info--MSRP-mobile-discount subtitle-3-regular u-color-grey">{{item.msrp | onpicksCurrency : currencyAync}}</span>
                     <div class="search-content__price-info">
                       <span class="search-content__price-info--discount subtitle-1-bold u-color-orange">{{item.discount_rate | percentPipe}}%</span>
                       <span class="search-content__price-info--price subtitle-1-bold">{{item.price | onpicksCurrency : currencyAync}}</span>
-                      <span class="search-content__price-info--MSRP" *ngIf="locale == 'en'">MSRP</span>
+                      <span class="search-content__price-info--MSRP subtitle-3-regular u-color-grey" *ngIf="locale == 'en'">MSRP</span>
                       <span class="search-content__price-info--MSRP-discount subtitle-3-regular u-color-grey">{{item.msrp | onpicksCurrency : currencyAync}}</span>
                     </div>
                     <div class="search-content__delivery-point">

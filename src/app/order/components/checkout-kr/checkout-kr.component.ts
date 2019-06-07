@@ -321,34 +321,38 @@ export class CheckoutKrComponent implements OnInit, AfterViewInit, OnDestroy {
 
       this.formData.buyer_name = this.inputOrderName.nativeElement.children[0].value;
       this.formData.buyer_contact = this.inputOrderNumber.nativeElement.children[0].value;
+
       // 0인 경우가 배송지 default이므로,
       // full_name 수신자 성함
       // 서버에 저장된 배송지 정보가 없을 경우
+
       if ( this.deliveryData.length === 0 ) {
+
         // inputRecipientName
         // inputRecipientNumber
         // inputZipnumber
         // inputJuso
         // inputDetailJuso
+
         this.formData = {
           ...this.formData,
           ...this.setDeliveryInfo()
         };
 
-        console.log(this.formData);
-
       } else {
+
         this.formData.phone_number = this.deliveryData[0].phone_number;
         this.formData.full_name = this.deliveryData[0].full_name;
         this.formData.zip_code = this.deliveryData[0].zip_code;
         this.formData.street_address_1 = this.deliveryData[0].street_address_1;
         this.formData.street_address_2 = this.deliveryData[0].street_address_2;
+
       }
 
-      // this.formData.customs_id_number = this.checkoutAdditionNumber.nativeElement.children[0].value;
+      this.formData.customs_id_number = this.checkoutAdditionNumber.nativeElement.children[0].value;
 
-      this.formData.city = 'helloCity';
-      this.formData.country = 'helloCountry';
+      this.formData.city = '';
+      this.formData.country = '';
 
       this.httpClient.post<any>( this.BASE_URL + '/api/orders/', this.formData )
         .subscribe( response => {
@@ -374,7 +378,6 @@ export class CheckoutKrComponent implements OnInit, AfterViewInit, OnDestroy {
               this.paymentScript.src = response.pay_script;
               this.paymentScript.async = true;
               this.paymentScript.onload = function() {
-
                 // @ts-ignore
                 INIStdPay.pay(form);
               };
@@ -390,7 +393,6 @@ export class CheckoutKrComponent implements OnInit, AfterViewInit, OnDestroy {
               });
             } else {
               form.innerHTML = '';
-
               Object.keys(response.form_data).forEach(key => {
                 const input = document.createElement('input');
                 input.type = 'text';
@@ -402,7 +404,6 @@ export class CheckoutKrComponent implements OnInit, AfterViewInit, OnDestroy {
               // @ts-ignore
               INIStdPay.pay(form);
             }
-
           }
         });
     }
@@ -456,7 +457,7 @@ export class CheckoutKrComponent implements OnInit, AfterViewInit, OnDestroy {
       'zip_code': '',
       'street_address_1': '',
       'street_address_2': '',
-      'city': 'hellocity',
+      'city': '',
       'state': '',
       'phone_number': '',
       // default를 false로 주던 true로주던 값이 API에서 허용 안되도록 막힘
@@ -473,7 +474,6 @@ export class CheckoutKrComponent implements OnInit, AfterViewInit, OnDestroy {
 
   removeDeliveryInfo(index) {
     if ( index === 0  ) { alert( '기본 배송지는 삭제할 수 없습니다. '); return;}
-    alert()
     this.orderDataService.deleteDeliveryData( this.userStore.id, this.deliveryData[index].id )
       .subscribe( v => {
         this.deliveryData.splice(index , 1);
@@ -517,7 +517,7 @@ export class CheckoutKrComponent implements OnInit, AfterViewInit, OnDestroy {
       'zip_code': '',
       'street_address_1': '',
       'street_address_2': '',
-      'city': 'hellocity',
+      'city': '',
       'state': '',
       'phone_number': '',
       // default를 false로 주던 true로주던 값이 API에서 허용 안되도록 막힘
@@ -535,8 +535,6 @@ export class CheckoutKrComponent implements OnInit, AfterViewInit, OnDestroy {
       this.deliveryData[this.updateDeliveryIndex].id,
       temp
     ).subscribe( v => {
-
-
       this.exitModifyDeliveryModal();
       this.cd.markForCheck();
     }, error => {
@@ -569,7 +567,7 @@ export class CheckoutKrComponent implements OnInit, AfterViewInit, OnDestroy {
         this.store.dispatch(new DisplayAlertMessage('저장되었습니다.'));
       }, error => {
         this.store.dispatch(new DisplayAlertMessage('서버에서 에러가 발생하여 제대로 저장되지 않았습니다.'));
-      });
+  });
   }
 
 
@@ -635,7 +633,7 @@ export class CheckoutKrComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   getCurrentText(event) {
-    if( this.isShowDeliveryModal === true ) {
+    if ( this.isShowDeliveryModal === true ) {
       this.renderer.setProperty(this.inputJuso.first.nativeElement.children[0], 'value', event.target.innerText);
       this.renderer.setProperty(this.inputZipnumber.first.nativeElement.children[0], 'value', event.target.getAttribute('data-zipnumber'));
       this.isShowSearchBox = false;
@@ -701,8 +699,6 @@ export class CheckoutKrComponent implements OnInit, AfterViewInit, OnDestroy {
         this.errorStatus |= this.EMPTY_DELIVERY_ADDRESS;
       }
     }
-
-
 
     if ( this.checkoutAdditionNumber.nativeElement.children[0].value === '') {
       if ( this.errorStatus === 0 ) {this.checkoutAdditionNumber.nativeElement.children[0].focus();}

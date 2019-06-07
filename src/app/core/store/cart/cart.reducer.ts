@@ -91,7 +91,7 @@ export function CartReducer(state = initialState, action: CartActions.CartAction
 
     case CartActions.CREATE_TO_CART_SUCCESS :
 
-      if ( action.payload.packIndex !== 'free' ){
+      if ( action.payload.packIndex !== 'free' ) {
         const createTemp = state.cartInfo.pack[action.payload.packIndex];
         createTemp.subtotal = action.payload.cartInfo.results.slice(1, action.payload.cartInfo.results.length)[action.payload.packIndex].subtotal;
         createTemp.shipping_fee =                action.payload.cartInfo.results.slice(1, action.payload.cartInfo.results.length)[action.payload.packIndex].shipping_fee;
@@ -105,13 +105,14 @@ export function CartReducer(state = initialState, action: CartActions.CartAction
       }
 
       return {
+
         ...state,
         cartList : {
           ...state.cartList,
-          [action.payload.productSlug]: {
-            ...state.cartList[action.payload.productSlug],
-            product : action.payload.productSlug,
-            quantity : 1,
+          [action.payload.data.slug]: {
+            ...state.cartList[action.payload.data.slug],
+            ...action.payload.data,
+            quantity : action.payload.amount,
           }
         },
         cartInfo : {
@@ -126,7 +127,7 @@ export function CartReducer(state = initialState, action: CartActions.CartAction
             total_shipping_costs : action.payload.cartInfo.total_shipping_costs
           },
           isPopUp : action.payload.isPopUp,
-        },
+        }
       }
 
     case CartActions.ADD_TO_CART_SUCCESS :
@@ -141,6 +142,7 @@ export function CartReducer(state = initialState, action: CartActions.CartAction
         state.cartInfo.pack[action.payload.packIndex] = addTemp;
       } else {
         const addForFreeTemp = state.cartInfo.free;
+        console.log(state.cartInfo.free);
         addForFreeTemp.subtotal = action.payload.cartInfo.results.slice(0, 1)[0].subtotal;
         state.cartInfo.free = addForFreeTemp;
       }
@@ -148,8 +150,8 @@ export function CartReducer(state = initialState, action: CartActions.CartAction
         ...state,
         cartList : {
           ...state.cartList,
-          [action.payload.productSlug] : {
-            ...state.cartList[action.payload.productSlug],
+          [action.payload.data.slug] : {
+            ...state.cartList[action.payload.data.slug],
             quantity : action.payload.amount,
           }
         },

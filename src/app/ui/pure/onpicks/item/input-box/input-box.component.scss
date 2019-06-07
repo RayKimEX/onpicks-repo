@@ -1,7 +1,11 @@
 @import '~src/assets/scss/abstracts/variables';
 input {
+  transition-property: border, box-shadow;
+  transition-duration: 200ms;
+  transition-timing-function: ease;
   padding: 1rem 1.6rem;
   height : 4rem;
+  border-radius: 2px;
   border : 1px solid $color-light-grey;
   &::placeholder {
     color: $color-grey;
@@ -10,4 +14,18 @@ input {
   &:read-only {
     border : 1px solid $color-light-grey;
   }
+}
+
+
+.error-shadow {
+
+  &:focus {
+    box-shadow: $color-red 0px 0px 6px 0px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: $color-red;
+    border-image: initial;
+    outline: none;
+  }
+
 }

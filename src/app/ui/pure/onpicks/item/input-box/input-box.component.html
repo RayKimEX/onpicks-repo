@@ -1,9 +1,11 @@
 
-<input class="subtitle-2-regular"
+<input
+       [attr.maxlength]="maxlength"
        [autocomplete]="password"
        [readonly]="readonly"
        [value]="value"
        [placeholder]="placeholder"
+       [class]="'subtitle-2-regular'"
+       [ngClass]="{ 'error-shadow' : errorEffect, 'u-border-red-color' : errorEffect  }"
        [ngStyle]="{ 'margin-right' : marginRight, 'width' : width === undefined ? '100%' : width }"
-       [type]="password === true ? 'password' : 'text'"
->
+       [type]="password === true ? 'password' : 'text'">

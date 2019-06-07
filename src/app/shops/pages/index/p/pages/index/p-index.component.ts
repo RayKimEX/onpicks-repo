@@ -5,7 +5,7 @@ import {select, Store} from '@ngrx/store';
 import {
   ChangeDetectionStrategy, ChangeDetectorRef,
   Component,
-  ElementRef, HostListener, Inject, OnDestroy, OnInit,
+  ElementRef, HostListener, Inject, LOCALE_ID, OnDestroy, OnInit,
   Renderer2,
   ViewChild
 } from '@angular/core';
@@ -16,9 +16,10 @@ import {
 } from 'rxjs/operators';
 import {UiService} from '../../../../../../core/service/ui/ui.service';
 import {BreakpointObserver, BreakpointState} from '../../../../../../../../node_modules/@angular/cdk/layout';
-import {LOCATION_MAP, RESPONSIVE_MAP} from '../../../../../../core/global-constant/app.config';
+import {CURRENCY, LOCATION_MAP, RESPONSIVE_MAP} from '../../../../../../core/global-constant/app.config';
 import {DisplayAlertMessage, UpdateGlobalKakaoPlusFriendForDetailPage, UpdateGlobalKakaoPlusFriendForNormal, UpdateGlobalKakaoPlusFriendForPurchase} from '../../../../../../core/store/ui/ui.actions';
 import {TryAddOrCreateToCart} from '../../../../../../core/store/cart/cart.actions';
+import {BehaviorSubject} from 'rxjs';
 
 @Component({
   selector: 'onpicks-p',
@@ -37,6 +38,8 @@ export class PIndexComponent implements OnInit, OnDestroy {
   pPictureReviews$;
   weeklyBest$;
 
+  alsoViewed$;
+
   /****************/
   isFB = false;
   previousYOffset = 0;
@@ -46,46 +49,6 @@ export class PIndexComponent implements OnInit, OnDestroy {
 
   numberOptionList = {
     list : [
-      {
-        title : '1',
-        value : 1,
-      },
-      {
-        title : '2',
-        value : 2,
-      },
-      {
-        title : '3',
-        value : 3,
-      },
-      {
-        title : '4',
-        value : 4,
-      },
-      {
-        title : '5',
-        value : 5,
-      },
-      {
-        title : '6',
-        value : 6,
-      },
-      {
-        title : '7',
-        value : 7,
-      },
-      {
-        title : '8',
-        value : 8,
-      },
-      {
-        title : '9',
-        value : 9,
-      },
-      {
-        title : '10',
-        value : 10,
-      }
     ]
   }
 
@@ -102,8 +65,10 @@ export class PIndexComponent implements OnInit, OnDestroy {
 
   discountPercent;
   constructor(
-    @Inject(LOCATION_MAP) public locationMap: any,
-    @Inject(RESPONSIVE_MAP) public responsiveMap,
+    @Inject( CURRENCY ) public currency: BehaviorSubject<any>,
+    @Inject( LOCATION_MAP ) public locationMap: any,
+    @Inject( RESPONSIVE_MAP ) public responsiveMap,
+    @Inject( LOCALE_ID ) public locale: string,
     private breakpointObserver:  BreakpointObserver,
     private cd: ChangeDetectorRef,
     private store: Store<any>,
@@ -138,6 +103,10 @@ export class PIndexComponent implements OnInit, OnDestroy {
         }
         if ( v !== undefined && v !== null ) {
           this.discountPercent = 100 - Math.round((v.price / v.msrp * 100));
+
+          for ( var i = 1; i <= (v.stock_quantity <= 10 ? v.stock_quantity : 10); i ++ ) {
+            this.numberOptionList.list.push({ title : i, value : i });
+          }
         }
       })
     );
@@ -148,7 +117,7 @@ export class PIndexComponent implements OnInit, OnDestroy {
       this.pUI = xPUI;
       if ( this.pUI.isShowCommunicateBox === true ) {
         this.isShowMobileMenu = false;
-      };
+      }
     })
 
     this.cartStore$ = this.store.pipe(select(state => state.cart))
@@ -157,6 +126,7 @@ export class PIndexComponent implements OnInit, OnDestroy {
       });
     this.pPictureReviews$ = this.pDataService.getPictureReviewsData(this.route.snapshot.params.id).pipe( tap( v => console.log(v)));
     this.weeklyBest$ = this.uiService.getWeeklyBestGoods();
+    this.alsoViewed$ = this.uiService.getAlsoViewedGoods(this.route.snapshot.params.id);
   }
 
   @HostListener('window:scroll', ['$event']) private onScroll($event: Event): void {
@@ -209,6 +179,7 @@ export class PIndexComponent implements OnInit, OnDestroy {
   }
 
   addToCart(xPackIndex, data) {
+    console.log(data);
     let keyForSlug = '';
     this.keyListForSlug.forEach( (value, index) => {
       if ( (this.keyListForSlug.length - 1) === index ){
@@ -232,11 +203,16 @@ export class PIndexComponent implements OnInit, OnDestroy {
 
     this.store.dispatch(new TryAddOrCreateToCart({
       isPopUp : true,
-      productSlug: currentProductSlug,
+      data: data,
       amount: this.currentSelectOption.amount,
       packIndex: xPackIndex,
-      increaseOrCreate: currentProductSlug in this.cartStore.cartList
+      increaseOrCreate: data.slug in this.cartStore.cartList
     }));
+  }
+
+  amountSelect(xValue ) {
+    console.log(xValue);
+    this.currentSelectOption.amount = xValue.value;
   }
 
   ngOnDestroy() {

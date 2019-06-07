@@ -1,7 +1,9 @@
-import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Inject, LOCALE_ID, OnInit} from '@angular/core';
 import {ActivatedRoute, Params} from '@angular/router';
 import {UiService} from '../../../../../../../../core/service/ui/ui.service';
 import {Meta, Title} from '@angular/platform-browser';
+import {IMAGE_HOST} from '../../../../../../../../core/global-constant/app.config';
+import {TITLE_MAP} from '../../../../../../../../core/global-constant/app.locale';
 
 @Component({
   selector: 'onpicks-pantry-and-household',
@@ -14,11 +16,11 @@ export class PantryAndHouseholdComponent implements OnInit {
 
   pantryAndHouseHoldBannerImages =  [
     {
-      imgSrc : 'https://img.onpicks.com/banners/pantry-and-household/2019-02-27/PAH-banner1.jpg?d=w2576-h800',
-      imgSrcForDesktop : 'https://img.onpicks.com/banners/pantry-and-household/2019-02-27/PAH-banner1.jpg',
+      imgSrc : this.imageHost + '/intro/pantry-and-household/2019-02-27/PAH1.jpg?d=w2576-h800',
+      imgSrcForDesktop : this.imageHost + '/intro/pantry-and-household/2019-02-27/PAH1.jpg',
       // srcSetForDesktop : '',
-      // imgSrcForMobile : 'https://img.onpicks.com/banners/main/2019-04-01/main-mobile-banner1.jpg',
-      // srcSetForMobile : 'https://img.onpicks.com/banners/main/2019-04-01/main-mobile-banner1.jpg 640w',
+      // imgSrcForMobile : 'https://img.onpicks.com/intro/main/2019-04-01/main-mobile1.jpg',
+      // srcSetForMobile : 'https://img.onpicks.com/intro/main/2019-04-01/main-mobile1.jpg 640w',
       // marginLeftForText : '6.2%',
       title : {
         ko : [
@@ -42,10 +44,10 @@ export class PantryAndHouseholdComponent implements OnInit {
       descriptionFontType : 'subtitle-1-regular'
     },
     {
-      imgSrc : 'https://img.onpicks.com/banners/pantry-and-household/2019-02-27/PAH-banner2.jpg?d=w2576-h800',
-      imgSrcForDesktop : 'https://img.onpicks.com/banners/pantry-and-household/2019-02-27/PAH-banner2.jpg',
-      // imgSrcForMobile : 'https://img.onpicks.com/banners/main/2019-04-01/main-mobile-banner1.jpg',
-      // srcSetForMobile : 'https://img.onpicks.com/banners/main/2019-04-01/main-mobile-banner1.jpg 640w',
+      imgSrc : this.imageHost + '/intro/pantry-and-household/2019-02-27/PAH2.jpg?d=w2576-h800',
+      imgSrcForDesktop : this.imageHost + '/intro/pantry-and-household/2019-02-27/PAH2.jpg',
+      // imgSrcForMobile : 'https://img.onpicks.com/intro/main/2019-04-01/main-mobile1.jpg',
+      // srcSetForMobile : 'https://img.onpicks.com/intro/main/2019-04-01/main-mobile1.jpg 640w',
       // marginLeftForText : '6.2%',
       title : {
         ko : [
@@ -73,7 +75,7 @@ export class PantryAndHouseholdComponent implements OnInit {
 
   popularPantryCategory = [
     {
-      imgSrc : 'http://img.onpicks.com/categories/category-grocery.png',
+      imgSrc : this.imageHost + '/categories/category-grocery.png',
       name : {
         ko : '식품',
         en : 'Grocery'
@@ -81,7 +83,7 @@ export class PantryAndHouseholdComponent implements OnInit {
       href : '/shops/c/pantry-and-household/grocery'
     },
     {
-      imgSrc : 'http://img.onpicks.com/categories/category-household.png',
+      imgSrc : this.imageHost + '/categories/category-household.png',
       name : {
         ko : '생활용품',
         en : 'Household'
@@ -89,15 +91,15 @@ export class PantryAndHouseholdComponent implements OnInit {
       href : '/shops/c/pantry-and-household/household-supplies'
     },
     {
-      imgSrc : 'http://img.onpicks.com/categories/category-personalcare.png',
+      imgSrc : this.imageHost + '/categories/category-personalcare.png',
       name : {
         ko : '퍼스널케어',
         en : 'Personal Care'
       },
-      href : '/shops/c/pantry-and-household/grocery'
+      href : '/shops/c/pantry-and-household/personal-care'
     },
     {
-      imgSrc : 'http://img.onpicks.com/categories/category-health.png',
+      imgSrc : this.imageHost + '/categories/category-health.png',
       name : {
         ko : '건강',
         en : 'Health'
@@ -105,7 +107,7 @@ export class PantryAndHouseholdComponent implements OnInit {
       href : '/shops/c/pantry-and-household/health'
     },
     {
-      imgSrc : 'http://img.onpicks.com/categories/category-baby.png',
+      imgSrc : this.imageHost + '/categories/category-baby.png',
       name : {
         ko : '유아동',
         en : 'Baby'
@@ -113,7 +115,7 @@ export class PantryAndHouseholdComponent implements OnInit {
       href : '/shops/c/pantry-and-household/baby'
     },
     {
-      imgSrc : 'http://img.onpicks.com/categories/category-pet.png',
+      imgSrc : this.imageHost + '/categories/category-pet.png',
       name : {
         ko : '반려용품',
         en : 'Pet'
@@ -124,11 +126,15 @@ export class PantryAndHouseholdComponent implements OnInit {
 
   todayCollection = [
     {
-      imgSrc : 'http://img.onpicks.com/collections/collections-paleo.jpg',
+      imgSrc : {
+        ko : this.imageHost + '/collections/ko/paleo.jpg?d=w528-h352',
+        en : this.imageHost + '/collections/en/paleo.jpg?d=w528-h352',
+      },
       todayCategoryName : {
         ko : '식품·생활용품',
         en : 'Pantry & Household'
       },
+      categoryCode : 1000000,
       todayTitle : {
         ko : '팔레오 다이어트',
         en : 'Paleo Diet',
@@ -142,11 +148,15 @@ export class PantryAndHouseholdComponent implements OnInit {
       }
     },
     {
-      imgSrc : 'http://img.onpicks.com/collections/collections-USDA.jpg',
+      imgSrc : {
+        ko : this.imageHost + '/collections/ko/USDA.jpg?d=w528-h352',
+        en : this.imageHost + '/collections/en/USDA.jpg?d=w528-h352'
+      },
       todayCategoryName : {
         ko : '식품·생활용품',
         en : 'Pantry & Household'
       },
+      categoryCode : 1000000,
       todayTitle : {
         ko : 'USDA 인증',
         en : 'Certified Organic'
@@ -162,11 +172,15 @@ export class PantryAndHouseholdComponent implements OnInit {
       }
     },
     {
-      imgSrc : 'http://img.onpicks.com/collections/collections-gluten.jpg',
+      imgSrc : {
+        ko : this.imageHost + '/collections/ko/gluten.jpg?d=w528-h352',
+        en : this.imageHost + '/collections/en/gluten.jpg?d=w528-h352'
+      },
       todayCategoryName : {
         ko : '식품·생활용품',
         en : 'Pantry & Household'
       },
+      categoryCode : 1000000,
       todayTitle : {
         ko : '글루텐프리',
         en : 'Certified Gluten-Free'
@@ -184,12 +198,15 @@ export class PantryAndHouseholdComponent implements OnInit {
   popularBrand$;
 
   constructor(
+    @Inject(IMAGE_HOST) public imageHost: string,
+    @Inject(TITLE_MAP) public titleMap: string,
+    @Inject(LOCALE_ID) public locale: string,
     public route: ActivatedRoute,
     private uiDataService: UiService,
     private titleService: Title,
     private meta: Meta
   ) {
-    this.titleService.setTitle('식품·생활용품')
+    this.titleService.setTitle(this.titleMap['pantry-and-household'][this.locale]);
     // this.meta.addTag({ name: 'description', content: '프리미엄 라이프스타일' });
     this.popularBrand$ = this.uiDataService.getPopularBrands('pantry-and-household');
   }

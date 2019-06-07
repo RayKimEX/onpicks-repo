@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 
-import { LOCALE_ID, NgModule } from '@angular/core';
+import {isDevMode, LOCALE_ID, NgModule} from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
@@ -22,7 +22,7 @@ import {AuthEffects} from './core/store/auth/auth.effects';
 import {
   BREAKPOINT,
   CURRENCY,
-  DOMAIN_HOST,
+  DOMAIN_HOST, IMAGE_HOST,
   LOCATION_MAP,
   LOCATION_MAP_CONST, REGION_ID,
   RESPONSIVE_MAP,
@@ -37,7 +37,8 @@ import 'hammerjs';
 import {BehaviorSubject} from 'rxjs';
 import {CATEGORY_CODE_MAP, CATEGORY_CODE_MAP_CONST, CATEGORY_MAP, CATEGORY_MAP_CONST} from './core/global-constant/app.category-database-long';
 import {CATEGORY_SECOND_MAP, CATEGORY_SECOND_MAP_CONST} from './core/global-constant/app.category-database-short';
-import {MENU_MAP, MENU_MAP_CONST, PREFERENCE_MAP, PREFERENCE_MAP_CONST, REPORT_REASON_MAP, REPORT_REASON_MAP_CONST} from './core/global-constant/app.locale';
+import {MENU_MAP, MENU_MAP_CONST, PREFERENCE_MAP, PREFERENCE_MAP_CONST, REPORT_REASON_MAP, REPORT_REASON_MAP_CONST, TITLE_MAP, TITLE_MAP_CONST} from './core/global-constant/app.locale';
+import {STATE_LIST, STATE_LIST_CONST} from './core/global-constant/app.database';
 // export function getBaseHref(platformLocation: PlatformLocation): string {
 //   return platformLocation.getBaseHrefFromDOM();
 // }
@@ -57,13 +58,31 @@ function getCookie(cname) {
   return '';
 }
 
+
 function setCookie(cname, cvalue ) {
   // const d = new Date();
   // d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
   // const expires = 'expires=' + d.toUTCString();
-  document.cookie = cname + '=' + cvalue + ';path=/';
+
+  if (isDevMode()) {
+    document.cookie = cname + '=' + cvalue + ';path=/';
+  } else {
+    document.cookie = cname + '=' + cvalue + ';domain=.onpicks.com;path=/';
+  }
 
   return 'KRW';
+}
+
+export function getImageHost() {
+  if ( window.location.origin === 'http://localhost' ) {
+    return 'http://img.staging.onpicks.com.s3.amazonaws.com';
+  }
+
+  if ( window.location.origin === 'https://staging.onpicks.com' ) {
+    return 'https://img.staging.onpicks.com.s3.amazonaws.com';
+  }
+
+  return 'https://img.onpicks.com';
 }
 
 export function getCurrency() {
@@ -156,25 +175,37 @@ export function getCurrency() {
       provide: HTTP_INTERCEPTORS, useExisting: AuthInterceptorService, multi: true,
     },
     {
+      // /kr, /us
       provide: APP_BASE_HREF,
       useValue: '/' + (window.location.pathname.split('/')[1] || '')
     },
     {
+      // kr, us
       provide: REGION_ID,
       useValue: (window.location.pathname.split('/')[1] || '')
     },
+    // JIT
     {
       provide: LOCALE_ID,
       useValue : 'en'
     },
     {
+      // https://localhost
       provide: DOMAIN_HOST,
       useValue : window.location.origin
+    },
+    {
+      provide: IMAGE_HOST,
+      useFactory : getImageHost
     },
     {
       provide: CURRENCY,
       useFactory : getCurrency,
       // useValue : new BehaviorSubject(getCookie('onpicks-currency')),
+    },
+    {
+      provide : STATE_LIST,
+      useValue : STATE_LIST_CONST,
     },
     {
       provide: LOCATION_MAP,
@@ -187,6 +218,10 @@ export function getCurrency() {
     {
       provide: CATEGORY_CODE_MAP,
       useValue : CATEGORY_CODE_MAP_CONST,
+    },
+    {
+      provide : TITLE_MAP,
+      useValue : TITLE_MAP_CONST
     },
     {
       provide : MENU_MAP,

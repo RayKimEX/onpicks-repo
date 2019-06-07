@@ -50,9 +50,7 @@ export class CartComponent {
     private httpClient: HttpClient,
     private cd: ChangeDetectorRef,
     private uiService: UiService,
-    private titleService: Title
   ) {
-    this.titleService.setTitle('온픽스, 건강하고 아름다운 삶을 위한 선택');
     this.cartStore$ = this.store.pipe(
       select( state => state.cart ),
       tap( state => this.cartStore = state),
@@ -84,6 +82,9 @@ export class CartComponent {
       productArray.push(item.product);
     });
 
+    // 키트에 하나도 없으면 checkout으로 못가게
+    if ( productArray.length === 0 ) { return };
+
     this.httpClient.post<any>( this.BASE_URL + '/api/cart/checkout/', { products : productArray }).
     subscribe(
       data => {
@@ -111,6 +112,7 @@ export class CartComponent {
   denormalizr ( data ){
 
     const array = []
+    console.log(data);
     Object.keys(data).forEach( key => {
       array.push(data[key]);
     });
@@ -133,32 +135,36 @@ export class CartComponent {
     this.store.dispatch(new TryDeleteFromCart({ productSlug : xProductSlug, itemIndex : xItemIndex, packIndex : xPackIndex, packType : xType}));
   }
 
-  addToCart(xAmount, xProductSlug, xPackIndex) {
+  addToCart(xAmount, xData, xPackIndex) {
     xAmount++;
 
+    console.log(xData);
+    if ( xData.slug === undefined ) {
+      xData.slug = xData.product;
+    }
     // 만약 카트 아이디가. 카트스토어 카트리스트에 있다면, increase cart를 하고, create cart를 하지 않는다.
 
     this.store.dispatch( new TryAddOrCreateToCart(
       {
         isPopUp : false,
-        productSlug : xProductSlug,
+        data : xData,
         amount : xAmount,
         packIndex : xPackIndex,
-        increaseOrCreate : xProductSlug in this.cartStore.cartList
+        increaseOrCreate : xData.slug in this.cartStore.cartList
       }) );
   }
 
-  moveWishListToCart(xAmount, xProductSlug, xPackIndex, xIndex) {
+  moveWishListToCart(xAmount, xData, xPackIndex, xIndex) {
     this.store.dispatch( new TryAddOrCreateToCart(
       {
         isPopUp : false,
-        productSlug : xProductSlug,
+        data : xData,
         amount : xAmount,
         packIndex : xPackIndex,
-        increaseOrCreate : xProductSlug in this.cartStore.cartList
+        increaseOrCreate : xData.slug in this.cartStore.cartList
       }) );
 
-    this.store.dispatch( new TryDeleteWishList( { wishListSlug : xProductSlug, index : xIndex}));
+    this.store.dispatch( new TryDeleteWishList( { wishListSlug : xData.slug, index : xIndex}));
   }
 
   subtractFromCart(xAmount, xProductSlug, xPackIndex ) {

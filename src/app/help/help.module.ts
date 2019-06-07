@@ -9,6 +9,8 @@ import { ReturnComponent } from './pages/index/return/return.component';
 import { ImportComponent } from './pages/index/import/import.component';
 import { RefundPolicyComponent } from './pages/index/refund/refund-policy.component';
 import {HelpIndexComponent} from './pages/index/help-index.component';
+import { FaqKrComponent } from './components/faq-kr/faq-kr.component';
+import { FaqUsComponent } from './components/faq-us/faq-us.component';
 
 @NgModule({
   imports: [
@@ -23,6 +25,8 @@ import {HelpIndexComponent} from './pages/index/help-index.component';
     ReturnComponent,
     RefundPolicyComponent,
     ImportComponent,
+    FaqKrComponent,
+    FaqUsComponent,
   ]
 })
 export class HelpModule { }

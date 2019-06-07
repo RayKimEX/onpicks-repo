@@ -1,11 +1,11 @@
 import {
   AfterViewInit,
-  ChangeDetectionStrategy,
+  ChangeDetectionStrategy, ChangeDetectorRef,
   Component,
   ElementRef,
   EventEmitter,
   HostListener,
-  Input, OnDestroy,
+  Input, OnChanges, OnDestroy,
   OnInit,
   Output,
   Renderer2,
@@ -28,8 +28,12 @@ export class ListActiveButtonComponent implements OnInit, AfterViewInit, OnDestr
   @Output('subtractEvent') subtractEvent = new EventEmitter<number>();
   @Input('isFixExtend') isFixExtend = false;
   @Input('amount') amount = 0;
-  @Input('limitCount') limitCount = 10;
+  @Input('limitCount') set _limitCount(xLimitCount) {
+    if ( xLimitCount === null ) { return; }
+    this.limitCount = xLimitCount > 10 ? 10 : xLimitCount ;
+  }
 
+  limitCount = 10;
   plusOpactiy = 1;
   minusOpacity = 1;
   mouseHover = false;
@@ -47,6 +51,7 @@ export class ListActiveButtonComponent implements OnInit, AfterViewInit, OnDestr
 
   ngAfterViewInit() {
     this.tempEvent = fromEvent(this.outer.nativeElement, 'transitionend').subscribe( v => {
+
       // @ts-ignore
       if (v.propertyName === 'width' ) { this.extendButtonPressed = false };
     });
@@ -107,13 +112,19 @@ export class ListActiveButtonComponent implements OnInit, AfterViewInit, OnDestr
 
 
   extendWidth() {
-    // 초기상태일때
 
+    // 초기상태일때
     // 눌린것을 체크해서, UI가 꼬이는 현상 방지
+    console.log(this.extendButtonPressed);
     if ( this.extendButtonPressed === false ) {
-      this.addEvent.emit(this.amount);
+      if ( this.amount < this.limitCount) {
+        // this.amount++;
+        this.addEvent.emit(this.amount);
+      }
     }
+
     this.extendButtonPressed = true;
+    console.log(this.extendButtonPressed);
     this.plusOpactiy = 1;
     if (this.amount === 0 ) {
       this.mouseHover = false;
@@ -123,16 +134,17 @@ export class ListActiveButtonComponent implements OnInit, AfterViewInit, OnDestr
       this.renderer.setStyle(this.plusIcon.nativeElement, 'right', '1.9rem');
       this.renderer.setStyle(this.outer.nativeElement, 'border-color', '#e5e5e5');
 
-
-
       // 이미 확장 되었을때,
     } else {
 
+
+
       if ( this.amount < this.limitCount) {
         // this.amount++;
-        this.addEvent.emit(this.amount);
 
+        this.addEvent.emit(this.amount);
       }
+
     }
   }
 

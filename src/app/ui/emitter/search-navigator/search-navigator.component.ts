@@ -2,7 +2,7 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component, Inject,
-  Input, LOCALE_ID,
+  LOCALE_ID,
   OnDestroy,
   OnInit,
   Renderer2
@@ -10,7 +10,7 @@ import {
 import {
   Location
 } from '@angular/common';
-import {ActivatedRoute, ActivatedRouteSnapshot, NavigationEnd, Router, RouterEvent} from '@angular/router';
+import {ActivatedRoute, NavigationEnd, Router, RouterEvent} from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import {
   TryAddOrCreateToCart,
@@ -33,6 +33,9 @@ import {Title} from '@angular/platform-browser';
 })
 
 export class SearchNavigatorComponent implements OnInit, OnDestroy {
+
+  objectKeys = Object.keys;
+  isArray = Array.isArray;
 
   locationList;
   locationListForCheck = {};
@@ -84,6 +87,7 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
   uiStore$;
   queryParams$;
   searchData$;
+  routerEvent$;
 
   // subscribe ``value``
   queryParams = {term: '', brand: [], value: [], location: []};
@@ -151,7 +155,6 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
       en : ''
     }
   }
-
   constructor(
     @Inject( CURRENCY ) public currency: BehaviorSubject<any>,
     @Inject( LOCATION_MAP ) public locationMap: any,
@@ -186,7 +189,6 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
         // this.categoryList = val;
         this.normalizedCategoryInfoList = val.entities;
         this.normalizedCategoryCodeList = val.result;
-        console.log('###################################');
         console.log(val.result);
         this.previous = val.previous;
         this.currentSlug = val.currentSlug;
@@ -211,11 +213,13 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
 
     // this.router.events.pipe( merge(this.route.queryParams) )
     // this.router.events.pipe(concat(this.route.queryParams))
-    this.router.events.subscribe( (event: RouterEvent) => {
+    this.routerEvent$ = this.router.events.subscribe( (event: RouterEvent) => {
 
       if (event instanceof NavigationEnd ) {
+        console.log('@@@@@@@@@@@@@@@@@@@@');
         const url = this.router.url;
         this.currentUrl = url;
+        console.log(this.currentUrl);
         if ( url.indexOf('/search') > -1 || url.indexOf('/c/') > -1) {
 
         } else {
@@ -399,6 +403,8 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
     this.uiStore$.unsubscribe();
     this.queryParams$.unsubscribe();
     this.cartStore$.unsubscribe();
+    this.routerEvent$.unsubscribe();
+    this.searchData$.unsubscribe();
   }
 
   ngOnInit() {
@@ -417,17 +423,18 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
     console.log('@@@@@@@@@@@@@@@@remove modal 6');
   }
 
-  addToCart(xAmount, xProductSlug, xPackIndex) {
+  addToCart(xAmount, xData, xPackIndex) {
 
     xAmount++;
+    xData.product = xData.slug;
 
     // 만약 카트 아이디가. 카트스토어 카트리스트에 있다면, increase cart를 하고, create cart를 하지 않는다.
     this.store.dispatch(new TryAddOrCreateToCart({
       isPopUp : true,
-      productSlug: xProductSlug,
+      data: xData,
       amount: xAmount,
       packIndex: xPackIndex,
-      increaseOrCreate: xProductSlug in this.cartStore.cartList
+      increaseOrCreate: xData.slug in this.cartStore.cartList
     }));
 
   }
@@ -576,7 +583,7 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
     this.currentSortSlug = xSortSlug;
     // this.orderedFilterListForCheck[]
     if( this.searchState === 'search') {
-      this.router.navigate(['/shops/search'], { queryParams: {ordering: xSortSlug}, queryParamsHandling: 'merge'} );
+      this.router.navigate(['/shops/search'], { queryParams: {page : 1, ordering: xSortSlug}, queryParamsHandling: 'merge'} );
     } else {
       this.router.navigate(['./'], { relativeTo: this.route, queryParams: {ordering: xSortSlug}, queryParamsHandling: 'merge'} );
     }
@@ -587,7 +594,7 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
   }
 
   categoryClicked( xCategoryCode ) {
-    this.router.navigate( ['/shops/search'], { queryParams: {category: xCategoryCode}, queryParamsHandling: 'merge'} );
+    this.router.navigate( ['/shops/search'], { queryParams: {page : 1, category: xCategoryCode}, queryParamsHandling: 'merge'} );
   }
 
   removeSpecificFilter(xType, xKey) {
@@ -605,7 +612,13 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
       }
     }
 
-    this.router.navigate( ['/shops/search'], {queryParams: this.currentParamList});
+    // this.queryParams
+
+    if( this.searchState === 'search') {
+      this.router.navigate( ['/shops/search'], {queryParams: this.currentParamList});
+    } else {
+      this.router.navigate(['./'], { relativeTo: this.route, queryParams: this.currentParamList } );
+    }
   }
 
   // TODO : 리뷰 검색, 브랜드 검색 2차 스콥때 하기
@@ -661,6 +674,11 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
 
 
     return normalize(data, object);
+  }
+
+
+  typeOf( val ) {
+    return typeof val;
   }
 }
 

@@ -19,6 +19,7 @@ import {
 })
 export class SortBoxComponent implements OnInit, AfterViewInit {
   @ViewChild('HTMLdropDown') HTMLdropDown;
+  @Input('multiLanguage') multiLanguage = false;
   @Input('sortList') sortList;
   @Input('fontSize') fontSize;
   @Input('showBox') showBox;
@@ -26,12 +27,13 @@ export class SortBoxComponent implements OnInit, AfterViewInit {
 
   @Output('changeEvent') changeEvent = new EventEmitter();
 
-  isOpen = false;
+  @Input('isOpen') isOpen = false;
 
   @HostListener('document:click', ['$event'])
   clickout(event) {
     if ( this.eRef.nativeElement.contains(event.target)) {
     } else {
+      if ( this.showBox === false ) { return; }
       this.isOpen = false;
       this.renderer.setStyle( this.HTMLdropDown.nativeElement, 'display', 'none');
     }
@@ -81,8 +83,9 @@ export class SortBoxComponent implements OnInit, AfterViewInit {
   }
 
   clickSortBoxElement(inputValue) {
+    console.log(inputValue.name)
     this.selectedElement = {
-      title : inputValue.name,
+      title : { [this.locale] : inputValue.name },
       value : inputValue.value
     }
 

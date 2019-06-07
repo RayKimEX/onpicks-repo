@@ -2,7 +2,7 @@
   <div class="row account-profile">
     <div class="account-profile__info" *ngLet="(user$ | async) as userData">
       <div class="account-profile__info--image">
-        <img src="{{ userData?.avatar === ''? 'http://img.onpicks.com/assets/default_avatar.png' : userData?.avatar }}" alt="">
+        <img [src]=" userData?.avatar === ''? imageHost + '/assets/default_avatar.png' : userData?.avatar " alt="">
       </div>
       <div class="account-profile__info-description">
         <div class="account-profile__info-description--name h1-bold" >

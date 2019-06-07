@@ -153,9 +153,7 @@
       &--btn {
         display:table-cell;
         vertical-align: middle;
-        right : 2.4rem;
-        margin-top : 1.6rem;
-        margin-bottom : 1.6rem;
+        width : auto;
 
         @include respond(tb){
           display:block;

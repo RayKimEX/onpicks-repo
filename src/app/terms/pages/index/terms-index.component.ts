@@ -1,5 +1,6 @@
-import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Inject, OnInit} from '@angular/core';
 import {Title} from '@angular/platform-browser';
+import {REGION_ID} from '../../../core/global-constant/app.config';
 
 @Component({
   selector: 'onpicks-terms-index',
@@ -10,9 +11,9 @@ import {Title} from '@angular/platform-browser';
 export class TermsIndexComponent implements OnInit {
 
   constructor(
-    private titleService: Title
+    @Inject(REGION_ID) public region: string,
   ) {
-    this.titleService.setTitle('온픽스, 건강하고 아름다운 삶을 위한 선택');
+
   }
 
   ngOnInit() {

@@ -1,5 +1,6 @@
-import {ChangeDetectionStrategy, Component, OnDestroy, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Inject, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
+import {REGION_ID} from '../../../core/global-constant/app.config';
 
 @Component({
   selector: 'onpicks-checkout-success',
@@ -14,6 +15,7 @@ export class CheckoutSuccessComponent implements OnInit, OnDestroy {
   orderCode = 0;
 
   constructor(
+    @Inject(REGION_ID) public region: string,
     private route: ActivatedRoute
   ) {
     this.queryParams$ = this.route.queryParams

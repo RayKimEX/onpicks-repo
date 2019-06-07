@@ -3,16 +3,18 @@
   <ul>
     <li class="terms-navigator--item">
       <a
-         routerLink="/terms"
-         class="subtitle-2-bold u-color-grey"
-         [routerLinkActive]="['u-color-black']"
-         [routerLinkActiveOptions]="{exact: true}">
+        i18n="@@word__terms-of-use"
+        routerLink="/terms"
+        class="subtitle-2-bold u-color-grey"
+        [routerLinkActive]="['u-color-black']"
+        [routerLinkActiveOptions]="{exact: true}">
         이용약관
       </a>
     </li>
     <li
       class="terms-navigator--item">
       <a
+        i18n="@@word__privacy-notice"
         routerLink="/terms/privacy"
         class="subtitle-2-bold u-color-grey"
         [routerLinkActive]="['u-color-black']">
@@ -22,15 +24,20 @@
   </ul>
 
 
-  <div class="terms-navigator--help-tel subtitle-2-regular">고객 센터 1644-0560</div>
+  <div
+    i18n="@@word__cs-center"
+    class="terms-navigator--help-tel subtitle-2-regular">
+    고객 센터 1800-8109
+  </div>
   <div class="terms-navigator--help-mail">
     <a
       class="subtitle-2-regular u-color-green"
       href="mailto:help@onpicks.com">help@onpicks.com
     </a>
   </div>
-  <div class="terms-navigator--operate-time body-2-regular">AM 10:00 ~ PM 18:00
-    <br>점심시간 13:00 ~ 14:00
-    <br>토, 일, 공휴일 휴무
+  <div class="terms-navigator--operate-time body-2-regular">
+    AM 10:00 ~ PM 18:00
+    <div i18n="@@word__cs-lunch-time">점심시간 13:00 ~ 14:00</div>
+    <div i18n="@@word__cs-off-time">토, 일, 공휴일 휴무</div>
   </div>
 </div>

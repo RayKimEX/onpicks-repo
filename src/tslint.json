@@ -13,6 +13,7 @@
             ["onpicks", "ui", ""],
             "kebab-case"
         ],
-        "no-console": false
+        "no-console": false,
+        "no-bitwise": false
     }
 }

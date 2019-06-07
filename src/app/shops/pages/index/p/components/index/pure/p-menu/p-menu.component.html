@@ -34,7 +34,8 @@
         <ui-star-rating
           [star-point]="_data ? _data.review_avg_rating : 0">
         </ui-star-rating>
-        <span class="p-menu__product-info--reviews--read-reviews subtitle-1-regular u-color-dark-grey">{{_data?.review_count}}개 리뷰</span>
+        <span *ngIf="locale === 'ko'" class="p-menu__product-info--reviews--read-reviews subtitle-1-regular u-color-dark-grey">{{_data?.review_count}}개 리뷰</span>
+        <span *ngIf="locale === 'en'" class="p-menu__product-info--reviews--read-reviews subtitle-1-regular u-color-dark-grey">Read {{_data?.review_count}} reviews</span>
       </div>
 
       <div class="p-menu__product-info--MSRP subtitle-1-regular">
@@ -67,7 +68,6 @@
     <div class="p-menu__delivery">
       <div class="p-menu__delivery--inner">
         <div class="p-menu__delivery--first">
-
           <span [ngClass]=
             "[
               (locationMap[_data?.location.code]?.nickname === 'la')  ? 'icon-small-la' : '',
@@ -77,17 +77,27 @@
               (locationMap[_data?.location.code]?.nickname === 'hong')  ? 'icon-small-hong' : ''
             ]">
           </span>
-          <span class="p-menu__delivery--first-spot subtitle-2-bold">
-            {{_data?.location?.name}}
-          </span>
-          <span *ngIf="_data?.shipping_fee == 0" class="p-menu__delivery--first-info subtitle-2-regular">출고,
-              <span class="p-menu__delivery--first-info subtitle-2-bold"> 무료배송</span>
-          </span>
-          <span *ngIf="_data?.shipping_fee > 0" class="p-menu__delivery--first-info subtitle-2-regular">출고, 묶음배송, {{_data?.shipping_fee | onpicksCurrency: (currency| async)}}</span>
 
+          <span *ngIf="_data?.individual_shipping" class="p-menu__delivery--first-info subtitle-2-regular">
+            <strong>{{_data?.location?.name}}</strong> &nbsp;출고,
+            <span class="p-menu__delivery--first-info subtitle-2-bold"> 무료배송</span>
+          </span>
+          <ng-container *ngIf="_data?.shipping_fee > 0">
+            <span *ngIf="locale === 'ko'" class="p-menu__delivery--first-info subtitle-2-regular">
+              <strong>{{_data?.location?.name}}</strong>&nbsp;출고, 묶음배송, {{_data?.shipping_fee | onpicksCurrency: (currency| async)}}
+            </span>
+            <span *ngIf="locale === 'en'" class="p-menu__delivery--first-info subtitle-2-regular">
+              Shipping from <strong>{{_data?.location?.name}}</strong> {{_data?.shipping_fee | onpicksCurrency: (currency| async)}} shipping
+            </span>
+          </ng-container>
         </div>
 
-        <div *ngIf="_data?.shipping_fee > 0" class="p-menu__delivery--second subtitle-2-regular u-color-dark-grey">{{_data?.location?.name}} 묶음배송 상품 {{_data?.location?.free_shipping_threshold | onpicksCurrency : (currency| async) }} 이상 배송료 무료</div>
+        <div *ngIf="locale === 'ko'" class="p-menu__delivery--second subtitle-2-regular u-color-dark-grey">
+          {{_data?.location?.name}} 묶음배송 상품 {{_data?.location?.free_shipping_threshold | onpicksCurrency : (currency| async) }} 이상 배송료 무료
+        </div>
+        <div *ngIf="locale === 'en'" class="p-menu__delivery--second subtitle-2-regular u-color-dark-grey">
+          Free shipping over {{_data?.location?.free_shipping_threshold | onpicksCurrency : (currency| async) }} with {{_data?.location?.name}} items
+        </div>
       </div>
     </div>
 
@@ -102,7 +112,8 @@
         *ngIf="_data?.attributes[0] !== undefined"
         (changeEvent)="optionSelect($event, 0)"
         [sortList]="optionObject">
-        </onpicks-select-box>
+      </onpicks-select-box>
+
       <onpicks-select-box
         *ngIf="_data?.attributes[1] !== undefined"
         (changeEvent)="optionSelect($event, 1)"
@@ -117,21 +128,23 @@
       </onpicks-select-box>
 
       <onpicks-button
+        i18n="@@sentence__add-to-cart"
         *ngIf="!(_data.in_stock === false || _data.in_stock === true && _data.stock_quantity === 0)"
-        (click)="addToCart(_data?.ship_alone ? 'free' : locationMap[_data?.location.code].sequence)"
+        (click)="addToCart(_data?.individual_shipping ? 'free' : locationMap[_data?.location.code].sequence)"
         [type]="'black'"
         [marginLeft]="'1.2rem'"
         [size]="'big'"
         [width]="'23.7rem'">
-        {{'쇼핑백에 담기'}}
+        쇼핑백에 담기
       </onpicks-button>
       <onpicks-button
+        i18n="@@word__out-of-stock"
         *ngIf="(_data.in_stock === false || _data.in_stock === true && _data.stock_quantity === 0)"
         [type]="'grey'"
         [marginLeft]="'1.2rem'"
         [size]="'big'"
         [width]="'23.7rem'">
-        {{'품 절'}}
+        품 절
       </onpicks-button>
     </div>
   </div>

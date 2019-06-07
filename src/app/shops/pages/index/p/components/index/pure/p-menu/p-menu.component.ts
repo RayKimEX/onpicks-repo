@@ -3,7 +3,7 @@ import {
   ChangeDetectionStrategy, ChangeDetectorRef,
   Component,
   ElementRef, Inject,
-  Input,
+  Input, LOCALE_ID,
   OnChanges,
   OnDestroy,
   OnInit,
@@ -169,8 +169,9 @@ export class PMenuComponent implements OnInit, OnDestroy, AfterViewInit, OnChang
   cartStore$;
   cartStore;
   constructor(
+    @Inject( LOCALE_ID ) public locale: string,
     @Inject( CURRENCY ) public currency: BehaviorSubject<any>,
-    @Inject(LOCATION_MAP) public locationMap: any,
+    @Inject( LOCATION_MAP ) public locationMap: any,
     private renderer: Renderer2,
     private store: Store<any>,
     private cd: ChangeDetectorRef,
@@ -237,10 +238,10 @@ export class PMenuComponent implements OnInit, OnDestroy, AfterViewInit, OnChang
 
     this.store.dispatch(new TryAddOrCreateToCart({
       isPopUp : true,
-      productSlug: currentProductSlug,
+      data: this._data,
       amount: this.currentSelectOption.amount,
       packIndex: xPackIndex,
-      increaseOrCreate: currentProductSlug in this.cartStore.cartList
+      increaseOrCreate: this._data.slug in this.cartStore.cartList
     }));
   }
 

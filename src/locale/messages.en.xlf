@@ -711,7 +711,7 @@
 
 
       <trans-unit id="settings-profile__nickname--description" datatype="html">
-        <target>다른 사용자들에겐 사용자가 설정한 닉네임으로 보여집니다 ( 영어 )</target>
+        <target>Nickname will be displayed to other members.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
           <context context-type="linenumber">52</context>
@@ -720,7 +720,7 @@
 
 
       <trans-unit id="settings-profile__row--description" datatype="html">
-        <target>이 정보는 통계 목적으로 사용되며 다른 회원들에게 절대 공개되지 않습니다 ( 영어 )</target>
+        <target>This information is for statistical purposes only. It will not be disclosed or shared with any third party. </target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
           <context context-type="linenumber">52</context>
@@ -760,7 +760,7 @@
       </trans-unit>
 
       <trans-unit id="wish-list__description" datatype="html">
-        <target>다음에 구매할 상품이 없습니다. 다음에 구매할 상품을 담아주세요! ( 영어 )</target>
+        <target>Your Wish List is Empty. </target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
           <context context-type="linenumber">52</context>
@@ -768,7 +768,7 @@
       </trans-unit>
 
       <trans-unit id="written-reviews__title" datatype="html">
-        <target>Written Reviews</target>
+        <target>My Reviews</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
           <context context-type="linenumber">52</context>
@@ -776,7 +776,7 @@
       </trans-unit>
 
       <trans-unit id="written-reviews__description" datatype="html">
-        <target>작성한 리뷰가 없습니다. 다양한 아이템을 최적의 가격으로 쇼핑하여 리뷰를 남겨주세요! ( 영어 )</target>
+        <target>You haven’t posted any reviews yet. Start shopping, save on your favorite products and post your reviews!</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
           <context context-type="linenumber">52</context>
@@ -784,7 +784,7 @@
       </trans-unit>
 
       <trans-unit id="available-reviews__title" datatype="html">
-        <target>Available Reviews</target>
+        <target>Write a Review</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
           <context context-type="linenumber">52</context>
@@ -792,7 +792,7 @@
       </trans-unit>
 
       <trans-unit id="available-reviews__empty-title" datatype="html">
-        <target>작성 가능한 리뷰가 없습니다. 다양한 아이템을 최적의 가격으로 쇼핑하여 리뷰를 남겨주세요! ( 영어 )</target>
+        <target>You have no reviews to write. Start shopping, save on your favorite products and post your reviews!</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
           <context context-type="linenumber">52</context>
@@ -816,7 +816,7 @@
       </trans-unit>
 
       <trans-unit id="orders__description" datatype="html">
-        <target>주문한 상품이 없습니다. Onpicks와 함께 다양한 아이템을 최적의 가격으로 쇼핑하세요! ( 영어 )</target>
+        <target>You haven’t placed any orders yet. Start shopping at Onpicks to save on your favorite products!</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
           <context context-type="linenumber">52</context>
@@ -867,7 +867,7 @@
       </trans-unit>
 
       <trans-unit id="cart__wishlist--empty" datatype="html">
-        <target>다음에 구매할 상품이 없습니다. 다음에 구매할 상품을 담아주세요! ( 영어 )</target>
+        <target>Your Wish List is Empty. </target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
           <context context-type="linenumber">52</context>
@@ -939,6 +939,105 @@
       </trans-unit>
 
       <!--Word-->
+
+      <trans-unit id="word__out-of-stock" datatype="html">
+        <target>Out of Stock</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="word__report" datatype="html">
+        <target>Report</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="word__share" datatype="html">
+        <target>Share</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="word__comment" datatype="html">
+        <target>Comment</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+
+      <trans-unit id="word__liked" datatype="html">
+        <target>Liked</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="word__like" datatype="html">
+        <target>Like</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="word__stars" datatype="html">
+        <target> stars</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="word__rating-distribution" datatype="html">
+        <target>Ratings Distribution</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="word__product-description" datatype="html">
+        <target>Description</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="word__item-detail" datatype="html">
+        <target>Item Detail</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+
+      <trans-unit id="word__customer-images" datatype="html">
+        <target>Customer Images</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+
+      <trans-unit id="word__results" datatype="html">
+        <target>Results</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
 
       <trans-unit id="word__search" datatype="html">
         <target>Search</target>
@@ -1078,7 +1177,7 @@
       </trans-unit>
 
       <trans-unit id="word__delivery-requirements" datatype="html">
-        <target>배송요청사항 ( 영어 )</target>
+        <target>Delivery Instructions</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
           <context context-type="linenumber">52</context>
@@ -1317,11 +1416,176 @@
         </context-group>
       </trans-unit>
 
+      <trans-unit id="word__order-number" datatype="html">
+        <target>Order Number</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="word__privacy-notice" datatype="html">
+        <target>Privacy Notice</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="word__terms-of-use" datatype="html">
+        <target>Terms of Use</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+
+      <trans-unit id="word__cs-center" datatype="html">
+        <target>CS Center 1800-8109</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="word__cs-lunch-time" datatype="html">
+        <target>Lunch Hours 13:00~14:00</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="word__cs-off-time" datatype="html">
+        <target>Sat, Sun Off</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+
 
       <!--Sentence-->
 
+      <trans-unit id="sentence__continue" datatype="html">
+        <target>Continue</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+
+      <trans-unit id="sentence__order-detail" datatype="html">
+        <target>Order Details</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+
+      <trans-unit id="sentence__coming-soon" datatype="html">
+        <target>Items in this category are coming soon.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="sentence__view-shopping-bag" datatype="html">
+        <target>View Shopping Bag</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="sentence__shop-more-pay-less" datatype="html">
+        <target>Shop more, pay less</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="sentence__people-also-looked-at" datatype="html">
+        <target>People Also Looked At</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+
+      <trans-unit id="sentence__select--option" datatype="html">
+        <target>Select Option</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="sentence__thank-you-for-order" datatype="html">
+        <target>Thank you for your order.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="sentence__please-sign-in-to-onpicks" datatype="html">
+        <target>Please sign in to Onpicks</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="sentence__add-to-cart" datatype="html">
+        <target>Add to Cart</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="sentence__people-liked-this-review" datatype="html">
+        <target> people liked this review</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="sentence__continue-shopping-at-onpicks" datatype="html">
+        <target>Continue shopping at Onpicks to save on your favorite products!</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="sentence__shopping-bag-is-empty" datatype="html">
+        <target>Your Shopping Bag Is Empty</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="sentence__search-word" datatype="html">
+        <target>Search brands, products, and lifestyle.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
       <trans-unit id="sentence__save-address" datatype="html">
-        <target>배송지 저장 ( 영어 )</target>
+        <target>Save Shipping Address</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
           <context context-type="linenumber">52</context>
@@ -1329,7 +1593,7 @@
       </trans-unit>
 
       <trans-unit id="sentence__insert-detail-address" datatype="html">
-        <target>상세주소를 입력하세요 ( 영어 )</target>
+        <target>Street Address 2</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
           <context context-type="linenumber">52</context>
@@ -1337,7 +1601,7 @@
       </trans-unit>
 
       <trans-unit id="sentence__search-zip-code" datatype="html">
-        <target>우편번호 찾기 ( 영어 )</target>
+        <target>Zip Code</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
           <context context-type="linenumber">52</context>
@@ -1345,7 +1609,7 @@
       </trans-unit>
 
       <trans-unit id="sentence__insert-buyer-name" datatype="html">
-        <target>주문자 성함을 입력해주세요 ( 영어 )</target>
+        <target>Name</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
           <context context-type="linenumber">52</context>

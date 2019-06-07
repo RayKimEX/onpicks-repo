@@ -14,16 +14,42 @@
           ]">
         </span>
         <div class="free-delivery-notibox__item--info">
-          <span
-            *ngIf="(item.location.free_shipping_threshold - (item.subtotal - item.shipping_fee)) >= 0"
-            class="subtitle-2-regular">
-            {{item.location.name}} 무료배송까지 {{item.location.free_shipping_threshold - (item.subtotal - item.shipping_fee) | onpicksCurrency: (currency| async)}} 남았습니다.
-          </span>
-          <span
-            class="subtitle-2-regular"
-            *ngIf="(item.location.free_shipping_threshold - (item.subtotal - item.shipping_fee)) < 0">
-            무료배송 조건이 충족되었습니다.
-          </span>
+          <ng-container [ngSwitch]="locale">
+
+            <ng-container *ngSwitchCase="'ko'">
+              <div
+                *ngIf="(item.location.free_shipping_threshold - (item.subtotal - item.shipping_fee)) >= 0"
+                class="subtitle-2-regular">
+                {{ item.location.name }} 무료배송까지 {{ item.location.free_shipping_threshold - (item.subtotal - item.shipping_fee) | onpicksCurrency : (currency| async) }} 남았습니다
+              </div>
+            </ng-container>
+
+            <ng-container *ngSwitchCase="'en'">
+              <div
+                *ngIf="(item.location.free_shipping_threshold - (item.subtotal - item.shipping_fee)) >= 0"
+                class="subtitle-2-regular">
+                {{item.location.free_shipping_threshold - (item.subtotal - item.shipping_fee) | onpicksCurrency :  (currency| async)}} to {{item.location.name}} Free Shipping
+              </div>
+            </ng-container>
+
+          </ng-container>
+          <ng-container [ngSwitch]="locale">
+            <ng-container *ngSwitchCase="'ko'">
+              <div
+                *ngIf="(item.location.free_shipping_threshold - (item.subtotal - item.shipping_fee)) < 0"
+                class="subtitle-2-bold">
+                {{item.location.name}} 무료배송 조건이 충족되었습니다.
+              </div>
+            </ng-container>
+
+            <ng-container *ngSwitchCase="'en'">
+              <div
+                *ngIf="(item.location.free_shipping_threshold - (item.subtotal - item.shipping_fee)) < 0"
+                class="subtitle-2-bold">
+                You've earned {{item.location.name}} FREE shipping!
+              </div>
+            </ng-container>
+          </ng-container>
           <ui-progressive-bar
             [progressWidth]="((((item.subtotal - item.shipping_fee) / item.location.free_shipping_threshold) * 100) <= 100 ? (((item.subtotal - item.shipping_fee) / item.location.free_shipping_threshold) * 100) : 100)   + '%'">
           </ui-progressive-bar>
@@ -32,15 +58,16 @@
     </ng-container>
   </ul>
   <div class="free-delivery-notibox__amount-box">
-    <span class="free-delivery-notibox__amount-box--title subtitle-2-regular u-color-grey">총 상품금액</span>
+    <span i18n="@@word__subtotal" class="free-delivery-notibox__amount-box--title subtitle-2-regular u-color-grey">총 상품금액</span>
     <span class="free-delivery-notibox__amount-box--price subtitle-2-bold">{{totalItems | onpicksCurrency: (currency| async)}}</span>
     <onpicks-button
       (click)="goCart()"
+      i18n="@@sentence__view-shopping-bag"
       class="free-delivery-notibox__amount-box--button"
-      [width]="'10.4rem'"
+      [width]="'auto'"
       [type]="'black'"
-      [padding]="false"
-      [size]="'small'">쇼핑백 보기
+      [size]="'small'">
+      쇼핑백 보기
     </onpicks-button>
   </div>
 </div>

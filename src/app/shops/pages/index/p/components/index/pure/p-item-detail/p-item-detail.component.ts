@@ -1,4 +1,5 @@
-import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Inject, Input, LOCALE_ID, OnInit} from '@angular/core';
+import {IMAGE_HOST} from '../../../../../../../../core/global-constant/app.config';
 
 @Component({
   selector: 'onpicks-p-item-detail',
@@ -10,7 +11,9 @@ export class PItemDetailComponent implements OnInit {
   @Input('description') description;
   @Input('categoryInfo') categoryInfo;
 
-  constructor() { }
+  constructor(
+    @Inject(IMAGE_HOST) public imageHost: string,
+  ) { }
 
   ngOnInit() {
   }

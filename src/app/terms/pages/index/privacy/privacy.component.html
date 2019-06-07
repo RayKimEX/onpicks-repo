@@ -1,0 +1,9 @@
+<!--TODO : Sub Router-oulet으로 처리는 불가능한지? 각 페이지마다, onpicks-terms-navigator를 넣어준 상황-->
+
+<div class="row privacy body-2-regular">
+  <onpicks-terms-navigator class="col-3-of-12"></onpicks-terms-navigator>
+
+  <onpicks-privacy-kr *ngIf="region === 'kr'"></onpicks-privacy-kr>
+  <onpicks-privacy-us *ngIf="region === 'us'"></onpicks-privacy-us>
+</div>
+

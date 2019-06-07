@@ -24,7 +24,7 @@
                 #f
                 type="radio"
                 data-value="{{item.value}}"
-                data-name="{{item.title}}">
+                data-name="{{item.title[locale]}}">
               <span
                 [ngClass]="{ active : item.value == selectedElement?.value }"
                 class="onpicks-sort-box__dropdown--element-text subtitle-2-bold u-color-dark-grey">

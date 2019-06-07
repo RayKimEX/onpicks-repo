@@ -155,14 +155,14 @@ export class CartEffects {
     ofType( CartActions.TRY_ADD_OR_CREATE_TO_CART ),
     map( payload => payload['payload']),
     // @ts-ignore
-    switchMap( (payload: {isPopUp, productSlug, amount, packIndex, increaseOrCreate}) => {
+    switchMap( (payload: {isPopUp, data, amount, packIndex, increaseOrCreate}) => {
       if ( payload.increaseOrCreate ) {
-        return this.cartService.addToCart( payload.productSlug, payload.amount )
+        return this.cartService.addToCart( payload.data.slug, payload.amount )
           .pipe(
             map( getCartInfo => {
               return new AddToCartSuccess( {
                 isPopUp : payload.isPopUp,
-                productSlug: payload.productSlug,
+                data: payload.data,
                 amount : payload.amount,
                 packIndex: payload.packIndex,
                 cartInfo: getCartInfo
@@ -173,12 +173,12 @@ export class CartEffects {
             })
           );
       } else {
-        return this.cartService.createToCart( payload.productSlug, payload.amount )
+        return this.cartService.createToCart( payload.data.slug, payload.amount )
           .pipe(
             map( getCartInfo => {
               return new CreateToCartSuccess( {
                 isPopUp : payload.isPopUp,
-                productSlug: payload.productSlug,
+                data: payload.data,
                 amount : payload.amount,
                 packIndex: payload.packIndex,
                 cartInfo: getCartInfo}

@@ -23,10 +23,9 @@
       {{amount}}
     </span>
   </span>
-
   <ui-plus-minus-icon
     [opacity]="plusOpactiy"
-    [borderColor]="mouseHover && (amount === 0) ? '#FFFFFF' : amount === limitCount ? '#e5e5e5' : '#292929'"
+    [borderColor]="(mouseHover && (amount === 0)) ? '#FFFFFF' : amount == limitCount ? '#e5e5e5' : '#292929'"
     [size]="'12px'"
     #plusIcon
     [ngStyle]="
@@ -34,7 +33,8 @@
         left : isFixExtend || this.amount !== 0  ? 'auto' : '',
         right : isFixExtend || this.amount !== 0  ? '1.9rem' : ''
      }"
-    [type]="'plus'" >
+    [type]="'plus'">
+
   </ui-plus-minus-icon>
 
   <span class="touch__amount-up"

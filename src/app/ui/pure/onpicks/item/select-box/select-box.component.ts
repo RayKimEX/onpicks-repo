@@ -23,38 +23,51 @@ export class SelectBoxComponent implements OnInit, OnChanges {
   @Input('scrollMin') scrollMin;
   @Input('multiLanguage') multiLanguage = false;
   @Input('isNativeSelectBox') isNativeSelectBox = false;
-  @Input('selectedElement') set selectedElement (xSelectedElement) {
+  @Input('errorEffect') errorEffect = false;
+  @Input('selectedElement') set selectedElement(xSelectedElement) {
 
-    this._selectedElement = xSelectedElement;
+    setTimeout( () => {
+      this._selectedElement = xSelectedElement;
 
-    if ( this._selectedElement.title === null ) {
-      if ( this._sortList.title === undefined ) {
-        if( this._sortList.list === undefined ) { return ; }
-        this._selectedElement = this._sortList.list[0];
-      } else {
-        this._selectedElement = {
-          title : this._sortList.title,
-          value : null
-        };
-      }
-
-    } else {
-      console.log(this._selectedElement);
-      console.log(this._sortList)
-      if ( this._selectedElement.value === null || this._sortList.list === undefined) {
-        return ;
-      }
-      console.log('dddsfsdfdsfsdf');
-
-      /* TODO : forEach말고 keyvalue로 indexing하는 방법으로 바꾸기*/
-      this._sortList.list.forEach( v => {
-        if ( v.value == this._selectedElement.value ) {
-          this._selectedElement = v;
+      if ( this._selectedElement.title === null ) {
+        if ( this._sortList.title === undefined ) {
+          if( this._sortList.list === undefined ) { return ; }
+          this._selectedElement = this._sortList.list[0];
+        } else {
+          this._selectedElement = {
+            title : this._sortList.title,
+            value : null
+          };
         }
-      });
-    }
 
-    this.cd.markForCheck();
+      } else {
+        console.log(this._sortList);
+        if ( this._sortList === undefined || this._sortList.list === undefined ) {
+          return ;
+        }
+
+        console.log(this._selectedElement);
+        if ( this._selectedElement.value === null ){
+          this._selectedElement = {
+            title : this._sortList.title,
+            value : null
+          };
+
+          console.log(this._selectedElement);
+        } else {
+          /* TODO : forEach말고 keyvalue로 indexing하는 방법으로 바꾸기*/
+          this._sortList.list.forEach( v => {
+            console.log("@@@@@@@@@@@@@");
+            if ( v.value == this._selectedElement.value ) {
+              this._selectedElement = v;
+            }
+          });
+        }
+      }
+
+      this.cd.markForCheck();
+    }, 0 );
+
   }
   // changeEvent는 value만 들어감
   @Output('changeEvent') changeEvent = new EventEmitter();
@@ -62,15 +75,29 @@ export class SelectBoxComponent implements OnInit, OnChanges {
 
   @Input('sortList') set sortList(xData) {
     this._sortList = xData;
+    console.log(this._sortList);
 
       if ( this._sortList.title === undefined ) {
         if( this._sortList.list === undefined ) { return ; }
         this._selectedElement = this._sortList.list[0];
+
       } else {
-        this._selectedElement = {
-          title : this._sortList.title,
-          value : null
-        };
+        console.log(this._selectedElement);
+        if ( this._selectedElement === undefined || this._selectedElement.value === null ) {
+          this._selectedElement = {
+            title : this._sortList.title,
+            value : null
+          };
+        } else {
+          console.log('@@@@@@');
+          // TODO : forEach말고 keyvalue로 indexing하는 방법으로 바꾸기
+          this._sortList.list.forEach( v => {
+            if ( v.value == this._selectedElement.value ) {
+              this._selectedElement = v;
+            }
+          });
+        }
+
       }
 
   }
@@ -82,7 +109,7 @@ export class SelectBoxComponent implements OnInit, OnChanges {
 
   @HostListener('document:click', ['$event'])
   clickout(event) {
-    if ( this.isNativeSelectBox) { return; }
+    if ( this.isNativeSelectBox ) { return; }
     if ( this.eRef.nativeElement.contains(event.target) ) {
       // console.log('clicked inside');
     } else {
@@ -114,6 +141,7 @@ export class SelectBoxComponent implements OnInit, OnChanges {
   }
 
   clickSortBox() {
+    console.log(this._selectedElement);
     if ( this.HTMLdropDown.nativeElement.style.display === 'none') {
       this.isOpen = true;
       this.renderer.setStyle( this.HTMLdropDown.nativeElement, 'display', 'inline-block');
@@ -121,6 +149,17 @@ export class SelectBoxComponent implements OnInit, OnChanges {
       this.isOpen = false;
       this.renderer.setStyle( this.HTMLdropDown.nativeElement, 'display', 'none');
     }
+  }
+
+  clickNativeSelectBox(inputValue) {
+
+    this.changeEvent.emit({ value : inputValue, index : null});
+
+    // this._selectedElement.value =
+    // this._selectedElement.title = inputValue.name;
+    // this.isOpen = false;
+    // this.renderer.setStyle( this.HTMLdropDown.nativeElement, 'display', 'none');
+    // this.changeEvent.emit({ value : inputValue.value, index : inputValue.dataset.index});
   }
 
   clickSelectBoxElement(inputValue) {

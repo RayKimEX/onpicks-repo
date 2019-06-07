@@ -90,7 +90,7 @@
 
     &--copyright {
       display : inline-block;
-      width : 83.3rem;
+      width : 75.3rem;
 
       &--copyright-text {
         display: block;
@@ -212,6 +212,7 @@
       }
       & > div:nth-child(1){
         margin-top : 1.6rem;
+        padding-bottom : 1.6rem;
       }
       & > div:nth-child(2){
         margin-top : 1.6rem;

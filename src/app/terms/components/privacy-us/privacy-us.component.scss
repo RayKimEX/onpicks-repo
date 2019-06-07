@@ -1,0 +1,40 @@
+@import '~src/assets/scss/abstracts/variables';
+
+.privacy__contents {
+  @include respond(actb){
+    width : 100%;
+  }
+}
+
+h1 {
+  @include h1-bold;
+  margin-bottom : 2.4rem;
+}
+
+ul {
+  @include body-2-regular;
+  margin-bottom : 1.6rem;
+  li {
+    margin-left : 2rem;
+  }
+}
+
+.decimal-ul {
+  list-style-type: decimal;
+  li {
+    margin-bottom : 1.6rem;
+    margin-left: 2rem;
+  }
+}
+
+div {
+  margin-bottom: 1.6rem;
+  @include body-2-regular;
+}
+
+
+h3 {
+  margin-top : 2.4rem;
+  margin-bottom : 1.6rem;
+  @include subtitle-2-bold;
+}

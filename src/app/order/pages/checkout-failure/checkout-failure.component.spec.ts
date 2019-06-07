@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PPictureReviewSubComponent } from './p-picture-review-sub.component';
+import { CheckoutFailureComponent } from './checkout-failure.component';
 
-describe('PPictureReviewSubComponent', () => {
-  let component: PPictureReviewSubComponent;
-  let fixture: ComponentFixture<PPictureReviewSubComponent>;
+describe('CheckoutFailureComponent', () => {
+  let component: CheckoutFailureComponent;
+  let fixture: ComponentFixture<CheckoutFailureComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PPictureReviewSubComponent ]
+      declarations: [ CheckoutFailureComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PPictureReviewSubComponent);
+    fixture = TestBed.createComponent(CheckoutFailureComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

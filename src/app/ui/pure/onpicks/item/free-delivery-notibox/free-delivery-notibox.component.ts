@@ -26,6 +26,7 @@ export class FreeDeliveryNotiboxComponent implements OnInit {
   constructor(
     @Inject(CURRENCY) public currency: BehaviorSubject<any>,
     @Inject(LOCATION_MAP) public locationMap: any,
+    @Inject( LOCALE_ID ) public locale: string,
     private router: Router
   ) {
 

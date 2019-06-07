@@ -19,11 +19,13 @@ export class CartService {
   }
 
   createToCart(xProductSlug, xAmount) {
+    console.log(xProductSlug);
     return this.httpClient.post<any>(this.BASE_URL + '/api/cart/', { product : xProductSlug, quantity: xAmount });
   }
 
   // add To Cart와 subtractFromCart는, 똑같음 그냥 의미상의 차이를 위해 이름만 바꿈
   addToCart(xProductSlug, xAmount) {
+    console.log(xProductSlug);
     return this.httpClient.put<any>(this.BASE_URL + '/api/cart/' + xProductSlug + '/', { quantity : xAmount});
   }
 

@@ -1,0 +1,49 @@
+@import '~src/assets/scss/abstracts/variables';
+
+
+onpicks-button {
+  width : 14.7rem;
+  display:inline-block;
+  margin-top : 3.2rem;
+}
+
+
+.checkout-failure {
+  margin-top : 3.2rem;
+
+  width:74.3rem;
+  margin-left : auto;
+  margin-right : auto;
+  margin-bottom : 28.8rem;
+
+
+  &--message {
+    width : 26.7rem;
+    margin-bottom : 1.6rem;
+  }
+
+
+  &--title {
+    margin-bottom : 1.6rem;
+  }
+
+  &--failure-button {
+    display:inline-block;
+    margin-bottom : 1.6rem;
+  }
+  &--left {
+    margin-right : 4rem;
+    vertical-align: top;
+    display:inline-block;
+  }
+
+  &--right {
+    display:inline-block;
+  }
+
+  &--image {
+    width : 38.6rem;
+    height : 30rem;
+
+  }
+}

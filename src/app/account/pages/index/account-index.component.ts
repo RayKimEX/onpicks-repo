@@ -3,7 +3,7 @@ import {select, Store} from '@ngrx/store';
 import {AppState} from '../../../core/store/app.reducer';
 import {TryLogout} from '../../../core/store/auth/auth.actions';
 import {Router} from '@angular/router';
-import {CURRENCY} from '../../../core/global-constant/app.config';
+import {CURRENCY, IMAGE_HOST} from '../../../core/global-constant/app.config';
 
 @Component({
   selector: 'onpicks-account-index',
@@ -17,6 +17,7 @@ export class AccountIndexComponent implements OnInit {
 
   constructor(
     @Inject(CURRENCY) public currency,
+    @Inject(IMAGE_HOST) public imageHost: string,
     private store: Store<AppState>,
     private router: Router,
   ) {

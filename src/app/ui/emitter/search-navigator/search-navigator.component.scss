@@ -386,6 +386,23 @@ onpicks-check-box {
     }
   }
 
+  &__mobile-sort-list{
+    display:none;
+    margin-top : 2.4rem;
+    margin-bottom : 2.4rem;
+    @include respond(sb){
+      display:block;
+    }
+
+    &--item{
+      display:inline-block;
+      &:not(:last-of-type){
+        margin-right:1.6rem;
+      }
+
+    }
+  }
+
   &__mobile-sorting {
     display:none;
     text-align: center;
@@ -503,6 +520,7 @@ onpicks-check-box {
 
 
   &__price-info {
+    word-break: break-all;
     margin-top: 0.8rem;
     @include respond(tb){
       margin-top : 0.4rem;
@@ -510,9 +528,10 @@ onpicks-check-box {
 
     &--MSRP {
       margin-right: 0.2rem;
-      font-size: 1.2rem;
-      color: #a0a0a0;
-      font-weight: 500;
+
+      @include respond(tb){
+        display:none;
+      }
 
       &-discount {
         vertical-align: text-top;;
@@ -522,12 +541,20 @@ onpicks-check-box {
         }
       }
 
+      &-mobile {
+        display:none;
+        margin-right: 0.2rem;
+        @include respond(tb){
+          display: inline-block;
+        }
+      }
+
       &-mobile-discount {
         display: none;
         margin-top:0.4rem;
         text-decoration: line-through;
         @include respond(tb){
-          display: block;
+          display: inline-block;
         }
       }
     }
@@ -686,12 +713,10 @@ onpicks-check-box {
         height:100%;
 
         padding : 2.4rem;
-
-
-
-        &:hover {
-          opacity: 0.5;
-          cursor: pointer;
+        a {
+          width : 100%;
+          height : 100%;
+          display:inline-block;
         }
       }
     }

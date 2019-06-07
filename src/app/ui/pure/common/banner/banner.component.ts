@@ -1,4 +1,4 @@
-import {Component, OnInit, ChangeDetectionStrategy, Input} from '@angular/core';
+import {Component, OnInit, ChangeDetectionStrategy, Input, Inject, LOCALE_ID} from '@angular/core';
 
 @Component({
   selector: 'ui-banner',
@@ -10,7 +10,9 @@ export class BannerComponent implements OnInit {
 
   @Input('bannerInfo') bannerInfo;
 
-  constructor() { }
+  constructor(
+    @Inject( LOCALE_ID ) public locale: string,
+  ) { }
 
   ngOnInit() {
   }

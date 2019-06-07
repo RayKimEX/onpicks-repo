@@ -56,7 +56,7 @@
                         'trending-reviews-fullM__item--image'
                       ]">
                     <div
-                      [routerLink]="'/shops/p/' + item.slug"
+                      [routerLink]="'/shops/p/' + item.product.slug"
                       [ngClass]="[
                         mobileType === 'half' ?
                         'trending-reviews-halfM__item--image-outer' :
@@ -68,7 +68,7 @@
                         'trending-reviews-halfM__item--image-inner' :
                         'trending-reviews-fullM__item--image-inner'
                       ]">
-                        <img drLazyLoad [relativeOption]="false" src="{{item?.review_info?.img_src}}" alt="">
+                        <img drLazyLoad [relativeOption]="false" src="{{item?.picture}}" alt="">
                       </div>
                       <div class="profile">
                         <div class="profile-inner">
@@ -76,12 +76,14 @@
                             <span class="profile-inner__figure--image--outer">
                               <img
                                 drLazyLoad
-                                src="{{item?.review_info?.author?.avatar}}" alt="Person on a tour" class="profile-inner__figure--image">
+                                src="{{item?.author?.avatar}}"
+                                alt="Person on a tour"
+                                class="profile-inner__figure--image">
                             </span>
 
-                            <figcaption class="subtitle-1-bold u-color-white">{{item?.review_info?.author?.nickname}}</figcaption>
+                            <figcaption class="subtitle-1-bold u-color-white">{{item?.author?.nickname}}</figcaption>
                             <!--<!--[@divState] (load) ---->
-                            <ui-star-rating [star-point]="item?.review_info?.rating"></ui-star-rating>
+                            <ui-star-rating [star-point]="item?.rating"></ui-star-rating>
                             <span class="subtitle-2-regular u-color-white">{{item?.modified | date : 'longDate'}}</span>
                           </figure>
                         </div>
@@ -101,12 +103,12 @@
                         'trending-reviews-fullM__item--name-outer-brand'
                       ]"
                       class="subtitle-2-bold">
-                      <a (click)="goBrandFilter(item.brand.slug)">
-                        {{item.brand.name}}
+                      <a (click)="goBrandFilter( item.product.brand.slug )">
+                        {{ item.product.brand.name }}
                       </a>
                     </div>
 
-                    <a [routerLink]="'/shops/p/' + item.slug">
+                    <a [routerLink]="'/shops/p/' + item.product.slug">
                       <span
                         [ngClass]="[
                           mobileType === 'half' ?
@@ -114,16 +116,16 @@
                           'trending-reviews-fullM__item--name-outer-name'
                         ]"
                         class="body-2-regular">
-                        {{item.title}}
+                        {{item.product.title}}
                       </span>
                     </a>
                   </div>
 
                   <ui-star-rating
-                    [star-point]="item.review_avg_rating"
+                    [star-point]="item.product.review_avg_rating"
                     [size]="10">
                   </ui-star-rating>
-                  <span class="subtitle-3-regular u-color-dark-grey">{{item.review_count}}</span>
+                  <span class="subtitle-3-regular u-color-dark-grey">{{item.product.review_count}}</span>
                   <br>
                   <span
                     [ngClass]="[
@@ -131,7 +133,7 @@
                         'trending-reviews-halfM__price-info--MSRP-mobile-discount' :
                         'trending-reviews-fullM__price-info--MSRP-mobile-discount'
                       ]"
-                    class="subtitle-3-regular u-color-grey">{{item.msrp | onpicksCurrency : currencyAsync}}</span>
+                    class="subtitle-3-regular u-color-grey">{{item.product.msrp | onpicksCurrency : currencyAsync}}</span>
                   <div
                     [ngClass]="[
                       mobileType === 'half' ?
@@ -144,14 +146,14 @@
                         'trending-reviews-halfM__price-info--discount' :
                         'trending-reviews-fullM__price-info--discount'
                       ]"
-                      class="subtitle-1-bold u-color-orange">{{100 - round((item.price / item.msrp * 100))}}%</span>
+                      class="subtitle-1-bold u-color-orange">{{100 - round((item.product.price / item.product.msrp * 100))}}%</span>
                     <span
                       [ngClass]="[
                         mobileType === 'half' ?
                         'trending-reviews-halfM__price-info--price' :
                         'trending-reviews-fullM__price-info--price'
                       ]"
-                      class="subtitle-1-bold">{{item.price | onpicksCurrency : currencyAsync}}</span>
+                      class="subtitle-1-bold">{{item.product.price | onpicksCurrency : currencyAsync}}</span>
                     <span
                       [ngClass]="[
                         mobileType === 'half' ?
@@ -165,7 +167,7 @@
                         'trending-reviews-halfM__price-info--MSRP-discount' :
                         'trending-reviews-fullM__price-info--MSRP-discount'
                       ]"
-                      class="subtitle-3-regular u-color-grey">{{item.msrp | onpicksCurrency : currencyAsync}}</span>
+                      class="subtitle-3-regular u-color-grey">{{item.product.msrp | onpicksCurrency : currencyAsync}}</span>
                   </div>
                   <div
                     [ngClass]="[
@@ -173,88 +175,88 @@
                       'trending-reviews-halfM__delivery-point' :
                       'trending-reviews-fullM__delivery-point'
                     ]">
-                    <ng-container [ngSwitch]="locationMap[item.location.code].sequence">
-                      <ng-container *ngSwitchCase="'LAX'" >
-                        <span
-                          [ngClass]="[
-                            mobileType === 'half' ?
-                            'trending-reviews-halfM__delivery-point--icon' :
-                            'trending-reviews-fullM__delivery-point--icon'
-                          ]"
-                          class="icon-small-la"></span>
-                        <span
-                          [ngClass]="[
-                            mobileType === 'half' ?
-                            'trending-reviews-halfM__delivery-point--text' :
-                            'trending-reviews-fullM__delivery-point--text'
-                          ]"
-                          class="subtitle-2-regular u-color-black"><strong>엘에이</strong> 출고</span>
-                      </ng-container>
-                      <ng-container *ngSwitchCase="'JFK'">
-                        <span
-                          [ngClass]="[
-                            mobileType === 'half' ?
-                            'trending-reviews-halfM__delivery-point--icon' :
-                            'trending-reviews-fullM__delivery-point--icon'
-                          ]"
-                          class="icon-small-new"></span>
-                        <span
-                          [ngClass]="[
-                            mobileType === 'half' ?
-                            'trending-reviews-halfM__delivery-point--text' :
-                            'trending-reviews-fullM__delivery-point--text'
-                          ]"
-                          class="subtitle-2-regular u-color-black"><strong>뉴저지</strong> 출고</span>
-                      </ng-container>
-                      <ng-container *ngSwitchCase="'ATL'">
-                        <span
-                          [ngClass]="[
-                            mobileType === 'half' ?
-                            'trending-reviews-halfM__delivery-point--icon' :
-                            'trending-reviews-fullM__delivery-point--icon'
-                          ]"
-                          class="icon-small-gorgia"></span>
-                        <span
-                          [ngClass]="[
-                            mobileType === 'half' ?
-                            'trending-reviews-halfM__delivery-point--text' :
-                            'trending-reviews-fullM__delivery-point--text'
-                          ]"
-                          class="subtitle-2-regular u-color-black"><strong>죠지아</strong> 출고</span>
-                      </ng-container>
-                      <ng-container *ngSwitchCase="'KIX'">
-                        <span
-                          [ngClass]="[
-                            mobileType === 'half' ?
-                            'trending-reviews-halfM__delivery-point--icon' :
-                            'trending-reviews-fullM__delivery-point--icon'
-                          ]"
-                          class="icon-small-osaka"></span>
-                        <span
-                          [ngClass]="[
-                            mobileType === 'half' ?
-                            'trending-reviews-halfM__delivery-point--text' :
-                            'trending-reviews-fullM__delivery-point--text'
-                          ]"
-                          class="subtitle-2-regular u-color-black"><strong>오사카</strong> 출고</span>
-                      </ng-container>
-                      <ng-container *ngSwitchCase="'HKG'">
-                        <span
-                          [ngClass]="[
-                            mobileType === 'half' ?
-                            'trending-reviews-halfM__delivery-point--icon' :
-                            'trending-reviews-fullM__delivery-point--icon'
-                          ]"
-                          class="icon-small-hong"></span>
-                        <span
-                          [ngClass]="[
-                            mobileType === 'half' ?
-                            'trending-reviews-halfM__delivery-point--text' :
-                            'trending-reviews-fullM__delivery-point--text'
-                          ]"
-                          class="subtitle-2-regular u-color-black"><strong>홍콩</strong> 출고</span>
-                      </ng-container>
-                    </ng-container>
+                    <!--<ng-container [ngSwitch]="locationMap[item.location.code].sequence">-->
+                      <!--<ng-container *ngSwitchCase="'LAX'" >-->
+                        <!--<span-->
+                          <!--[ngClass]="[-->
+                            <!--mobileType === 'half' ?-->
+                            <!--'trending-reviews-halfM__delivery-point&#45;&#45;icon' :-->
+                            <!--'trending-reviews-fullM__delivery-point&#45;&#45;icon'-->
+                          <!--]"-->
+                          <!--class="icon-small-la"></span>-->
+                        <!--<span-->
+                          <!--[ngClass]="[-->
+                            <!--mobileType === 'half' ?-->
+                            <!--'trending-reviews-halfM__delivery-point&#45;&#45;text' :-->
+                            <!--'trending-reviews-fullM__delivery-point&#45;&#45;text'-->
+                          <!--]"-->
+                          <!--class="subtitle-2-regular u-color-black"><strong>엘에이</strong> 출고</span>-->
+                      <!--</ng-container>-->
+                      <!--<ng-container *ngSwitchCase="'JFK'">-->
+                        <!--<span-->
+                          <!--[ngClass]="[-->
+                            <!--mobileType === 'half' ?-->
+                            <!--'trending-reviews-halfM__delivery-point&#45;&#45;icon' :-->
+                            <!--'trending-reviews-fullM__delivery-point&#45;&#45;icon'-->
+                          <!--]"-->
+                          <!--class="icon-small-new"></span>-->
+                        <!--<span-->
+                          <!--[ngClass]="[-->
+                            <!--mobileType === 'half' ?-->
+                            <!--'trending-reviews-halfM__delivery-point&#45;&#45;text' :-->
+                            <!--'trending-reviews-fullM__delivery-point&#45;&#45;text'-->
+                          <!--]"-->
+                          <!--class="subtitle-2-regular u-color-black"><strong>뉴저지</strong> 출고</span>-->
+                      <!--</ng-container>-->
+                      <!--<ng-container *ngSwitchCase="'ATL'">-->
+                        <!--<span-->
+                          <!--[ngClass]="[-->
+                            <!--mobileType === 'half' ?-->
+                            <!--'trending-reviews-halfM__delivery-point&#45;&#45;icon' :-->
+                            <!--'trending-reviews-fullM__delivery-point&#45;&#45;icon'-->
+                          <!--]"-->
+                          <!--class="icon-small-gorgia"></span>-->
+                        <!--<span-->
+                          <!--[ngClass]="[-->
+                            <!--mobileType === 'half' ?-->
+                            <!--'trending-reviews-halfM__delivery-point&#45;&#45;text' :-->
+                            <!--'trending-reviews-fullM__delivery-point&#45;&#45;text'-->
+                          <!--]"-->
+                          <!--class="subtitle-2-regular u-color-black"><strong>죠지아</strong> 출고</span>-->
+                      <!--</ng-container>-->
+                      <!--<ng-container *ngSwitchCase="'KIX'">-->
+                        <!--<span-->
+                          <!--[ngClass]="[-->
+                            <!--mobileType === 'half' ?-->
+                            <!--'trending-reviews-halfM__delivery-point&#45;&#45;icon' :-->
+                            <!--'trending-reviews-fullM__delivery-point&#45;&#45;icon'-->
+                          <!--]"-->
+                          <!--class="icon-small-osaka"></span>-->
+                        <!--<span-->
+                          <!--[ngClass]="[-->
+                            <!--mobileType === 'half' ?-->
+                            <!--'trending-reviews-halfM__delivery-point&#45;&#45;text' :-->
+                            <!--'trending-reviews-fullM__delivery-point&#45;&#45;text'-->
+                          <!--]"-->
+                          <!--class="subtitle-2-regular u-color-black"><strong>오사카</strong> 출고</span>-->
+                      <!--</ng-container>-->
+                      <!--<ng-container *ngSwitchCase="'HKG'">-->
+                        <!--<span-->
+                          <!--[ngClass]="[-->
+                            <!--mobileType === 'half' ?-->
+                            <!--'trending-reviews-halfM__delivery-point&#45;&#45;icon' :-->
+                            <!--'trending-reviews-fullM__delivery-point&#45;&#45;icon'-->
+                          <!--]"-->
+                          <!--class="icon-small-hong"></span>-->
+                        <!--<span-->
+                          <!--[ngClass]="[-->
+                            <!--mobileType === 'half' ?-->
+                            <!--'trending-reviews-halfM__delivery-point&#45;&#45;text' :-->
+                            <!--'trending-reviews-fullM__delivery-point&#45;&#45;text'-->
+                          <!--]"-->
+                          <!--class="subtitle-2-regular u-color-black"><strong>홍콩</strong> 출고</span>-->
+                      <!--</ng-container>-->
+                    <!--</ng-container>-->
                   </div>
                 </div>
               </li>

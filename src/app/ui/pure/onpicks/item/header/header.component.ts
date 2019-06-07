@@ -1,6 +1,5 @@
 // Angular Core
 import {ActivatedRoute, Router} from '@angular/router';
-import {APP_BASE_HREF} from '@angular/common';
 import {
   ChangeDetectionStrategy,
   AfterViewInit,
@@ -23,12 +22,14 @@ import {shareReplay, tap} from 'rxjs/operators';
 import {AuthService} from '../../../../../core/service/auth/auth.service';
 import {AuthState} from '../../../../../core/store/auth/auth.model';
 import {AppState} from '../../../../../core/store/app.reducer';
-import {CURRENCY, REGION_ID, RESPONSIVE_MAP} from '../../../../../core/global-constant/app.config';
+import {CURRENCY, IMAGE_HOST, REGION_ID, RESPONSIVE_MAP} from '../../../../../core/global-constant/app.config';
 import {DisplayAlertMessage, RemoveAlertMessage} from '../../../../../core/store/ui/ui.actions';
 import {BreakpointObserver, BreakpointState} from '../../../../../../../node_modules/@angular/cdk/layout';
 import {TryLogout} from '../../../../../core/store/auth/auth.actions';
 import {MENU_MAP} from '../../../../../core/global-constant/app.locale';
 import {ShowCurrencyModal} from '../../../../../core/store/modal/modal.actions';
+import {CATEGORY_CODE_MAP, CATEGORY_MAP} from '../../../../../core/global-constant/app.category-database-long';
+import {normalize, schema} from 'normalizr';
 
 @Component({
   selector: 'ui-header',
@@ -71,6 +72,25 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
   currentName;
   currentTitle;
   currentUrl;
+
+  /*****************************/
+  isOpenCategoryNavigator = false;
+  normalizedCategory;
+  // categoryDepth = {
+  //   1 : {
+  //     code : 1000000
+  //   }
+  // };
+
+  categoryNavigatedInfo = [
+    {
+      depth : 0,
+      code : 0,
+      slug : ''
+    }
+  ]
+  categoryNavigateCurrentDepth = 1;
+
   /*****************************/
 
   scrollForAlert$ = null;
@@ -86,20 +106,30 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
   mobileAlertTop = '11rem';
   isShowSettingMenu = false;
 
+
+  activeUrl$;
+  activeUrl;
+
   constructor(
-    @Inject(LOCALE_ID) public locale: string,
-    @Inject(CURRENCY) public currency: BehaviorSubject<any>,
-    @Inject(MENU_MAP) public menuMap,
-    @Inject(RESPONSIVE_MAP) public ResponsiveMap,
-    @Inject(REGION_ID) public region: string,
+    @Inject( LOCALE_ID ) public locale: string,
+    @Inject( CURRENCY ) public currency: BehaviorSubject<any>,
+    @Inject( MENU_MAP ) public menuMap,
+    @Inject( CATEGORY_MAP )  public categoryMap,
+    @Inject( RESPONSIVE_MAP ) public ResponsiveMap,
+    @Inject( REGION_ID ) public region: string,
+    @Inject( CATEGORY_CODE_MAP ) public categoryCodeMap,
+    @Inject( IMAGE_HOST ) public imageHost: string,
     private renderer: Renderer2,
     private authService: AuthService,
     private store: Store<AppState>,
     public router: Router,
     private route: ActivatedRoute,
     private breakpointObserver:  BreakpointObserver,
-    private cd: ChangeDetectorRef
+    private cd: ChangeDetectorRef,
   ) {
+    this.normalizedCategory = this.normalizer(this.categoryMap);
+    console.log(this.normalizedCategory);
+
     this.breakpointObserver
       .observe([this.ResponsiveMap['desktop']])
       .subscribe((state: BreakpointState) => {
@@ -114,6 +144,23 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
     this.uiActiveUrl$ =  this.store.pipe(select(state => state.ui.activeUrl))
       .subscribe(val => {
         this.currentUrl = val;
+
+        if ( this.currentUrl.length === 0 || this.currentUrl.length <= 3 ) { return; }
+        console.log( this.currentUrl);
+        console.log( this.categoryCodeMap[this.currentUrl[3]]);
+        console.log( this.currentUrl[3]);
+        console.log( this.categoryNavigatedInfo[0].slug);
+        if ( this.currentUrl[3] !== this.categoryNavigatedInfo[0].slug ) {
+          this.categoryNavigatedInfo.length = 0;
+          this.categoryNavigateCurrentDepth = 1;
+          this.categoryNavigatedInfo.push({
+            depth : 1,
+            code : this.categoryCodeMap[this.currentUrl[3]].code,
+            slug : this.currentUrl[3]
+          });
+        }
+
+        console.log(this.currentUrl);
       });
 
     this.uiCategoryStore$ = this.store.pipe(select(state => state.ui.currentCategoryList))
@@ -191,6 +238,7 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy() {
+    this.uiActiveUrl$.unsubscribe();
     // this.cart$.unsubscribe();
   }
 
@@ -216,20 +264,7 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   hoverMenu(xInputChecked, xMenuToggle) {
-
-    console.log('ddd');
-    // this.renderer.appendChild(document.body, this.tempDiv);
-    // this.renderer.setStyle(this.tempDiv, 'top', '0');
-    // this.renderer.setStyle(this.tempDiv, 'position', 'absolute');
-    // this.renderer.setStyle(this.tempDiv, 'display', 'block');
-    // this.renderer.setStyle(this.tempDiv, 'width', '100%');
-    // this.renderer.setStyle(this.tempDiv, 'height', document.body.clientHeight + 'px');
-    // this.renderer.setStyle(this.tempDiv, 'z-index', '10');
-    // this.renderer.setStyle(this.tempDiv, 'background-color', '#000000');
-    // this.renderer.setStyle(this.tempDiv, 'opacity', '0.5');
-    // this.renderer.setProperty(xInputChecked, 'checked', true);
     this.renderer.setProperty(xMenuToggle, 'checked', true);
-    // this.renderer.setStyle(this.menuRef.nativeElement, 'display', 'block');
   }
 
   showPreparingMessage() {
@@ -297,6 +332,16 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   }
 
+  categoryNavigatorToggle() {
+    if ( this.isOpenCategoryNavigator ) {
+      this.isOpenCategoryNavigator = false;
+      this.renderer.removeClass(document.body , 'u-open-modal');
+    } else {
+      this.isOpenCategoryNavigator = true;
+      this.renderer.addClass(document.body , 'u-open-modal');
+    }
+  }
+
   logout( xInputChecked ) {
     this.store.dispatch(new TryLogout());
     this.renderer.setProperty(xInputChecked, 'checked', false);
@@ -308,6 +353,126 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
   showCurrencyGlobalModal( xMenuToggle ) {
     this.renderer.setProperty(xMenuToggle, 'checked', false);
     this.store.dispatch(new ShowCurrencyModal());
+  }
+
+  returnCategory() {
+    this.categoryNavigateCurrentDepth--;
+  }
+
+  navigateCategory(xItem, xSlug, xCanNavigate) {
+    if ( !xCanNavigate ) {
+      this.navigateAllCategory(xSlug, xCanNavigate);
+      return;
+    }
+
+    // console.log(this.categoryNavigatedInfo.length);
+    this.categoryNavigateCurrentDepth++;
+    if ( this.categoryNavigatedInfo.length >= 3) {
+      this.categoryNavigatedInfo[this.categoryNavigateCurrentDepth - 1] = {
+        depth : this.categoryNavigateCurrentDepth,
+        code : xItem,
+        slug : xSlug,
+      };
+    } else {
+      this.categoryNavigatedInfo
+        .push({ depth : this.categoryNavigateCurrentDepth, code : xItem, slug : xSlug });
+    }
+  }
+
+  goToHome(xMenuToggle){
+
+    this.isOpenCategoryNavigator = false;
+    this.renderer.setProperty(xMenuToggle, 'checked', false);
+    this.renderer.removeClass(document.body , 'u-open-modal');
+    this.router.navigate(['/shops']);
+  }
+
+  navigateFirstCategory(xSlug){
+    this.router.navigate(['/shops/c/' + xSlug]);
+    this.categoryNavigatorToggle();
+  }
+
+  navigateAllCategory(xSlug, xCanNavigate = true) {
+    // currentUrl[2]가 c일때만 보이므로 3일때는 1depth슬러그를 무조건 불러옴
+    console.log(xCanNavigate);
+
+    // secondCategorySelected
+    if ( xCanNavigate ){
+      if ( this.categoryNavigateCurrentDepth === 2 ) {
+          this.router.navigate(['/shops/c/' + this.currentUrl[3] + '/' + xSlug ],
+          {relativeTo: this.route});
+        this.categoryNavigatorToggle();
+      } else if ( this.categoryNavigateCurrentDepth === 3 ) {
+        this.router.navigate(
+          ['/shops/c/' + this.currentUrl[3] + '/' +
+          this.categoryNavigatedInfo[this.categoryNavigateCurrentDepth - 2].slug + '/' +
+          this.categoryNavigatedInfo[this.categoryNavigateCurrentDepth - 1].slug
+          ],
+          {relativeTo: this.route});
+        this.categoryNavigatorToggle();
+      } else if ( this.categoryNavigateCurrentDepth === 4 ) {
+        this.router.navigate(
+          ['/shops/c/' + this.currentUrl[3] + '/' +
+          this.categoryNavigatedInfo[this.categoryNavigateCurrentDepth - 3].slug + '/' +
+          this.categoryNavigatedInfo[this.categoryNavigateCurrentDepth - 2].slug + '/' +
+          this.categoryNavigatedInfo[this.categoryNavigateCurrentDepth - 1].slug
+          ],
+          {relativeTo: this.route});
+        this.categoryNavigatorToggle();
+      }
+    } else {
+      if ( this.categoryNavigateCurrentDepth === 2 ) {
+        console.log(this.categoryNavigatedInfo[this.categoryNavigateCurrentDepth - 1].slug)
+        console.log(this.categoryNavigatedInfo[this.categoryNavigateCurrentDepth - 2].slug)
+        this.router.navigate(
+          ['/shops/c/' + this.currentUrl[3] + '/' +
+          this.categoryNavigatedInfo[this.categoryNavigateCurrentDepth - 1].slug + '/' +
+          xSlug
+          ],
+          {relativeTo: this.route});
+        this.categoryNavigatorToggle();
+      } else if ( this.categoryNavigateCurrentDepth === 3 ) {
+        this.router.navigate(
+          ['/shops/c/' + this.currentUrl[3] + '/' +
+          this.categoryNavigatedInfo[this.categoryNavigateCurrentDepth - 2].slug + '/' +
+          this.categoryNavigatedInfo[this.categoryNavigateCurrentDepth - 1].slug + '/' +
+          xSlug
+          ],
+          {relativeTo: this.route});
+        this.categoryNavigatorToggle();
+      }
+    }
+  }
+
+  normalizer ( data ) {
+    const slug = new schema.Entity('slug', {
+
+    });
+
+    const fourthCategory = new schema.Entity('4', {
+
+    }, { idAttribute: 'code' });
+
+    const thirdCategory = new schema.Entity('3', {
+      children : [fourthCategory]
+    }, { idAttribute: 'code' });
+
+    // // // Define your comments schema
+    const secondCategory = new schema.Entity( '2', {
+      children : [thirdCategory]
+    }, { idAttribute: 'code' });
+
+    const firstCategory = new schema.Entity( '1', {
+      // idAttribute: () => slug
+      children : [secondCategory]
+    }, { idAttribute: 'code' });
+
+    const object = new schema.Array(firstCategory);
+
+    console.log('%%%%%%%%%%%%%%');
+    console.log(object);
+    console.log(data);
+    return normalize(data, object);
   }
 }
 

@@ -28,9 +28,9 @@
 
         <!--<onpicks-p-other-sellers></onpicks-p-other-sellers>-->
 
-        <onpicks-p-picture-review-sub
+        <onpicks-p-picture-review
           [pictureReviewList]="(pPictureReviews$ | async)">
-        </onpicks-p-picture-review-sub>
+        </onpicks-p-picture-review>
 
         <onpicks-p-item-detail
           [categoryInfo]="data.category">
@@ -44,8 +44,8 @@
         <!--async를 붙여서 넘기는 이유는 받을때 좀더 편
         하게 받게 하기 위함-->
         <onpicks-p-reviews #onpicksReview></onpicks-p-reviews>
-        <onpicks-p-refund></onpicks-p-refund>
-        <onpicks-p-product-report></onpicks-p-product-report>
+        <onpicks-p-refund *ngIf="locale === 'ko'"></onpicks-p-refund>
+        <onpicks-p-product-report *ngIf="locale === 'ko'"></onpicks-p-product-report>
       </div>
 
       <div [ngStyle]="{display : isFB ? 'none' :'block'}" class="col-5-of-12">
@@ -65,7 +65,7 @@
         <!--TODO: MSRP는 지역에 따라 보이고 안보이고 설정-->
         <!--<span class="p-menu__product-info--MSRP-name">MSRP&nbsp;</span>-->
         <span class="mobile-menu__product-info--MSRP-discount u-color-grey">{{data?.msrp | onpicksCurrency:(currency| async)}}</span>
-        <span class="mobile-menu__product-info--MSRP-description u-color-green">담을수록 추가 할인</span>
+        <span i18n="@@sentence__shop-more-pay-less" class="mobile-menu__product-info--MSRP-description u-color-green">담을수록 추가 할인</span>
       </div>
       <div class="mobile-menu__product-info">
         <div class="mobile-menu__product-info--price">
@@ -83,18 +83,39 @@
           <ui-star-rating
             [star-point]="data ? data.review_avg_rating : 0">
           </ui-star-rating>
-          <span class="mobile-menu__product-info--reviews--read-reviews subtitle-1-regular u-color-dark-grey">{{data?.review_count}}개 리뷰</span>
+          <span
+            *ngIf="locale === 'ko'"
+            class="mobile-menu__product-info--reviews--read-reviews subtitle-1-regular u-color-dark-grey">
+            {{data?.review_count}}개 리뷰
+          </span>
+          <span
+            *ngIf="locale === 'en'"
+            class="mobile-menu__product-info--reviews--read-reviews subtitle-1-regular u-color-dark-grey">
+            {{data?.review_count}} Reviews
+          </span>
         </div>
       </div>
 
       <onpicks-button
-        *ngIf="!isExpendMobileMenu"
-        (click)="expandMobileMenu()"
         class="mobile-menu__button"
-        [width]="'13.4rem'"
+        *ngIf="!isExpendMobileMenu && !(data.in_stock === false || data.in_stock === true && data.stock_quantity === 0)"
+        i18n="@@sentence__select--option"
+        (click)="expandMobileMenu()"
         [type]="'black'"
-        [size]="'big'" >
+        [size]="'big'"
+        [padding]="false"
+        [width]="'13.4rem'">
         옵션 선택하기
+      </onpicks-button>
+      <onpicks-button
+        i18n="@@word__out-of-stock"
+        class="mobile-menu__button"
+        *ngIf="!isExpendMobileMenu && (data.in_stock === false || data.in_stock === true && data.stock_quantity === 0)"
+        [type]="'grey'"
+        [size]="'big'"
+        [padding]="false"
+        [width]="'13.4rem'">
+        품 절
       </onpicks-button>
 
       <div *ngIf="isExpendMobileMenu" class="mobile-menu__options">
@@ -124,11 +145,13 @@
         </onpicks-select-box>
 
         <onpicks-button
+          i18n="@@sentence__add-to-cart"
           class="mobile-menu__add-to-cart-button"
-          (click)="addToCart(data?.ship_alone ? 'free' : locationMap[data?.location.code].sequence, data)"
+          (click)="addToCart(data?.individual_shipping ? 'free' : locationMap[data?.location.code].sequence, data)"
           [type]="'black'"
           [marginLeft]="'1.2rem'"
           [size]="'big'"
+          [padding]="false"
           [width]="'23.7rem'">
           쇼핑백에 담기
         </onpicks-button>
@@ -136,7 +159,7 @@
     </div>
 
     <div class="mobile-row">
-      <ui-mini-list [infoList]="weeklyBest$ | async" [setTitle]="'이 상품 구매자가 함께 본 상품'"></ui-mini-list>
+      <ui-mini-list [infoList]="alsoViewed$ | async" i18n-setTitle="@@sentence__people-also-looked-at" setTitle="이 상품 구매자가 함께 본 상품"></ui-mini-list>
     </div>
   </ng-container>
 </div>

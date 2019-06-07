@@ -75,6 +75,11 @@
       position:relative;
       margin-top : 0.4rem;
       margin-bottom: 2.4rem;
+      
+      svg {
+        display:inline-block;
+        vertical-align: text-bottom;
+      }
 
       onpicks-sort-box {
         float :right;
@@ -82,9 +87,9 @@
       }
 
       &-discount {
-        margin-left: 4px;
+        margin-left: 0.4rem;
 
-        margin-right: 4px;
+        margin-right: 0.8rem;
       }
 
       &-realprice {

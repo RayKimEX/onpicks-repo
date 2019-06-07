@@ -7,9 +7,9 @@ router-outlet {
   }
 }
 
-.account-index {
-  padding : 0 2.4rem;
-}
+//.account-index {
+//  padding : 0 2.4rem;
+//}
 
 .account-profile {
   padding: 3.2rem 0;
@@ -61,7 +61,7 @@ router-outlet {
         display:inline-block;
 
         &:not(:last-child){
-          padding-right : 11.08%;
+          padding-right : 10.08%;
           // margin-right : 12.5rem;
         }
       }

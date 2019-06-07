@@ -48,17 +48,17 @@ export class WishListComponent implements OnInit, OnDestroy {
     this.cartStore$.unsubscribe();
   }
 
-  moveWishListToCart(xAmount, xProductSlug, xPackIndex, xIndex){
+  moveWishListToCart(xAmount, xData, xPackIndex, xIndex){
     this.store.dispatch( new TryAddOrCreateToCart(
       {
         isPopUp : false,
-        productSlug : xProductSlug,
+        data : xData,
         amount : xAmount,
         packIndex : xPackIndex,
-        increaseOrCreate : xProductSlug in this.cartStore.cartList
+        increaseOrCreate : xData.slug in this.cartStore.cartList
       }) );
 
-    this.store.dispatch( new TryDeleteWishList( { wishListSlug : xProductSlug, index : xIndex}));
+    this.store.dispatch( new TryDeleteWishList( { wishListSlug : xData.slug, index : xIndex}));
   }
 
 
