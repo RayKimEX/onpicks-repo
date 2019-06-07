@@ -15,13 +15,15 @@
     주문이 완료되었습니다
   </div>
   <div
-    class="checkout-success__order-num">
+    i18n="@@word__order-number"
+    class="checkout-success__order-num--title subtitle-1-bold">
     주문번호
-    <span class="u-color-green">
-      {{ orderCode }}
-    </span>
+  </div>
+  <div class="checkout-success__order-num--number u-color-green subtitle-1-bold">
+    {{ orderCode }}
   </div>
   <div
+    *ngIf="region === 'kr'"
     class="checkout-success__description">
     <div
       class="checkout-success__description--1">- 해외직구상품의 경우는 세법상 현금영수증 발급대상 거래가 아닙니다.</div>
@@ -29,7 +31,15 @@
       class="checkout-success__description--2">- 휴대폰결제관련 문의는 LGU+전자결제 고객센터 1544-7772 로 연락해주시기 바랍니다.</div>
   </div>
 
+  <div
+    class="checkout-success__description"
+    *ngIf="region === 'us'">
+    Your order has been confirmed and you will
+    receive an order confirmation email shortly.
+  </div>
+
   <onpicks-button
+    i18n="@@sentence__continue"
     [routerLink]="'/shops'"
     [width]="'13.4rem'"
     [type]="'white'"
@@ -38,6 +48,7 @@
     계속 쇼핑하기
   </onpicks-button>
   <onpicks-button
+    i18n="@@sentence__order-detail"
     [routerLink]="'/account/my-shopping/orders'"
     [width]="'13.4rem'"
     [marginLeft]="'1.6rem'"

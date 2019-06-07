@@ -567,7 +567,7 @@ export class CheckoutKrComponent implements OnInit, AfterViewInit, OnDestroy {
         this.store.dispatch(new DisplayAlertMessage('저장되었습니다.'));
       }, error => {
         this.store.dispatch(new DisplayAlertMessage('서버에서 에러가 발생하여 제대로 저장되지 않았습니다.'));
-      });
+  });
   }
 
 

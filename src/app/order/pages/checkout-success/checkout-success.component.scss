@@ -5,6 +5,9 @@
   width : 55.2rem;
   margin : 3.2rem auto 4rem auto;
 
+  @include respond(tb){
+    width: auto;
+  }
 
 
   onpicks-order-navigator {
@@ -24,10 +27,15 @@
   }
 
   &__order-num {
-    font-size : 1.6rem;
-    font-weight : 700;
-    line-height: 1.5;
-    margin-bottom : 2.4rem;
+
+    &--title {
+      display:inline-block;
+      margin-bottom : 2.4rem;
+      margin-right : 0.8rem;
+    }
+    &--number {
+      display: inline-block;
+    }
   }
 
   &__description {

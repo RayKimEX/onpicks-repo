@@ -22,26 +22,51 @@ export const TITLE_MAP_CONST = {
 
 export const PREFERENCE_MAP = new InjectionToken<any>( './core/global-constant/app.locale');
 export const PREFERENCE_MAP_CONST = {
-  locale : {
-    title : '언어를 선택해주세요',
+  region : {
+    title : {
+      ko : '배송지역을 선택해주세요',
+      en : 'Choose Shipping Destination'
+    },
     list : {
-      en : 'English',
-      ko : '한국어'
+      kr : {
+        ko : '한국',
+        en : 'Korea'
+      },
+      us : {
+        ko : '미국',
+        en : 'United States'
+      }
+    }
+  },
+  locale : {
+    title : {
+      ko : '언어를 선택해주세요',
+      en : 'Choose Language'
+    },
+    list : {
+      en : {
+        ko : '영어',
+        en : 'English'
+      },
+      ko : {
+        ko : '한국어',
+        en : 'Korean'
+      }
     }
   },
   currency : {
     title : {
       ko : '통화를 선택해주세요',
-      en : '통화를 선택해주세요(English)'
+      en : 'Choose Currency'
     },
     list : {
       USD : {
         ko : '미국 달러 - $',
-        en : '미국 달러 - $(English)'
+        en : 'USD - $'
       },
       KRW : {
         ko : '한국 원 - ₩',
-        en : '한국 원 - ₩(English)'
+        en : 'KRW - ₩'
       },
     }
   }
