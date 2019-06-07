@@ -174,14 +174,14 @@
           margin-left: 0.8rem;
           margin-top : -3px;
           &.en{
-            margin-top : -2px;
+            margin-top : -3px;
           }
         }
         &:nth-of-type(3){
           margin-top : -2px;
-          margin-left: 2px;
+          margin-left: 4px;
           &.en{
-            margin-top : -2px;
+            margin-top : -3px;
           }
         }
       }
@@ -196,7 +196,7 @@
         // vertical-align: top;
         &.en {
           margin-top: -2px !important;
-          margin-left: 2px !important;
+          margin-left: 4px !important;
         }
       }
     }
