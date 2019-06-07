@@ -17,7 +17,7 @@ import { TryGetReviewProduct, TryToggleVoteReview } from '../../../../store/p.ac
 import { DisplayAlertMessage } from '../../../../../../../../core/store/ui/ui.actions';
 import { APP_BASE_HREF } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
-import {REPORT_REASON_MAP} from '../../../../../../../../core/global-constant/app.locale';
+import {DISPLAY_ALERT_MESSAGE_MAP, REPORT_REASON_MAP} from '../../../../../../../../core/global-constant/app.locale';
 
 
 @Component({
@@ -91,10 +91,11 @@ export class PReviewsComponent implements AfterViewInit {
   ]
 
   constructor(
-    @Inject(DOMAIN_HOST) private HOST: string,
-    @Inject(APP_BASE_HREF) private BASE_URL: string,
-    @Inject(LOCALE_ID) public locale: string,
-    @Inject(REPORT_REASON_MAP) public reasonMap: string,
+    @Inject( DOMAIN_HOST ) private HOST: string,
+    @Inject( APP_BASE_HREF ) private BASE_URL: string,
+    @Inject( LOCALE_ID ) public locale: string,
+    @Inject( REPORT_REASON_MAP ) public reasonMap: string,
+    @Inject( DISPLAY_ALERT_MESSAGE_MAP ) private alertMap,
     private pDataService: PDataService,
     private renderer: Renderer2,
     private store: Store<any>,
@@ -153,7 +154,7 @@ export class PReviewsComponent implements AfterViewInit {
     if(xIsAuthenticated){
       this.store.dispatch( new TryToggleVoteReview({ productSlug: xProductSlug, reviewId : xReviewsId, isVote: !xIsVoted}));
     } else {
-      this.store.dispatch(new DisplayAlertMessage('로그인 후 이용 가능합니다'))
+      this.store.dispatch(new DisplayAlertMessage(this.alertMap['need-log-in-to-continue'][this.locale]))
       this.router.navigateByUrl('/member/login?return=' + encodeURI(location.href.split(this.BASE_URL.substring(1, this.BASE_URL.length))[1]));
 
     }
@@ -166,7 +167,7 @@ export class PReviewsComponent implements AfterViewInit {
       .subscribe(
         response => {
           this.isShowModal = false;
-          this.store.dispatch(new DisplayAlertMessage('신고가 정상적으로 접수 되었습니다.'));
+          this.store.dispatch(new DisplayAlertMessage(this.alertMap['report-submitted'][this.locale]));
           this.cd.markForCheck();
         },
         error => {
@@ -200,7 +201,7 @@ export class PReviewsComponent implements AfterViewInit {
 
     // Remove it as its not needed anymore
     document.body.removeChild(dummy);
-    this.store.dispatch( new DisplayAlertMessage('링크가 복사되었습니다.'));
+    this.store.dispatch( new DisplayAlertMessage(this.alertMap['link-copied'][this.locale]));
   }
 
   reviewSorting( xSortingValue ) {
@@ -215,7 +216,7 @@ export class PReviewsComponent implements AfterViewInit {
       this.reviewIndexForModal = xReviewId;
       this.productSlugForModal = xPrdocutSlug;
     } else {
-      this.store.dispatch(new DisplayAlertMessage('로그인 후 이용 가능합니다'))
+      this.store.dispatch(new DisplayAlertMessage(this.alertMap['need-log-in-to-continue'][this.locale]))
       this.router.navigateByUrl('/member/login?return=' + encodeURI(location.href.split(this.BASE_URL.substring(1, this.BASE_URL.length))[1]));
     }
 

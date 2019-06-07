@@ -37,7 +37,7 @@ export const DISPLAY_ALERT_MESSAGE_MAP_CONST = {
     en : 'Link copied'
   },
   'report-submitted' : {
-    ko : '신고가 정상적적으로 접수 되었습니다',
+    ko : '신고가 정상적으로 접수 되었습니다',
     en : 'Your report has been submitted'
   },
   'select-option' : {

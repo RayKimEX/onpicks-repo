@@ -7,7 +7,7 @@ import {
   ElementRef,
   Renderer2,
   ChangeDetectorRef,
-  AfterViewInit, OnDestroy
+  AfterViewInit, OnDestroy, Inject, LOCALE_ID
 } from '@angular/core';
 import {HttpClient, HttpParams} from '../../../../../../node_modules/@angular/common/http';
 import {AccountDataService} from '../../../../core/service/data-pages/account/account-data.service';
@@ -16,6 +16,7 @@ import {select, Store} from '@ngrx/store';
 import {debounceTime, distinctUntilChanged, flatMap, map, tap} from 'rxjs/operators';
 import {fromEvent, of} from 'rxjs';
 import {DisplayAlertMessage} from '../../../../core/store/ui/ui.actions';
+import {DISPLAY_ALERT_MESSAGE_MAP} from '../../../../core/global-constant/app.locale';
 
 @Component({
   selector: 'emitter-delivery-address',
@@ -74,6 +75,8 @@ export class DeliveryAddressComponent implements OnInit, AfterViewInit, OnDestro
   readonly EMPTY_AGREEMENT_DIRECT_BUYING = 0b10000000000;
 
   constructor(
+    @Inject( LOCALE_ID ) public locale: string,
+    @Inject( DISPLAY_ALERT_MESSAGE_MAP ) private alertMap,
     private httpClient: HttpClient,
     private renderer: Renderer2,
     private accountService: AccountDataService,
@@ -334,9 +337,9 @@ export class DeliveryAddressComponent implements OnInit, AfterViewInit, OnDestro
         this.cd.markForCheck();
       }, error => {
           if ( error.status === 502 ) {
-            this.store.dispatch(new DisplayAlertMessage('서버 상태가 불안정합니다.'));
+            this.store.dispatch(new DisplayAlertMessage(this.alertMap['unstable-network'][this.locale]));
           } else {
-            this.store.dispatch(new DisplayAlertMessage('빈 공간을 채워주세요.'))
+            this.store.dispatch(new DisplayAlertMessage(this.alertMap['complete-required-fields'][this.locale]));
           }
       });
     }

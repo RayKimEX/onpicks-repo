@@ -1,4 +1,4 @@
-import {Component, OnInit, ChangeDetectionStrategy, AfterViewInit, OnDestroy, ViewChildren, ViewChild, ElementRef, Inject, Renderer2, ChangeDetectorRef} from '@angular/core';
+import {Component, OnInit, ChangeDetectionStrategy, AfterViewInit, OnDestroy, ViewChildren, ViewChild, ElementRef, Inject, Renderer2, ChangeDetectorRef, LOCALE_ID} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
 import {CURRENCY, DOMAIN_HOST, REGION_ID, RESPONSIVE_MAP} from '../../../core/global-constant/app.config';
 import {BehaviorSubject, fromEvent, of} from 'rxjs';
@@ -9,6 +9,7 @@ import {Router} from '@angular/router';
 import {BreakpointObserver, BreakpointState} from '../../../../../node_modules/@angular/cdk/layout';
 import {catchError, debounceTime, distinctUntilChanged, flatMap, map, tap} from 'rxjs/operators';
 import {DisplayAlertMessage} from '../../../core/store/ui/ui.actions';
+import {DISPLAY_ALERT_MESSAGE_MAP} from '../../../core/global-constant/app.locale';
 
 @Component({
   selector: 'onpicks-checkout-kr',
@@ -158,6 +159,8 @@ export class CheckoutKrComponent implements OnInit, AfterViewInit, OnDestroy {
     @Inject(DOMAIN_HOST) private BASE_URL: string,
     @Inject(RESPONSIVE_MAP) public responsiveMap,
     @Inject(REGION_ID) public region: string,
+    @Inject( LOCALE_ID ) public locale: string,
+    @Inject( DISPLAY_ALERT_MESSAGE_MAP ) private alertMap,
     private orderDataService: OrderDataService,
     private renderer: Renderer2,
     private httpClient: HttpClient,
@@ -564,9 +567,9 @@ export class CheckoutKrComponent implements OnInit, AfterViewInit, OnDestroy {
   addCustomIdNumber() {
     this.orderDataService.addCustomIdNumber(this.userStore.id, { customs_id_number :  this.checkoutAdditionNumber.nativeElement.children[0].value })
       .subscribe( response => {
-        this.store.dispatch(new DisplayAlertMessage('저장되었습니다.'));
+        this.store.dispatch(new DisplayAlertMessage(this.alertMap['changes-saved'][this.locale]));
       }, error => {
-        this.store.dispatch(new DisplayAlertMessage('서버에서 에러가 발생하여 제대로 저장되지 않았습니다.'));
+        this.store.dispatch(new DisplayAlertMessage(this.alertMap['unstable-network'][this.locale]));
   });
   }
 

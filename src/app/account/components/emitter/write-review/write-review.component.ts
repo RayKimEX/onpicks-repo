@@ -11,7 +11,7 @@ import {
   Renderer2,
   ChangeDetectorRef,
   OnDestroy,
-  ViewChild, Inject, ViewChildren
+  ViewChild, Inject, ViewChildren, LOCALE_ID
 } from '@angular/core';
 import {AccountDataService} from '../../../../core/service/data-pages/account/account-data.service';
 import {UiService} from '../../../../core/service/ui/ui.service';
@@ -20,6 +20,7 @@ import {CURRENCY} from '../../../../core/global-constant/app.config';
 import {Store} from '@ngrx/store';
 import {DisplayAlertMessage} from '../../../../core/store/ui/ui.actions';
 import * as EXIF from 'exif-js/exif';
+import {DISPLAY_ALERT_MESSAGE_MAP} from '../../../../core/global-constant/app.locale';
 
 @Component({
   selector: 'onpicks-write-review',
@@ -61,6 +62,8 @@ export class WriteReviewComponent implements OnInit, OnChanges, OnDestroy {
   weeklyBest$;
 
   constructor(
+    @Inject( LOCALE_ID ) public locale: string,
+    @Inject( DISPLAY_ALERT_MESSAGE_MAP ) private alertMap,
     @Inject(CURRENCY) public currency: BehaviorSubject<any>,
     private renderer: Renderer2,
     private accountDataService: AccountDataService,
@@ -213,7 +216,7 @@ export class WriteReviewComponent implements OnInit, OnChanges, OnDestroy {
         v => {
           console.log(v);
 
-          this.store.dispatch(new DisplayAlertMessage('리뷰가 정상적으로 등록되었습니다.'));
+          this.store.dispatch(new DisplayAlertMessage(this.alertMap['review-submitted'][this.locale]));
           this.publishReviewEvent.emit();
         },
         response => {
