@@ -1,7 +1,27 @@
-import {AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, HostListener, Inject, Input, LOCALE_ID, OnInit, Renderer2, ViewChild, ViewChildren} from '@angular/core';
-import {RESPONSIVE_MAP} from '../../../../../core/global-constant/app.config';
-import {BreakpointObserver, BreakpointState} from '../../../../../../../node_modules/@angular/cdk/layout';
-import {Router} from '@angular/router';
+import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  HostListener,
+  Inject,
+  Input,
+  LOCALE_ID,
+  OnInit,
+  Renderer2,
+  ViewChild,
+  ViewChildren
+} from '@angular/core';
+import {
+  RESPONSIVE_MAP
+} from '../../../../../core/global-constant/app.config';
+import {
+  BreakpointObserver,
+  BreakpointState
+} from '../../../../../../../node_modules/@angular/cdk/layout';
+import {
+  Router
+} from '@angular/router';
 
 @Component({
   selector: 'onpicks-value-list',
