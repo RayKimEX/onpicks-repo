@@ -69,7 +69,7 @@
       <div class="p-menu__delivery--inner">
         <div class="p-menu__delivery--first">
           <span [ngClass]=
-            "[
+                  "[
               (locationMap[_data?.location.code]?.nickname === 'la')  ? 'icon-small-la' : '',
               (locationMap[_data?.location.code]?.nickname === 'new')  ? 'icon-small-new' : '',
               (locationMap[_data?.location.code]?.nickname === 'osaka')  ? 'icon-small-osaka' : '',
@@ -77,35 +77,62 @@
               (locationMap[_data?.location.code]?.nickname === 'hong')  ? 'icon-small-hong' : ''
             ]">
           </span>
-
-          <span *ngIf="_data?.individual_shipping" class="p-menu__delivery--first-info subtitle-2-regular">
-            <strong>{{_data?.location?.name}}</strong> &nbsp;출고,
-            <span class="p-menu__delivery--first-info subtitle-2-bold"> 무료배송</span>
+          <span *ngIf="locale === 'en'"
+                class="p-menu__delivery--first-info subtitle-2-regular en">
+            Shipping from
           </span>
-          <ng-container *ngIf="_data?.shipping_fee > 0">
-            <span *ngIf="locale === 'ko'" class="p-menu__delivery--first-info subtitle-2-regular">
-              <strong>{{_data?.location?.name}}</strong>&nbsp;출고, 묶음배송, {{_data?.shipping_fee | onpicksCurrency: (currency| async)}}
-            </span>
-            <span *ngIf="locale === 'en'" class="p-menu__delivery--first-info subtitle-2-regular">
-              Shipping from <strong>{{_data?.location?.name}}</strong> {{_data?.shipping_fee | onpicksCurrency: (currency| async)}} shipping
-            </span>
-          </ng-container>
-        </div>
 
-        <div *ngIf="locale === 'ko'" class="p-menu__delivery--second subtitle-2-regular u-color-dark-grey">
-          {{_data?.location?.name}} 묶음배송 상품 {{_data?.location?.free_shipping_threshold | onpicksCurrency : (currency| async) }} 이상 배송료 무료
-        </div>
-        <div *ngIf="locale === 'en'" class="p-menu__delivery--second subtitle-2-regular u-color-dark-grey">
-          Free shipping over {{_data?.location?.free_shipping_threshold | onpicksCurrency : (currency| async) }} with {{_data?.location?.name}} items
+          <span class="p-menu__delivery--first-spot subtitle-2-bold">
+            {{_data?.location?.name}}
+          </span>
+          <span *ngIf="locale === 'en'" class="p-menu__delivery--first-spot subtitle-2-regular">
+            &nbsp;·
+          </span>
+          <span *ngIf="_data?.shipping_fee == 0 && locale=== 'en'"
+                class="p-menu__delivery--first-info subtitle-2-regular en">
+              <span class="p-menu__delivery--first-info subtitle-2-bold en"> Free</span> shipping
+          </span>
+          <span *ngIf="_data?.shipping_fee > 0 && locale=== 'en'"
+                class="p-menu__delivery--first-info subtitle-2-regular en">
+              <span class="p-menu__delivery--first-info subtitle-2-bold en"> Express shipping
+          </span>
+
+          <span *ngIf="_data?.shipping_fee == 0 && locale=== 'ko'"
+                class="p-menu__delivery--first-info subtitle-2-regular">출고,
+              <span class="p-menu__delivery--first-info subtitle-2-bold"> 무료배송</span>
+          </span>
+
+            <span *ngIf="_data?.shipping_fee > 0 && locale=== 'en'"
+                  class="p-menu__delivery--first-info subtitle-2-regular en">{{_data?.shipping_fee | onpicksCurrency: (currency| async)}}
+              shipping</span>
+
+          <span *ngIf="_data?.shipping_fee > 0 && locale=== 'ko'"
+                class="p-menu__delivery--first-info subtitle-2-regular">출고, 묶음배송, {{_data?.shipping_fee | onpicksCurrency: (currency| async)}}</span>
+
+          </span>
+          <div *ngIf="locale=== 'ko'"
+               class="p-menu__delivery--second subtitle-2-regular u-color-dark-grey">{{_data?.location?.name}} 묶음배송
+            상품 {{_data?.location?.free_shipping_threshold | onpicksCurrency : (currency| async) }} 이상 배송료 무료
+          </div>
+
+          <div *ngIf="locale=== 'en'"
+               class="p-menu__delivery--second subtitle-2-regular u-color-dark-grey en">Free shipping
+            over {{_data?.location?.free_shipping_threshold | onpicksCurrency : (currency| async) }}
+            with {{_data?.location?.name}} items</div>
         </div>
       </div>
     </div>
 
     <div class="p-menu__options">
       <div
-        *ngIf="_data?.attributes.length !== 0"
+        *ngIf="_data?.attributes.length !== 0 && locale==='ko'"
         class="p-menu__options--title subtitle-2-regular">
         상세옵션을 선택해 주세요
+      </div>
+      <div
+        *ngIf="_data?.attributes.length !== 0 && locale==='en'"
+        class="p-menu__options--title subtitle-2-regular">
+        Select options
       </div>
 
       <onpicks-select-box

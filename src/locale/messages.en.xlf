@@ -835,7 +835,7 @@
       <!--Cart Page-->
 
       <trans-unit id="cart__delivery-multi-purchase" datatype="html">
-        <target>Checkout Standard Shipping</target>
+        <target>Checkout Express Shipping</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
           <context context-type="linenumber">52</context>
@@ -843,7 +843,7 @@
       </trans-unit>
 
       <trans-unit id="cart__pack-delivery--title" datatype="html">
-        <target>Standard Shipping</target>
+        <target>Express Shipping</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
           <context context-type="linenumber">52</context>
