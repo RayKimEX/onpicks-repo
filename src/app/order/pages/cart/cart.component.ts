@@ -20,6 +20,7 @@ import {UiService} from '../../../core/service/ui/ui.service';
 import {DisplayAlertMessage} from '../../../core/store/ui/ui.actions';
 import {BehaviorSubject} from 'rxjs';
 import {Title} from '@angular/platform-browser';
+import {DISPLAY_ALERT_MESSAGE_MAP} from '../../../core/global-constant/app.locale';
 
 @Component({
   selector: 'onpicks-cart',
@@ -39,11 +40,13 @@ export class CartComponent {
 
   weeklyBest$;
   constructor(
-    // TODO: 나중에 locale정보같은거는 모두 ngrx에 넣어서 처리하기
+    // TODO: 나중에 locale정보는 모두 ngrx에 넣어서 처리하기
     @Inject( CURRENCY ) public currency: BehaviorSubject<any>,
     @Inject( LOCATION_MAP ) public locationMap: any,
     @Inject( LOCALE_ID ) public locale: string,
+    @Inject( DISPLAY_ALERT_MESSAGE_MAP ) private alertMap,
     @Inject( DOMAIN_HOST ) private BASE_URL: string,
+    // @Inject()
     private renderer: Renderer2,
     private router: Router,
     private store: Store<any>,
@@ -92,14 +95,14 @@ export class CartComponent {
       },
       error => {
         if ( error.status === 502 ) {
-          this.store.dispatch(new DisplayAlertMessage('서버에 상태가 불안정합니다.'));
+          this.store.dispatch(new DisplayAlertMessage(this.alertMap['unstable-network'][this.locale]));
         } else if ( error.status === 403 ) {
           // this.router.navigate(['/member/login']);
           console.log(this.BASE_URL);
           console.log(this.BASE_URL.substring(1, this.BASE_URL.length));
 
           this.router.navigateByUrl('/member/login?return=' + encodeURI(location.href.substring(this.BASE_URL.length + 3, location.href.length)));
-          this.store.dispatch(new DisplayAlertMessage('로그인이 필요합니다.'));
+          this.store.dispatch(new DisplayAlertMessage(this.alertMap['need-log-in'][this.locale]));
 
         } else {
           this.store.dispatch(new DisplayAlertMessage('error code : ' + error.status));

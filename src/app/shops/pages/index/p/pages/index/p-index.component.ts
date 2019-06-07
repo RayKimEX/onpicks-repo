@@ -20,6 +20,7 @@ import {CURRENCY, LOCATION_MAP, RESPONSIVE_MAP} from '../../../../../../core/glo
 import {DisplayAlertMessage, UpdateGlobalKakaoPlusFriendForDetailPage, UpdateGlobalKakaoPlusFriendForNormal, UpdateGlobalKakaoPlusFriendForPurchase} from '../../../../../../core/store/ui/ui.actions';
 import {TryAddOrCreateToCart} from '../../../../../../core/store/cart/cart.actions';
 import {BehaviorSubject} from 'rxjs';
+import {DISPLAY_ALERT_MESSAGE_MAP} from '../../../../../../core/global-constant/app.locale';
 
 @Component({
   selector: 'onpicks-p',
@@ -69,6 +70,7 @@ export class PIndexComponent implements OnInit, OnDestroy {
     @Inject( LOCATION_MAP ) public locationMap: any,
     @Inject( RESPONSIVE_MAP ) public responsiveMap,
     @Inject( LOCALE_ID ) public locale: string,
+    @Inject( DISPLAY_ALERT_MESSAGE_MAP ) private alertMap,
     private breakpointObserver:  BreakpointObserver,
     private cd: ChangeDetectorRef,
     private store: Store<any>,
@@ -198,7 +200,7 @@ export class PIndexComponent implements OnInit, OnDestroy {
 
 
     if ( currentProductSlug === undefined ){
-      this.store.dispatch(new DisplayAlertMessage('옵션을 정확히 선택해주세요.'));
+      this.store.dispatch(new DisplayAlertMessage(this.alertMap['select-option'][this.locale]));
     }
 
     this.store.dispatch(new TryAddOrCreateToCart({

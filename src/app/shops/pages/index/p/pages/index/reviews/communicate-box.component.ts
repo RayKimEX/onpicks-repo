@@ -26,7 +26,7 @@ import {DisplayAlertMessage} from '../../../../../../../core/store/ui/ui.actions
 import {DOMAIN_HOST, RESPONSIVE_MAP} from '../../../../../../../core/global-constant/app.config';
 import {APP_BASE_HREF} from '@angular/common';
 import {BreakpointObserver, BreakpointState} from '../../../../../../../../../node_modules/@angular/cdk/layout';
-import {REPORT_REASON_MAP} from '../../../../../../../core/global-constant/app.locale';
+import {DISPLAY_ALERT_MESSAGE_MAP, REPORT_REASON_MAP} from '../../../../../../../core/global-constant/app.locale';
 
 @Component({
   selector: 'onpicks-communicate-box',
@@ -82,10 +82,11 @@ export class CommunicateBoxComponent implements OnInit, AfterViewChecked, AfterV
 
 
   constructor(
-    @Inject(DOMAIN_HOST) private BASE_DOMAIN_HOST: string,
-    @Inject(REPORT_REASON_MAP) public reasonMap: string,
-    @Inject(RESPONSIVE_MAP) public responsiveMap,
-    @Inject(LOCALE_ID) public locale: string,
+    @Inject( DOMAIN_HOST ) private BASE_DOMAIN_HOST: string,
+    @Inject( REPORT_REASON_MAP ) public reasonMap: string,
+    @Inject( RESPONSIVE_MAP ) public responsiveMap,
+    @Inject( LOCALE_ID ) public locale: string,
+    @Inject( DISPLAY_ALERT_MESSAGE_MAP ) private alertMap,
     private renderer: Renderer2,
     private breakpointObserver:  BreakpointObserver,
     private store: Store<AppState>,
@@ -230,7 +231,7 @@ export class CommunicateBoxComponent implements OnInit, AfterViewChecked, AfterV
     if(xIsAuthenticated) {
 
     } else {
-      this.store.dispatch(new DisplayAlertMessage('로그인 후 이용 가능합니다'))
+      this.store.dispatch(new DisplayAlertMessage(this.alertMap['need-log-in-to-continue'][this.locale]))
       this.router.navigateByUrl('/member/login?return=' + encodeURI(location.href.substring(this.BASE_DOMAIN_HOST.length + 3, location.href.length)));
     }
   }
@@ -323,7 +324,7 @@ export class CommunicateBoxComponent implements OnInit, AfterViewChecked, AfterV
     if(xIsAuthenticated){
       this.store.dispatch( new TryToggleVoteReview({ productSlug: xProductSlug, reviewId : xReviewsId, isVote: !xIsVoted}));
     } else {
-      this.store.dispatch(new DisplayAlertMessage('로그인 후 이용 가능합니다'))
+      this.store.dispatch(new DisplayAlertMessage(this.alertMap['need-log-in-to-continue'][this.locale]))
       this.router.navigateByUrl('/member/login?return=' + encodeURI(location.href.substring(this.BASE_DOMAIN_HOST.length + 3, location.href.length)));
     }
   }
@@ -349,7 +350,7 @@ export class CommunicateBoxComponent implements OnInit, AfterViewChecked, AfterV
 
     // Remove it as its not needed anymore
     document.body.removeChild(dummy);
-    this.store.dispatch( new DisplayAlertMessage('링크가 복사되었습니다.'));
+    this.store.dispatch( new DisplayAlertMessage(this.alertMap['link-copied'][this.locale]));
   }
 
 
@@ -367,11 +368,11 @@ export class CommunicateBoxComponent implements OnInit, AfterViewChecked, AfterV
         response => {
           this.router.navigate( ['../../'], {relativeTo: this.route } );
           this.isShowModal = false;
-          this.store.dispatch(new DisplayAlertMessage('신고가 정상적으로 접수 되었습니다.'));
+          this.store.dispatch(new DisplayAlertMessage(this.alertMap['report-submitted'][this.locale]));
           this.cd.markForCheck();
         },
         error => {
-          alert('신고 중 에러가 발생하였습니다.');
+          this.store.dispatch(new DisplayAlertMessage(this.alertMap['unstable-network'][this.locale]));
         }
       );
 
@@ -384,7 +385,7 @@ export class CommunicateBoxComponent implements OnInit, AfterViewChecked, AfterV
       this.reviewIndexForModal = xReviewId;
       this.productSlugForModal = xPrdocutSlug;
     } else {
-      this.store.dispatch(new DisplayAlertMessage('로그인 후 이용 가능합니다'))
+      this.store.dispatch(new DisplayAlertMessage(this.alertMap['need-log-in-to-continue'][this.locale]))
       this.router.navigateByUrl('/member/login?return=' + encodeURI(location.href.substring(this.BASE_DOMAIN_HOST.length + 3, location.href.length)));
     }
 
@@ -394,7 +395,7 @@ export class CommunicateBoxComponent implements OnInit, AfterViewChecked, AfterV
       this.isShowMobileReview = true;
       this.cd.markForCheck();
     } else {
-      this.store.dispatch(new DisplayAlertMessage('로그인 후 이용 가능합니다'))
+      this.store.dispatch(new DisplayAlertMessage(this.alertMap['need-log-in-to-continue'][this.locale]))
       this.router.navigateByUrl('/member/login?return=' + encodeURI(location.href.substring(this.BASE_DOMAIN_HOST.length + 3, location.href.length)));
     }
 

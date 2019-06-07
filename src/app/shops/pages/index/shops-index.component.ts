@@ -44,7 +44,9 @@ export class ShopsIndexComponent implements OnInit, AfterViewInit {
     kr : [
         {
           imgSrcForDesktop : this.imageHost + '/intro/main/2019-04-01/main1.jpg',
-          srcSetForDesktop : this.imageHost + '/intro/main/2019-04-01/main1.jpg?d=w1920-h400 1920w,' + this.imageHost + '/intro/main/2019-04-01/main1.jpg?d=w2400-h500 2400w,' + this.imageHost + '/intro/main/2019-04-01/main1.jpg 3840w',
+          srcSetForDesktop : this.imageHost + '/intro/main/2019-04-01/main1.jpg?d=w1920-h400 1920w,'
+            + this.imageHost + '/intro/main/2019-04-01/main1.jpg?d=w2400-h500 2400w,'
+            + this.imageHost + '/intro/main/2019-04-01/main1.jpg 3840w',
           imgSrcForMobile : this.imageHost + '/intro/main/2019-04-01/main-mobile1.jpg',
           srcSetForMobile : this.imageHost + '/intro/main/2019-04-01/main-mobile1.jpg 640w',
           // marginLeftForText : '6.2%',
@@ -56,7 +58,9 @@ export class ShopsIndexComponent implements OnInit, AfterViewInit {
         {
           // imgSrc : 'https://img.onpicks.com/intro/main/2019-04-01/main2.jpg',
           imgSrcForDesktop : this.imageHost + '/intro/main/2019-04-01/main2.jpg',
-          srcSetForDesktop : this.imageHost + '/intro/main/2019-04-01/main2.jpg?d=w1920-h400 1920w,' + this.imageHost + '/intro/main/2019-04-01/main2.jpg?d=w2400-h500 2400w,' + this.imageHost + '/intro/main/2019-04-01/main2.jpg 3840w',
+          srcSetForDesktop : this.imageHost + '/intro/main/2019-04-01/main2.jpg?d=w1920-h400 1920w,'
+            + this.imageHost + '/intro/main/2019-04-01/main2.jpg?d=w2400-h500 2400w,'
+            + this.imageHost + '/intro/main/2019-04-01/main2.jpg 3840w',
           imgSrcForMobile : this.imageHost + '/intro/main/2019-04-01/main-mobile2.jpg',
           srcSetForMobile : this.imageHost + '/intro/main/2019-04-01/main-mobile2.jpg 640w',
           // marginLeftForText : '6.2%',

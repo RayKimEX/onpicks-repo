@@ -20,6 +20,7 @@ import {TryAddOrCreateToCart} from '../../../../../../../../core/store/cart/cart
 import {DisplayAlertMessage} from '../../../../../../../../core/store/ui/ui.actions';
 import {CURRENCY, LOCATION_MAP} from '../../../../../../../../core/global-constant/app.config';
 import {Router} from '@angular/router';
+import {DISPLAY_ALERT_MESSAGE_MAP} from '../../../../../../../../core/global-constant/app.locale';
 
 @Component({
   selector: 'onpicks-p-menu',
@@ -170,6 +171,7 @@ export class PMenuComponent implements OnInit, OnDestroy, AfterViewInit, OnChang
   cartStore;
   constructor(
     @Inject( LOCALE_ID ) public locale: string,
+    @Inject( DISPLAY_ALERT_MESSAGE_MAP ) private alertMap,
     @Inject( CURRENCY ) public currency: BehaviorSubject<any>,
     @Inject( LOCATION_MAP ) public locationMap: any,
     private renderer: Renderer2,
@@ -233,7 +235,7 @@ export class PMenuComponent implements OnInit, OnDestroy, AfterViewInit, OnChang
     }
 
     if ( currentProductSlug === undefined ){
-      this.store.dispatch(new DisplayAlertMessage('옵션을 정확히 선택해주세요.'));
+      this.store.dispatch(new DisplayAlertMessage(this.alertMap['select-option'][this.locale]));
     }
 
     this.store.dispatch(new TryAddOrCreateToCart({
@@ -563,7 +565,7 @@ export class PMenuComponent implements OnInit, OnDestroy, AfterViewInit, OnChang
 
     // Remove it as its not needed anymore
     document.body.removeChild(dummy);
-    this.store.dispatch( new DisplayAlertMessage('링크가 복사되었습니다.'));
+    this.store.dispatch( new DisplayAlertMessage(this.alertMap['link-copied'][this.locale]));
   }
 
   toFixed( data: number) {

@@ -1,6 +1,7 @@
-import {ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Inject, Input, LOCALE_ID, OnDestroy, OnInit} from '@angular/core';
 import {DisplayAlertMessage} from '../../../../../../../../core/store/ui/ui.actions';
 import {Store} from '@ngrx/store';
+import {DISPLAY_ALERT_MESSAGE_MAP} from '../../../../../../../../core/global-constant/app.locale';
 
 @Component({
   selector: 'onpicks-p-thumbnail',
@@ -13,6 +14,8 @@ export class PThumbnailComponent {
   @Input('imagesSmallList') imagesSmallList;
 
   constructor(
+    @Inject( LOCALE_ID ) public locale: string,
+    @Inject( DISPLAY_ALERT_MESSAGE_MAP ) private alertMap,
     private store: Store<any>
   ) {
 
@@ -41,6 +44,6 @@ export class PThumbnailComponent {
 
     // Remove it as its not needed anymore
     document.body.removeChild(dummy);
-    this.store.dispatch( new DisplayAlertMessage('링크가 복사되었습니다.'));
+    this.store.dispatch( new DisplayAlertMessage(this.alertMap['link-copied'][this.locale]));
   }
 }

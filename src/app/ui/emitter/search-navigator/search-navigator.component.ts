@@ -25,6 +25,7 @@ import {BehaviorSubject, combineLatest, merge} from 'rxjs';
 import {CATEGORY_CODE_MAP} from '../../../core/global-constant/app.category-database-long';
 import {BreakpointObserver, BreakpointState} from '../../../../../node_modules/@angular/cdk/layout';
 import {Title} from '@angular/platform-browser';
+import {DISPLAY_ALERT_MESSAGE_MAP} from '../../../core/global-constant/app.locale';
 @Component({
   selector: 'emitter-search-navigator',
   templateUrl: './search-navigator.component.html',
@@ -161,6 +162,7 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
     @Inject( CATEGORY_CODE_MAP)  private categoryMap,
     @Inject( RESPONSIVE_MAP ) public responsiveMap,
     @Inject( LOCALE_ID ) public locale: string,
+    @Inject( DISPLAY_ALERT_MESSAGE_MAP ) private alertMap,
     private uiService: UiService,
     private renderer: Renderer2,
     private store: Store<any>,
@@ -626,7 +628,7 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
   brandSearch(event: KeyboardEvent) {
 
     if ( event.key === 'Enter' ) {
-      this.store.dispatch(new DisplayAlertMessage('준비중 입니다.'));
+      this.store.dispatch(new DisplayAlertMessage(this.alertMap['comming-soon'][this.locale]));
     }
   }
 

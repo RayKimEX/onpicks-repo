@@ -1,8 +1,9 @@
-import {Component, OnInit, ChangeDetectionStrategy, ViewChildren, ElementRef, ViewChild} from '@angular/core';
+import {Component, OnInit, ChangeDetectionStrategy, ViewChildren, ElementRef, ViewChild, Inject, LOCALE_ID} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
 import {Store} from '@ngrx/store';
 import {DisplayAlertMessage} from '../../../core/store/ui/ui.actions';
+import {DISPLAY_ALERT_MESSAGE_MAP} from '../../../core/global-constant/app.locale';
 
 @Component({
   selector: 'onpicks-reset-password',
@@ -21,6 +22,8 @@ export class ResetPasswordComponent implements OnInit {
   queryParams$;
 
   constructor(
+    @Inject( LOCALE_ID ) public locale: string,
+    @Inject( DISPLAY_ALERT_MESSAGE_MAP ) private alertMap,
     private route: ActivatedRoute,
     private router: Router,
     private httpClient: HttpClient,
@@ -40,7 +43,7 @@ export class ResetPasswordComponent implements OnInit {
   passwordReset() {
     console.log(this.inputPasswordOrigin);
     if ( this.inputPasswordOrigin.nativeElement.children[0].value !== this.inputPasswordConfirm.nativeElement.children[0].value){
-      this.store.dispatch(new DisplayAlertMessage('비밀번호가 같지 않습니다.'));
+      this.store.dispatch(new DisplayAlertMessage(this.alertMap['password-must-match'][this.locale]));
       return ;
     }
     this.httpClient.post('/api/customers/password/reset/',
@@ -49,10 +52,10 @@ export class ResetPasswordComponent implements OnInit {
         uuid: this.uuid,
         secret: this.secret
       }).subscribe( response => {
-        this.store.dispatch(new DisplayAlertMessage('정상적으로 변경되었습니다.'));
+        this.store.dispatch(new DisplayAlertMessage(this.alertMap['changes-saved'][this.locale]));
         this.router.navigate(['/shops']);
       }, response => {
-        this.store.dispatch(new DisplayAlertMessage('잘못된 접근 방식입니다.'));
+        this.store.dispatch(new DisplayAlertMessage(this.alertMap['wrong-approach'][this.locale]));
       });
   }
 

@@ -26,7 +26,7 @@ import {CURRENCY, IMAGE_HOST, REGION_ID, RESPONSIVE_MAP} from '../../../../../co
 import {DisplayAlertMessage, RemoveAlertMessage} from '../../../../../core/store/ui/ui.actions';
 import {BreakpointObserver, BreakpointState} from '../../../../../../../node_modules/@angular/cdk/layout';
 import {TryLogout} from '../../../../../core/store/auth/auth.actions';
-import {MENU_MAP} from '../../../../../core/global-constant/app.locale';
+import {DISPLAY_ALERT_MESSAGE_MAP, MENU_MAP} from '../../../../../core/global-constant/app.locale';
 import {ShowCurrencyModal} from '../../../../../core/store/modal/modal.actions';
 import {CATEGORY_CODE_MAP, CATEGORY_MAP} from '../../../../../core/global-constant/app.category-database-long';
 import {normalize, schema} from 'normalizr';
@@ -112,6 +112,7 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
 
   constructor(
     @Inject( LOCALE_ID ) public locale: string,
+    @Inject( DISPLAY_ALERT_MESSAGE_MAP ) private alertMap,
     @Inject( CURRENCY ) public currency: BehaviorSubject<any>,
     @Inject( MENU_MAP ) public menuMap,
     @Inject( CATEGORY_MAP )  public categoryMap,
@@ -147,6 +148,7 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
 
         if ( this.currentUrl.length === 0 || this.currentUrl.length <= 3 || this.currentUrl[2] === 'p' ) { return; }
         console.log( this.currentUrl);
+        console.log( this.categoryCodeMap);
         console.log( this.categoryCodeMap[this.currentUrl[3]]);
         console.log( this.currentUrl[3]);
         console.log( this.categoryNavigatedInfo[0].slug);
@@ -268,7 +270,7 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   showPreparingMessage() {
-    this.store.dispatch( new DisplayAlertMessage('준비중입니다'));
+    this.store.dispatch( new DisplayAlertMessage(this.alertMap['comming-soon'][this.locale]));
   }
 
   showMenuForMobile( xInputChecked ) {

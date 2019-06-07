@@ -1,9 +1,10 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, Inject, LOCALE_ID, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {select, Store} from '@ngrx/store';
 import {AccountDataService} from '../../../../../../core/service/data-pages/account/account-data.service';
 import {DisplayAlertMessage } from '../../../../../../core/store/ui/ui.actions';
 import {tap} from 'rxjs/operators';
 import {BreakpointState} from '../../../../../../../../node_modules/@angular/cdk/layout';
+import {DISPLAY_ALERT_MESSAGE_MAP} from '../../../../../../core/global-constant/app.locale';
 
 @Component({
   selector: 'onpicks-profile',
@@ -74,6 +75,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
   errorStatus = 0;
 
   constructor(
+    @Inject( LOCALE_ID ) public locale: string,
+    @Inject( DISPLAY_ALERT_MESSAGE_MAP ) private alertMap,
     private store: Store<any>,
     private accountDataService: AccountDataService,
     private cd: ChangeDetectorRef,
@@ -125,7 +128,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
   }
 
   updatePassword() {
-    this.store.dispatch(new DisplayAlertMessage('저장되었습니다.'));
+    this.store.dispatch(new DisplayAlertMessage(this.alertMap['changes-saved'][this.locale]));
   }
 
   saveProfile() {
@@ -152,7 +155,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
     this.formData['weight'] = this.weight.nativeElement.children[0].value;
 
     this.accountDataService.saveProfileData(this.userStore.id, this.formData).subscribe( response => {
-      this.store.dispatch(new DisplayAlertMessage('프로필이 저장되었습니다.'));
+      this.store.dispatch(new DisplayAlertMessage(this.alertMap['changes-saved'][this.locale]));
     }, error => {
 
     });
