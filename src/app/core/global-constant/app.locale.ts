@@ -2,6 +2,57 @@
 // 신고하기 기능
 import {InjectionToken} from '@angular/core';
 
+export const DISPLAY_ALERT_MESSAGE_MAP = new InjectionToken<any>( './core/global-constant/app.locale');
+export const DISPLAY_ALERT_MESSAGE_MAP_CONST = {
+  'unstable-network' : {
+    ko : '서버 상태가 불안정합니다',
+    en : 'Unstable network connection'
+  },
+  'need-log-in' : {
+    ko : '로그인이 필요합니다',
+    en : 'Please log in'
+  },
+  'password-must-match' : {
+    ko : '비밀번호가 같지 않습니다',
+    en : 'Passwords must match'
+  },
+  'changes-saved' : {
+    ko : '정상적으로 변경되었습니다',
+    en : 'All changes saved'
+  },
+  'wrong-approach' : {
+    ko : '잘못된 접근 방식입니다',
+    en : 'Wrong path'
+  },
+  'comming-soon' : {
+    ko : '준비중입니다',
+    en : 'Coming Soon'
+  },
+  'need-log-in-to-continue' : {
+    ko : '로그인 후 이용 가능합니다',
+    en : 'Please log in to continue'
+  },
+  'link-copied' : {
+    ko : '링크가 복사되었습니다',
+    en : 'Link copied'
+  },
+  'report-submitted' : {
+    ko : '신고가 정상적적으로 접수 되었습니다',
+    en : 'Your report has been submitted'
+  },
+  'select-option' : {
+    ko : '옵션을 정확히 선택해주세요',
+    en : 'Select option'
+  },
+  'complete-required-fields' : {
+    ko : '빈 공간을 채워주세요',
+    en : 'Please complete all required fields'
+  },
+  'review-submitted' : {
+    ko : '리뷰가 정상적으로 등록되었습니다',
+    en : 'Your review has been submitted successfully'
+  },
+}
 
 export const TITLE_MAP = new InjectionToken<any>( './core/global-constant/app.locale');
 export const TITLE_MAP_CONST = {

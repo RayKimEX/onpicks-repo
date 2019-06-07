@@ -39,11 +39,12 @@ export class CartComponent {
 
   weeklyBest$;
   constructor(
-    // TODO: 나중에 locale정보같은거는 모두 ngrx에 넣어서 처리하기
+    // TODO: 나중에 locale정보는 모두 ngrx에 넣어서 처리하기
     @Inject( CURRENCY ) public currency: BehaviorSubject<any>,
     @Inject( LOCATION_MAP ) public locationMap: any,
     @Inject( LOCALE_ID ) public locale: string,
     @Inject( DOMAIN_HOST ) private BASE_URL: string,
+    // @Inject()
     private renderer: Renderer2,
     private router: Router,
     private store: Store<any>,

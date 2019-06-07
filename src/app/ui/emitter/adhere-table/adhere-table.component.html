@@ -4,11 +4,19 @@
 
   <div class="adhere-table__sub-title-box">
     <div class="subtitle-2-regular">
-      <span class="adhere-table__sub-title-box--order-date-title">주문일자</span>
+      <span
+        i18n="@@word__ordered-on"
+        class="adhere-table__sub-title-box--order-date-title">
+        주문일자
+      </span>
       <span>
         <strong>{{results.created | date : 'longDate'}}</strong>
       </span>
-      <span class="adhere-table__sub-title-box--order-number-title">주문번호</span>
+      <span
+        i18n="@@word__order-number"
+        class="adhere-table__sub-title-box--order-number-title">
+        주문번호
+      </span>
       <span>
         <strong>{{results.code}}</strong>
       </span>
@@ -47,43 +55,53 @@
     </div>
     <div class="adhere-table__item-state--btn subtitle-2-regular">
       <onpicks-button
+        i18n="@@sentence__write-a-review"
         *ngIf="item.status === 'completed' && item?.review_published === false"
         [type]="'green'"
         [padding]="false"
         (click)="viewModal('write_review', item, results.code, data)"
-        [width]="'11.4rem'">리뷰 쓰기
+        [width]="'11.4rem'">
+        리뷰 쓰기
       </onpicks-button>
 
       <onpicks-button
+        i18n="@@sentence__cancel-order"
         *ngIf="item.status === 'pending' || item.status === 'paid'"
         [type]="'white'"
         [padding]="false"
         (click)="cancelPurchase( results.code, item.product, resultsIndex, itemIndex)"
-        [width]="'11.4rem'">주문 취소
+        [width]="'11.4rem'">
+        주문 취소
       </onpicks-button>
 
       <onpicks-button
+        i18n="@@sentence__track-package"
         *ngIf="item.status === 'fulfilled'"
         [type]="'white'"
         [padding]="false"
         (click)="openTraceDelivery(item.tracking_url)"
-        [width]="'11.4rem'">배송 추적
+        [width]="'11.4rem'">
+        배송 추적
       </onpicks-button>
 
       <onpicks-button
+        i18n="@@sentence__confirm-purchase"
         *ngIf="item.status === 'delivered'"
         [type]="'white'"
         [padding]="false"
         (click)="completePurchase( results.code, item.product, resultsIndex, itemIndex )"
-        [width]="'11.4rem'">구매 확정
+        [width]="'11.4rem'">
+        구매 확정
       </onpicks-button>
       <onpicks-button
+        i18n="@@sentence__return-item"
         *ngIf="item.status === 'delivered'"
         [type]="'white'"
         [padding]="false"
         (click)="returnPurchase( results.code, item.product, resultsIndex, itemIndex)"
         [marginLeft]="'0.8rem'"
-        [width]="'11.4rem'">반품 요청
+        [width]="'11.4rem'">
+        반품 요청
       </onpicks-button>
     </div>
   </div>
