@@ -1,14 +1,4 @@
-import {
-  Component,
-  OnInit,
-  ChangeDetectionStrategy,
-  Inject,
-  Renderer2,
-  ChangeDetectorRef,
-  HostListener,
-  AfterViewInit,
-  ViewChild, ViewChildren, OnDestroy, Input, LOCALE_ID
-} from '@angular/core';
+import {AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, HostListener, Inject, Input, LOCALE_ID, OnInit, Renderer2, ViewChild, ViewChildren} from '@angular/core';
 import {RESPONSIVE_MAP} from '../../../../../core/global-constant/app.config';
 import {BreakpointObserver, BreakpointState} from '../../../../../../../node_modules/@angular/cdk/layout';
 import {Router} from '@angular/router';
@@ -103,6 +93,8 @@ export class ValueListComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     this.itemListArray = this.itemList.toArray();
+    const computedStyle = getComputedStyle(( this.itemList.first.nativeElement ), null);
+    this.translateXWidth =  parseInt(computedStyle.width, 10 ) + parseInt(computedStyle.marginRight, 10);
 
   }
 
