@@ -293,13 +293,19 @@
                   ]">
               </span>
 
-              <div class="cart__free-table--delivery-info-where subtitle-2-regular">
+              <div *ngIf="locale === 'ko'" class="cart__free-table--delivery-info-where subtitle-2-regular">
                 <span class="u-bold">{{ itemForFree.location.name }}</span> 출고&nbsp;·&nbsp;
               </div>
-              <div class="cart__free-table--delivery-info-price subtitle-2-bold">
+              <div *ngIf="locale === 'en'" class="cart__free-table--delivery-info-where subtitle-2-regular">
+                Shipping From&nbsp;<span class="u-bold">{{ itemForFree.location.name }}</span>
+              </div>
+              <div *ngIf="locale === 'ko'" class="cart__free-table--delivery-info-price subtitle-2-bold">
                 무료배송
               </div>
-              <div class="cart__free-table--delivery-info-description subtitle-2-regular u-color-dark-grey">
+              <div *ngIf="locale === 'en'" class="cart__free-table--delivery-info-price subtitle-2-bold">
+                Free shipping
+              </div>
+              <div *ngIf="locale === 'ko'" class="cart__free-table--delivery-info-description subtitle-2-regular u-color-dark-grey">
                 {{ itemForFree.location.name }} 단독배송 상품으로 무료로 배송 됩니다.
               </div>
             </div>
