@@ -1,20 +1,6 @@
-import {
-  AfterViewInit,
-  ChangeDetectionStrategy, ChangeDetectorRef,
-  Component,
-  ElementRef, Inject,
-  Input, LOCALE_ID,
-  OnChanges,
-  OnDestroy,
-  OnInit,
-  Renderer2,
-  SimpleChanges,
-  ViewChild
-} from '@angular/core';
-import {BehaviorSubject, fromEvent, interval} from 'rxjs';
-import Chart from 'chart.js';
+import {AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, Inject, Input, LOCALE_ID, OnChanges, OnDestroy, OnInit, Renderer2, SimpleChanges, ViewChild} from '@angular/core';
+import {BehaviorSubject, fromEvent} from 'rxjs';
 import {select, Store} from '@ngrx/store';
-import {PState} from '../../../../store/p.reducer';
 import ResizeSensor from 'css-element-queries/src/ResizeSensor';
 import {TryAddOrCreateToCart} from '../../../../../../../../core/store/cart/cart.actions';
 import {DisplayAlertMessage} from '../../../../../../../../core/store/ui/ui.actions';
