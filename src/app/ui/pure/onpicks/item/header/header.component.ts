@@ -145,7 +145,7 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
       .subscribe(val => {
         this.currentUrl = val;
 
-        if ( this.currentUrl.length === 0 || this.currentUrl.length <= 3 ) { return; }
+        if ( this.currentUrl.length === 0 || this.currentUrl.length <= 3 || this.currentUrl[2] === 'p' ) { return; }
         console.log( this.currentUrl);
         console.log( this.categoryCodeMap[this.currentUrl[3]]);
         console.log( this.currentUrl[3]);
