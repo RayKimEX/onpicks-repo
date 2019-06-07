@@ -78,7 +78,7 @@
             ]">
           </span>
           <span *ngIf="locale === 'en'"
-                class="p-menu__delivery--first-info subtitle-2-regular">
+                class="p-menu__delivery--first-info subtitle-2-regular en">
             Shipping from
           </span>
 
@@ -86,12 +86,12 @@
             {{_data?.location?.name}}
           </span>
           <span *ngIf="_data?.shipping_fee == 0 && locale=== 'en'"
-                class="p-menu__delivery--first-info subtitle-2-regular">
-              <span class="p-menu__delivery--first-info subtitle-2-bold"> Free</span> shipping
+                class="p-menu__delivery--first-info subtitle-2-regular en">
+              <span class="p-menu__delivery--first-info subtitle-2-bold en"> Free</span> shipping
           </span>
           <span *ngIf="_data?.shipping_fee > 0 && locale=== 'en'"
-                class="p-menu__delivery--first-info subtitle-2-regular">
-              <span class="p-menu__delivery--first-info subtitle-2-bold"> Express shipping
+                class="p-menu__delivery--first-info subtitle-2-regular en">
+              <span class="p-menu__delivery--first-info subtitle-2-bold en"> Express shipping
           </span>
 
           <span *ngIf="_data?.shipping_fee == 0 && locale=== 'ko'"
@@ -100,7 +100,7 @@
           </span>
 
             <span *ngIf="_data?.shipping_fee > 0 && locale=== 'en'"
-                  class="p-menu__delivery--first-info subtitle-2-regular">{{_data?.shipping_fee | onpicksCurrency: (currency| async)}}
+                  class="p-menu__delivery--first-info subtitle-2-regular en">{{_data?.shipping_fee | onpicksCurrency: (currency| async)}}
               shipping</span>
 
           <span *ngIf="_data?.shipping_fee > 0 && locale=== 'ko'"
@@ -113,7 +113,7 @@
           </div>
 
           <div *ngIf="locale=== 'en'"
-               class="p-menu__delivery--second subtitle-2-regular u-color-dark-grey">Free shipping
+               class="p-menu__delivery--second subtitle-2-regular u-color-dark-grey en">Free shipping
             over {{_data?.location?.free_shipping_threshold | onpicksCurrency : (currency| async) }}
             with {{_data?.location?.name}}</div>
         </div>
