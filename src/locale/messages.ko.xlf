@@ -1462,6 +1462,14 @@
         </context-group>
       </trans-unit>
 
+      <trans-unit id="word__details" datatype="html">
+        <target>상세보기</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
 
 
       <!--Sentence-->

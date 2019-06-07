@@ -23,7 +23,11 @@
       <span>
         <a
           routerLink="/account/my-shopping/orders-detail/{{results.code}}">
-          <ui-angle-bracket-navigator [verticalAlign]="'base-line'">상세보기</ui-angle-bracket-navigator>
+          <ui-angle-bracket-navigator
+            i18n="@@word__details"
+            [verticalAlign]="'base-line'">
+            상세보기
+          </ui-angle-bracket-navigator>
         </a>
       </span>
     </div>

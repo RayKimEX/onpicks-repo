@@ -1474,7 +1474,15 @@
       </trans-unit>
 
       <trans-unit id="word__sold-out" datatype="html">
-        <target>품절</target>
+        <target>Sold Out</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="word__details" datatype="html">
+        <target>Details</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
           <context context-type="linenumber">52</context>
