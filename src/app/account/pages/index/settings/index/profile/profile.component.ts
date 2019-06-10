@@ -100,7 +100,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
   ) {
 
     setTimeout(() => {
-        if ( locale === 'ko') {
+        if ( this.locale === 'ko') {
           for ( let i = 0 ; i < 80 ; i ++) {
             this.yearList.list.push({ title : ((2005 - i) + '년'), value : (2005 - i) });
           }
@@ -151,8 +151,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
 
   ngOnInit() {
-    if (this.locale === 'en') {
-    }
   }
 
   ngOnDestroy() {
