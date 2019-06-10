@@ -358,13 +358,12 @@
       <div class="col-9-of-12 search-content">
         <div *ngIf="currentList !== null; else loading">
           <h1 class="search-content__title h1-bold">
-            <div *ngIf="searchState == 'search' && locale === 'ko'">
-              <span *ngIf="searchState == 'search' && queryParams.term !== undefined">
+              <span *ngIf="locale === 'ko' && searchState == 'search' && queryParams.term !== undefined">
                 <span
                   class="u-color-green">{{queryParams.term}}</span>에 대한 검색 결과 {{totalCount}}건
               </span>
               <span
-                *ngIf="searchState == 'search' && queryParams.term === undefined">{{totalCount}}건</span>
+                *ngIf="locale === 'ko' && searchState == 'search' && queryParams.term === undefined">{{totalCount}}건</span>
 
               <onpicks-sort-box
                 class="search-content__sort-box"
@@ -372,21 +371,11 @@
                 (changeEvent)="sortClicked($event)"
                 [sortList]="sortList">
               </onpicks-sort-box>
-            </div>
-            <div *ngIf="searchState == 'search' && locale === 'en'">
-              <span *ngIf="searchState == 'search' && queryParams.term !== undefined">
+              <span *ngIf="locale === 'en' && searchState == 'search' && queryParams.term !== undefined">
                {{totalCount}}  Results for {{queryParams.term}}
               </span>
               <span
-                *ngIf="searchState == 'search' && queryParams.term === undefined">{{totalCount}}Items</span>
-
-              <onpicks-sort-box
-                class="search-content__sort-box"
-                [selectedElement]="{ value : currentSortSlug }"
-                (changeEvent)="sortClicked($event)"
-                [sortList]="sortList">
-              </onpicks-sort-box>
-            </div>
+                *ngIf="locale === 'en' && searchState == 'search' && queryParams.term === undefined">{{totalCount}}Items</span>
 
             <ng-container  *ngIf="searchState == 'category'">
               <ng-container *ngIf="currentList.length !== 0">
