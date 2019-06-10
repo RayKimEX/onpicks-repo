@@ -27,7 +27,24 @@ export class ProfileComponent implements OnInit, OnDestroy {
     title : '월',
     list : [
     ]
-  }
+  };
+  monthListEn = {
+    title : 'Month',
+    list : [
+      { title : 'January', value : '01'},
+      { title : 'February', value : '02'},
+      { title : 'March', value : '03'},
+      { title : 'April', value : '04'},
+      { title : 'May', value : '05'},
+      { title : 'June', value : '06'},
+      { title : 'July', value : '07'},
+      { title : 'August', value : '08'},
+      { title : 'September', value : '09'},
+      { title : 'October', value : '10'},
+      { title : 'November', value : '11'},
+      { title : 'December', value : '12'},
+    ]
+  };
 
   yearList = {
     title : '년',
@@ -83,18 +100,32 @@ export class ProfileComponent implements OnInit, OnDestroy {
   ) {
 
     setTimeout(() => {
-        for ( let i = 0 ; i < 80 ; i ++) {
-          this.yearList.list.push({ title : ((2005 - i) + '년'), value : (2005 - i) });
-        }
+        if ( locale === 'ko') {
+          for ( let i = 0 ; i < 80 ; i ++) {
+            this.yearList.list.push({ title : ((2005 - i) + '년'), value : (2005 - i) });
+          }
 
-        for ( let i = 1 ; i < 32 ; i ++) {
-          const formattedNumber = ('0' + i).slice(-2);
-          this.dayList.list.push({ title : ((i) + '일'), value : (formattedNumber) });
-        }
+          for ( let i = 1 ; i < 32 ; i ++) {
+            const formattedNumber = ('0' + i).slice(-2);
+            this.dayList.list.push({ title : ((i) + '일'), value : (formattedNumber) });
+          }
 
-        for ( let i = 1 ; i < 13 ; i ++ ) {
-          const formattedNumber = ('0' + i).slice(-2);
-          this.monthList.list.push({ title : (i) + '월', value : (formattedNumber) });
+          for ( let i = 1 ; i < 13 ; i ++ ) {
+            const formattedNumber = ('0' + i).slice(-2);
+            this.monthList.list.push({ title : (i) + '월', value : (formattedNumber) });
+          }
+        } else {
+          for ( let i = 0 ; i < 80 ; i ++) {
+            this.yearList.list.push({ title : ((2005 - i)), value : (2005 - i) });
+          }
+          for ( let i = 1 ; i < 32 ; i ++) {
+            const formattedNumber = ('0' + i).slice(-2);
+            this.dayList.list.push({ title : ((i)), value : (formattedNumber) });
+          }
+          this.monthList = this.monthListEn;
+          this.dayList.title = 'Day';
+          this.yearList.title = 'Year';
+
         }
     }, 0)
 
@@ -120,7 +151,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
 
   ngOnInit() {
-
+    if (this.locale === 'en') {
+    }
   }
 
   ngOnDestroy() {
