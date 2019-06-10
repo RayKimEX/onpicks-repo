@@ -1,4 +1,11 @@
-import {ChangeDetectionStrategy, Component, OnDestroy, OnInit} from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Inject,
+  LOCALE_ID,
+  OnDestroy,
+  OnInit
+} from '@angular/core';
 import {fromEvent} from 'rxjs';
 import {sampleTime, tap} from 'rxjs/operators';
 import {select, Store} from '@ngrx/store';
@@ -29,6 +36,7 @@ export class FeedComponent implements OnInit, OnDestroy {
   feedList = []
   feedList$;
   constructor(
+    @Inject( LOCALE_ID ) public locale: string,
     private store: Store<any>,
     private accountDataService: AccountDataService
   ) {

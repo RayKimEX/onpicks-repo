@@ -223,7 +223,8 @@
             <svg xmlns="http://www.w3.org/2000/svg" width="8" height="14" viewBox="0 0 8 14">
               <path fill="#B3B3B3" fill-rule="evenodd" d="M7 14a.997.997 0 0 1-.707-.293l-6-6a.999.999 0 0 1 0-1.414l6-6a.999.999 0 1 1 1.414 1.414L2.414 7l5.293 5.293A.999.999 0 0 1 7 14"/>
             </svg>
-            <div class="subtitle-2-regular u-color-dark-grey">
+            <div class="subtitle-2-regular u-color-dark-grey"
+                 i18n="@@word__return">
               돌아가기
             </div>
           </div>
@@ -245,9 +246,15 @@
           </div>
           <div
             (click)="navigateAllCategory(normalizedCategory.entities[categoryNavigateCurrentDepth][categoryNavigatedInfo[categoryNavigateCurrentDepth - 1].code].slug)"
-            *ngIf="categoryNavigateCurrentDepth !== 1" class="subtitle-2-bold">
+            *ngIf="locale === 'ko' && categoryNavigateCurrentDepth !== 1" class="subtitle-2-bold">
             {{normalizedCategory.entities[categoryNavigateCurrentDepth][categoryNavigatedInfo[categoryNavigateCurrentDepth - 1].code].name[locale]}} 모두보기
           </div>
+          <div
+            (click)="navigateAllCategory(normalizedCategory.entities[categoryNavigateCurrentDepth][categoryNavigatedInfo[categoryNavigateCurrentDepth - 1].code].slug)"
+            *ngIf="locale === 'en' && categoryNavigateCurrentDepth !== 1" class="subtitle-2-bold">
+            Shop All {{normalizedCategory.entities[categoryNavigateCurrentDepth][categoryNavigatedInfo[categoryNavigateCurrentDepth - 1].code].name[locale]}}
+          </div>
+
         </div>
 
         <div
@@ -329,9 +336,12 @@
             <li class="header__mobile-hamburger--li--not-login">
               <div
                 (click)="routeForMobile('/member/login', inputCheckedForToggle)">
-                <div class="u-button-effect">
+                <div i18n="@@header__login"
+                     class="u-button-effect">
                   로그인
                 </div>
+
+
               </div>
             </li>
           </ng-container>

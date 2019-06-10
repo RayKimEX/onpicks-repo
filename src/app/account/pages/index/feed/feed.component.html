@@ -1,7 +1,11 @@
 <div class="row feed-section" [ngStyle]="{ minHeight : contentHeight }">
-  <h1 class="h1-bold" *ngIf="(userState$ | async) as data ">
+  <h1 class="h1-bold" *ngIf="locale === 'ko' && (userState$ | async) as data">
     {{data.nickname}} 위한 추천 리뷰
   </h1>
+  <h1 class="h1-bold" *ngIf="locale === 'en' && (userState$ | async) as data">
+    Recommended Reviews for You
+  </h1>
+
   <div class="feed-section__grid">
     <div class="feed-section__grid--div" *ngFor="let item of (feedList$ | async);  index as i" >
       <a [routerLink]="'/shops/p/' + item.product  + '/reviews/' + item.review" class="feed-section__col">
