@@ -729,8 +729,8 @@
                   <div class="cart__wishlist-table--delivery-info-where subtitle-2-regular">
                     Shipping from&nbsp;<span class="u-bold">{{item.location.name}} </span> </div>
                     <div class="cart__wishlist-table--delivery-info-price subtitle-2-bold" *ngIf="item.shipping_fee == 0">&nbsp;Free shipping</div>
-                  <div class="cart__wishlist-table--delivery-info-price subtitle-2-regular"
-                       *ngIf="item.shipping_fee > 0">Express shipping · {{item.shipping_fee | onpicksCurrency:syncedData.currencyInfo}}</div>
+                  <div class="cart__wishlist-table--delivery-info-price subtitle-2-regular u-bold"
+                       *ngIf="item.shipping_fee > 0">{{item.shipping_fee | onpicksCurrency:syncedData.currencyInfo}} shipping</div>
                   <div class="cart__wishlist-table--delivery-info-description subtitle-2-regular u-color-dark-grey">
                     Free shipping over {{item.location.free_shipping_threshold | onpicksCurrency: syncedData.currencyInfo}} with {{item.location.name}} items.
                   </div>
