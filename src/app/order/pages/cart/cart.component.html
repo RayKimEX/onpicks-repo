@@ -654,11 +654,14 @@
                       (locationMap[itemForSave?.location.code]?.nickname === 'hong')  ? 'icon-small-hong' : ''
                     ]">
                     </span>
-                      <div class="cart__wishlist-table--delivery-info-where subtitle-2-regular">
-                        <span class="u-bold">{{itemForSave.location.name}}</span> 출고 ·</div>
-                      <div class="cart__wishlist-table--delivery-info-price subtitle-2-bold" *ngIf="itemForSave.shipping_fee == 0">&nbsp;무료배송</div>
-                      <div class="cart__wishlist-table--delivery-info-price subtitle-2-regular"
-                           *ngIf="itemForSave.shipping_fee > 0">&nbsp;묶음배송 </div>
+                    <div class="cart__wishlist-table--delivery-info-where subtitle-2-regular">
+                      <span class="u-bold">{{itemForSave.location.name}}</span> 출고 ·</div>
+                    <div class="cart__wishlist-table--delivery-info-price subtitle-2-bold" *ngIf="itemForSave.shipping_fee == 0">&nbsp;무료배송</div>
+                    <div
+                      class="cart__wishlist-table--delivery-info-price subtitle-2-regular"
+                      *ngIf="itemForSave.shipping_fee > 0">
+                      &nbsp;묶음배송
+                    </div>
                   </div>
                 </div>
               </div>
@@ -715,7 +718,7 @@
                     (locationMap[item?.location.code]?.nickname === 'hong')  ? 'icon-small-hong' : ''
                   ]">
                 </span>
-                <div *ngIf="locale === 'ko'; else shippingForSave">
+                <ng-container *ngIf="locale === 'ko'">
                   <div class="cart__wishlist-table--delivery-info-where subtitle-2-regular">
                     <span class="u-bold">{{item.location.name}}</span> 출고 ·</div>
                   <div class="cart__wishlist-table--delivery-info-price subtitle-2-bold" *ngIf="item.shipping_fee == 0">&nbsp;무료배송</div>
@@ -724,8 +727,8 @@
                   <div class="cart__wishlist-table--delivery-info-description subtitle-2-regular u-color-dark-grey">
                     {{item.location.name}} 묶음배송 상품으로 {{item.location.free_shipping_threshold | onpicksCurrency: syncedData.currencyInfo}} 이상 주문시 배송료 무료
                   </div>
-                </div>
-                <ng-template #shippingForSave>
+                </ng-container>
+                <ng-container *ngIf="locale === 'en'">
                   <div class="cart__wishlist-table--delivery-info-where subtitle-2-regular">
                     Shipping from&nbsp;<span class="u-bold">{{item.location.name}} </span> </div>
                     <div class="cart__wishlist-table--delivery-info-price subtitle-2-bold" *ngIf="item.shipping_fee == 0">&nbsp;Free shipping</div>
@@ -734,12 +737,11 @@
                   <div class="cart__wishlist-table--delivery-info-description subtitle-2-regular u-color-dark-grey">
                     Free shipping over {{item.location.free_shipping_threshold | onpicksCurrency: syncedData.currencyInfo}} with {{item.location.name}} items.
                   </div>
-
-                </ng-template>
+                </ng-container>
               </div>
             </td>
             <td>
-              <div *ngIf="locale === 'ko'; else saveItemButtons">
+              <ng-container *ngIf="locale === 'ko'">
                 <button
                   *ngIf="item.attributes.length !== 0"
                   class="btn btn--white btn--small cart__wishlist-table--btn"
@@ -759,8 +761,8 @@
                   삭제하기
                 </button>
 
-              </div>
-              <ng-template #saveItemButtons>
+              </ng-container>
+              <ng-container *ngIf="locale === 'en'">
                 <button
                   *ngIf="item.attributes.length !== 0"
                   class="btn btn--white btn--small cart__wishlist-table--btn"
@@ -779,7 +781,7 @@
                   (click)="deleteWishList(item.product, i)">
                   Remove
                 </button>
-              </ng-template>
+              </ng-container>
             </td>
           </tr>
         </table>
