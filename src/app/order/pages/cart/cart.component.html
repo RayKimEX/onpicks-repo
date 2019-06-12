@@ -541,7 +541,7 @@
                   <div
                     class="cart__multi-table--delivery-info-price"
                     [ngSwitch]="(item.subtotal - item.shipping_fee) < item.location.free_shipping_threshold">
-                    <span class="cart__free-table--delivery-info-image subtitle-1-bold"
+                    <!--<span class="cart__free-table&#45;&#45;delivery-info-image subtitle-1-bold"
                           [ngClass]=
                             "[
                     (locationMap[item.location.code].nickname === 'la')  ? 'icon-small-la' : '',
@@ -550,14 +550,16 @@
                     (locationMap[item.location.code].nickname === 'gorgia')  ? 'icon-small-gorgia' : '',
                     (locationMap[item.location.code].nickname === 'hong')  ? 'icon-small-hong' : ''
                     ]">
-                    </span>
+                    </span>-->
 
                     <div *ngIf="locale === 'ko'" class="cart__free-table--delivery-info-where subtitle-2-regular">
                       <span class="u-bold">{{ item.location.name }}</span> 출고&nbsp;·&nbsp;
                     </div>
-                    <div *ngIf="locale === 'en'" class="cart__free-table--delivery-info-where subtitle-2-regular">
+<!--
+                    <div *ngIf="locale === 'en'" class="cart__free-table&#45;&#45;delivery-info-where subtitle-2-regular">
                       Shipping From&nbsp;<span class="u-bold">{{ item.location.name }}</span>
                     </div>
+-->
                     <div>
                       <span
                         class="subtitle-2-bold"
