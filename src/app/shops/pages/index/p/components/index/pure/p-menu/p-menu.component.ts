@@ -280,7 +280,7 @@ export class PMenuComponent implements OnInit, OnDestroy, AfterViewInit, OnChang
             this.renderer.setStyle(this.pMenu.nativeElement, 'top', '32px');
           }
         } else {
-          if (setStatus === '') return;
+          if (setStatus === ''){ return; }
           setStatus = '';
           this.renderer.setStyle(this.pMenu.nativeElement, 'position', 'absolute');
           this.renderer.setStyle(this.pMenu.nativeElement, 'z-index', '1');
@@ -376,8 +376,7 @@ export class PMenuComponent implements OnInit, OnDestroy, AfterViewInit, OnChang
             // get the tooltip element
             let tooltipEl = document.getElementById('chartjs-tooltip');
 
-            if(tooltip.dataPoints === undefined) return;
-
+            if (tooltip.dataPoints === undefined) {return;}
 
             const x = tooltip.dataPoints[0].x;
             const y = tooltip.dataPoints[0].y;
@@ -419,7 +418,6 @@ export class PMenuComponent implements OnInit, OnDestroy, AfterViewInit, OnChang
               this.dateTitle = that.renderer.createElement('span');
               this.amazonPrice = that.renderer.createElement('span');
               this.onpicksPrice = that.renderer.createElement('span');
-              this.savingPrice = that.renderer.createElement('span');
               this.savingPrice = that.renderer.createElement('span');
               this.hrLiner = that.renderer.createElement('hr');
 

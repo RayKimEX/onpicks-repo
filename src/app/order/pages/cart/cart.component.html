@@ -542,7 +542,7 @@
                     class="cart__multi-table--delivery-info-price"
                     [ngSwitch]="(item.subtotal - item.shipping_fee) < item.location.free_shipping_threshold">
                     <span
-                      class="subtitle-2-regular"
+                      class="subtitle-2-bold"
                       *ngSwitchCase="true">
                       {{ item.shipping_fee | onpicksCurrency: syncedData.currencyInfo }} {{ locale === 'en' ? 'shipping' : '' }}</span>
                     <span
