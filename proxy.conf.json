@@ -1,6 +1,6 @@
 {
   "/api/*" : {
-    "target" : "https://staging.onpicks.com/api",
+    "target" : "http://127.0.0.1:7999/api",
     "secure" : false,
     "pathRewrite" : {"^/api" : ""},
     "changeOrigin": true
