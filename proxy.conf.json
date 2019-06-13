@@ -1,8 +1,0 @@
-{
-  "/api/*" : {
-    "target" : "https://staging.onpicks.com/api",
-    "secure" : false,
-    "pathRewrite" : {"^/api" : ""},
-    "changeOrigin": true
-  }
-}
