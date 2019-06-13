@@ -1293,6 +1293,23 @@
         </context-group>
       </trans-unit>
 
+      <trans-unit id="word__choose-option" datatype="html">
+        <target>옵션 선택하기</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/order/pages/cart/cart.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="word__add-to-cart" datatype="html">
+        <target>쇼핑백에 담기</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/order/pages/cart/cart.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+
       <trans-unit id="word__modify" datatype="html">
         <target>수정하기</target>
         <context-group purpose="location">

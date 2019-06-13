@@ -745,14 +745,15 @@
               </div>
             </td>
             <td>
-              <ng-container *ngIf="locale === 'ko'">
                 <button
+                  i18n="@@word__choose-option"
                   *ngIf="item.attributes.length !== 0"
                   class="btn btn--white btn--small cart__wishlist-table--btn"
                   [routerLink]="'/shops/p/' + item.product">
                   옵션 선택하기
                 </button>
                 <button
+                  i18n="@@word__add-to-cart"
                   (click)="moveWishListToCart(1, item, item.individual_shipping ? 'free' : locationMap[item?.location.code]?.sequence, i)"
                   *ngIf="item.attributes.length === 0"
                   class="btn btn--white btn--small cart__wishlist-table--btn">
@@ -765,27 +766,6 @@
                   삭제하기
                 </button>
 
-              </ng-container>
-              <ng-container *ngIf="locale === 'en'">
-                <button
-                  *ngIf="item.attributes.length !== 0"
-                  class="btn btn--white btn--small cart__wishlist-table--btn"
-                  [routerLink]="'/shops/p/' + item.product">
-                  Options
-                </button>
-                <button
-                  (click)="moveWishListToCart(1, item, item.individual_shipping ? 'free' : locationMap[item?.location.code]?.sequence, i)"
-                  *ngIf="item.attributes.length === 0"
-                  class="btn btn--white btn--small cart__wishlist-table--btn">
-                  Add to Bag
-                </button>
-                <button
-                  i18n="@@word__remove"
-                  class="btn btn--white btn--small cart__wishlist-table--btn"
-                  (click)="deleteWishList(item.product, i)">
-                  Remove
-                </button>
-              </ng-container>
             </td>
           </tr>
         </table>

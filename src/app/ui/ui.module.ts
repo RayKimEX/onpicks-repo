@@ -39,6 +39,7 @@ import { DynamicCarouselComponent } from './pure/common/dynamic-carousel/dynamic
 import { SearchNavigatorMobileFilterComponent } from './emitter/search-navigator/search-navigator-mobile-filter/search-navigator-mobile-filter.component';
 import { BannerComponent } from './pure/common/banner/banner.component';
 import { TrendingReviewsComponent } from './pure/onpicks/list/trending-reviews/trending-reviews.component';
+import { IconComponent } from './pure/onpicks/icon/icon.component';
 
 @NgModule({
 
@@ -84,7 +85,8 @@ import { TrendingReviewsComponent } from './pure/onpicks/list/trending-reviews/t
     DynamicCarouselComponent,
     SearchNavigatorMobileFilterComponent,
     BannerComponent,
-    TrendingReviewsComponent
+    TrendingReviewsComponent,
+    IconComponent
 
   ],
   exports: [
