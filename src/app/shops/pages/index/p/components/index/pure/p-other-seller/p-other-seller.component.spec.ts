@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { POtherSellersComponent } from './p-other-sellers.component';
+import { POtherSellerComponent } from './p-other-seller.component';
 
-describe('POtherSellersComponent', () => {
-  let component: POtherSellersComponent;
-  let fixture: ComponentFixture<POtherSellersComponent>;
+describe('POtherSellerComponent', () => {
+  let component: POtherSellerComponent;
+  let fixture: ComponentFixture<POtherSellerComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ POtherSellersComponent ]
+      declarations: [ POtherSellerComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(POtherSellersComponent);
+    fixture = TestBed.createComponent(POtherSellerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
