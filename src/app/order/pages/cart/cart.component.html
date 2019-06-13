@@ -17,54 +17,57 @@
           <div class="cart-mobile__price">
             <div class="cart-mobile__price--description">
               <div class="cart-mobile__price--all-product">
-              <span
-                i18n="@@word__subtotal"
-                class="subtitle-2-regular u-color-dark-grey">
-                총 상품금액
-              </span>
+                <span
+                  i18n="@@word__subtotal"
+                  class="subtitle-2-regular u-color-dark-grey">
+                  총 상품금액
+                </span>
                 <span
                   class="subtitle-2-regular u-float-right">
-                {{ syncedData?.cartInfo?.total?.total_items | onpicksCurrency: syncedData.currencyInfo }}
-              </span>
+                  {{ syncedData?.cartInfo?.total?.total_items | onpicksCurrency: syncedData.currencyInfo }}
+                </span>
               </div>
               <div class="cart-mobile__price--delivery">
-              <span
-                i18n="@@word__shipping-fee"
-                class="subtitle-2-regular u-color-dark-grey">
-                배송비
-              </span>
+                <span
+                  i18n="@@word__shipping-fee"
+                  class="subtitle-2-regular u-color-dark-grey">
+                  배송비
+                </span>
                 <span
                   i18n="@@word__free-shipping"
                   class="subtitle-2-regular u-float-right"
                   *ngIf="syncedData?.cartInfo?.total?.total_shipping_costs === 0"
                   [ngClass]="{ 'u-color-green' : syncedData?.cartInfo?.total?.total_shipping_costs == 0 }">
-                무료
-              </span>
+                  무료
+                </span>
                 <span
                   class="subtitle-2-regular u-float-right"
                   *ngIf="syncedData?.cartInfo?.total?.total_shipping_costs !== 0"
                   [ngClass]="{ 'u-color-green' : syncedData?.cartInfo?.total?.total_shipping_costs == 0 }">
-                {{ (syncedData?.cartInfo?.total?.total_shipping_costs | onpicksCurrency: syncedData.currencyInfo) }}
-              </span>
+                  {{ (syncedData?.cartInfo?.total?.total_shipping_costs | onpicksCurrency: syncedData.currencyInfo) }}
+                </span>
               </div>
               <div class="cart-mobile__price--discount">
-              <span
-                i18n="@@cart__payment-table--extra-savings"
-                class="subtitle-2-regular u-color-dark-grey">
-                할인금액
-              </span>
+                <span
+                  i18n="@@cart__payment-table--extra-savings"
+                  class="subtitle-2-regular u-color-dark-grey">
+                  할인금액
+                </span>
                 <span class="subtitle-2-regular u-float-right">
-                {{ syncedData?.cartInfo?.total?.total_discounts | onpicksCurrency: syncedData.currencyInfo }}
-              </span>
+                  {{ syncedData?.cartInfo?.total?.total_discounts | onpicksCurrency: syncedData.currencyInfo }}
+                </span>
               </div>
             </div>
             <div class="cart-mobile__price--all">
-            <span
-              i18n="@@cart__delivery--total-count"
-              class="subtitle-2-regular u-color-dark-grey">총 결제금액</span>
-              <span class="subtitle-2-bold u-float-right">
-              {{ syncedData?.cartInfo?.total?.total_items + syncedData?.cartInfo?.total?.total_shipping_costs | onpicksCurrency : syncedData.currencyInfo }}
-            </span>
+              <span
+                i18n="@@cart__delivery--total-count"
+                class="subtitle-2-regular u-color-dark-grey">
+                총 결제금액
+              </span>
+              <span
+                class="subtitle-2-bold u-float-right">
+                {{ syncedData?.cartInfo?.total?.total_items + syncedData?.cartInfo?.total?.total_shipping_costs | onpicksCurrency : syncedData.currencyInfo }}
+              </span>
             </div>
           </div>
 
@@ -108,47 +111,49 @@
 
         <div class="cart__delivery-free">
           <div class="cart__delivery-free-middle">
-          <span class="cart__delivery-free-icon">
-            <span class="cart__delivery-free-font u-bold u-color-white">F</span>
-          </span>
+            <span class="cart__delivery-free-icon">
+              <span class="cart__delivery-free-font u-bold u-color-white">F</span>
+            </span>
             <span class="cart__delivery-free-spot-list">
-            <span class="cart__delivery-free-spot-list--location" [ngSwitch]="locale">
               <span
-                *ngSwitchCase="'ko'"
-                class="subtitle-1-bold"
-                [ngStyle]="{ 'marginRight' : '0.4rem' }">
-                뉴저지·엘에이·조지아·오사카·홍콩
+                class="cart__delivery-free-spot-list--location"
+                [ngSwitch]="locale">
+                <span
+                  *ngSwitchCase="'ko'"
+                  class="subtitle-1-bold"
+                  [ngStyle]="{ 'marginRight' : '0.4rem' }">
+                  뉴저지·엘에이·조지아·오사카·홍콩
+                </span>
+                <span
+                  *ngSwitchCase="'en'"
+                  class="subtitle-1-bold"
+                  [ngStyle]="{ 'marginRight' : '0.8rem' }">
+                  New Jersey · Los Angeles · Gerogia · Osaka · Hong Kong
+                </span>
+                <span
+                  *ngSwitchCase="'zh'"
+                  class="subtitle-1-bold"
+                  [ngStyle]="{ 'marginRight' : '0.8rem' }">
+                  뉴저지·엘에이·조지아·오사카·홍콩
+                </span>
               </span>
               <span
-                *ngSwitchCase="'en'"
-                class="subtitle-1-bold"
-                [ngStyle]="{ 'marginRight' : '0.8rem' }">
-                New Jersey · Los Angeles · Gerogia · Osaka · Hong Kong
-              </span>
-              <span
-                *ngSwitchCase="'zh'"
-                class="subtitle-1-bold"
-                [ngStyle]="{ 'marginRight' : '0.8rem' }">
-                뉴저지·엘에이·조지아·오사카·홍콩
+                i18n="@@cart__section--free-sub-title"
+                class="subtitle-1-bold u-color-green">
+                무료배송
               </span>
             </span>
-            <span
-              i18n="@@cart__section--free-sub-title"
-              class="subtitle-1-bold u-color-green">
-              무료배송
-            </span>
-          </span>
             <span class="cart__delivery-free-total-count">
-            <span
-              i18n="@@cart__delivery--total-count"
-              class="cart__delivery-free-total-count--title subtitle-2-regular u-color-dark-grey">
-              총 결제금액
+              <span
+                i18n="@@cart__delivery--total-count"
+                class="cart__delivery-free-total-count--title subtitle-2-regular u-color-dark-grey">
+                총 결제금액
+              </span>
+              <span
+                class="subtitle-2-bold u-color-black">
+                {{ syncedData?.cartInfo?.free?.subtotal | onpicksCurrency : syncedData.currencyInfo }}
+              </span>
             </span>
-            <span
-              class="subtitle-2-bold u-color-black">
-              {{ syncedData?.cartInfo?.free?.subtotal | onpicksCurrency : syncedData.currencyInfo }}
-            </span>
-          </span>
           </div>
         </div>
 
@@ -238,18 +243,21 @@
                 </div>
                 <div class="cart__multi-table--info-option">
                   <ng-container *ngFor="let option of objectKeys(itemForFree.attribute_values); index as optionIndex">
-                  <span class="subtitle-3-regular u-color-grey">
-                    {{option}} :
-                  </span>
                     <span class="subtitle-3-regular u-color-grey">
-                    {{itemForFree.attribute_values[option]}}
-                  </span>
+                      {{option}} :
+                    </span>
+                    <span class="subtitle-3-regular u-color-grey">
+                      {{itemForFree.attribute_values[option]}}
+                    </span>
                     <span
                       *ngIf="objectKeys(itemForFree.attribute_values).length - 1 !== optionIndex"
                       class="cart__multi-table--info-option--spliter-margin subtitle-3-regular u-color-grey">·</span>
                   </ng-container>
                 </div>
-                <div class="cart__free-table--info-price subtitle-2-bold">{{itemForFree.price | onpicksCurrency : syncedData.currencyInfo }}</div>
+                <div
+                  class="cart__free-table--info-price subtitle-2-bold">
+                  {{itemForFree.price | onpicksCurrency : syncedData.currencyInfo }}
+                </div>
               </div>
             </td>
             <td>
@@ -282,40 +290,42 @@
             </td>
             <td>
               <div class="cart__free-table--delivery-info">
-              <span class="cart__free-table--delivery-info-image subtitle-1-bold"
-                    [ngClass]=
-                      "[
-                    (locationMap[itemForFree.location.code].nickname === 'la')  ? 'icon-small-la' : '',
-                    (locationMap[itemForFree.location.code].nickname === 'new')  ? 'icon-small-new' : '',
-                    (locationMap[itemForFree.location.code].nickname === 'osaka')  ? 'icon-small-osaka' : '',
-                    (locationMap[itemForFree.location.code].nickname === 'gorgia')  ? 'icon-small-gorgia' : '',
-                    (locationMap[itemForFree.location.code].nickname === 'hong')  ? 'icon-small-hong' : ''
-                  ]">
-              </span>
-              <ng-container [ngSwitch]="locale">
-                <ng-container *ngSwitchCase="'ko'">
-                  <div class="cart__free-table--delivery-info-where subtitle-2-regular">
-                    <span class="u-bold">{{ itemForFree.location.name }}</span> 출고&nbsp;·&nbsp;
-                  </div>
-                  <div class="cart__free-table--delivery-info-price subtitle-2-bold">
-                    무료배송
-                  </div>
-                  <div class="cart__free-table--delivery-info-description subtitle-2-regular u-color-dark-grey">
-                    {{ itemForFree.location.name }} 단독배송 상품으로 무료로 배송 됩니다.
-                  </div>
+                <span class="cart__free-table--delivery-info-image subtitle-1-bold"
+                  [ngClass]=
+                    "[
+                      (locationMap[itemForFree.location.code].nickname === 'la')  ? 'icon-small-la' : '',
+                      (locationMap[itemForFree.location.code].nickname === 'new')  ? 'icon-small-new' : '',
+                      (locationMap[itemForFree.location.code].nickname === 'osaka')  ? 'icon-small-osaka' : '',
+                      (locationMap[itemForFree.location.code].nickname === 'gorgia')  ? 'icon-small-gorgia' : '',
+                      (locationMap[itemForFree.location.code].nickname === 'hong')  ? 'icon-small-hong' : ''
+                    ]">
+                </span>
+                <ng-container [ngSwitch]="locale">
+                  <ng-container *ngSwitchCase="'ko'">
+                    <div
+                      class="cart__free-table--delivery-info-where subtitle-2-regular">
+                      <span class="u-bold">{{ itemForFree.location.name }}</span> 출고&nbsp;·&nbsp;
+                    </div>
+                    <div
+                      class="cart__free-table--delivery-info-price subtitle-2-bold">
+                      무료배송
+                    </div>
+                    <div
+                      class="cart__free-table--delivery-info-description subtitle-2-regular u-color-dark-grey">
+                      {{ itemForFree.location.name }} 단독배송 상품으로 무료로 배송 됩니다.
+                    </div>
+                  </ng-container>
+                  <ng-container *ngSwitchCase="'en'">
+                    <div
+                      class="cart__free-table--delivery-info-where subtitle-2-regular">
+                      Shipping From&nbsp;<span class="u-bold">{{ itemForFree.location.name }}</span>
+                    </div>
+                    <div
+                      class="cart__free-table--delivery-info-price subtitle-2-bold u-color-green">
+                      Free shipping
+                    </div>
+                  </ng-container>
                 </ng-container>
-                <ng-container *ngSwitchDefault>
-
-                  <div class="cart__free-table--delivery-info-where subtitle-2-regular">
-                    Shipping From&nbsp;<span class="u-bold">{{ itemForFree.location.name }}</span>
-                  </div>
-
-                  <div class="cart__free-table--delivery-info-price subtitle-2-bold u-color-green">
-                    Free shipping
-                  </div>
-                </ng-container>
-              </ng-container>
-
               </div>
             </td>
           </tr>
@@ -333,45 +343,44 @@
 
             <div class="cart__delivery-multi">
               <div class="cart__delivery-multi-middle">
-              <span class="cart__delivery-multi-icon subtitle-1-bold"
-                    [ngClass]=
-                      "[
-                    (locationMap[item.location.code].nickname === 'la')  ? 'icon-la' : '',
-                    (locationMap[item.location.code].nickname === 'new')  ? 'icon-new' : '',
-                    (locationMap[item.location.code].nickname === 'osaka')  ? 'icon-osaka' : '',
-                    (locationMap[item.location.code].nickname === 'gorgia')  ? 'icon-gorgia' : '',
-                    (locationMap[item.location.code].nickname === 'hong')  ? 'icon-hong' : ''
-                  ]">
-              </span>
+                <span class="cart__delivery-multi-icon subtitle-1-bold"
+                  [ngClass]=
+                    "[
+                      (locationMap[item.location.code].nickname === 'la')  ? 'icon-la' : '',
+                      (locationMap[item.location.code].nickname === 'new')  ? 'icon-new' : '',
+                      (locationMap[item.location.code].nickname === 'osaka')  ? 'icon-osaka' : '',
+                      (locationMap[item.location.code].nickname === 'gorgia')  ? 'icon-gorgia' : '',
+                      (locationMap[item.location.code].nickname === 'hong')  ? 'icon-hong' : ''
+                    ]">
+                </span>
                 <span class="cart__delivery-multi-spot-list">
-                <ng-container [ngSwitch]="locale">
-                  <span *ngSwitchCase="'ko'" class="subtitle-1-bold" [ngStyle]="{ 'marginRight' : '0.4rem' }">{{item.location.name}}</span>
-                  <span *ngSwitchCase="'en'" class="subtitle-1-bold" [ngStyle]="{ 'marginRight' : '0.8rem' }">{{item.location.name}}</span>
-                  <span *ngSwitchCase="'zh'" class="subtitle-1-bold" [ngStyle]="{ 'marginRight' : '0.8rem' }">{{item.location.name}}</span>
-                </ng-container>
-                <span
-                  i18n="@@cart__pack-delivery--title"
-                  class="subtitle-1-regular">
-                  묶음배송
+                  <ng-container [ngSwitch]="locale">
+                    <span *ngSwitchCase="'ko'" class="subtitle-1-bold" [ngStyle]="{ 'marginRight' : '0.4rem' }">{{item.location.name}}</span>
+                    <span *ngSwitchCase="'en'" class="subtitle-1-bold" [ngStyle]="{ 'marginRight' : '0.8rem' }">{{item.location.name}}</span>
+                    <span *ngSwitchCase="'zh'" class="subtitle-1-bold" [ngStyle]="{ 'marginRight' : '0.8rem' }">{{item.location.name}}</span>
+                  </ng-container>
+                  <span
+                    i18n="@@cart__pack-delivery--title"
+                    class="subtitle-1-regular">
+                    묶음배송
+                  </span>
                 </span>
-              </span>
                 <span class="cart__delivery-multi-total-count">
-                <span
-                  i18n="@@cart__delivery--total-count"
-                  class="subtitle-2-regular u-color-dark-grey">
-                  총 결제금액
+                  <span
+                    i18n="@@cart__delivery--total-count"
+                    class="subtitle-2-regular u-color-dark-grey">
+                    총 결제금액
+                  </span>
+                  <span class="subtitle-2-bold">
+                    {{item.subtotal | onpicksCurrency : syncedData.currencyInfo}}
+                  </span>
                 </span>
-                <span class="subtitle-2-bold">
-                  {{item.subtotal | onpicksCurrency : syncedData.currencyInfo}}
-                </span>
-              </span>
               </div>
             </div>
 
             <div class="cart__delivery-multi-purchase">
               <div class="cart__delivery-multi-purchase--remain">
                 <ng-container [ngSwitch]="locale">
-
                   <ng-container *ngSwitchCase="'ko'">
                     <div
                       *ngIf="item.shipping_fee > 0"
@@ -379,15 +388,13 @@
                       {{ item.location.name }} 무료배송까지 {{ item.location.free_shipping_threshold - (item.subtotal - item.shipping_fee) | onpicksCurrency : syncedData.currencyInfo }} 남았습니다
                     </div>
                   </ng-container>
-
-                  <ng-container *ngSwitchDefault>
+                  <ng-container *ngSwitchCase="'en'">
                     <div
                       *ngIf="item.shipping_fee > 0"
                       class="cart__delivery-multi-purchase--remain-description subtitle-2-regular">
                       {{item.location.free_shipping_threshold - (item.subtotal - item.shipping_fee) | onpicksCurrency : syncedData.currencyInfo}} to {{item.location.name}} Free Shipping
                     </div>
                   </ng-container>
-
                 </ng-container>
                 <ng-container [ngSwitch]="locale">
                   <ng-container *ngSwitchCase="'ko'">
@@ -397,7 +404,6 @@
                       {{item.location.name}} 무료배송 조건이 충족되었습니다.
                     </div>
                   </ng-container>
-
                   <ng-container *ngSwitchCase="'en'">
                     <div
                       *ngIf="!((item.location.free_shipping_threshold - (item.subtotal - item.shipping_fee)) > 0)"
@@ -406,14 +412,12 @@
                     </div>
                   </ng-container>
                 </ng-container>
-
                 <ui-progressive-bar
                   [progressWidth]="
                   ((((item.subtotal - item.shipping_fee) /
                   item.location.free_shipping_threshold) * 100) > 100 ?
                   100 :
-                  ((((item.subtotal - item.shipping_fee) / item.location.free_shipping_threshold) * 100))) + '%'
-                ">
+                  ((((item.subtotal - item.shipping_fee) / item.location.free_shipping_threshold) * 100))) + '%'">
                 </ui-progressive-bar>
               </div>
 
@@ -501,12 +505,12 @@
                     </div>
                     <div class="cart__multi-table--info-option">
                       <ng-container *ngFor="let option of objectKeys(itemChild.attribute_values); index as optionIndex">
-                      <span class="subtitle-3-regular u-color-grey">
-                        {{option}} :
-                      </span>
                         <span class="subtitle-3-regular u-color-grey">
-                        {{itemChild.attribute_values[option]}}
-                      </span>
+                          {{option}} :
+                        </span>
+                        <span class="subtitle-3-regular u-color-grey">
+                          {{itemChild.attribute_values[option]}}
+                        </span>
                         <span
                           *ngIf="objectKeys(itemChild.attribute_values).length - 1 !== optionIndex"
                           class="cart__multi-table--info-option--spliter-margin subtitle-3-regular u-color-grey">·</span>
@@ -549,22 +553,23 @@
                     <div
                       class="cart__multi-table--delivery-info-price u-bold"
                       [ngSwitch]="(item.subtotal - item.shipping_fee) < item.location.free_shipping_threshold">
-                    <span
-                      class="subtitle-2-regular u-bold"
-                      *ngSwitchCase="true">
-                      {{ item.shipping_fee | onpicksCurrency: syncedData.currencyInfo }} {{ locale === 'en' ? 'shipping' : '' }}</span>
+                      <span
+                        class="subtitle-2-regular"
+                        *ngSwitchCase="true">
+                        {{ item.shipping_fee | onpicksCurrency: syncedData.currencyInfo }} {{ locale === 'en' ? 'shipping' : '' }}
+                      </span>
                       <span
                         i18n="@@word__free-shipping"
                         class="subtitle-2-bold u-color-green"
                         *ngSwitchDefault>
-                      무료
-                    </span>
+                        무료
+                      </span>
                     </div>
                     <ng-container [ngSwitch]="locale">
                       <div
                         *ngSwitchCase="'ko'"
                         class="cart__multi-table--delivery-info-description subtitle-2-regular u-color-dark-grey">
-                        {{item.location.name}} 묶음배송 상품 {{item.location.free_shipping_threshold | onpicksCurrency: syncedData.currencyInfo}} 이상 주문시 무료 배송
+                        {{item.location.name}} 묶음배송 상품으로 {{item.location.free_shipping_threshold | onpicksCurrency: syncedData.currencyInfo}} 이상 주문시 무료 배송
                       </div>
                       <div
                         *ngSwitchCase="'en'"
@@ -636,16 +641,20 @@
                       class="cart__wishlist-table--delivery-info-image"
                       [ngClass]=
                         "[
-                      (locationMap[itemForSave?.location.code]?.nickname === 'la')  ? 'icon-small-la' : '',
-                      (locationMap[itemForSave?.location.code]?.nickname === 'new')  ? 'icon-small-new' : '',
-                      (locationMap[itemForSave?.location.code]?.nickname === 'osaka')  ? 'icon-small-osaka' : '',
-                      (locationMap[itemForSave?.location.code]?.nickname === 'gorgia')  ? 'icon-small-gorgia' : '',
-                      (locationMap[itemForSave?.location.code]?.nickname === 'hong')  ? 'icon-small-hong' : ''
-                    ]">
+                          (locationMap[itemForSave?.location.code]?.nickname === 'la')  ? 'icon-small-la' : '',
+                          (locationMap[itemForSave?.location.code]?.nickname === 'new')  ? 'icon-small-new' : '',
+                          (locationMap[itemForSave?.location.code]?.nickname === 'osaka')  ? 'icon-small-osaka' : '',
+                          (locationMap[itemForSave?.location.code]?.nickname === 'gorgia')  ? 'icon-small-gorgia' : '',
+                          (locationMap[itemForSave?.location.code]?.nickname === 'hong')  ? 'icon-small-hong' : ''
+                        ]">
                     </span>
                     <div class="cart__wishlist-table--delivery-info-where subtitle-2-regular">
-                      <span class="u-bold">{{itemForSave.location.name}}</span> 출고 ·</div>
-                    <div class="cart__wishlist-table--delivery-info-price subtitle-2-bold" *ngIf="itemForSave.shipping_fee == 0">&nbsp;무료배송</div>
+                      <span class="u-bold">{{itemForSave.location.name}}</span> 출고 ·
+                    </div>
+                    <div
+                      class="cart__wishlist-table--delivery-info-price subtitle-2-bold"
+                      *ngIf="itemForSave.shipping_fee == 0">&nbsp;무료배송
+                    </div>
                     <div
                       class="cart__wishlist-table--delivery-info-price subtitle-2-regular"
                       *ngIf="itemForSave.shipping_fee > 0">
@@ -696,76 +705,81 @@
             </td>
             <td>
               <div class="cart__wishlist-table--delivery-info">
-
+                <span
+                  class="cart__wishlist-table--delivery-info-image"
+                  [ngClass]=
+                    "[
+                      (locationMap[item?.location.code]?.nickname === 'la')  ? 'icon-small-la' : '',
+                      (locationMap[item?.location.code]?.nickname === 'new')  ? 'icon-small-new' : '',
+                      (locationMap[item?.location.code]?.nickname === 'osaka')  ? 'icon-small-osaka' : '',
+                      (locationMap[item?.location.code]?.nickname === 'gorgia')  ? 'icon-small-gorgia' : '',
+                      (locationMap[item?.location.code]?.nickname === 'hong')  ? 'icon-small-hong' : ''
+                    ]">
+                </span>
                 <ng-container [ngSwitch]="locale">
                   <ng-container *ngSwitchCase="'ko'">
-                    <span
-                      class="cart__wishlist-table--delivery-info-image"
-                      [ngClass]=
-                        "[
-                    (locationMap[item?.location.code]?.nickname === 'la')  ? 'icon-small-la' : '',
-                    (locationMap[item?.location.code]?.nickname === 'new')  ? 'icon-small-new' : '',
-                    (locationMap[item?.location.code]?.nickname === 'osaka')  ? 'icon-small-osaka' : '',
-                    (locationMap[item?.location.code]?.nickname === 'gorgia')  ? 'icon-small-gorgia' : '',
-                    (locationMap[item?.location.code]?.nickname === 'hong')  ? 'icon-small-hong' : ''
-                  ]">
-                </span>
                     <div class="cart__wishlist-table--delivery-info-where subtitle-2-regular">
-                      <span class="u-bold">{{item.location.name}}</span> 출고 ·</div>
-                    <div class="cart__wishlist-table--delivery-info-price subtitle-2-bold" *ngIf="item.shipping_fee == 0">&nbsp;무료배송</div>
-                    <div class="cart__wishlist-table--delivery-info-price subtitle-2-regular"
-                         *ngIf="item.shipping_fee > 0">&nbsp;묶음배송 · {{item.shipping_fee | onpicksCurrency:syncedData.currencyInfo}}</div>
-                    <div class="cart__wishlist-table--delivery-info-description subtitle-2-regular u-color-dark-grey">
-                      {{item.location.name}} 묶음배송 상품으로 {{item.location.free_shipping_threshold | onpicksCurrency: syncedData.currencyInfo}} 이상 주문시 배송료 무료
+                      <span class="u-bold">{{item.location.name}}</span> 출고 ·
                     </div>
+                    <div
+                      class="cart__wishlist-table--delivery-info-price subtitle-2-bold"
+                      *ngIf="item.shipping_fee == 0">
+                      &nbsp;무료배송
+                    </div>
+                    <ng-container *ngIf="item.shipping_fee > 0">
+                      <div
+                        class="cart__wishlist-table--delivery-info-price subtitle-2-regular">
+                        &nbsp;묶음배송 · {{item.shipping_fee | onpicksCurrency:syncedData.currencyInfo}}
+                      </div>
+                      <div
+                        class="cart__wishlist-table--delivery-info-description subtitle-2-regular u-color-dark-grey">
+                        {{item.location.name}} 묶음배송 상품으로 {{item.location.free_shipping_threshold | onpicksCurrency: syncedData.currencyInfo}} 이상 주문시 배송료 무료
+                      </div>
+                    </ng-container>
                   </ng-container>
-                  <ng-container *ngSwitchDefault>
-                    <span
-                      class="cart__wishlist-table--delivery-info-image"
-                      [ngClass]=
-                        "[
-                    (locationMap[item?.location.code]?.nickname === 'la')  ? 'icon-small-la' : '',
-                    (locationMap[item?.location.code]?.nickname === 'new')  ? 'icon-small-new' : '',
-                    (locationMap[item?.location.code]?.nickname === 'osaka')  ? 'icon-small-osaka' : '',
-                    (locationMap[item?.location.code]?.nickname === 'gorgia')  ? 'icon-small-gorgia' : '',
-                    (locationMap[item?.location.code]?.nickname === 'hong')  ? 'icon-small-hong' : ''
-                  ]">
-                </span>
-                    <div class="cart__wishlist-table--delivery-info-where subtitle-2-regular">
-                      Shipping from&nbsp;<span class="u-bold">{{item.location.name}} ·&nbsp;</span> </div>
-                    <div class="cart__wishlist-table--delivery-info-price subtitle-2-bold" *ngIf="item.shipping_fee == 0">Free shipping&nbsp;</div>
-                    <div class="cart__wishlist-table--delivery-info-price subtitle-2-regular"
-                         *ngIf="item.shipping_fee > 0"> · {{item.shipping_fee | onpicksCurrency:syncedData.currencyInfo}} shipping</div>
-                    <div class="cart__wishlist-table--delivery-info-description subtitle-2-regular u-color-dark-grey">
+                  <ng-container *ngSwitchCase="'en'">
+                    <div
+                      class="cart__wishlist-table--delivery-info-where subtitle-2-regular">
+                      Shipping from&nbsp;<span class="u-bold">{{item.location.name}}</span>
+                    </div>
+                    <div
+                      class="cart__wishlist-table--delivery-info-price subtitle-2-bold"
+                      *ngIf="item.shipping_fee == 0">
+                      Free shipping&nbsp;
+                    </div>
+                    <div
+                      class="cart__wishlist-table--delivery-info-price subtitle-2-regular"
+                      *ngIf="item.shipping_fee > 0">{{item.shipping_fee | onpicksCurrency:syncedData.currencyInfo}} shipping
+                    </div>
+                    <div
+                      class="cart__wishlist-table--delivery-info-description subtitle-2-regular u-color-dark-grey">
                       Free shipping over {{item.location.free_shipping_threshold | onpicksCurrency: syncedData.currencyInfo}} with {{item.location.name}} items.
                     </div>
                   </ng-container>
-
                 </ng-container>
               </div>
             </td>
             <td>
-                <button
-                  i18n="@@word__choose-option"
-                  *ngIf="item.attributes.length !== 0"
-                  class="btn btn--white btn--small cart__wishlist-table--btn"
-                  [routerLink]="'/shops/p/' + item.product">
-                  옵션 선택하기
-                </button>
-                <button
-                  i18n="@@word__add-to-cart"
-                  (click)="moveWishListToCart(1, item, item.individual_shipping ? 'free' : locationMap[item?.location.code]?.sequence, i)"
-                  *ngIf="item.attributes.length === 0"
-                  class="btn btn--white btn--small cart__wishlist-table--btn">
-                  쇼핑백에 담기
-                </button>
-                <button
-                  i18n="@@word__remove"
-                  class="btn btn--white btn--small cart__wishlist-table--btn"
-                  (click)="deleteWishList(item.product, i)">
-                  삭제하기
-                </button>
-
+              <button
+                i18n="@@word__choose-option"
+                *ngIf="item.attributes.length !== 0"
+                class="btn btn--white btn--small cart__wishlist-table--btn"
+                [routerLink]="'/shops/p/' + item.product">
+                옵션 선택하기
+              </button>
+              <button
+                i18n="@@word__add-to-cart"
+                (click)="moveWishListToCart(1, item, item.individual_shipping ? 'free' : locationMap[item?.location.code]?.sequence, i)"
+                *ngIf="item.attributes.length === 0"
+                class="btn btn--white btn--small cart__wishlist-table--btn">
+                쇼핑백에 담기
+              </button>
+              <button
+                i18n="@@word__remove"
+                class="btn btn--white btn--small cart__wishlist-table--btn"
+                (click)="deleteWishList(item.product, i)">
+                삭제하기
+              </button>
             </td>
           </tr>
         </table>
