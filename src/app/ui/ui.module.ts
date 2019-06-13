@@ -84,8 +84,7 @@ import { TrendingReviewsComponent } from './pure/onpicks/list/trending-reviews/t
     DynamicCarouselComponent,
     SearchNavigatorMobileFilterComponent,
     BannerComponent,
-    TrendingReviewsComponent
-
+    TrendingReviewsComponent,
   ],
   exports: [
     SimpleCarouselComponent,
@@ -122,7 +121,6 @@ import { TrendingReviewsComponent } from './pure/onpicks/list/trending-reviews/t
     DynamicCarouselComponent,
     BannerComponent,
     TrendingReviewsComponent
-
   ]
 })
 

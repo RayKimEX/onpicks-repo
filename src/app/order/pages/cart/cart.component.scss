@@ -288,6 +288,10 @@
         &-name {
           margin-bottom :4px;
         }
+        &-where {
+          display: inline-block;
+
+        }
 
         &-price {
         }
@@ -306,16 +310,20 @@
         }
 
         &-where {
-          margin-top : -2px;
           display: inline-block;
           vertical-align: top;
+
+          &--en {
+            display: inline-block;
+            vertical-align: top;
+            margin-bottom : 1.2rem;
+          }
         }
 
         &-price {
-          margin-top : -2px;
           display:inline-block;
           vertical-align: top;
-          margin-bottom : 4px;
+          margin-bottom : 0.8rem;
         }
 
         &-description {
@@ -327,7 +335,6 @@
       &--amount {
 
         margin-bottom : 2.8rem;
-
         & > *:not(:last-child) {
           margin-right : 2.4rem;
         }
@@ -734,7 +741,7 @@
         margin-top : -2px;
         display: inline-block;
         vertical-align: top;
-
+        margin-bottom: 0.8rem;
       }
 
       &-price {
@@ -745,7 +752,6 @@
 
       &-description {
       }
-
     }
 
     &--amount {
