@@ -1,0 +1,100 @@
+@import '~src/assets/scss/abstracts/variables';
+
+
+
+.p-other-sellers-mobile {
+  display:none;
+  @include respond(fb){
+    display : block;
+  }
+  &__title {
+    margin-bottom : 2.4rem;
+
+    span {
+      margin-left : 1.6rem;
+    }
+  }
+
+
+  &__item {
+    padding-bottom :1.6rem;
+    border-bottom : 1px solid $color-light-grey;
+
+    &:not(:first-of-type){
+      padding-top : 1.6rem;
+    }
+    &--title {
+      margin-bottom: 6px;
+    }
+
+    &--other-price {
+      margin-bottom : 4px;
+    }
+
+    &--onpicks-price {
+      margin-bottom : 4px;
+    }
+  }
+
+}
+.p-other-sellers {
+
+  @include respond(fb) {
+    display:none;
+  }
+
+  &__title {
+    margin-bottom : 2.4rem;
+
+    span {
+      margin-left : 1.6rem;
+    }
+  }
+
+  &__table{
+    width : 64.8rem;
+
+    span {
+      position: relative;
+      left: 0.8rem;
+    }
+
+    &--row{
+
+      border-bottom : 1px solid $color-light-grey;
+      &:first-child{
+        padding-bottom: 1.6rem;
+      }
+      &:not(:first-child) {
+        padding: 1.6rem 0 ;
+      }
+      & > div {
+        vertical-align: middle;;
+        display:inline-block;
+
+        &:nth-child(1) {
+          width:21.6rem;
+          margin-right : 7.1rem;
+        }
+
+        &:nth-child(2) {
+          width:13.6rem;
+          margin-right : 7.1rem;
+        }
+
+        &:nth-child(3) {
+          width:15.4rem;
+        }
+
+      }
+
+      &:not(:first-child) > div {
+
+        &:last-child {
+          text-align:right;
+        }
+      }
+    }
+  }
+
+}
