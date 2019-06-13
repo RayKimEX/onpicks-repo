@@ -288,6 +288,10 @@
         &-name {
           margin-bottom :4px;
         }
+        &-where {
+          display: inline-block;
+
+        }
 
         &-price {
         }
@@ -306,16 +310,17 @@
         }
 
         &-where {
-          margin-top : -2px;
           display: inline-block;
           vertical-align: top;
         }
 
         &-price {
-          margin-top : -2px;
           display:inline-block;
           vertical-align: top;
           margin-bottom : 4px;
+          &-en {
+            margin-top: 2px;;
+          }
         }
 
         &-description {
@@ -741,11 +746,13 @@
         margin-top : -2px;
         display:inline-block;
         vertical-align: top;
+        &-en {
+          margin-top: 2px;
+        }
       }
 
       &-description {
       }
-
     }
 
     &--amount {
