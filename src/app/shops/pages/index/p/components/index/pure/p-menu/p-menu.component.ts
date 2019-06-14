@@ -119,7 +119,7 @@ export class PMenuComponent implements OnInit, OnDestroy, AfterViewInit, OnChang
 
   chart;
   dateTitle;
-  amazonPrice;
+  competitorPrice;
   onpicksPrice;
   savingPrice;
   dataOuter;

@@ -20,7 +20,6 @@ export class PMenuChartComponent implements OnInit {
     private renderer: Renderer2,
 
   ) { }
-
   ngOnInit() {
     this.chartData = [
       {
@@ -131,11 +130,12 @@ export class PMenuChartComponent implements OnInit {
         }
       }
     });
-
+    console.log('--------- labels ---------');
+    console.log(labels);
     this.chart = new Chart('canvas', {
       type: 'LineWithLine',
       data: {
-        labels,
+        labels: labels,
         datasets: [{
 
           // onpicks price
@@ -143,16 +143,15 @@ export class PMenuChartComponent implements OnInit {
           backgroundColor: [
             'rgba(0, 132, 137, 0.2)',
           ],
-          pointHoverBackgroundColor: 'rgba(0, 132, 137, 1)',
+          pointHoverBackgroundColor: '#ff3d57',
           pointHoverBorderColor: 'rgba(255, 255, 255, 1)',
-          pointHoverRadius: 0,
+          pointHoverRadius: 4,
           borderColor: [
             'rgba(0, 132, 137, 1)',
           ],
-          borderWidth: 2,
+          pointHoverBorderWidth: 3,
           pointRadius: 0,
           pointBackgroundColor: 'rgba(0,0,0,0)',
-          pointHitRadius: 10,
         }, {
           data: dataCompetitor,
           backgroundColor: [
@@ -167,7 +166,6 @@ export class PMenuChartComponent implements OnInit {
           borderWidth: 2,
           pointRadius: 0,
           pointBackgroundColor: 'rgba(0,0,0,0)',
-          pointHitRadius: 10,
         }
         ]
       },
@@ -186,7 +184,7 @@ export class PMenuChartComponent implements OnInit {
         elements: {
           point: {
             radius: 0,
-            hitRadius: 10,
+            hitRadius: 20,
           }
         },
         scales: {
@@ -198,7 +196,7 @@ export class PMenuChartComponent implements OnInit {
                 tickMarkLength: 0,
               },
               ticks: {
-                maxTicksLimit: 1,
+                maxTicksLimit: 10,
                 maxRotation: 0
               }
             }
@@ -222,35 +220,30 @@ export class PMenuChartComponent implements OnInit {
           bodyFontSize: 16,
           bodyFontColor: '#008489',
           enabled: false,
-
+          position: 'average',
           custom: function(tooltip) {
             // get the tooltip element
             let tooltipEl = document.getElementById('chartjs-tooltip');
 
             if (tooltip.dataPoints === undefined) {return;}
 
+            const TOOLTIP_HEIGHT = 100;
+            const TOOLTIP_WIDTH = 200;
+
             const x = tooltip.dataPoints[0].x;
-            console.log(x);
             const y = tooltip.dataPoints[0].y;
             const xAlign = tooltip.xAlign;
-            const _amazonPrice = tooltip.dataPoints[1].yLabel;
+            const _competitorPrice = tooltip.dataPoints[1].yLabel;
             const _onpicksPrice = tooltip.dataPoints[0].yLabel;
-            // innerHTML += '<br>'
-            // innerHTML += '<br>'
-            // innerHTML += 'Amazon: $25'
-            // innerHTML += '<br>'
-            // innerHTML += 'Onpicks: $19'
-            // innerHTML += '<br>'
-            // innerHTML += '<hr>'
-            // innerHTML += 'Savings: $6'
-
+            const date = tooltip.dataPoints[0].xLabel;
+            const saving = _competitorPrice - _onpicksPrice;
             if (!tooltipEl) {
               tooltipEl = that.renderer.createElement('div');
 
               that.renderer.setStyle(tooltipEl, 'position', 'absolute');
               that.renderer.setStyle(tooltipEl, 'top', '0');
-              that.renderer.setStyle(tooltipEl, 'width', '141px');
-              that.renderer.setStyle(tooltipEl, 'height', '145px');
+              that.renderer.setStyle(tooltipEl, 'width', TOOLTIP_WIDTH + 'px');
+              that.renderer.setStyle(tooltipEl, 'height', TOOLTIP_HEIGHT + 'px');
               that.renderer.setProperty(tooltipEl, 'id', 'chartjs-tooltip');
               that.renderer.setStyle(tooltipEl, 'backgroundColor', '#FFFFFF');
               that.renderer.setStyle(tooltipEl, 'borderRadius', '2px');
@@ -268,10 +261,23 @@ export class PMenuChartComponent implements OnInit {
 
               this.dataOuter = that.renderer.createElement('div');
               this.dateTitle = that.renderer.createElement('span');
-              this.amazonPrice = that.renderer.createElement('span');
+              this.competitorPrice = that.renderer.createElement('span');
               this.onpicksPrice = that.renderer.createElement('span');
               this.savingPrice = that.renderer.createElement('span');
               this.hrLiner = that.renderer.createElement('hr');
+              const triangle = that.renderer.createElement('span');
+              that.renderer.setStyle(triangle, 'content', '');
+              that.renderer.setStyle(triangle, 'position', 'absolute');
+              that.renderer.setStyle(triangle, 'bottom', '0');
+              that.renderer.setStyle(triangle, 'left', '50%');
+              that.renderer.setStyle(triangle, 'width', '0');
+              that.renderer.setStyle(triangle, 'height', '0');
+              that.renderer.setStyle(triangle, 'border', '20px solid transparent');
+              that.renderer.setStyle(triangle, 'border-top-color', '#FFFFFF');
+              that.renderer.setStyle(triangle, 'border-bottom', '0');
+              that.renderer.setStyle(triangle, 'margin-left', '-20px');
+              that.renderer.setStyle(triangle, 'margin-bottom', '-20px');
+              // that.renderer.setStyle(triangle, 'boxShadow', '0 6px 12px 0 #e3e3e3');
 
               that.renderer.setStyle(this.dataOuter, 'padding', '1.6rem');
 
@@ -282,12 +288,12 @@ export class PMenuChartComponent implements OnInit {
               that.renderer.setStyle(this.dateTitle, 'letterSpacing', '0.04rem');
               that.renderer.setStyle(this.dateTitle, 'display', 'block');
 
-              that.renderer.setStyle(this.amazonPrice, 'color', '#b3b3b3');
-              that.renderer.setStyle(this.amazonPrice, 'fontSize', '1.6rem');
-              that.renderer.setStyle(this.amazonPrice, 'fontWeight', '500');
-              that.renderer.setStyle(this.amazonPrice, 'lineHeight', '1.5');
-              that.renderer.setStyle(this.amazonPrice, 'letterSpacing', '0.04rem');
-              that.renderer.setStyle(this.amazonPrice, 'display', 'block');
+              that.renderer.setStyle(this.competitorPrice, 'color', '#b3b3b3');
+              that.renderer.setStyle(this.competitorPrice, 'fontSize', '1.6rem');
+              that.renderer.setStyle(this.competitorPrice, 'fontWeight', '500');
+              that.renderer.setStyle(this.competitorPrice, 'lineHeight', '1.5');
+              that.renderer.setStyle(this.competitorPrice, 'letterSpacing', '0.04rem');
+              that.renderer.setStyle(this.competitorPrice, 'display', 'block');
 
               that.renderer.setStyle(this.onpicksPrice, 'color', '#008489');
               that.renderer.setStyle(this.onpicksPrice, 'fontSize', '1.6rem');
@@ -307,21 +313,19 @@ export class PMenuChartComponent implements OnInit {
               that.renderer.setStyle(this.hrLiner, 'marginRight', '0.8rem');
 
               that.renderer.appendChild(this.dataOuter, this.dateTitle);
-              that.renderer.appendChild(this.dataOuter, this.amazonPrice);
+              that.renderer.appendChild(this.dataOuter, this.competitorPrice);
               that.renderer.appendChild(this.dataOuter, this.onpicksPrice);
               that.renderer.appendChild(this.dataOuter, this.hrLiner);
               that.renderer.appendChild(this.dataOuter, this.savingPrice);
-
+              that.renderer.appendChild(tooltipEl, triangle);
 
               that.renderer.appendChild(tooltipEl, this.dataOuter);
             }
             // that.renderer.setProperty(this.dateTitle, 'innerText', tooltip.title);
-            that.renderer.setProperty(this.amazonPrice, 'innerText', 'Amazon: $' + _amazonPrice);
+            that.renderer.setProperty(this.competitorPrice, 'innerText', date);
 
-            that.renderer.setProperty(this.onpicksPrice, 'innerText', 'Onpicks: $' + _onpicksPrice);
-            that.renderer.setProperty(this.savingPrice, 'innerText', 'Savings: $' + (_amazonPrice - _onpicksPrice));
-
-            that.renderer.setStyle(tooltipEl, 'transform', xAlign !== 'right' ? 'translate(' + (x + 10) + 'px, 15px)' : 'translate(' + (x - (141 + 18) ) + 'px, 15px)'  );
+            that.renderer.setProperty(this.savingPrice, 'innerText', 'Savings: $' + saving);
+            that.renderer.setStyle(tooltipEl, 'transform', xAlign !== 'right' ? 'translate(' + ( x - TOOLTIP_WIDTH / 2 ) + 'px, ' + ( y - TOOLTIP_HEIGHT - 50 ) + 'px)' : 'translate(' + (x - ( TOOLTIP_WIDTH / 2 ) ) + 'px, ' + ( y - TOOLTIP_HEIGHT -50 ) + 'px)');
 
             that.renderer.setStyle(tooltipEl, 'opacity', '1');
             // that.renderer.setProperty(tooltipEl, 'innerHTML', innerHTML);
