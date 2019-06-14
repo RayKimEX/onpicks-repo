@@ -96,7 +96,7 @@ export class PMenuChartComponent implements OnInit {
       }
     ];
     const labels = this.chartData.map(({timestamp}) => {
-      return moment(timestamp).format('MM.DD.');
+      return moment(timestamp).format('MMM Do YY');
     });
     const [dataOnpicks, dataCompetitor] = [
       this.chartData.map(({our_price}) => our_price),
@@ -184,7 +184,7 @@ export class PMenuChartComponent implements OnInit {
         elements: {
           point: {
             radius: 0,
-            hitRadius: 20,
+            hitRadius: 30,
           }
         },
         scales: {
