@@ -933,6 +933,45 @@
 
       <!--Word-->
 
+      <trans-unit id="word__compare-other-seller" datatype="html">
+        <target>그외 셀러</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="word__compare-seller" datatype="html">
+        <target>셀러</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="word__compare-price" datatype="html">
+        <target>가격</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="word__compare-savings" datatype="html">
+        <target>가격비교</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="word__compare-shipping" datatype="html">
+        <target>배송비</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
       <trans-unit id="word__out-of-stock" datatype="html">
         <target>품 절</target>
         <context-group purpose="location">

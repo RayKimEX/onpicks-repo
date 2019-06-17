@@ -227,7 +227,7 @@ export class PMenuChartComponent implements OnInit {
 
             if (tooltip.dataPoints === undefined) {return;}
 
-            const TOOLTIP_HEIGHT = 100;
+            const TOOLTIP_HEIGHT = 80;
             const TOOLTIP_WIDTH = 200;
 
             const x = tooltip.dataPoints[0].x;
@@ -281,64 +281,37 @@ export class PMenuChartComponent implements OnInit {
 
               that.renderer.setStyle(this.dataOuter, 'padding', '1.6rem');
 
-              that.renderer.setStyle(this.dateTitle, 'color', '#b3b3b3');
-              that.renderer.setStyle(this.dateTitle, 'fontSize', '1.6rem');
+              that.renderer.setStyle(this.dateTitle, 'color', '#8d8d8d');
+              that.renderer.setStyle(this.dateTitle, 'fontSize', '18px');
               that.renderer.setStyle(this.dateTitle, 'fontWeight', '500');
+              that.renderer.setStyle(this.dateTitle, 'text-align', 'center');
               that.renderer.setStyle(this.dateTitle, 'lineHeight', '1.5');
               that.renderer.setStyle(this.dateTitle, 'letterSpacing', '0.04rem');
               that.renderer.setStyle(this.dateTitle, 'display', 'block');
 
-              that.renderer.setStyle(this.competitorPrice, 'color', '#b3b3b3');
-              that.renderer.setStyle(this.competitorPrice, 'fontSize', '1.6rem');
-              that.renderer.setStyle(this.competitorPrice, 'fontWeight', '500');
-              that.renderer.setStyle(this.competitorPrice, 'lineHeight', '1.5');
-              that.renderer.setStyle(this.competitorPrice, 'letterSpacing', '0.04rem');
-              that.renderer.setStyle(this.competitorPrice, 'display', 'block');
-
-              that.renderer.setStyle(this.onpicksPrice, 'color', '#008489');
-              that.renderer.setStyle(this.onpicksPrice, 'fontSize', '1.6rem');
-              that.renderer.setStyle(this.onpicksPrice, 'fontWeight', '500');
-              that.renderer.setStyle(this.onpicksPrice, 'lineHeight', '1.5');
-              that.renderer.setStyle(this.onpicksPrice, 'letterSpacing', '0.04rem');
-              that.renderer.setStyle(this.onpicksPrice, 'display', 'block');
-
-              that.renderer.setStyle(this.savingPrice, 'color', '#008489');
-              that.renderer.setStyle(this.savingPrice, 'fontSize', '1.6rem');
+              that.renderer.setStyle(this.savingPrice, 'color', '#000000');
+              that.renderer.setStyle(this.savingPrice, 'fontSize', '16px');
+              that.renderer.setStyle(this.savingPrice, 'text-align', 'center');
               that.renderer.setStyle(this.savingPrice, 'fontWeight', '500');
               that.renderer.setStyle(this.savingPrice, 'lineHeight', '1.5');
               that.renderer.setStyle(this.savingPrice, 'letterSpacing', '0.04rem');
               that.renderer.setStyle(this.savingPrice, 'display', 'block');
 
-              that.renderer.setStyle(this.hrLiner, 'margin', '0.8rem 0 ');
-              that.renderer.setStyle(this.hrLiner, 'marginRight', '0.8rem');
-
-              that.renderer.appendChild(this.dataOuter, this.dateTitle);
-              that.renderer.appendChild(this.dataOuter, this.competitorPrice);
-              that.renderer.appendChild(this.dataOuter, this.onpicksPrice);
-              that.renderer.appendChild(this.dataOuter, this.hrLiner);
               that.renderer.appendChild(this.dataOuter, this.savingPrice);
+              that.renderer.appendChild(this.dataOuter, this.dateTitle);
               that.renderer.appendChild(tooltipEl, triangle);
 
               that.renderer.appendChild(tooltipEl, this.dataOuter);
             }
             // that.renderer.setProperty(this.dateTitle, 'innerText', tooltip.title);
-            that.renderer.setProperty(this.competitorPrice, 'innerText', date);
-
-            that.renderer.setProperty(this.savingPrice, 'innerText', 'Savings: $' + saving);
+            that.renderer.setProperty(this.dateTitle, 'innerText', date);
+            that.renderer.setProperty(this.savingPrice, 'innerText', '$' + saving);
             that.renderer.setStyle(tooltipEl, 'transform', xAlign !== 'right' ? 'translate(' + ( x - TOOLTIP_WIDTH / 2 ) + 'px, ' + ( y - TOOLTIP_HEIGHT - 50 ) + 'px)' : 'translate(' + (x - ( TOOLTIP_WIDTH / 2 ) ) + 'px, ' + ( y - TOOLTIP_HEIGHT -50 ) + 'px)');
 
             that.renderer.setStyle(tooltipEl, 'opacity', '1');
-            // that.renderer.setProperty(tooltipEl, 'innerHTML', innerHTML);
-
-
-            // that.renderer.setStyle(tooltipEl, 'transform', 'translateX(' + x + 'px)');
-            // that.renderer.setStyle(tooltipEl, 'transition', 'transform .5s ease .5s');
-
-
           }
         },
       }
     });
   }
-
 }
