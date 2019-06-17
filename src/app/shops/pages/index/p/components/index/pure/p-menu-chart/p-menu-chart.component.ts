@@ -131,8 +131,6 @@ export class PMenuChartComponent implements OnInit {
         }
       }
     });
-    console.log('--------- labels ---------');
-    console.log(labels);
     this.chart = new Chart('canvas', {
       type: 'LineWithLine',
       data: {
@@ -141,7 +139,9 @@ export class PMenuChartComponent implements OnInit {
 
           // onpicks price
           data: dataOnpicks,
-          backgroundColor: ['rgba(0, 132, 137, 0.2)'],
+          backgroundColor: [
+            'rgba(0, 132, 137, 0.2)',
+          ],
           pointHoverBorderColor: 'rgba(255, 255, 255, 1)',
           pointHoverRadius: 4,
           borderColor: [
@@ -221,10 +221,11 @@ export class PMenuChartComponent implements OnInit {
           position: 'average',
           custom: function(tooltip) {
             // get the tooltip element
-            const TOOLTIP_TEXT_COLOR = '#008489';
-            const TOOLTIP_HEIGHT = 130;
-            const TOOLTIP_WIDTH = 200;
-
+            const TOOLTIP_TEXT_COLOR_GRAY = '#b3b3b3';
+            const TOOLTIP_TEXT_COLOR_PRIMARY = '#008489';
+            const TOOLTIP_HEIGHT = 100;
+            const TOOLTIP_WIDTH = 150;
+            const FONT_SIZE = '12px';
             let tooltipEl = document.getElementById('chartjs-tooltip');
 
             if (tooltip.dataPoints === undefined) {return;}
@@ -292,22 +293,22 @@ export class PMenuChartComponent implements OnInit {
               that.renderer.setStyle(this.dataOuter, 'padding', '1.6rem');
 
               // Date
-              that.renderer.setStyle(this.dateTitle, 'color', '#8d8d8d');
-              that.renderer.setStyle(this.dateTitle, 'fontSize', '14px');
+              that.renderer.setStyle(this.dateTitle, 'color', TOOLTIP_TEXT_COLOR_GRAY);
+              that.renderer.setStyle(this.dateTitle, 'fontSize', FONT_SIZE);
               that.renderer.setStyle(this.dateTitle, 'fontWeight', 'normal');
               that.renderer.setStyle(this.dateTitle, 'text-align', 'left');
               that.renderer.setStyle(this.dateTitle, 'lineHeight', '1.5');
               that.renderer.setStyle(this.dateTitle, 'letterSpacing', '0.04rem');
 
               // Other Seller
-              that.renderer.setStyle(this.competitorName, 'color', '#8d8d8d');
-              that.renderer.setStyle(this.competitorName, 'font-size', '14px');
+              that.renderer.setStyle(this.competitorName, 'color', TOOLTIP_TEXT_COLOR_GRAY);
+              that.renderer.setStyle(this.competitorName, 'font-size', FONT_SIZE);
               that.renderer.setStyle(this.competitorName, 'text-align', 'left');
               that.renderer.setStyle(this.competitorName, 'lineHeight', '1.5');
               that.renderer.setStyle(this.competitorName, 'letterSpacing', '0.04rem');
 
-              that.renderer.setStyle(this.competitorPrice, 'color', '#8d8d8d');
-              that.renderer.setStyle(this.competitorPrice, 'font-size', '14px');
+              that.renderer.setStyle(this.competitorPrice, 'color', TOOLTIP_TEXT_COLOR_GRAY);
+              that.renderer.setStyle(this.competitorPrice, 'font-size', FONT_SIZE);
               that.renderer.setStyle(this.competitorPrice, 'text-align', 'left');
               that.renderer.setStyle(this.competitorPrice, 'lineHeight', '1.5');
               that.renderer.setStyle(this.competitorPrice, 'letterSpacing', '0.04rem');
@@ -316,28 +317,30 @@ export class PMenuChartComponent implements OnInit {
               that.renderer.appendChild(this.competitorWrapper, this.competitorPrice);
 
               // Onpicks
-              that.renderer.setStyle(this.onpicksName, 'color', TOOLTIP_TEXT_COLOR);
-              that.renderer.setStyle(this.onpicksName, 'font-size', '14px');
+              that.renderer.setStyle(this.onpicksName, 'color', TOOLTIP_TEXT_COLOR_PRIMARY);
+              that.renderer.setStyle(this.onpicksName, 'font-size', FONT_SIZE);
               that.renderer.setStyle(this.onpicksName, 'text-align', 'left');
               that.renderer.setStyle(this.onpicksName, 'lineHeight', '1.5');
               that.renderer.setStyle(this.onpicksName, 'letterSpacing', '0.04rem');
+              that.renderer.setStyle(this.onpicksName, 'fontWeight', '500');
 
-              that.renderer.setStyle(this.onpicksPrice, 'color', TOOLTIP_TEXT_COLOR);
-              that.renderer.setStyle(this.onpicksPrice, 'font-size', '14px');
+              that.renderer.setStyle(this.onpicksPrice, 'color', TOOLTIP_TEXT_COLOR_PRIMARY);
+              that.renderer.setStyle(this.onpicksPrice, 'font-size', FONT_SIZE);
               that.renderer.setStyle(this.onpicksPrice, 'text-align', 'left');
               that.renderer.setStyle(this.onpicksPrice, 'lineHeight', '1.5');
               that.renderer.setStyle(this.onpicksPrice, 'letterSpacing', '0.04rem');
+              that.renderer.setStyle(this.onpicksPrice, 'fontWeight', '500');
 
               that.renderer.appendChild(this.onpicksWrapper, this.onpicksName);
               that.renderer.appendChild(this.onpicksWrapper, this.onpicksPrice);
 
-              // hr Lines
-              that.renderer.setStyle(this.hrLiner, 'margin', '0.8rem 0 ');
-              that.renderer.setStyle(this.hrLiner, 'marginRight', '0.8rem');
+              // hr Lines 008489
+              that.renderer.setStyle(this.hrLiner, 'margin', '0.25rem 0 0.25rem 0 ');
+              that.renderer.setStyle(this.hrLiner, 'border-top', '1px solid #e5e5e5');
 
               // Savings
-              that.renderer.setStyle(this.savingPrice, 'color', TOOLTIP_TEXT_COLOR);
-              that.renderer.setStyle(this.savingPrice, 'fontSize', '14px');
+              that.renderer.setStyle(this.savingPrice, 'color', TOOLTIP_TEXT_COLOR_PRIMARY);
+              that.renderer.setStyle(this.savingPrice, 'fontSize', FONT_SIZE);
               that.renderer.setStyle(this.savingPrice, 'text-align', 'left');
               that.renderer.setStyle(this.savingPrice, 'fontWeight', '500');
               that.renderer.setStyle(this.savingPrice, 'lineHeight', '1.5');
