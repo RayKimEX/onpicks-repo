@@ -108,6 +108,7 @@ export class PMenuChartComponent implements OnInit {
     };
     const offset = (priceRange.max - priceRange.min) * 0.1;     // 위 아래로 10%의 마진을 둔다.
     const that = this;
+
     Chart.defaults.LineWithLine = Chart.defaults.line;
     Chart.controllers.LineWithLine = Chart.controllers.line.extend({
       draw: function(ease) {
@@ -140,14 +141,11 @@ export class PMenuChartComponent implements OnInit {
 
           // onpicks price
           data: dataOnpicks,
-          backgroundColor: [
-            'rgba(0, 132, 137, 0.2)',
-          ],
-          pointHoverBackgroundColor: '#ff3d57',
+          backgroundColor: ['rgba(0, 132, 137, 0.2)'],
           pointHoverBorderColor: 'rgba(255, 255, 255, 1)',
           pointHoverRadius: 4,
           borderColor: [
-            'rgba(0, 132, 137, 1)',
+            '#008489;',
           ],
           pointHoverBorderWidth: 3,
           pointRadius: 0,
@@ -218,17 +216,18 @@ export class PMenuChartComponent implements OnInit {
           mode: 'index',
           backgroundColor: '#FFFFFF',
           bodyFontSize: 16,
-          bodyFontColor: '#008489',
+          bodyFontColor: '#b3b3b3',
           enabled: false,
           position: 'average',
           custom: function(tooltip) {
             // get the tooltip element
+            const TOOLTIP_TEXT_COLOR = '#008489';
+            const TOOLTIP_HEIGHT = 130;
+            const TOOLTIP_WIDTH = 200;
+
             let tooltipEl = document.getElementById('chartjs-tooltip');
 
             if (tooltip.dataPoints === undefined) {return;}
-
-            const TOOLTIP_HEIGHT = 80;
-            const TOOLTIP_WIDTH = 200;
 
             const x = tooltip.dataPoints[0].x;
             const y = tooltip.dataPoints[0].y;
@@ -237,6 +236,16 @@ export class PMenuChartComponent implements OnInit {
             const _onpicksPrice = tooltip.dataPoints[0].yLabel;
             const date = tooltip.dataPoints[0].xLabel;
             const saving = _competitorPrice - _onpicksPrice;
+            let seller;
+            // Check seller for a specific point
+            for (const data of that.chartData) {
+              if (date === moment(data.timestamp).format('MMM Do YY')) {
+                console.log('date == data.timestamp');
+                seller = data.ref_seller;
+              }
+            }
+            console.log('/////////////// seller ////////////////');
+            console.log(seller);
             if (!tooltipEl) {
               tooltipEl = that.renderer.createElement('div');
 
@@ -260,52 +269,101 @@ export class PMenuChartComponent implements OnInit {
 
 
               this.dataOuter = that.renderer.createElement('div');
-              this.dateTitle = that.renderer.createElement('span');
+              this.dateTitle = that.renderer.createElement('div');
+              this.competitorWrapper = that.renderer.createElement('div');
+              this.competitorName = that.renderer.createElement('span');
               this.competitorPrice = that.renderer.createElement('span');
+              this.onpicksWrapper = that.renderer.createElement('div');
+              this.onpicksName = that.renderer.createElement('span');
               this.onpicksPrice = that.renderer.createElement('span');
-              this.savingPrice = that.renderer.createElement('span');
+              this.savingPrice = that.renderer.createElement('div');
               this.hrLiner = that.renderer.createElement('hr');
-              const triangle = that.renderer.createElement('span');
-              that.renderer.setStyle(triangle, 'content', '');
-              that.renderer.setStyle(triangle, 'position', 'absolute');
-              that.renderer.setStyle(triangle, 'bottom', '0');
-              that.renderer.setStyle(triangle, 'left', '50%');
-              that.renderer.setStyle(triangle, 'width', '0');
-              that.renderer.setStyle(triangle, 'height', '0');
-              that.renderer.setStyle(triangle, 'border', '20px solid transparent');
-              that.renderer.setStyle(triangle, 'border-top-color', '#FFFFFF');
-              that.renderer.setStyle(triangle, 'border-bottom', '0');
-              that.renderer.setStyle(triangle, 'margin-left', '-20px');
-              that.renderer.setStyle(triangle, 'margin-bottom', '-20px');
-              // that.renderer.setStyle(triangle, 'boxShadow', '0 6px 12px 0 #e3e3e3');
+              this.triangle = that.renderer.createElement('span');
+              that.renderer.setStyle(this.triangle, 'content', '');
+              that.renderer.setStyle(this.triangle, 'position', 'absolute');
+              that.renderer.setStyle(this.triangle, 'bottom', '0');
+              that.renderer.setStyle(this.triangle, 'left', '50%');
+              that.renderer.setStyle(this.triangle, 'width', '0');
+              that.renderer.setStyle(this.triangle, 'height', '0');
+              that.renderer.setStyle(this.triangle, 'border', '20px solid transparent');
+              that.renderer.setStyle(this.triangle, 'border-top-color', '#FFFFFF');
+              that.renderer.setStyle(this.triangle, 'border-bottom', '0');
+              that.renderer.setStyle(this.triangle, 'margin-left', '-20px');
+              that.renderer.setStyle(this.triangle, 'margin-bottom', '-20px');
+              // that.renderer.setStyle(this.triangle, 'boxShadow', '0 6px 12px 0 #e3e3e3');
 
               that.renderer.setStyle(this.dataOuter, 'padding', '1.6rem');
 
+              // Date
               that.renderer.setStyle(this.dateTitle, 'color', '#8d8d8d');
-              that.renderer.setStyle(this.dateTitle, 'fontSize', '18px');
-              that.renderer.setStyle(this.dateTitle, 'fontWeight', '500');
-              that.renderer.setStyle(this.dateTitle, 'text-align', 'center');
+              that.renderer.setStyle(this.dateTitle, 'fontSize', '14px');
+              that.renderer.setStyle(this.dateTitle, 'fontWeight', 'normal');
+              that.renderer.setStyle(this.dateTitle, 'text-align', 'left');
               that.renderer.setStyle(this.dateTitle, 'lineHeight', '1.5');
               that.renderer.setStyle(this.dateTitle, 'letterSpacing', '0.04rem');
-              that.renderer.setStyle(this.dateTitle, 'display', 'block');
 
-              that.renderer.setStyle(this.savingPrice, 'color', '#000000');
-              that.renderer.setStyle(this.savingPrice, 'fontSize', '16px');
-              that.renderer.setStyle(this.savingPrice, 'text-align', 'center');
+              // Other Seller
+              that.renderer.setStyle(this.competitorName, 'color', '#8d8d8d');
+              that.renderer.setStyle(this.competitorName, 'font-size', '14px');
+              that.renderer.setStyle(this.competitorName, 'text-align', 'left');
+              that.renderer.setStyle(this.competitorName, 'lineHeight', '1.5');
+              that.renderer.setStyle(this.competitorName, 'letterSpacing', '0.04rem');
+
+              that.renderer.setStyle(this.competitorPrice, 'color', '#8d8d8d');
+              that.renderer.setStyle(this.competitorPrice, 'font-size', '14px');
+              that.renderer.setStyle(this.competitorPrice, 'text-align', 'left');
+              that.renderer.setStyle(this.competitorPrice, 'lineHeight', '1.5');
+              that.renderer.setStyle(this.competitorPrice, 'letterSpacing', '0.04rem');
+
+              that.renderer.appendChild(this.competitorWrapper, this.competitorName);
+              that.renderer.appendChild(this.competitorWrapper, this.competitorPrice);
+
+              // Onpicks
+              that.renderer.setStyle(this.onpicksName, 'color', TOOLTIP_TEXT_COLOR);
+              that.renderer.setStyle(this.onpicksName, 'font-size', '14px');
+              that.renderer.setStyle(this.onpicksName, 'text-align', 'left');
+              that.renderer.setStyle(this.onpicksName, 'lineHeight', '1.5');
+              that.renderer.setStyle(this.onpicksName, 'letterSpacing', '0.04rem');
+
+              that.renderer.setStyle(this.onpicksPrice, 'color', TOOLTIP_TEXT_COLOR);
+              that.renderer.setStyle(this.onpicksPrice, 'font-size', '14px');
+              that.renderer.setStyle(this.onpicksPrice, 'text-align', 'left');
+              that.renderer.setStyle(this.onpicksPrice, 'lineHeight', '1.5');
+              that.renderer.setStyle(this.onpicksPrice, 'letterSpacing', '0.04rem');
+
+              that.renderer.appendChild(this.onpicksWrapper, this.onpicksName);
+              that.renderer.appendChild(this.onpicksWrapper, this.onpicksPrice);
+
+              // hr Lines
+              that.renderer.setStyle(this.hrLiner, 'margin', '0.8rem 0 ');
+              that.renderer.setStyle(this.hrLiner, 'marginRight', '0.8rem');
+
+              // Savings
+              that.renderer.setStyle(this.savingPrice, 'color', TOOLTIP_TEXT_COLOR);
+              that.renderer.setStyle(this.savingPrice, 'fontSize', '14px');
+              that.renderer.setStyle(this.savingPrice, 'text-align', 'left');
               that.renderer.setStyle(this.savingPrice, 'fontWeight', '500');
               that.renderer.setStyle(this.savingPrice, 'lineHeight', '1.5');
               that.renderer.setStyle(this.savingPrice, 'letterSpacing', '0.04rem');
-              that.renderer.setStyle(this.savingPrice, 'display', 'block');
 
-              that.renderer.appendChild(this.dataOuter, this.savingPrice);
               that.renderer.appendChild(this.dataOuter, this.dateTitle);
-              that.renderer.appendChild(tooltipEl, triangle);
+              that.renderer.appendChild(this.dataOuter, this.competitorWrapper);
+              that.renderer.appendChild(this.dataOuter, this.onpicksWrapper);
+              that.renderer.appendChild(this.dataOuter, this.hrLiner);
+              that.renderer.appendChild(this.dataOuter, this.savingPrice);
 
               that.renderer.appendChild(tooltipEl, this.dataOuter);
+              that.renderer.appendChild(tooltipEl, this.triangle);
+
             }
             // that.renderer.setProperty(this.dateTitle, 'innerText', tooltip.title);
             that.renderer.setProperty(this.dateTitle, 'innerText', date);
-            that.renderer.setProperty(this.savingPrice, 'innerText', '$' + saving);
+            that.renderer.setProperty(this.competitorName, 'innerText', seller + ': ');
+            that.renderer.setProperty(this.competitorPrice, 'innerText', _competitorPrice);
+            that.renderer.setProperty(this.onpicksName, 'innerText', 'OnPicks: ');
+            that.renderer.setProperty(this.onpicksPrice, 'innerText', _onpicksPrice);
+
+            that.renderer.setProperty(this.savingPrice, 'innerText', 'Saving: ' + saving);
             that.renderer.setStyle(tooltipEl, 'transform', xAlign !== 'right' ? 'translate(' + ( x - TOOLTIP_WIDTH / 2 ) + 'px, ' + ( y - TOOLTIP_HEIGHT - 50 ) + 'px)' : 'translate(' + (x - ( TOOLTIP_WIDTH / 2 ) ) + 'px, ' + ( y - TOOLTIP_HEIGHT -50 ) + 'px)');
 
             that.renderer.setStyle(tooltipEl, 'opacity', '1');
