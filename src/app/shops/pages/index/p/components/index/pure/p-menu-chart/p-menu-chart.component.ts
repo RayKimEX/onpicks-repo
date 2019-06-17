@@ -122,8 +122,8 @@ export class PMenuChartComponent implements OnInit {
           const bottomY = this.chart.tooltip._active[0].tooltipPosition().y;
           ctx.save();
           ctx.beginPath();
-          ctx.moveTo(x, topY);
-          ctx.lineTo(x, bottomY - 5);
+          ctx.moveTo(x, topY );
+          ctx.lineTo(x, bottomY );
           ctx.lineWidth = 2;
           ctx.strokeStyle = '#b3b3b3';
           ctx.stroke();
@@ -145,7 +145,7 @@ export class PMenuChartComponent implements OnInit {
           pointHoverBorderColor: 'rgba(255, 255, 255, 1)',
           pointHoverRadius: 4,
           borderColor: [
-            '#008489;',
+            '#008489',
           ],
           pointHoverBorderWidth: 3,
           pointRadius: 0,
@@ -240,12 +240,9 @@ export class PMenuChartComponent implements OnInit {
             // Check seller for a specific point
             for (const data of that.chartData) {
               if (date === moment(data.timestamp).format('MMM Do YY')) {
-                console.log('date == data.timestamp');
                 seller = data.ref_seller;
               }
             }
-            console.log('/////////////// seller ////////////////');
-            console.log(seller);
             if (!tooltipEl) {
               tooltipEl = that.renderer.createElement('div');
 
