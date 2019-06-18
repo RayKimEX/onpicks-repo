@@ -141,7 +141,7 @@
           <div
             *ngIf="checkBitWise(INVALID_ORDER_NUMBER)"
             class="checkout_warning subtitle-2-regular u-color-orange">
-            숫자만 입력가능합니다
+            주문자 연락처를 정확하게 입력해주세요
           </div>
         </div>
       </div>
@@ -475,7 +475,7 @@
       placeholder="'받는분 연락처'">
     </onpicks-input-box>
     <div *ngIf="checkBitWise(EMPTY_RECIPIENT_NUMBER)" class="checkout_warning subtitle-2-regular u-color-orange">받는분 연락처를 입력해주세요</div>
-    <div *ngIf="checkBitWise(INVALID_RECIPIENT_NUMBER)" class="checkout_warning subtitle-2-regular u-color-orange">숫자만 입력가능합니다</div>
+    <div *ngIf="checkBitWise(INVALID_RECIPIENT_NUMBER)" class="checkout_warning subtitle-2-regular u-color-orange">받는분 연락처를 정확하게 입력해주세요</div>
   </div>
 
   <div

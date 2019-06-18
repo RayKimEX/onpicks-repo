@@ -669,11 +669,11 @@ export class CheckoutKrComponent implements OnInit, AfterViewInit, OnDestroy {
       if ( this.errorStatus === 0 ) {this.inputOrderNumber.nativeElement.children[0].focus();}
       this.errorStatus |= this.EMPTY_ORDER_NUMBER;
     } else {
-      const patt = new RegExp('[a-zA-Z]');
-      if ( patt.test(this.inputOrderNumber.nativeElement.children[0].value) ) {
+      const patt = new RegExp('^(?:\\+?\\d{1,2} ?)?[ -]?\\d{2,3}[ -]?\\d{3,4}[ -]?\\d{4}$');
+      if ( !patt.test(this.inputOrderNumber.nativeElement.children[0].value) ) {
 
         if ( this.errorStatus === 0 ) {this.inputOrderNumber.nativeElement.children[0].focus();}
-        this.errorStatus |= this.INVALID_RECIPIENT_NUMBER;
+        this.errorStatus |= this.INVALID_ORDER_NUMBER;
       }
     }
 
@@ -687,8 +687,8 @@ export class CheckoutKrComponent implements OnInit, AfterViewInit, OnDestroy {
         if ( this.errorStatus === 0 ) {this.inputRecipientNumber.last.nativeElement.children[0].focus();}
         this.errorStatus |= this.EMPTY_RECIPIENT_NUMBER;
       } else {
-        const patt = new RegExp('[a-zA-Z]');
-        if ( patt.test(this.inputRecipientNumber.last.nativeElement.children[0].value) ) {
+        const patt = new RegExp('^(?:\\+?\\d{1,2} ?)?[ -]?\\d{2,3}[ -]?\\d{3,4}[ -]?\\d{4}$');
+        if ( !patt.test(this.inputRecipientNumber.last.nativeElement.children[0].value) ) {
           if ( this.errorStatus === 0 ) {this.inputRecipientNumber.last.nativeElement.children[0].focus();}
           this.errorStatus |= this.INVALID_RECIPIENT_NUMBER;
         }
