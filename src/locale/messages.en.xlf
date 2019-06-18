@@ -833,6 +833,13 @@
 
 
       <!--Cart Page-->
+      <trans-unit id="cart__warehouse-list" datatype="html">
+        <target>New Jersey · Los Angeles · Gerogia · Osaka · Hong Kong</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
 
       <trans-unit id="cart__delivery-multi-purchase" datatype="html">
         <target>Checkout Express Shipping</target>
@@ -1548,6 +1555,13 @@
 
 
       <!--Sentence-->
+      <trans-unit id="sentence__select-options" datatype="html">
+        <target>Select options</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
 
       <trans-unit id="sentence__cancel-order" datatype="html">
         <target>Cancel Order</target>

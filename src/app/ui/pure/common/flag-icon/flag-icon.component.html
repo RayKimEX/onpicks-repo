@@ -1,0 +1,9 @@
+<span *ngIf="_data" [ngClass]=
+  "[
+    (locationMap[_data?.location.code]?.nickname === 'la')  ? 'icon-small-la icon' : '',
+    (locationMap[_data?.location.code]?.nickname === 'new')  ? 'icon-small-new icon' : '',
+    (locationMap[_data?.location.code]?.nickname === 'osaka')  ? 'icon-small-osaka icon' : '',
+    (locationMap[_data?.location.code]?.nickname === 'gorgia')  ? 'icon-small-gorgia icon' : '',
+    (locationMap[_data?.location.code]?.nickname === 'hong')  ? 'icon-small-hong icon' : ''
+  ]">
+</span>
