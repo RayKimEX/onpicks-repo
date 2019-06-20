@@ -153,7 +153,6 @@ export class CheckoutUsComponent implements OnInit, AfterViewInit {
           });
         }
       }).render(that.paypalPayment.nativeElement);
-
     }
     document.head.appendChild(this.paypalScript);
 
@@ -408,6 +407,5 @@ export class CheckoutUsComponent implements OnInit, AfterViewInit {
     } else {
       this.errorStatus |= this.INVALID_PHONE_NUMBER;
     }
-
   }
 }

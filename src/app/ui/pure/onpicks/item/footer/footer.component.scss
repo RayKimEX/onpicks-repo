@@ -75,11 +75,14 @@
 
 
 
-    &--inicis-icon {
-      width : 5rem;
-      height : 5rem;
-      &:nth-child(1){
-        margin-left : 1.6rem;
+    &--inicis {
+      display:inline-block;
+      &-icon {
+        width : 5rem;
+        height : 5rem;
+        &:nth-child(1){
+          margin-left : 1.6rem;
+        }
       }
     }
 
@@ -200,6 +203,10 @@
     }
     &--third-floor {
 
+      &--lg-us-logo {
+        margin-bottom :1.2rem;
+      }
+
       &--toggle-info {
         margin-top : 1.6rem;
       }
@@ -228,8 +235,12 @@
     right: 0;
     top: 0;
 
+
+    &--partner-ship {
+      display: inline-block;
+    }
     &--share {
-      margin-left: 5.6rem;
+      margin-left : 5.6rem;
       vertical-align: top;
       display:inline-block;
     }
