@@ -75,7 +75,7 @@
       position:relative;
       margin-top : 0.4rem;
       margin-bottom: 2.4rem;
-      
+
       svg {
         display:inline-block;
         vertical-align: text-bottom;
@@ -167,37 +167,22 @@
         display:inline-block;
         vertical-align:top;
 
-        &.en{
-          margin-top : -2px;
-        }
         &:nth-of-type(2){
-          margin-left: 0.8rem;
-          margin-top : -3px;
-          &.en{
-            margin-top : -3px;
-          }
+          // margin-left: 0.8rem;
+          //margin-top: -3px;
+          margin-top : -2px;
         }
         &:nth-of-type(3){
-          margin-top : -2px;
-          margin-left: 4px;
-          &.en{
-            margin-top : -3px;
-          }
+          //margin-top : -2px;
+          //margin-left: 4px;
         }
       }
 
       &-spot {
         // vertical-align: top;
-
-
-
       }
       &-info {
         // vertical-align: top;
-        &.en {
-          margin-top: -2px !important;
-          margin-left: 4px !important;
-        }
       }
     }
 
