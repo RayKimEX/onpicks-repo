@@ -58,27 +58,19 @@
         <span class="p-menu__product-info--price-discount price-bold u-color-green">{{discountPercent}}%</span>
         <span class="p-menu__product-info--price-realprice price-bold">{{_data?.price | onpicksCurrency:(currency| async)}}</span>
         <!--<onpicks-sort-box-->
-          <!--[sortList]="chartSortList">-->
+        <!--[sortList]="chartSortList">-->
         <!--</onpicks-sort-box>-->
       </div>
     </div>
 
-<!--
-    <onpicks-p-menu-chart></onpicks-p-menu-chart>
--->
+    <!--
+        <onpicks-p-menu-chart></onpicks-p-menu-chart>
+    -->
     <div class="p-menu__delivery">
       <div class="p-menu__delivery--inner">
         <div class="p-menu__delivery--first">
           <onpicks-flag-icon [_data]="_data"></onpicks-flag-icon>
 
-          <span [ngSwitch]="locale"
-                class="p-menu__delivery--first-info subtitle-2-regular en">
-            Shipping from
-          </span>
-
-          <span class="p-menu__delivery--first-spot subtitle-2-bold en">
-            {{_data?.location?.name}}
-          </span>
           <ng-container [ngSwitch]="locale">
             <ng-container *ngSwitchCase="'ko'">
               <span *ngIf="_data?.shipping_fee == 0" class="p-menu__delivery--first-info subtitle-2-regular">출고,
