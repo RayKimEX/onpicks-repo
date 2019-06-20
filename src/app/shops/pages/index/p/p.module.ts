@@ -9,7 +9,6 @@ import {PMenuComponent} from './components/index/pure/p-menu/p-menu.component';
 import {PReviewsComponent} from './components/index/pure/p-reviews/p-reviews.component';
 import {PThumbnailComponent} from './components/index/pure/p-thumbnail/p-thumbnail.component';
 import {PItemDetailComponent} from './components/index/pure/p-item-detail/p-item-detail.component';
-import {POtherSellersComponent} from './components/index/pure/p-other-sellers/p-other-sellers.component';
 import {UiModule} from '../../../../ui/ui.module';
 import { DirectivesModule } from '../../../../core/directives/directives.module';
 import { PipeModule } from '../../../../core/pipe/pipe.module';
@@ -42,9 +41,8 @@ import { PProductReportComponent } from './components/index/pure/p-product-repor
     PThumbnailComponent,
     PItemDetailComponent,
 
-    POtherSellersComponent,
     PRefundComponent,
-    PProductReportComponent,
+    PProductReportComponent
   ]
 })
 export class PModule { }

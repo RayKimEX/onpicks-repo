@@ -125,7 +125,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
           this.monthList = this.monthListEn;
           this.dayList.title = 'Day';
           this.yearList.title = 'Year';
-
         }
     }, 0)
 
