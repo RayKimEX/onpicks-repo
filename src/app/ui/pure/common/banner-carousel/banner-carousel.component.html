@@ -9,13 +9,14 @@
               [ngStyle]="{ backgroundImage : isIEOrEdge ? 'url(' + item.imgSrc + ')'  : ''}"
               [ngClass]=" isIEOrEdge ? 'isIEOrEdge' : ''"
               class="banner-carousel__item--image-outer">
-              <img *ngIf="!isIEOrEdge"
-                   drLazyLoad (click)="navigateForCollection(item.filterSlug)"
-                   [relativeOption]="false"
-                   src="{{isMobile ? item.imgSrcForMobile : item.imgSrcForDesktop}}"
-                   sizes="100vw"
-                   srcset="{{isMobile ? item.srcSetForMobile : item.srcSetForDesktop}}"
-                   alt="{{item.title[0]}} {{item.title[1]}}">
+              <img 
+                *ngIf="!isIEOrEdge"
+                drLazyLoad (click)="navigateForCollection(item.filterSlug)"
+                [relativeOption]="false"
+                src="{{isMobile ? item.imgSrcForMobile : item.imgSrcForDesktop}}"
+                sizes="100vw"
+                srcset="{{isMobile ? item.srcSetForMobile : item.srcSetForDesktop}}"
+                alt="{{item.title[0]}} {{item.title[1]}}">
             </div>
             <div
               *ngIf="!(item.title?.length === 0 && item.description?.length === 0)"
@@ -31,9 +32,10 @@
                 </div>
               </div>
 
-              <div *ngFor="let description of item.description[locale]"
-                   class="banner-carousel__item--text-description"
-                   [ngClass]="item.descriptionFontType">
+              <div 
+                *ngFor="let description of item.description[locale]"
+                class="banner-carousel__item--text-description"
+                [ngClass]="item.descriptionFontType">
                 {{description}}
               </div>
             </div>
