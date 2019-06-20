@@ -30,7 +30,7 @@ import {DISPLAY_ALERT_MESSAGE_MAP} from '../../../core/global-constant/app.local
 })
 export class CartComponent {
 
-  cartStore$;
+  /* Misscell */
   cartStore;
   lengthCheckForPack = 0;
   lengthCheckForFree = 0;
@@ -38,7 +38,9 @@ export class CartComponent {
   objectKeys = Object.keys;
 
 
+  /* Observable */
   weeklyBest$;
+  cartStore$;
   constructor(
     // TODO: 나중에 locale정보는 모두 ngrx에 넣어서 처리하기
     @Inject( CURRENCY ) public currency: BehaviorSubject<any>,
@@ -191,6 +193,21 @@ export class CartComponent {
 
   deleteWishList( xWishListSlug, xIndex ) {
     this.store.dispatch( new TryDeleteWishList( { wishListSlug : xWishListSlug, index : xIndex}));
+  }
+
+
+
+  /* Global Styling */
+
+  getMarginRightByLocale(xLocale) {
+    switch (xLocale) {
+      case 'ko' :
+        return '0.4rem';
+      case 'en' :
+        return '0.8rem';
+      case 'zh' :
+        return '0.8rem';
+    }
   }
 
 }

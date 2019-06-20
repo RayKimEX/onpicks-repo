@@ -39,7 +39,7 @@ import { DynamicCarouselComponent } from './pure/common/dynamic-carousel/dynamic
 import { SearchNavigatorMobileFilterComponent } from './emitter/search-navigator/search-navigator-mobile-filter/search-navigator-mobile-filter.component';
 import { BannerComponent } from './pure/common/banner/banner.component';
 import { TrendingReviewsComponent } from './pure/onpicks/list/trending-reviews/trending-reviews.component';
-import { FlagIconComponent } from './pure/common/flag-icon/flag-icon.component';
+import { FlagIconComponent } from './pure/onpicks/icon/flag-icon/flag-icon.component';
 
 @NgModule({
 

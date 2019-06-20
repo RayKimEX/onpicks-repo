@@ -23,96 +23,95 @@ export class PMenuComponent implements OnInit, OnDestroy, AfterViewInit, OnChang
   keyMapForSlug = {};
   optionObject = {};
   selectedFirstOptionIndex = null;
-  chartData;
+
   @ViewChild('titleHeight') titleHeightElement;
   @ViewChild('pMenu') pMenu: ElementRef;
   @Input('isMobile') isMobile = false;
   @Input('data')
-  set data( xData) {
-    console.log(xData);
-    if ( xData === undefined || xData === null ) { return; };
-    this._data = xData;
-    for ( var i = 1; i <= (this._data.stock_quantity <= 10 ? this._data.stock_quantity : 10); i ++ ) {
-      this.numberOptionList.list.push({ title : i, value : i });
-    }
-    const ObjectKeysCount =  xData.attributes.length;
-    let mergeKey = '';
-    let cnt = 0;
-    const test = {}
-    let depthKey = '';
+    set data( xData) {
+      console.log(xData);
+      if ( xData === undefined || xData === null ) { return; };
+      this._data = xData;
+      for ( var i = 1; i <= (this._data.stock_quantity <= 10 ? this._data.stock_quantity : 10); i ++ ) {
+        this.numberOptionList.list.push({ title : i, value : i });
+      }
+      const ObjectKeysCount =  xData.attributes.length;
+      let mergeKey = '';
+      let cnt = 0;
+      const test = {}
+      let depthKey = '';
 
 
-    /* async를 통해 데이터가 들어올때만 다음으로 넘어감*/
-    const result = parseInt(getComputedStyle(this.titleHeightElement.nativeElement).height, 10);
-    this.titleHeight = result === 0  ? this.titleHeight : result;
+      /* async를 통해 데이터가 들어올때만 다음으로 넘어감*/
+      const result = parseInt(getComputedStyle(this.titleHeightElement.nativeElement).height, 10);
+      this.titleHeight = result === 0  ? this.titleHeight : result;
 
-    // @ts-ignore
-    const that = this;
-    new ResizeSensor(this.titleHeightElement.nativeElement, function() {
-      that.titleHeight = parseInt(getComputedStyle(that.titleHeightElement.nativeElement).height, 10);
-    });
-
-    setTimeout( () => {
-      xData.variants.forEach( variantsItem => {
-        xData.attributes.forEach( attributes_key => {
-          if ( cnt === ObjectKeysCount - 1 ) {
-            mergeKey += variantsItem.attribute_values[attributes_key];
-            this.keyMapForSlug[mergeKey] = variantsItem.slug;
-            mergeKey = '';
-
-            test[depthKey][variantsItem.attribute_values[attributes_key]] = '';
-            depthKey = '';
-            cnt = 0;
-          } else {
-            mergeKey += variantsItem.attribute_values[attributes_key] + '_';
-
-            depthKey = variantsItem.attribute_values[attributes_key];
-            test[depthKey] = {
-              ...test[depthKey]
-            };
-            cnt++;
-          }
-        });
+      // @ts-ignore
+      const that = this;
+      new ResizeSensor(this.titleHeightElement.nativeElement, function() {
+        that.titleHeight = parseInt(getComputedStyle(that.titleHeightElement.nativeElement).height, 10);
       });
 
+      setTimeout( () => {
+        xData.variants.forEach( variantsItem => {
+          xData.attributes.forEach( attributes_key => {
+            if ( cnt === ObjectKeysCount - 1 ) {
+              mergeKey += variantsItem.attribute_values[attributes_key];
+              this.keyMapForSlug[mergeKey] = variantsItem.slug;
+              mergeKey = '';
 
-      const listTemp = [];
+              test[depthKey][variantsItem.attribute_values[attributes_key]] = '';
+              depthKey = '';
+              cnt = 0;
+            } else {
+              mergeKey += variantsItem.attribute_values[attributes_key] + '_';
 
-      let depthCnt = 0;
-      let listFirstDepthTemp = [];
-      let listTwoDepthParentTemp = {};
-      let listTwoDepthListTemp = [];
-      xData.attributes.forEach( attributes_key => {
-
-        listFirstDepthTemp = [];
-
-        Object.keys(test).forEach( (key, index) => {
-          listTwoDepthListTemp = [];
-          Object.keys(test[key]).forEach( twoKey => {
-            listTwoDepthListTemp.push({title: twoKey, value: twoKey});
-          });
-          listTwoDepthParentTemp = { title : xData.attributes[1], list: listTwoDepthListTemp.slice()};
-
-          listFirstDepthTemp.push(
-            {
-              title : key,
-              value : key,
-              children : listTwoDepthParentTemp,
+              depthKey = variantsItem.attribute_values[attributes_key];
+              test[depthKey] = {
+                ...test[depthKey]
+              };
+              cnt++;
             }
-          );
+          });
         });
 
-        depthCnt++;
-        this.optionObject = {title: xData.attributes[0], list: listFirstDepthTemp };
+        const listTemp = [];
 
-      });
+        let depthCnt = 0;
+        let listFirstDepthTemp = [];
+        let listTwoDepthParentTemp = {};
+        let listTwoDepthListTemp = [];
+        xData.attributes.forEach( attributes_key => {
+
+          listFirstDepthTemp = [];
+
+          Object.keys(test).forEach( (key, index) => {
+            listTwoDepthListTemp = [];
+            Object.keys(test[key]).forEach( twoKey => {
+              listTwoDepthListTemp.push({title: twoKey, value: twoKey});
+            });
+            listTwoDepthParentTemp = { title : xData.attributes[1], list: listTwoDepthListTemp.slice()};
+
+            listFirstDepthTemp.push(
+              {
+                title : key,
+                value : key,
+                children : listTwoDepthParentTemp,
+              }
+            );
+          });
+
+          depthCnt++;
+          this.optionObject = {title: xData.attributes[0], list: listFirstDepthTemp };
+
+        });
 
 
-      this.cd.markForCheck();
-    }, 0);
+        this.cd.markForCheck();
+      }, 0);
 
-    this.discountPercent = 100 - Math.round((xData.price / xData.msrp * 100));
-  }
+      this.discountPercent = 100 - Math.round((xData.price / xData.msrp * 100));
+    }
 
   discountPercent;
   _data;

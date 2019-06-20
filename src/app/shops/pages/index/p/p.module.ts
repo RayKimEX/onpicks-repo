@@ -18,8 +18,6 @@ import { PRefundComponent } from './components/index/pure/p-refund/p-refund.comp
 import { EffectsModule } from '@ngrx/effects';
 import { PEffects } from './store/p.effects';
 import { PProductReportComponent } from './components/index/pure/p-product-report/p-product-report.component';
-import { POtherSellersComponent } from './components/index/pure/p-other-sellers/p-other-sellers.component';
-import { PMenuChartComponent } from './components/index/pure/p-menu-chart/p-menu-chart.component';
 
 @NgModule({
   imports: [
@@ -44,9 +42,7 @@ import { PMenuChartComponent } from './components/index/pure/p-menu-chart/p-menu
     PItemDetailComponent,
 
     PRefundComponent,
-    PProductReportComponent,
-    POtherSellersComponent,
-    PMenuChartComponent,
+    PProductReportComponent
   ]
 })
 export class PModule { }

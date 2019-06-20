@@ -36,8 +36,7 @@
         </ui-star-rating>
         <ng-container [ngSwitch]="locale">
           <span *ngSwitchCase="'ko'" class="p-menu__product-info--reviews--read-reviews subtitle-1-regular u-color-dark-grey">{{_data?.review_count}}개 리뷰</span>
-          <span *ngSwitchDefault class="p-menu__product-info--reviews--read-reviews subtitle-1-regular u-color-dark-grey">Read {{_data?.review_count}} reviews</span>
-
+          <span *ngSwitchCase="'en'" class="p-menu__product-info--reviews--read-reviews subtitle-1-regular u-color-dark-grey">Read {{_data?.review_count}} reviews</span>
         </ng-container>
       </div>
 

@@ -1,5 +1,5 @@
 import {Component, OnInit, ChangeDetectionStrategy, Inject, Input} from '@angular/core';
-import {LOCATION_MAP} from '../../../../core/global-constant/app.config';
+import {LOCATION_MAP} from '../../../../../core/global-constant/app.config';
 
 @Component({
   selector: 'onpicks-flag-icon',

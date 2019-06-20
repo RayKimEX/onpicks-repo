@@ -33,7 +33,7 @@ import { CheckoutFailureComponent } from './pages/checkout-failure/checkout-fail
     CheckoutSuccessVirtualAccountComponent,
     CheckoutKrComponent,
     CheckoutUsComponent,
-    CheckoutFailureComponent,
+    CheckoutFailureComponent
   ],
   providers: [
     CartToCheckoutService

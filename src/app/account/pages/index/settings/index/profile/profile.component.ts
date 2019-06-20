@@ -118,7 +118,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
           for ( let i = 0 ; i < 80 ; i ++) {
             this.yearList.list.push({ title : ((2005 - i)), value : (2005 - i) });
           }
-
           for ( let i = 1 ; i < 32 ; i ++) {
             const formattedNumber = ('0' + i).slice(-2);
             this.dayList.list.push({ title : ((i)), value : (formattedNumber) });

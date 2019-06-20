@@ -120,7 +120,7 @@
                 <span
                   i18n="@@cart__warehouse-list"
                   class="subtitle-1-bold"
-                  [ngStyle]="{ 'marginRight' : '0.4rem' }">
+                  [ngStyle]="{ 'marginRight' : getMarginRightByLocale(locale) }">
                   뉴저지·엘에이·조지아·오사카·홍콩
                 </span>
               </span>
@@ -293,7 +293,7 @@
                       {{ itemForFree.location.name }} 단독배송 상품으로 무료로 배송 됩니다.
                     </div>
                   </ng-container>
-                  <ng-container *ngSwitchDefault>
+                  <ng-container *ngSwitchCase="'en'">
                     <div
                       class="cart__free-table--delivery-info-where subtitle-2-regular">
                       Shipping From&nbsp;<span class="u-bold">{{ itemForFree.location.name }}</span>
@@ -326,8 +326,7 @@
                   <ng-container [ngSwitch]="locale">
                     <span *ngSwitchCase="'ko'" class="subtitle-1-bold" [ngStyle]="{ 'marginRight' : '0.4rem' }">{{item.location.name}}</span>
                     <!-- locale === 'zh' 필요한가요? -->
-                    <span *ngSwitchCase="'zh'" class="subtitle-1-bold" [ngStyle]="{ 'marginRight' : '0.8rem' }">{{item.location.name}}</span>
-                    <span *ngSwitchDefault class="subtitle-1-bold" [ngStyle]="{ 'marginRight' : '0.8rem' }">{{item.location.name}}</span>
+                    <span *ngSwitchCase="'en'" class="subtitle-1-bold" [ngStyle]="{ 'marginRight' : '0.8rem' }">{{item.location.name}}</span>
                   </ng-container>
                   <span
                     i18n="@@cart__pack-delivery--title"
@@ -358,7 +357,7 @@
                       {{ item.location.name }} 무료배송까지 {{ item.location.free_shipping_threshold - (item.subtotal - item.shipping_fee) | onpicksCurrency : syncedData.currencyInfo }} 남았습니다
                     </div>
                   </ng-container>
-                  <ng-container *ngSwitchDefault>
+                  <ng-container *ngSwitchCase="'en'">
                     <div
                       *ngIf="item.shipping_fee > 0"
                       class="cart__delivery-multi-purchase--remain-description subtitle-2-regular">
@@ -374,7 +373,7 @@
                       {{item.location.name}} 무료배송 조건이 충족되었습니다.
                     </div>
                   </ng-container>
-                  <ng-container *ngSwitchDefault>
+                  <ng-container *ngSwitchCase="'en'">
                     <div
                       *ngIf="!((item.location.free_shipping_threshold - (item.subtotal - item.shipping_fee)) > 0)"
                       class="cart__delivery-multi-purchase--remain-description subtitle-2-bold">
@@ -542,7 +541,7 @@
                         {{item.location.name}} 묶음배송 상품으로 {{item.location.free_shipping_threshold | onpicksCurrency: syncedData.currencyInfo}} 이상 주문시 무료 배송
                       </div>
                       <div
-                        *ngSwitchDefault
+                        *ngSwitchCase="'en'"
                         class="cart__multi-table--delivery-info-description subtitle-2-regular u-color-dark-grey">
                         Free shipping over {{item.location.free_shipping_threshold | onpicksCurrency: syncedData.currencyInfo}} with {{item.location.name}} items
                       </div>
