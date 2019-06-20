@@ -13,6 +13,7 @@ import {
 } from '@angular/core';
 import {BreakpointObserver, BreakpointState} from '../../../../../../node_modules/@angular/cdk/layout';
 import {RESPONSIVE_MAP} from '../../../../core/global-constant/app.config';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'ui-banner-carousel',
@@ -48,6 +49,9 @@ export class BannerCarouselComponent implements OnInit, AfterViewInit, OnDestroy
     private renderer: Renderer2,
     private cd: ChangeDetectorRef,
     private breakpointObserver:  BreakpointObserver,
+    private router: Router,
+    private route: ActivatedRoute,
+
   ) { }
 
   ngOnDestroy() {
@@ -200,4 +204,16 @@ export class BannerCarouselComponent implements OnInit, AfterViewInit, OnDestroy
       this.capturedTranslateX  = (window.innerWidth - this.scrollBarWidth) * this.imageIndex;
     }
   }
+  navigateForCollection(xFilterSlug) {
+
+    Object.keys(xFilterSlug).forEach( v => {
+      if ( v === 'router' ) {
+        this.router.navigate([xFilterSlug[v]]);
+      } else {
+        this.router.navigate(['/shops/search'], { relativeTo: this.route, queryParams: {  ordering : 'most_popular', [v] : xFilterSlug[v] }, queryParamsHandling : 'merge'});
+      }
+    });
+    // this.router.navigate();
+  }
+
 }
