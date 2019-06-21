@@ -80,7 +80,7 @@ export function getImageHost() {
   }
 
   if ( window.location.origin === 'https://staging.onpicks.com' ) {
-    return 'https://img.staging.onpicks.com.s3.amazonaws.com';
+    return 'http://img.staging.onpicks.com.s3.amazonaws.com';
   }
 
   return 'https://img.onpicks.com';
