@@ -73,7 +73,9 @@
     </div>
 
     <div class="footer__desktop--second-floor subtitle-2-regular u-color-white">
-      <div class="footer__desktop--copyright">
+      <div
+        [ngStyle]="{width : region === 'kr' ? '75.3rem' : ''}"
+        class="footer__desktop--copyright">
         <ng-container *ngIf="region === 'kr'">
           <div class="footer__desktop--copyright--cooperation-name">
             <span i18n="@@footer__desktop--copyright--cooperation-name1">상호명 : 모조벤처스 주식회사   대표이사: 유한태 이메일 : </span><a class="a-tag-color" href="mailto:help@onpicks.com">help@onpicks.com</a><span i18n="@@footer__desktop--copyright--cooperation-name2">   주소: 서울특별시 성동구 성수일로8길 59, 7층 777호</span>
