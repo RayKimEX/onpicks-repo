@@ -37,7 +37,11 @@ export class ShopsIndexComponent implements OnInit, AfterViewInit {
         'Natural remedies since 1847'
       ]
     },
-    descriptionFontType : 'subtitle-1-regular'
+    descriptionFontType : 'subtitle-1-regular',
+    filterSlug : {
+      brand : ['thayers']
+    }
+
   };
 
   shopsCarouselBannerImages = {
@@ -54,9 +58,6 @@ export class ShopsIndexComponent implements OnInit, AfterViewInit {
         titleFontType : '',
         description : [],
         descriptionFontType : '',
-        filterSlug : {
-          brand : ['byredo']
-        }
       },
       {
         // imgSrc : 'https://img.onpicks.com/intro/main/2019-04-01/main2.jpg',
@@ -71,9 +72,6 @@ export class ShopsIndexComponent implements OnInit, AfterViewInit {
         titleFontType : '',
         description : [],
         descriptionFontType : '',
-        filterSlug : {
-          brand : ['byredo']
-        }
       }
     ],
     us : [
@@ -89,9 +87,6 @@ export class ShopsIndexComponent implements OnInit, AfterViewInit {
         titleFontType : '',
         description : [],
         descriptionFontType : '',
-        filterSlug : {
-          brand : ['byredo']
-        }
       }
     ]
   }

@@ -204,16 +204,5 @@ export class BannerCarouselComponent implements OnInit, AfterViewInit, OnDestroy
       this.capturedTranslateX  = (window.innerWidth - this.scrollBarWidth) * this.imageIndex;
     }
   }
-  navigateForCollection(xFilterSlug) {
-
-    Object.keys(xFilterSlug).forEach( v => {
-      if ( v === 'router' ) {
-        this.router.navigate([xFilterSlug[v]]);
-      } else {
-        this.router.navigate(['/shops/search'], { relativeTo: this.route, queryParams: {  ordering : 'most_popular', [v] : xFilterSlug[v] }, queryParamsHandling : 'merge'});
-      }
-    });
-    // this.router.navigate();
-  }
 
 }
