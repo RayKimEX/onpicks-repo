@@ -3,6 +3,8 @@
 .banner {
   height:inherit;
   position:relative;
+  cursor: pointer;
+
   @include respond(tb){
     display:none;
   }

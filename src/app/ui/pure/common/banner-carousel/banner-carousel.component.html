@@ -11,7 +11,7 @@
               class="banner-carousel__item--image-outer">
               <img 
                 *ngIf="!isIEOrEdge"
-                drLazyLoad (click)="navigateForCollection(item.filterSlug)"
+                drLazyLoad
                 [relativeOption]="false"
                 src="{{isMobile ? item.imgSrcForMobile : item.imgSrcForDesktop}}"
                 sizes="100vw"
