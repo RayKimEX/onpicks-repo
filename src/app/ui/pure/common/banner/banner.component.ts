@@ -19,8 +19,6 @@ export class BannerComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    console.log('-------------- banner -----------');
-    console.log(this.bannerInfo);
   }
   navigateForCollection(xFilterSlug) {
 
