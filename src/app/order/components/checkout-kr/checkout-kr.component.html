@@ -333,9 +333,7 @@
           [radioType]="isThirdBreakPoint ? 'normal' :'radius'"
           (boxEvent)="changePaymentMethod($event, isMobile)"
           [value]="'mobile'"
-          [type]="'radio'">
-          휴대폰결제
-        </onpicks-check-box>
+          [type]="'radio'">휴대폰결제</onpicks-check-box>
         <!--<onpicks-check-box [type]="'radio'">네이버페이</onpicks-check-box>-->
         <div *ngIf="checkBitWise(EMPTY_PAYMENT_METHOD)" class="write-review__photo--description subtitle-2-regular u-color-orange">결제방법을 선택해주세요.</div>
 
