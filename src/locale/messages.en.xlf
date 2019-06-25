@@ -1505,7 +1505,7 @@
 
 
       <trans-unit id="word__cs-center" datatype="html">
-        <target>CS Center 1800-8109</target>
+        <target>CS Center (661) 494-6656</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
           <context context-type="linenumber">52</context>
