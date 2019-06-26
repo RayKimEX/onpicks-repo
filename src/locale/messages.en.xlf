@@ -946,6 +946,38 @@
       </trans-unit>
 
       <!--Word-->
+      <trans-unit id="word__password-reset" datatype="html">
+        <target>Reset password</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="word__password-guide" datatype="html">
+        <target>Passwords must be 8-16 characters, and include at least one number.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="word__password" datatype="html">
+        <target>Password</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="word__password-confirm" datatype="html">
+        <target>Confirm password</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
       <trans-unit id="word__compare-other-seller" datatype="html">
         <target>Other Sellers</target>
         <context-group purpose="location">
@@ -1555,6 +1587,22 @@
 
 
       <!--Sentence-->
+       <trans-unit id="sentence__search_no-result" datatype="html">
+        <target>Try checking your spelling or use more general terms.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+       <trans-unit id="sentence__search_again" datatype="html">
+        <target>This item may be sold out. Please check again later.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
       <trans-unit id="sentence__select-options" datatype="html">
         <target>Select options</target>
         <context-group purpose="location">

@@ -939,6 +939,37 @@
       </trans-unit>
 
       <!--Word-->
+      <trans-unit id="word__password-reset" datatype="html">
+        <target>비밀번호 재설정</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="word__password-guide" datatype="html">
+        <target>비밀번호는 영문, 숫자를 조합하여 최소 8~16자 입력해 주세요.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="word__password" datatype="html">
+        <target>비밀번호</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="word__password-confirm" datatype="html">
+        <target>비밀번호 확인</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
 
       <trans-unit id="word__compare-other-seller" datatype="html">
         <target>그외 셀러</target>
@@ -1536,6 +1567,22 @@
 
 
       <!--Sentence-->
+       <trans-unit id="sentence__search_no-result" datatype="html">
+        <target>다른검색어를 입력하시거나 철자와 띄어쓰기를 확인해보세요</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+       <trans-unit id="sentence__search_again" datatype="html">
+        <target>다른검색어를 입력하시거나 철자와 띄어쓰기를 확인해보세요</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
        <trans-unit id="sentence__select-options" datatype="html">
         <target>상세옵션을 선택해 주세요</target>
         <context-group purpose="location">
@@ -1543,6 +1590,7 @@
           <context context-type="linenumber">52</context>
         </context-group>
       </trans-unit>
+
       <trans-unit id="sentence__cancel-order" datatype="html">
         <target>배송 취소</target>
         <context-group purpose="location">

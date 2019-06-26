@@ -26,13 +26,24 @@
 <div class="row" [ngStyle]="{ minHeight : contentHeight }">
     <ng-container
       *ngIf="currentList?.length === 0 && router.url.split('/')[2].indexOf('search') > -1">
-      <div class="search-content__empty" >
-        <h1 class="search-content__empty--title h1-bold">
+      <div class="search-content__empty">
+        <h1 class="search-content__empty--title h1-bold" *ngIf="locale == 'ko'" >
           <span class="u-color-green">{{queryParams.term}}</span>에 대한 검색 결과를 찾을 수 없습니다.
         </h1>
-        <div class="search-content__empty--description subtitle-1-regular u-color-grey">다른검색어를 입력하시거나 철자와 띄어쓰기를 확인해보세요</div>
-        <div class="search-content__empty--description subtitle-1-regular u-color-grey">현재 판매종료 상품일 수 있으니 나중에 다시 검색해보세요</div>
+        <h1 class="search-content__empty--title h1-bold" *ngIf="locale == 'en'" >
+          No results for <span class="u-color-green">{{queryParams.term}}</span>
+        </h1>
+
+        <div class="search-content__empty--description subtitle-1-regular u-color-grey"
+             i18n="@@sentence__search_no-result">
+          다른검색어를 입력하시거나 철자와 띄어쓰기를 확인해보세요
+        </div>
+        <div class="search-content__empty--description subtitle-1-regular u-color-grey"
+             i18n="@@sentence__search_again">
+          현재 판매종료 상품일 수 있으니 나중에 다시 검색해보세요
+        </div>
       </div>
+
       <ui-mini-list
         [infoList]="weeklyBest$ | async"
         [setTitle]="'추천 상품'">

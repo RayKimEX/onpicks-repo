@@ -1,9 +1,10 @@
-import {ChangeDetectionStrategy, Component, Inject, OnDestroy, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Inject, LOCALE_ID, OnDestroy, OnInit} from '@angular/core';
 import {select, Store} from '@ngrx/store';
 import {tap} from 'rxjs/operators';
-import {LOCATION_MAP} from '../../../../core/global-constant/app.config';
+import {CURRENCY, LOCATION_MAP} from '../../../../core/global-constant/app.config';
 import {TryAddOrCreateToCart, TryDeleteWishList} from '../../../../core/store/cart/cart.actions';
 import {UiService} from '../../../../core/service/ui/ui.service';
+import {BehaviorSubject} from 'rxjs';
 
 @Component({
   selector: 'onpicks-wish-list',
@@ -25,8 +26,10 @@ export class WishListComponent implements OnInit, OnDestroy {
 
   constructor(
     @Inject( LOCATION_MAP ) public locationMap: any,
+    @Inject( LOCALE_ID ) public locale: string,
+    @Inject( CURRENCY ) public currency: BehaviorSubject<any>,
     private store: Store<any>,
-    private uiService : UiService
+    private uiService: UiService
   ) {
     this.wishList$ = this.store.pipe(
       select( state => state.cart.wishList),
