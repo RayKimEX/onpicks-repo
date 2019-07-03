@@ -38,8 +38,8 @@ export class PIndexComponent implements OnInit, OnDestroy {
   pUI;
   pPictureReviews$;
   weeklyBest$;
-
   alsoViewed$;
+  routerEvent$;
 
   /****************/
   isFB = false;
@@ -80,7 +80,7 @@ export class PIndexComponent implements OnInit, OnDestroy {
     private uiService: UiService,
     private router: Router
   ) {
-    this.router.events.subscribe( (event: RouterEvent) => {
+    this.routerEvent$ = this.router.events.subscribe( (event: RouterEvent) => {
       if (event instanceof NavigationStart ) {
         this.store.dispatch(new DeleteProductAndReviewInfo());
       }
@@ -168,7 +168,7 @@ export class PIndexComponent implements OnInit, OnDestroy {
       });
   }
 
-  expandMobileMenu(){
+  expandMobileMenu() {
     this.isExpendMobileMenu = true;
 
     this.store.dispatch(new UpdateGlobalKakaoPlusFriendForPurchase());
@@ -222,6 +222,7 @@ export class PIndexComponent implements OnInit, OnDestroy {
     this.store.dispatch(new DeleteProductAndReviewInfo());
     this.cartStore$.unsubscribe();
     this.pUI$.unsubscribe();
+    this.routerEvent$.unsubscribe();
   }
 
 }

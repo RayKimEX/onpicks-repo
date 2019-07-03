@@ -23,8 +23,6 @@ export class SearchService {
 
   categorySearch(xCategoryCode, xSortCode, xCurrentPage, xParam ) {
     const param = xParam;
-    console.log('########################');
-    console.log(param);
 
     return this.httpClient.get<any>(
       this.BASE_URL + '/api/products/search/?category=' + xCategoryCode

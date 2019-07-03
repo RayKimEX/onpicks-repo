@@ -21,11 +21,12 @@ import {CURRENCY, LOCATION_MAP, RESPONSIVE_MAP} from '../../../core/global-const
 import {UiService} from '../../../core/service/ui/ui.service';
 import {normalize, schema} from 'normalizr';
 import {DisplayAlertMessage} from '../../../core/store/ui/ui.actions';
-import {BehaviorSubject, combineLatest, merge} from 'rxjs';
+import {BehaviorSubject, combineLatest, merge, pipe, Subject} from 'rxjs';
 import {CATEGORY_CODE_MAP} from '../../../core/global-constant/app.category-database-long';
 import {BreakpointObserver, BreakpointState} from '../../../../../node_modules/@angular/cdk/layout';
 import {Title} from '@angular/platform-browser';
 import {DISPLAY_ALERT_MESSAGE_MAP} from '../../../core/global-constant/app.locale';
+import {switchMap, tap} from 'rxjs/operators';
 @Component({
   selector: 'emitter-search-navigator',
   templateUrl: './search-navigator.component.html',
@@ -37,6 +38,7 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
 
   objectKeys = Object.keys;
   isArray = Array.isArray;
+
 
   locationList;
   locationListForCheck = {};
@@ -87,7 +89,11 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
   cartStore$;
   uiStore$;
   queryParams$;
-  searchData$;
+  totalSearchData$;
+  categorySearchData$;
+
+  totalSearchRequest$ = new Subject();
+  categorySearchReqeust$ = new Subject();
   routerEvent$;
 
   // subscribe ``value``
@@ -213,15 +219,70 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
 
     this.weeklyBest$ = this.uiService.getWeeklyBestGoods();
 
-    // this.router.events.pipe( merge(this.route.queryParams) )
-    // this.router.events.pipe(concat(this.route.queryParams))
+    this.totalSearchData$ = this.totalSearchRequest$.pipe(
+      switchMap((param) => {
+        return this.searchService.search(param);
+      }),
+    ).subscribe(_infoList => {
+      /* async 데이터가 들어오는데, null이라면 return을 해줌 */
+      if (_infoList != null) {
+
+        this.filters = _infoList.filters;
+        this.valueList = _infoList.aggregation.values;
+        this.locationList = _infoList.aggregation.locations;
+        this.brandList = _infoList.aggregation.brands;
+        this.categoryList = _infoList.aggregation.categories;
+
+        this.infoList = _infoList.results;
+
+        this.totalCount = _infoList.count;
+        this.totalPage = this.totalCount / this.maxRow;
+
+        this.totalPageArray = Array(parseInt(this.totalPage, 10));
+        this.totalPageArray.push(this.totalPageArray.length + 1);
+
+        this.currentList = this.infoList.slice(0, this.maxRow);
+        this.cd.markForCheck();
+      }
+    });
+
+    this.categorySearchData$ =
+      this.categorySearchReqeust$.pipe(
+        switchMap((categoryCurrentCode) => {
+          return this.searchService.categorySearch(categoryCurrentCode,
+            this.currentSortSlug,
+            this.currentPage, this.router.url.indexOf('?') < 0 ? '' : '&' + this.router.url.substring(this.router.url.indexOf('?') + 1, this.router.url.length));
+        })
+      ).subscribe( (_infoList: {filters, aggregation, results, count}) => {
+        this.searchState = 'category';
+
+        /* async 데이터가 들어오는데, null이라면 return을 해줌 */
+
+        if (_infoList != null) {
+          this.filters = _infoList.filters;
+          this.valueList = _infoList.aggregation.values;
+          this.locationList = _infoList.aggregation.locations;
+          this.brandList = _infoList.aggregation.brands;
+          this.infoList = _infoList.results;
+          this.categoryList = _infoList.aggregation.categories;
+          this.totalCount = _infoList.count;
+          this.totalPage = this.totalCount / this.maxRow;
+
+          this.totalPageArray = Array(parseInt(this.totalPage, 10));
+          this.totalPageArray.push(this.totalPageArray.length + 1);
+
+          this.currentList = this.infoList.slice(0, this.maxRow);
+          this.cd.markForCheck();
+
+        }
+
+      });
+
     this.routerEvent$ = this.router.events.subscribe( (event: RouterEvent) => {
 
       if (event instanceof NavigationEnd ) {
-        console.log('@@@@@@@@@@@@@@@@@@@@');
         const url = this.router.url;
         this.currentUrl = url;
-        console.log(this.currentUrl);
         if ( url.indexOf('/search') > -1 || url.indexOf('/c/') > -1) {
 
         } else {
@@ -257,39 +318,13 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
           this.currentSlug = null;
 
           const param = this.router.url.indexOf('?') < 0 ? null : this.router.url.substring(this.router.url.indexOf('?'), this.router.url.length);
-
-          this.searchData$ = this.searchService.search(param).subscribe(_infoList => {
-            /* async 데이터가 들어오는데, null이라면 return을 해줌 */
-            if (_infoList != null) {
-
-              this.filters = _infoList.filters;
-              this.valueList = _infoList.aggregation.values;
-              this.locationList = _infoList.aggregation.locations;
-              this.brandList = _infoList.aggregation.brands;
-              this.categoryList = _infoList.aggregation.categories;
-
-              this.infoList = _infoList.results;
-
-              this.totalCount = _infoList.count;
-              this.totalPage = this.totalCount / this.maxRow;
-
-              this.totalPageArray = Array(parseInt(this.totalPage, 10));
-              this.totalPageArray.push(this.totalPageArray.length + 1);
-
-              this.currentList = this.infoList.slice(0, this.maxRow);
-              this.cd.markForCheck();
-            }
-          });
+          this.totalSearchRequest$.next(param);
         } else {
           const categoryUrl = this.router.url.split('/');
           let categoryCurrentCode = 0;
           if ( categoryUrl[categoryUrl.length - 1].indexOf('?') > -1){
             categoryUrl[categoryUrl.length - 1] = categoryUrl[categoryUrl.length - 1].substring(0, categoryUrl[categoryUrl.length - 1].indexOf('?'));
           }
-
-          console.log(categoryUrl[3]);
-          console.log(categoryUrl[4]);
-          console.log(this.categoryMap);
 
           switch ( categoryUrl.length ) {
             case 5 :
@@ -303,32 +338,7 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
               break;
           }
 
-          console.log(this.queryParams.location[0]);
-          this.searchData$ =
-            this.searchService.categorySearch(categoryCurrentCode,
-              this.currentSortSlug,
-              this.currentPage, this.router.url.indexOf('?') < 0 ? '' : '&' + this.router.url.substring(this.router.url.indexOf('?') + 1, this.router.url.length)).subscribe(_infoList => {
-            this.searchState = 'category';
-
-            /* async 데이터가 들어오는데, null이라면 return을 해줌 */
-
-            if (_infoList != null) {
-              this.filters = _infoList.filters;
-              this.valueList = _infoList.aggregation.values;
-              this.locationList = _infoList.aggregation.locations;
-              this.brandList = _infoList.aggregation.brands;
-              this.infoList = _infoList.results;
-              this.categoryList = _infoList.aggregation.categories;
-              this.totalCount = _infoList.count;
-              this.totalPage = this.totalCount / this.maxRow;
-
-              this.totalPageArray = Array(parseInt(this.totalPage, 10));
-              this.totalPageArray.push(this.totalPageArray.length + 1);
-
-              this.currentList = this.infoList.slice(0, this.maxRow);
-              this.cd.markForCheck();
-            }
-          });
+          this.categorySearchReqeust$.next(categoryCurrentCode);
         }
       }
     });
@@ -406,7 +416,8 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
     this.queryParams$.unsubscribe();
     this.cartStore$.unsubscribe();
     this.routerEvent$.unsubscribe();
-    this.searchData$.unsubscribe();
+    this.totalSearchData$.unsubscribe();
+    this.categorySearchData$.unsubscribe();
   }
 
   ngOnInit() {

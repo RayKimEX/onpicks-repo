@@ -58,8 +58,8 @@ export class SearchBoxComponent implements OnInit, AfterViewInit {
   }
 
   keypressEvent(event) {
-    console.log(event);
     if ( event.key === 'Enter' ) {
+      console.log('hello');
       this.enterEvent.emit(this.inputTag.nativeElement.value);
     }
   }
