@@ -223,7 +223,7 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
       switchMap((param) => {
         return this.searchService.search(param);
       }),
-    ).subscribe(_infoList => {
+    ).subscribe((_infoList: {filters, aggregation, results, count}) => {
       /* async 데이터가 들어오는데, null이라면 return을 해줌 */
       if (_infoList != null) {
 
