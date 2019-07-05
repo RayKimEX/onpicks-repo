@@ -177,6 +177,7 @@ export function getCurrency() {
     },
     {
       // /kr, /us
+      // /kr, /us
       provide: APP_BASE_HREF,
       useValue: '/' + (window.location.pathname.split('/')[1] || '')
     },
@@ -188,7 +189,7 @@ export function getCurrency() {
     // JIT
     {
       provide: LOCALE_ID,
-      useValue : 'ko'
+      useValue : 'en'
     },
     {
       // https://localhost

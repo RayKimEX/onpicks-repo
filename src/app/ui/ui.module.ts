@@ -36,10 +36,14 @@ import { ModalComponent } from './pure/onpicks/modal/modal.component';
 import { AngleBracketNavigatorComponent } from './pure/onpicks/item/angle-bracket-navigator/angle-bracket-navigator.component';
 import { ValueListComponent } from './pure/onpicks/list/value-list/value-list.component';
 import { DynamicCarouselComponent } from './pure/common/dynamic-carousel/dynamic-carousel.component';
-import { SearchNavigatorMobileFilterComponent } from './emitter/search-navigator/search-navigator-mobile-filter/search-navigator-mobile-filter.component';
+import { SearchNavigatorMobileFilterComponent } from './emitter/search-navigator/components/search-navigator-mobile-filter/search-navigator-mobile-filter.component';
 import { BannerComponent } from './pure/common/banner/banner.component';
 import { TrendingReviewsComponent } from './pure/onpicks/list/trending-reviews/trending-reviews.component';
 import { FlagIconComponent } from './pure/onpicks/icon/flag-icon/flag-icon.component';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { SearchContentEmptyComponent } from './emitter/search-navigator/components/search-content-empty/search-content-empty.component';
+import { SearchCategoryNavigatorComponent } from './emitter/search-navigator/components/search-category-navigator/search-category-navigator.component';
+import { SearchCategoryComponent } from './emitter/search-navigator/components/search-category/search-category.component';
 
 @NgModule({
 
@@ -49,6 +53,7 @@ import { FlagIconComponent } from './pure/onpicks/icon/flag-icon/flag-icon.compo
     DirectivesModule,
     PipeModule,
     RouterModule,
+    InfiniteScrollModule,
   ],
   declarations: [
     SimpleCarouselComponent,
@@ -87,6 +92,9 @@ import { FlagIconComponent } from './pure/onpicks/icon/flag-icon/flag-icon.compo
     BannerComponent,
     TrendingReviewsComponent,
     FlagIconComponent,
+    SearchContentEmptyComponent,
+    SearchCategoryNavigatorComponent,
+    SearchCategoryComponent,
   ],
   exports: [
     SimpleCarouselComponent,

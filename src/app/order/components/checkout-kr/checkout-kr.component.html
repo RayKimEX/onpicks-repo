@@ -1,4 +1,4 @@
-<div class="row checkout" *ngLet="(currency| async) as currencyInfo">
+<div class="row checkout" *ngLet="(currency| async) as currencyInfo" (scroll)="scrollHandler($event)">
   <div
     class="checkout-mobile"
     *ngIf="(checkoutStore$ | async) as data;">
@@ -363,15 +363,17 @@
         class="checkout-right__menu--title subtitle-1-bold">
         최종결제금액
       </h3>
-      <div class="checkout-right__menu--item" *ngFor="let item of data.items">
-        <div class="checkout-right__menu--item-image">
-          <img drLazyLoad src="{{item.thumbnail}}" alt="">
-        </div>
-        <div class="checkout-right__menu--item-info">
-          <div class="checkout-right__menu--item-info-brand subtitle-3-bold">{{item.brand}}</div>
-          <div class="checkout-right__menu--item-info-name body-3-regular">{{item.title}}</div>
-          <div *ngIf="item.infoOption !== ''" class="checkout-right__menu--item-info-option subtitle-3-regular u-color-grey">{{item.infoOption}}</div>
-          <div class="checkout-right__menu--item-info-price subtitle-2-bold">{{item.price + item.discount | onpicksCurrency: currencyInfo}} / {{item.quantity}}개</div>
+      <div class="checkout_right__menu--container">
+        <div class="checkout-right__menu--item" *ngFor="let item of data.items">
+          <div class="checkout-right__menu--item-image">
+            <img drLazyLoad src="{{item.thumbnail}}" alt="">
+          </div>
+          <div class="checkout-right__menu--item-info">
+            <div class="checkout-right__menu--item-info-brand subtitle-3-bold">{{item.brand}}</div>
+            <div class="checkout-right__menu--item-info-name body-3-regular">{{item.title}}</div>
+            <div *ngIf="item.infoOption !== ''" class="checkout-right__menu--item-info-option subtitle-3-regular u-color-grey">{{item.infoOption}}</div>
+            <div class="checkout-right__menu--item-info-price subtitle-2-bold">{{item.price + item.discount | onpicksCurrency: currencyInfo}} / {{item.quantity}}개</div>
+          </div>
         </div>
       </div>
 

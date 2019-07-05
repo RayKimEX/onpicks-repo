@@ -8511,4 +8511,4 @@ export const CATEGORY_CODE_MAP_CONST = {
       }
     }
   }
-}
+};

@@ -1,4 +1,4 @@
-import {Component, OnInit, ChangeDetectionStrategy, AfterViewInit, OnDestroy, ViewChildren, ViewChild, ElementRef, Inject, Renderer2, ChangeDetectorRef, LOCALE_ID} from '@angular/core';
+import {Component, OnInit, ChangeDetectionStrategy, AfterViewInit, OnDestroy, ViewChildren, ViewChild, ElementRef, Inject, Renderer2, ChangeDetectorRef, LOCALE_ID, HostListener} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
 import {CURRENCY, DOMAIN_HOST, REGION_ID, RESPONSIVE_MAP} from '../../../core/global-constant/app.config';
 import {BehaviorSubject, fromEvent, of} from 'rxjs';
@@ -154,6 +154,13 @@ export class CheckoutKrComponent implements OnInit, AfterViewInit, OnDestroy {
   isShowMobileDeliveryInfo = false;
   isShowMobileAdditionInfo = false;
 
+  /********* floating checkout menu *******/
+  private footerHeight: number;
+  private headerHeight: number;
+  private windowInnerHeight: number;
+  private contentHeight: number;
+  private maxContentHeight: number;
+
   constructor(
     @Inject(CURRENCY) public currency: BehaviorSubject<any>,
     @Inject(DOMAIN_HOST) private BASE_URL: string,
@@ -202,7 +209,12 @@ export class CheckoutKrComponent implements OnInit, AfterViewInit, OnDestroy {
 
 
   ngAfterViewInit() {
-    console.log(this.inputSearchBox);
+    this.windowInnerHeight = window.innerHeight;
+    this.footerHeight = (document.querySelector('footer') as HTMLElement).offsetHeight;
+    this.headerHeight = (document.querySelector('header') as HTMLElement).offsetHeight;
+    this.maxContentHeight = this.windowInnerHeight - this.footerHeight - this.headerHeight;
+    const checkoutProductArea = (document.querySelector('.checkout_right__menu--item-container') as HTMLElement);
+
     this.searchInputFirstEvent$ = fromEvent(this.inputSearchBox.first.searchInputBox.nativeElement, 'input');
     this.searchInputLastEvent$ = fromEvent(this.inputSearchBox.last.searchInputBox.nativeElement, 'input');
 
@@ -722,6 +734,19 @@ export class CheckoutKrComponent implements OnInit, AfterViewInit, OnDestroy {
 
   setShippingMessage(xShippingMessage) {
     this.formData.shipping_message = xShippingMessage.value;
+  }
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    this.windowInnerHeight = window.innerHeight;
+  }
+  @HostListener('window:scroll', ['$event'])
+  scrollHandler(event) {
+    const checkoutRightMenu = (document.querySelector('.checkout-right__menu') as HTMLElement);
+    const bodyHeight = (document.querySelector('body') as HTMLElement).offsetHeight;
+    const scrollTop = event.target.scrollingElement.scrollTop;
+    if (scrollTop + this.windowInnerHeight < bodyHeight - this.footerHeight ){
+      checkoutRightMenu.style.top = (scrollTop) + 'px';
+    }
   }
 
 }
