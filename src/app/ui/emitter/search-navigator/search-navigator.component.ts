@@ -711,6 +711,14 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
   typeOf( val ) {
     return typeof val;
   }
+  getCurrentParamListExceptPage() {
+    const currentParamList = this.currentParamList;
+    if (currentParamList['page']) {
+      delete currentParamList['page'];
+    }
+    console.log(currentParamList);
+    return currentParamList;
+  }
   loadNextPageItems(currentPage) {
     const url = this.router.url;
 

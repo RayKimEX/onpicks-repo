@@ -438,7 +438,7 @@
           </div>
         </div>
         <div class="search-content__mobile-sort-list">
-          <ng-container *ngFor="let keys of objectKeys(currentParamList)">
+          <ng-container *ngFor="let keys of objectKeys(getCurrentParamListExceptPage())">
             <ng-container *ngIf="typeOf(currentParamList[keys]) === 'string'">
               <div class="search-content__mobile-sort-list--item ">
                 <div
