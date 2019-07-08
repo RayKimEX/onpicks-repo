@@ -44,6 +44,8 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { SearchContentEmptyComponent } from './emitter/search-navigator/components/search-content-empty/search-content-empty.component';
 import { SearchCategoryNavigatorComponent } from './emitter/search-navigator/components/search-category-navigator/search-category-navigator.component';
 import { SearchCategoryComponent } from './emitter/search-navigator/components/search-category/search-category.component';
+import { SearchFilterComponent } from './emitter/search-navigator/components/search-filter/search-filter.component';
+import { SearchBrandComponent } from './emitter/search-navigator/components/search-brand/search-brand.component';
 
 @NgModule({
 
@@ -95,6 +97,8 @@ import { SearchCategoryComponent } from './emitter/search-navigator/components/s
     SearchContentEmptyComponent,
     SearchCategoryNavigatorComponent,
     SearchCategoryComponent,
+    SearchFilterComponent,
+    SearchBrandComponent,
   ],
   exports: [
     SimpleCarouselComponent,

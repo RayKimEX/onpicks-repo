@@ -1,7 +1,7 @@
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
-  Component, HostListener, Inject,
+  Component, Inject,
   LOCALE_ID,
   OnDestroy,
   OnInit,
@@ -27,7 +27,6 @@ import {BreakpointObserver, BreakpointState} from '../../../../../node_modules/@
 import {Title} from '@angular/platform-browser';
 import {DISPLAY_ALERT_MESSAGE_MAP} from '../../../core/global-constant/app.locale';
 import {switchMap, tap} from 'rxjs/operators';
-import {SearchCategoryService} from './services/search-category.service';
 @Component({
   selector: 'emitter-search-navigator',
   templateUrl: './search-navigator.component.html',
@@ -42,19 +41,28 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
 
 
   locationList;
+  locationListForCheck = {};
   brandList;
+  brandListForCheck = {};
   valueList;
+  valueListForCheck = {};
   infoList;
   filters;
 
   /** currentState **/
   currentSortSlug = 'most_popular';
 
+  normalizedCategoryCodeList;
+  categoryList;
+  normalizedCategoryInfoList;
+  previous;
+  currentSlug;
+  currentCode;
   currentTitle;
   currentName = '';
+  currentCategoryCode = 0;
   currentParamList = {};
   contentHeight;
-  categoryList;
 
   imageIndex = 0;
 
@@ -70,17 +78,16 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
   currentUrl = '';
 
   searchState = '';
-  /******* infinite scroll ******/
-  isLoading = false;
 
 
   /***** filter modal For Mobile ****/
   isShowMobileFilter = false;
-  mobileFilterState = 'menu';
+  mobileFilterState = 'menu'
   isMobile = false;
 
   /******* subscribe ******/
   cartStore$;
+  uiStore$;
   queryParams$;
   totalSearchData$;
   categorySearchData$;
@@ -89,16 +96,18 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
   categorySearchReqeust$ = new Subject();
   routerEvent$;
 
-  // subscribe ``value``
+  /******* infinite loading ******/
+  searchNextPageData$;
+  searchNextPageRequest$ = new Subject();
+  infiniteList = [];
+  isLoading = false;
+
+    // subscribe ``value``
   queryParams = {term: '', brand: [], value: [], location: []};
   cartStore;
 
   weeklyBest$;
 
-  brandListForCheck = {};
-  valueListForCheck = {};
-  locationListForCheck = {};
-  uiStore$
   sortList = [
     {
       title: {
@@ -135,7 +144,7 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
       },
       value: 'price_low'
     }
-  ];
+  ]
 
   sortMap = {
     'most_popular' : {
@@ -158,7 +167,7 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
       ko : '가격 낮은순',
       en : ''
     }
-  };
+  }
   constructor(
     @Inject( CURRENCY ) public currency: BehaviorSubject<any>,
     @Inject( LOCATION_MAP ) public locationMap: any,
@@ -174,9 +183,8 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
     private location: Location,
     private cd: ChangeDetectorRef,
     private searchService: SearchService,
-    private searchCategoryService: SearchCategoryService,
     private breakpointObserver:  BreakpointObserver,
-
+    private titleService: Title
   ) {
     this.breakpointObserver
       .observe([this.responsiveMap['tb']])
@@ -193,23 +201,21 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
     this.uiStore$ = this.store.pipe(select(state => state.ui.currentCategoryList))
       .subscribe(val => {
         // this.categoryList = val;
-        searchCategoryService.normalizedCategoryInfoList = val.entities;
-        searchCategoryService.normalizedCategoryCodeList = val.result;
-        searchCategoryService.previous = val.previous;
-        searchCategoryService.currentSlug = val.currentSlug;
-        searchCategoryService.currentCode = val.currentCode;
-        searchCategoryService.currentCategoryCode = val.currentCode;
+        this.normalizedCategoryInfoList = val.entities;
+        this.normalizedCategoryCodeList = val.result;
+        console.log(val.result);
+        this.previous = val.previous;
+        this.currentSlug = val.currentSlug;
+        this.currentCode = val.currentCode;
+        this.currentCategoryCode = val.currentCode;
 
-        searchCategoryService.currentName = val.currentName;
-        searchCategoryService.currentTitle = val.currentTitle;
-        console.log('@@@@@@@#############');
-        console.log(searchCategoryService.normalizedCategoryInfoList);
-        console.log(searchCategoryService.normalizedCategoryCodeList);
-        if ( searchCategoryService.currentName !== undefined ) {
-          searchCategoryService.titleService.setTitle(searchCategoryService.currentName[this.locale]);
+        this.currentName = val.currentName;
+        this.currentTitle = val.currentTitle;
+
+        if ( this.currentName !== undefined ) {
+          this.titleService.setTitle(this.currentName[this.locale]);
         }
       });
-
 
     this.cartStore$ = this.store.pipe(select(state => state.cart))
       .subscribe(val => {
@@ -226,24 +232,22 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
     ).subscribe(_infoList => {
       /* async 데이터가 들어오는데, null이라면 return을 해줌 */
       if (_infoList != null) {
-
-        this.filters = _infoList.filters;
-        this.valueList = _infoList.aggregation.values;
-        this.locationList = _infoList.aggregation.locations;
-        this.brandList = _infoList.aggregation.brands;
-        this.categoryList = _infoList.aggregation.categories;
-
-        this.infoList = _infoList.results;
-
-        this.totalCount = _infoList.count;
-        this.totalPage = this.totalCount / this.maxRow;
-
-        this.totalPageArray = Array(parseInt(this.totalPage, 10));
-        this.totalPageArray.push(this.totalPageArray.length + 1);
-
-        this.currentList = this.currentList.concat(this.infoList);
+        this.setSearchParams(_infoList);
+        this.currentList = this.infoList.slice(0, this.maxRow);
+        this.cd.markForCheck();
+      }
+    });
+    this.searchNextPageData$ = this.searchNextPageRequest$.pipe(
+      switchMap((param) => {
+        this.isLoading = true;
+        return this.searchService.search(param);
+      })
+    ).subscribe(_infoList => {
+      /* async 데이터가 들어오는데, null이라면 return을 해줌 */
+      if (_infoList != null) {
+        this.setSearchParams(_infoList);
+        this.infiniteList = this.infiniteList.concat(this.infoList);
         this.isLoading = false;
-
         this.cd.markForCheck();
       }
     });
@@ -261,25 +265,12 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
         /* async 데이터가 들어오는데, null이라면 return을 해줌 */
 
         if (_infoList != null) {
-          this.filters = _infoList.filters;
-          this.valueList = _infoList.aggregation.values;
-          this.locationList = _infoList.aggregation.locations;
-          this.brandList = _infoList.aggregation.brands;
-          this.infoList = _infoList.results;
-          searchCategoryService.categoryList = _infoList.aggregation.categories;
-          this.totalCount = _infoList.count;
-          this.totalPage = this.totalCount / this.maxRow;
 
-          this.totalPageArray = Array(parseInt(this.totalPage, 10));
-          this.totalPageArray.push(this.totalPageArray.length + 1);
+          this.setSearchParams(_infoList);
 
-          this.currentList = this.currentList.concat(this.infoList);
-          this.isLoading = false;
-
+          this.currentList = this.infoList.slice(0, this.maxRow);
           this.cd.markForCheck();
-
         }
-
       });
 
     this.routerEvent$ = this.router.events.subscribe( (event: RouterEvent) => {
@@ -293,7 +284,7 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
           return ;
         }
 
-        this.currentList = [];
+        this.currentList = null;
         this.filters = {};
         // category main페이지 일때
         if (this.router.url.indexOf('&') < 0) {
@@ -317,16 +308,16 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
 
         if (url.indexOf('/search') > -1) {
           this.searchState = 'search';
-          searchCategoryService.normalizedCategoryCodeList = null;
-          searchCategoryService.previous = null;
-          searchCategoryService.currentSlug = null;
+          this.normalizedCategoryCodeList = null;
+          this.previous = null;
+          this.currentSlug = null;
 
           const param = this.router.url.indexOf('?') < 0 ? null : this.router.url.substring(this.router.url.indexOf('?'), this.router.url.length);
           this.totalSearchRequest$.next(param);
         } else {
           const categoryUrl = this.router.url.split('/');
           let categoryCurrentCode = 0;
-          if ( categoryUrl[categoryUrl.length - 1].indexOf('?') > -1 ) {
+          if ( categoryUrl[categoryUrl.length - 1].indexOf('?') > -1){
             categoryUrl[categoryUrl.length - 1] = categoryUrl[categoryUrl.length - 1].substring(0, categoryUrl[categoryUrl.length - 1].indexOf('?'));
           }
 
@@ -349,12 +340,12 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
 
     this.queryParams$ = this.route.queryParams
       .subscribe((val: { term, brand, value, location, category, page, ordering }) => {
-        this.currentList = [];
+        this.currentList = null;
         this.currentParamList = {
           ...val
         };
         this.currentPage = val.page === undefined ? 1 : parseInt(val.page, 10);
-        searchCategoryService.currentCategoryCode = val.category;
+        this.currentCategoryCode = val.category;
         this.currentSortSlug = val.ordering === undefined ? 'most_popular' : val.ordering;
 
         this.brandListForCheck = {};
@@ -416,15 +407,31 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
+    this.uiStore$.unsubscribe();
     this.queryParams$.unsubscribe();
     this.cartStore$.unsubscribe();
     this.routerEvent$.unsubscribe();
     this.totalSearchData$.unsubscribe();
     this.categorySearchData$.unsubscribe();
+    this.searchNextPageData$.unsubscribe();
   }
 
   ngOnInit() {
     this.contentHeight = (window.screen.height - 400) < 300 ? '' : (window.screen.height) + 'px';
+  }
+  setSearchParams(_infoList){
+    this.filters = _infoList.filters;
+    this.valueList = _infoList.aggregation.values;
+    this.locationList = _infoList.aggregation.locations;
+    this.brandList = _infoList.aggregation.brands;
+    this.infoList = _infoList.results;
+    this.categoryList = _infoList.aggregation.categories;
+    this.totalCount = _infoList.count;
+
+    this.totalPage = this.totalCount / this.maxRow;
+    this.totalPageArray = Array(parseInt(this.totalPage, 10));
+    this.totalPageArray.push(this.totalPageArray.length + 1);
+
   }
 
   showMobileFilter(xMenuState) {
@@ -483,6 +490,162 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
     return Array(n);
   }
 
+  updateSecondCategory(index, slug) {
+    const url = this.router.url.split('/');
+    if (url[url.length - 1] === slug) {
+      return;
+    }
+    this.router.navigate(['/shops/c/' + url[3] + '/' + slug], {relativeTo: this.route});
+  }
+
+  updateThirdCategory(index, secondSlug, thirdSlug) {
+    const url = this.router.url.split('/');
+    this.router.navigate(['/shops/c/' + url[3] + '/' + secondSlug + '/' + thirdSlug], {relativeTo: this.route});
+  }
+
+  updateFourthCategory(index, secondSlug, thirdSlug, fourthSlug) {
+    const url = this.router.url.split('/');
+
+    this.router.navigate(['/shops/c/' + url[3] + '/' + secondSlug + '/' + thirdSlug + '/' + fourthSlug], {relativeTo: this.route});
+  }
+
+  onedepthFold(dom, label) {
+    if (dom.style.maxHeight === '3500px') {
+
+      this.renderer.setStyle(label, 'transform', 'rotate(0deg)');
+      this.renderer.setStyle(dom, 'opacity', '0');
+      this.renderer.setStyle(dom, 'max-height', '0px');
+
+    } else {
+
+      this.renderer.setStyle(label, 'transform', 'rotate(-180deg)');
+      this.renderer.setStyle(dom, 'opacity', '1');
+      this.renderer.setStyle(dom, 'max-height', '3500px');
+
+    }
+  }
+
+  twodepthFold(dom, label) {
+    if (dom.style.maxHeight === '700px') {
+      this.renderer.setStyle(label, 'transform', 'rotate(0deg)');
+      this.renderer.setStyle(dom, 'opacity', '0');
+      this.renderer.setStyle(dom, 'max-height', '0px');
+    } else {
+      this.renderer.setStyle(label, 'transform', 'rotate(-180deg)');
+      this.renderer.setStyle(dom, 'opacity', '1');
+      this.renderer.setStyle(dom, 'max-height', '700px');
+    }
+  }
+
+  valueClicked(xValueSlug) {
+
+    if (this.valueListForCheck[xValueSlug] === true) {
+      this.valueListForCheck[xValueSlug] = false;
+      const index = this.queryParams.value.indexOf(xValueSlug);
+      this.queryParams.value.splice(index, 1);
+    } else {
+      this.queryParams.value.push(xValueSlug);
+    }
+
+    if ( this.searchState === 'search') {
+      this.router.navigate(['/shops/search'], {
+        queryParams: { page: null, value: this.queryParams.value.length === 0 ? null : this.queryParams.value},
+        queryParamsHandling: 'merge'
+      });
+    } else {
+      this.router.navigate(['./'], { relativeTo: this.route, queryParams: {value: this.queryParams.value.length === 0 ? null : this.queryParams.value}, queryParamsHandling: 'merge'} );
+    }
+
+  }
+
+  brandClicked(xBrandSlug) {
+
+    if (this.brandListForCheck[xBrandSlug] === true) {
+      this.brandListForCheck[xBrandSlug] = false;
+      const index = this.queryParams.brand.indexOf(xBrandSlug);
+      this.queryParams.brand.splice(index, 1);
+    } else {
+      this.queryParams.brand.push(xBrandSlug);
+    }
+
+
+    if( this.searchState === 'search') {
+      this.router.navigate(['/shops/search'], {
+        queryParams: {page: null, brand: this.queryParams.brand.length === 0 ? null : this.queryParams.brand},
+        queryParamsHandling: 'merge'
+      });
+    } else {
+      this.router.navigate(['./'], { relativeTo: this.route, queryParams: {brand: this.queryParams.brand.length === 0 ? null : this.queryParams.brand},
+        queryParamsHandling: 'merge'} );
+    }
+
+  }
+
+  locationClicked(xLocationSlug) {
+
+    if ( this.locationListForCheck[xLocationSlug] === true ) {
+      this.locationListForCheck[xLocationSlug] = false;
+      const index = this.queryParams.location.indexOf(xLocationSlug);
+      this.queryParams.location.splice(index, 1);
+    } else {
+      this.queryParams.location.push(xLocationSlug);
+    }
+
+    if( this.searchState === 'search') {
+      this.router.navigate(['/shops/search'], {
+        queryParams: {page: null, location: this.queryParams.location.length === 0 ? null : this.queryParams.location},
+        queryParamsHandling: 'merge'
+      });
+    } else {
+      this.router.navigate(['./'], { relativeTo: this.route, queryParams: {location: xLocationSlug}, queryParamsHandling: 'merge'} );
+    }
+
+  }
+
+  sortClicked(xSortSlug) {
+    this.currentSortSlug = xSortSlug;
+    // this.orderedFilterListForCheck[]
+    if( this.searchState === 'search') {
+      this.router.navigate(['/shops/search'], { queryParams: {page : 1, ordering: xSortSlug}, queryParamsHandling: 'merge'} );
+    } else {
+      this.router.navigate(['./'], { relativeTo: this.route, queryParams: {ordering: xSortSlug}, queryParamsHandling: 'merge'} );
+    }
+  }
+
+  goBrandFilter(xBrand){
+    this.router.navigate(['/shops/search'], { queryParams: { page: 1, ordering: 'most_popular', brand: xBrand}, queryParamsHandling: 'merge'} );
+  }
+
+  categoryClicked( xCategoryCode ) {
+    this.router.navigate( ['/shops/search'], { queryParams: {page : 1, category: xCategoryCode}, queryParamsHandling: 'merge'} );
+  }
+
+  removeSpecificFilter(xType, xKey) {
+    if (Array.isArray(this.currentParamList[xType])) {
+      const index = this.currentParamList[xType].indexOf(xKey);
+      if (index !== -1) {
+        this.currentParamList[xType].splice(index, 1);
+        if (this.currentParamList[xType].length === 0) {
+          delete this.currentParamList[xType];
+        }
+      }
+    } else {
+      if (this.currentParamList[xType] === xKey) {
+        delete this.currentParamList[xType];
+      }
+    }
+
+    // this.queryParams
+
+    if( this.searchState === 'search') {
+      this.router.navigate( ['/shops/search'], {queryParams: this.currentParamList});
+    } else {
+      this.router.navigate(['./'], { relativeTo: this.route, queryParams: this.currentParamList } );
+    }
+  }
+
+  // TODO : 리뷰 검색, 브랜드 검색 2차 스콥때 하기
+
   brandSearch(event: KeyboardEvent) {
 
     if ( event.key === 'Enter' ) {
@@ -490,54 +653,56 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
     }
   }
 
+  removeAllFilter() {
+    this.router.navigate(['/shops/search'], {queryParams: {brand: null, value: null, location : null}, queryParamsHandling: 'merge'});
+  }
+
+  removeAllFilterCategory() {
+    this.router.navigate(['/shops/search'], {queryParams: {category: null}, queryParamsHandling: 'merge'});
+  }
+
+  removeAllFilterBrand() {
+    this.router.navigate(['/shops/search'], {queryParams: {brand: null}, queryParamsHandling: 'merge'});
+  }
+
+  removeAllFilterValue() {
+    this.router.navigate(['/shops/search'], {queryParams: {value: null}, queryParamsHandling: 'merge'});
+  }
+
+  removeAllFilterLocation() {
+    this.router.navigate(['/shops/search'], {queryParams: {location: null}, queryParamsHandling: 'merge'});
+  }
+
+  normalizer ( data ) {
+    const slug = new schema.Entity('slug', {
+
+    });
+
+    const fourthCategory = new schema.Entity('fourthCategory', {
+
+    });
+
+    // // // Define your comments schema
+    const thirdCategory = new schema.Entity('thirdCategory', {
+      name : name,
+      children : [fourthCategory]
+    });
+
+    const secondCategory = new schema.Entity('secondCategory', {
+      // idAttribute: () => slug
+      children : [thirdCategory]
+    });
+
+    const object = new schema.Array(secondCategory);
+
+
+    return normalize(data, object);
+  }
+
 
   typeOf( val ) {
     return typeof val;
   }
-  loadNextPage(pageIndex) {
-    /*const url = this.router.url;
-
-    if (url.indexOf('/search') > -1) {
-      this.searchState = 'search';
-      this.normalizedCategoryCodeList = null;
-      this.previous = null;
-      this.currentSlug = null;
-      this.totalSearchRequest$.next(param);
-    } else {
-      const categoryUrl = this.router.url.split('/');
-      let categoryCurrentCode = 0;
-      if (categoryUrl[categoryUrl.length - 1].indexOf('?') > -1) {
-        categoryUrl[categoryUrl.length - 1] = categoryUrl[categoryUrl.length - 1].substring(0, categoryUrl[categoryUrl.length - 1].indexOf('?'));
-      }
-
-      switch (categoryUrl.length) {
-        case 5 :
-          categoryCurrentCode = this.categoryMap[categoryUrl[3]][categoryUrl[4]].code;
-          break;
-        case 6 :
-          categoryCurrentCode = this.categoryMap[categoryUrl[3]][categoryUrl[4]][categoryUrl[5]].code;
-          break;
-        case 7 :
-          categoryCurrentCode = this.categoryMap[categoryUrl[3]][categoryUrl[4]][categoryUrl[5]][categoryUrl[6]].code;
-          break;
-      }
-
-      this.categorySearchReqeust$.next(categoryCurrentCode);
-
-    }*/
-  }
-
-  @HostListener('window:scroll', ['$event'])
-  onScrollDown(event) {
-    console.log('end!');
-    console.log(this.isLoading);
-    if (!this.isLoading) {
-      this.isLoading = true;
-      console.log('call next page');
-      console.log(this.isLoading);
-      this.currentPage += 1;
-      this.loadNextPage(this.currentPage);
-    }
-  }
-
 }
+
+

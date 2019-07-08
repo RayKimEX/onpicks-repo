@@ -1,8 +1,11 @@
-import {Injectable, Renderer2} from '@angular/core';
+import {Inject, Injectable, Renderer2, RendererFactory2} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {DisplayAlertMessage} from '../../../../core/store/ui/ui.actions';
 import {normalize, schema} from 'normalizr';
 import {Title} from '@angular/platform-browser';
+import {DOMAIN_HOST} from '../../../../core/global-constant/app.config';
+import {CATEGORY_CODE_MAP} from '../../../../core/global-constant/app.category-database-long';
+import {HttpClient} from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -16,22 +19,60 @@ export class SearchCategoryService {
   currentSlug;
   currentCode;
   currentTitle;
+  currentPage;
   currentName = '';
+  currentList = [];
   queryParams;
   searchState;
-  brandListForCheck = {};
-  locationListForCheck = {};
-  valueListForCheck = {};
   currentParamList = {};
-
   currentSortSlug;
+  renderer: Renderer2;
+  filters;
+  locationList;
+  locationListForCheck = {};
+  brandList;
+  brandListForCheck = {};
+  valueList;
+  valueListForCheck = {};
+  infoList = [];
+
+
   constructor(
     public router: Router,
     public route: ActivatedRoute,
-    public renderer: Renderer2,
     public titleService: Title,
 
-  ) { }
+  ) {
+
+  }
+  get filterList() {
+    let filterList = [];
+
+    // 브랜드, 밸류, 출고지 필터들을 종류에 상관없이 1차원 배열로 나열한다.
+    Object.keys(this.filters).forEach(type => {
+      switch (type) {
+        case 'brands':
+          filterList = filterList.concat(
+            (this.filters[type] || []).map(({slug, name}) => ({type: 'brand', key: slug, value: name}))
+          );
+          break;
+        case 'values':
+          filterList = filterList.concat(
+            (this.filters[type] || []).map(({slug, name}) => ({type: 'value', key: slug, value: name}))
+          );
+          break;
+        case 'locations':
+          filterList = filterList.concat(
+            (this.filters[type] || []).map(({code, name}) => ({type: 'location', key: code, value: name}))
+          );
+          break;
+        default:
+          break;
+      }
+    });
+
+    return filterList;
+  }
 
   categoryClicked( xCategoryCode ) {
     this.router.navigate( ['/shops/search'], { queryParams: {page : 1, category: xCategoryCode}, queryParamsHandling: 'merge'} );

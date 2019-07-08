@@ -1,4 +1,4 @@
-import {Component, OnInit, ChangeDetectionStrategy, Input, Inject, LOCALE_ID, OnDestroy} from '@angular/core';
+import {Component, OnInit, ChangeDetectionStrategy, Input, Inject, LOCALE_ID, OnDestroy, Renderer2} from '@angular/core';
 import {Router} from '@angular/router';
 import {select, Store} from '@ngrx/store';
 import {Title} from '@angular/platform-browser';
@@ -21,8 +21,27 @@ export class SearchCategoryNavigatorComponent implements OnInit, OnDestroy {
     private store: Store<any>,
     private titleService: Title,
     private searchCategoryService: SearchCategoryService,
+    renderer: Renderer2
 
   ) {
+    searchCategoryService.renderer = renderer;
+    this.uiStore$ = this.store.pipe(select(state => state.ui.currentCategoryList))
+      .subscribe(val => {
+        // this.categoryList = val;
+        searchCategoryService.normalizedCategoryInfoList = val.entities;
+        searchCategoryService.normalizedCategoryCodeList = val.result;
+        searchCategoryService.previous = val.previous;
+        searchCategoryService.currentSlug = val.currentSlug;
+        searchCategoryService.currentCode = val.currentCode;
+        searchCategoryService.currentCategoryCode = val.currentCode;
+
+        searchCategoryService.currentName = val.currentName;
+        searchCategoryService.currentTitle = val.currentTitle;
+
+        if ( searchCategoryService.currentName !== undefined ) {
+          searchCategoryService.titleService.setTitle(searchCategoryService.currentName[this.locale]);
+        }
+      });
   }
 
   ngOnInit() {
