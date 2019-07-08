@@ -612,7 +612,12 @@
         </div>
 
         <div class="search-content__content--outer" *ngIf="isMobile">
-          <div class="search-content__content">
+          <div class="search-content__content"
+               infinite-scroll
+               [immediateCheck]="true"
+               [infiniteScrollDistance]="4"
+               [infiniteScrollThrottle]="50"
+               (scrolled)="onScrollDown(this)">
             <ul #container *ngLet="(currency| async) as currencyAync">
               <li #itemList *ngFor="let item of infiniteList; index as i" class="search-content__item">
                 <div>
@@ -745,12 +750,13 @@
                 </div>
               </li>
             </ul>
+            <onpicks-loading-icon *ngIf="isLoading"></onpicks-loading-icon>
           </div>
         </div>
 
       </div>
 
-      <div class="search-content__pagination--outer" *ngIf="currentList != null && currentList.length !== 0">
+      <div class="search-content__pagination--outer" *ngIf="currentList != null && currentList.length !== 0 && !isMobile">
         <div class="search-content__pagination">
           <ul *ngIf="currentPage >= 1">
             <li *ngIf="currentPage !== 1">
