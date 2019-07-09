@@ -32,8 +32,6 @@ export class CheckoutUsComponent implements OnInit, AfterViewInit {
 
   @ViewChild('paypalPayment') paypalPayment;
 
-  private footerHeight: number;
-  private windowInnerHeight: number;
 
   constructor(
     @Inject( STATE_LIST ) public stateList,
@@ -83,7 +81,7 @@ export class CheckoutUsComponent implements OnInit, AfterViewInit {
     'country': '',
     'zip_code': '',
     'phone_number': ''
-  }
+  };
 
   stripeCard;
 
@@ -112,8 +110,6 @@ export class CheckoutUsComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.windowInnerHeight = window.innerHeight;
-    this.footerHeight = (document.querySelector('footer') as HTMLElement).offsetHeight;
     const that = this;
 
     this.paypalScript = document.createElement('script');
@@ -413,17 +409,5 @@ export class CheckoutUsComponent implements OnInit, AfterViewInit {
       this.errorStatus |= this.INVALID_PHONE_NUMBER;
     }
   }
-  @HostListener('window:resize', ['$event'])
-  onResize(event) {
-    this.windowInnerHeight = window.innerHeight;
-  }
-  @HostListener('window:scroll', ['$event'])
-  scrollHandler(event) {
-    const checkoutRightMenu = (document.querySelector('.checkout-right__menu') as HTMLElement);
-    const bodyHeight = (document.querySelector('body') as HTMLElement).offsetHeight;
-    const scrollTop = event.target.scrollingElement.scrollTop;
-    if (scrollTop + this.windowInnerHeight < bodyHeight - this.footerHeight ){
-      checkoutRightMenu.style.top = (scrollTop) + 'px';
-    }
-  }
+
 }

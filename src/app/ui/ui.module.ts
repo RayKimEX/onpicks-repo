@@ -41,11 +41,6 @@ import { BannerComponent } from './pure/common/banner/banner.component';
 import { TrendingReviewsComponent } from './pure/onpicks/list/trending-reviews/trending-reviews.component';
 import { FlagIconComponent } from './pure/onpicks/icon/flag-icon/flag-icon.component';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
-import { SearchContentEmptyComponent } from './emitter/search-navigator/components/search-content-empty/search-content-empty.component';
-import { SearchCategoryNavigatorComponent } from './emitter/search-navigator/components/search-category-navigator/search-category-navigator.component';
-import { SearchCategoryComponent } from './emitter/search-navigator/components/search-category/search-category.component';
-import { SearchFilterComponent } from './emitter/search-navigator/components/search-filter/search-filter.component';
-import { SearchBrandComponent } from './emitter/search-navigator/components/search-brand/search-brand.component';
 
 @NgModule({
 
@@ -94,11 +89,6 @@ import { SearchBrandComponent } from './emitter/search-navigator/components/sear
     BannerComponent,
     TrendingReviewsComponent,
     FlagIconComponent,
-    SearchContentEmptyComponent,
-    SearchCategoryNavigatorComponent,
-    SearchCategoryComponent,
-    SearchFilterComponent,
-    SearchBrandComponent,
   ],
   exports: [
     SimpleCarouselComponent,

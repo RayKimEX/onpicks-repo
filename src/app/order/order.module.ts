@@ -15,6 +15,7 @@ import {ReactiveFormsModule} from '@angular/forms';
 import { CheckoutKrComponent } from './components/checkout-kr/checkout-kr.component';
 import { CheckoutUsComponent } from './components/checkout-us/checkout-us.component';
 import { CheckoutFailureComponent } from './pages/checkout-failure/checkout-failure.component';
+import { FloatingCheckoutDirective } from './directive/floating-checkout.directive';
 
 @NgModule({
   imports: [
@@ -33,7 +34,8 @@ import { CheckoutFailureComponent } from './pages/checkout-failure/checkout-fail
     CheckoutSuccessVirtualAccountComponent,
     CheckoutKrComponent,
     CheckoutUsComponent,
-    CheckoutFailureComponent
+    CheckoutFailureComponent,
+    FloatingCheckoutDirective
   ],
   providers: [
     CartToCheckoutService

@@ -356,14 +356,14 @@
   <div
     [ngClass]="[ isThirdBreakPoint ? 'col-6-of-12 checkout-right' : 'checkout-right'] ">
     <div
-      class="checkout-right__menu"
+      class="checkout-right__menu" onpicksFloatingCheckout
       *ngIf="(checkoutStore$ | async) as data; ">
       <h3
         i18n="@@word__order-summary"
         class="checkout-right__menu--title subtitle-1-bold">
         최종결제금액
       </h3>
-      <div class="checkout_right__menu--container">
+        <div class="checkout-right__menu--item-outer ">
         <div class="checkout-right__menu--item" *ngFor="let item of data.items">
           <div class="checkout-right__menu--item-image">
             <img drLazyLoad src="{{item.thumbnail}}" alt="">

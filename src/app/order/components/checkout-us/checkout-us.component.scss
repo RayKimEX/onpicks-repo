@@ -56,12 +56,9 @@
   }
 
   &-right {
-    position: relative;
-    width: 100%;
     &__menu {
-      position: absolute;
       background: white;
-      width: 100%;
+      position: relative;
       @include respond(tb){
         display:none;
       }
@@ -122,6 +119,10 @@
       }
 
       &--item {
+        &-outer{
+          overflow-y: scroll;
+          max-height: 50vh;
+        }
 
         border-top : 1px solid $color-light-grey;
         position : relative;

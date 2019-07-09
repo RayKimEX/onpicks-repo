@@ -82,7 +82,7 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
 
   /***** filter modal For Mobile ****/
   isShowMobileFilter = false;
-  mobileFilterState = 'menu'
+  mobileFilterState = 'menu';
   isMobile = false;
 
   /******* subscribe ******/
@@ -146,7 +146,7 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
       },
       value: 'price_low'
     }
-  ]
+  ];
 
   sortMap = {
     'most_popular' : {
@@ -169,7 +169,7 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
       ko : '가격 낮은순',
       en : ''
     }
-  }
+  };
   constructor(
     @Inject( CURRENCY ) public currency: BehaviorSubject<any>,
     @Inject( LOCATION_MAP ) public locationMap: any,
@@ -417,7 +417,7 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.contentHeight = (window.screen.height - 400) < 300 ? '' : (window.screen.height) + 'px';
-    if(this.isMobile){
+    if ( this.isMobile ) {
       const url = this.router.url;
       if ( url.indexOf('/search') > -1 && url.indexOf('/c/') > -1) {
         return;
@@ -427,7 +427,7 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
   }
 
   // 이 부분의 정확한 역할에 맞는 네이밍 필요
-  setSearchParams(_infoList){
+  setSearchParams(_infoList) {
     this.filters = _infoList.filters;
     this.valueList = _infoList.aggregation.values;
     this.locationList = _infoList.aggregation.locations;
