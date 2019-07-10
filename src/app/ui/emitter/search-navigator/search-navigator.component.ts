@@ -716,6 +716,9 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
     if (currentParamList['page']) {
       delete currentParamList['page'];
     }
+    if (currentParamList['ordering']) {
+      delete currentParamList['ordering'];
+    }
     console.log(currentParamList);
     return currentParamList;
   }

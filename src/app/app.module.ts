@@ -189,7 +189,7 @@ export function getCurrency() {
     // JIT
     {
       provide: LOCALE_ID,
-      useValue : 'ko'
+      useValue : 'en'
     },
     {
       // https://localhost
