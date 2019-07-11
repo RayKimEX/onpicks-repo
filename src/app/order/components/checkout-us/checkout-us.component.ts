@@ -70,16 +70,22 @@ export class CheckoutUsComponent implements OnInit, AfterViewInit {
   inputCityValue = '';
 
 
-  stripePaymentData = {
-    'stripe_token' : '',
-    'full_name' : '',
-    'street_address_1': '',
-    'street_address_2': '',
-    'city': '',
-    'state': null,
-    'country': '',
-    'zip_code': '',
-    'phone_number': ''
+  paymentData = {
+    'token' : '',
+    'full_name' : '홍길동',
+    'street_address_1': 'street_address_1',
+    'street_address_2': 'street_address_2',
+    'city': 'Brooklyn',
+    'state': 'NY',
+    'country': 'us',
+    'zip_code': '11211',
+    'phone_number': '8223124232',
+    'payment_provider' : '',
+    'payment_status' : 'paid',
+    'buyer_contact': '8223124232',
+    'buyer_name': '홍길동',
+    'customs_id_number': 'US',
+    'payment_method': 'card'
   }
 
   stripeCard;
@@ -112,13 +118,17 @@ export class CheckoutUsComponent implements OnInit, AfterViewInit {
     const that = this;
 
     this.paypalScript = document.createElement('script');
-    this.paypalScript.src = 'https://www.paypal.com/sdk/js?client-id=AWt9c2qy20OweuAcv_qLKqmaDccTmGTbz6c3mnxRmtpAk-cwP3Q9RHIUTRHnHwrXpzB6_nppyWroVZSg';
+    this.paypalScript.src = 'https://www.paypal.com/sdk/js?disable-funding=card&client-id=AWt9c2qy20OweuAcv_qLKqmaDccTmGTbz6c3mnxRmtpAk-cwP3Q9RHIUTRHnHwrXpzB6_nppyWroVZSg';
     this.paypalScript.async = true;
     this.paypalScript.onload = function () {
       // @ts-ignore
       console.log(that.paypalPayment);
       // @ts-ignore
       paypal.Buttons({
+        style : {
+          color: 'white',
+          height: 40
+        },
         createOrder : function(data, actions) {
           return actions.order.create({
             purchase_units: [{
@@ -150,6 +160,25 @@ export class CheckoutUsComponent implements OnInit, AfterViewInit {
                 }
               ],
             }]
+          });
+        },
+        onApprove: function(data, actions) {
+          return actions.order.capture().then(function (details) {
+            alert('Transaction completed by ' + details.payer.name.given_name);
+
+            const csrfToken = that.getCookie('csrftoken');
+            that.paymentData.token = data.orderID;
+            that.paymentData.payment_provider = 'paypal';
+            return fetch('/api/orders/', {
+              method: 'post',
+              headers: {
+                'X-CSRFTOKEN' : csrfToken,
+                'content-type': 'application/json'
+              },
+              body: JSON.stringify(
+                that.paymentData
+              )
+            });
           });
         }
       }).render(that.paypalPayment.nativeElement);
@@ -205,10 +234,27 @@ export class CheckoutUsComponent implements OnInit, AfterViewInit {
     document.head.appendChild(this.stripeScript);
   }
 
+
+  getCookie(cname) {
+    const name = cname + '=';
+    const decodedCookie = decodeURIComponent(document.cookie);
+    const ca = decodedCookie.split(';');
+    for ( let i = 0; i < ca.length; i++) {
+      let c = ca[i];
+      while (c.charAt(0) === ' ') {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) === 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    return '';
+  }
+
   currentState(xData) {
     this.inputZipCode.nativeElement.children[0].value = '';
     this.inputCity.nativeElement.children[0].value = '';
-    this.stripePaymentData.state = xData.value;
+    this.paymentData.state = xData.value;
     console.log(xData);
   }
 
@@ -224,14 +270,14 @@ export class CheckoutUsComponent implements OnInit, AfterViewInit {
 
     if( this.errorStatus !== 0 ) { return; }
 
-    this.stripePaymentData.city = this.inputCity.nativeElement.children[0].value;
-    this.stripePaymentData.full_name = this.inputFullName.nativeElement.children[0].value;
-    this.stripePaymentData.street_address_1 = this.inputAddressName.nativeElement.children[0].value;
-    this.stripePaymentData.street_address_2 = this.inputFloor.nativeElement.children[0].value;
-    this.stripePaymentData.zip_code = this.inputZipCode.nativeElement.children[0].value;
-    this.stripePaymentData.phone_number = this.inputPhone.nativeElement.children[0].value;
+    this.paymentData.city = this.inputCity.nativeElement.children[0].value;
+    this.paymentData.full_name = this.inputFullName.nativeElement.children[0].value;
+    this.paymentData.street_address_1 = this.inputAddressName.nativeElement.children[0].value;
+    this.paymentData.street_address_2 = this.inputFloor.nativeElement.children[0].value;
+    this.paymentData.zip_code = this.inputZipCode.nativeElement.children[0].value;
+    this.paymentData.phone_number = this.inputPhone.nativeElement.children[0].value;
 
-    console.log(this.stripePaymentData.phone_number);
+    console.log(this.paymentData.phone_number);
     const that = this;
     this.stripe.createToken(this.stripeCard).then(function(result) {
 
@@ -240,17 +286,16 @@ export class CheckoutUsComponent implements OnInit, AfterViewInit {
         const displayError = that.cardErrors.nativeElement;
         displayError.textContent = result.error.message;
       } else {
-        that.stripePaymentData.stripe_token = result.token.id;
-
-        that.httpClient.post<any>(that.BASE_URL + '/api/orders/US-100000000/payments/stripe_payment/',
-          that.stripePaymentData, {responseType: 'json' })
+        that.paymentData.token = result.token.id;
+        that.paymentData.payment_provider = 'stripe';
+        that.httpClient.post<any>(that.BASE_URL + '/api/orders/',
+          that.paymentData, { responseType: 'json' } )
         .subscribe( response => {
-          console.log('success!!')
             console.log(response);
-            that.router.navigate(['/order/checkout-success'], { queryParams: { order_code : response.order_code }});
+            console.log('checkout success!!');
+            // that.router.navigate(['/order/checkout-success'], { queryParams: { order_code : response.order_code }});
         }, error => {
-          console.log('error!!')
-          console.log(error);
+          console.error(error);
         });
       }
     });
@@ -316,7 +361,7 @@ export class CheckoutUsComponent implements OnInit, AfterViewInit {
             if ( type === 'political' || type === 'administrative_area_level_1') {
               typeValidCnt++;
               if ( typeValidCnt === 2 ) {
-                this.stripePaymentData.state = item.short_name;
+                this.paymentData.state = item.short_name;
               }
             }
           });
@@ -346,7 +391,7 @@ export class CheckoutUsComponent implements OnInit, AfterViewInit {
 
   stateCheck() {
     // EMPTY_STATE
-    if ( this.stripePaymentData.state === null ) {
+    if ( this.paymentData.state === null ) {
       this.errorStatus |= this.EMPTY_STATE;
     } else {
       this.errorStatus &= ~this.EMPTY_STATE;

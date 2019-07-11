@@ -114,7 +114,6 @@ export class DeliveryAddressComponent implements OnInit, AfterViewInit, OnDestro
   }
 
   ngAfterViewInit() {
-    console.log(location.protocol);
     this.searchInputFirstEvent$ = fromEvent(this.inputSearchBox.first.searchInputBox.nativeElement, 'input');
     this.searchInputLastEvent$ = fromEvent(this.inputSearchBox.last.searchInputBox.nativeElement, 'input');
 
@@ -195,7 +194,7 @@ export class DeliveryAddressComponent implements OnInit, AfterViewInit, OnDestro
 
     this.jusoList = [];
     this.searchState = 0;
-    if( this.isShowDeliveryModal === true ){
+    if ( this.isShowDeliveryModal === true ) {
       if ( this.isShowSearchBox === false ) {
         if ( xParam === 'input' && this.inputJuso.first.nativeElement.children[0].value !== ''  ) {
           return;
