@@ -9,8 +9,12 @@
           Shipping
         </h1>
 
-        <div class="checkout--block">
-          <div class="checkout--subtitle subtitle-2-regular">*Full Name</div>
+        <div
+          class="checkout--block">
+          <div
+            class="checkout--subtitle subtitle-2-regular">
+            *Full Name
+          </div>
           <onpicks-input-box
             #inputFullName
             [width]="'40.8rem'"
@@ -20,11 +24,19 @@
             value="홍길동"
             [placeholder]="'Enter'">
           </onpicks-input-box>
-          <div *ngIf="checkBitWise(EMPTY_FULL_NAME)" class="checkout--error">This is a required field.</div>
+          <div
+            *ngIf="checkBitWise(EMPTY_FULL_NAME)"
+            class="checkout--error">
+            This is a required field.
+          </div>
         </div>
 
-        <div class="checkout--block">
-          <div class="checkout--subtitle subtitle-2-regular">*Address (We do not ship to P.O. Boxes or AFO/FPO addresses)</div>
+        <div
+          class="checkout--block">
+          <div
+            class="checkout--subtitle subtitle-2-regular">
+            *Address (We do not ship to P.O. Boxes or AFO/FPO addresses)
+          </div>
           <onpicks-input-box
             #inputAddressName
             [width]="'40.8rem'"
@@ -34,11 +46,19 @@
             value="Evenue"
             [placeholder]="'Enter'">
           </onpicks-input-box>
-          <div *ngIf="checkBitWise(EMPTY_ADDRESS_NAME)" class="checkout--error">This is a required field.</div>
+          <div
+            *ngIf="checkBitWise(EMPTY_ADDRESS_NAME)"
+            class="checkout--error">
+            This is a required field.
+          </div>
         </div>
 
-        <div class="checkout--block">
-          <div class="checkout--subtitle subtitle-2-regular">Floor, Suite, Apt #</div>
+        <div
+          class="checkout--block">
+          <div
+            class="checkout--subtitle subtitle-2-regular">
+            Floor, Suite, Apt #
+          </div>
           <onpicks-input-box
             #inputFloor
             [width]="'40.8rem'"
@@ -47,8 +67,12 @@
           </onpicks-input-box>
         </div>
 
-        <div class="checkout--block">
-          <div class="checkout--subtitle subtitle-2-regular">*Zip Code</div>
+        <div
+          class="checkout--block">
+          <div
+            class="checkout--subtitle subtitle-2-regular">
+            *Zip Code
+          </div>
           <onpicks-input-box
             #inputZipCode
             [width]="'40.8rem'"
@@ -59,7 +83,11 @@
             value="11211"
             [placeholder]="'Enter'">
           </onpicks-input-box>
-          <div *ngIf="checkBitWise(INCORRECT_ZIP_CODE)" class="checkout--error">Please enter a valid 5-digit zip code.</div>
+          <div
+            *ngIf="checkBitWise(INCORRECT_ZIP_CODE)"
+            class="checkout--error">
+            Please enter a valid 5-digit zip code.
+          </div>
         </div>
 
 
@@ -77,7 +105,11 @@
             [selectedElement]="{ value : 'NY' }">
             <!--[selectedElement]="{ value : stripePaymentData.state }">-->
           </onpicks-select-box>
-          <div *ngIf="checkBitWise(EMPTY_STATE)" class="checkout--error">This is a required field.</div>
+          <div
+            *ngIf="checkBitWise(EMPTY_STATE)"
+            class="checkout--error">
+            This is a required field.
+          </div>
         </div>
 
         <div
@@ -115,7 +147,11 @@
             value="3222762670"
             [placeholder]="'Enter'">
           </onpicks-input-box>
-          <div *ngIf="checkBitWise(INVALID_PHONE_NUMBER)" class="checkout--error">Please enter a valid 10-digit phone number including area code</div>
+          <div
+            *ngIf="checkBitWise(INVALID_PHONE_NUMBER)"
+            class="checkout--error">
+            Please enter a valid 10-digit phone number including area code
+          </div>
         </div>
       </div>
 
@@ -183,8 +219,6 @@
           Apply
         </onpicks-button>
       </div>
-
-
     </div>
   </div>
 

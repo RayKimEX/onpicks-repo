@@ -42,8 +42,77 @@ export class CheckoutUsComponent implements OnInit, AfterViewInit {
     private httpClient: HttpClient,
     private router: Router,
   ) {
+    const that = this;
     this.checkoutStore$ = this.orderDataService.getCheckoutData().pipe(
-      tap( v => console.log(v)),
+      tap( v => {
+        this.checkoutStore = v;
+        console.log(v);
+
+        this.paypalScript = document.createElement('script');
+        this.paypalScript.src = 'https://www.paypal.com/sdk/js?disable-funding=card&client-id=AWt9c2qy20OweuAcv_qLKqmaDccTmGTbz6c3mnxRmtpAk-cwP3Q9RHIUTRHnHwrXpzB6_nppyWroVZSg';
+        this.paypalScript.async = true;
+        this.paypalScript.onload = function () {
+          // @ts-ignore
+          console.log(that.paypalPayment);
+          // @ts-ignore
+          paypal.Buttons({
+            style : {
+              color: 'white',
+              height: 40
+            },
+            createOrder : function(data, actions) {
+              const purchase_items = []
+              that.checkoutStore.items.forEach( (item, index) => {
+                purchase_items.push(
+                  {
+                    name : item.title,
+                    quantity : item.quantity,
+                    unit_amount : {
+                      currency_code : that.checkoutStore.currency,
+                      value : item.price
+                    }
+                  }
+                );
+              })
+
+              return actions.order.create({
+                purchase_units: [{
+                  amount: {
+                    value: that.checkoutStore.total_items,
+                    breakdown : {
+                      item_total : {
+                        currency_code : that.checkoutStore.currency,
+                        value : that.checkoutStore.total_items
+                      }
+                    }
+                  },
+                  items : purchase_items,
+                }]
+              });
+            },
+            onApprove: function(data, actions) {
+              return actions.order.capture().then(function (details) {
+                alert('Transaction completed by ' + details.payer.name.given_name);
+
+                const csrfToken = that.getCookie('csrftoken');
+                that.paymentData.token = data.orderID;
+                that.paymentData.payment_provider = 'paypal';
+                return fetch('/api/orders/', {
+                  method: 'post',
+                  headers: {
+                    'X-CSRFTOKEN' : csrfToken,
+                    'content-type': 'application/json'
+                  },
+                  body: JSON.stringify(
+                    that.paymentData
+                  )
+                });
+              });
+            }
+          }).render(that.paypalPayment.nativeElement);
+        }
+        document.head.appendChild(this.paypalScript);
+      }),
     );
   }
   // https://maps.googleapis.com/maps/api/geocode/json?address=11211&key=AIzaSyDNrW4gjz_0GmK6aQmCWv7ebp_xqfO3VdE&language=en
@@ -60,11 +129,11 @@ export class CheckoutUsComponent implements OnInit, AfterViewInit {
   errorStatus = 0;
 
   checkoutStore$;
+  checkoutStore;
   stripeScript;
   paypalScript;
   initialGroup: FormGroup;
   stripe;
-
 
   /***********City Input*************/
   inputCityValue = '';
@@ -117,73 +186,7 @@ export class CheckoutUsComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
     const that = this;
 
-    this.paypalScript = document.createElement('script');
-    this.paypalScript.src = 'https://www.paypal.com/sdk/js?disable-funding=card&client-id=AWt9c2qy20OweuAcv_qLKqmaDccTmGTbz6c3mnxRmtpAk-cwP3Q9RHIUTRHnHwrXpzB6_nppyWroVZSg';
-    this.paypalScript.async = true;
-    this.paypalScript.onload = function () {
-      // @ts-ignore
-      console.log(that.paypalPayment);
-      // @ts-ignore
-      paypal.Buttons({
-        style : {
-          color: 'white',
-          height: 40
-        },
-        createOrder : function(data, actions) {
-          return actions.order.create({
-            purchase_units: [{
-              amount: {
-                value: 2.5,
-                breakdown : {
-                  item_total : {
-                    currency_code : 'USD',
-                    value : 2.5
-                  }
-                }
-              },
-              items : [
-                {
-                  name : 'abc',
-                  quantity : 2,
-                  unit_amount : {
-                    currency_code : 'USD',
-                    value : 0.5
-                  }
-                },
-                {
-                  name : 'ddd',
-                  quantity : 3,
-                  unit_amount : {
-                    currency_code : 'USD',
-                    value : 0.5
-                  }
-                }
-              ],
-            }]
-          });
-        },
-        onApprove: function(data, actions) {
-          return actions.order.capture().then(function (details) {
-            alert('Transaction completed by ' + details.payer.name.given_name);
 
-            const csrfToken = that.getCookie('csrftoken');
-            that.paymentData.token = data.orderID;
-            that.paymentData.payment_provider = 'paypal';
-            return fetch('/api/orders/', {
-              method: 'post',
-              headers: {
-                'X-CSRFTOKEN' : csrfToken,
-                'content-type': 'application/json'
-              },
-              body: JSON.stringify(
-                that.paymentData
-              )
-            });
-          });
-        }
-      }).render(that.paypalPayment.nativeElement);
-    }
-    document.head.appendChild(this.paypalScript);
 
     this.stripeScript = document.createElement('script');
     this.stripeScript.src = 'https://js.stripe.com/v3/';
