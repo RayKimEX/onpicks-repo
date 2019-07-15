@@ -36,7 +36,7 @@
       </trans-unit>
 
       <trans-unit id="header__login" datatype="html">
-        <target>login</target>
+        <target>Sign In</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/ui/onpicks/header/header.component.html</context>
           <context context-type="linenumber">52</context>
@@ -44,7 +44,7 @@
       </trans-unit>
 
       <trans-unit id="header__signup" datatype="html">
-        <target>signup</target>
+        <target>Register</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/ui/onpicks/header/header.component.html</context>
           <context context-type="linenumber">52</context>
@@ -579,7 +579,7 @@
       </trans-unit>
 
       <trans-unit id="login__miscell--login" datatype="html">
-        <target>Log in</target>
+        <target>Sign In</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
           <context context-type="linenumber">52</context>
@@ -595,7 +595,7 @@
       </trans-unit>
 
       <trans-unit id="login__no-account--sign-up" datatype="html">
-        <target>Sign up</target>
+        <target>Create Account</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
           <context context-type="linenumber">52</context>
@@ -652,7 +652,7 @@
       </trans-unit>
 
       <trans-unit id="signup__agreement-and-signup" datatype="html">
-        <target>Sign up</target>
+        <target>Register</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
           <context context-type="linenumber">52</context>
@@ -668,7 +668,7 @@
       </trans-unit>
 
       <trans-unit id="signup__already-account--login" datatype="html">
-        <target>Log in</target>
+        <target>Sign In</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
           <context context-type="linenumber">52</context>
