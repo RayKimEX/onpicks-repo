@@ -233,7 +233,7 @@ export class CheckoutUsComponent implements OnInit, AfterViewInit {
 
     console.log(this.stripePaymentData.phone_number);
     const that = this;
-    this.httpClient.post<any>('/api/orders/KR-001000001/payments/inipay_webstd_return/', {}).subscribe( response => {
+    this.httpClient.post<any>('/api/orders/KR-000000099/payments/inipay_webstd_return/', {}).subscribe( response => {
       console.log(response);
     }, error => {
       console.log(error);
