@@ -233,27 +233,32 @@ export class CheckoutUsComponent implements OnInit, AfterViewInit {
 
     console.log(this.stripePaymentData.phone_number);
     const that = this;
-    this.stripe.createToken(this.stripeCard).then(function(result) {
-
-      if (result.error) {
-        // Inform the customer that there was an error.
-        const displayError = that.cardErrors.nativeElement;
-        displayError.textContent = result.error.message;
-      } else {
-        that.stripePaymentData.stripe_token = result.token.id;
-
-        that.httpClient.post<any>(that.BASE_URL + '/api/orders/US-100000000/payments/stripe_payment/',
-          that.stripePaymentData, {responseType: 'json' })
-        .subscribe( response => {
-          console.log('success!!')
-            console.log(response);
-            that.router.navigate(['/order/checkout-success'], { queryParams: { order_code : response.order_code }});
-        }, error => {
-          console.log('error!!')
-          console.log(error);
-        });
-      }
+    this.httpClient.post<any>('/api/orders/KR-001000001/payments/inipay_webstd_return/', {}).subscribe( response => {
+      console.log(response);
+    }, error => {
+      console.log(error);
     });
+    // this.stripe.createToken(this.stripeCard).then(function(result) {
+    //
+    //   if (result.error) {
+    //     // Inform the customer that there was an error.
+    //     const displayError = that.cardErrors.nativeElement;
+    //     displayError.textContent = result.error.message;
+    //   } else {
+    //     that.stripePaymentData.stripe_token = result.token.id;
+    //
+    //     that.httpClient.post<any>(that.BASE_URL + '/api/orders/US-100000000/payments/stripe_payment/',
+    //       that.stripePaymentData, {responseType: 'json' })
+    //     .subscribe( response => {
+    //       console.log('success!!')
+    //         console.log(response);
+    //         that.router.navigate(['/order/checkout-success'], { queryParams: { order_code : response.order_code }});
+    //     }, error => {
+    //       console.log('error!!')
+    //       console.log(error);
+    //     });
+    //   }
+    // });
   }
 
   checkBitWise( data ) {
