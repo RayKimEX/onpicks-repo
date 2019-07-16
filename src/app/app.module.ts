@@ -24,9 +24,9 @@ import {
   CURRENCY,
   DOMAIN_HOST, IMAGE_HOST,
   LOCATION_MAP,
-  LOCATION_MAP_CONST, REGION_ID,
+  LOCATION_MAP_CONST, PAYPAL_API_KEY, PAYPAL_API_KEY_TOKEN, REGION_ID,
   RESPONSIVE_MAP,
-  RESPONSIVE_MAP_CONST
+  RESPONSIVE_MAP_CONST, STRIPE_API_KEY, STRIPE_API_KEY_TOKEN
 } from './core/global-constant/app.config';
 import {AuthInterceptorService} from './core/service/auth/auth-interceptor.service';
 import {UiEffects} from './core/store/ui/ui.effects';
@@ -40,6 +40,7 @@ import {CATEGORY_SECOND_MAP, CATEGORY_SECOND_MAP_CONST} from './core/global-cons
 import {DISPLAY_ALERT_MESSAGE_MAP, DISPLAY_ALERT_MESSAGE_MAP_CONST, MENU_MAP, MENU_MAP_CONST, PREFERENCE_MAP, PREFERENCE_MAP_CONST, REPORT_REASON_MAP, REPORT_REASON_MAP_CONST, TITLE_MAP, TITLE_MAP_CONST} from './core/global-constant/app.locale';
 import {STATE_LIST, STATE_LIST_CONST} from './core/global-constant/app.database';
 import {DISPLAY_ALERT_MESSAGE} from './core/store/ui/ui.actions';
+import {environment} from '../environments/environment';
 // export function getBaseHref(platformLocation: PlatformLocation): string {
 //   return platformLocation.getBaseHrefFromDOM();
 // }
@@ -65,7 +66,7 @@ function setCookie(cname, cvalue ) {
   // d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
   // const expires = 'expires=' + d.toUTCString();
 
-  if (isDevMode()) {
+  if ( !environment.production ) {
     document.cookie = cname + '=' + cvalue + ';path=/';
   } else {
     document.cookie = cname + '=' + cvalue + ';domain=.onpicks.com;path=/';
@@ -87,24 +88,22 @@ export function getImageHost() {
 }
 
 export function getCurrency() {
-  console.log('@@@@@@@@@@@!@@')
-  console.log(getCookie('onpicks-currency') );
   if (getCookie('onpicks-currency') === '') {
     switch (window.location.pathname.split('/')[1]) {
       case 'kr' :
-        setCookie( 'onpicks-language', 'ko');
-        setCookie( 'onpicks-currency', 'KRW');
+        setCookie( 'onpicks-language', 'ko' );
+        setCookie( 'onpicks-currency', 'KRW' );
         break;
       case 'us' :
-        setCookie( 'onpicks-language', 'en');
-        setCookie( 'onpicks-currency', 'USD');
+        setCookie( 'onpicks-language', 'en' );
+        setCookie( 'onpicks-currency', 'USD' );
         break;
       case 'cn' :
-        setCookie( 'onpicks-language', 'zh');
-        setCookie( 'onpicks-currency', 'CNY');
+        setCookie( 'onpicks-language', 'zh' );
+        setCookie( 'onpicks-currency', 'CNY' );
         break;
       default :
-        setCookie( 'onpicks-currency', '???');
+        setCookie( 'onpicks-currency', '???' );
         break;
     }
   } else {
@@ -126,8 +125,6 @@ export function getCurrency() {
         break;
     }
   }
-
-
 
   return new BehaviorSubject(getCookie('onpicks-currency'));
 }
@@ -247,6 +244,14 @@ export function getCurrency() {
     {
       provide : PREFERENCE_MAP,
       useValue : PREFERENCE_MAP_CONST
+    },
+    {
+      provide : STRIPE_API_KEY_TOKEN,
+      useValue : STRIPE_API_KEY
+    },
+    {
+      provide : PAYPAL_API_KEY_TOKEN,
+      useValue : PAYPAL_API_KEY
     }
   ],
   bootstrap: [ AppComponent ]

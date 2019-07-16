@@ -1,4 +1,5 @@
 import { InjectionToken } from '@angular/core';
+import {environment} from '../../../environments/environment';
 
 export const REGION_ID = new InjectionToken<string>('./core/global-constant/app.config');
 
@@ -8,14 +9,27 @@ export const DOMAIN_HOST = new InjectionToken<string>('./core/global-constant/ap
 export const CURRENCY = new InjectionToken<string>('./core/global-constant/app.config');
 
 export const BREAKPOINT =  new InjectionToken<string>('./core/global-constant/app.config');
-// export const BREAKPOINT_TB =  new InjectionToken<string>('./core/global-constant/app.config');
-// export const BREAKPOINT_ACTB =  new InjectionToken<string>('./core/global-constant/app.config');
+
+
+export const API_URL = new InjectionToken<string>('./core/global-constant/app.config');
+export const LOCATION_MAP = new InjectionToken<any>('./core/global-constant/app.config');
+export const RESPONSIVE_MAP = new InjectionToken<any>('./core/global-constant/app.config');
+export const STRIPE_API_KEY_TOKEN = new InjectionToken<string>('./core/global-constant/app.config');
+export const PAYPAL_API_KEY_TOKEN = new InjectionToken<string>('./core/global-constant/app.config');
+
+export const PAYPAL_API_KEY = !environment.production ? 'AWt9c2qy20OweuAcv_qLKqmaDccTmGTbz6c3mnxRmtpAk-cwP3Q9RHIUTRHnHwrXpzB6_nppyWroVZSg' : 'AViPD7AOFOeDGPGs0hLzxTJ3aZTpZSVNfdtnJXX6xwSNVa-bQnwtpkLXbtaRlM8VJ2fA_yloZvHGX4Pq';
+
+
+
+export const STRIPE_API_KEY = !environment.production ? 'pk_test_BdWhs6G5bNDS9XJ9aW5B0J4E00kl5O2qBD' : 'pk_live_hDaCpF43ZbEFKJ8XIVYAt0ki00PRTWzCCk';
+
+
 
 
 // API를 글로벌하게 URL관리하지 않는이유..
 // '/api/products/1/variants/1/'
 // 이런식으로 1같은 값이 중간에 끼어 있으면, 어떻게 처리해야되는지에 대한 해답이 없음
-export const API_URL = new InjectionToken<string>('./core/global-constant/app.config');
+
 export const API_URL_CONST = {
   pageData : {
     p : '/api/products/1/variants/1/',
@@ -23,7 +37,7 @@ export const API_URL_CONST = {
 }
 
 // 배송지
-export const LOCATION_MAP = new InjectionToken<any>('./core/global-constant/app.config');
+
 export const LOCATION_MAP_CONST = {
   'LAX' : {
     nickname : 'la',
@@ -50,7 +64,7 @@ export const LOCATION_MAP_CONST = {
 
 
 // reponsive
-export const /**/RESPONSIVE_MAP = new InjectionToken<any>('./core/global-constant/app.config');
+
 export const RESPONSIVE_MAP_CONST = {
   // 640 / 16
   // third-break-point : popularCategory, collection, popularBrands
