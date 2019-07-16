@@ -110,9 +110,9 @@ export class CheckoutUsComponent implements OnInit, AfterViewInit {
                     that.paymentData
                   )
                 }).then( (response) => {
-                  // if ( response.status === 201) {
-                  //   that.router.navigate(['/order/checkout-success'], { queryParams: { order_code : response.order_code }});
-                  // }
+                  if ( response.status === 201) {
+                    that.router.navigate(['/order/checkout-success'], { queryParams: { order_code : response.order_code }});
+                  }
                 });
               });
             }
@@ -289,7 +289,7 @@ export class CheckoutUsComponent implements OnInit, AfterViewInit {
 
     console.log(this.paymentData.phone_number);
     const that = this;
-    this.httpClient.get<any>('/api/orders/test/', {}).subscribe( response => {
+    this.httpClient.post<any>('/api/orders/KR-001000001/payments/inipay_webstd_return/', {}).subscribe( response => {
       console.log(response);
     }, error => {
       console.log(error);
