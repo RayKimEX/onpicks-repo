@@ -383,6 +383,7 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
         }
 
         if( this.isMobile ){
+          console.log('!!!!!!! Is Mobile !!!!!!');
           this.loadNextPageItems(this.searchInfiniteLoadService.currentPage);
         }
       }

@@ -80,6 +80,9 @@ export class SearchNavigatorMobileFilterComponent implements OnInit {
   }
 
   applyValueFilter() {
+    this.searchInfiniteLoadService.currentPage = 1;
+    this.searchInfiniteLoadService.infiniteList = [];
+
     if ( this.searchState === 'search') {
       this.router.navigate(['/shops/search'], {
         queryParams: { page: null, value: this.queryParams.value.length === 0 ? null : this.queryParams.value},
@@ -104,7 +107,11 @@ export class SearchNavigatorMobileFilterComponent implements OnInit {
   }
 
   applyBrandFilter() {
+    this.searchInfiniteLoadService.currentPage = 1;
+    this.searchInfiniteLoadService.infiniteList = [];
+
     if ( this.searchState === 'search' ) {
+
       this.router.navigate(['/shops/search'], {
         queryParams: {page: null, brand: this.queryParams.brand.length === 0 ? null : this.queryParams.brand},
         queryParamsHandling: 'merge'
@@ -117,6 +124,9 @@ export class SearchNavigatorMobileFilterComponent implements OnInit {
   }
 
   locationClicked(xLocationSlug) {
+    this.searchInfiniteLoadService.currentPage = 1;
+    this.searchInfiniteLoadService.infiniteList = [];
+
     this.exitEvent.emit();
     if (this.locationListForCheck[xLocationSlug] === true) {
       this.locationListForCheck[xLocationSlug] = false;
