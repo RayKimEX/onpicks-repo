@@ -110,9 +110,9 @@ export class CheckoutUsComponent implements OnInit, AfterViewInit {
                     that.paymentData
                   )
                 }).then( (response) => {
-                  if ( response.status === 201) {
-                    that.router.navigate(['/order/checkout-success'], { queryParams: { order_code : response.order_code }});
-                  }
+                  // if ( response.status === 201) {
+                  //   that.router.navigate(['/order/checkout-success'], { queryParams: { order_code : response.order_code }});
+                  // }
                 });
               });
             }
