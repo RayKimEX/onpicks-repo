@@ -27,6 +27,7 @@ import {BreakpointObserver, BreakpointState} from '../../../../../node_modules/@
 import {Title} from '@angular/platform-browser';
 import {DISPLAY_ALERT_MESSAGE_MAP} from '../../../core/global-constant/app.locale';
 import {switchMap, tap} from 'rxjs/operators';
+import {SearchInfiniteLoadService} from './services/search-infinite-load.service';
 @Component({
   selector: 'emitter-search-navigator',
   templateUrl: './search-navigator.component.html',
@@ -79,10 +80,12 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
 
   searchState = '';
 
+  /******* Infinite Scroll ******/
+  infiniteList = [];
 
   /***** filter modal For Mobile ****/
   isShowMobileFilter = false;
-  mobileFilterState = 'menu';
+  mobileFilterState = 'menu'
   isMobile = false;
 
   /******* subscribe ******/
@@ -96,15 +99,12 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
   categorySearchReqeust$ = new Subject();
   routerEvent$;
 
-  /******* infinite loading ******/
   searchNextPageData$;
   searchNextPageRequest$ = new Subject();
   categoryNextPageData$;
   categoryNextPageRequest$ = new Subject();
-  infiniteList = [];
-  isLoading = false;
 
-    // subscribe ``value``
+  // subscribe ``value``
   queryParams = {term: '', brand: [], value: [], location: []};
   cartStore;
 
@@ -146,7 +146,7 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
       },
       value: 'price_low'
     }
-  ];
+  ]
 
   sortMap = {
     'most_popular' : {
@@ -163,11 +163,11 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
     },
     'price_high' : {
       ko : '가격 높은순',
-      en : ''
+      en : 'High Price'
     },
     'price_low' : {
       ko : '가격 낮은순',
-      en : ''
+      en : 'Low Price'
     }
   };
   constructor(
@@ -186,8 +186,10 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
     private cd: ChangeDetectorRef,
     private searchService: SearchService,
     private breakpointObserver:  BreakpointObserver,
-    private titleService: Title
+    private titleService: Title,
+    private searchInfiniteLoadService: SearchInfiniteLoadService,
   ) {
+
     this.breakpointObserver
       .observe([this.responsiveMap['tb']])
       .subscribe((state: BreakpointState) => {
@@ -231,16 +233,31 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
       switchMap((param) => {
         return this.searchService.search(param);
       }),
-    ).subscribe(_infoList => {
+    ).subscribe((_infoList: {filters, aggregation, results, count}) => {
       /* async 데이터가 들어오는데, null이라면 return을 해줌 */
       if (_infoList != null) {
-        this.setSearchParams(_infoList);
+
+        this.filters = _infoList.filters;
+        this.valueList = _infoList.aggregation.values;
+        this.locationList = _infoList.aggregation.locations;
+        this.brandList = _infoList.aggregation.brands;
+        this.categoryList = _infoList.aggregation.categories;
+
+        this.infoList = _infoList.results;
+
+        this.totalCount = _infoList.count;
+        this.totalPage = this.totalCount / this.maxRow;
+
+        this.totalPageArray = Array(parseInt(this.totalPage, 10));
+        this.totalPageArray.push(this.totalPageArray.length + 1);
+
         this.currentList = this.infoList.slice(0, this.maxRow);
         this.cd.markForCheck();
       }
     });
 
-    this.categorySearchData$ = this.categorySearchReqeust$.pipe(
+    this.categorySearchData$ =
+      this.categorySearchReqeust$.pipe(
         switchMap((categoryCurrentCode) => {
           return this.searchService.categorySearch(categoryCurrentCode,
             this.currentSortSlug,
@@ -250,56 +267,87 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
         this.searchState = 'category';
 
         /* async 데이터가 들어오는데, null이라면 return을 해줌 */
-        if (_infoList != null) {
 
-          this.setSearchParams(_infoList);
+        if (_infoList != null) {
+          this.filters = _infoList.filters;
+          this.valueList = _infoList.aggregation.values;
+          this.locationList = _infoList.aggregation.locations;
+          this.brandList = _infoList.aggregation.brands;
+          this.infoList = _infoList.results;
+          this.categoryList = _infoList.aggregation.categories;
+          this.totalCount = _infoList.count;
+          this.totalPage = this.totalCount / this.maxRow;
+
+          this.totalPageArray = Array(parseInt(this.totalPage, 10));
+          this.totalPageArray.push(this.totalPageArray.length + 1);
+
           this.currentList = this.infoList.slice(0, this.maxRow);
           this.cd.markForCheck();
+
         }
+
       });
+
     this.searchNextPageData$ = this.searchNextPageRequest$.pipe(
       switchMap((param) => {
-        this.isLoading = true;
+        this.searchInfiniteLoadService.isLoading = true;
         return this.searchService.search(param);
+
       })
     ).subscribe(_infoList => {
-      /* async 데이터가 들어오는데, null이라면 return을 해줌 */
+      console.log('infinite search!');
+
       if (_infoList != null) {
-        this.setSearchParams(_infoList);
-        this.infiniteList = this.infiniteList.concat(this.infoList);
-        this.isLoading = false;
+        this.filters = _infoList.filters;
+        this.valueList = _infoList.aggregation.values;
+        this.locationList = _infoList.aggregation.locations;
+        this.brandList = _infoList.aggregation.brands;
+        this.categoryList = _infoList.aggregation.categories;
+
+        this.infoList = _infoList.results;
+
+        this.totalCount = _infoList.count;
+        this.totalPage = this.totalCount / this.maxRow;
+
+        this.totalPageArray = Array(parseInt(this.totalPage, 10));
+        this.totalPageArray.push(this.totalPageArray.length + 1);
+
+        this.searchInfiniteLoadService.infiniteList = this.searchInfiniteLoadService.infiniteList.concat(_infoList.results);
+        this.searchInfiniteLoadService.isLoading = false;
         this.cd.markForCheck();
+
       }
     });
     this.categoryNextPageData$ = this.categoryNextPageRequest$.pipe(
       switchMap((categoryCurrentCode) => {
-        this.isLoading = true;
+        this.searchInfiniteLoadService.isLoading = true;
+        console.log('//// current Sort Slug');
+        console.log(this.searchInfiniteLoadService.currentSortSlug);
         return this.searchService.categorySearch(categoryCurrentCode,
-          this.currentSortSlug,
-          this.currentPage, this.router.url.indexOf('?') < 0 ? '' : '&' + this.router.url.substring(this.router.url.indexOf('?') + 1, this.router.url.length));
+          this.searchInfiniteLoadService.currentSortSlug,
+          this.searchInfiniteLoadService.currentPage, this.router.url.indexOf('?') < 0 ? '' : '&' + this.router.url.substring(this.router.url.indexOf('?') + 1, this.router.url.length));
       })
     ).subscribe( (_infoList: {filters, aggregation, results, count}) => {
       this.searchState = 'category';
-
-      /* async 데이터가 들어오는데, null이라면 return을 해줌 */
+      console.log('infinite category!');
       if (_infoList != null) {
-
-        this.setSearchParams(_infoList);
-        this.infiniteList = this.infiniteList.concat(this.infoList);
-        this.isLoading = false;
+        this.searchInfiniteLoadService.infiniteList = this.searchInfiniteLoadService.infiniteList.concat(_infoList.results);
+        console.log(this.searchInfiniteLoadService.infiniteList);
+        this.searchInfiniteLoadService.isLoading = false;
         this.cd.markForCheck();
       }
     });
+
 
     this.routerEvent$ = this.router.events.subscribe( (event: RouterEvent) => {
 
       if (event instanceof NavigationEnd ) {
         const url = this.router.url;
-
         this.currentUrl = url;
         if ( url.indexOf('/search') > -1 && url.indexOf('/c/') > -1) {
           return ;
         }
+
         this.currentList = null;
         this.filters = {};
         // category main페이지 일때
@@ -334,6 +382,9 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
           this.categorySearchReqeust$.next(this.getCategoryCurrentCode());
         }
 
+        if( this.isMobile ){
+          this.loadNextPageItems(this.searchInfiniteLoadService.currentPage);
+        }
       }
     });
 
@@ -376,6 +427,17 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
       });
   }
 
+  ngOnInit() {
+    this.contentHeight = (window.screen.height - 400) < 300 ? '' : (window.screen.height) + 'px';
+    if ( this.isMobile ) {
+      const url = this.router.url;
+      if ( url.indexOf('/search') > -1 && url.indexOf('/c/') > -1) {
+        return;
+      }
+      this.loadNextPageItems(this.searchInfiniteLoadService.currentPage);
+    }
+  }
+
   get filterList() {
     let filterList = [];
 
@@ -413,33 +475,7 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
     this.totalSearchData$.unsubscribe();
     this.categorySearchData$.unsubscribe();
     this.searchNextPageData$.unsubscribe();
-  }
-
-  ngOnInit() {
-    this.contentHeight = (window.screen.height - 400) < 300 ? '' : (window.screen.height) + 'px';
-    if ( this.isMobile ) {
-      const url = this.router.url;
-      if ( url.indexOf('/search') > -1 && url.indexOf('/c/') > -1) {
-        return;
-      }
-      this.loadNextPageItems(this.currentPage);
-    }
-  }
-
-  // 이 부분의 정확한 역할에 맞는 네이밍 필요
-  setSearchParams(_infoList) {
-    this.filters = _infoList.filters;
-    this.valueList = _infoList.aggregation.values;
-    this.locationList = _infoList.aggregation.locations;
-    this.brandList = _infoList.aggregation.brands;
-    this.infoList = _infoList.results;
-    this.categoryList = _infoList.aggregation.categories;
-    this.totalCount = _infoList.count;
-
-    this.totalPage = this.totalCount / this.maxRow;
-    this.totalPageArray = Array(parseInt(this.totalPage, 10));
-    this.totalPageArray.push(this.totalPageArray.length + 1);
-
+    this.categoryNextPageData$.unsubscribe();
   }
 
   showMobileFilter(xMenuState) {
@@ -706,11 +742,6 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
 
     return normalize(data, object);
   }
-
-
-  typeOf( val ) {
-    return typeof val;
-  }
   getCurrentParamListExceptPage() {
     const currentParamList = this.currentParamList;
     if (currentParamList['page']) {
@@ -722,27 +753,35 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
     console.log(currentParamList);
     return currentParamList;
   }
-  loadNextPageItems(currentPage) {
-    const url = this.router.url;
 
+
+  typeOf( val ) {
+    return typeof val;
+  }
+  loadNextPageItems( currentPage: number) {
+    const url = this.router.url;
+    this.currentUrl = url;
     if ( url.indexOf('/search') > -1 && url.indexOf('/c/') > -1) {
-      return;
+      return ;
     }
 
     this.filters = {};
+    // category main페이지 일때
     if (url.indexOf('/search') > -1) {
-      this.searchState = 'search';
-      this.normalizedCategoryCodeList = null;
-      this.previous = null;
-      this.currentSlug = null;
-
-      let param = url.indexOf('?') < 0 ? null : url.substring(url.indexOf('?'), url.length);
+      let param = this.router.url.indexOf('?') < 0 ? null : this.router.url.substring(this.router.url.indexOf('?'), this.router.url.length);
       param = this.replaceStringParam(param, 'page', currentPage);
-      console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
-      console.log(param);
-      this.searchNextPageRequest$.next(param);
+      this.searchNextPageData$.next(param);
     } else {
       this.categoryNextPageRequest$.next(this.getCategoryCurrentCode());
+
+    }
+
+  }
+  onScrollDown (ev) {
+    if (!this.searchInfiniteLoadService.isLoading) {
+      this.searchInfiniteLoadService.currentPage += 1;
+      this.loadNextPageItems(this.searchInfiniteLoadService.currentPage);
+
     }
   }
   replaceStringParam(string, paramName, paramValue) {
@@ -774,14 +813,6 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
         break;
     }
     return categoryCurrentCode;
-  }
-  onScrollDown (ev) {
-    console.log('scrolled down!!', ev);
-    if (!this.isLoading) {
-      this.currentPage += 1;
-      this.loadNextPageItems(this.currentPage);
-
-    }
   }
 
 }

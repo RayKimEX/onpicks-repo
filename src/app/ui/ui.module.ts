@@ -41,6 +41,7 @@ import { BannerComponent } from './pure/common/banner/banner.component';
 import { TrendingReviewsComponent } from './pure/onpicks/list/trending-reviews/trending-reviews.component';
 import { FlagIconComponent } from './pure/onpicks/icon/flag-icon/flag-icon.component';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import {SearchInfiniteLoadService} from './emitter/search-navigator/services/search-infinite-load.service';
 
 @NgModule({
 
@@ -126,7 +127,8 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
     BannerComponent,
     TrendingReviewsComponent,
     FlagIconComponent
-  ]
+  ],
+  providers: [SearchInfiniteLoadService],
 })
 
 export class UiModule { }

@@ -87,8 +87,6 @@ export function getImageHost() {
 }
 
 export function getCurrency() {
-  console.log('@@@@@@@@@@@!@@')
-  console.log(getCookie('onpicks-currency') );
   if (getCookie('onpicks-currency') === '') {
     switch (window.location.pathname.split('/')[1]) {
       case 'kr' :

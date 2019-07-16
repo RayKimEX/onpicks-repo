@@ -225,19 +225,19 @@
         </div>
         <div class="c-filter-navigator">
           <div class="c-filter-navigator__title">
-              <span
-                i18n="@@word__filter"
-                class="c-filter-navigator__title--name subtitle-1-bold">
-                필터
-              </span>
+            <span
+              i18n="@@word__filter"
+              class="c-filter-navigator__title--name subtitle-1-bold">
+              필터
+            </span>
             <span class="c-filter-navigator__title--remove">
-                <a
-                  i18n="@@word__clear-all"
-                  class="subtitle-3-regular u-color-grey"
-                  (click)="removeAllFilter()">
-                  모두제거
-                </a>
-              </span>
+              <a
+                i18n="@@word__clear-all"
+                class="subtitle-3-regular u-color-grey"
+                (click)="removeAllFilter()">
+                모두제거
+              </a>
+            </span>
           </div>
           <div class="c-filter-navigator__content" *ngIf="filterList.length > 0">
             <ul class="c-filter-navigator__content-ul">
@@ -619,7 +619,7 @@
                [infiniteScrollThrottle]="50"
                (scrolled)="onScrollDown(this)">
             <ul #container *ngLet="(currency| async) as currencyAync">
-              <li #itemList *ngFor="let item of infiniteList; index as i" class="search-content__item">
+              <li #itemList *ngFor="let item of searchInfiniteLoadService.infiniteList; index as i" class="search-content__item">
                 <div>
 
                   <div class="search-content__item--image">
@@ -750,7 +750,7 @@
                 </div>
               </li>
             </ul>
-            <onpicks-loading-icon *ngIf="isLoading"></onpicks-loading-icon>
+            <onpicks-loading-icon *ngIf="searchInfiniteLoadService.isLoading"></onpicks-loading-icon>
           </div>
         </div>
 

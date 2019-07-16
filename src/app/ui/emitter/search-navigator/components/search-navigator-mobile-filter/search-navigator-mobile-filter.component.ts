@@ -1,5 +1,7 @@
 import {Component, OnInit, ChangeDetectionStrategy, Input, Output, EventEmitter, Inject, LOCALE_ID} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
+import {SearchService} from '../../../../../core/service/data-pages/search/search.service';
+import {SearchInfiniteLoadService} from '../../services/search-infinite-load.service';
 
 @Component({
   selector: 'onpicks-search-navigator-mobile-filter',
@@ -30,24 +32,20 @@ export class SearchNavigatorMobileFilterComponent implements OnInit {
   @Input('valueListForCheck') valueListForCheck;
   @Input('locationList') locationList;
   @Input('locationListForCheck') locationListForCheck;
-  @Input('isShowMobileFilter') isShowMobileFilter = false;
   @Input('queryParams') queryParams;
-  @Input('state') state = 'menu';
   @Input('sortList') sortList;
-  @Input('currentSortSlug') currentSortSlug;
+  @Input('state') state;
   @Input('searchState') searchState;
+  @Input('currentSortSlug') currentSortSlug;
+  @Input('isShowMobileFilter') isShowMobileFilter;
   @Output('exit') exitEvent = new EventEmitter();
-
-  // 'menu'
-  // 'category'
-  // 'brand'
-  // 'value'
-  // 'ex-warehouse'
 
   constructor(
     @Inject(LOCALE_ID) public locale: string,
+    private searchService: SearchService,
     public router: Router,
     private route: ActivatedRoute,
+    private searchInfiniteLoadService: SearchInfiniteLoadService,
   ) {
 
   }
@@ -55,9 +53,13 @@ export class SearchNavigatorMobileFilterComponent implements OnInit {
   ngOnInit() {
   }
 
-
   sortClicked(xSortSlug) {
     this.currentSortSlug = xSortSlug;
+    console.log('@@@@@@ current sort @@@@@@');
+    console.log(this.currentSortSlug);
+    this.searchInfiniteLoadService.currentSortSlug = this.currentSortSlug;
+    this.searchInfiniteLoadService.currentPage = 1;
+    this.searchInfiniteLoadService.infiniteList = [];
     this.exitEvent.emit();
     // this.orderedFilterListForCheck[]
     if ( this.searchState === 'search' ) {
@@ -156,7 +158,7 @@ export class SearchNavigatorMobileFilterComponent implements OnInit {
     this.state = 'menu';
   }
 
-  debugC(){
+  debugC() {
     this.state = 'category';
     console.log(this.categoryList);
   }
