@@ -93,6 +93,9 @@ export class CheckoutUsComponent implements OnInit, AfterViewInit {
             onApprove: function(data, actions) {
               return actions.order.capture().then(function (details) {
                 alert('Transaction completed by ' + details.payer.name.given_name);
+                console.log(details);
+                console.log(data)
+                console.log(actions);
 
                 const csrfToken = that.getCookie('csrftoken');
                 that.paymentData.token = data.orderID;
@@ -106,6 +109,10 @@ export class CheckoutUsComponent implements OnInit, AfterViewInit {
                   body: JSON.stringify(
                     that.paymentData
                   )
+                }).then( (response) => {
+                  if ( response.status === 201) {
+                    that.router.navigate(['/order/checkout-success'], { queryParams: { order_code : response.order_code }});
+                  }
                 });
               });
             }
@@ -282,26 +289,34 @@ export class CheckoutUsComponent implements OnInit, AfterViewInit {
 
     console.log(this.paymentData.phone_number);
     const that = this;
-    this.stripe.createToken(this.stripeCard).then(function(result) {
-
-      if (result.error) {
-        // Inform the customer that there was an error.
-        const displayError = that.cardErrors.nativeElement;
-        displayError.textContent = result.error.message;
-      } else {
-        that.paymentData.token = result.token.id;
-        that.paymentData.payment_provider = 'stripe';
-        that.httpClient.post<any>(that.BASE_URL + '/api/orders/',
-          that.paymentData, { responseType: 'json' } )
-        .subscribe( response => {
-            console.log(response);
-            console.log('checkout success!!');
-            // that.router.navigate(['/order/checkout-success'], { queryParams: { order_code : response.order_code }});
-        }, error => {
-          console.error(error);
-        });
-      }
+    this.httpClient.get<any>('/api/orders/test/', {}).subscribe( response => {
+      console.log(response);
+    }, error => {
+      console.log(error);
     });
+    // this.stripe.createToken(this.stripeCard).then(function(result) {
+    //
+    //   if (result.error) {
+    //     // Inform the customer that there was an error.
+    //     const displayError = that.cardErrors.nativeElement;
+    //     displayError.textContent = result.error.message;
+    //   } else {
+    //     that.paymentData.token = result.token.id;
+    //     that.paymentData.payment_provider = 'stripe';
+    //     that.httpClient.post<any>(that.BASE_URL + '/api/orders/',
+    //       that.paymentData, { responseType: 'json' } )
+    //     .subscribe( response => {
+    //         console.log(response);
+    //         console.log('checkout success!!');
+    //         if ( response.status === 201) {
+    //           that.router.navigate(['/order/checkout-success'], { queryParams: { order_code : response.order_code }});
+    //         }
+    //
+    //     }, error => {
+    //       console.error(error);
+    //     });
+    //   }
+    // });
   }
 
   checkBitWise( data ) {
