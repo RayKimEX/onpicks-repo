@@ -327,7 +327,7 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
       if (event instanceof NavigationEnd ) {
         const url = this.router.url;
         this.currentUrl = url;
-        if ( url.indexOf('/search') > -1 && url.indexOf('/c/') > -1) {
+        if ( url.indexOf('/search') <= -1 && url.indexOf('/c/') <= -1) {
           return ;
         }
 
@@ -410,7 +410,7 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
     this.contentHeight = (window.screen.height - 400) < 300 ? '' : (window.screen.height) + 'px';
     if ( this.isMobile ) {
       const url = this.router.url;
-      if ( url.indexOf('/search') > -1 && url.indexOf('/c/') > -1) {
+      if ( url.indexOf('/search') <= -1 && url.indexOf('/c/') <= -1) {
         return;
       }
       // this.loadNextPageItems(this.searchInfiniteLoadService.currentPage);
@@ -740,7 +740,7 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
   loadNextPageItems( currentPage: number) {
       const url = this.router.url;
       this.currentUrl = url;
-      if ( url.indexOf('/search') > -1 && url.indexOf('/c/') > -1) {
+      if ( url.indexOf('/search') <= -1 && url.indexOf('/c/') <= -1) {
         return ;
       }
 
