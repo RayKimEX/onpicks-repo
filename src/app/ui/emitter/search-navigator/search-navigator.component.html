@@ -614,9 +614,9 @@
         <div class="search-content__content--outer" *ngIf="isMobile">
           <div class="search-content__content"
                infinite-scroll
-               [immediateCheck]="true"
-               [infiniteScrollDistance]="4"
-               [infiniteScrollThrottle]="50"
+               [immediateCheck]="false"
+               [infiniteScrollDistance]="0"
+               [infiniteScrollThrottle]="400"
                (scrolled)="onScrollDown(this)">
             <ul #container *ngLet="(currency| async) as currencyAync">
               <li #itemList *ngFor="let item of searchInfiniteLoadService.infiniteList; index as i" class="search-content__item">
@@ -660,12 +660,6 @@
                         (addEvent)="addToCart($event, item, item.individual_shipping ? 'free' : locationMap[item.location.code].sequence)"
                         (subtractEvent)="subtractFromCart($event, item.slug, item.individual_shipping ? 'free' : locationMap[item.location.code].sequence)">
                       </onpicks-list-active-button>
-
-                      <!--<div-->
-                      <!--class="search-content__item&#45;&#45;option-product"-->
-                      <!--*ngSwitchDefault>-->
-                      <!--<span class="subtitle-3-regular">옵션선택상품</span>-->
-                      <!--</div>-->
 
                     </ng-container>
                   </div>

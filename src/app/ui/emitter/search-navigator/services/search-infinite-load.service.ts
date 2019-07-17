@@ -9,42 +9,11 @@ import {Router} from '@angular/router';
 })
 export class SearchInfiniteLoadService {
   /******* infinite loading ******/
-  searchNextPageData$;
-  searchNextPageRequest$ = new Subject();
-  categoryNextPageData$;
-  categoryNextPageRequest$ = new Subject();
   infiniteList = [];
   isLoading = false;
-  totalPage;
-  totalPageArray;
-  totalCount;
-  maxRow;
-  infoList;
   currentPage = 1;
-  normalizedCategoryInfoList;
-
-  categoryList;
-  normalizedCategoryCodeList;
-  currentCategoryCode;
-  filters;
-  brandList;
-  brandListForCheck;
-  valueList;
-  valueListForCheck;
-  locationList;
-  locationListForCheck;
-  isShowMobileFilter = false;
-  queryParams;
-  state;
-  sortList;
-  searchState;
   currentSortSlug = 'most_popular';
-
-
-
   constructor(
-    private searchService: SearchService,
-    public router: Router,
   ) {
   }
 }
