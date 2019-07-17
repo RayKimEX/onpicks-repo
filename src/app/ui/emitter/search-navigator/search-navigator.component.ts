@@ -224,6 +224,8 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
 
     this.totalSearchData$ = this.totalSearchRequest$.pipe(
       switchMap((param) => {
+        console.log('!!!! total search data');
+        console.log(param);
         this.searchInfiniteLoadService.isLoading = true;
         return this.searchService.search(param);
       }),
@@ -255,6 +257,11 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
         this.cd.markForCheck();
 
       }
+    }, (err) => {
+      this.searchInfiniteLoadService.isLoading = false;
+
+      console.log(err);
+      alert('더이상 불러올 목록이 없습니다.');
     });
 
     this.categorySearchData$ =
@@ -262,9 +269,12 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
         switchMap((categoryCurrentCode) => {
           this.searchInfiniteLoadService.isLoading = true;
           if (this.isMobile) {
+            console.log('!!!! xparam');
+            console.log(              this.router.url.indexOf('?') < 0 ? '' : '&' + this.router.url.substring(this.router.url.indexOf('?') + 1, this.router.url.length));
+
             return this.searchService.categorySearch(
               categoryCurrentCode,
-              this.currentSortSlug,
+              this.searchInfiniteLoadService.currentSortSlug,
               this.searchInfiniteLoadService.currentPage,
               this.router.url.indexOf('?') < 0 ? '' : '&' + this.router.url.substring(this.router.url.indexOf('?') + 1, this.router.url.length)
             );
@@ -306,10 +316,14 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
 
         }
 
+      }, (err) => {
+        this.searchInfiniteLoadService.isLoading = false;
+
+        console.log(err);
+        alert('더이상 불러올 목록이 없습니다.');
       });
 
     this.routerEvent$ = this.router.events.subscribe( (event: RouterEvent) => {
-      console.log('@@@@@@@@@@ router event @@@@@@@@@@@')
       if (event instanceof NavigationEnd ) {
         const url = this.router.url;
         this.currentUrl = url;
@@ -758,11 +772,13 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
 
         let param = this.router.url.indexOf('?') < 0 ? null : this.router.url.substring(this.router.url.indexOf('?'), this.router.url.length);
         param = this.replaceStringParam(param, 'page', currentPage);
+
         this.totalSearchRequest$.next(param);
       } else {
         this.categorySearchReqeust$.next(this.getCategoryCurrentCode());
       }
   }
+
   onScrollDown (ev) {
     if (!this.searchInfiniteLoadService.isLoading) {
       this.searchInfiniteLoadService.currentPage += 1;
@@ -776,10 +792,11 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
     }
     const pattern = new RegExp('\\b(' + paramName + '=).*?(&|#|$)');
     if (string.search(pattern) >= 0) {
+      console.log('aa!');
       return string.replace(pattern, '$1' + paramValue + '$2');
     }
     string = string.replace(/[?#]$/, '');
-    return string + (string.indexOf('?') > 0 ? '&' : '?') + paramName + '=' + paramValue;
+    return string + '&' + paramName + '=' + paramValue;
   }
   getCategoryCurrentCode() {
     const categoryUrl = this.router.url.split('/');
