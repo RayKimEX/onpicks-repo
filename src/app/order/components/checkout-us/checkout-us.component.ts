@@ -80,11 +80,15 @@ export class CheckoutUsComponent implements OnInit, AfterViewInit {
               return actions.order.create({
                 purchase_units: [{
                   amount: {
-                    value: that.checkoutStore.total_items,
+                    value: that.checkoutStore.grand_total,
                     breakdown : {
                       item_total : {
                         currency_code : that.checkoutStore.currency,
                         value : that.checkoutStore.total_items
+                      },
+                      shipping : {
+                        currency_code : that.checkoutStore.currency,
+                        value : that.checkoutStore.total_shipping_costs
                       }
                     }
                   },
