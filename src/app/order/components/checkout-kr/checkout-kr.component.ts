@@ -735,18 +735,5 @@ export class CheckoutKrComponent implements OnInit, AfterViewInit, OnDestroy {
   setShippingMessage(xShippingMessage) {
     this.formData.shipping_message = xShippingMessage.value;
   }
-  @HostListener('window:resize', ['$event'])
-  onResize(event) {
-    this.windowInnerHeight = window.innerHeight;
-  }
-  @HostListener('window:scroll', ['$event'])
-  scrollHandler(event) {
-    const checkoutRightMenu = (document.querySelector('.checkout-right__menu') as HTMLElement);
-    const bodyHeight = (document.querySelector('body') as HTMLElement).offsetHeight;
-    const scrollTop = event.target.scrollingElement.scrollTop;
-    if (scrollTop + this.windowInnerHeight < bodyHeight - this.footerHeight ){
-      checkoutRightMenu.style.top = (scrollTop) + 'px';
-    }
-  }
 
 }
