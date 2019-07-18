@@ -72,15 +72,15 @@
 
           <ng-container [ngSwitch]="locale">
             <ng-container *ngSwitchCase="'ko'">
-              <span *ngIf="_data?.shipping_fee == 0" class="p-menu__delivery--first-info subtitle-2-regular">출고,
+              <span *ngIf="_data?.shipping_fee == 0" class="p-menu__delivery--first-info subtitle-2-regular">{{_data?.location?.name}} 출고,
                 <span class="p-menu__delivery--first-info subtitle-2-bold"> 무료배송</span>
               </span>
-              <span *ngIf="_data?.shipping_fee > 0" class="p-menu__delivery--first-info subtitle-2-regular">출고, 묶음배송, {{_data?.shipping_fee | onpicksCurrency: (currency| async)}}</span>
+              <span *ngIf="_data?.shipping_fee > 0" class="p-menu__delivery--first-info subtitle-2-regular">{{_data?.location?.name}} 출고, 묶음배송, {{_data?.shipping_fee | onpicksCurrency: (currency| async)}}</span>
               <div class="p-menu__delivery--second subtitle-2-regular u-color-dark-grey">
                 {{_data?.location?.name}} 묶음배송 상품 {{_data?.location?.free_shipping_threshold | onpicksCurrency : (currency| async) }} 이상 배송료 무료
               </div>
             </ng-container>
-            <ng-container *ngSwitchDefault>
+            <ng-container *ngSwitchCase="'en'">
               <span class="p-menu__delivery--first-info subtitle-2-regular">
                 Shipping from&nbsp;
               </span>
