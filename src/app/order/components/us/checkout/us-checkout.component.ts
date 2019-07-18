@@ -9,13 +9,13 @@ import {STATE_LIST} from '../../../core/global-constant/app.database';
 import {Router} from '@angular/router';
 
 @Component({
-  selector: 'onpicks-checkout-us',
-  templateUrl: './checkout-us.component.html',
-  styleUrls: ['./checkout-us.component.scss'],
+  selector: 'onpicks-us-checkout',
+  templateUrl: './us-checkout.component.html',
+  styleUrls: ['./us-checkout.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 
-export class CheckoutUsComponent implements OnInit, AfterViewInit {
+export class UsCheckoutComponent implements OnInit, AfterViewInit {
   @ViewChild('cardElement', {read : ElementRef}) cardElement;
   @ViewChild('cardNumber', {read : ElementRef}) cardNumber;
   @ViewChild('cardExpiry', {read : ElementRef}) cardExpiry;

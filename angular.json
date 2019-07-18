@@ -146,7 +146,7 @@
               "i18nFormat": "xlf",
               "i18nLocale": "en",
               "i18nMissingTranslation": "error"
-            },
+            }
           }
         },
         "serve": {

@@ -12,12 +12,12 @@ import {DisplayAlertMessage} from '../../../core/store/ui/ui.actions';
 import {DISPLAY_ALERT_MESSAGE_MAP} from '../../../core/global-constant/app.locale';
 
 @Component({
-  selector: 'onpicks-checkout-kr',
-  templateUrl: './checkout-kr.component.html',
-  styleUrls: ['./checkout-kr.component.scss'],
+  selector: 'onpicks-kr-checkout',
+  templateUrl: './kr-checkout.component.html',
+  styleUrls: ['./kr-checkout.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CheckoutKrComponent implements OnInit, AfterViewInit, OnDestroy {
+export class KrCheckoutComponent implements OnInit, AfterViewInit, OnDestroy {
 
   @ViewChildren('inputSearchBoxOuter') inputSearchBoxOuter;
   @ViewChild('inputSearchBox', {read: ElementRef}) inputSearchBoxEL;

@@ -12,11 +12,9 @@ import { CheckoutSuccessVirtualAccountComponent } from './pages/checkout-success
 import {PipeModule} from '../core/pipe/pipe.module';
 import {CartToCheckoutService} from './share/cart-to-checkout.service';
 import {ReactiveFormsModule} from '@angular/forms';
-import { CheckoutKrComponent } from './components/checkout-kr/checkout-kr.component';
-import { CheckoutUsComponent } from './components/checkout-us/checkout-us.component';
+import { KrCheckoutComponent } from './components/kr/checkout/kr-checkout.component';
+import { UsCheckoutComponent } from './components/us/checkout/us-checkout.component';
 import { CheckoutFailureComponent } from './pages/checkout-failure/checkout-failure.component';
-import { FloatingCheckoutDirective } from './directive/floating-checkout.directive';
-import { FloatingCheckoutComponent } from './components/floating-checkout/floating-checkout.component';
 
 @NgModule({
   imports: [
@@ -33,11 +31,9 @@ import { FloatingCheckoutComponent } from './components/floating-checkout/floati
     OrderNavigatorComponent,
     CheckoutSuccessComponent,
     CheckoutSuccessVirtualAccountComponent,
-    CheckoutKrComponent,
-    CheckoutUsComponent,
+    KrCheckoutComponent,
+    UsCheckoutComponent,
     CheckoutFailureComponent,
-    FloatingCheckoutDirective,
-    FloatingCheckoutComponent
   ],
   providers: [
     CartToCheckoutService
