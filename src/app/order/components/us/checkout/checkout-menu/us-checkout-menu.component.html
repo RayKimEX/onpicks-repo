@@ -1,0 +1,65 @@
+<div
+  class="checkout-right__menu " onpicksFloatingCheckout
+  *ngIf="(checkoutStore$ | async) as data; ">
+  <h3
+    i18n="@@word__order-summary"
+    class="checkout-right__menu--title subtitle-1-bold">
+    최종결제금액
+  </h3>
+  <div class="checkout-right__menu--item-outer ">
+    <div class="checkout-right__menu--item" *ngFor="let item of data.items">
+      <div class="checkout-right__menu--item-image">
+        <img drLazyLoad src="{{item.thumbnail}}" alt="">
+      </div>
+      <div class="checkout-right__menu--item-info">
+        <div class="checkout-right__menu--item-info-brand subtitle-3-bold">{{item.brand}}</div>
+        <div class="checkout-right__menu--item-info-name body-3-regular">{{item.title}}</div>
+        <div *ngIf="item.infoOption !== ''" class="checkout-right__menu--item-info-option subtitle-3-regular u-color-grey">{{item.infoOption}}</div>
+        <div class="checkout-right__menu--item-info-price subtitle-2-bold">{{item.price + item.discount | onpicksCurrency: currencyInfo}} / {{item.quantity}}ct</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="checkout-right__menu--price">
+    <div class="checkout-right__menu--price-productall">
+          <span
+            i18n="@@word__subtotal"
+            class="checkout-right__menu--price-productall-tag subtitle-1-regular">
+            총 상품금액
+          </span>
+      <span class="checkout-right__menu--price-productall-value subtitle-1-regular">{{data.total_items | onpicksCurrency : currencyInfo}}</span>
+    </div>
+    <div class="checkout-right__menu--price-delivery">
+          <span
+            i18n="@@word__shipping-fee"
+            class="checkout-right__menu--price-delivery-tag subtitle-1-regular">
+            배송비
+          </span>
+      <span class="checkout-right__menu--price-delivery-value subtitle-1-regular">{{data.total_shipping_costs === 0 ? ('free') : (data.total_shipping_costs | onpicksCurrency : currencyInfo)}}</span>
+    </div>
+    <div class="checkout-right__menu--price-discount">
+          <span
+            i18n="@@word__savings"
+            class="checkout-right__menu--price-delivery-tag subtitle-1-regular">
+            할인금액
+          </span>
+      <span class="checkout-right__menu--price-delivery-value subtitle-1-regular">{{data.total_discounts | onpicksCurrency : currencyInfo}}</span>
+    </div>
+    <div class="checkout-right__menu--price-all">
+          <span
+            i18n="@@word__order-total"
+            class="checkout-right__menu--price-all-tag h1-bold">총 결제금액</span>
+      <span class="checkout-right__menu--price-all-value h1-bold">{{data.grand_total | onpicksCurrency : currencyInfo}}</span>
+    </div>
+  </div>
+  <div class="checkout-right__menu--checkout">
+    <onpicks-button
+      i18n="@@word__confirm-and-pay"
+      (click)="stripePayemnt()"
+      [type]="'black'"
+      [width]="'100%'"
+      [size]="'big'">
+      결제하기
+    </onpicks-button>
+  </div>
+</div>
