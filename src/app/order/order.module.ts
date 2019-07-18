@@ -16,6 +16,7 @@ import { CheckoutKrComponent } from './components/checkout-kr/checkout-kr.compon
 import { CheckoutUsComponent } from './components/checkout-us/checkout-us.component';
 import { CheckoutFailureComponent } from './pages/checkout-failure/checkout-failure.component';
 import { FloatingCheckoutDirective } from './directive/floating-checkout.directive';
+import { FloatingCheckoutComponent } from './components/floating-checkout/floating-checkout.component';
 
 @NgModule({
   imports: [
@@ -35,7 +36,8 @@ import { FloatingCheckoutDirective } from './directive/floating-checkout.directi
     CheckoutKrComponent,
     CheckoutUsComponent,
     CheckoutFailureComponent,
-    FloatingCheckoutDirective
+    FloatingCheckoutDirective,
+    FloatingCheckoutComponent
   ],
   providers: [
     CartToCheckoutService

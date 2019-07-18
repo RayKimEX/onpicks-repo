@@ -1,4 +1,4 @@
-<div class="row checkout" *ngLet="(currency| async) as currencyInfo" (scroll)="scrollHandler($event)">
+<div class="row checkout" *ngLet="(currency| async) as currencyInfo">
   <div
     class="checkout-mobile"
     *ngIf="(checkoutStore$ | async) as data;">
