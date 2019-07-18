@@ -15,6 +15,7 @@ import {HideCurrencyModal} from './core/store/modal/modal.actions';
 import {PREFERENCE_MAP, TITLE_MAP} from './core/global-constant/app.locale';
 import {HttpClient} from '@angular/common/http';
 import {Title} from '@angular/platform-browser';
+import {environment} from '../environments/environment';
 
 @Component({
   selector: 'onpicks-root',
@@ -316,7 +317,7 @@ function setCookie(cname, cvalue ) {
   // const d = new Date();
   // d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
   // const expires = 'expires=' + d.toUTCString();
-  if (isDevMode()) {
+  if (!environment.production) {
     document.cookie = cname + '=' + cvalue + ';path=/';
   } else {
     document.cookie = cname + '=' + cvalue + ';domain=.onpicks.com;path=/';

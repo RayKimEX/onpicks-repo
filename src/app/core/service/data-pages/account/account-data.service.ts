@@ -10,9 +10,7 @@ export class AccountDataService {
   constructor(
     @Inject(DOMAIN_HOST) private BASE_URL: string,
     private httpClient: HttpClient,
-  ) {
-
-  }
+  ) { }
 
 
   getDeliveryData(userId) {

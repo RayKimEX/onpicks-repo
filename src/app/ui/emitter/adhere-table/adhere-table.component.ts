@@ -1,5 +1,7 @@
 import {ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Inject, Input, LOCALE_ID, OnInit, Output} from '@angular/core';
 import {AccountDataService} from '../../../core/service/data-pages/account/account-data.service';
+import {CURRENCY} from '../../../core/global-constant/app.config';
+import {BehaviorSubject} from 'rxjs';
 
 @Component({
   selector: 'emitter-adhere-table',
@@ -14,6 +16,7 @@ export class AdhereTableComponent implements OnInit {
   @Output('viewModal') viewModalEmitter = new EventEmitter<any>();
 
   constructor(
+    @Inject( CURRENCY ) public currencyInfo: BehaviorSubject<any>,
     @Inject(LOCALE_ID) public locale: string,
     private accountDataService: AccountDataService,
     private cd: ChangeDetectorRef,
