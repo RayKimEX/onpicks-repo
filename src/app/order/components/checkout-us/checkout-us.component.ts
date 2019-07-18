@@ -1,5 +1,5 @@
 import {Component, OnInit, ChangeDetectionStrategy, Inject, AfterViewInit, ViewChild, ElementRef, ChangeDetectorRef} from '@angular/core';
-import {DOMAIN_HOST, REGION_ID, RESPONSIVE_MAP} from '../../../core/global-constant/app.config';
+import {DOMAIN_HOST, PAYPAL_API_KEY_TOKEN, REGION_ID, RESPONSIVE_MAP, STRIPE_API_KEY_TOKEN} from '../../../core/global-constant/app.config';
 import {FormControl, FormGroup} from '@angular/forms';
 import {HttpClient} from '../../../../../node_modules/@angular/common/http';
 import {BreakpointObserver, BreakpointState} from '../../../../../node_modules/@angular/cdk/layout';
@@ -36,19 +36,106 @@ export class CheckoutUsComponent implements OnInit, AfterViewInit {
     @Inject( STATE_LIST ) public stateList,
     @Inject( DOMAIN_HOST ) private BASE_URL: string,
     @Inject( RESPONSIVE_MAP ) public responsiveMap,
+    @Inject( PAYPAL_API_KEY_TOKEN ) public PaypalAPIKey,
+    @Inject( STRIPE_API_KEY_TOKEN ) public StripeAPIKey,
     private orderDataService: OrderDataService,
     private breakpointObserver:  BreakpointObserver,
     private cd: ChangeDetectorRef,
     private httpClient: HttpClient,
     private router: Router,
   ) {
+    const that = this;
     this.checkoutStore$ = this.orderDataService.getCheckoutData().pipe(
-      tap( v => console.log(v)),
+      tap( v => {
+        this.checkoutStore = v;
+        console.log(v);
+
+        this.paypalScript = document.createElement('script');
+        this.paypalScript.src = 'https://www.paypal.com/sdk/js?disable-funding=card&client-id=' + this.PaypalAPIKey;
+        this.paypalScript.async = true;
+        this.paypalScript.onload = function () {
+          // @ts-ignore
+          console.log(that.paypalPayment);
+          // @ts-ignore
+          paypal.Buttons({
+            style : {
+              color: 'white',
+              height: 40
+            },
+            createOrder : function(data, actions) {
+              const purchase_items = []
+              that.checkoutStore.items.forEach( (item, index) => {
+                purchase_items.push(
+                  {
+                    name : item.title,
+                    quantity : item.quantity,
+                    unit_amount : {
+                      currency_code : that.checkoutStore.currency,
+                      value : item.price
+                    }
+                  }
+                );
+              })
+
+              return actions.order.create({
+                purchase_units: [{
+                  amount: {
+                    value: that.checkoutStore.grand_total,
+                    breakdown : {
+                      item_total : {
+                        currency_code : that.checkoutStore.currency,
+                        value : that.checkoutStore.total_items
+                      },
+                      shipping : {
+                        currency_code : that.checkoutStore.currency,
+                        value : that.checkoutStore.total_shipping_costs
+                      }
+                    }
+                  },
+                  items : purchase_items,
+                }]
+              });
+            },
+            onApprove: function(data, actions) {
+              return actions.order.capture().then(function (details) {
+                alert('Transaction completed by ' + details.payer.name.given_name);
+                console.log(details);
+                console.log(data)
+                console.log(actions);
+
+                const csrfToken = that.getCookie('csrftoken');
+                that.paymentData.token = data.orderID;
+                that.paymentData.payment_provider = 'paypal';
+                return fetch('/api/orders/', {
+                  method: 'post',
+                  headers: {
+                    'X-CSRFTOKEN' : csrfToken,
+                    'content-type': 'application/json'
+                  },
+                  body: JSON.stringify(
+                    that.paymentData
+                  )
+                }).then( (response) => {
+                  console.log(response)
+                  response.json().then( responseData => {
+                    console.log(responseData);
+                    console.log(responseData)
+                    console.log(responseData.status)
+                    console.log(responseData.order_code);
+                    if ( responseData.status === 201) {
+                      that.router.navigate(['/order/checkout-success'], { queryParams: { order_code : responseData.order_code }});
+                    }
+                  });
+
+                });
+              });
+            }
+          }).render(that.paypalPayment.nativeElement);
+        }
+        document.head.appendChild(this.paypalScript);
+      }),
     );
   }
-  // https://maps.googleapis.com/maps/api/geocode/json?address=11211&key=AIzaSyDNrW4gjz_0GmK6aQmCWv7ebp_xqfO3VdE&language=en
-  // https://maps.googleapis.com/maps/api/geocode/json?address=92101&key=AIzaSyDNrW4gjz_0GmK6aQmCWv7ebp_xqfO3VdE
-  // https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyDNrW4gjz_0GmK6aQmCWv7ebp_xqfO3VdE
 
   readonly EMPTY_FULL_NAME = 0b000000000001;
   readonly EMPTY_ADDRESS_NAME = 0b000000000010;
@@ -60,26 +147,32 @@ export class CheckoutUsComponent implements OnInit, AfterViewInit {
   errorStatus = 0;
 
   checkoutStore$;
+  checkoutStore;
   stripeScript;
   paypalScript;
   initialGroup: FormGroup;
   stripe;
 
-
   /***********City Input*************/
   inputCityValue = '';
 
 
-  stripePaymentData = {
-    'stripe_token' : '',
-    'full_name' : '',
-    'street_address_1': '',
-    'street_address_2': '',
-    'city': '',
-    'state': null,
-    'country': '',
-    'zip_code': '',
-    'phone_number': ''
+  paymentData = {
+    'token' : '',
+    'full_name' : '홍길동',
+    'street_address_1': 'street_address_1',
+    'street_address_2': 'street_address_2',
+    'city': 'Brooklyn',
+    'state': 'NY',
+    'country': 'us',
+    'zip_code': '11211',
+    'phone_number': '8223124232',
+    'payment_provider' : '',
+    'payment_status' : 'paid',
+    'buyer_contact': '8223124232',
+    'buyer_name': '홍길동',
+    'customs_id_number': 'US',
+    'payment_method': 'card'
   }
 
   stripeCard;
@@ -111,50 +204,7 @@ export class CheckoutUsComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
     const that = this;
 
-    this.paypalScript = document.createElement('script');
-    this.paypalScript.src = 'https://www.paypal.com/sdk/js?client-id=AWt9c2qy20OweuAcv_qLKqmaDccTmGTbz6c3mnxRmtpAk-cwP3Q9RHIUTRHnHwrXpzB6_nppyWroVZSg';
-    this.paypalScript.async = true;
-    this.paypalScript.onload = function () {
-      // @ts-ignore
-      console.log(that.paypalPayment);
-      // @ts-ignore
-      paypal.Buttons({
-        createOrder : function(data, actions) {
-          return actions.order.create({
-            purchase_units: [{
-              amount: {
-                value: 2.5,
-                breakdown : {
-                  item_total : {
-                    currency_code : 'USD',
-                    value : 2.5
-                  }
-                }
-              },
-              items : [
-                {
-                  name : 'abc',
-                  quantity : 2,
-                  unit_amount : {
-                    currency_code : 'USD',
-                    value : 0.5
-                  }
-                },
-                {
-                  name : 'ddd',
-                  quantity : 3,
-                  unit_amount : {
-                    currency_code : 'USD',
-                    value : 0.5
-                  }
-                }
-              ],
-            }]
-          });
-        }
-      }).render(that.paypalPayment.nativeElement);
-    }
-    document.head.appendChild(this.paypalScript);
+
 
     this.stripeScript = document.createElement('script');
     this.stripeScript.src = 'https://js.stripe.com/v3/';
@@ -162,7 +212,7 @@ export class CheckoutUsComponent implements OnInit, AfterViewInit {
     this.stripeScript.onload = function () {
 
       // @ts-ignore
-      that.stripe = Stripe('pk_test_BdWhs6G5bNDS9XJ9aW5B0J4E00kl5O2qBD');
+      that.stripe = Stripe(that.StripeAPIKey);
       const elements = that.stripe.elements();
       console.log(elements);
 
@@ -205,10 +255,27 @@ export class CheckoutUsComponent implements OnInit, AfterViewInit {
     document.head.appendChild(this.stripeScript);
   }
 
+
+  getCookie(cname) {
+    const name = cname + '=';
+    const decodedCookie = decodeURIComponent(document.cookie);
+    const ca = decodedCookie.split(';');
+    for ( let i = 0; i < ca.length; i++) {
+      let c = ca[i];
+      while (c.charAt(0) === ' ') {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) === 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    return '';
+  }
+
   currentState(xData) {
     this.inputZipCode.nativeElement.children[0].value = '';
     this.inputCity.nativeElement.children[0].value = '';
-    this.stripePaymentData.state = xData.value;
+    this.paymentData.state = xData.value;
     console.log(xData);
   }
 
@@ -224,41 +291,42 @@ export class CheckoutUsComponent implements OnInit, AfterViewInit {
 
     if( this.errorStatus !== 0 ) { return; }
 
-    this.stripePaymentData.city = this.inputCity.nativeElement.children[0].value;
-    this.stripePaymentData.full_name = this.inputFullName.nativeElement.children[0].value;
-    this.stripePaymentData.street_address_1 = this.inputAddressName.nativeElement.children[0].value;
-    this.stripePaymentData.street_address_2 = this.inputFloor.nativeElement.children[0].value;
-    this.stripePaymentData.zip_code = this.inputZipCode.nativeElement.children[0].value;
-    this.stripePaymentData.phone_number = this.inputPhone.nativeElement.children[0].value;
+    this.paymentData.city = this.inputCity.nativeElement.children[0].value;
+    this.paymentData.full_name = this.inputFullName.nativeElement.children[0].value;
+    this.paymentData.street_address_1 = this.inputAddressName.nativeElement.children[0].value;
+    this.paymentData.street_address_2 = this.inputFloor.nativeElement.children[0].value;
+    this.paymentData.zip_code = this.inputZipCode.nativeElement.children[0].value;
+    this.paymentData.phone_number = this.inputPhone.nativeElement.children[0].value;
 
-    console.log(this.stripePaymentData.phone_number);
+    console.log(this.paymentData.phone_number);
     const that = this;
-    this.httpClient.post<any>('/api/orders/test/', {}).subscribe( response => {
-      console.log(response);
-    }, error => {
-      console.log(error);
-    });
-    // this.stripe.createToken(this.stripeCard).then(function(result) {
-    //
-    //   if (result.error) {
-    //     // Inform the customer that there was an error.
-    //     const displayError = that.cardErrors.nativeElement;
-    //     displayError.textContent = result.error.message;
-    //   } else {
-    //     that.stripePaymentData.stripe_token = result.token.id;
-    //
-    //     that.httpClient.post<any>(that.BASE_URL + '/api/orders/US-100000000/payments/stripe_payment/',
-    //       that.stripePaymentData, {responseType: 'json' })
-    //     .subscribe( response => {
-    //       console.log('success!!')
-    //         console.log(response);
-    //         that.router.navigate(['/order/checkout-success'], { queryParams: { order_code : response.order_code }});
-    //     }, error => {
-    //       console.log('error!!')
-    //       console.log(error);
-    //     });
-    //   }
+    // this.httpClient.post<any>('/api/orders/KR-001000001/payments/inipay_webstd_return/', {}).subscribe( response => {
+    //   console.log(response);
+    // }, error => {
+    //   console.log(error);
     // });
+    this.stripe.createToken(this.stripeCard).then(function(result) {
+
+      if (result.error) {
+        // Inform the customer that there was an error.
+        const displayError = that.cardErrors.nativeElement;
+        displayError.textContent = result.error.message;
+      } else {
+        that.paymentData.token = result.token.id;
+        that.paymentData.payment_provider = 'stripe';
+        that.httpClient.post<any>(that.BASE_URL + '/api/orders/',
+          that.paymentData, { responseType: 'json' } )
+        .subscribe( response => {
+            console.log(response);
+            console.log('checkout success!!');
+            if ( response.status === 201 ) {
+              that.router.navigate(['/order/checkout-success'], { queryParams: { order_code : response.order_code }});
+            }
+        }, error => {
+          console.error(error);
+        });
+      }
+    });
   }
 
   checkBitWise( data ) {
@@ -321,7 +389,7 @@ export class CheckoutUsComponent implements OnInit, AfterViewInit {
             if ( type === 'political' || type === 'administrative_area_level_1') {
               typeValidCnt++;
               if ( typeValidCnt === 2 ) {
-                this.stripePaymentData.state = item.short_name;
+                this.paymentData.state = item.short_name;
               }
             }
           });
@@ -351,7 +419,7 @@ export class CheckoutUsComponent implements OnInit, AfterViewInit {
 
   stateCheck() {
     // EMPTY_STATE
-    if ( this.stripePaymentData.state === null ) {
+    if ( this.paymentData.state === null ) {
       this.errorStatus |= this.EMPTY_STATE;
     } else {
       this.errorStatus &= ~this.EMPTY_STATE;

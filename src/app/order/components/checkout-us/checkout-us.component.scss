@@ -3,6 +3,16 @@
 .checkout {
   margin-top: 3.2rem;
 
+  &__promotion {
+    margin-bottom : 4rem;
+    &--title {
+      margin-bottom :0.8rem;
+    }
+  }
+
+  &__paypal {
+    width : 13.5rem;
+  }
   onpicks-select-box {
     width : 40.8rem;
   }
@@ -47,6 +57,7 @@
 
   &__check-out-with {
     padding-top : 2.4rem;
+    margin-bottom : 2.4rem;
   }
 
 
