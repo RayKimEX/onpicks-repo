@@ -52,7 +52,7 @@ export class AccountDataService {
   uploadReviewImage( xProductSlug, xReviewId, xFile ) {
 
     const formData: FormData = new FormData();
-    formData.append('file', xFile, xFile.name );
+    formData.append('image', xFile, xFile.name );
     return this.httpClient.post<any>(
       this.BASE_URL + '/api/products/' + xProductSlug + '/reviews/' + xReviewId + '/pictures/', formData);
   }
