@@ -785,7 +785,7 @@
       </trans-unit>
 
       <trans-unit id="available-reviews__empty-title" datatype="html">
-        <target>작성 가능한 리뷰가 없습니다. 다양한 아이템을 최적의 가격으로 쇼핑하여 리뷰를 남겨주세요! ( 영어 )</target>
+        <target>작성 가능한 리뷰가 없습니다. 다양한 아이템을 최적의 가격으로 쇼핑하여 리뷰를 남겨주세요!</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
           <context context-type="linenumber">52</context>
