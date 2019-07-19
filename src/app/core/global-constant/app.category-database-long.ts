@@ -652,7 +652,7 @@ export const CATEGORY_MAP_CONST = JSON.parse(`{
                 "code": 1010701,
                 "name": {
                   "en": "Pasta & Noodles",
-                  "ko": "파스타",
+                  "ko": "파스타·누들",
                   "zh_hans": null
                 },
                 "children": []
