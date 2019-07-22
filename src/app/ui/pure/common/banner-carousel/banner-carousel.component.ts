@@ -14,6 +14,7 @@ import {
 import {BreakpointObserver, BreakpointState} from '../../../../../../node_modules/@angular/cdk/layout';
 import {RESPONSIVE_MAP} from '../../../../core/global-constant/app.config';
 import {ActivatedRoute, Router} from '@angular/router';
+import {fromEvent} from 'rxjs';
 
 @Component({
   selector: 'ui-banner-carousel',
@@ -39,6 +40,8 @@ export class BannerCarouselComponent implements OnInit, AfterViewInit, OnDestroy
   scrollBarWidth;
   isMobile = false;
 
+  orientationChange$;
+
   // TODO : 화면이 넘어갔을때, 이미지를 안나오게 해서, resource 최적화
 
   isIEOrEdge = /msie\s|trident\/|edge\//i.test(window.navigator.userAgent)
@@ -52,10 +55,21 @@ export class BannerCarouselComponent implements OnInit, AfterViewInit, OnDestroy
     private router: Router,
     private route: ActivatedRoute,
 
-  ) { }
+  ) {
+    this.orientationChange$ = fromEvent(window, 'orientationchange').subscribe( val => {
+      // console.log(val);
+      clearInterval( this.myInterval );
+      const temp = this.capturedTranslateX - ((this.capturedBrowserWidth - (window.innerWidth - this.scrollBarWidth) ) * ( this.imageIndex ))
+      this.renderer.setStyle(this.container.nativeElement, 'transition', 'x');
+      this.renderer.setStyle(this.container.nativeElement, 'transform', 'translateX(-' + temp  + 'px)');
+      console.log('####constructer');
+      console.log(temp);
+    });
+  }
 
   ngOnDestroy() {
     clearInterval( this.myInterval );
+    this.orientationChange$.unsubscribe();
   }
 
   @HostListener('mouseover')
@@ -98,6 +112,7 @@ export class BannerCarouselComponent implements OnInit, AfterViewInit, OnDestroy
 
     // Get the scrollbar width
     this.scrollBarWidth = scrollDiv.offsetWidth - scrollDiv.clientWidth;
+    console.log('##############');
     console.warn(this.scrollBarWidth); // Mac:  15
 
     this.renderer.removeChild(document.body, scrollDiv);
@@ -113,11 +128,20 @@ export class BannerCarouselComponent implements OnInit, AfterViewInit, OnDestroy
 
   @HostListener('window:resize', ['$event'])
   hello(event) {
+    // const temp = this.capturedTranslateX - ((this.capturedBrowserWidth - (window.innerWidth - this.scrollBarWidth) ) * ( this.imageIndex ))
 
-    const temp = this.capturedTranslateX - ((this.capturedBrowserWidth - (window.innerWidth - this.scrollBarWidth) ) * ( this.imageIndex ))
-
+    // const temp = this.capturedTranslateX + this.capturedBrowserWidth;
     this.renderer.setStyle(this.container.nativeElement, 'transition', 'x');
-    this.renderer.setStyle(this.container.nativeElement, 'transform', 'translateX(-' + temp  + 'px)');
+    this.renderer.setStyle(this.container.nativeElement, 'transform', 'translateX(-' + ( (window.innerWidth - this.scrollBarWidth) * this.imageIndex )  + 'px)');
+    console.log('####resize');
+    console.log(window.innerWidth);
+    // console.log();
+    // console.log(
+    //   '####resize : ' + temp
+    //   + ',\n####caputuredBrowserWidth : ' + this.capturedBrowserWidth
+    //   + ',\n####scrollBarWidth : ' + this.scrollBarWidth
+    //   + ',\n####capturedTranslateX : ' + this.capturedTranslateX);
+    // console.log('####innerWidth : ' + window.innerWidth);
   }
 
   ngAfterViewInit() {
@@ -126,7 +150,7 @@ export class BannerCarouselComponent implements OnInit, AfterViewInit, OnDestroy
     this.renderer.setStyle(this.container.nativeElement, 'transition', 'x');
     this.renderer.setStyle(this.container.nativeElement, 'transform', 'translateX(-' + ( (window.innerWidth - this.scrollBarWidth) * this.imageIndex ) + 'px)');
 
-    if( this.imagesLargeList.length > 3 ){
+    if ( this.imagesLargeList.length > 3 ) {
       this.myInterval = setInterval(() => this.moveNext(), 5000);
     }
   }

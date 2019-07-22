@@ -4,7 +4,7 @@
 </ng-template>
 
 <ng-container *ngLet="(currency| async) as currencyAsync">
-  <div class="row-list-scroll" *ngIf="infoList !== null; else loading">
+  <div class="row-list-scroll" *ngIf="infoList !== null || infoList?.length !== 0; else loading">
     <div
       [ngClass]=
         "[ mobileType === 'half' ? 'ui-mini-list-halfM' : 'ui-mini-list-fullM']"

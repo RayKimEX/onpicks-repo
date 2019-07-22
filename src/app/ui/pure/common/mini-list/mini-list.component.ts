@@ -78,9 +78,12 @@ export class MiniListComponent implements OnInit, OnDestroy, AfterViewChecked {
   }
   @HostListener('window:resize', ['$event'])
   onResize(event) {
-    const computedStyle = getComputedStyle(( this.itemList.first.nativeElement ), null);
-    this.translateXWidth =  parseInt(computedStyle.width, 10 ) + parseInt(computedStyle.marginRight, 10);
+    if ( this.itemList.length !== 0 ) {
+      const computedStyle = getComputedStyle(( this.itemList.first.nativeElement ), null);
+      this.translateXWidth =  parseInt(computedStyle.width, 10 ) + parseInt(computedStyle.marginRight, 10);
+    }
   }
+
   ngAfterViewChecked() {
 
     if (this.itemList.first === undefined || this.isFirstCalcTranslateXWidth ){

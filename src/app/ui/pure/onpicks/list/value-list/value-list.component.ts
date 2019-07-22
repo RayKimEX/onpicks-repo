@@ -113,8 +113,8 @@ export class ValueListComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     this.itemListArray = this.itemList.toArray();
-    const computedStyle = getComputedStyle(( this.itemList.first.nativeElement ), null);
-    this.translateXWidth =  parseInt(computedStyle.width, 10 ) + parseInt(computedStyle.marginRight, 10);
+    // const computedStyle = getComputedStyle(( this.itemList.first.nativeElement ), null);
+    // this.translateXWidth =  parseInt(computedStyle.width, 10 ) + parseInt(computedStyle.marginRight, 10);
 
   }
 

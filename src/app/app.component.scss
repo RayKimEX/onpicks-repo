@@ -137,10 +137,10 @@ onpicks-free-delivery-notibox {
 
   @include respond(tb){
     right : auto;
-    @include horizontalCenter;
   }
 
   @media only screen and (max-width: 28.25em) {
     width : calc(100% - 3.2rem);
+    margin: 0 1.6rem;
   };
 }
