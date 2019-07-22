@@ -12,7 +12,7 @@ import {Router} from '@angular/router';
 export class FreeDeliveryNotiboxComponent implements OnInit {
   @Input() set setCartInfo(_cartInfo) {
     this.cartInfo = _cartInfo;
-    if ( _cartInfo == null ) { return; };
+    if ( _cartInfo == null ) { return; }
     console.log(_cartInfo);
     this.totalItems = _cartInfo.total.total_items;
     this.cartInfo = _cartInfo.pack;
