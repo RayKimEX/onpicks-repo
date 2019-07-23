@@ -175,7 +175,7 @@ export class KrCheckoutMenuComponent implements OnInit, OnDestroy, AfterViewInit
 
       this.formData.buyer_name = this.inputOrderName;
       this.formData.buyer_contact = this.inputOrderNumber;
-
+      this.formData.payment_method = this.payment_method;
       // 0인 경우가 배송지 default이므로,
       // full_name 수신자 성함
       // 서버에 저장된 배송지 정보가 없을 경우
