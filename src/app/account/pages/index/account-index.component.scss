@@ -45,6 +45,16 @@ router-outlet {
 }
 
 .account-navigator {
+  &--button {
+    padding-bottom : 2.4rem;
+    &:hover {
+      color: $color-dark-black !important;
+    }
+    &--active{
+      border-bottom: 2px solid $color-dark-black;
+
+    }
+  }
 
   nav {
     border-bottom : 1px solid $color-light-grey;
@@ -62,17 +72,6 @@ router-outlet {
         &:not(:last-child){
           padding-right : 10.08%;
           // margin-right : 12.5rem;
-        }
-        .account-navigator--button {
-          padding-bottom : 2.4rem;
-          &:hover {
-            color: black !important;
-            font-weight: bold;
-          }
-          &--active{
-            border-bottom: 2px solid black;
-
-          }
         }
 
       }
