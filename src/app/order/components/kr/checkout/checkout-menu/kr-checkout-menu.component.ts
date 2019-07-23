@@ -30,7 +30,8 @@ export class KrCheckoutMenuComponent implements OnInit, OnDestroy, AfterViewInit
   @Input('isAgreementDirectBuyingInfo') isAgreementDirectBuyingInfo: boolean;
   @Input('shippingMessage') shippingMessage;
   @Input('deliveryData') deliveryData;
-  @Input ('data') data;
+  @Input('data') data;
+  @Input('payment_method') payment_method;
 
   readonly EMPTY_ORDER_NAME          = 0b00000000001;
   readonly EMPTY_ORDER_NUMBER        = 0b00000000010;
@@ -169,15 +170,6 @@ export class KrCheckoutMenuComponent implements OnInit, OnDestroy, AfterViewInit
   payment(form) {
     this.errorStatus = 0;
     this.validate();
-    console.log('payment');
-    console.log(this.inputOrderName);
-    console.log(this.inputOrderNumber);
-    console.log(this.inputRecipientName);
-    console.log(this.inputRecipientNumber);
-    console.log(this.inputJuso);
-    console.log(this.inputDetailJuso);
-    console.log(this.inputZipnumber);
-
 
     if ( this.errorStatus === 0 ) {
 

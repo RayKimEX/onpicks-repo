@@ -310,6 +310,7 @@ export class KrCheckoutComponent implements OnInit, AfterViewInit, OnDestroy {
   }
   changePaymentMethod(value, xId) {
     this.formData.payment_method = value;
+    this.cd.markForCheck();
   }
   markForCheck(e) {
     this.cd.markForCheck();
