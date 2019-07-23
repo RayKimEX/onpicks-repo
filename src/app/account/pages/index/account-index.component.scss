@@ -63,11 +63,15 @@ router-outlet {
           padding-right : 10.08%;
           // margin-right : 12.5rem;
         }
-        button {
+        .account-navigator--button {
           padding-bottom : 2.4rem;
           &:hover {
             color: black !important;
             font-weight: bold;
+          }
+          &--active{
+            border-bottom: 2px solid black;
+
           }
         }
 
@@ -79,7 +83,4 @@ router-outlet {
   hr {
     margin-bottom: 3.2rem;
   }
-}
-.nav-active{
-  border-bottom: 2px solid black;
 }
