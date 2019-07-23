@@ -31,10 +31,13 @@ export class StarRatingComponent implements OnInit, AfterViewInit, OnChanges {
   halfStarCondition = false;
   isChecked = false;
 
-  constructor(private renderer: Renderer2,
-              private eRef: ElementRef,
-              private util: UtilService,
-              private cd: ChangeDetectorRef
+  window = window;
+
+  constructor(
+    private renderer: Renderer2,
+    private eRef: ElementRef,
+    private util: UtilService,
+    private cd: ChangeDetectorRef
   ) { }
 
   ngOnInit() {
