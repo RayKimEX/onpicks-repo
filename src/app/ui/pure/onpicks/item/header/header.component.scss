@@ -19,10 +19,18 @@
 
 .navigation__menu-toggle:checked ~ .header-menu__outer {
   display:block;
+
+  @include respond(desktop){
+    display:none;
+  }
 }
 
 .navigation__menu-toggle:checked ~ .header-menu__background {
   display:block;
+
+  @include respond(desktop){
+    display:none;
+  }
 }
 
 .header-menu__background {
@@ -34,6 +42,8 @@
   z-index : 0;
   background-color : #000000;
   opacity : 0.5;
+
+
 }
 
 .navigation {
