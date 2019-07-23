@@ -38,6 +38,11 @@
                   <img [src]="auth?.user?.avatar === ''? imageHost + '/assets/default_avatar.png' : auth.user.avatar"  alt="">
                 </a>
               </span>
+              <span class="header__miscell--profile--name subtitle-2-regular">
+                <a routerLink="/account">
+                {{auth?.user?.nickname}}
+                </a>
+              </span>
 
               <!--<span><button (click)="logout()">로그아웃</button></span>-->
             </ng-container>
