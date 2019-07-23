@@ -1,11 +1,11 @@
 import {Component, OnInit, ChangeDetectionStrategy, Inject, AfterViewInit, ViewChild, ElementRef, ChangeDetectorRef} from '@angular/core';
-import {DOMAIN_HOST, PAYPAL_API_KEY_TOKEN, REGION_ID, RESPONSIVE_MAP, STRIPE_API_KEY_TOKEN} from '../../../core/global-constant/app.config';
+import {DOMAIN_HOST, PAYPAL_API_KEY_TOKEN, REGION_ID, RESPONSIVE_MAP, STRIPE_API_KEY_TOKEN} from '../../../../core/global-constant/app.config';
 import {FormControl, FormGroup} from '@angular/forms';
-import {HttpClient} from '../../../../../node_modules/@angular/common/http';
-import {BreakpointObserver, BreakpointState} from '../../../../../node_modules/@angular/cdk/layout';
+import {HttpClient} from '../../../../../../node_modules/@angular/common/http';
+import {BreakpointObserver, BreakpointState} from '../../../../../../node_modules/@angular/cdk/layout';
 import {tap} from 'rxjs/operators';
-import {OrderDataService} from '../../../core/service/data-pages/order/order-data.service';
-import {STATE_LIST} from '../../../core/global-constant/app.database';
+import {OrderDataService} from '../../../../core/service/data-pages/order/order-data.service';
+import {STATE_LIST} from '../../../../core/global-constant/app.database';
 import {Router} from '@angular/router';
 
 @Component({
@@ -16,21 +16,21 @@ import {Router} from '@angular/router';
 })
 
 export class UsCheckoutComponent implements OnInit, AfterViewInit {
-  @ViewChild('cardElement', {read : ElementRef}) cardElement;
-  @ViewChild('cardNumber', {read : ElementRef}) cardNumber;
-  @ViewChild('cardExpiry', {read : ElementRef}) cardExpiry;
-  @ViewChild('cardCvc', {read : ElementRef}) cardCvc;
-  @ViewChild('cardErrors', {read : ElementRef}) cardErrors;
-  @ViewChild('paymentForm', { read : ElementRef}) paymentForm;
+  @ViewChild('cardElement', {read : ElementRef}) cardElementRef;
+  @ViewChild('cardNumber', {read : ElementRef}) cardNumberRef;
+  @ViewChild('cardExpiry', {read : ElementRef}) cardExpiryRef;
+  @ViewChild('cardCvc', {read : ElementRef}) cardCvcRef;
+  @ViewChild('cardErrors', {read : ElementRef}) cardErrorsRef;
+  @ViewChild('paymentForm', { read : ElementRef}) paymentFormRef;
 
-  @ViewChild('inputZipCode', { read : ElementRef}) inputZipCode;
-  @ViewChild('inputFullName', { read : ElementRef}) inputFullName;
-  @ViewChild('inputAddressName', { read : ElementRef}) inputAddressName;
-  @ViewChild('inputFloor', { read : ElementRef}) inputFloor;
-  @ViewChild('inputCity', { read : ElementRef}) inputCity;
-  @ViewChild('inputPhone', { read : ElementRef}) inputPhone;
+  @ViewChild('inputZipCode', { read : ElementRef}) inputZipCodeRef;
+  @ViewChild('inputFullName', { read : ElementRef}) inputFullNameRef;
+  @ViewChild('inputAddressName', { read : ElementRef}) inputAddressNameRef;
+  @ViewChild('inputFloor', { read : ElementRef}) inputFloorRef;
+  @ViewChild('inputCity', { read : ElementRef}) inputCityRef;
+  @ViewChild('inputPhone', { read : ElementRef}) inputPhoneRef;
 
-  @ViewChild('paypalPayment') paypalPayment;
+  @ViewChild('paypalPayment') paypalPaymentRef;
 
   private footerHeight: number;
   private windowInnerHeight: number;
@@ -58,7 +58,7 @@ export class UsCheckoutComponent implements OnInit, AfterViewInit {
         this.paypalScript.async = true;
         this.paypalScript.onload = function () {
           // @ts-ignore
-          console.log(that.paypalPayment);
+          console.log(that.paypalPaymentRef);
           // @ts-ignore
           paypal.Buttons({
             style : {
@@ -133,7 +133,7 @@ export class UsCheckoutComponent implements OnInit, AfterViewInit {
                 });
               });
             }
-          }).render(that.paypalPayment.nativeElement);
+          }).render(that.paypalPaymentRef.nativeElement);
         }
         document.head.appendChild(this.paypalScript);
       }),
@@ -206,8 +206,6 @@ export class UsCheckoutComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
     const that = this;
 
-
-
     this.stripeScript = document.createElement('script');
     this.stripeScript.src = 'https://js.stripe.com/v3/';
     this.stripeScript.async = true;
@@ -241,10 +239,10 @@ export class UsCheckoutComponent implements OnInit, AfterViewInit {
       that.stripeCard = elements.create('card', {style});
 
       // Add an instance of the card Element into the `card-element` <div>.
-      that.stripeCard.mount(that.cardElement.nativeElement);
+      that.stripeCard.mount(that.cardElementRef.nativeElement);
 
       that.stripeCard.addEventListener('change', ({error}) => {
-        const displayError = that.cardErrors.nativeElement;
+        const displayError = that.cardErrorsRef.nativeElement;
 
         if (error) {
           displayError.textContent = error.message;
@@ -275,8 +273,8 @@ export class UsCheckoutComponent implements OnInit, AfterViewInit {
   }
 
   currentState(xData) {
-    this.inputZipCode.nativeElement.children[0].value = '';
-    this.inputCity.nativeElement.children[0].value = '';
+    this.inputZipCodeRef.nativeElement.children[0].value = '';
+    this.inputCityRef.nativeElement.children[0].value = '';
     this.paymentData.state = xData.value;
     console.log(xData);
   }
@@ -293,14 +291,13 @@ export class UsCheckoutComponent implements OnInit, AfterViewInit {
 
     if( this.errorStatus !== 0 ) { return; }
 
-    this.paymentData.city = this.inputCity.nativeElement.children[0].value;
-    this.paymentData.full_name = this.inputFullName.nativeElement.children[0].value;
-    this.paymentData.street_address_1 = this.inputAddressName.nativeElement.children[0].value;
-    this.paymentData.street_address_2 = this.inputFloor.nativeElement.children[0].value;
-    this.paymentData.zip_code = this.inputZipCode.nativeElement.children[0].value;
-    this.paymentData.phone_number = this.inputPhone.nativeElement.children[0].value;
+    this.paymentData.city = this.inputCityRef.nativeElement.children[0].value;
+    this.paymentData.full_name = this.inputFullNameRef.nativeElement.children[0].value;
+    this.paymentData.street_address_1 = this.inputAddressNameRef.nativeElement.children[0].value;
+    this.paymentData.street_address_2 = this.inputFloorRef.nativeElement.children[0].value;
+    this.paymentData.zip_code = this.inputZipCodeRef.nativeElement.children[0].value;
+    this.paymentData.phone_number = this.inputPhoneRef.nativeElement.children[0].value;
 
-    console.log(this.paymentData.phone_number);
     const that = this;
     // this.httpClient.post<any>('/api/orders/KR-001000001/payments/inipay_webstd_return/', {}).subscribe( response => {
     //   console.log(response);
@@ -311,7 +308,7 @@ export class UsCheckoutComponent implements OnInit, AfterViewInit {
 
       if (result.error) {
         // Inform the customer that there was an error.
-        const displayError = that.cardErrors.nativeElement;
+        const displayError = that.cardErrorsRef.nativeElement;
         displayError.textContent = result.error.message;
       } else {
         that.paymentData.token = result.token.id;
@@ -336,18 +333,18 @@ export class UsCheckoutComponent implements OnInit, AfterViewInit {
   }
 
   callGeocodingAPI() {
-    console.log(this.inputZipCode.nativeElement.children[0].value.length);
-    if ( this.inputZipCode.nativeElement.children[0].value.length !== 0 && this.inputZipCode.nativeElement.children[0].value.length < 5 ){
+    console.log(this.inputZipCodeRef.nativeElement.children[0].value.length);
+    if ( this.inputZipCodeRef.nativeElement.children[0].value.length !== 0 && this.inputZipCodeRef.nativeElement.children[0].value.length < 5 ){
       this.errorStatus |= this.INCORRECT_ZIP_CODE;
       return ;
-    } else if (this.inputZipCode.nativeElement.children[0].value.length === 0) {
+    } else if (this.inputZipCodeRef.nativeElement.children[0].value.length === 0) {
       this.errorStatus &= ~this.INCORRECT_ZIP_CODE;
       return;
     } else {
       this.errorStatus &= ~this.INCORRECT_ZIP_CODE;
     }
 
-    this.httpClient.get('https://maps.googleapis.com/maps/api/geocode/json?address=' + this.inputZipCode.nativeElement.children[0].value + '&key=AIzaSyDNrW4gjz_0GmK6aQmCWv7ebp_xqfO3VdE&language=en')
+    this.httpClient.get('https://maps.googleapis.com/maps/api/geocode/json?address=' + this.inputZipCodeRef.nativeElement.children[0].value + '&key=AIzaSyDNrW4gjz_0GmK6aQmCWv7ebp_xqfO3VdE&language=en')
       .subscribe( val => {
         if ( val['status'] === 'ZERO_RESULTS' ) {
           this.errorStatus |= this.INCORRECT_ZIP_CODE;
@@ -371,7 +368,7 @@ export class UsCheckoutComponent implements OnInit, AfterViewInit {
               typeValidCnt++;
               console.log('#' + typeValidCnt);
               if ( typeValidCnt === 2 ) {
-                this.inputCity.nativeElement.children[0].value = item.long_name;
+                this.inputCityRef.nativeElement.children[0].value = item.long_name;
                 cityFind = true;
                 console.log(this.inputCityValue);
               }
@@ -382,7 +379,7 @@ export class UsCheckoutComponent implements OnInit, AfterViewInit {
               typeValidCnt++;
               console.log('#' + typeValidCnt);
               if ( typeValidCnt === 2 ) {
-                this.inputCity.nativeElement.children[0].value = item.long_name;
+                this.inputCityRef.nativeElement.children[0].value = item.long_name;
                 console.log(this.inputCityValue);
                 cityFind = true;
               }
@@ -406,11 +403,11 @@ export class UsCheckoutComponent implements OnInit, AfterViewInit {
   }
 
   zipCodeCheck(isFocusOut) {
-    if (isFocusOut && this.inputZipCode.nativeElement.children[0].value === '') {
+    if (isFocusOut && this.inputZipCodeRef.nativeElement.children[0].value === '') {
       return;
     }
 
-    if ( this.inputZipCode.nativeElement.children[0].value.length < 5 ) {
+    if ( this.inputZipCodeRef.nativeElement.children[0].value.length < 5 ) {
       this.errorStatus |= this.INCORRECT_ZIP_CODE;
     } else {
       this.errorStatus &= ~this.INCORRECT_ZIP_CODE;
@@ -429,11 +426,11 @@ export class UsCheckoutComponent implements OnInit, AfterViewInit {
   }
 
   fullNameCheck(isFocusOut) {
-    if (isFocusOut && this.inputFullName.nativeElement.children[0].value === '') {
+    if (isFocusOut && this.inputFullNameRef.nativeElement.children[0].value === '') {
       return;
     }
 
-    if ( this.inputFullName.nativeElement.children[0].value === '' ) {
+    if ( this.inputFullNameRef.nativeElement.children[0].value === '' ) {
       this.errorStatus |= this.EMPTY_FULL_NAME;
     } else {
       this.errorStatus &= ~this.EMPTY_FULL_NAME;
@@ -441,11 +438,11 @@ export class UsCheckoutComponent implements OnInit, AfterViewInit {
   }
 
   addressNameCheck(isFocusOut) {
-    if (isFocusOut && this.inputAddressName.nativeElement.children[0].value === '') {
+    if (isFocusOut && this.inputAddressNameRef.nativeElement.children[0].value === '') {
       return;
     }
 
-    if ( this.inputAddressName.nativeElement.children[0].value === '') {
+    if ( this.inputAddressNameRef.nativeElement.children[0].value === '') {
       this.errorStatus |= this.EMPTY_ADDRESS_NAME;
     } else {
       this.errorStatus &= ~this.EMPTY_ADDRESS_NAME;
@@ -453,11 +450,11 @@ export class UsCheckoutComponent implements OnInit, AfterViewInit {
   }
 
   cityCheck(isFocusOut) {
-    if (isFocusOut && this.inputCity.nativeElement.children[0].value === '') {
+    if (isFocusOut && this.inputCityRef.nativeElement.children[0].value === '') {
       return;
     }
 
-    if ( this.inputCity.nativeElement.children[0].value === '') {
+    if ( this.inputCityRef.nativeElement.children[0].value === '') {
       this.errorStatus |= this.EMPTY_CITY;
     } else {
       this.errorStatus &= ~this.EMPTY_CITY;
@@ -468,20 +465,23 @@ export class UsCheckoutComponent implements OnInit, AfterViewInit {
 
   phoneCheck(isFocusOut) {
 
-    if (isFocusOut && this.inputPhone.nativeElement.children[0].value === '') {
+    if (isFocusOut && this.inputPhoneRef.nativeElement.children[0].value === '') {
       return;
     }
     const patt1 = new RegExp('^[0-9]{3}-[0-9]{3}-[0-9]{4}$');
     const patt2 = new RegExp('^[0-9]{10}$');
 
-    console.log(patt2.test(this.inputPhone.nativeElement.children[0].value));
-    if ( patt1.test( this.inputPhone.nativeElement.children[0].value)) {
+    console.log(patt2.test(this.inputPhoneRef.nativeElement.children[0].value));
+    if ( patt1.test( this.inputPhoneRef.nativeElement.children[0].value)) {
       this.errorStatus &= ~this.INVALID_PHONE_NUMBER;
-    } else if ( patt2.test(this.inputPhone.nativeElement.children[0].value)) {
+    } else if ( patt2.test(this.inputPhoneRef.nativeElement.children[0].value)) {
       this.errorStatus &= ~this.INVALID_PHONE_NUMBER;
     } else {
       this.errorStatus |= this.INVALID_PHONE_NUMBER;
     }
+  }
+  markForCheck(e) {
+    this.cd.markForCheck();
   }
 
 }

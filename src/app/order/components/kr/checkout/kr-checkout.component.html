@@ -109,6 +109,7 @@
           </div>
           <onpicks-input-box
             #inputOrderName
+            (keyup)="markForCheck($event)"
             class="checkout-order-info__input"
             i18n-placeholder="@@word__buyer-name"
             placeholder="'주문자 성함'">
@@ -129,6 +130,8 @@
           </div>
           <onpicks-input-box
             #inputOrderNumber
+            (keyup)="markForCheck($event)"
+
             class="checkout-order-info__input"
             i18n-placeholder="@@word__buyer-phone-number"
             placeholder="'주문자 연락처'">
@@ -355,72 +358,21 @@
 
   <div
     [ngClass]="[ isThirdBreakPoint ? 'col-6-of-12 checkout-right' : 'checkout-right'] ">
-    <div
-      class="checkout-right__menu" onpicksFloatingCheckout
-      *ngIf="(checkoutStore$ | async) as data; ">
-      <h3
-        i18n="@@word__order-summary"
-        class="checkout-right__menu--title subtitle-1-bold">
-        최종결제금액
-      </h3>
-        <div class="checkout-right__menu--item-outer ">
-        <div class="checkout-right__menu--item" *ngFor="let item of data.items">
-          <div class="checkout-right__menu--item-image">
-            <img drLazyLoad src="{{item.thumbnail}}" alt="">
-          </div>
-          <div class="checkout-right__menu--item-info">
-            <div class="checkout-right__menu--item-info-brand subtitle-3-bold">{{item.brand}}</div>
-            <div class="checkout-right__menu--item-info-name body-3-regular">{{item.title}}</div>
-            <div *ngIf="item.infoOption !== ''" class="checkout-right__menu--item-info-option subtitle-3-regular u-color-grey">{{item.infoOption}}</div>
-            <div class="checkout-right__menu--item-info-price subtitle-2-bold">{{item.price + item.discount | onpicksCurrency: currencyInfo}} / {{item.quantity}}개</div>
-          </div>
-        </div>
-      </div>
+    <onpicks-kr-checkout-menu *ngIf="(checkoutStore$ | async) as data; "
+                              [data]="data"
+                              [inputOrderName]="inputOrderNameRef.nativeElement.children[0].value"
+                              [inputOrderNumber]="inputOrderNumberRef.nativeElement.children[0].value"
+                              [inputRecipientName]="inputRecipientNameRef.last.nativeElement.children[0].value"
+                              [inputRecipientNumber]="inputRecipientNumberRef.last.nativeElement.children[0].value"
+                              [inputJuso]="inputJusoRef.last.nativeElement.children[0].value"
+                              [inputDetailJuso]="inputDetailJusoRef.last.nativeElement.children[0].value"
+                              [inputZipnumber]="inputZipnumberRef.last.nativeElement.children[0].value"
+                              [checkoutAdditionNumber]="checkoutAdditionNumberRef.nativeElement.children[0].value"
+                              [isAgreementDirectBuyingInfo]="isAgreementDirectBuyingInfo"
+                              [shippingMessage]="formData.shipping_message"
+                              [deliveryData]="deliveryData">
+    </onpicks-kr-checkout-menu>
 
-      <div class="checkout-right__menu--price">
-        <div class="checkout-right__menu--price-productall">
-          <span
-            i18n="@@word__subtotal"
-            class="checkout-right__menu--price-productall-tag subtitle-1-regular">
-            총 상품금액
-          </span>
-          <span class="checkout-right__menu--price-productall-value subtitle-1-regular">{{data.total_items | onpicksCurrency : currencyInfo}}</span>
-        </div>
-        <div class="checkout-right__menu--price-delivery">
-          <span
-            i18n="@@word__shipping-fee"
-            class="checkout-right__menu--price-delivery-tag subtitle-1-regular">
-            배송비
-          </span>
-          <span class="checkout-right__menu--price-delivery-value subtitle-1-regular">{{data.total_shipping_costs === 0 ? ('무료') : (data.total_shipping_costs | onpicksCurrency : currencyInfo)}}</span>
-        </div>
-        <div class="checkout-right__menu--price-discount">
-          <span
-            i18n="@@word__savings"
-            class="checkout-right__menu--price-delivery-tag subtitle-1-regular">
-            할인금액
-          </span>
-          <span class="checkout-right__menu--price-delivery-value subtitle-1-regular">{{data.total_discounts | onpicksCurrency : currencyInfo}}</span>
-        </div>
-        <div class="checkout-right__menu--price-all">
-          <span
-            i18n="@@word__order-total"
-            class="checkout-right__menu--price-all-tag h1-bold">총 결제금액</span>
-          <span class="checkout-right__menu--price-all-value h1-bold">{{data.grand_total | onpicksCurrency : currencyInfo}}</span>
-        </div>
-      </div>
-
-      <div class="checkout-right__menu--checkout">
-        <onpicks-button
-          i18n="@@word__confirm-and-pay"
-          (click)="payment(form)"
-          [type]="'black'"
-          [width]="'100%'"
-          [size]="'big'">
-          결제하기
-        </onpicks-button>
-      </div>
-    </div>
   </div>
 </div>
 
@@ -457,6 +409,7 @@
     </div>
     <onpicks-input-box
       #inputRecipientName
+      (keyup)="markForCheck($event)"
       class="checkout-left__info--delivery-input body-2-regular"
       i18n-placeholder="@@word__recipient-name"
       placeholder="'받는분 성함'">
@@ -472,6 +425,7 @@
     </div>
     <onpicks-input-box
       #inputRecipientNumber
+      (keyup)="markForCheck($event)"
       class="checkout-left__info--delivery-input body-2-regular"
       i18n-placeholder="@@word__recipient-phone-number"
       placeholder="'받는분 연락처'">
@@ -490,6 +444,7 @@
     #inputZipnumber
     (click)="showSearchBox('input')"
     [readonly]="true"
+    (keyup)="markForCheck($event)"
     class="checkout-left__info--delivery-input-address  body-2-regular"
     i18n-placeholder="@@word__zip-code"
     placeholder="'우편번호'">
@@ -508,6 +463,7 @@
   <div #inputSearchBoxOuter class="checkout-left__info--delivery-searchBox-outer">
     <onpicks-search-box
       #inputSearchBox
+      (keyup)="markForCheck($event)"
       class="checkout-left__info--delivery-searchBox"
       [placeholder]="'검색할 주소를 입력해주세요'" >
     </onpicks-search-box>
@@ -573,6 +529,7 @@
 
   <onpicks-input-box
     #inputJuso
+    (keyup)="markForCheck($event)"
     (click)="showSearchBox('input')"
     [readonly]="true"
     class="checkout-left__info--delivery-input  body-2-regular"
@@ -581,6 +538,7 @@
 
   <onpicks-input-box
     #inputDetailJuso
+    (keyup)="markForCheck($event)"
     class="checkout-left__info--delivery-input  body-2-regular"
     i18n-placeholder="@@sentence__insert-detail-address"
     placeholder="'상세주소를 입력하세요'">

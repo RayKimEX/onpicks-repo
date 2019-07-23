@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FloatingCheckoutComponent } from './floating-checkout.component';
+import { KrCheckoutMenuComponent } from './kr-checkout-menu.component';
 
-describe('FloatingCheckoutComponent', () => {
-  let component: FloatingCheckoutComponent;
-  let fixture: ComponentFixture<FloatingCheckoutComponent>;
+describe('KrCheckoutMenuComponent', () => {
+  let component: KrCheckoutMenuComponent;
+  let fixture: ComponentFixture<KrCheckoutMenuComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FloatingCheckoutComponent ]
+      declarations: [ KrCheckoutMenuComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FloatingCheckoutComponent);
+    fixture = TestBed.createComponent(KrCheckoutMenuComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

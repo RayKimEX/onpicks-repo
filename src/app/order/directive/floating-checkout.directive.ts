@@ -55,5 +55,4 @@ export class FloatingCheckoutDirective implements OnInit, AfterViewInit {
       }
     }
   }
-
 }

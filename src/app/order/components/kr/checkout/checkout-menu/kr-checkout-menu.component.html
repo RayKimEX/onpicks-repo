@@ -1,6 +1,4 @@
-<div
-  class="checkout-right__menu " onpicksFloatingCheckout
-  *ngIf="(checkoutStore$ | async) as data; ">
+<div class="checkout-right__menu " *ngLet="(currency| async) as currencyInfo">
   <h3
     i18n="@@word__order-summary"
     class="checkout-right__menu--title subtitle-1-bold">
@@ -55,7 +53,7 @@
   <div class="checkout-right__menu--checkout">
     <onpicks-button
       i18n="@@word__confirm-and-pay"
-      (click)="stripePayemnt()"
+      (click)="payment(form)"
       [type]="'black'"
       [width]="'100%'"
       [size]="'big'">
@@ -63,3 +61,6 @@
     </onpicks-button>
   </div>
 </div>
+<form #form [formGroup]="initialGroup">
+
+</form>
