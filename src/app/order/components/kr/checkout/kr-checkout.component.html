@@ -359,18 +359,18 @@
   <div
     [ngClass]="[ isThirdBreakPoint ? 'col-6-of-12 checkout-right' : 'checkout-right'] ">
     <onpicks-kr-checkout-menu *ngIf="(checkoutStore$ | async) as data; "
-                              [data]="data"
-                              [inputOrderName]="inputOrderNameRef.nativeElement.children[0].value"
-                              [inputOrderNumber]="inputOrderNumberRef.nativeElement.children[0].value"
-                              [inputRecipientName]="inputRecipientNameRef.last.nativeElement.children[0].value"
-                              [inputRecipientNumber]="inputRecipientNumberRef.last.nativeElement.children[0].value"
-                              [inputJuso]="inputJusoRef.last.nativeElement.children[0].value"
-                              [inputDetailJuso]="inputDetailJusoRef.last.nativeElement.children[0].value"
-                              [inputZipnumber]="inputZipnumberRef.last.nativeElement.children[0].value"
-                              [checkoutAdditionNumber]="checkoutAdditionNumberRef.nativeElement.children[0].value"
-                              [isAgreementDirectBuyingInfo]="isAgreementDirectBuyingInfo"
-                              [shippingMessage]="formData.shipping_message"
-                              [deliveryData]="deliveryData">
+      [data]="data"
+      [inputOrderName]="inputOrderNameRef.nativeElement.children[0].value"
+      [inputOrderNumber]="inputOrderNumberRef.nativeElement.children[0].value"
+      [inputRecipientName]="inputRecipientNameRef.last.nativeElement.children[0].value"
+      [inputRecipientNumber]="inputRecipientNumberRef.last.nativeElement.children[0].value"
+      [inputJuso]="inputJusoRef.last.nativeElement.children[0].value"
+      [inputDetailJuso]="inputDetailJusoRef.last.nativeElement.children[0].value"
+      [inputZipnumber]="inputZipnumberRef.last.nativeElement.children[0].value"
+      [checkoutAdditionNumber]="checkoutAdditionNumberRef.nativeElement.children[0].value"
+      [isAgreementDirectBuyingInfo]="isAgreementDirectBuyingInfo"
+      [shippingMessage]="formData.shipping_message"
+      [deliveryData]="deliveryData">
     </onpicks-kr-checkout-menu>
 
   </div>

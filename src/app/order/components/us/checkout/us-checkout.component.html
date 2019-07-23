@@ -228,17 +228,18 @@
 
   <div
     [ngClass]="[ isThirdBreakPoint ? 'col-6-of-12 checkout-right' : 'checkout-right'] ">
-    <onpicks-us-checkout-menu *ngIf="(checkoutStore$ | async) as data; "
-                              [data]="data"
-                              [inputZipCode]="inputZipCodeRef"
-                              [inputFullName]="inputFullNameRef"
-                              [inputAddressName]="inputAddressNameRef"
-                              [inputFloor]="inputFloorRef"
-                              [inputCity]="inputCityRef"
-                              [inputPhone]="inputPhoneRef"
-                              [cardErrors]="cardErrorsRef"
-                              [paypalPayment]="paypalPaymentRef"
-                              [cardElement]="cardElementRef">
+    <onpicks-us-checkout-menu
+      *ngIf="(checkoutStore$ | async) as data; "
+      [data]="data"
+      [inputZipCode]="inputZipCodeRef"
+      [inputFullName]="inputFullNameRef"
+      [inputAddressName]="inputAddressNameRef"
+      [inputFloor]="inputFloorRef"
+      [inputCity]="inputCityRef"
+      [inputPhone]="inputPhoneRef"
+      [cardErrors]="cardErrorsRef"
+      [paypalPayment]="paypalPaymentRef"
+      [cardElement]="cardElementRef">
     </onpicks-us-checkout-menu>
 
   </div>
