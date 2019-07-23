@@ -336,14 +336,25 @@
             <li class="header__mobile-hamburger--li--not-login">
               <div
                 (click)="routeForMobile('/member/login', inputCheckedForToggle)">
-                <div i18n="@@header__login"
-                     class="u-button-effect">
+                <div
+                  i18n="@@header__login"
+                  class="u-button-effect">
                   로그인
                 </div>
               </div>
             </li>
           </ng-container>
           <ng-container *ngIf="auth.isAuthenticated">
+            <li class="header__mobile-hamburger--li">
+              <div
+                (click)="routeForMobile('/account/feed', inputCheckedForToggle)">
+                <div
+                  i18n="@@word__my-feed"
+                  class="u-button-effect">
+                  나의 피드
+                </div>
+              </div>
+            </li>
             <li class="header__mobile-hamburger--li">
               <div
                 (click)="routeForMobile('/account/my-shopping/orders', inputCheckedForToggle)">

@@ -152,7 +152,7 @@
         </trans-unit>
 
         <trans-unit id="today-collection__title" datatype="html">
-          <target>오늘의 컬렉션</target>
+          <target>온픽스 컬렉션</target>
           <context-group purpose="location">
             <context context-type="sourcefile">app/ui/pure/onpicks/list/today-collection/today-collection.component.html:7</context>
             <context context-type="linenumber">2</context>
@@ -1324,6 +1324,14 @@
 
       <trans-unit id="word__filter" datatype="html">
         <target>필터</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="word__my-feed" datatype="html">
+        <target>피드</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/ui/onpicks/footer/footer.component.html</context>
           <context context-type="linenumber">52</context>
