@@ -182,6 +182,7 @@
     background-color :$color-black;
     @include respond(desktop) {
       width: 100%;
+      height : 100vw;
       margin-right : 0;
     }
     img {
