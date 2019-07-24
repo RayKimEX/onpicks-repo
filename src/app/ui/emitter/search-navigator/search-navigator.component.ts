@@ -318,9 +318,6 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
 
       }, (err) => {
         this.searchInfiniteLoadService.isLoading = false;
-
-        console.log(err);
-        alert('더이상 불러올 목록이 없습니다.');
       });
 
     this.routerEvent$ = this.router.events.subscribe( (event: RouterEvent) => {
