@@ -46,9 +46,6 @@
     }
 
     &--reviews{
-      @include respond(desktop){
-        display:none;
-      }
       &--read-reviews {
         display:inline-block;
         margin-left : 0.8rem;

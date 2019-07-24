@@ -29,7 +29,7 @@ export class PMenuComponent implements OnInit, OnDestroy, AfterViewInit, OnChang
   @Input('isMobile') isMobile = false;
   @Input('data')
     set data( xData) {
-      console.log(xData);
+
       if ( xData === undefined || xData === null ) { return; };
       this._data = xData;
       for ( var i = 1; i <= (this._data.stock_quantity <= 10 ? this._data.stock_quantity : 10); i ++ ) {
