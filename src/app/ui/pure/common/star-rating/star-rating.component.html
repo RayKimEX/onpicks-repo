@@ -39,7 +39,7 @@
         <stop offset="50%" stop-color="#292929"/>
         <stop offset="50%" stop-color="#b3b3b3"/>
       </linearGradient>
-      <use #shapeStars [ngStyle]="{ fill : starInt > i ? '#292929' : starInt == i && halfStarCondition ?  'url(#grad)' : '#b3b3b3' }" xlink:href="#star10"/>
+      <use #shapeStars [ngStyle]="{ fill : starInt > i ? '#292929' : starInt == i && halfStarCondition ?  'url('+ window.location.href + '#grad)' : '#b3b3b3' }" xlink:href="#star10"/>
     </svg>
   </span>
 
@@ -66,7 +66,7 @@
       <svg>
         <use
           #shapeStars
-          [ngStyle]="{ fill : currentIndex > i ? currentIndex == i + 0.5 ? 'url(#grad)' : '#292929' : '#b3b3b3' }" [attr.data-index]="i+1" xlink:href="#star28"/>
+          [ngStyle]="{ fill : currentIndex > i ? currentIndex == i + 0.5 ? 'url('+ window.location.href + '#grad)' : '#292929' : '#b3b3b3' }" [attr.data-index]="i+1" xlink:href="#star28"/>
       </svg>
       <label (mouseover)="mouseOver(i+1)" for="star28-{{i+1}}--full">
       </label>
