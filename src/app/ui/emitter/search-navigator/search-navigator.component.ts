@@ -269,21 +269,21 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
         switchMap((categoryCurrentCode) => {
           this.searchInfiniteLoadService.isLoading = true;
           if (this.isMobile) {
-            console.log('!!!! xparam');
-            console.log(              this.router.url.indexOf('?') < 0 ? '' : '&' + this.router.url.substring(this.router.url.indexOf('?') + 1, this.router.url.length));
-
+            const xparam = this.removeParameterFromUrl(this.router.url.indexOf('?') < 0 ? '' : '&' + this.router.url.substring(this.router.url.indexOf('?') + 1, this.router.url.length), 'ordering');
             return this.searchService.categorySearch(
               categoryCurrentCode,
               this.searchInfiniteLoadService.currentSortSlug,
               this.searchInfiniteLoadService.currentPage,
-              this.router.url.indexOf('?') < 0 ? '' : '&' + this.router.url.substring(this.router.url.indexOf('?') + 1, this.router.url.length)
+              xparam
             );
           } else {
+            const xparam = this.removeParameterFromUrl(this.router.url.indexOf('?') < 0 ? '' : '&' + this.router.url.substring(this.router.url.indexOf('?') + 1, this.router.url.length), 'ordering');
+
             return this.searchService.categorySearch(
               categoryCurrentCode,
               this.currentSortSlug,
               this.currentPage,
-              this.router.url.indexOf('?') < 0 ? '' : '&' + this.router.url.substring(this.router.url.indexOf('?') + 1, this.router.url.length)
+              xparam
             );
           }
         })
@@ -817,7 +817,11 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
     }
     return categoryCurrentCode;
   }
-
+  removeParameterFromUrl(url, parameter) {
+    return url
+      .replace(new RegExp('[?&]' + parameter + '=[^&#]*(#.*)?$'), '$1')
+      .replace(new RegExp('([?&])' + parameter + '=[^&]*&'), '$1');
+  }
 }
 
 
