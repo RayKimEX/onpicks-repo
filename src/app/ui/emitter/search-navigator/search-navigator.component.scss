@@ -723,7 +723,10 @@ onpicks-check-box {
   }
 
   &__content {
-
+    padding-bottom: 50px;
+    ul {
+      padding-bottom: 20px;
+    }
     &--item {
 
     }
@@ -744,5 +747,7 @@ onpicks-check-box {
       }
     }
   }
+}
+onpicks-loading-icon {
 }
 

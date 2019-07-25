@@ -1,5 +1,6 @@
 import {Component, OnInit, ChangeDetectionStrategy, Input, Output, EventEmitter, Inject, LOCALE_ID} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
+import {SearchService} from '../../../../../core/service/data-pages/search/search.service';
 
 @Component({
   selector: 'onpicks-search-navigator-mobile-filter',
@@ -30,34 +31,39 @@ export class SearchNavigatorMobileFilterComponent implements OnInit {
   @Input('valueListForCheck') valueListForCheck;
   @Input('locationList') locationList;
   @Input('locationListForCheck') locationListForCheck;
-  @Input('isShowMobileFilter') isShowMobileFilter = false;
   @Input('queryParams') queryParams;
-  @Input('state') state = 'menu';
   @Input('sortList') sortList;
-  @Input('currentSortSlug') currentSortSlug;
+  @Input('state') state;
   @Input('searchState') searchState;
+  @Input('currentSortSlug') currentSortSlug;
+  @Input('isShowMobileFilter') isShowMobileFilter;
   @Output('exit') exitEvent = new EventEmitter();
-
-  // 'menu'
-  // 'category'
-  // 'brand'
-  // 'value'
-  // 'ex-warehouse'
+  @Output() sharedInfiniteListVariables = new EventEmitter();
 
   constructor(
     @Inject(LOCALE_ID) public locale: string,
+    private searchService: SearchService,
     public router: Router,
     private route: ActivatedRoute,
   ) {
 
   }
-
+  shareInifinteListVariables(sortSlug, currentPage, infiniteList){
+    const infiniteListVariables = {
+      currentSortSlug: sortSlug,
+      currentPage: currentPage,
+      infiniteList: infiniteList
+    };
+    this.sharedInfiniteListVariables.emit(infiniteListVariables);
+  }
   ngOnInit() {
   }
 
-
   sortClicked(xSortSlug) {
     this.currentSortSlug = xSortSlug;
+    console.log('@@@@@@ current sort @@@@@@');
+    console.log(this.currentSortSlug);
+    this.shareInifinteListVariables(this.currentSortSlug, 1, [])
     this.exitEvent.emit();
     // this.orderedFilterListForCheck[]
     if ( this.searchState === 'search' ) {
@@ -78,6 +84,8 @@ export class SearchNavigatorMobileFilterComponent implements OnInit {
   }
 
   applyValueFilter() {
+    this.shareInifinteListVariables('', 1, []);
+
     if ( this.searchState === 'search') {
       this.router.navigate(['/shops/search'], {
         queryParams: { page: null, value: this.queryParams.value.length === 0 ? null : this.queryParams.value},
@@ -102,7 +110,10 @@ export class SearchNavigatorMobileFilterComponent implements OnInit {
   }
 
   applyBrandFilter() {
+    this.shareInifinteListVariables('', 1, []);
+
     if ( this.searchState === 'search' ) {
+
       this.router.navigate(['/shops/search'], {
         queryParams: {page: null, brand: this.queryParams.brand.length === 0 ? null : this.queryParams.brand},
         queryParamsHandling: 'merge'
@@ -115,6 +126,8 @@ export class SearchNavigatorMobileFilterComponent implements OnInit {
   }
 
   locationClicked(xLocationSlug) {
+    this.shareInifinteListVariables('', 1, []);
+
     this.exitEvent.emit();
     if (this.locationListForCheck[xLocationSlug] === true) {
       this.locationListForCheck[xLocationSlug] = false;
@@ -156,7 +169,7 @@ export class SearchNavigatorMobileFilterComponent implements OnInit {
     this.state = 'menu';
   }
 
-  debugC(){
+  debugC() {
     this.state = 'category';
     console.log(this.categoryList);
   }

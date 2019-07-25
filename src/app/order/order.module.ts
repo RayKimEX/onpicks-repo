@@ -9,12 +9,14 @@ import { DirectivesModule} from '../core/directives/directives.module';
 import { UiModule} from '../ui/ui.module';
 import { CheckoutSuccessComponent } from './pages/checkout-success/checkout-success.component';
 import { CheckoutSuccessVirtualAccountComponent } from './pages/checkout-success-virtual-account/checkout-success-virtual-account.component';
-import {PipeModule} from '../core/pipe/pipe.module';
-import {CartToCheckoutService} from './share/cart-to-checkout.service';
-import {ReactiveFormsModule} from '@angular/forms';
-import { CheckoutKrComponent } from './components/checkout-kr/checkout-kr.component';
-import { CheckoutUsComponent } from './components/checkout-us/checkout-us.component';
+import { PipeModule } from '../core/pipe/pipe.module';
+import { CartToCheckoutService } from './share/cart-to-checkout.service';
+import { ReactiveFormsModule } from '@angular/forms';
+import { KrCheckoutComponent } from './components/kr/checkout/kr-checkout.component';
+import { UsCheckoutComponent } from './components/us/checkout/us-checkout.component';
 import { CheckoutFailureComponent } from './pages/checkout-failure/checkout-failure.component';
+import { KrCheckoutMenuComponent } from './components/kr/checkout/checkout-menu/kr-checkout-menu.component';
+import { UsCheckoutMenuComponent } from './components/us/checkout/checkout-menu/us-checkout-menu.component';
 
 @NgModule({
   imports: [
@@ -31,9 +33,11 @@ import { CheckoutFailureComponent } from './pages/checkout-failure/checkout-fail
     OrderNavigatorComponent,
     CheckoutSuccessComponent,
     CheckoutSuccessVirtualAccountComponent,
-    CheckoutKrComponent,
-    CheckoutUsComponent,
-    CheckoutFailureComponent
+    KrCheckoutComponent,
+    UsCheckoutComponent,
+    CheckoutFailureComponent,
+    KrCheckoutMenuComponent,
+    UsCheckoutMenuComponent,
   ],
   providers: [
     CartToCheckoutService

@@ -114,7 +114,6 @@ export function UiReducer(state = initialState, action: UiActions): UiState {
       currentSlug = '';
       currentName = '';
 
-
       const normalizedCategoryData = normalizer(action.payload.data);
       console.log(normalizedCategoryData);
       const secondCategoryData = normalizedCategoryData.entities.secondCategory;

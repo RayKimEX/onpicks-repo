@@ -1,39 +1,39 @@
-import {Component, OnInit, ChangeDetectionStrategy, AfterViewInit, OnDestroy, ViewChildren, ViewChild, ElementRef, Inject, Renderer2, ChangeDetectorRef, LOCALE_ID} from '@angular/core';
+import {Component, OnInit, ChangeDetectionStrategy, AfterViewInit, OnDestroy, ViewChildren, ViewChild, ElementRef, Inject, Renderer2, ChangeDetectorRef, LOCALE_ID, HostListener} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
-import {CURRENCY, DOMAIN_HOST, REGION_ID, RESPONSIVE_MAP} from '../../../core/global-constant/app.config';
+import {CURRENCY, DOMAIN_HOST, REGION_ID, RESPONSIVE_MAP} from '../../../../core/global-constant/app.config';
 import {BehaviorSubject, fromEvent, of} from 'rxjs';
-import {OrderDataService} from '../../../core/service/data-pages/order/order-data.service';
-import {HttpClient, HttpParams} from '../../../../../node_modules/@angular/common/http';
+import {OrderDataService} from '../../../../core/service/data-pages/order/order-data.service';
+import {HttpClient, HttpParams} from '../../../../../../node_modules/@angular/common/http';
 import {select, Store} from '@ngrx/store';
 import {Router} from '@angular/router';
-import {BreakpointObserver, BreakpointState} from '../../../../../node_modules/@angular/cdk/layout';
+import {BreakpointObserver, BreakpointState} from '../../../../../../node_modules/@angular/cdk/layout';
 import {catchError, debounceTime, distinctUntilChanged, flatMap, map, tap} from 'rxjs/operators';
-import {DisplayAlertMessage} from '../../../core/store/ui/ui.actions';
-import {DISPLAY_ALERT_MESSAGE_MAP} from '../../../core/global-constant/app.locale';
+import {DisplayAlertMessage} from '../../../../core/store/ui/ui.actions';
+import {DISPLAY_ALERT_MESSAGE_MAP} from '../../../../core/global-constant/app.locale';
 
 @Component({
-  selector: 'onpicks-checkout-kr',
-  templateUrl: './checkout-kr.component.html',
-  styleUrls: ['./checkout-kr.component.scss'],
+  selector: 'onpicks-kr-checkout',
+  templateUrl: './kr-checkout.component.html',
+  styleUrls: ['./kr-checkout.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CheckoutKrComponent implements OnInit, AfterViewInit, OnDestroy {
+export class KrCheckoutComponent implements OnInit, AfterViewInit, OnDestroy {
 
   @ViewChildren('inputSearchBoxOuter') inputSearchBoxOuter;
   @ViewChild('inputSearchBox', {read: ElementRef}) inputSearchBoxEL;
   @ViewChildren('inputSearchBox') inputSearchBox;
 
   ////
-  @ViewChild('inputOrderName', { read : ElementRef }) inputOrderName;
-  @ViewChild('inputOrderNumber', { read : ElementRef }) inputOrderNumber;
-  @ViewChildren('inputRecipientName', { read : ElementRef }) inputRecipientName;
-  @ViewChildren('inputRecipientNumber', { read : ElementRef }) inputRecipientNumber;
+  @ViewChild('inputOrderName', { read : ElementRef }) inputOrderNameRef;
+  @ViewChild('inputOrderNumber', { read : ElementRef }) inputOrderNumberRef;
+  @ViewChildren('inputRecipientName', { read : ElementRef }) inputRecipientNameRef;
+  @ViewChildren('inputRecipientNumber', { read : ElementRef }) inputRecipientNumberRef;
 
-  @ViewChildren('inputZipnumber', { read : ElementRef }) inputZipnumber;
-  @ViewChildren('inputJuso', { read : ElementRef }) inputJuso;
-  @ViewChildren('inputDetailJuso', { read : ElementRef }) inputDetailJuso;
+  @ViewChildren('inputZipnumber', { read : ElementRef }) inputZipnumberRef;
+  @ViewChildren('inputJuso', { read : ElementRef }) inputJusoRef;
+  @ViewChildren('inputDetailJuso', { read : ElementRef }) inputDetailJusoRef;
 
-  @ViewChild('checkoutAdditionNumber', { read : ElementRef}) checkoutAdditionNumber;
+  @ViewChild('checkoutAdditionNumber', { read : ElementRef}) checkoutAdditionNumberRef;
   @ViewChild('addDeliveryView') addDeliveryView;
 
 
@@ -79,8 +79,7 @@ export class CheckoutKrComponent implements OnInit, AfterViewInit, OnDestroy {
       // },
     ]};
 
-  readonly
-  EMPTY_ORDER_NAME          = 0b00000000001;
+  readonly EMPTY_ORDER_NAME          = 0b00000000001;
   readonly EMPTY_ORDER_NUMBER        = 0b00000000010;
   readonly INVALID_ORDER_NUMBER      = 0b00000100000;
 
@@ -178,7 +177,7 @@ export class CheckoutKrComponent implements OnInit, AfterViewInit, OnDestroy {
       .subscribe( v => {
         this.userStore = v;
         console.log(v);
-        if ( v ===  null ) { return; };
+        if ( v ===  null ) { return; }
         console.log(v);
         // userStore정보가 usbscribe되면, 그때 다시 배송지 정보를 갖고옴
         this.deliveryData$ = this.orderDataService.getDeliveryData(this.userStore.id)
@@ -202,7 +201,6 @@ export class CheckoutKrComponent implements OnInit, AfterViewInit, OnDestroy {
 
 
   ngAfterViewInit() {
-    console.log(this.inputSearchBox);
     this.searchInputFirstEvent$ = fromEvent(this.inputSearchBox.first.searchInputBox.nativeElement, 'input');
     this.searchInputLastEvent$ = fromEvent(this.inputSearchBox.last.searchInputBox.nativeElement, 'input');
 
@@ -310,20 +308,21 @@ export class CheckoutKrComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
   }
-
   changePaymentMethod(value, xId) {
     this.formData.payment_method = value;
+    this.cd.markForCheck();
   }
-
-
+  markForCheck(e) {
+    this.cd.markForCheck();
+  }
   payment(form) {
     this.errorStatus = 0;
     this.validate();
 
     if ( this.errorStatus === 0 ) {
 
-      this.formData.buyer_name = this.inputOrderName.nativeElement.children[0].value;
-      this.formData.buyer_contact = this.inputOrderNumber.nativeElement.children[0].value;
+      this.formData.buyer_name = this.inputOrderNameRef.nativeElement.children[0].value;
+      this.formData.buyer_contact = this.inputOrderNumberRef.nativeElement.children[0].value;
 
       // 0인 경우가 배송지 default이므로,
       // full_name 수신자 성함
@@ -331,11 +330,11 @@ export class CheckoutKrComponent implements OnInit, AfterViewInit, OnDestroy {
 
       if ( this.deliveryData.length === 0 ) {
 
-        // inputRecipientName
-        // inputRecipientNumber
-        // inputZipnumber
-        // inputJuso
-        // inputDetailJuso
+        // inputRecipientNameRef
+        // inputRecipientNumberRef
+        // inputZipnumberRef
+        // inputJusoRef
+        // inputDetailJusoRef
 
         this.formData = {
           ...this.formData,
@@ -352,7 +351,7 @@ export class CheckoutKrComponent implements OnInit, AfterViewInit, OnDestroy {
 
       }
 
-      this.formData.customs_id_number = this.checkoutAdditionNumber.nativeElement.children[0].value;
+      this.formData.customs_id_number = this.checkoutAdditionNumberRef.nativeElement.children[0].value;
 
       this.formData.city = '';
       this.formData.country = '';
@@ -413,14 +412,15 @@ export class CheckoutKrComponent implements OnInit, AfterViewInit, OnDestroy {
 
   }
 
+
   showSearchBox( xParam ) {
     // 내용이 있으면 show안되게
 
     this.jusoList = [];
     this.searchState = 0;
-    if( this.isShowDeliveryModal === true ){
+    if ( this.isShowDeliveryModal === true ) {
       if ( this.isShowSearchBox === false ) {
-        if ( xParam === 'input' && this.inputJuso.first.nativeElement.children[0].value !== ''  ) {
+        if ( xParam === 'input' && this.inputJusoRef.first.nativeElement.children[0].value !== ''  ) {
           return;
         }
         this.isShowSearchBox = true;
@@ -437,7 +437,7 @@ export class CheckoutKrComponent implements OnInit, AfterViewInit, OnDestroy {
       }
     } else {
       if ( this.isShowSearchBox === false ) {
-        if ( xParam === 'input' && this.inputJuso.last.nativeElement.children[0].value !== ''  ) {
+        if ( xParam === 'input' && this.inputJusoRef.last.nativeElement.children[0].value !== ''  ) {
           return;
         }
         this.isShowSearchBox = true;
@@ -465,18 +465,18 @@ export class CheckoutKrComponent implements OnInit, AfterViewInit, OnDestroy {
       'phone_number': '',
       // default를 false로 주던 true로주던 값이 API에서 허용 안되도록 막힘
       'default': false
-    }
+    };
 
-    temp.full_name = this.inputRecipientName.last.nativeElement.children[0].value;
-    temp.street_address_1 = this.inputJuso.last.nativeElement.children[0].value;
-    temp.street_address_2 = this.inputDetailJuso.last.nativeElement.children[0].value;
-    temp.zip_code = this.inputZipnumber.last.nativeElement.children[0].value;
-    temp.phone_number = this.inputRecipientNumber.last.nativeElement.children[0].value;
+    temp.full_name = this.inputRecipientNameRef.last.nativeElement.children[0].value;
+    temp.street_address_1 = this.inputJusoRef.last.nativeElement.children[0].value;
+    temp.street_address_2 = this.inputDetailJusoRef.last.nativeElement.children[0].value;
+    temp.zip_code = this.inputZipnumberRef.last.nativeElement.children[0].value;
+    temp.phone_number = this.inputRecipientNumberRef.last.nativeElement.children[0].value;
     return temp;
   }
 
   removeDeliveryInfo(index) {
-    if ( index === 0  ) { alert( '기본 배송지는 삭제할 수 없습니다. '); return;}
+    if ( index === 0  ) { alert( '기본 배송지는 삭제할 수 없습니다. '); return; }
     this.orderDataService.deleteDeliveryData( this.userStore.id, this.deliveryData[index].id )
       .subscribe( v => {
         this.deliveryData.splice(index , 1);
@@ -490,11 +490,11 @@ export class CheckoutKrComponent implements OnInit, AfterViewInit, OnDestroy {
     this.isShowDeliveryModal = false;
     this.isShowSearchBox = false;
 
-    // this.renderer.setProperty( this.inputRecipientName.nativeElement.children[0], 'value', '');
-    // this.renderer.setProperty( this.inputJuso.nativeElement.children[0], 'value', '');
-    // this.renderer.setProperty( this.inputDetailJuso.nativeElement.children[0], 'value', '');
-    // this.renderer.setProperty( this.inputZipnumber.nativeElement.children[0], 'value', '');
-    // this.renderer.setProperty( this.inputRecipientNumber.nativeElement.children[0], 'value', '');
+    // this.renderer.setProperty( this.inputRecipientNameRef.nativeElement.children[0], 'value', '');
+    // this.renderer.setProperty( this.inputJusoRef.nativeElement.children[0], 'value', '');
+    // this.renderer.setProperty( this.inputDetailJusoRef.nativeElement.children[0], 'value', '');
+    // this.renderer.setProperty( this.inputZipnumberRef.nativeElement.children[0], 'value', '');
+    // this.renderer.setProperty( this.inputRecipientNumberRef.nativeElement.children[0], 'value', '');
   }
 
   showModifyDeliveryModal(index) {
@@ -504,11 +504,11 @@ export class CheckoutKrComponent implements OnInit, AfterViewInit, OnDestroy {
     this.renderer.setStyle( this.inputSearchBoxOuter.last.nativeElement, 'display', 'none' );
     this.updateDeliveryIndex = index;
 
-    this.renderer.setProperty( this.inputRecipientName.first.nativeElement.children[0], 'value', this.deliveryData[this.updateDeliveryIndex].full_name);
-    this.renderer.setProperty( this.inputJuso.first.nativeElement.children[0], 'value', this.deliveryData[this.updateDeliveryIndex].street_address_1);
-    this.renderer.setProperty( this.inputDetailJuso.first.nativeElement.children[0], 'value', this.deliveryData[this.updateDeliveryIndex].street_address_2);
-    this.renderer.setProperty( this.inputZipnumber.first.nativeElement.children[0], 'value', this.deliveryData[this.updateDeliveryIndex].zip_code);
-    this.renderer.setProperty( this.inputRecipientNumber.first.nativeElement.children[0], 'value', this.deliveryData[this.updateDeliveryIndex].phone_number);
+    this.renderer.setProperty( this.inputRecipientNameRef.first.nativeElement.children[0], 'value', this.deliveryData[this.updateDeliveryIndex].full_name);
+    this.renderer.setProperty( this.inputJusoRef.first.nativeElement.children[0], 'value', this.deliveryData[this.updateDeliveryIndex].street_address_1);
+    this.renderer.setProperty( this.inputDetailJusoRef.first.nativeElement.children[0], 'value', this.deliveryData[this.updateDeliveryIndex].street_address_2);
+    this.renderer.setProperty( this.inputZipnumberRef.first.nativeElement.children[0], 'value', this.deliveryData[this.updateDeliveryIndex].zip_code);
+    this.renderer.setProperty( this.inputRecipientNumberRef.first.nativeElement.children[0], 'value', this.deliveryData[this.updateDeliveryIndex].phone_number);
 
     this.cd.markForCheck();
   }
@@ -525,13 +525,13 @@ export class CheckoutKrComponent implements OnInit, AfterViewInit, OnDestroy {
       'phone_number': '',
       // default를 false로 주던 true로주던 값이 API에서 허용 안되도록 막힘
       'default': this.deliveryData[this.updateDeliveryIndex].default,
-    }
+    };
 
-    temp.full_name = this.inputRecipientName.first.nativeElement.children[0].value;
-    temp.street_address_1 = this.inputJuso.first.nativeElement.children[0].value;
-    temp.street_address_2 = this.inputDetailJuso.first.nativeElement.children[0].value;
-    temp.zip_code = this.inputZipnumber.first.nativeElement.children[0].value;
-    temp.phone_number = this.inputRecipientNumber.first.nativeElement.children[0].value;
+    temp.full_name = this.inputRecipientNameRef.first.nativeElement.children[0].value;
+    temp.street_address_1 = this.inputJusoRef.first.nativeElement.children[0].value;
+    temp.street_address_2 = this.inputDetailJusoRef.first.nativeElement.children[0].value;
+    temp.zip_code = this.inputZipnumberRef.first.nativeElement.children[0].value;
+    temp.phone_number = this.inputRecipientNumberRef.first.nativeElement.children[0].value;
     this.deliveryData[this.updateDeliveryIndex] = temp;
     this.orderDataService.updateDeliveryData(
       this.userStore.id,
@@ -565,7 +565,7 @@ export class CheckoutKrComponent implements OnInit, AfterViewInit, OnDestroy {
 
   // Personal Custom Clearance Code, PCC Code, PCCC
   addCustomIdNumber() {
-    this.orderDataService.addCustomIdNumber(this.userStore.id, { customs_id_number :  this.checkoutAdditionNumber.nativeElement.children[0].value })
+    this.orderDataService.addCustomIdNumber(this.userStore.id, { customs_id_number :  this.checkoutAdditionNumberRef.nativeElement.children[0].value })
       .subscribe( response => {
         this.store.dispatch(new DisplayAlertMessage(this.alertMap['changes-saved'][this.locale]));
       }, error => {
@@ -611,39 +611,39 @@ export class CheckoutKrComponent implements OnInit, AfterViewInit, OnDestroy {
     this.errorStatus = 0;
 
 
-    if ( this.inputRecipientName.last.nativeElement.children[0].value === '') {
-      if ( this.errorStatus === 0 ) {this.inputRecipientName.last.nativeElement.children[0].focus();}
+    if ( this.inputRecipientNameRef.last.nativeElement.children[0].value === '') {
+      if ( this.errorStatus === 0 ) {this.inputRecipientNameRef.last.nativeElement.children[0].focus();}
       this.errorStatus |= this.EMPTY_RECIPIENT_NAME;
     }
 
-    if ( this.inputRecipientNumber.last.nativeElement.children[0].value === '') {
-      if ( this.errorStatus === 0 ) {this.inputRecipientNumber.last.nativeElement.children[0].focus();}
+    if ( this.inputRecipientNumberRef.last.nativeElement.children[0].value === '') {
+      if ( this.errorStatus === 0 ) {this.inputRecipientNumberRef.last.nativeElement.children[0].focus();}
       this.errorStatus |= this.EMPTY_RECIPIENT_NUMBER;
     } else {
       const patt = new RegExp('[a-zA-Z]');
-      if ( patt.test(this.inputRecipientNumber.last.nativeElement.children[0].value) ) {
-        if ( this.errorStatus === 0 ) {this.inputRecipientNumber.last.nativeElement.children[0].focus();}
+      if ( patt.test(this.inputRecipientNumberRef.last.nativeElement.children[0].value) ) {
+        if ( this.errorStatus === 0 ) {this.inputRecipientNumberRef.last.nativeElement.children[0].focus();}
         this.errorStatus |= this.INVALID_RECIPIENT_NUMBER;
       }
     }
 
-    if ( this.inputZipnumber.last.nativeElement.children[0].value === ''
-      || this.inputJuso.last.nativeElement.children[0].value === ''
+    if ( this.inputZipnumberRef.last.nativeElement.children[0].value === ''
+      || this.inputJusoRef.last.nativeElement.children[0].value === ''
     ) {
-      if ( this.errorStatus === 0 ) {this.inputZipnumber.last.nativeElement.children[0].focus();}
+      if ( this.errorStatus === 0 ) {this.inputZipnumberRef.last.nativeElement.children[0].focus();}
       this.errorStatus |= this.EMPTY_DELIVERY_ADDRESS;
     }
   }
 
   getCurrentText(event) {
     if ( this.isShowDeliveryModal === true ) {
-      this.renderer.setProperty(this.inputJuso.first.nativeElement.children[0], 'value', event.target.innerText);
-      this.renderer.setProperty(this.inputZipnumber.first.nativeElement.children[0], 'value', event.target.getAttribute('data-zipnumber'));
+      this.renderer.setProperty(this.inputJusoRef.first.nativeElement.children[0], 'value', event.target.innerText);
+      this.renderer.setProperty(this.inputZipnumberRef.first.nativeElement.children[0], 'value', event.target.getAttribute('data-zipnumber'));
       this.isShowSearchBox = false;
       this.renderer.setStyle(this.inputSearchBoxOuter.first.nativeElement, 'display', 'none');
     } else {
-      this.renderer.setProperty(this.inputJuso.last.nativeElement.children[0], 'value', event.target.innerText);
-      this.renderer.setProperty(this.inputZipnumber.last.nativeElement.children[0], 'value', event.target.getAttribute('data-zipnumber'));
+      this.renderer.setProperty(this.inputJusoRef.last.nativeElement.children[0], 'value', event.target.innerText);
+      this.renderer.setProperty(this.inputZipnumberRef.last.nativeElement.children[0], 'value', event.target.getAttribute('data-zipnumber'));
       this.isShowSearchBox = false;
       this.renderer.setStyle( this.inputSearchBoxOuter.last.nativeElement, 'display', 'none' );
     }
@@ -654,62 +654,59 @@ export class CheckoutKrComponent implements OnInit, AfterViewInit, OnDestroy {
   checkBitWise( data ) {
     return ((this.errorStatus & data) > 0);
   }
-
-
-
   validate() {
 
-    if ( this.inputOrderName.nativeElement.children[0].value === '') {
-      this.inputOrderName.nativeElement.children[0].focus();
+    if ( this.inputOrderNameRef.nativeElement.children[0].value === '') {
+      this.inputOrderNameRef.nativeElement.children[0].focus();
       this.errorStatus |= this.EMPTY_ORDER_NAME;
 
     }
 
-    if ( this.inputOrderNumber.nativeElement.children[0].value === '') {
-      if ( this.errorStatus === 0 ) {this.inputOrderNumber.nativeElement.children[0].focus();}
+    if ( this.inputOrderNumberRef.nativeElement.children[0].value === '') {
+      if ( this.errorStatus === 0 ) {this.inputOrderNumberRef.nativeElement.children[0].focus();}
       this.errorStatus |= this.EMPTY_ORDER_NUMBER;
     } else {
       const patt = new RegExp('^(?:\\+?\\d{1,2} ?)?[ -]?\\d{2,3}[ -]?\\d{3,4}[ -]?\\d{4}$');
-      if ( !patt.test(this.inputOrderNumber.nativeElement.children[0].value) ) {
+      if ( !patt.test(this.inputOrderNumberRef.nativeElement.children[0].value) ) {
 
-        if ( this.errorStatus === 0 ) {this.inputOrderNumber.nativeElement.children[0].focus();}
+        if ( this.errorStatus === 0 ) {this.inputOrderNumberRef.nativeElement.children[0].focus();}
         this.errorStatus |= this.INVALID_ORDER_NUMBER;
       }
     }
 
     if ( this.deliveryData.length === 0 ) {
-      if ( this.inputRecipientName.last.nativeElement.children[0].value === '') {
-        if ( this.errorStatus === 0 ) {this.inputRecipientName.last.nativeElement.children[0].focus();}
+      if ( this.inputRecipientNameRef.last.nativeElement.children[0].value === '') {
+        if ( this.errorStatus === 0 ) {this.inputRecipientNameRef.last.nativeElement.children[0].focus();}
         this.errorStatus |= this.EMPTY_RECIPIENT_NAME;
       }
 
-      if ( this.inputRecipientNumber.last.nativeElement.children[0].value === '') {
-        if ( this.errorStatus === 0 ) {this.inputRecipientNumber.last.nativeElement.children[0].focus();}
+      if ( this.inputRecipientNumberRef.last.nativeElement.children[0].value === '') {
+        if ( this.errorStatus === 0 ) {this.inputRecipientNumberRef.last.nativeElement.children[0].focus();}
         this.errorStatus |= this.EMPTY_RECIPIENT_NUMBER;
       } else {
         const patt = new RegExp('^(?:\\+?\\d{1,2} ?)?[ -]?\\d{2,3}[ -]?\\d{3,4}[ -]?\\d{4}$');
-        if ( !patt.test(this.inputRecipientNumber.last.nativeElement.children[0].value) ) {
-          if ( this.errorStatus === 0 ) {this.inputRecipientNumber.last.nativeElement.children[0].focus();}
+        if ( !patt.test(this.inputRecipientNumberRef.last.nativeElement.children[0].value) ) {
+          if ( this.errorStatus === 0 ) {this.inputRecipientNumberRef.last.nativeElement.children[0].focus();}
           this.errorStatus |= this.INVALID_RECIPIENT_NUMBER;
         }
       }
 
-      if ( this.inputZipnumber.last.nativeElement.children[0].value === ''
-        || this.inputJuso.last.nativeElement.children[0].value === ''
+      if ( this.inputZipnumberRef.last.nativeElement.children[0].value === ''
+        || this.inputJusoRef.last.nativeElement.children[0].value === ''
       ) {
 
-        if ( this.errorStatus === 0 ) {this.inputZipnumber.last.nativeElement.children[0].focus();}
+        if ( this.errorStatus === 0 ) {this.inputZipnumberRef.last.nativeElement.children[0].focus();}
         this.errorStatus |= this.EMPTY_DELIVERY_ADDRESS;
       }
     }
 
-    if ( this.checkoutAdditionNumber.nativeElement.children[0].value === '') {
-      if ( this.errorStatus === 0 ) {this.checkoutAdditionNumber.nativeElement.children[0].focus();}
+    if ( this.checkoutAdditionNumberRef.nativeElement.children[0].value === '') {
+      if ( this.errorStatus === 0 ) {this.checkoutAdditionNumberRef.nativeElement.children[0].focus();}
       this.errorStatus |= this.EMPTY_CUSTOMS_ID_NUMBER;
     } else {
       const patt = new RegExp('^[pP][0-9]{12}$');
-      if ( !(patt.test(this.checkoutAdditionNumber.nativeElement.children[0].value))) {
-        if ( this.errorStatus === 0 ) {this.checkoutAdditionNumber.nativeElement.children[0].focus();}
+      if ( !(patt.test(this.checkoutAdditionNumberRef.nativeElement.children[0].value))) {
+        if ( this.errorStatus === 0 ) {this.checkoutAdditionNumberRef.nativeElement.children[0].focus();}
         this.errorStatus |= this.INVALID_CUSTOMS_ID_NUMBER;
       }
     }
@@ -718,8 +715,9 @@ export class CheckoutKrComponent implements OnInit, AfterViewInit, OnDestroy {
       this.errorStatus |= this.EMPTY_AGREEMENT_DIRECT_BUYING;
     }
   }
-
-
+  onErrorEmitter(errorStatus) {
+    this.errorStatus = errorStatus;
+  }
   setShippingMessage(xShippingMessage) {
     this.formData.shipping_message = xShippingMessage.value;
   }
