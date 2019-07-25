@@ -27,7 +27,6 @@ import {BreakpointObserver, BreakpointState} from '../../../../../node_modules/@
 import {Title} from '@angular/platform-browser';
 import {DISPLAY_ALERT_MESSAGE_MAP} from '../../../core/global-constant/app.locale';
 import {switchMap, tap} from 'rxjs/operators';
-import {SearchInfiniteLoadService} from './services/search-infinite-load.service';
 
 @Component({
   selector: 'emitter-search-navigator',
@@ -163,6 +162,13 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
       en : 'Low Price'
     }
   };
+
+  // infinite scroll
+  infiniteCurrentSortSlug;
+  infiniteCurrentPage;
+  infiniteList = [];
+  isLoading = false;
+
   constructor(
     @Inject( CURRENCY ) public currency: BehaviorSubject<any>,
     @Inject( LOCATION_MAP ) public locationMap: any,
@@ -180,7 +186,6 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
     private searchService: SearchService,
     private breakpointObserver:  BreakpointObserver,
     private titleService: Title,
-    private searchInfiniteLoadService: SearchInfiniteLoadService,
   ) {
 
     this.breakpointObserver
@@ -224,15 +229,13 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
 
     this.totalSearchData$ = this.totalSearchRequest$.pipe(
       switchMap((param) => {
-        console.log('!!!! total search data');
-        console.log(param);
-        this.searchInfiniteLoadService.isLoading = true;
+        this.isLoading = true;
         return this.searchService.search(param);
       }),
     ).subscribe((_infoList: {filters, aggregation, results, count}) => {
       /* async 데이터가 들어오는데, null이라면 return을 해줌 */
       if (_infoList != null) {
-        this.searchInfiniteLoadService.isLoading = false;
+        this.isLoading = false;
 
         this.filters = _infoList.filters;
         this.valueList = _infoList.aggregation.values;
@@ -250,7 +253,7 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
         this.currentList = this.infoList.slice(0, this.maxRow);
 
         if (this.isMobile) {
-          this.searchInfiniteLoadService.infiniteList = this.searchInfiniteLoadService.infiniteList.concat(this.infoList);
+          this.infiniteList = this.infiniteList.concat(this.infoList);
 
         }
 
@@ -258,7 +261,7 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
 
       }
     }, (err) => {
-      this.searchInfiniteLoadService.isLoading = false;
+      this.isLoading = false;
 
       console.log(err);
       alert('더이상 불러올 목록이 없습니다.');
@@ -267,13 +270,13 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
     this.categorySearchData$ =
       this.categorySearchReqeust$.pipe(
         switchMap((categoryCurrentCode) => {
-          this.searchInfiniteLoadService.isLoading = true;
+          this.isLoading = true;
           if (this.isMobile) {
             const xparam = this.removeParameterFromUrl(this.router.url.indexOf('?') < 0 ? '' : '&' + this.router.url.substring(this.router.url.indexOf('?') + 1, this.router.url.length), 'ordering');
             return this.searchService.categorySearch(
               categoryCurrentCode,
-              this.searchInfiniteLoadService.currentSortSlug,
-              this.searchInfiniteLoadService.currentPage,
+              this.currentSortSlug,
+              this.currentPage,
               xparam
             );
           } else {
@@ -289,7 +292,7 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
         })
       ).subscribe( (_infoList: {filters, aggregation, results, count}) => {
         this.searchState = 'category';
-        this.searchInfiniteLoadService.isLoading = false;
+        this.isLoading = false;
 
         /* async 데이터가 들어오는데, null이라면 return을 해줌 */
 
@@ -308,7 +311,7 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
 
           this.currentList = this.infoList.slice(0, this.maxRow);
           if (this.isMobile) {
-            this.searchInfiniteLoadService.infiniteList = this.searchInfiniteLoadService.infiniteList.concat(this.infoList);
+            this.infiniteList = this.infiniteList.concat(this.infoList);
 
           }
 
@@ -317,7 +320,7 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
         }
 
       }, (err) => {
-        this.searchInfiniteLoadService.isLoading = false;
+        this.isLoading = false;
       });
 
     this.routerEvent$ = this.router.events.subscribe( (event: RouterEvent) => {
@@ -410,10 +413,13 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
       if ( url.indexOf('/search') <= -1 && url.indexOf('/c/') <= -1) {
         return;
       }
-      // this.loadNextPageItems(this.searchInfiniteLoadService.currentPage);
     }
   }
-
+  shareInfiniteListVaraibles(infiniteListVariables) {
+    this.infiniteCurrentSortSlug = infiniteListVariables.currentSortSlug;
+    this.infiniteCurrentPage = infiniteListVariables.currentPage;
+    this.infiniteList = infiniteListVariables.infiniteList;
+  }
   get filterList() {
     console.log('!!!!!!! get filter list');
     console.log(this.filters);
@@ -777,9 +783,9 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
   }
 
   onScrollDown (ev) {
-    if (!this.searchInfiniteLoadService.isLoading) {
-      this.searchInfiniteLoadService.currentPage += 1;
-      this.loadNextPageItems(this.searchInfiniteLoadService.currentPage);
+    if (!this.isLoading) {
+      this.currentPage += 1;
+      this.loadNextPageItems(this.currentPage);
 
     }
   }

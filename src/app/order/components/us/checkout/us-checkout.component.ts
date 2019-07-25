@@ -483,5 +483,10 @@ export class UsCheckoutComponent implements OnInit, AfterViewInit {
   markForCheck(e) {
     this.cd.markForCheck();
   }
+  onErrorEmitter(errorStatus) {
+    console.log('onerroremiiter');
+    console.log(errorStatus)
+    this.errorStatus = errorStatus;
+  }
 
 }

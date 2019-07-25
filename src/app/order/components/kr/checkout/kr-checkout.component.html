@@ -360,18 +360,19 @@
     [ngClass]="[ isThirdBreakPoint ? 'col-6-of-12 checkout-right' : 'checkout-right'] ">
     <onpicks-kr-checkout-menu *ngIf="(checkoutStore$ | async) as data; "
       [data]="data"
-      [inputOrderName]="inputOrderNameRef.nativeElement.children[0].value"
-      [inputOrderNumber]="inputOrderNumberRef.nativeElement.children[0].value"
-      [inputRecipientName]="inputRecipientNameRef.last.nativeElement.children[0].value"
-      [inputRecipientNumber]="inputRecipientNumberRef.last.nativeElement.children[0].value"
-      [inputJuso]="inputJusoRef.last.nativeElement.children[0].value"
-      [inputDetailJuso]="inputDetailJusoRef.last.nativeElement.children[0].value"
-      [inputZipnumber]="inputZipnumberRef.last.nativeElement.children[0].value"
-      [checkoutAdditionNumber]="checkoutAdditionNumberRef.nativeElement.children[0].value"
+      [inputOrderName]="inputOrderNameRef"
+      [inputOrderNumber]="inputOrderNumberRef"
+      [inputRecipientName]="inputRecipientNameRef"
+      [inputRecipientNumber]="inputRecipientNumberRef"
+      [inputJuso]="inputJusoRef"
+      [inputDetailJuso]="inputDetailJusoRef"
+      [inputZipnumber]="inputZipnumberRef"
+      [checkoutAdditionNumber]="checkoutAdditionNumberRef"
       [isAgreementDirectBuyingInfo]="isAgreementDirectBuyingInfo"
       [shippingMessage]="formData.shipping_message"
       [deliveryData]="deliveryData"
       [payment_method]="formData.payment_method"
+      (errorStatusEmitter)="onErrorEmitter($event)"
     >
     </onpicks-kr-checkout-menu>
 

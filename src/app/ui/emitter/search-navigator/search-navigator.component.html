@@ -20,7 +20,9 @@
   [searchState]="searchState"
 
   [currentSortSlug]="currentSortSlug"
-  [isShowMobileFilter]="isShowMobileFilter">
+  [isShowMobileFilter]="isShowMobileFilter"
+  (sharedInfiniteListVariables)="shareInfiniteListVaraibles($event)"
+>
 </onpicks-search-navigator-mobile-filter>
 
 <div class="row" [ngStyle]="{ minHeight : contentHeight }">
@@ -619,7 +621,7 @@
                [infiniteScrollThrottle]="400"
                (scrolled)="onScrollDown(this)">
             <ul #container *ngLet="(currency| async) as currencyAync">
-              <li #itemList *ngFor="let item of searchInfiniteLoadService.infiniteList; index as i" class="search-content__item">
+              <li #itemList *ngFor="let item of infiniteList; index as i" class="search-content__item">
                 <div>
 
                   <div class="search-content__item--image">
@@ -744,7 +746,7 @@
                 </div>
               </li>
             </ul>
-            <onpicks-loading-icon *ngIf="searchInfiniteLoadService.isLoading"></onpicks-loading-icon>
+            <onpicks-loading-icon *ngIf="isLoading"></onpicks-loading-icon>
           </div>
         </div>
 

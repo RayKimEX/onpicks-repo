@@ -1,4 +1,4 @@
-import {Component, OnInit, ChangeDetectionStrategy, ViewChildren, ViewChild, ElementRef, Input, Inject, ChangeDetectorRef, HostListener, OnDestroy, AfterViewInit} from '@angular/core';
+import {Component, OnInit, ChangeDetectionStrategy, ViewChildren, ViewChild, ElementRef, Input, Inject, ChangeDetectorRef, HostListener, OnDestroy, AfterViewInit, Output, EventEmitter} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
 import {CURRENCY, DOMAIN_HOST, PAYPAL_API_KEY_TOKEN, RESPONSIVE_MAP, STRIPE_API_KEY_TOKEN} from '../../../../../core/global-constant/app.config';
 import {BehaviorSubject, of} from 'rxjs';
@@ -32,6 +32,7 @@ export class UsCheckoutMenuComponent implements OnInit, OnDestroy, AfterViewInit
 //  @Input('deliveryData') deliveryData;
   @Input('paypalPayment') paypalPayment;
   @Input ('data') data;
+  @Output() errorStatusEmitter = new EventEmitter();
 
   readonly EMPTY_FULL_NAME = 0b000000000001;
   readonly EMPTY_ADDRESS_NAME = 0b000000000010;
@@ -275,6 +276,9 @@ export class UsCheckoutMenuComponent implements OnInit, OnDestroy, AfterViewInit
       }
     }
   }
+  errorEmitter(errorStatus){
+    this.errorStatusEmitter.emit(errorStatus);
+  }
 
   stripePayment() {
 
@@ -335,19 +339,22 @@ export class UsCheckoutMenuComponent implements OnInit, OnDestroy, AfterViewInit
     });
   }
   zipCodeCheck(isFocusOut) {
-    if (isFocusOut && this.inputZipCode === '') {
+    if (isFocusOut && this.inputZipCode.nativeElement.children[0].value === '') {
       return;
     }
 
-    if ( this.inputZipCode.length < 5 ) {
+    if ( this.inputZipCode.nativeElement.children[0].value.length < 5 ) {
       this.errorStatus |= this.INCORRECT_ZIP_CODE;
     } else {
       this.errorStatus &= ~this.INCORRECT_ZIP_CODE;
     }
+    if (this.errorStatus) {
+      this.errorEmitter(this.errorStatus);
+    }
+
   }
 
   /* validation */
-
   stateCheck() {
     // EMPTY_STATE
     if ( this.paymentData.state === null ) {
@@ -355,33 +362,40 @@ export class UsCheckoutMenuComponent implements OnInit, OnDestroy, AfterViewInit
     } else {
       this.errorStatus &= ~this.EMPTY_STATE;
     }
+    if (this.errorStatus) {
+      this.errorEmitter(this.errorStatus);
+    }
+
   }
 
   fullNameCheck(isFocusOut) {
     if (isFocusOut && this.inputFullName.nativeElement.children[0].value === '') {
       return;
     }
-    console.log('full name');
-    console.log(this.inputFullName.nativeElement.children[0].value);
     if ( this.inputFullName.nativeElement.children[0].value === '' ) {
       this.errorStatus |= this.EMPTY_FULL_NAME;
     } else {
       this.errorStatus &= ~this.EMPTY_FULL_NAME;
     }
-  }
+    if (this.errorStatus) {
+      this.errorEmitter(this.errorStatus);
+    }
 
+  }
   addressNameCheck(isFocusOut) {
     if (isFocusOut && this.inputAddressName.nativeElement.children[0].value === '') {
       return;
     }
 
-    if ( this.inputAddressName === '') {
-      console.log('address name');
-
+    if ( this.inputAddressName.nativeElement.children[0].value === '') {
       this.errorStatus |= this.EMPTY_ADDRESS_NAME;
     } else {
       this.errorStatus &= ~this.EMPTY_ADDRESS_NAME;
     }
+    if (this.errorStatus) {
+      this.errorEmitter(this.errorStatus);
+    }
+
   }
 
   cityCheck(isFocusOut) {
@@ -395,30 +409,30 @@ export class UsCheckoutMenuComponent implements OnInit, OnDestroy, AfterViewInit
     } else {
       this.errorStatus &= ~this.EMPTY_CITY;
     }
+    if (this.errorStatus) {
+      this.errorEmitter(this.errorStatus);
+    }
 
     this.cd.markForCheck();
   }
-
   phoneCheck(isFocusOut) {
 
-    if (isFocusOut && this.inputPhone === '') {
+    if (isFocusOut && this.inputPhone.nativeElement.children[0].value === '') {
       return;
     }
-    console.log(this.inputPhone.nativeElement.children[0].value)
     const patt1 = new RegExp('^[0-9]{3}-[0-9]{3}-[0-9]{4}$');
     const patt2 = new RegExp('^[0-9]{10}$');
 
-    if ( patt1.test( this.inputPhone)) {
+    console.log(patt2.test(this.inputPhone.nativeElement.children[0].value));
+    if ( patt1.test( this.inputPhone.nativeElement.children[0].value)) {
       this.errorStatus &= ~this.INVALID_PHONE_NUMBER;
-      console.log('phone 1')
     } else if ( patt2.test(this.inputPhone.nativeElement.children[0].value)) {
-      console.log('phone 2')
-
       this.errorStatus &= ~this.INVALID_PHONE_NUMBER;
     } else {
-      console.log('phone 3')
-
       this.errorStatus |= this.INVALID_PHONE_NUMBER;
+    }
+    if (this.errorStatus) {
+      this.errorEmitter(this.errorStatus);
     }
   }
   getCookie(cname) {

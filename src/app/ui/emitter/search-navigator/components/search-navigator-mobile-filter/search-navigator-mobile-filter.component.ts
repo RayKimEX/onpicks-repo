@@ -1,7 +1,6 @@
 import {Component, OnInit, ChangeDetectionStrategy, Input, Output, EventEmitter, Inject, LOCALE_ID} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {SearchService} from '../../../../../core/service/data-pages/search/search.service';
-import {SearchInfiniteLoadService} from '../../services/search-infinite-load.service';
 
 @Component({
   selector: 'onpicks-search-navigator-mobile-filter',
@@ -39,17 +38,24 @@ export class SearchNavigatorMobileFilterComponent implements OnInit {
   @Input('currentSortSlug') currentSortSlug;
   @Input('isShowMobileFilter') isShowMobileFilter;
   @Output('exit') exitEvent = new EventEmitter();
+  @Output() sharedInfiniteListVariables = new EventEmitter();
 
   constructor(
     @Inject(LOCALE_ID) public locale: string,
     private searchService: SearchService,
     public router: Router,
     private route: ActivatedRoute,
-    private searchInfiniteLoadService: SearchInfiniteLoadService,
   ) {
 
   }
-
+  shareInifinteListVariables(sortSlug, currentPage, infiniteList){
+    const infiniteListVariables = {
+      currentSortSlug: sortSlug,
+      currentPage: currentPage,
+      infiniteList: infiniteList
+    };
+    this.sharedInfiniteListVariables.emit(infiniteListVariables);
+  }
   ngOnInit() {
   }
 
@@ -57,9 +63,7 @@ export class SearchNavigatorMobileFilterComponent implements OnInit {
     this.currentSortSlug = xSortSlug;
     console.log('@@@@@@ current sort @@@@@@');
     console.log(this.currentSortSlug);
-    this.searchInfiniteLoadService.currentSortSlug = this.currentSortSlug;
-    this.searchInfiniteLoadService.currentPage = 1;
-    this.searchInfiniteLoadService.infiniteList = [];
+    this.shareInifinteListVariables(this.currentSortSlug, 1, [])
     this.exitEvent.emit();
     // this.orderedFilterListForCheck[]
     if ( this.searchState === 'search' ) {
@@ -80,8 +84,7 @@ export class SearchNavigatorMobileFilterComponent implements OnInit {
   }
 
   applyValueFilter() {
-    this.searchInfiniteLoadService.currentPage = 1;
-    this.searchInfiniteLoadService.infiniteList = [];
+    this.shareInifinteListVariables('', 1, []);
 
     if ( this.searchState === 'search') {
       this.router.navigate(['/shops/search'], {
@@ -107,8 +110,7 @@ export class SearchNavigatorMobileFilterComponent implements OnInit {
   }
 
   applyBrandFilter() {
-    this.searchInfiniteLoadService.currentPage = 1;
-    this.searchInfiniteLoadService.infiniteList = [];
+    this.shareInifinteListVariables('', 1, []);
 
     if ( this.searchState === 'search' ) {
 
@@ -124,8 +126,7 @@ export class SearchNavigatorMobileFilterComponent implements OnInit {
   }
 
   locationClicked(xLocationSlug) {
-    this.searchInfiniteLoadService.currentPage = 1;
-    this.searchInfiniteLoadService.infiniteList = [];
+    this.shareInifinteListVariables('', 1, []);
 
     this.exitEvent.emit();
     if (this.locationListForCheck[xLocationSlug] === true) {

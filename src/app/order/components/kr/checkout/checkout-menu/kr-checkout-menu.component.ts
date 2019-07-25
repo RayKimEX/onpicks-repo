@@ -1,4 +1,4 @@
-import {Component, OnInit, ChangeDetectionStrategy, Inject, ChangeDetectorRef, AfterViewInit, HostListener, Input, OnDestroy, ElementRef} from '@angular/core';
+import {Component, OnInit, ChangeDetectionStrategy, Inject, ChangeDetectorRef, AfterViewInit, HostListener, Input, OnDestroy, ElementRef, EventEmitter, Output} from '@angular/core';
 import {BreakpointObserver, BreakpointState} from '@angular/cdk/layout';
 import {CURRENCY, DOMAIN_HOST, RESPONSIVE_MAP} from '../../../../../core/global-constant/app.config';
 import {HttpClient, HttpParams} from '@angular/common/http';
@@ -32,6 +32,8 @@ export class KrCheckoutMenuComponent implements OnInit, OnDestroy, AfterViewInit
   @Input('deliveryData') deliveryData;
   @Input('data') data;
   @Input('payment_method') payment_method;
+
+  @Output() errorStatusEmitter = new EventEmitter();
 
   readonly EMPTY_ORDER_NAME          = 0b00000000001;
   readonly EMPTY_ORDER_NUMBER        = 0b00000000010;
@@ -166,15 +168,17 @@ export class KrCheckoutMenuComponent implements OnInit, OnDestroy, AfterViewInit
       }
     }
   }
-
+  errorEmitter(errorStatus){
+    this.errorStatusEmitter.emit(errorStatus);
+  }
   payment(form) {
     this.errorStatus = 0;
     this.validate();
 
     if ( this.errorStatus === 0 ) {
 
-      this.formData.buyer_name = this.inputOrderName;
-      this.formData.buyer_contact = this.inputOrderNumber;
+      this.formData.buyer_name = this.inputOrderName.nativeElement.children[0].value;
+      this.formData.buyer_contact = this.inputOrderNumber.nativeElement.children[0].value;
       this.formData.payment_method = this.payment_method;
       // 0인 경우가 배송지 default이므로,
       // full_name 수신자 성함
@@ -205,7 +209,7 @@ export class KrCheckoutMenuComponent implements OnInit, OnDestroy, AfterViewInit
       if (this.shippingMessage){
         this.formData.shipping_message = this.shippingMessage;
       }
-      this.formData.customs_id_number = this.checkoutAdditionNumber;
+      this.formData.customs_id_number = this.checkoutAdditionNumber.nativeElement.children[0].value;
 
       this.formData.city = '';
       this.formData.country = '';
@@ -268,85 +272,71 @@ export class KrCheckoutMenuComponent implements OnInit, OnDestroy, AfterViewInit
   }
   validate() {
 
-    if ( this.inputOrderName === '') {
+    if ( this.inputOrderName.nativeElement.children[0].value === '') {
+      this.inputOrderName.nativeElement.children[0].focus();
       this.errorStatus |= this.EMPTY_ORDER_NAME;
-      console.log('EMPTY_ORDER_NAME');
 
     }
 
-    if ( this.inputOrderNumber === '') {
-      if ( this.errorStatus === 0 ) { }
+    if ( this.inputOrderNumber.nativeElement.children[0].value === '') {
+      if ( this.errorStatus === 0 ) {this.inputOrderNumber.nativeElement.children[0].focus();}
       this.errorStatus |= this.EMPTY_ORDER_NUMBER;
-      console.log('EMPTY_ORDER_NUMBER');
-
     } else {
       const patt = new RegExp('^(?:\\+?\\d{1,2} ?)?[ -]?\\d{2,3}[ -]?\\d{3,4}[ -]?\\d{4}$');
-      if ( !patt.test(this.inputOrderNumber) ) {
+      if ( !patt.test(this.inputOrderNumber.nativeElement.children[0].value) ) {
 
-        if ( this.errorStatus === 0 ) { }
+        if ( this.errorStatus === 0 ) {this.inputOrderNumber.nativeElement.children[0].focus();}
         this.errorStatus |= this.INVALID_ORDER_NUMBER;
-        console.log('INVALID_ORDER_NUMBER');
-
       }
     }
 
     if ( this.deliveryData.length === 0 ) {
-      if ( this.inputRecipientName === '') {
-        if ( this.errorStatus === 0 ) { }
+      if ( this.inputRecipientName.last.nativeElement.children[0].value === '') {
+        if ( this.errorStatus === 0 ) {this.inputRecipientName.last.nativeElement.children[0].focus();}
         this.errorStatus |= this.EMPTY_RECIPIENT_NAME;
-        console.log('EMPTY_RECIPIENT_NAME');
-
       }
 
-      if ( this.inputRecipientNumber === '') {
-        if ( this.errorStatus === 0 ) { }
+      if ( this.inputRecipientNumber.last.nativeElement.children[0].value === '') {
+        if ( this.errorStatus === 0 ) {this.inputRecipientNumber.last.nativeElement.children[0].focus();}
         this.errorStatus |= this.EMPTY_RECIPIENT_NUMBER;
-        console.log('EMPTY_RECIPIENT_NUMBER');
-
       } else {
         const patt = new RegExp('^(?:\\+?\\d{1,2} ?)?[ -]?\\d{2,3}[ -]?\\d{3,4}[ -]?\\d{4}$');
-        if ( !patt.test(this.inputRecipientNumber) ) {
-          if ( this.errorStatus === 0 ) {}
+        if ( !patt.test(this.inputRecipientNumber.last.nativeElement.children[0].value) ) {
+          if ( this.errorStatus === 0 ) {this.inputRecipientNumber.last.nativeElement.children[0].focus();}
           this.errorStatus |= this.INVALID_RECIPIENT_NUMBER;
-          console.log('INVALID_RECIPIENT_NUMBER');
-
         }
       }
 
-      if ( this.inputZipnumber === ''
-        || this.inputJuso === ''
+      if ( this.inputZipnumber.last.nativeElement.children[0].value === ''
+        || this.inputJuso.last.nativeElement.children[0].value === ''
       ) {
 
-        if ( this.errorStatus === 0 ) {}
+        if ( this.errorStatus === 0 ) {this.inputZipnumber.last.nativeElement.children[0].focus();}
         this.errorStatus |= this.EMPTY_DELIVERY_ADDRESS;
-        console.log('EMPTY_DELIVERY_ADDRESS');
-
       }
     }
 
-    if ( this.checkoutAdditionNumber === '') {
-      if ( this.errorStatus === 0 ) {}
+    if ( this.checkoutAdditionNumber.nativeElement.children[0].value === '') {
+      if ( this.errorStatus === 0 ) {this.checkoutAdditionNumber.nativeElement.children[0].focus();}
       this.errorStatus |= this.EMPTY_CUSTOMS_ID_NUMBER;
-      console.log('EMPTY_CUSTOMS_ID_NUMBER');
-
     } else {
       const patt = new RegExp('^[pP][0-9]{12}$');
-      if ( !(patt.test(this.checkoutAdditionNumber))) {
-        if ( this.errorStatus === 0 ) {}
+      if ( !(patt.test(this.checkoutAdditionNumber.nativeElement.children[0].value))) {
+        if ( this.errorStatus === 0 ) {this.checkoutAdditionNumber.nativeElement.children[0].focus();}
         this.errorStatus |= this.INVALID_CUSTOMS_ID_NUMBER;
-        console.log('INVALID_CUSTOMS_ID_NUMBER');
-
       }
     }
 
     if ( this.isAgreementDirectBuyingInfo === false ) {
       this.errorStatus |= this.EMPTY_AGREEMENT_DIRECT_BUYING;
-      console.log('EMPTY_AGREEMENT_DIRECT_BUYING');
-
     }
-    console.log('validating');
+    console.log('validate!')
     console.log(this.errorStatus);
+    if (this.errorStatus) {
+      this.errorEmitter(this.errorStatus);
+    }
   }
+
   setDeliveryInfo() {
     const temp = {
       'full_name': '',
@@ -360,11 +350,11 @@ export class KrCheckoutMenuComponent implements OnInit, OnDestroy, AfterViewInit
       'default': false
     };
 
-    temp.full_name = this.inputRecipientName;
-    temp.street_address_1 = this.inputJuso;
-    temp.street_address_2 = this.inputDetailJuso;
-    temp.zip_code = this.inputZipnumber;
-    temp.phone_number = this.inputRecipientNumber;
+    temp.full_name = this.inputRecipientName.last.nativeElement.children[0].value;
+    temp.street_address_1 = this.inputJuso.last.nativeElement.children[0].value;
+    temp.street_address_2 = this.inputDetailJuso.last.nativeElement.children[0].value;
+    temp.zip_code = this.inputZipnumber.last.nativeElement.children[0].value;
+    temp.phone_number = this.inputRecipientNumber.last.nativeElement.children[0].value;
 
     console.log('Set Delivery Info');
     console.log(temp);

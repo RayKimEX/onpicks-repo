@@ -715,7 +715,9 @@ export class KrCheckoutComponent implements OnInit, AfterViewInit, OnDestroy {
       this.errorStatus |= this.EMPTY_AGREEMENT_DIRECT_BUYING;
     }
   }
-
+  onErrorEmitter(errorStatus) {
+    this.errorStatus = errorStatus;
+  }
   setShippingMessage(xShippingMessage) {
     this.formData.shipping_message = xShippingMessage.value;
   }

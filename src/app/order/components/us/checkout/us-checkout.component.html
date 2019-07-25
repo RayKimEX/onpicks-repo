@@ -239,7 +239,9 @@
       [inputPhone]="inputPhoneRef"
       [cardErrors]="cardErrorsRef"
       [paypalPayment]="paypalPaymentRef"
-      [cardElement]="cardElementRef">
+      [cardElement]="cardElementRef"
+      (errorStatusEmitter)="onErrorEmitter($event)"
+    >
     </onpicks-us-checkout-menu>
 
   </div>
