@@ -47,7 +47,7 @@
         하게 받게 하기 위함-->
         <onpicks-p-reviews #onpicksReview></onpicks-p-reviews>
         <onpicks-p-refund *ngIf="locale === 'ko'"></onpicks-p-refund>
-        <onpicks-p-product-report *ngIf="locale === 'ko'"></onpicks-p-product-report>
+        <onpicks-p-product-report [categoryCode]="data?.category[data?.category.length - 1].code" *ngIf="locale === 'ko'"></onpicks-p-product-report>
       </div>
 
       <div *ngIf="!isFB" class="col-5-of-12">

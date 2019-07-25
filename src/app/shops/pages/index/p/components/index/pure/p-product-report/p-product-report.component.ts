@@ -1,4 +1,5 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import {Component, OnInit, ChangeDetectionStrategy, Input, Inject} from '@angular/core';
+import {CATEGORY_REPORT_MAP} from '../../../../../../../../core/global-constant/app.category-database-long';
 
 @Component({
   selector: 'onpicks-p-product-report',
@@ -8,10 +9,16 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 })
 export class PProductReportComponent implements OnInit {
 
-
   foldFlag = false;
+  categoryCode = null;
 
-  constructor() { }
+  @Input('categoryCode') set _categoryCode(xData) {
+    this.categoryCode = xData;
+  }
+
+  constructor(
+    @Inject(CATEGORY_REPORT_MAP) public categoryReportMap,
+  ) { }
 
   ngOnInit() {
   }
