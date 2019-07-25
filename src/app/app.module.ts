@@ -35,7 +35,7 @@ import {SearchEffects} from './core/store/search/search.effects';
 import {BreakpointObserver, LayoutModule} from '@angular/cdk/layout';
 import 'hammerjs';
 import {BehaviorSubject} from 'rxjs';
-import {CATEGORY_CODE_MAP, CATEGORY_CODE_MAP_CONST, CATEGORY_MAP, CATEGORY_MAP_CONST} from './core/global-constant/app.category-database-long';
+import {CATEGORY_CODE_MAP, CATEGORY_CODE_MAP_CONST, CATEGORY_MAP, CATEGORY_MAP_CONST, CATEGORY_REPORT_MAP, CATEGORY_REPORT_MAP_CONST} from './core/global-constant/app.category-database-long';
 import {CATEGORY_SECOND_MAP, CATEGORY_SECOND_MAP_CONST} from './core/global-constant/app.category-database-short';
 import {DISPLAY_ALERT_MESSAGE_MAP, DISPLAY_ALERT_MESSAGE_MAP_CONST, MENU_MAP, MENU_MAP_CONST, PREFERENCE_MAP, PREFERENCE_MAP_CONST, REPORT_REASON_MAP, REPORT_REASON_MAP_CONST, TITLE_MAP, TITLE_MAP_CONST} from './core/global-constant/app.locale';
 import {STATE_LIST, STATE_LIST_CONST} from './core/global-constant/app.database';
@@ -65,13 +65,11 @@ function setCookie(cname, cvalue ) {
   // const d = new Date();
   // d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
   // const expires = 'expires=' + d.toUTCString();
-
   if ( !environment.production ) {
     document.cookie = cname + '=' + cvalue + ';path=/';
   } else {
     document.cookie = cname + '=' + cvalue + ';domain=.onpicks.com;path=/';
   }
-
   return 'KRW';
 }
 
@@ -252,6 +250,10 @@ export function getCurrency() {
     {
       provide : PAYPAL_API_KEY_TOKEN,
       useValue : PAYPAL_API_KEY
+    },
+    {
+      provide : CATEGORY_REPORT_MAP,
+      useValue : CATEGORY_REPORT_MAP_CONST
     }
   ],
   bootstrap: [ AppComponent ]
