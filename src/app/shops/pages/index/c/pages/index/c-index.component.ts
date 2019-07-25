@@ -25,6 +25,8 @@ export class CIndexComponent {
     private store: Store<any>
   ) {
     console.log(this.router.url.split('/')[3]);
+    console.log('--------------------------------');
+    console.log(secondCategoryMap);
   }
 
 }

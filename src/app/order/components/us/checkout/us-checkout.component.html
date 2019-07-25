@@ -21,7 +21,7 @@
             [errorEffect]="checkBitWise(EMPTY_FULL_NAME)"
             (focusout)="fullNameCheck(true)"
             class="checkout--input"
-            value="홍길동"
+            (keyup)="markForCheck($event)"
             [placeholder]="'Enter'">
           </onpicks-input-box>
           <div
@@ -39,11 +39,11 @@
           </div>
           <onpicks-input-box
             #inputAddressName
+            (keyup)="markForCheck($event)"
             [width]="'40.8rem'"
             [errorEffect]="checkBitWise(EMPTY_ADDRESS_NAME)"
             (focusout)="addressNameCheck(true)"
             class="checkout--input"
-            value="Evenue"
             [placeholder]="'Enter'">
           </onpicks-input-box>
           <div
@@ -61,6 +61,8 @@
           </div>
           <onpicks-input-box
             #inputFloor
+            (keyup)="markForCheck($event)"
+
             [width]="'40.8rem'"
             class="checkout--input"
             [placeholder]="'(Optional)'">
@@ -76,11 +78,12 @@
           <onpicks-input-box
             #inputZipCode
             [width]="'40.8rem'"
+            (keyup)="markForCheck($event)"
+
             [maxlength]="5"
             [errorEffect]="checkBitWise(INCORRECT_ZIP_CODE)"
             (focusout)="callGeocodingAPI()"
             class="checkout--input"
-            value="11211"
             [placeholder]="'Enter'">
           </onpicks-input-box>
           <div
@@ -123,7 +126,7 @@
             (focusout)="cityCheck(true)"
             [errorEffect]="checkBitWise(EMPTY_CITY)"
             [width]="'40.8rem'"
-            value="Brooklyn"
+            (keyup)="markForCheck($event)"
             class="checkout--input"
             [placeholder]="'Enter'">
           </onpicks-input-box>
@@ -140,11 +143,11 @@
           </div>
           <onpicks-input-box
             #inputPhone
+            (keyup)="markForCheck($event)"
             (focusout)="phoneCheck(true)"
             [errorEffect]="checkBitWise(INVALID_PHONE_NUMBER)"
             [width]="'40.8rem'"
             class="checkout--input"
-            value="3222762670"
             [placeholder]="'Enter'">
           </onpicks-input-box>
           <div
@@ -169,15 +172,15 @@
 
         <!--<div class="checkout&#45;&#45;subtitle subtitle-2-regular">*Credit Card Number</div>-->
         <!--<onpicks-input-box-->
-          <!--#cardNumber-->
+          <!--#cardNumberRef-->
           <!--class="checkout&#45;&#45;input"-->
           <!--[placeholder]="'Enter'">-->
         <!--</onpicks-input-box>-->
-        <!--<div #cardErrors></div>-->
+        <!--<div #cardErrorsRef></div>-->
 
         <!--<div class="checkout&#45;&#45;subtitle subtitle-2-regular">*CVC</div>-->
         <!--<onpicks-input-box-->
-          <!--#cardCvc-->
+          <!--#cardCvcRef-->
           <!--class="checkout&#45;&#45;input"-->
           <!--[placeholder]="'Enter'">-->
         <!--</onpicks-input-box>-->
@@ -185,7 +188,7 @@
 
         <!--<div class="checkout&#45;&#45;subtitle subtitle-2-regular">*Expiration</div>-->
         <!--<onpicks-input-box-->
-          <!--#cardExpiry-->
+          <!--#cardExpiryRef-->
           <!--class="checkout&#45;&#45;input"-->
           <!--[placeholder]="'(Optional)'">-->
         <!--</onpicks-input-box>-->
@@ -207,6 +210,7 @@
         </div>
         <onpicks-input-box
           [width]="'40.8rem'"
+          (keyup)="markForCheck($event)"
           [placeholder]="'Enter code'">
         </onpicks-input-box>
         <onpicks-button
@@ -224,70 +228,22 @@
 
   <div
     [ngClass]="[ isThirdBreakPoint ? 'col-6-of-12 checkout-right' : 'checkout-right'] ">
-    <div
-      class="checkout-right__menu"
-      *ngIf="(checkoutStore$ | async) as data; ">
-      <h3
-        i18n="@@word__order-summary"
-        class="checkout-right__menu--title subtitle-1-bold">
-        최종결제금액
-      </h3>
-      <div class="checkout-right__menu--item" *ngFor="let item of data.items">
-        <div class="checkout-right__menu--item-image">
-          <img drLazyLoad src="{{item.thumbnail}}" alt="">
-        </div>
-        <div class="checkout-right__menu--item-info">
-          <div class="checkout-right__menu--item-info-brand subtitle-3-bold">{{item.brand}}</div>
-          <div class="checkout-right__menu--item-info-name body-3-regular">{{item.title}}</div>
-          <div *ngIf="item.infoOption !== ''" class="checkout-right__menu--item-info-option subtitle-3-regular u-color-grey">{{item.infoOption}}</div>
-          <div class="checkout-right__menu--item-info-price subtitle-2-bold">{{item.price + item.discount | onpicksCurrency: currencyInfo}} / {{item.quantity}}ct</div>
-        </div>
-      </div>
+    <onpicks-us-checkout-menu
+      *ngIf="(checkoutStore$ | async) as data; "
+      [data]="data"
+      [inputZipCode]="inputZipCodeRef"
+      [inputFullName]="inputFullNameRef"
+      [inputAddressName]="inputAddressNameRef"
+      [inputFloor]="inputFloorRef"
+      [inputCity]="inputCityRef"
+      [inputPhone]="inputPhoneRef"
+      [cardErrors]="cardErrorsRef"
+      [paypalPayment]="paypalPaymentRef"
+      [cardElement]="cardElementRef"
+      (errorStatusEmitter)="onErrorEmitter($event)"
+    >
+    </onpicks-us-checkout-menu>
 
-      <div class="checkout-right__menu--price">
-        <div class="checkout-right__menu--price-productall">
-          <span
-            i18n="@@word__subtotal"
-            class="checkout-right__menu--price-productall-tag subtitle-1-regular">
-            총 상품금액
-          </span>
-          <span class="checkout-right__menu--price-productall-value subtitle-1-regular">{{data.total_items | onpicksCurrency : currencyInfo}}</span>
-        </div>
-        <div class="checkout-right__menu--price-delivery">
-          <span
-            i18n="@@word__shipping-fee"
-            class="checkout-right__menu--price-delivery-tag subtitle-1-regular">
-            배송비
-          </span>
-          <span class="checkout-right__menu--price-delivery-value subtitle-1-regular">{{data.total_shipping_costs === 0 ? ('free') : (data.total_shipping_costs | onpicksCurrency : currencyInfo)}}</span>
-        </div>
-        <div class="checkout-right__menu--price-discount">
-          <span
-            i18n="@@word__savings"
-            class="checkout-right__menu--price-delivery-tag subtitle-1-regular">
-            할인금액
-          </span>
-          <span class="checkout-right__menu--price-delivery-value subtitle-1-regular">{{data.total_discounts | onpicksCurrency : currencyInfo}}</span>
-        </div>
-        <div class="checkout-right__menu--price-all">
-          <span
-            i18n="@@word__order-total"
-            class="checkout-right__menu--price-all-tag h1-bold">총 결제금액</span>
-          <span class="checkout-right__menu--price-all-value h1-bold">{{data.grand_total | onpicksCurrency : currencyInfo}}</span>
-        </div>
-      </div>
-
-      <div class="checkout-right__menu--checkout">
-        <onpicks-button
-          i18n="@@word__confirm-and-pay"
-          (click)="stripePayemnt()"
-          [type]="'black'"
-          [width]="'100%'"
-          [size]="'big'">
-          결제하기
-        </onpicks-button>
-      </div>
-    </div>
   </div>
 </div>
 

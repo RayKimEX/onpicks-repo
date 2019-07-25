@@ -27,6 +27,7 @@ import {BreakpointObserver, BreakpointState} from '../../../../../node_modules/@
 import {Title} from '@angular/platform-browser';
 import {DISPLAY_ALERT_MESSAGE_MAP} from '../../../core/global-constant/app.locale';
 import {switchMap, tap} from 'rxjs/operators';
+
 @Component({
   selector: 'emitter-search-navigator',
   templateUrl: './search-navigator.component.html',
@@ -47,7 +48,7 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
   valueList;
   valueListForCheck = {};
   infoList;
-  filters;
+  filters = {};
 
   /** currentState **/
   currentSortSlug = 'most_popular';
@@ -78,7 +79,6 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
   currentUrl = '';
 
   searchState = '';
-
 
   /***** filter modal For Mobile ****/
   isShowMobileFilter = false;
@@ -155,13 +155,20 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
     },
     'price_high' : {
       ko : '가격 높은순',
-      en : ''
+      en : 'High Price'
     },
     'price_low' : {
       ko : '가격 낮은순',
-      en : ''
+      en : 'Low Price'
     }
-  }
+  };
+
+  // infinite scroll
+  infiniteCurrentSortSlug;
+  infiniteCurrentPage;
+  infiniteList = [];
+  isLoading = false;
+
   constructor(
     @Inject( CURRENCY ) public currency: BehaviorSubject<any>,
     @Inject( LOCATION_MAP ) public locationMap: any,
@@ -178,8 +185,9 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
     private cd: ChangeDetectorRef,
     private searchService: SearchService,
     private breakpointObserver:  BreakpointObserver,
-    private titleService: Title
+    private titleService: Title,
   ) {
+
     this.breakpointObserver
       .observe([this.responsiveMap['tb']])
       .subscribe((state: BreakpointState) => {
@@ -221,11 +229,13 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
 
     this.totalSearchData$ = this.totalSearchRequest$.pipe(
       switchMap((param) => {
+        this.isLoading = true;
         return this.searchService.search(param);
       }),
     ).subscribe((_infoList: {filters, aggregation, results, count}) => {
       /* async 데이터가 들어오는데, null이라면 return을 해줌 */
       if (_infoList != null) {
+        this.isLoading = false;
 
         this.filters = _infoList.filters;
         this.valueList = _infoList.aggregation.values;
@@ -240,21 +250,49 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
 
         this.totalPageArray = Array(parseInt(this.totalPage, 10));
         this.totalPageArray.push(this.totalPageArray.length + 1);
-
         this.currentList = this.infoList.slice(0, this.maxRow);
+
+        if (this.isMobile) {
+          this.infiniteList = this.infiniteList.concat(this.infoList);
+
+        }
+
         this.cd.markForCheck();
+
       }
+    }, (err) => {
+      this.isLoading = false;
+
+      console.log(err);
+      alert('더이상 불러올 목록이 없습니다.');
     });
 
     this.categorySearchData$ =
       this.categorySearchReqeust$.pipe(
         switchMap((categoryCurrentCode) => {
-          return this.searchService.categorySearch(categoryCurrentCode,
-            this.currentSortSlug,
-            this.currentPage, this.router.url.indexOf('?') < 0 ? '' : '&' + this.router.url.substring(this.router.url.indexOf('?') + 1, this.router.url.length));
+          this.isLoading = true;
+          if (this.isMobile) {
+            const xparam = this.removeParameterFromUrl(this.router.url.indexOf('?') < 0 ? '' : '&' + this.router.url.substring(this.router.url.indexOf('?') + 1, this.router.url.length), 'ordering');
+            return this.searchService.categorySearch(
+              categoryCurrentCode,
+              this.currentSortSlug,
+              this.currentPage,
+              xparam
+            );
+          } else {
+            const xparam = this.removeParameterFromUrl(this.router.url.indexOf('?') < 0 ? '' : '&' + this.router.url.substring(this.router.url.indexOf('?') + 1, this.router.url.length), 'ordering');
+
+            return this.searchService.categorySearch(
+              categoryCurrentCode,
+              this.currentSortSlug,
+              this.currentPage,
+              xparam
+            );
+          }
         })
       ).subscribe( (_infoList: {filters, aggregation, results, count}) => {
         this.searchState = 'category';
+        this.isLoading = false;
 
         /* async 데이터가 들어오는데, null이라면 return을 해줌 */
 
@@ -272,20 +310,24 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
           this.totalPageArray.push(this.totalPageArray.length + 1);
 
           this.currentList = this.infoList.slice(0, this.maxRow);
+          if (this.isMobile) {
+            this.infiniteList = this.infiniteList.concat(this.infoList);
+
+          }
+
           this.cd.markForCheck();
 
         }
 
+      }, (err) => {
+        this.isLoading = false;
       });
 
     this.routerEvent$ = this.router.events.subscribe( (event: RouterEvent) => {
-
       if (event instanceof NavigationEnd ) {
         const url = this.router.url;
         this.currentUrl = url;
-        if ( url.indexOf('/search') > -1 || url.indexOf('/c/') > -1) {
-
-        } else {
+        if ( url.indexOf('/search') <= -1 && url.indexOf('/c/') <= -1) {
           return ;
         }
 
@@ -320,25 +362,7 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
           const param = this.router.url.indexOf('?') < 0 ? null : this.router.url.substring(this.router.url.indexOf('?'), this.router.url.length);
           this.totalSearchRequest$.next(param);
         } else {
-          const categoryUrl = this.router.url.split('/');
-          let categoryCurrentCode = 0;
-          if ( categoryUrl[categoryUrl.length - 1].indexOf('?') > -1){
-            categoryUrl[categoryUrl.length - 1] = categoryUrl[categoryUrl.length - 1].substring(0, categoryUrl[categoryUrl.length - 1].indexOf('?'));
-          }
-
-          switch ( categoryUrl.length ) {
-            case 5 :
-              categoryCurrentCode = this.categoryMap[categoryUrl[3]][categoryUrl[4]].code;
-              break;
-            case 6 :
-              categoryCurrentCode = this.categoryMap[categoryUrl[3]][categoryUrl[4]][categoryUrl[5]].code;
-              break;
-            case 7 :
-              categoryCurrentCode = this.categoryMap[categoryUrl[3]][categoryUrl[4]][categoryUrl[5]][categoryUrl[6]].code;
-              break;
-          }
-
-          this.categorySearchReqeust$.next(categoryCurrentCode);
+          this.categorySearchReqeust$.next(this.getCategoryCurrentCode());
         }
       }
     });
@@ -382,7 +406,23 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
       });
   }
 
+  ngOnInit() {
+    this.contentHeight = (window.screen.height - 400) < 300 ? '' : (window.screen.height) + 'px';
+    if ( this.isMobile ) {
+      const url = this.router.url;
+      if ( url.indexOf('/search') <= -1 && url.indexOf('/c/') <= -1) {
+        return;
+      }
+    }
+  }
+  shareInfiniteListVaraibles(infiniteListVariables) {
+    this.infiniteCurrentSortSlug = infiniteListVariables.currentSortSlug;
+    this.infiniteCurrentPage = infiniteListVariables.currentPage;
+    this.infiniteList = infiniteListVariables.infiniteList;
+  }
   get filterList() {
+    console.log('!!!!!!! get filter list');
+    console.log(this.filters);
     let filterList = [];
 
     // 브랜드, 밸류, 출고지 필터들을 종류에 상관없이 1차원 배열로 나열한다.
@@ -418,10 +458,6 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
     this.routerEvent$.unsubscribe();
     this.totalSearchData$.unsubscribe();
     this.categorySearchData$.unsubscribe();
-  }
-
-  ngOnInit() {
-    this.contentHeight = (window.screen.height - 400) < 300 ? '' : (window.screen.height) + 'px';
   }
 
   showMobileFilter(xMenuState) {
@@ -688,10 +724,106 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
 
     return normalize(data, object);
   }
+  getCurrentParamListExceptPage() {
+    const currentParamList = this.currentParamList;
+    if (currentParamList['page']) {
+      delete currentParamList['page'];
+    }
+    if (currentParamList['ordering']) {
+      delete currentParamList['ordering'];
+    }
+    console.log(currentParamList);
+    return currentParamList;
+  }
 
 
   typeOf( val ) {
     return typeof val;
+  }
+  loadNextPageItems( currentPage: number) {
+      const url = this.router.url;
+      this.currentUrl = url;
+      if ( url.indexOf('/search') <= -1 && url.indexOf('/c/') <= -1) {
+        return ;
+      }
+
+      // category main페이지 일때
+      if (this.router.url.indexOf('&') < 0) {
+        const temp = this.router.url.substring(this.router.url.indexOf('&') + 1, this.router.url.length);
+        const tempArray = temp.split('&');
+        tempArray.forEach(item => {
+          const paramTemp = item.split('=');
+          // const paramTemp = item.split('=');
+          // console.log(paramTemp);
+          // if ( paramTemp[0] !== 'ordering' && paramTemp[0] !== 'category'  ) {
+          //   this.orderedFilterList.push(paramTemp[1]);
+          // } else {
+          //   if ( paramTemp[0] === 'ordering' ){
+          //     this.currentSortSlug = paramTemp[1];
+          //     console.log(this.currentSortSlug);
+          //             //   }
+          //             // }
+        });
+      }
+
+
+      if (url.indexOf('/search') > -1) {
+        this.searchState = 'search';
+        this.normalizedCategoryCodeList = null;
+        this.previous = null;
+        this.currentSlug = null;
+
+        let param = this.router.url.indexOf('?') < 0 ? null : this.router.url.substring(this.router.url.indexOf('?'), this.router.url.length);
+        param = this.replaceStringParam(param, 'page', currentPage);
+
+        this.totalSearchRequest$.next(param);
+      } else {
+        this.categorySearchReqeust$.next(this.getCategoryCurrentCode());
+      }
+  }
+
+  onScrollDown (ev) {
+    if (!this.isLoading) {
+      this.currentPage += 1;
+      this.loadNextPageItems(this.currentPage);
+
+    }
+  }
+  replaceStringParam(string, paramName, paramValue) {
+    if (paramValue == null) {
+      paramValue = '';
+    }
+    const pattern = new RegExp('\\b(' + paramName + '=).*?(&|#|$)');
+    if (string.search(pattern) >= 0) {
+      console.log('aa!');
+      return string.replace(pattern, '$1' + paramValue + '$2');
+    }
+    string = string.replace(/[?#]$/, '');
+    return string + '&' + paramName + '=' + paramValue;
+  }
+  getCategoryCurrentCode() {
+    const categoryUrl = this.router.url.split('/');
+    let categoryCurrentCode = 0;
+    if ( categoryUrl[categoryUrl.length - 1].indexOf('?') > -1){
+      categoryUrl[categoryUrl.length - 1] = categoryUrl[categoryUrl.length - 1].substring(0, categoryUrl[categoryUrl.length - 1].indexOf('?'));
+    }
+    switch ( categoryUrl.length ) {
+      case 5 :
+        categoryCurrentCode = this.categoryMap[categoryUrl[3]][categoryUrl[4]].code;
+        break;
+      case 6 :
+        categoryCurrentCode = this.categoryMap[categoryUrl[3]][categoryUrl[4]][categoryUrl[5]].code;
+        break;
+      case 7 :
+        categoryCurrentCode = this.categoryMap[categoryUrl[3]][categoryUrl[4]][categoryUrl[5]][categoryUrl[6]].code;
+        break;
+    }
+    return categoryCurrentCode;
+  }
+  removeParameterFromUrl(url, parameter) {
+    return url
+      .replace(new RegExp('[?&]' + parameter + '=[^&#]*(#.*)?$'), '$1')
+      .replace(new RegExp('([?&])' + parameter + '=[^&]*&'), '$1');
   }
 }
 

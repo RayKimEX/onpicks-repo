@@ -41,6 +41,9 @@ export class CartComponent {
   /* Observable */
   weeklyBest$;
   cartStore$;
+
+  isShowWishlist = false;
+
   constructor(
     // TODO: 나중에 locale정보는 모두 ngrx에 넣어서 처리하기
     @Inject( CURRENCY ) public currency: BehaviorSubject<any>,
@@ -128,10 +131,11 @@ export class CartComponent {
 
 
   toggleWishList(item) {
-
     if ( item.style.display === 'block') {
+      this.isShowWishlist = false;
       this.renderer.setStyle(item, 'display', 'none');
     } else {
+      this.isShowWishlist = true;
       this.renderer.setStyle(item, 'display', 'block');
     }
   }

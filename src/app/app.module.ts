@@ -174,6 +174,7 @@ export function getCurrency() {
     },
     {
       // /kr, /us
+      // /kr, /us
       provide: APP_BASE_HREF,
       useValue: '/' + (window.location.pathname.split('/')[1] || '')
     },

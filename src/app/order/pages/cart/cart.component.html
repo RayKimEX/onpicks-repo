@@ -554,20 +554,36 @@
 
         </ng-container>
       </ng-container>
-      <onpicks-sort-box
-        (click)="toggleWishList(f)"
-        class="cart__load-purchase-thing"
-        [fontSize]="'1.4rem'"
-        [showBox]="false"
-        [sortList]="[
+      <ng-container [ngSwitch]="isShowWishlist">
+        <onpicks-sort-box *ngSwitchCase="false"
+                          (click)="toggleWishList(f)"
+                          class="cart__load-purchase-thing"
+                          [fontSize]="'1.4rem'"
+                          [showBox]="false"
+                          [sortList]="[
           {
             title : {
               ko : '다음에 구매할 물건 불러오기',
+              en : 'Show Save for Later'
+           }, value : 0
+         }
+        ]">
+        </onpicks-sort-box>
+        <onpicks-sort-box *ngSwitchCase="true"
+                          (click)="toggleWishList(f)"
+                          class="cart__load-purchase-thing"
+                          [fontSize]="'1.4rem'"
+                          [showBox]="false"
+                          [sortList]="[
+          {
+            title : {
+              ko : '다음에 구매할 물건 닫기',
               en : 'Hide Save for Later'
            }, value : 0
          }
         ]">
-      </onpicks-sort-box>
+        </onpicks-sort-box>
+      </ng-container>
       <div #f class="cart__wishlist">
         <div
           i18n="@@cart__wishlist--title"
