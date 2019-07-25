@@ -118,10 +118,7 @@
         &:last-child {
           margin-right : 2.4rem;
         }
-
       }
-
-
     }
   }
 
@@ -215,11 +212,21 @@
           height : 4rem;
           border-radius:50%;
           overflow:hidden;
+
+          @include respond(sb){
+            width : 2rem;
+            height : 2rem;
+          }
         }
       }
 
       ui-star-rating {
         margin-left :1.6rem;
+
+        @include respond(sb){
+          display:block;
+          margin-left: 2.6rem;
+        }
       }
 
       figcaption {
@@ -229,6 +236,10 @@
         top : 0;
         display:inline-block;
         color:white;
+
+        @include respond(sb){
+          margin-left : 0.8rem;
+        }
       }
 
       span {

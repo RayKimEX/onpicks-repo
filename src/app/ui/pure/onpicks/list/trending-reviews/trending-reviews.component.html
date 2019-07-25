@@ -21,7 +21,7 @@
           *ngIf="imageIndex  < (infoList?.length - carouselLength) "
           [top]="'12.6rem'"
           [right]="'-2.2rem'"
-          (click)="nextButton()" >
+          (click)="nextButton()">
         </onpicks-circle-n-button>
         <onpicks-circle-p-button
           *ngIf="imageIndex !== 0"
@@ -84,7 +84,6 @@
                             <figcaption class="subtitle-1-bold u-color-white">{{item?.author?.nickname}}</figcaption>
                             <!--<!--[@divState] (load) ---->
                             <ui-star-rating [star-point]="item?.rating"></ui-star-rating>
-                            <span class="subtitle-2-regular u-color-white">{{item?.modified | date : 'longDate'}}</span>
                           </figure>
                         </div>
                       </div>
