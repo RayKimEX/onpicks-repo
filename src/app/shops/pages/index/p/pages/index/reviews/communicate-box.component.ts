@@ -22,7 +22,7 @@ import { select, Store } from '@ngrx/store';
 import { PDataService } from '../../../../../../../core/service/data-pages/p/p-data.service';
 import { AppState } from '../../../../../../../core/store/app.reducer';
 import { UserState } from '../../../../../../../core/store/user.model';
-import {DisplayAlertMessage} from '../../../../../../../core/store/ui/ui.actions';
+import {AddClassOpenModal, DisplayAlertMessage, RemoveClassOpenModal} from '../../../../../../../core/store/ui/ui.actions';
 import {DOMAIN_HOST, RESPONSIVE_MAP} from '../../../../../../../core/global-constant/app.config';
 import {APP_BASE_HREF} from '@angular/common';
 import {BreakpointObserver, BreakpointState} from '../../../../../../../../../node_modules/@angular/cdk/layout';
@@ -79,6 +79,7 @@ export class CommunicateBoxComponent implements OnInit, AfterViewChecked, AfterV
 
 
   isBlockExistForMobile = false;
+  haveImagesLoaded: boolean[] = [];
 
 
   constructor(
@@ -109,7 +110,36 @@ export class CommunicateBoxComponent implements OnInit, AfterViewChecked, AfterV
       ).subscribe(
         val => {
 
+          const that = this;
           this.reviewsId = parseInt(val[1].child['id'], 10);
+
+          try {
+            // @ts-ignore
+            if ( val[0].list[this.reviewsId].pictures.length === 0 ) {
+              this.popupState = true;
+            } else {
+              // @ts-ignore
+              console.log(val[0].list[this.reviewsId].pictures);
+              // @ts-ignore
+              val[0].list[this.reviewsId].pictures.forEach( (imageUrl, index) => {
+                let img = new Image();
+                // Listen to its loading event
+                img.onload = () => {
+                  // Image has loaded, save the information
+                  that.haveImagesLoaded[index] = true;
+                  // If all images have loaded, set your loader to false
+                  that.popupState = !that.haveImagesLoaded.some(hasLoaded => !hasLoaded);
+                };
+
+                console.log(imageUrl);
+                img.src = imageUrl;
+              });
+            }
+          }catch(e) {
+            console.error(e)
+          }
+
+
 
           // @ts-ignore
           this.currentReviewIndex = val[0].results.indexOf(this.reviewsId);
@@ -174,7 +204,7 @@ export class CommunicateBoxComponent implements OnInit, AfterViewChecked, AfterV
 
   ngOnDestroy() {
     this.store.dispatch(new HideCommunicateBox());
-    this.renderer.removeClass(document.body , 'u-open-modal');
+    this.store.dispatch(new RemoveClassOpenModal());
     this.renderer.setStyle( document.body, 'overflow', '' );
     this.combine$.unsubscribe();
     // this.communicateBoxTransition$.unsubscribe();
@@ -213,8 +243,7 @@ export class CommunicateBoxComponent implements OnInit, AfterViewChecked, AfterV
   }
 
   ngAfterViewInit() {
-    this.renderer.addClass(document.body , 'u-open-modal');
-    console.log('@@@@@@@@@@@@@@@@@@@@@@@@@@');
+    this.store.dispatch(new AddClassOpenModal());
     this.communicateBoxTransition$ =
       fromEvent(this.communicateBox.nativeElement, 'transitionend').subscribe( val => {
         this.isViewImage = true;
@@ -223,7 +252,7 @@ export class CommunicateBoxComponent implements OnInit, AfterViewChecked, AfterV
 
         // transition이 끝났을때 아래 2개의 변수 상태값 변경
 
-    });
+      });
   }
 
 
@@ -264,13 +293,13 @@ export class CommunicateBoxComponent implements OnInit, AfterViewChecked, AfterV
 
   prevButton(navigateArray) {
     // if ( this.currentReviewIndex > 0 ) {
-      this.buttonState = true;
-      this.isViewImage = false;
-      this.currentReviewIndex--;
-      // this.comment = this.totalList[this.currentReviewIndex];
-      this.router.navigate(['../' + navigateArray], {relativeTo: this.route});
+    this.buttonState = true;
+    this.isViewImage = false;
+    this.currentReviewIndex--;
+    // this.comment = this.totalList[this.currentReviewIndex];
+    this.router.navigate(['../' + navigateArray], {relativeTo: this.route});
 
-      // this.willChangeCommentIndex.emit('decrease');
+    // this.willChangeCommentIndex.emit('decrease');
     // }
 
   }
@@ -278,11 +307,11 @@ export class CommunicateBoxComponent implements OnInit, AfterViewChecked, AfterV
 
   nextButton(navigateArray) {
     // if ( this.currentReviewIndex < this.totalList.length) {
-      this.buttonState = true;
-      this.isViewImage = false;
-      this.currentReviewIndex++;
-      // this.comment = this.totalList[this.currentReviewIndex];
-      this.router.navigate(['../' + navigateArray], {relativeTo: this.route});
+    this.buttonState = true;
+    this.isViewImage = false;
+    this.currentReviewIndex++;
+    // this.comment = this.totalList[this.currentReviewIndex];
+    this.router.navigate(['../' + navigateArray], {relativeTo: this.route});
 
     // }
 
@@ -295,6 +324,7 @@ export class CommunicateBoxComponent implements OnInit, AfterViewChecked, AfterV
 
 
     // 모바일 화면에서 header클릭했을때 나가지는것 방지
+    console.log(this.isBlockExistForMobile);
     if ( this.isBlockExistForMobile ) { return ; };
     if ( this.popupState === true) {
       if (this.communicateBox.nativeElement.contains(event.target)) {

@@ -20,7 +20,7 @@ import {SearchService} from '../../../core/service/data-pages/search/search.serv
 import {CURRENCY, LOCATION_MAP, RESPONSIVE_MAP} from '../../../core/global-constant/app.config';
 import {UiService} from '../../../core/service/ui/ui.service';
 import {normalize, schema} from 'normalizr';
-import {DisplayAlertMessage} from '../../../core/store/ui/ui.actions';
+import {AddClassOpenModal, DisplayAlertMessage, RemoveClassOpenModal} from '../../../core/store/ui/ui.actions';
 import {BehaviorSubject, combineLatest, merge, pipe, Subject} from 'rxjs';
 import {CATEGORY_CODE_MAP} from '../../../core/global-constant/app.category-database-long';
 import {BreakpointObserver, BreakpointState} from '../../../../../node_modules/@angular/cdk/layout';
@@ -463,13 +463,12 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
   showMobileFilter(xMenuState) {
     this.mobileFilterState = xMenuState;
     this.isShowMobileFilter = true;
-    this.renderer.addClass(document.body , 'u-open-modal');
+    this.store.dispatch(new AddClassOpenModal());
   }
 
   hideMobileFilter() {
     this.isShowMobileFilter = false;
-    this.renderer.removeClass(document.body , 'u-open-modal');
-    console.log('@@@@@@@@@@@@@@@@remove modal 6');
+    this.store.dispatch(new RemoveClassOpenModal());
   }
 
   addToCart(xAmount, xData, xPackIndex) {

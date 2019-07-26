@@ -104,6 +104,17 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit, DoCheck {
       this.categoryLoadType = val.currentCategoryList.type;
       this.globalKakaoPosition = val.globalKakaoPosition;
       this.activeUrl = val.activeUrl;
+
+      if( val.addClassOpenModal === true ) {
+        this.renderer.addClass(document.body , 'u-open-modal');
+      } else {
+        const url = this.router.url.split('/');
+        if ( url.length >= 5 && url[4] === 'reviews') {
+
+        } else {
+          return this.renderer.removeClass(document.body , 'u-open-modal');
+        }
+      }
     })
 
     this.modalState$ = this.store.pipe(select( 'modal'));

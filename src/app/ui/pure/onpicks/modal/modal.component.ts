@@ -12,6 +12,8 @@ import {
 } from '@angular/core';
 import {RESPONSIVE_MAP} from '../../../../core/global-constant/app.config';
 import {BreakpointObserver, BreakpointState} from '../../../../../../node_modules/@angular/cdk/layout';
+import {Store} from '@ngrx/store';
+import {AddClassOpenModal, RemoveClassOpenModal} from '../../../../core/store/ui/ui.actions';
 
 @Component({
   selector: 'onpicks-modal',
@@ -24,18 +26,17 @@ export class ModalComponent implements OnInit, AfterViewInit, OnDestroy {
   @Input('isShow') set _isShow(xIsShow) {
     if (xIsShow === null ) { return; }
 
-    this.isShow = xIsShow;
-    console.log(this.isShow);
+
     this.popupState = false;
-    if ( this.isShow === true ) {
+    if ( xIsShow === true ) {
 
       // isShow = true이고, 모바일 버전이 아닐때만 open-modal적용
       if ( this.modalForMenu === false ) {
-        this.renderer.addClass(document.body , 'u-open-modal');
+        this.store.dispatch(new AddClassOpenModal());
       }
 
       if ( this.modalForMenu === true && this.isDesktopBreakPoint === true ){
-        this.renderer.addClass(document.body, 'u-open-modal');
+        this.store.dispatch(new AddClassOpenModal());
       }
 
       // 검은색 부분을 눌러을 때, 꼬이는것을 방지하기 위해 추가
@@ -43,11 +44,11 @@ export class ModalComponent implements OnInit, AfterViewInit, OnDestroy {
         this.popupState = true;
       }, 0);
     } else {
-      console.log(document.body);
-
-      this.renderer.removeClass(document.body, 'u-open-modal');
-      console.log(document.body);
+      if ( this.isShow === undefined ) {return; }
+      this.store.dispatch(new RemoveClassOpenModal());
     }
+
+    this.isShow = xIsShow;
   }
 
   @Input('modalForMenu') modalForMenu = false;
@@ -56,13 +57,14 @@ export class ModalComponent implements OnInit, AfterViewInit, OnDestroy {
 
   // 검은색 부분을 눌러을 때, 꼬이는것을 방지하기 위해 추가
   popupState = false;
-  isShow = false;
+  isShow = undefined;
   isDesktopBreakPoint = false;
 
   constructor(
     @Inject(RESPONSIVE_MAP) public responsiveMap,
     private renderer: Renderer2,
-    private breakpointObserver:  BreakpointObserver
+    private breakpointObserver:  BreakpointObserver,
+    private store: Store<any>
   ) { }
 
   ngOnInit() {
@@ -73,13 +75,12 @@ export class ModalComponent implements OnInit, AfterViewInit, OnDestroy {
           // isShow = true이고, 모바일 버전일땐, isThirdBreakPoint가 true일때만, u-open-modal적용
           this.isDesktopBreakPoint = true;
           if ( this.isShow === true && this.modalForMenu === true ) {
-            console.log('333');
-            this.renderer.addClass(document.body , 'u-open-modal');
+            this.store.dispatch(new AddClassOpenModal());
           }
         } else {
           this.isDesktopBreakPoint = false;
           if ( this.isShow === true && this.modalForMenu === true ) {
-            this.renderer.removeClass(document.body, 'u-open-modal');
+            this.store.dispatch(new RemoveClassOpenModal());
           }
         }
       });

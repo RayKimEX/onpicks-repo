@@ -1,8 +1,9 @@
 
 import {
+  ADD_CLASS_OPEN_MODAL,
   DISPLAY_ALERT_MESSAGE,
   GET_CATEGORY_ALL_SUCCESS,
-  REMOVE_ALERT_MESSAGE,
+  REMOVE_ALERT_MESSAGE, REMOVE_CLASS_OPEN_MODAL,
   UiActions,
   UPDATE_CATEGORY, UPDATE_GLOBAL_KAKAO_PLUS_FRIEND_FOR_DETAIL_PAGE, UPDATE_GLOBAL_KAKAO_PLUS_FRIEND_FOR_NORMAL, UPDATE_GLOBAL_KAKAO_PLUS_FRIEND_FOR_PURCHASE,
   UPDATE_URL_ACTIVE
@@ -16,6 +17,7 @@ export interface UiState {
   activeUrl: any;
   alertMessage: any;
   globalKakaoPosition: any;
+  addClassOpenModal: any;
 }
 
 export const initialState: UiState = {
@@ -24,7 +26,8 @@ export const initialState: UiState = {
   },
   activeUrl : [],
   alertMessage: '',
-  globalKakaoPosition: '3rem'
+  globalKakaoPosition: '3rem',
+  addClassOpenModal : false
 };
 
 
@@ -58,6 +61,20 @@ let notChangeThirdPrevious;
 export function UiReducer(state = initialState, action: UiActions): UiState {
 
   switch (action.type) {
+
+    case ADD_CLASS_OPEN_MODAL :
+
+      return {
+        ...state,
+        addClassOpenModal : true
+      }
+
+    case REMOVE_CLASS_OPEN_MODAL :
+
+      return {
+        ...state,
+        addClassOpenModal : false
+      }
     case UPDATE_GLOBAL_KAKAO_PLUS_FRIEND_FOR_PURCHASE :
 
       return {
