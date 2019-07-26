@@ -193,6 +193,7 @@ onpicks-loading-icon {
     & > div {
       //padding-bottom:100%;
     }
+
     @include respond(desktop) {
       margin-right : 0;
       width:74.8rem;
