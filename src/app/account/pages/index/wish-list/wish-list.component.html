@@ -61,7 +61,7 @@
               i18n="@@word__add-to-cart"
               [width]="'11.4rem'"
               [type]="'white'"
-              (click)="moveWishListToCart(1, item, item.ship_alone ? 'free' : locationMap[item?.location.code]?.sequence, i)"
+              (click)="moveWishListToCart(1, item, item.individual_shipping ? 'free' : locationMap[item?.location.code]?.sequence, i)"
               *ngIf="item.attributes.length === 0"
               [padding]="false"
               [size]="'small'">
