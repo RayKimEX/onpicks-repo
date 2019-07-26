@@ -12,6 +12,10 @@ export const UPDATE_URL_ACTIVE = '[URL Active] UPDATE_URL_ACTIVE';
 export const DISPLAY_ALERT_MESSAGE = '[UI] DISPLAY_ALERT_MESSAGE';
 export const REMOVE_ALERT_MESSAGE = '[UI] REMOVE_ALERT_MESSAGE';
 
+export const ADD_CLASS_OPEN_MODAL = '[UI] ADD_CLASS_OPEN_MODAL';
+export const REMOVE_CLASS_OPEN_MODAL = '[UI] REMOVE_CLASS_OPEN_MODAL';
+
+
 export const UPDATE_GLOBAL_KAKAO_PLUS_FRIEND_FOR_DETAIL_PAGE = '[UI] UPDATE_GLOBAL_KAKAO_PLUS_FRIEND_FOR_DETAIL_PAGE';
 export const UPDATE_GLOBAL_KAKAO_PLUS_FRIEND_FOR_PURCHASE = '[UI] UPDATE_GLOBAL_KAKAO_PLUS_FRIEND_FOR_PURCHASE';
 export const UPDATE_GLOBAL_KAKAO_PLUS_FRIEND_FOR_NORMAL = '[UI] UPDATE_GLOBAL_KAKAO_PLUS_FRIEND_FOR_NORMAL';
@@ -26,6 +30,14 @@ export class UpdateGlobalKakaoPlusFriendForDetailPage implements Action {
 
 export class UpdateGlobalKakaoPlusFriendForNormal implements Action {
   readonly type = UPDATE_GLOBAL_KAKAO_PLUS_FRIEND_FOR_NORMAL;
+}
+
+export class AddClassOpenModal implements Action {
+  readonly type = ADD_CLASS_OPEN_MODAL;
+}
+
+export class RemoveClassOpenModal implements Action {
+  readonly type = REMOVE_CLASS_OPEN_MODAL;
 }
 
 
@@ -92,6 +104,8 @@ export class RemoveAlertMessage implements Action {
 }
 
 export type UiActions =
+  AddClassOpenModal |
+  RemoveClassOpenModal |
   GetCategoryAll |
   GetCategoryAllSuccess |
   GetCategoryFailure |

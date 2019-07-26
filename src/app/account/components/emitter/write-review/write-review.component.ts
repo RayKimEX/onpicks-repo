@@ -18,7 +18,7 @@ import {UiService} from '../../../../core/service/ui/ui.service';
 import {BehaviorSubject} from 'rxjs';
 import {CURRENCY} from '../../../../core/global-constant/app.config';
 import {Store} from '@ngrx/store';
-import {DisplayAlertMessage} from '../../../../core/store/ui/ui.actions';
+import {AddClassOpenModal, DisplayAlertMessage, RemoveClassOpenModal} from '../../../../core/store/ui/ui.actions';
 import * as EXIF from 'exif-js/exif';
 import {DISPLAY_ALERT_MESSAGE_MAP} from '../../../../core/global-constant/app.locale';
 
@@ -33,7 +33,6 @@ export class WriteReviewComponent implements OnInit, OnChanges, OnDestroy {
   @ViewChildren('imageViewList') imageViewList;
   @Input('isShow') isShow = false;
   @Input('writeReview') set data(xWriteReview) {
-
     if ( xWriteReview === undefined || xWriteReview.reviewData === undefined ) { return; }
 
     this._data = xWriteReview;
@@ -48,6 +47,7 @@ export class WriteReviewComponent implements OnInit, OnChanges, OnDestroy {
         });
       });
   }
+
   @Output('exit') exitEvent = new EventEmitter();
   @Output('publishReview') publishReviewEvent = new EventEmitter()
   @ViewChild('reviewTextView') reviewTextView;
@@ -58,8 +58,6 @@ export class WriteReviewComponent implements OnInit, OnChanges, OnDestroy {
   isDraggedEnter = false;
   starRating = 0;
   _data;
-
-  weeklyBest$;
 
   constructor(
     @Inject( LOCALE_ID ) public locale: string,
@@ -81,10 +79,9 @@ export class WriteReviewComponent implements OnInit, OnChanges, OnDestroy {
 
   ngOnChanges(changes: SimpleChanges) {
     if ( changes.isShow.currentValue === true ) {
-      this.renderer.addClass(document.body , 'u-open-modal');
+      this.store.dispatch(new AddClassOpenModal());
     } else {
-      this.renderer.removeClass(document.body, 'u-open-modal');
-      console.log('@@@@@@@@@@@@@@@@remove modal 7');
+      this.store.dispatch(new RemoveClassOpenModal());
     }
   }
 
@@ -135,9 +132,6 @@ export class WriteReviewComponent implements OnInit, OnChanges, OnDestroy {
     } else {
       files =  event.dataTransfer.files;
     }
-
-
-
 
     Object.keys(files).forEach( (key) => {
       const temp = URL.createObjectURL(files[key]);

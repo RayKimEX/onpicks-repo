@@ -19,6 +19,7 @@ import {BreakpointObserver, BreakpointState} from '../../../../../node_modules/@
 import {ShowCurrencyModal} from '../../../core/store/modal/modal.actions';
 import {PREFERENCE_MAP} from '../../../core/global-constant/app.locale';
 import {environment} from '../../../../environments/environment';
+import {AddClassOpenModal, RemoveClassOpenModal} from '../../../core/store/ui/ui.actions';
 
 @Component({
   selector: 'emitter-change-preference',
@@ -115,7 +116,7 @@ export class ChangePreferenceComponent implements OnInit {
 
   showModal() {
     if ( this.isDesktopBreakPoint ) {
-      this.renderer.addClass(document.body, 'u-open-modal');
+      this.store.dispatch(new AddClassOpenModal());
       this.store.dispatch(new ShowCurrencyModal());
     } else {
       this.isShowModal = !this.isShowModal;

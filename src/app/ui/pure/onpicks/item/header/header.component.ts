@@ -23,7 +23,7 @@ import {AuthService} from '../../../../../core/service/auth/auth.service';
 import {AuthState} from '../../../../../core/store/auth/auth.model';
 import {AppState} from '../../../../../core/store/app.reducer';
 import {CURRENCY, IMAGE_HOST, REGION_ID, RESPONSIVE_MAP} from '../../../../../core/global-constant/app.config';
-import {DisplayAlertMessage, RemoveAlertMessage} from '../../../../../core/store/ui/ui.actions';
+import {AddClassOpenModal, DisplayAlertMessage, RemoveAlertMessage, RemoveClassOpenModal} from '../../../../../core/store/ui/ui.actions';
 import {BreakpointObserver, BreakpointState} from '../../../../../../../node_modules/@angular/cdk/layout';
 import {TryLogout} from '../../../../../core/store/auth/auth.actions';
 import {DISPLAY_ALERT_MESSAGE_MAP, MENU_MAP} from '../../../../../core/global-constant/app.locale';
@@ -275,31 +275,20 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
   showMenuForMobile( xInputChecked ) {
     console.log(xInputChecked.checked);
     if ( xInputChecked.checked ) {
-      this.renderer.removeClass(document.body, 'u-open-modal');
+      this.store.dispatch(new RemoveClassOpenModal());
     } else {
-      this.renderer.addClass(document.body , 'u-open-modal');
+      this.store.dispatch(new AddClassOpenModal());
     }
-
-    // this.mobileHamburger.
-    // console.log(xElement.value);
-  }
-
-  routeForDeskTop( xUrl ) {
-    this.renderer.removeChild(document.body, this.tempDiv);
-    // this.renderer.setStyle(this.menuRef.nativeElement, 'display', 'none');
-    // this.router.navigate([xUrl]);
   }
 
   routeForMobile(xUrl, xInputChecked) {
-    console.log(xInputChecked.checked);
-    // this.renderer.setAttribute(xInputChecked, 'checked', 'false');
+
     if(xInputChecked.checked){
-      this.renderer.removeClass(document.body, 'u-open-modal');
-      console.log('@@@@@@@@@@@@@@@@remove modal 3');
+      this.store.dispatch(new RemoveClassOpenModal());
       this.renderer.setStyle(this.mobileHamburger.nativeElement, 'display', 'none');
       this.renderer.setProperty(xInputChecked, 'checked', false);
     } else {
-      this.renderer.addClass(document.body, 'u-open-modal');
+      this.store.dispatch(new AddClassOpenModal());
       this.renderer.setStyle(this.mobileHamburger.nativeElement, 'display', 'block');
       this.renderer.setProperty(xInputChecked, 'checked', true);
     }
@@ -336,10 +325,10 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
   categoryNavigatorToggle() {
     if ( this.isOpenCategoryNavigator ) {
       this.isOpenCategoryNavigator = false;
-      this.renderer.removeClass(document.body , 'u-open-modal');
+      this.store.dispatch(new RemoveClassOpenModal());
     } else {
       this.isOpenCategoryNavigator = true;
-      this.renderer.addClass(document.body , 'u-open-modal');
+      this.store.dispatch(new AddClassOpenModal());
     }
   }
 
@@ -347,7 +336,7 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
     this.store.dispatch(new TryLogout());
     this.renderer.setProperty(xInputChecked, 'checked', false);
     this.renderer.setStyle(this.mobileHamburger.nativeElement, 'display', 'none');
-    this.renderer.removeClass(document.body, 'u-open-modal');
+    this.store.dispatch(new RemoveClassOpenModal());
     location.href = '/shops';
   }
 
@@ -384,7 +373,7 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
 
     this.isOpenCategoryNavigator = false;
     this.renderer.setProperty(xMenuToggle, 'checked', false);
-    this.renderer.removeClass(document.body , 'u-open-modal');
+    this.store.dispatch(new RemoveClassOpenModal());
     this.router.navigate(['/shops']);
   }
 

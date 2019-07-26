@@ -1,13 +1,17 @@
 
 <!--가장 마지막에 로딩하는것을 loading으로 잡아줌.-->
 <!--여기서는 댓글이 가장 마지막에 다시 로딩함. 그래서 댓글 기준으로 loading바를 받음-->
-<ng-template class="hello" #loading>
-  Loading stuff...
-</ng-template>
+
 
 <ng-template class="hello" #imaegLoading>
   Loading stuff...
 </ng-template>
+
+<ng-template #loading>
+  <onpicks-loading-icon></onpicks-loading-icon>
+</ng-template>
+
+
 
 <onpicks-modal
   class="modal"
@@ -53,6 +57,7 @@
 <!--MUST TODO : -->
 <div
   #communicateBox
+  *ngIf="popupState; else loading"
   [ngStyle]="{ width : data.pictures?.length === 0 || (data.pictures ? data.pictures[0] : '1056px') === '' ? '660px' : '1056px'}"
   class="communicate-box">
   <!--[ngStyle]="{ width : data.review['pictures'].length === 0 ? ''}"-->
@@ -86,11 +91,14 @@
     <!-- 근데 이것을 클라이언트 사이드에서 해야하는지 백앤드에서 해야하는지 고민-->
     <div *ngIf="isViewImage && data?.pictures?.length > 0 as asPictures;"
          class="communicate-box__image">
-      <img
-        [drLazyLoad]="{ method : 'pure-transition'}" src="{{data.pictures[0]}}" alt="">
+      <div>
+        <img
+          [drLazyLoad]="{ method : 'pure-transition'}" src="{{data.pictures[0]}}" alt="">
+      </div>
     </div>
     <div
       #communicateBoxOnly
+
       [ngStyle]="{ width : data.pictures?.length === 0 || (data.pictures ? data.pictures[0] : '1056px') === ''  ? '660px' : '408px'}"
       class="communicate-box-only">
       <div class="communicate-box-only__inner">
