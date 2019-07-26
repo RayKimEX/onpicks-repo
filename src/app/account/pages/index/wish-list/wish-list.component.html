@@ -13,8 +13,81 @@
     </ui-mini-list>
   </ng-container>
 
+  <div class="cart-mobile">
+    <div class="cart-mobile__table">
+      <div
+        class="cart-mobile__table--item"
+        *ngFor="let item of data; index as wishListIndex">
+        <div class="cart-mobile__table--item--image-and-font-line-fixed">
+
+          <div class="cart-mobile__table--item--image">
+            <div class="cart-mobile__table--item--image-inner">
+              <img drLazyLoad src="{{item.thumbnail}}" alt="{{item.title}}">
+            </div>
+          </div>
+
+          <div class="cart-mobile__table--item-info">
+
+            <div class="cart-mobile__table--item-info--title subtitle-3-bold">
+              {{item.brand}}
+            </div>
+            <div class="cart-mobile__table--item-info--description body-3-regular">
+              {{item.title}}
+            </div>
+            <div class="cart-mobile__table--item-info--price subtitle-2-bold">
+              {{item.price | onpicksCurrency:(currency| async)}}
+            </div>
+            <div style="margin-top:0.8rem;">
+              <onpicks-flag-icon [_data]="item"></onpicks-flag-icon>
+
+              <div class="cart-mobile__table--item--delivery-info-where subtitle-2-regular">
+                <span class="u-bold">{{item.location.name}}</span> 출고 ·
+              </div>
+              <div
+                class="cart-mobile__table--item--delivery-info-price subtitle-2-bold"
+                *ngIf="item.shipping_fee == 0">&nbsp;무료배송
+              </div>
+              <div
+                class="cart-mobile__table--item--delivery-info-price subtitle-2-regular"
+                *ngIf="item.shipping_fee > 0">
+                &nbsp;묶음배송
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="cart-mobile__table--item-option">
+          <div class="cart-mobile__table--item-option--vertical-center">
+            <onpicks-button
+              i18n="@@word__add-to-cart"
+              [width]="'11.4rem'"
+              [type]="'white'"
+              (click)="moveWishListToCart(1, item, item.ship_alone ? 'free' : locationMap[item?.location.code]?.sequence, i)"
+              *ngIf="item.attributes.length === 0"
+              [padding]="false"
+              [size]="'small'">
+              쇼핑백에 담기
+            </onpicks-button>
+            <onpicks-button
+              i18n="@@word__remove"
+              [marginLeft]="'0.8rem'"
+              [type]="'white'"
+              [width]="'11.4rem'"
+              [padding]="false"
+              (click)="deleteWishList(item.slug, i)"
+              *ngIf="item.attributes.length === 0"
+              [size]="'small'">
+              삭제하기
+            </onpicks-button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <table class="wish-list__table">
-    <tr *ngFor="let item of data; index as wishListIndex">
+    <tr
+      class="wish-list__table--item"
+      *ngFor="let item of data; index as wishListIndex">
       <td>
         <div class="wish-list__table--image">
           <img src="{{ item.thumbnail }}" alt="">
@@ -43,11 +116,13 @@
                 class="wish-list__table--delivery-info-price subtitle-2-regular"
                 *ngIf="item.shipping_fee > 0">
                 묶음배송 · {{item.shipping_fee | onpicksCurrency:(currency| async)}}
+
               </div>
 
               <div
                 class="wish-list__table--delivery-info-description subtitle-2-regular u-color-dark-grey">
                 {{item.location.name}} 묶음배송 상품 {{item.location.free_shipping_threshold | onpicksCurrency: (currency| async)}} 이상 주문시 무료 배송
+
               </div>
             </ng-container>
             <ng-container *ngSwitchCase="'en'">
@@ -100,19 +175,3 @@
     </tr>
   </table>
 </div>
-
-<!--<div class="cart__wishlist-table&#45;&#45;delivery-info-price subtitle-2-regular"-->
-     <!--*ngIf="!item.individual_shipping">묶음배송 · {{item.location.base_shipping_fee | onpicksCurrency:(currency| async)}}</div>-->
-<!--<div class="cart__wishlist-table&#45;&#45;delivery-info-description subtitle-2-regular u-color-dark-grey">뉴저지 묶음배송 상품으로 {{item.location.location.free_shipping_threshold | onpicksCurrency: (currency| async)}} 이상 주문시 배송료 무료</div>-->
-<!--</div>-->
-<!--</td>-->
-<!--<td>-->
-  <!--<button-->
-    <!--*ngIf="item.attributes.length !== 0"-->
-    <!--class="btn btn&#45;&#45;white btn&#45;&#45;small cart__wishlist-table&#45;&#45;btn"-->
-    <!--[routerLink]="'/shops/p/' + item.product">옵션 선택하기</button>-->
-  <!--<button-->
-    <!--(click)="moveWishListToCart(1, item.product, item.individual_shipping ? 'free' : locationMap[item?.location.code]?.sequence, item.id, i)"-->
-    <!--*ngIf="item.attributes.length === 0"-->
-    <!--class="btn btn&#45;&#45;white btn&#45;&#45;small cart__wishlist-table&#45;&#45;btn"-->
-  <!--&gt;쇼핑백에 담기</button>-->
