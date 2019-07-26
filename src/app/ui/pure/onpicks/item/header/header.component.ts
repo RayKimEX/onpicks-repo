@@ -27,7 +27,7 @@ import {AddClassOpenModal, DisplayAlertMessage, RemoveAlertMessage, RemoveClassO
 import {BreakpointObserver, BreakpointState} from '../../../../../../../node_modules/@angular/cdk/layout';
 import {TryLogout} from '../../../../../core/store/auth/auth.actions';
 import {DISPLAY_ALERT_MESSAGE_MAP, MENU_MAP} from '../../../../../core/global-constant/app.locale';
-import {ShowCurrencyModal} from '../../../../../core/store/modal/modal.actions';
+import {ShowCurrencyModal, ShowRegionModal} from '../../../../../core/store/modal/modal.actions';
 import {CATEGORY_CODE_MAP, CATEGORY_MAP} from '../../../../../core/global-constant/app.category-database-long';
 import {normalize, schema} from 'normalizr';
 
@@ -338,6 +338,11 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
     this.renderer.setStyle(this.mobileHamburger.nativeElement, 'display', 'none');
     this.store.dispatch(new RemoveClassOpenModal());
     location.href = '/shops';
+  }
+
+  showRegionGlobalModal( xMenuToggle ) {
+    this.renderer.setProperty(xMenuToggle, 'checked', false);
+    this.store.dispatch(new ShowRegionModal());
   }
 
   showCurrencyGlobalModal( xMenuToggle ) {

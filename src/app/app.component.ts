@@ -11,7 +11,7 @@ import {tap} from 'rxjs/operators';
 import {BehaviorSubject, fromEvent} from 'rxjs';
 import {BreakpointObserver, BreakpointState} from '../../node_modules/@angular/cdk/layout';
 import {CURRENCY, REGION_ID, RESPONSIVE_MAP} from './core/global-constant/app.config';
-import {HideCurrencyModal} from './core/store/modal/modal.actions';
+import {HideCurrencyModal, HideRegionModal} from './core/store/modal/modal.actions';
 import {PREFERENCE_MAP, TITLE_MAP} from './core/global-constant/app.locale';
 import {HttpClient} from '@angular/common/http';
 import {Title} from '@angular/platform-browser';
@@ -307,8 +307,21 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit, DoCheck {
     this.store.dispatch(new HideCurrencyModal());
   }
 
+  hideRegionModal() {
+    this.store.dispatch(new HideRegionModal());
+  }
+
   nonCompareFunction( a, b ) {
     return 0;
+  }
+
+  changeRegionPreference(xPreferenceCode) {
+    if ( this.region !== xPreferenceCode ) {
+      setCookie('onpicks-language', xPreferenceCode === 'us' ? 'en' : 'ko');
+      window.location.href = '/' + xPreferenceCode;
+    } else {
+      this.hideRegionModal();
+    }
   }
 
   changeCurrencyPreference(xPreferenceCode) {
