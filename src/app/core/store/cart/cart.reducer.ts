@@ -34,6 +34,9 @@ export function CartReducer(state = initialState, action: CartActions.CartAction
 
   switch (action.type) {
     case CartActions.DELETE_WISH_LIST_SUCCESS :
+      console.log('DELETE_WISH_LIST_SUCCESS');
+      console.log(state.wishList);
+      console.log(action.payload);
       state.wishList.splice(action.payload, 1);
       return {
         ...state,
