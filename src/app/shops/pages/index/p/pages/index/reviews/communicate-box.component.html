@@ -91,10 +91,8 @@
     <!-- 근데 이것을 클라이언트 사이드에서 해야하는지 백앤드에서 해야하는지 고민-->
     <div *ngIf="isViewImage && data?.pictures?.length > 0 as asPictures;"
          class="communicate-box__image">
-      <div>
-        <img
-          [drLazyLoad]="{ method : 'pure-transition'}" src="{{data.pictures[0]}}" alt="">
-      </div>
+      <img
+        [drLazyLoad]="{ method : 'pure-transition'}" src="{{data.pictures[0]}}" alt="">
     </div>
     <div
       #communicateBoxOnly
