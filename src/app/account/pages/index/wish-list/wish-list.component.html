@@ -61,7 +61,7 @@
               i18n="@@word__add-to-cart"
               [width]="'11.4rem'"
               [type]="'white'"
-              (click)="moveWishListToCart(1, item, item.ship_alone ? 'free' : locationMap[item?.location.code]?.sequence, i)"
+              (click)="moveWishListToCart(1, item, item.individual_shipping ? 'free' : locationMap[item?.location.code]?.sequence, wishListIndex)"
               *ngIf="item.attributes.length === 0"
               [padding]="false"
               [size]="'small'">
@@ -73,7 +73,7 @@
               [type]="'white'"
               [width]="'11.4rem'"
               [padding]="false"
-              (click)="deleteWishList(item.slug, i)"
+              (click)="deleteWishList(item.product, wishListIndex)"
               *ngIf="item.attributes.length === 0"
               [size]="'small'">
               삭제하기
@@ -160,14 +160,14 @@
         </button>
         <button
           i18n="@@word__add-to-cart"
-          (click)="moveWishListToCart(1, item, item.individual_shipping ? 'free' : locationMap[item?.location.code]?.sequence, item.id, wishListIndex)"
+          (click)="moveWishListToCart(1, item, item.individual_shipping ? 'free' : locationMap[item?.location.code]?.sequence, wishListIndex)"
           *ngIf="item.attributes.length === 0"
           class="btn btn--white btn--small wish-list__table--btn">
           쇼핑백에 담기
         </button>
         <button
           i18n="@@word__remove"
-          (click)="deleteWishList(item.id, wishListIndex)"
+          (click)="deleteWishList(item.product, wishListIndex)"
           class="btn btn--white btn--small wish-list__table--btn">
           삭제하기
         </button>
