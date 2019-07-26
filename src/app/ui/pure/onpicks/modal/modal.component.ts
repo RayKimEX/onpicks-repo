@@ -1,6 +1,6 @@
 import {
   AfterViewInit,
-  ChangeDetectionStrategy,
+  ChangeDetectionStrategy, ChangeDetectorRef,
   Component,
   EventEmitter, HostListener, Inject,
   Input, LOCALE_ID,
@@ -64,7 +64,8 @@ export class ModalComponent implements OnInit, AfterViewInit, OnDestroy {
     @Inject(RESPONSIVE_MAP) public responsiveMap,
     private renderer: Renderer2,
     private breakpointObserver:  BreakpointObserver,
-    private store: Store<any>
+    private store: Store<any>,
+    private cd: ChangeDetectorRef
   ) { }
 
   ngOnInit() {

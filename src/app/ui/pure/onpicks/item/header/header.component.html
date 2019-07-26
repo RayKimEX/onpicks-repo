@@ -454,6 +454,11 @@
         </ul>
         <ul class="header__mobile-hamburger--ul subtitle-2-regular">
           <li class="header__mobile-hamburger--li">
+            <div (click)="showRegionGlobalModal(inputCheckedForToggle)">
+              <div class="u-button-effect">{{ region === 'kr' ? 'KOR' : 'USA' }}</div>
+            </div>
+          </li>
+          <li class="header__mobile-hamburger--li">
             <div (click)="showCurrencyGlobalModal(inputCheckedForToggle)">
               <div class="u-button-effect">{{ (currency | async) === 'KRW' ? 'KRW ₩' : 'USD $' }}</div>
             </div>

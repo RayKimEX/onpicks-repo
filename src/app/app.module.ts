@@ -141,7 +141,7 @@ export function getCurrency() {
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-
+    UiModule,
     RouterModule,
     AppRoutingModule,
 
@@ -155,7 +155,7 @@ export function getCurrency() {
     //   maxAge: 25, // Retains last 25 states
     // }) : [],
     DirectivesModule,
-    UiModule,
+
     ShopsModule,
 
     // ShowcasesModule,
