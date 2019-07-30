@@ -89,11 +89,29 @@
     <!-- MUST TODO : 이 부분이 검은색을 보여주게 하는부분. 그러나 이부분을 동적으로 크기를 적게하고 그렇게 하려면, 서버에서 값을 가져와야함. 인스타그램이 그런식으로 되어있음.-->
     <!-- 예를들면 height가 648일때, 이 이미지의 width는 몇이 되어야 하는가에 대한 정보들.-->
     <!-- 근데 이것을 클라이언트 사이드에서 해야하는지 백앤드에서 해야하는지 고민-->
-    <div *ngIf="isViewImage && data?.pictures?.length > 0 as asPictures;"
-         class="communicate-box__image">
-      <img
-        [drLazyLoad]="{ method : 'pure-transition'}" src="{{data.pictures[0]}}" alt="">
-    </div>
+
+
+    <onpicks-review-carousel
+      [imageList]="data?.pictures">
+
+    </onpicks-review-carousel>
+    <!--<div-->
+      <!--*ngIf="isViewImage && data?.pictures?.length > 0 as asPictures;"-->
+      <!--class="communicate-box__image">-->
+      <!--<onpicks-circle-n-button></onpicks-circle-n-button>-->
+      <!--<ul>-->
+        <!--<li *ngFor="let picture of data?.pictures">-->
+          <!--<img-->
+            <!--[drLazyLoad]="{ method : 'pure-transition' }" src="{{picture}}" alt="">-->
+        <!--</li>-->
+      <!--</ul>-->
+    <!--</div>-->
+    <!--<div *ngIf="isViewImage && data?.pictures?.length > 0 as asPictures;"-->
+         <!--class="communicate-box__image">-->
+
+
+
+    <!--</div>-->
     <div
       #communicateBoxOnly
 

@@ -19,6 +19,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { PEffects } from './store/p.effects';
 import { PProductReportComponent } from './components/index/pure/p-product-report/p-product-report.component';
 import {POtherSellersComponent} from './components/index/pure/p-other-sellers/p-other-sellers.component';
+import { ReviewCarouselComponent } from './components/index/reviews/review-carousel/review-carousel.component';
 
 @NgModule({
   imports: [
@@ -44,7 +45,7 @@ import {POtherSellersComponent} from './components/index/pure/p-other-sellers/p-
 
     PRefundComponent,
     PProductReportComponent,
-    POtherSellersComponent
+    POtherSellersComponent,
   ]
 })
 export class PModule { }

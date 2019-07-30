@@ -23,6 +23,21 @@
   </router-outlet>
 </div>
 
+<ui-footer [ngStyle]="{ paddingTop : deltaHeight }">
+
+<div *ngIf="region === 'kr'">
+  <span *ngIf="isKakaoSpeachBubble" class="kakao-speach-bubble u-cursor-pointer" (click)="isKakaoSpeachBubble = false"></span>
+  <a
+    [ngStyle]="{ bottom : isDesktopBreakPoint ? globalKakaoPosition : '3rem' }"
+    class="kakao-plus-friend"
+    (click)="plusFriendChat()">
+
+    <div class="kakao-plus-friend__image"></div>
+  </a>
+
+  <!--kakao-plus-friend-desktop.jpg-->
+</div>
+
 <onpicks-modal
   (exit)="hideCurrencyModal()"
   [modalForMenu]="true"
