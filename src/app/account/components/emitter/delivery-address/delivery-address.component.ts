@@ -9,7 +9,12 @@ import {
   ChangeDetectorRef,
   AfterViewInit, OnDestroy, Inject, LOCALE_ID
 } from '@angular/core';
-import {HttpClient, HttpParams} from '../../../../../../node_modules/@angular/common/http';
+
+import {
+  HttpClient,
+  HttpParams
+} from '../../../../../../node_modules/@angular/common/http';
+
 import {AccountDataService} from '../../../../core/service/data-pages/account/account-data.service';
 import {OrderDataService} from '../../../../core/service/data-pages/order/order-data.service';
 import {select, Store} from '@ngrx/store';
@@ -25,10 +30,10 @@ import {DISPLAY_ALERT_MESSAGE_MAP} from '../../../../core/global-constant/app.lo
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DeliveryAddressComponent implements OnInit, AfterViewInit, OnDestroy {
-  @ViewChildren('inputSearchBoxOuter') inputSearchBoxOuter;
   @ViewChild('inputSearchBox', {read: ElementRef}) inputSearchBoxEL;
-  @ViewChildren('inputSearchBox' ) inputSearchBox;
 
+  @ViewChildren('inputSearchBoxOuter') inputSearchBoxOuter;
+  @ViewChildren('inputSearchBox' ) inputSearchBox;
   @ViewChildren('inputRecipientName', { read : ElementRef }) inputRecipientName;
   @ViewChildren('inputRecipientNumber', { read : ElementRef }) inputRecipientNumber;
   @ViewChildren('inputZipnumber', { read : ElementRef }) inputZipnumber;
@@ -87,14 +92,12 @@ export class DeliveryAddressComponent implements OnInit, AfterViewInit, OnDestro
     this.userStore$ = this.store.pipe( select( state => state.auth.user) )
       .subscribe( user => {
         this.userStore = user;
-        console.log(this.userStore);
         this.deliveryData$ = this.orderDataService.getDeliveryData(this.userStore.id)
           .pipe(
             map( value => value['results'] ),
             tap( v => {
               this.deliveryData = v;
               this.numbers = this.deliveryData;
-              console.log(this.deliveryData);
               if ( v.length > 0 ) {
                 this.isShowDeliveryView = false;
               }
@@ -416,7 +419,6 @@ export class DeliveryAddressComponent implements OnInit, AfterViewInit, OnDestro
         })
 
         this.deliveryData = temp;
-
         this.deliveryData$ = of(temp);
 
         this.cd.markForCheck();
