@@ -311,9 +311,9 @@ export class KrCheckoutComponent implements OnInit, AfterViewInit, OnDestroy {
   markForCheck(e) {
     this.cd.markForCheck();
   }
-  payment(form) {
+  payment(form, deliveryComponent) {
     this.errorStatus = 0;
-    this.validate();
+    this.validate(deliveryComponent);
 
     if ( this.errorStatus === 0 ) {
 

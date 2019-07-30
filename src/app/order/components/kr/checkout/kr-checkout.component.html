@@ -274,7 +274,7 @@
           *ngIf="!isThirdBreakPoint" class="checkout-right__menu--checkout">
           <onpicks-button
             i18n="@@word__confirm-and-pay"
-            (click)="payment(form)"
+            (click)="payment(form, deliveryComponent)"
             [type]="'black'"
             [width]="'100%'"
             [size]="'big'">
@@ -303,8 +303,7 @@
       [deliveryData]="deliveryData"
       [payment_method]="formData.payment_method"
       [errorStatus]="errorStatus"
-      (validateEmitter)="validate(deliveryComponent)"
-    >
+      (validateEmitter)="validate(deliveryComponent)">
     </onpicks-kr-checkout-menu>
 
   </div>

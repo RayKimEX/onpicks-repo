@@ -33,7 +33,7 @@ export class DeliveryAddressComponent implements AfterViewInit, OnDestroy {
   @Input('data') set _data( xData ) {
     if ( xData !== null ) {
       this.deliveryData$ = xData.pipe(
-        tap( data => {
+        tap( (data: any[]) => {
           this.deliveryData = data;
 
           // 랜더링 후의 타이밍 잡기 위해 setTimeout 0초를 줌
