@@ -16,7 +16,7 @@ import {HttpClient} from '@angular/common/http';
 import { CURRENCY, RESPONSIVE_MAP } from '../../../core/global-constant/app.config';
 import {BehaviorSubject} from 'rxjs';
 import {BreakpointObserver, BreakpointState} from '../../../../../node_modules/@angular/cdk/layout';
-import {ShowCurrencyModal} from '../../../core/store/modal/modal.actions';
+import {ShowCurrencyModal, ShowRegionModal} from '../../../core/store/modal/modal.actions';
 import {PREFERENCE_MAP} from '../../../core/global-constant/app.locale';
 import {environment} from '../../../../environments/environment';
 import {AddClassOpenModal, RemoveClassOpenModal} from '../../../core/store/ui/ui.actions';
@@ -116,8 +116,21 @@ export class ChangePreferenceComponent implements OnInit {
 
   showModal() {
     if ( this.isDesktopBreakPoint ) {
-      this.store.dispatch(new AddClassOpenModal());
-      this.store.dispatch(new ShowCurrencyModal());
+
+      switch (this.type) {
+        case 'region' :
+          this.store.dispatch(new AddClassOpenModal());
+          this.store.dispatch(new ShowRegionModal());
+          break;
+
+        case 'currency' :
+          this.store.dispatch(new AddClassOpenModal());
+          this.store.dispatch(new ShowCurrencyModal());
+          break;
+
+        case 'locale' :
+      }
+
     } else {
       this.isShowModal = !this.isShowModal;
     }

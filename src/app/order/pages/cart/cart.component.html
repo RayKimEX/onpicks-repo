@@ -645,7 +645,7 @@
                     i18n="@@word__add-to-cart"
                     [width]="'11.4rem'"
                     [type]="'white'"
-                    (click)="moveWishListToCart(1, itemForSave, itemForSave.ship_alone ? 'free' : locationMap[itemForSave?.location.code]?.sequence, i)"
+                    (click)="moveWishListToCart(1, itemForSave, itemForSave.individual_shipping ? 'free' : locationMap[itemForSave?.location.code]?.sequence, itemForSaveIndex)"
                     *ngIf="itemForSave.attributes.length === 0"
                     [padding]="false"
                     [size]="'small'">
@@ -657,7 +657,7 @@
                     [type]="'white'"
                     [width]="'11.4rem'"
                     [padding]="false"
-                    (click)="deleteWishList(itemForSave.slug, i)"
+                    (click)="deleteWishList(itemForSave.product, itemForSaveIndex)"
                     *ngIf="itemForSave.attributes.length === 0"
                     [size]="'small'">
                     삭제하기
