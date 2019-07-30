@@ -3,13 +3,16 @@
 
     <div class="banner-carousel__content">
       <ul #container>
-        <li #itemList *ngFor="let item of imagesLargeList; index as i">
-          <div class="banner-carousel__item">
+        <li
+          #itemList
+          *ngFor="let item of imagesLargeList; index as i">
+          <div
+            class="banner-carousel__item">
             <div
               [ngStyle]="{ backgroundImage : isIEOrEdge ? 'url(' + item.imgSrc + ')'  : ''}"
               [ngClass]=" isIEOrEdge ? 'isIEOrEdge' : ''"
               class="banner-carousel__item--image-outer">
-              <img 
+              <img
                 *ngIf="!isIEOrEdge"
                 drLazyLoad
                 [relativeOption]="false"
@@ -32,7 +35,7 @@
                 </div>
               </div>
 
-              <div 
+              <div
                 *ngFor="let description of item.description[locale]"
                 class="banner-carousel__item--text-description"
                 [ngClass]="item.descriptionFontType">

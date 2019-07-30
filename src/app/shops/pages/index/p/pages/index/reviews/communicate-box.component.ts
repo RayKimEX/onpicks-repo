@@ -325,8 +325,11 @@ export class CommunicateBoxComponent implements OnInit, AfterViewChecked, AfterV
 
     // 모바일 화면에서 header클릭했을때 나가지는것 방지
     console.log(this.isBlockExistForMobile);
+    console.log(this.popupState );
     if ( this.isBlockExistForMobile ) { return ; };
     if ( this.popupState === true) {
+      console.log(event.target);
+      console.log(this.communicateBox.nativeElement);
       if (this.communicateBox.nativeElement.contains(event.target)) {
 
       } else {

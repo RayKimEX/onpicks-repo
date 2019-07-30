@@ -41,6 +41,7 @@ import { BannerComponent } from './pure/common/banner/banner.component';
 import { TrendingReviewsComponent } from './pure/onpicks/list/trending-reviews/trending-reviews.component';
 import { FlagIconComponent } from './pure/onpicks/icon/flag-icon/flag-icon.component';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import {ReviewCarouselComponent} from '../shops/pages/index/p/components/index/reviews/review-carousel/review-carousel.component';
 
 @NgModule({
 
@@ -89,6 +90,7 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
     BannerComponent,
     TrendingReviewsComponent,
     FlagIconComponent,
+    ReviewCarouselComponent
   ],
   exports: [
     SimpleCarouselComponent,

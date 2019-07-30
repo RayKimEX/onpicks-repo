@@ -51,8 +51,6 @@ export class BannerCarouselComponent implements OnInit, AfterViewInit, OnDestroy
     private renderer: Renderer2,
     private cd: ChangeDetectorRef,
     private breakpointObserver:  BreakpointObserver,
-    private router: Router,
-    private route: ActivatedRoute,
   ) { }
 
   ngOnDestroy() {

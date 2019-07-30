@@ -50,8 +50,7 @@ export class SimpleCarouselComponent implements AfterViewInit, OnDestroy {
   constructor(
     private renderer: Renderer2,
     private cd: ChangeDetectorRef
-  ) {
-  }
+  ) { }
 
   ngOnDestroy() {
     this.animationEnd$.unsubscribe();
