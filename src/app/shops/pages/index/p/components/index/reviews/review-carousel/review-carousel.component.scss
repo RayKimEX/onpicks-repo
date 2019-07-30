@@ -1,0 +1,35 @@
+.content {
+  width:inherit;
+  white-space: nowrap;
+  overflow:hidden;
+
+  &--container {
+    width:inherit;
+    padding:0;
+    transition: transform .5s ease 0s;
+  }
+
+  &__item {
+    width:inherit;
+    height:inherit;
+    vertical-align : top;
+    display: inline-block;
+    list-style: none;
+
+    &--image-outer {
+      & > img {
+        width :100%;
+      }
+    }
+  }
+}
+
+
+.review-carousel {
+  width:inherit;
+
+  &--outer {
+    width : inherit;
+    position:relative;
+  }
+}

@@ -1,0 +1,31 @@
+<div class="review-carousel">
+  <div class="review-carousel--outer">
+
+    <div
+      class="content">
+      <ul
+        class="content--container"
+        #container>
+        <li
+          #itemList
+          class="content__item"
+          *ngFor="let image of imageList; index as imageIndex">
+          <div
+            class="content__item--image-outer">
+            <img
+              [src]="image"
+              [alt]="">
+          </div>
+        </li>
+      </ul>
+    </div>
+    <onpicks-circle-n-button
+      [ngStyle]="{ display : imageList.length > 1 && imageIndex < imageList.length - 1 ? 'block' : 'none'}"
+      (click)="nextButton()">
+    </onpicks-circle-n-button>
+    <onpicks-circle-p-button
+      [ngStyle]="{ display : imageList.length > 1 && imageIndex !== 0 ? 'block' : 'none'}"
+      (click)="prevButton()">
+    </onpicks-circle-p-button>
+  </div>
+</div>
