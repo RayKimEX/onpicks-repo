@@ -1,39 +1,54 @@
+<ng-template #loading>
+  <onpicks-loading-icon></onpicks-loading-icon>
+</ng-template>
 
-<div class="delivery-address" [ngStyle]="{ minHeight : contentHeight }">
-  <h1 class="h1-bold">배송지</h1>
-  <ng-container *ngLet="deliveryData$ | async as data">
+
+<div
+  class="delivery-address"
+  *ngIf="deliveryData$ | async as data; else loading">
+  <h1
+    class="h1-bold">
+    배송지
+  </h1>
+
     <ng-container *ngIf="data?.length != 0">
       <div class="delivery-address__row">
         <!--TODO : use a method : propotionally increase or decrease size https://stackoverflow.com/questions/8894506/can-i-scale-a-divs-height-proportionally-to-its-width-using-css-->
         <div
-          *ngFor="let item of data; index as i"
-          class="delivery-address__col">
+          class="delivery-address__col"
+          *ngFor="let item of data; index as i">
           <div
-            [ngClass]="item.default ? 'isActive' : 'isNotActive'"
-            class="delivery-address__col--padding">
+            class="delivery-address__col--padding"
+            [ngClass]="item.default ? 'isActive' : 'isNotActive'">
             <div class="delivery-address__col--name subtitle-2-bold">{{item.full_name}}</div>
             <div class="delivery-address__col--address subtitle-2-regular">{{item.zip_code}}, {{item.street_address_1}}, {{item.street_address_2}}</div>
             <div class="delivery-address__col--phoneNumber subtitle-2-regular">{{item.phone_number}}</div>
             <div class="delivery-address__col-bottom">
-              <div *ngIf="!item.default" class="delivery-address__col-bottom--isDefault">
+              <div
+                *ngIf="!item.default"
+                class="delivery-address__col-bottom--isDefault">
                 <a
                   class="subtitle-2-regular u-color-dark-grey"
                   (click)="updateDeliveryDataToDefault(i)">
                   기본 배송지로 설정
                 </a>
               </div>
-              <div *ngIf="item.default" class="delivery-address__col-bottom--isDefault subtitle-2-regular u-color-green">기본 배송지</div>
+              <div
+                class="delivery-address__col-bottom--isDefault subtitle-2-regular u-color-green"
+                *ngIf="item.default">
+                기본 배송지
+              </div>
               <div class="delivery-address__col-bottom--modify">
                 <a
-                  (click)="showModifyDeliveryModal(i)"
-                  class="subtitle-2-regular u-color-grey">
+                  class="subtitle-2-regular u-color-grey"
+                  (click)="showModifyDeliveryModal(i)">
                   수정하기
                 </a>
               </div>
               <div class="delivery-address__col-bottom--remove">
                 <a
-                  (click)="removeDeliveryInfo(i)"
-                  class="subtitle-2-regular u-color-grey">
+                  class="subtitle-2-regular u-color-grey"
+                  (click)="removeDeliveryInfo(i)">
                   삭제하기
                 </a>
               </div>
@@ -55,24 +70,33 @@
       </onpicks-button>
     </ng-container>
 
-    <div  [ngStyle]="{ 'display' : data?.length === 0 || isShowDeliveryView ? 'block' : 'none' }">
-      <ng-container *ngTemplateOutlet="templateRef"></ng-container>
+    <div
+      [ngStyle]="{ 'display' : data?.length === 0 || isShowDeliveryView ? 'block' : 'none' }">
+      <ng-container
+        *ngTemplateOutlet="templateRef">
+      </ng-container>
       <onpicks-button
         (click)="addDeliveryInfo()"
         [type]="'white'"
         [padding]="false"
-        [width]="'10.1rem'">배송지 저장
+        i18n="@@sentence__save-address"
+        [width]="'10.1rem'">
+        배송지 저장
       </onpicks-button>
     </div>
-  </ng-container>
 </div>
 
 <onpicks-modal
   class="modal"
-  (exit)="exitModifyDeliveryModal()" [isShow]="isShowDeliveryModal">
-  <h1 class="h1-bold">배송지 수정</h1>
+  (exit)="exitModifyDeliveryModal()"
+  [isShow]="isShowDeliveryModal">
+  <h1 class="h1-bold">
+    배송지 수정
+  </h1>
   <div class="modal__body">
-    <ng-container *ngTemplateOutlet="templateRef"></ng-container>
+    <ng-container
+      *ngTemplateOutlet="templateRef">
+    </ng-container>
   </div>
 
   <onpicks-button
@@ -89,49 +113,83 @@
 <ng-template #templateRef>
   <!--<ng-container *ngIf="deliveryData.length == 0 || isShowDeliveryView">-->
   <div class="delivery-address__insert-box">
-    <div class="delivery-address__insert-box--row">
-      <div class="subtitle-2-regular">받는분</div>
+    <div class="delivery-address__insert-box--row u-margin-bottom--small">
+      <div
+        i18n="@@word__recipient"
+        class="subtitle-2-regular">
+        받는분
+      </div>
       <onpicks-input-box
         #inputRecipientName
         class="delivery-address__insert-box--input--recipient"
-        [placeholder]="'받는분 성함'">
+        i18n-placeholder="@@word__recipient-name"
+        placeholder="'받는분 성함'">
       </onpicks-input-box>
+      <div
+        *ngIf="checkBitWise(EMPTY_RECIPIENT_NAME)"
+        class="delivery-address--warning subtitle-2-regular u-color-orange">
+        받는분 성함을 입력해주세요
+      </div>
     </div>
-    <div class="delivery-address__insert-box--row">
-      <div class="subtitle-2-regular">받는분 연락처</div>
+    <div class="delivery-address__insert-box--row u-margin-bottom--small">
+      <div
+        i18n="@@word__recipient-phone-number"
+        class="subtitle-2-regular">
+        받는분 연락처
+      </div>
       <onpicks-input-box
         #inputRecipientNumber
         class="delivery-address__insert-box--input--recipient-tel"
-        [placeholder]="'받는분 연락처'">
+        i18n-placeholder="@@word__recipient-phone-number"
+        placeholder="'받는분 연락처'">
       </onpicks-input-box>
+      <div
+        *ngIf="checkBitWise(EMPTY_RECIPIENT_NUMBER)"
+        class="delivery-address--warning subtitle-2-regular u-color-orange">
+        받는분 연락처를 입력해주세요
+      </div>
+      <div
+        *ngIf="checkBitWise(INVALID_RECIPIENT_NUMBER)"
+        class="delivery-address--warning subtitle-2-regular u-color-orange">
+        받는분 연락처를 정확하게 입력해주세요
+      </div>
     </div>
-    <div class="delivery-address__insert-box--row">
-      <div class="subtitle-2-regular">주소</div>
+    <div class="delivery-address__insert-box--row u-margin-bottom--small">
+      <div
+        i18n="@@word__address"
+        class="subtitle-2-regular">
+        주소
+      </div>
       <onpicks-input-box
         #inputZipnumber
         class="delivery-address__insert-box--input--zip-number"
         (click)="showSearchBox('input')"
         [readonly]="true"
-        [placeholder]="'우편번호'">
+        i18n-placeholder="@@word__zip-code"
+        placeholder="'우편번호'">
       </onpicks-input-box>
       <onpicks-button
+        i18n="@@sentence__search-zip-code"
+        [padding]="false"
         (click)="showSearchBox()"
         [type]="'white'"
-        [padding]="false"
         [width]="'11.4rem'">우편번호 찾기
       </onpicks-button>
     </div>
 
     <div
-      #inputSearchBoxOuter [ngStyle]="{ display : isShowSearchBox ? 'block' : 'none' }" class="delivery-address__info--delivery-searchBox-outer">
+      #inputSearchBoxOuter
+      [ngStyle]="{ display : isShowSearchBox ? 'block' : 'none' }"
+      class="delivery-address__info--delivery-searchBox-outer">
       <onpicks-search-box
         #inputSearchBox
         [ngStyle]="{ width : isShowDeliveryModal ? '100%' :  '55.2rem' }"
         class="delivery-address__info--delivery-searchBox"
         [placeholder]="'검색할 주소를 입력해주세요'" >
       </onpicks-search-box>
-      <div class="delivery-address__info--delivery-searchBox-option"
-           [ngClass]="isShowDeliveryModal ? 'delivery-address__modal-width--active' : 'delivery-address__modal-width'">
+      <div
+        class="delivery-address__info--delivery-searchBox-option"
+        [ngClass]="isShowDeliveryModal ? 'delivery-address__modal-width--active' : 'delivery-address__modal-width'">
         <!-- TODO : list형식 관련 스타일 가이드 의견 교류 필요, 1. padding을 일괄적으로 주면서, 이쁘게 디자인 안나오는지,  -->
         <div *ngIf="searchState === 1" class="delivery-address__info--delivery-searchBox-option-list" >
           <div class="delivery-address__info--delivery-searchBox-option-list-outer" *ngFor="let item of jusoList ">
@@ -184,7 +242,7 @@
       </div>
     </div>
 
-    <div class="delivery-address__insert-box--row">
+    <div class="delivery-address__insert-box--row u-margin-bottom--small">
       <onpicks-input-box
         #inputJuso
         class="delivery-address__insert-box--input--juso"
@@ -197,8 +255,16 @@
       <onpicks-input-box
         #inputDetailJuso
         class="delivery-address__insert-box--input--juso-detail"
-        [placeholder]="'상세주소를 입력하세요'">
+        i18n-placeholder="@@sentence__insert-detail-address"
+        placeholder="'상세주소를 입력하세요'">
       </onpicks-input-box>
+    </div>
+
+
+    <div
+      *ngIf="checkBitWise(EMPTY_DELIVERY_ADDRESS)"
+      class="delivery-address--warning subtitle-2-regular u-color-orange">
+      배송지를 입력해주세요
     </div>
   </div>
 </ng-template>

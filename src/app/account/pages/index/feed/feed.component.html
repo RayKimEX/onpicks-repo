@@ -2,20 +2,32 @@
   <onpicks-loading-icon></onpicks-loading-icon>
 </ng-template>
 
-<div class="row feed-section" [ngStyle]="{ minHeight : contentHeight }">
-  <h1 class="h1-bold" *ngIf="locale === 'ko'">
+<div
+  class="row feed-section"
+  [ngStyle]="{ minHeight : contentHeight }">
+  <h1
+    class="h1-bold"
+    *ngIf="locale === 'ko'">
     {{(userState$ | async).nickname}}님을 위한 추천 리뷰
   </h1>
-  <h1 class="h1-bold" *ngIf="locale === 'en'">
+  <h1
+    class="h1-bold"
+    *ngIf="locale === 'en'">
     Recommended Reviews for You
   </h1>
 
-  <div *ngIf="feedList$ | async as feedData; else loading" class="feed-section__grid">
-    <ng-container
-      *ngFor="let item of feedData;  index as i" >
-      <div [routerLink]="'/shops/p/' + item.product  + '/reviews/' + item.review" class="feed-section__col u-button-effect">
+  <div
+    class="feed-section__grid"
+    *ngIf="feedList$ | async as feedData; else loading">
+    <ng-container *ngFor="let item of feedData; index as i" >
+      <div
+        class="feed-section__col u-button-effect"
+        [routerLink]="'/shops/p/' + item.product  + '/reviews/' + item.review">
         <div>
-          <img drLazyLoad src="{{item.url}}" alt="">
+          <img
+            drLazyLoad
+            [src]="item.url"
+            alt="">
         </div>
       </div>
     </ng-container>

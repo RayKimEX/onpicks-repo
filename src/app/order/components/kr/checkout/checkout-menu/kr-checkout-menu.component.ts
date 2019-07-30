@@ -15,6 +15,7 @@ import {FormControl, FormGroup} from '@angular/forms';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class KrCheckoutMenuComponent implements OnInit, OnDestroy, AfterViewInit {
+  @Input('errorStatus') errorStatus;
   @Input('inputSearchBox') inputSearchBox;
 
   @Input('inputOrderName') inputOrderName;
@@ -33,7 +34,7 @@ export class KrCheckoutMenuComponent implements OnInit, OnDestroy, AfterViewInit
   @Input('data') data;
   @Input('payment_method') payment_method;
 
-  @Output() errorStatusEmitter = new EventEmitter();
+  @Output() validateEmitter = new EventEmitter();
 
   readonly EMPTY_ORDER_NAME          = 0b00000000001;
   readonly EMPTY_ORDER_NUMBER        = 0b00000000010;
@@ -63,10 +64,8 @@ export class KrCheckoutMenuComponent implements OnInit, OnDestroy, AfterViewInit
     'shipping_message': '',
     'customs_id_owner': '',
     'customs_id_number': '',
-    'payment_method': 'card',
-    'is_mobile' : true,
+    'payment_method': 'card'
   };
-  errorStatus = 0;
   checkoutStore$;
   userStore$;
   userStore;
@@ -168,174 +167,110 @@ export class KrCheckoutMenuComponent implements OnInit, OnDestroy, AfterViewInit
       }
     }
   }
-  errorEmitter(errorStatus){
-    this.errorStatusEmitter.emit(errorStatus);
-  }
+
   payment(form) {
-    this.errorStatus = 0;
-    this.validate();
+    this.validateEmitter.emit();
 
-    if ( this.errorStatus === 0 ) {
+    // emit후의 싱크를 맞추기 위해 setTimeout을 함
+    setTimeout(() => {
+      if ( this.errorStatus === 0 ) {
 
-      this.formData.buyer_name = this.inputOrderName.nativeElement.children[0].value;
-      this.formData.buyer_contact = this.inputOrderNumber.nativeElement.children[0].value;
-      this.formData.payment_method = this.payment_method;
-      // 0인 경우가 배송지 default이므로,
-      // full_name 수신자 성함
-      // 서버에 저장된 배송지 정보가 없을 경우
-      console.log(this.deliveryData);
-      if ( this.deliveryData.length === 0 ) {
+        this.formData.buyer_name = this.inputOrderName.nativeElement.children[0].value;
+        this.formData.buyer_contact = this.inputOrderNumber.nativeElement.children[0].value;
+        this.formData.payment_method = this.payment_method;
+        // 0인 경우가 배송지 default이므로,
+        // full_name 수신자 성함
+        // 서버에 저장된 배송지 정보가 없을 경우
+        console.log(this.deliveryData);
+        if ( this.deliveryData.length === 0 ) {
 
-        // inputRecipientNameRef
-        // inputRecipientNumberRef
-        // inputZipnumberRef
-        // inputJusoRef
-        // inputDetailJusoRef
-        console.log('length == 0');
-        this.formData = {
-          ...this.formData,
-          ...this.setDeliveryInfo()
-        };
+          // inputRecipientNameRef
+          // inputRecipientNumberRef
+          // inputZipnumberRef
+          // inputJusoRef
+          // inputDetailJusoRef
+          console.log('length == 0');
+          this.formData = {
+            ...this.formData,
+            ...this.setDeliveryInfo()
+          };
 
-      } else {
+        } else {
 
-        this.formData.phone_number = this.deliveryData[0].phone_number;
-        this.formData.full_name = this.deliveryData[0].full_name;
-        this.formData.zip_code = this.deliveryData[0].zip_code;
-        this.formData.street_address_1 = this.deliveryData[0].street_address_1;
-        this.formData.street_address_2 = this.deliveryData[0].street_address_2;
+          this.formData.phone_number = this.deliveryData[0].phone_number;
+          this.formData.full_name = this.deliveryData[0].full_name;
+          this.formData.zip_code = this.deliveryData[0].zip_code;
+          this.formData.street_address_1 = this.deliveryData[0].street_address_1;
+          this.formData.street_address_2 = this.deliveryData[0].street_address_2;
 
-      }
-      if (this.shippingMessage){
-        this.formData.shipping_message = this.shippingMessage;
-      }
-      this.formData.customs_id_number = this.checkoutAdditionNumber.nativeElement.children[0].value;
+        }
+        if (this.shippingMessage){
+          this.formData.shipping_message = this.shippingMessage;
+        }
+        this.formData.customs_id_number = this.checkoutAdditionNumber.nativeElement.children[0].value;
 
-      this.formData.city = '';
-      this.formData.country = '';
-      console.log('formData');
-      console.log(this.formData);
-      this.httpClient.post<any>( this.BASE_URL + '/api/orders/', this.formData )
-        .subscribe( response => {
+        this.formData.city = '';
+        this.formData.country = '';
+        console.log('formData');
+        console.log(this.formData);
+        this.httpClient.post<any>( this.BASE_URL + '/api/orders/', this.formData )
+          .subscribe( response => {
 
-          // mobile 일경우
-          if ( response.is_mobile ) {
-            console.log('hello');
-            Object.keys(response.form_data).forEach(key => {
-              const input = document.createElement('input');
-              input.type = 'text';
-              input.hidden = true;
-              input.name = key;
-              input.value = response.form_data[key];
-              form.appendChild(input);
-            });
-            form.action = response.action_url;
-            form.acceptCharset = 'euc-kr';
-            form.submit();
-          } else {
-            // desktop 일경우
-            if ( this.paymentScript === null ) {
-              this.paymentScript = document.createElement('script');
-              this.paymentScript.src = response.pay_script;
-              this.paymentScript.async = true;
-              this.paymentScript.onload = function() {
+            // mobile 일경우
+            if ( response.is_mobile ) {
+              console.log('hello');
+              Object.keys(response.form_data).forEach(key => {
+                const input = document.createElement('input');
+                input.type = 'text';
+                input.hidden = true;
+                input.name = key;
+                input.value = response.form_data[key];
+                form.appendChild(input);
+              });
+              form.action = response.action_url;
+              form.acceptCharset = 'euc-kr';
+              form.submit();
+            } else {
+              // desktop 일경우
+              if ( this.paymentScript === null ) {
+                this.paymentScript = document.createElement('script');
+                this.paymentScript.src = response.pay_script;
+                this.paymentScript.async = true;
+                this.paymentScript.onload = function() {
+                  // @ts-ignore
+                  INIStdPay.pay(form);
+                };
+                document.head.appendChild(this.paymentScript);
+
+                Object.keys(response.form_data).forEach(key => {
+                  const input = document.createElement('input');
+                  input.type = 'text';
+                  input.hidden = true;
+                  input.name = key;
+                  input.value = response.form_data[key];
+                  form.appendChild(input);
+                });
+              } else {
+                form.innerHTML = '';
+                Object.keys(response.form_data).forEach(key => {
+                  const input = document.createElement('input');
+                  input.type = 'text';
+                  input.hidden = true;
+                  input.name = key;
+                  input.value = response.form_data[key];
+                  form.appendChild(input);
+                });
                 // @ts-ignore
                 INIStdPay.pay(form);
-              };
-              document.head.appendChild(this.paymentScript);
-
-              Object.keys(response.form_data).forEach(key => {
-                const input = document.createElement('input');
-                input.type = 'text';
-                input.hidden = true;
-                input.name = key;
-                input.value = response.form_data[key];
-                form.appendChild(input);
-              });
-            } else {
-              form.innerHTML = '';
-              Object.keys(response.form_data).forEach(key => {
-                const input = document.createElement('input');
-                input.type = 'text';
-                input.hidden = true;
-                input.name = key;
-                input.value = response.form_data[key];
-                form.appendChild(input);
-              });
-              // @ts-ignore
-              INIStdPay.pay(form);
+              }
             }
-          }
-        });
-    }
+          });
+      }
+    }, 0 );
+
 
   }
-  validate() {
 
-    if ( this.inputOrderName.nativeElement.children[0].value === '') {
-      this.inputOrderName.nativeElement.children[0].focus();
-      this.errorStatus |= this.EMPTY_ORDER_NAME;
-
-    }
-
-    if ( this.inputOrderNumber.nativeElement.children[0].value === '') {
-      if ( this.errorStatus === 0 ) {this.inputOrderNumber.nativeElement.children[0].focus();}
-      this.errorStatus |= this.EMPTY_ORDER_NUMBER;
-    } else {
-      const patt = new RegExp('^(?:\\+?\\d{1,2} ?)?[ -]?\\d{2,3}[ -]?\\d{3,4}[ -]?\\d{4}$');
-      if ( !patt.test(this.inputOrderNumber.nativeElement.children[0].value) ) {
-
-        if ( this.errorStatus === 0 ) {this.inputOrderNumber.nativeElement.children[0].focus();}
-        this.errorStatus |= this.INVALID_ORDER_NUMBER;
-      }
-    }
-
-    if ( this.deliveryData.length === 0 ) {
-      if ( this.inputRecipientName.last.nativeElement.children[0].value === '') {
-        if ( this.errorStatus === 0 ) {this.inputRecipientName.last.nativeElement.children[0].focus();}
-        this.errorStatus |= this.EMPTY_RECIPIENT_NAME;
-      }
-
-      if ( this.inputRecipientNumber.last.nativeElement.children[0].value === '') {
-        if ( this.errorStatus === 0 ) {this.inputRecipientNumber.last.nativeElement.children[0].focus();}
-        this.errorStatus |= this.EMPTY_RECIPIENT_NUMBER;
-      } else {
-        const patt = new RegExp('^(?:\\+?\\d{1,2} ?)?[ -]?\\d{2,3}[ -]?\\d{3,4}[ -]?\\d{4}$');
-        if ( !patt.test(this.inputRecipientNumber.last.nativeElement.children[0].value) ) {
-          if ( this.errorStatus === 0 ) {this.inputRecipientNumber.last.nativeElement.children[0].focus();}
-          this.errorStatus |= this.INVALID_RECIPIENT_NUMBER;
-        }
-      }
-
-      if ( this.inputZipnumber.last.nativeElement.children[0].value === ''
-        || this.inputJuso.last.nativeElement.children[0].value === ''
-      ) {
-
-        if ( this.errorStatus === 0 ) {this.inputZipnumber.last.nativeElement.children[0].focus();}
-        this.errorStatus |= this.EMPTY_DELIVERY_ADDRESS;
-      }
-    }
-
-    if ( this.checkoutAdditionNumber.nativeElement.children[0].value === '') {
-      if ( this.errorStatus === 0 ) {this.checkoutAdditionNumber.nativeElement.children[0].focus();}
-      this.errorStatus |= this.EMPTY_CUSTOMS_ID_NUMBER;
-    } else {
-      const patt = new RegExp('^[pP][0-9]{12}$');
-      if ( !(patt.test(this.checkoutAdditionNumber.nativeElement.children[0].value))) {
-        if ( this.errorStatus === 0 ) {this.checkoutAdditionNumber.nativeElement.children[0].focus();}
-        this.errorStatus |= this.INVALID_CUSTOMS_ID_NUMBER;
-      }
-    }
-
-    if ( this.isAgreementDirectBuyingInfo === false ) {
-      this.errorStatus |= this.EMPTY_AGREEMENT_DIRECT_BUYING;
-    }
-    console.log('validate!')
-    console.log(this.errorStatus);
-    if (this.errorStatus) {
-      this.errorEmitter(this.errorStatus);
-    }
-  }
 
   setDeliveryInfo() {
     const temp = {
@@ -345,9 +280,7 @@ export class KrCheckoutMenuComponent implements OnInit, OnDestroy, AfterViewInit
       'street_address_2': '',
       'city': '',
       'state': '',
-      'phone_number': '',
-      // default를 false로 주던 true로주던 값이 API에서 허용 안되도록 막힘
-      'default': false
+      'phone_number': ''
     };
 
     temp.full_name = this.inputRecipientName.last.nativeElement.children[0].value;

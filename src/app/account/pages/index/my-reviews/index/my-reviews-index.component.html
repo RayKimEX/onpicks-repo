@@ -6,8 +6,8 @@
           <button
             i18n="@@written-reviews__title"
             class="subtitle-2-bold u-color-grey"
-            routerLinkActive="u-color-black"
-            routerLink="written" >
+            [routerLink]="'written'"
+            [routerLinkActive]="'u-color-black'">
             내가 쓴 리뷰
           </button>
         </li>
@@ -15,8 +15,8 @@
           <button
             i18n="@@available-reviews__title"
             class="subtitle-2-bold u-color-grey"
-            routerLinkActive="u-color-black"
-            routerLink="available">
+            [routerLink]="'available'"
+            [routerLinkActive]="'u-color-black'">
             작성 가능한 리뷰
           </button>
         </li>

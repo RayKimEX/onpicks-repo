@@ -1,10 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { AccountRoutingModule } from './account-routing.module';
 import { FeedComponent } from './pages/index/feed/feed.component';
 import { WishListComponent } from './pages/index/wish-list/wish-list.component';
-import { AccountProfileComponent } from './components/shared/account-profile/account-profile.component';
 import { AccountIndexComponent } from './pages/index/account-index.component';
 import { PageDeliveryAddressComponent } from './pages/index/settings/index/delivery-address/page-delivery-address.component';
 import { ProfileComponent } from './pages/index/settings/index/profile/profile.component';
@@ -36,7 +34,6 @@ import { DeliveryAddressComponent } from './components/emitter/delivery-address/
   declarations: [
     FeedComponent,
     WishListComponent,
-    AccountProfileComponent,
     AccountIndexComponent,
     SettingsIndexComponent,
     PageDeliveryAddressComponent,
@@ -50,7 +47,6 @@ import { DeliveryAddressComponent } from './components/emitter/delivery-address/
     CreditsComponent,
     OrdersDetailComponent,
     WriteReviewComponent,
-    DeliveryAddressComponent
   ]
 })
 

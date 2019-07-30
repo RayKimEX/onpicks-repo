@@ -42,6 +42,7 @@ import { TrendingReviewsComponent } from './pure/onpicks/list/trending-reviews/t
 import { FlagIconComponent } from './pure/onpicks/icon/flag-icon/flag-icon.component';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import {ReviewCarouselComponent} from '../shops/pages/index/p/components/index/reviews/review-carousel/review-carousel.component';
+import {DeliveryAddressComponent} from '../account/components/emitter/delivery-address/delivery-address.component';
 
 @NgModule({
 
@@ -90,7 +91,8 @@ import {ReviewCarouselComponent} from '../shops/pages/index/p/components/index/r
     BannerComponent,
     TrendingReviewsComponent,
     FlagIconComponent,
-    ReviewCarouselComponent
+    ReviewCarouselComponent,
+    DeliveryAddressComponent
   ],
   exports: [
     SimpleCarouselComponent,
@@ -127,7 +129,8 @@ import {ReviewCarouselComponent} from '../shops/pages/index/p/components/index/r
     DynamicCarouselComponent,
     BannerComponent,
     TrendingReviewsComponent,
-    FlagIconComponent
+    FlagIconComponent,
+    DeliveryAddressComponent
   ],
 })
 

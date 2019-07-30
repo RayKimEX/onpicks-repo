@@ -7,7 +7,7 @@ import {
   ElementRef,
   Renderer2,
   ChangeDetectorRef,
-  AfterViewInit, OnDestroy, Inject, LOCALE_ID
+  AfterViewInit, OnDestroy, Inject, LOCALE_ID, Input
 } from '@angular/core';
 
 import {
@@ -29,18 +29,108 @@ import {DISPLAY_ALERT_MESSAGE_MAP} from '../../../../core/global-constant/app.lo
   styleUrls: ['./delivery-address.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DeliveryAddressComponent implements OnInit, AfterViewInit, OnDestroy {
-  @ViewChild('inputSearchBox', {read: ElementRef}) inputSearchBoxEL;
+export class DeliveryAddressComponent implements AfterViewInit, OnDestroy {
+  @Input('data') set _data( xData ) {
+    if ( xData !== null ) {
+      this.deliveryData$ = xData.pipe(
+        tap( data => {
+          this.deliveryData = data;
 
+          // 랜더링 후의 타이밍 잡기 위해 setTimeout 0초를 줌
+          setTimeout(() => {
+
+            this.searchInputFirstEvent$ = fromEvent(this.inputSearchBox.first.searchInputBox.nativeElement, 'input');
+            this.searchInputLastEvent$ = fromEvent(this.inputSearchBox.last.searchInputBox.nativeElement, 'input');
+
+            // 80정도가 딱 적당하게 바로바로 반응함.
+            this.searchFirst$ = this.searchInputFirstEvent$.pipe(
+              debounceTime(80),
+              distinctUntilChanged(),
+              map( (val: KeyboardEvent) => val.target),
+              map( (val: HTMLInputElement) => val.value),
+              map( val => new HttpParams()
+                .set('currentPage', '0')
+                .set('countPerPage', '10')
+                // onpicks-search-box에서 발생하는 이벤트는, InputEvent가 아니고 그냥 Event이기 때문에,
+                // 같은 값이 아니므로 아래와 같이 3항 연산자를 씀
+                // @ts-ignore
+                .set('keyword', val === undefined ?  '' : val )
+                .set('confmKey', 'U01TX0FVVEgyMDE4MTAwNTE1NDIxNTEwODIxNDQ=')
+                .set('resultType', 'json')),
+              // json으로 바꿔주기 위해 flatMap 사용
+              flatMap( (val: HttpParams) =>
+                this.httpClient.get<any>(location.protocol + '//www.juso.go.kr/addrlink/addrLinkApi.do', { params: val, responseType : 'json' }, )
+              ),
+              map( val => {
+                console.log(val);
+                return val['results'].juso;
+              }),
+            ).subscribe(val => {
+              if ( val !== null ) {
+
+                if ( val.length === 0 ) {
+                  this.searchState = 2;
+                } else {
+                  this.searchState = 1;
+                }
+              } else {
+                this.searchState = 0;
+              }
+
+              this.jusoList = val;
+              this.cd.markForCheck();
+            });
+
+            this.searchLast$ = this.searchInputLastEvent$.pipe(
+              debounceTime(80),
+              distinctUntilChanged(),
+              map( (val: KeyboardEvent) => val.target),
+              map( (val: HTMLInputElement) => val.value),
+              map( val => new HttpParams()
+                .set('currentPage', '0')
+                .set('countPerPage', '10')
+                // onpicks-search-box에서 발생하는 이벤트는, InputEvent가 아니고 그냥 Event이기 때문에,
+                // 같은 값이 아니므로 아래와 같이 3항 연산자를 씀
+                // @ts-ignore
+                .set('keyword', val === undefined ?  '' : val )
+                .set('confmKey', 'U01TX0FVVEgyMDE4MTAwNTE1NDIxNTEwODIxNDQ=')
+                .set('resultType', 'json')),
+              // json으로 바꿔주기 위해 flatMap 사용
+              flatMap( (val: HttpParams) =>
+                this.httpClient.get<any>(location.protocol + '//www.juso.go.kr/addrlink/addrLinkApi.do', { params: val, responseType : 'json' }, )
+              ),
+              map( val => val['results'].juso ),
+            ).subscribe(val => {
+              if ( val !== null ) {
+
+                if ( val.length === 0 ) {
+                  this.searchState = 2;
+                } else {
+                  this.searchState = 1;
+                }
+              } else {
+                this.searchState = 0;
+              }
+
+              this.jusoList = val;
+              this.cd.markForCheck();
+            });
+          }, 0);
+        })
+      );
+    }
+  };
+
+  @ViewChild('inputSearchBox', {read: ElementRef}) inputSearchBoxEL;
   @ViewChildren('inputSearchBoxOuter') inputSearchBoxOuter;
   @ViewChildren('inputSearchBox' ) inputSearchBox;
-  @ViewChildren('inputRecipientName', { read : ElementRef }) inputRecipientName;
-  @ViewChildren('inputRecipientNumber', { read : ElementRef }) inputRecipientNumber;
-  @ViewChildren('inputZipnumber', { read : ElementRef }) inputZipnumber;
-  @ViewChildren('inputJuso', { read : ElementRef }) inputJuso;
-  @ViewChildren('inputDetailJuso', { read : ElementRef }) inputDetailJuso;
+  @ViewChildren('inputRecipientName', { read : ElementRef }) inputRecipientNameRef;
+  @ViewChildren('inputRecipientNumber', { read : ElementRef }) inputRecipientNumberRef;
+  @ViewChildren('inputZipnumber', { read : ElementRef }) inputZipnumberRef;
+  @ViewChildren('inputJuso', { read : ElementRef }) inputJusoRef;
+  @ViewChildren('inputDetailJuso', { read : ElementRef }) inputDetailJusoRef;
 
-  deliveryData$
+  deliveryData$ = null;
   deliveryData = [];
   searchState = 0;
   numbers;
@@ -49,8 +139,6 @@ export class DeliveryAddressComponent implements OnInit, AfterViewInit, OnDestro
   isShowDeliveryModal = false;
   updateDeliveryIndex = 0;
 
-  errorStatus = 0;
-
   searchFirst$;
   searchLast$;
 
@@ -58,6 +146,8 @@ export class DeliveryAddressComponent implements OnInit, AfterViewInit, OnDestro
   searchInputLastEvent$;
 
   jusoList;
+
+  deliveryErrorStatus;
 
   pageData$;
   userStore$;
@@ -89,26 +179,22 @@ export class DeliveryAddressComponent implements OnInit, AfterViewInit, OnDestro
     private store: Store<any>,
     private cd: ChangeDetectorRef
   ) {
-    this.userStore$ = this.store.pipe( select( state => state.auth.user) )
-      .subscribe( user => {
-        this.userStore = user;
-        this.deliveryData$ = this.orderDataService.getDeliveryData(this.userStore.id)
-          .pipe(
-            map( value => value['results'] ),
-            tap( v => {
-              this.deliveryData = v;
-              this.numbers = this.deliveryData;
-              if ( v.length > 0 ) {
-                this.isShowDeliveryView = false;
-              }
-
-            }),
-          );
-      });
-  }
-
-  ngOnInit() {
-    this.contentHeight = (window.screen.height - 400) < 300 ? '' : (window.screen.height - 400) + 'px';
+    // this.userStore$ = this.store.pipe( select( state => state.auth.user) )
+    //   .subscribe( user => {
+    //     this.userStore = user;
+    //     this.deliveryData$ = this.orderDataService.getDeliveryData(this.userStore.id)
+    //       .pipe(
+    //         map( value => value['results'] ),
+    //         tap( v => {
+    //           this.deliveryData = v;
+    //           this.numbers = this.deliveryData;
+    //           if ( v.length > 0 ) {
+    //             this.isShowDeliveryView = false;
+    //           }
+    //
+    //         }),
+    //       );
+    //   });
   }
 
   ngOnDestroy() {
@@ -117,79 +203,6 @@ export class DeliveryAddressComponent implements OnInit, AfterViewInit, OnDestro
   }
 
   ngAfterViewInit() {
-    this.searchInputFirstEvent$ = fromEvent(this.inputSearchBox.first.searchInputBox.nativeElement, 'input');
-    this.searchInputLastEvent$ = fromEvent(this.inputSearchBox.last.searchInputBox.nativeElement, 'input');
-
-    // 80정도가 딱 적당하게 바로바로 반응함.
-    this.searchFirst$ = this.searchInputFirstEvent$.pipe(
-      debounceTime(80),
-      distinctUntilChanged(),
-      map( (val: KeyboardEvent) => val.target),
-      map( (val: HTMLInputElement) => val.value),
-      map( val => new HttpParams()
-        .set('currentPage', '0')
-        .set('countPerPage', '10')
-        // onpicks-search-box에서 발생하는 이벤트는, InputEvent가 아니고 그냥 Event이기 때문에,
-        // 같은 값이 아니므로 아래와 같이 3항 연산자를 씀
-        // @ts-ignore
-        .set('keyword', val === undefined ?  '' : val )
-        .set('confmKey', 'U01TX0FVVEgyMDE4MTAwNTE1NDIxNTEwODIxNDQ=')
-        .set('resultType', 'json')),
-      // json으로 바꿔주기 위해 flatMap 사용
-      flatMap( (val: HttpParams) =>
-        this.httpClient.get<any>(location.protocol + '//www.juso.go.kr/addrlink/addrLinkApi.do', { params: val, responseType : 'json' }, )
-      ),
-      map( val => val['results'].juso ),
-    ).subscribe(val => {
-      if ( val !== null ) {
-
-        if ( val.length === 0 ) {
-          this.searchState = 2;
-        } else {
-          this.searchState = 1;
-        }
-      } else {
-        this.searchState = 0;
-      }
-
-      this.jusoList = val;
-      this.cd.markForCheck();
-    });
-
-    this.searchLast$ = this.searchInputLastEvent$.pipe(
-      debounceTime(80),
-      distinctUntilChanged(),
-      map( (val: KeyboardEvent) => val.target),
-      map( (val: HTMLInputElement) => val.value),
-      map( val => new HttpParams()
-        .set('currentPage', '0')
-        .set('countPerPage', '10')
-        // onpicks-search-box에서 발생하는 이벤트는, InputEvent가 아니고 그냥 Event이기 때문에,
-        // 같은 값이 아니므로 아래와 같이 3항 연산자를 씀
-        // @ts-ignore
-        .set('keyword', val === undefined ?  '' : val )
-        .set('confmKey', 'U01TX0FVVEgyMDE4MTAwNTE1NDIxNTEwODIxNDQ=')
-        .set('resultType', 'json')),
-      // json으로 바꿔주기 위해 flatMap 사용
-      flatMap( (val: HttpParams) =>
-        this.httpClient.get<any>(location.protocol + '//www.juso.go.kr/addrlink/addrLinkApi.do', { params: val, responseType : 'json' }, )
-      ),
-      map( val => val['results'].juso ),
-    ).subscribe(val => {
-      if ( val !== null ) {
-
-        if ( val.length === 0 ) {
-          this.searchState = 2;
-        } else {
-          this.searchState = 1;
-        }
-      } else {
-        this.searchState = 0;
-      }
-
-      this.jusoList = val;
-      this.cd.markForCheck();
-    });
   }
 
   showSearchBox( xParam ) {
@@ -199,7 +212,7 @@ export class DeliveryAddressComponent implements OnInit, AfterViewInit, OnDestro
     this.searchState = 0;
     if ( this.isShowDeliveryModal === true ) {
       if ( this.isShowSearchBox === false ) {
-        if ( xParam === 'input' && this.inputJuso.first.nativeElement.children[0].value !== ''  ) {
+        if ( xParam === 'input' && this.inputJusoRef.first.nativeElement.children[0].value !== ''  ) {
           return;
         }
         this.isShowSearchBox = true;
@@ -216,7 +229,7 @@ export class DeliveryAddressComponent implements OnInit, AfterViewInit, OnDestro
       }
     } else {
       if ( this.isShowSearchBox === false ) {
-        if ( xParam === 'input' && this.inputJuso.last.nativeElement.children[0].value !== ''  ) {
+        if ( xParam === 'input' && this.inputJusoRef.last.nativeElement.children[0].value !== ''  ) {
           return;
         }
         this.isShowSearchBox = true;
@@ -246,11 +259,11 @@ export class DeliveryAddressComponent implements OnInit, AfterViewInit, OnDestro
       'default': false
     }
 
-    temp.full_name = this.inputRecipientName.last.nativeElement.children[0].value;
-    temp.street_address_1 = this.inputJuso.last.nativeElement.children[0].value;
-    temp.street_address_2 = this.inputDetailJuso.last.nativeElement.children[0].value;
-    temp.zip_code = this.inputZipnumber.last.nativeElement.children[0].value;
-    temp.phone_number = this.inputRecipientNumber.last.nativeElement.children[0].value;
+    temp.full_name = this.inputRecipientNameRef.last.nativeElement.children[0].value;
+    temp.street_address_1 = this.inputJusoRef.last.nativeElement.children[0].value;
+    temp.street_address_2 = this.inputDetailJusoRef.last.nativeElement.children[0].value;
+    temp.zip_code = this.inputZipnumberRef.last.nativeElement.children[0].value;
+    temp.phone_number = this.inputRecipientNumberRef.last.nativeElement.children[0].value;
     return temp;
   }
 
@@ -278,11 +291,11 @@ export class DeliveryAddressComponent implements OnInit, AfterViewInit, OnDestro
     this.renderer.setStyle( this.inputSearchBoxOuter.last.nativeElement, 'display', 'none' );
     this.updateDeliveryIndex = index;
 
-    this.renderer.setProperty( this.inputRecipientName.first.nativeElement.children[0], 'value', this.deliveryData[this.updateDeliveryIndex].full_name);
-    this.renderer.setProperty( this.inputJuso.first.nativeElement.children[0], 'value', this.deliveryData[this.updateDeliveryIndex].street_address_1);
-    this.renderer.setProperty( this.inputDetailJuso.first.nativeElement.children[0], 'value', this.deliveryData[this.updateDeliveryIndex].street_address_2);
-    this.renderer.setProperty( this.inputZipnumber.first.nativeElement.children[0], 'value', this.deliveryData[this.updateDeliveryIndex].zip_code);
-    this.renderer.setProperty( this.inputRecipientNumber.first.nativeElement.children[0], 'value', this.deliveryData[this.updateDeliveryIndex].phone_number);
+    this.renderer.setProperty( this.inputRecipientNameRef.first.nativeElement.children[0], 'value', this.deliveryData[this.updateDeliveryIndex].full_name);
+    this.renderer.setProperty( this.inputJusoRef.first.nativeElement.children[0], 'value', this.deliveryData[this.updateDeliveryIndex].street_address_1);
+    this.renderer.setProperty( this.inputDetailJusoRef.first.nativeElement.children[0], 'value', this.deliveryData[this.updateDeliveryIndex].street_address_2);
+    this.renderer.setProperty( this.inputZipnumberRef.first.nativeElement.children[0], 'value', this.deliveryData[this.updateDeliveryIndex].zip_code);
+    this.renderer.setProperty( this.inputRecipientNumberRef.first.nativeElement.children[0], 'value', this.deliveryData[this.updateDeliveryIndex].phone_number);
 
     this.cd.markForCheck();
   }
@@ -301,11 +314,11 @@ export class DeliveryAddressComponent implements OnInit, AfterViewInit, OnDestro
       'default': this.deliveryData[this.updateDeliveryIndex].default,
     }
 
-    temp.full_name = this.inputRecipientName.first.nativeElement.children[0].value;
-    temp.street_address_1 = this.inputJuso.first.nativeElement.children[0].value;
-    temp.street_address_2 = this.inputDetailJuso.first.nativeElement.children[0].value;
-    temp.zip_code = this.inputZipnumber.first.nativeElement.children[0].value;
-    temp.phone_number = this.inputRecipientNumber.first.nativeElement.children[0].value;
+    temp.full_name = this.inputRecipientNameRef.first.nativeElement.children[0].value;
+    temp.street_address_1 = this.inputJusoRef.first.nativeElement.children[0].value;
+    temp.street_address_2 = this.inputDetailJusoRef.first.nativeElement.children[0].value;
+    temp.zip_code = this.inputZipnumberRef.first.nativeElement.children[0].value;
+    temp.phone_number = this.inputRecipientNumberRef.first.nativeElement.children[0].value;
     this.deliveryData[this.updateDeliveryIndex] = temp;
     this.orderDataService.updateDeliveryData(
       this.userStore.id,
@@ -326,7 +339,7 @@ export class DeliveryAddressComponent implements OnInit, AfterViewInit, OnDestro
 
     // this.validateDeliveryInfo();
 
-    if ( this.errorStatus === 0 ) {
+    if ( this.deliveryErrorStatus === 0 ) {
       const JSON_deliveryInfo = this.setDeliveryInfo();
 
       this.orderDataService.addDeliveryData(this.userStore.id, JSON_deliveryInfo).subscribe(
@@ -349,51 +362,60 @@ export class DeliveryAddressComponent implements OnInit, AfterViewInit, OnDestro
 
 
   checkBitWise( data ) {
-    return ((this.errorStatus & data) > 0);
+    return ((this.deliveryErrorStatus & data) > 0);
   }
 
 
-  validateDeliveryInfo(){
+  validate(errorStatus) {
+    console.log(this.inputRecipientNameRef);
 
-    this.errorStatus = 0;
+    this.deliveryErrorStatus = 0;
+    this.deliveryErrorStatus |= errorStatus;
+    if ( this.deliveryData.length === 0 ) {
+      if ( this.inputRecipientNameRef.last.nativeElement.children[0].value === '') {
+        if ( this.deliveryErrorStatus === 0 ) {this.inputRecipientNameRef.last.nativeElement.children[0].focus();}
+        this.deliveryErrorStatus |= this.EMPTY_RECIPIENT_NAME;
+      }
 
+      if ( this.inputRecipientNumberRef.last.nativeElement.children[0].value === '') {
+        if ( this.deliveryErrorStatus === 0 ) {this.inputRecipientNumberRef.last.nativeElement.children[0].focus();}
+        this.deliveryErrorStatus |= this.EMPTY_RECIPIENT_NUMBER;
+      } else {
+        const patt = new RegExp('^(?:\\+?\\d{1,2} ?)?[ -]?\\d{2,3}[ -]?\\d{3,4}[ -]?\\d{4}$');
+        if ( !patt.test(this.inputRecipientNumberRef.last.nativeElement.children[0].value) ) {
+          if ( this.deliveryErrorStatus === 0 ) {this.inputRecipientNumberRef.last.nativeElement.children[0].focus();}
+          this.deliveryErrorStatus |= this.INVALID_RECIPIENT_NUMBER;
+        }
+      }
 
-    if ( this.inputRecipientName.last.nativeElement.children[0].value === '') {
-      if ( this.errorStatus === 0 ) {this.inputRecipientName.last.nativeElement.children[0].focus();}
-      this.errorStatus |= this.EMPTY_RECIPIENT_NAME;
-    }
+      if ( this.inputZipnumberRef.last.nativeElement.children[0].value === ''
+        || this.inputJusoRef.last.nativeElement.children[0].value === ''
+      ) {
 
-    if ( this.inputRecipientNumber.last.nativeElement.children[0].value === '') {
-      if ( this.errorStatus === 0 ) {this.inputRecipientNumber.last.nativeElement.children[0].focus();}
-      this.errorStatus |= this.EMPTY_RECIPIENT_NUMBER;
-    } else {
-      const patt = new RegExp('[a-zA-Z]');
-      if ( patt.test(this.inputRecipientNumber.last.nativeElement.children[0].value) ) {
-        if ( this.errorStatus === 0 ) {this.inputRecipientNumber.last.nativeElement.children[0].focus();}
-        this.errorStatus |= this.INVALID_RECIPIENT_NUMBER;
+        if ( this.deliveryErrorStatus === 0 ) {this.inputZipnumberRef.last.nativeElement.children[0].focus();}
+        this.deliveryErrorStatus |= this.EMPTY_DELIVERY_ADDRESS;
       }
     }
 
-    if ( this.inputZipnumber.last.nativeElement.children[0].value === ''
-      || this.inputJuso.last.nativeElement.children[0].value === ''
-    ) {
-      if ( this.errorStatus === 0 ) {this.inputZipnumber.last.nativeElement.children[0].focus();}
-      this.errorStatus |= this.EMPTY_DELIVERY_ADDRESS;
-    }
+    return this.deliveryErrorStatus;
   }
 
   getCurrentText(event) {
     if( this.isShowDeliveryModal === true ) {
-      this.renderer.setProperty(this.inputJuso.first.nativeElement.children[0], 'value', event.target.innerText);
-      this.renderer.setProperty(this.inputZipnumber.first.nativeElement.children[0], 'value', event.target.getAttribute('data-zipnumber'));
+      this.renderer.setProperty(this.inputJusoRef.first.nativeElement.children[0], 'value', event.target.innerText);
+      this.renderer.setProperty(this.inputZipnumberRef.first.nativeElement.children[0], 'value', event.target.getAttribute('data-zipnumber'));
       this.isShowSearchBox = false;
       this.renderer.setStyle(this.inputSearchBoxOuter.first.nativeElement, 'display', 'none');
     } else {
-      this.renderer.setProperty(this.inputJuso.last.nativeElement.children[0], 'value', event.target.innerText);
-      this.renderer.setProperty(this.inputZipnumber.last.nativeElement.children[0], 'value', event.target.getAttribute('data-zipnumber'));
+      this.renderer.setProperty(this.inputJusoRef.last.nativeElement.children[0], 'value', event.target.innerText);
+      this.renderer.setProperty(this.inputZipnumberRef.last.nativeElement.children[0], 'value', event.target.getAttribute('data-zipnumber'));
       this.isShowSearchBox = false;
       this.renderer.setStyle( this.inputSearchBoxOuter.last.nativeElement, 'display', 'none' );
     }
+  }
+
+  getDeliveryData() {
+    return this.deliveryData;
   }
 
   updateDeliveryDataToDefault( index ) {

@@ -176,15 +176,12 @@ export class KrCheckoutComponent implements OnInit, AfterViewInit, OnDestroy {
     this.userStore$ = this.store.pipe( select( state => state.auth.user))
       .subscribe( v => {
         this.userStore = v;
-        console.log(v);
         if ( v ===  null ) { return; }
-        console.log(v);
         // userStore정보가 usbscribe되면, 그때 다시 배송지 정보를 갖고옴
         this.deliveryData$ = this.orderDataService.getDeliveryData(this.userStore.id)
           .pipe(
             map( value => value['results'] ),
             tap( results => {
-              console.log(results);
               this.deliveryData = results;
               if ( results.length > 0 ) {
                 this.isShowDeliveryView = false;
@@ -195,7 +192,6 @@ export class KrCheckoutComponent implements OnInit, AfterViewInit, OnDestroy {
               return of();
             })
           );
-        console.log(this.deliveryData$);
       });
   }
 
@@ -654,7 +650,8 @@ export class KrCheckoutComponent implements OnInit, AfterViewInit, OnDestroy {
   checkBitWise( data ) {
     return ((this.errorStatus & data) > 0);
   }
-  validate() {
+  validate(deliveryComponent) {
+    this.errorStatus = 0;
 
     if ( this.inputOrderNameRef.nativeElement.children[0].value === '') {
       this.inputOrderNameRef.nativeElement.children[0].focus();
@@ -674,31 +671,7 @@ export class KrCheckoutComponent implements OnInit, AfterViewInit, OnDestroy {
       }
     }
 
-    if ( this.deliveryData.length === 0 ) {
-      if ( this.inputRecipientNameRef.last.nativeElement.children[0].value === '') {
-        if ( this.errorStatus === 0 ) {this.inputRecipientNameRef.last.nativeElement.children[0].focus();}
-        this.errorStatus |= this.EMPTY_RECIPIENT_NAME;
-      }
-
-      if ( this.inputRecipientNumberRef.last.nativeElement.children[0].value === '') {
-        if ( this.errorStatus === 0 ) {this.inputRecipientNumberRef.last.nativeElement.children[0].focus();}
-        this.errorStatus |= this.EMPTY_RECIPIENT_NUMBER;
-      } else {
-        const patt = new RegExp('^(?:\\+?\\d{1,2} ?)?[ -]?\\d{2,3}[ -]?\\d{3,4}[ -]?\\d{4}$');
-        if ( !patt.test(this.inputRecipientNumberRef.last.nativeElement.children[0].value) ) {
-          if ( this.errorStatus === 0 ) {this.inputRecipientNumberRef.last.nativeElement.children[0].focus();}
-          this.errorStatus |= this.INVALID_RECIPIENT_NUMBER;
-        }
-      }
-
-      if ( this.inputZipnumberRef.last.nativeElement.children[0].value === ''
-        || this.inputJusoRef.last.nativeElement.children[0].value === ''
-      ) {
-
-        if ( this.errorStatus === 0 ) {this.inputZipnumberRef.last.nativeElement.children[0].focus();}
-        this.errorStatus |= this.EMPTY_DELIVERY_ADDRESS;
-      }
-    }
+    this.errorStatus = deliveryComponent.validate(this.errorStatus);
 
     if ( this.checkoutAdditionNumberRef.nativeElement.children[0].value === '') {
       if ( this.errorStatus === 0 ) {this.checkoutAdditionNumberRef.nativeElement.children[0].focus();}
@@ -714,10 +687,10 @@ export class KrCheckoutComponent implements OnInit, AfterViewInit, OnDestroy {
     if ( this.isAgreementDirectBuyingInfo === false ) {
       this.errorStatus |= this.EMPTY_AGREEMENT_DIRECT_BUYING;
     }
+
+    this.cd.markForCheck();
   }
-  onErrorEmitter(errorStatus) {
-    this.errorStatus = errorStatus;
-  }
+
   setShippingMessage(xShippingMessage) {
     this.formData.shipping_message = xShippingMessage.value;
   }

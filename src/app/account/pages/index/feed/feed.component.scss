@@ -16,9 +16,7 @@
   }
 
   &__grid {
-
     line-height: 0;
-
 
     @include respond(actb) {
       width:100vw;
@@ -28,12 +26,10 @@
 
   &__col {
     vertical-align : top;
-
     display:inline-block;
     width : 26.4rem;
     height: 26.4rem;
     margin-bottom : 2.4rem;
-
 
     & > div {
       width : 100%;
@@ -53,17 +49,13 @@
       height:auto !important;
     }
 
-
     @include respond(actb){
       width:calc((100% - 0.8rem)/3);
-
-
       margin-bottom : 0.4rem;
       margin-right : 0 !important;
       &:not(:nth-child(3n)){
         margin-right : 0.4rem !important;
       }
     }
-
   }
 }
