@@ -14,6 +14,7 @@ import {map} from 'rxjs/operators';
 import {select, Store} from '@ngrx/store';
 import {PDataService} from '../../../../../../../../core/service/data-pages/p/p-data.service';
 import {ActivatedRoute, Router} from '@angular/router';
+import {DisplayAlertMessage} from '../../../../../../../../core/store/ui/ui.actions';
 
 @Component({
   selector: 'onpicks-p-picture-review',
@@ -134,6 +135,9 @@ export class PPictureReviewComponent {
   }
 
   goReview(xReviewId) {
-    this.router.navigate(['reviews/' + xReviewId], {relativeTo: this.route});
+    if (xReviewId) {
+      this.router.navigate(['reviews/' + xReviewId], {relativeTo: this.route});
+    }
   }
+
 }
