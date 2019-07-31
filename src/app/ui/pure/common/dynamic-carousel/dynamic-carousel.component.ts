@@ -122,7 +122,7 @@ export class DynamicCarouselComponent implements AfterViewInit {
 
     }
   }
-  swipe(action = this.SWIPE_ACTION.RIGHT) {
+  swipe(action) {
     console.log(action);
     if (action === 'swipeleft'){
       this.prevButton();
