@@ -11,7 +11,6 @@ import {
 } from '@angular/core';
 import {fromEvent} from 'rxjs';
 import {map} from 'rxjs/operators';
-import { HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
 import 'hammerjs';
 
 
@@ -39,9 +38,6 @@ export class DynamicCarouselComponent implements AfterViewInit {
     if ( xImagesSmallList === null ) { return; };
     this.imagesSmallList = xImagesSmallList;
   }
-
-  SWIPE_ACTION = { LEFT: 'swipeleft', RIGHT: 'swiperight' };
-
 
   // TODO : 모든 subscription에 대해서 unsubscribe확실하게 정리하기
 
