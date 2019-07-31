@@ -36,20 +36,6 @@ export class KrCheckoutMenuComponent implements OnInit, OnDestroy, AfterViewInit
 
   @Output() validateEmitter = new EventEmitter();
 
-  readonly EMPTY_ORDER_NAME          = 0b00000000001;
-  readonly EMPTY_ORDER_NUMBER        = 0b00000000010;
-  readonly INVALID_ORDER_NUMBER      = 0b00000100000;
-
-  readonly EMPTY_RECIPIENT_NAME      = 0b00000000100;
-  readonly EMPTY_RECIPIENT_NUMBER    = 0b00000001000;
-  readonly INVALID_RECIPIENT_NUMBER  = 0b00001000000;
-  readonly EMPTY_DELIVERY_ADDRESS    = 0b00000010000;
-
-  readonly EMPTY_CUSTOMS_ID_NUMBER   = 0b00010000000;
-  readonly INVALID_CUSTOMS_ID_NUMBER = 0b00100000000;
-
-  readonly EMPTY_AGREEMENT_DIRECT_BUYING = 0b10000000000;
-
   formData = {
     'buyer_name': '',
     'buyer_contact': '',
@@ -293,7 +279,5 @@ export class KrCheckoutMenuComponent implements OnInit, OnDestroy, AfterViewInit
     console.log(temp);
     return temp;
   }
-
-
 
 }

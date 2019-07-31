@@ -30,6 +30,10 @@ import {DISPLAY_ALERT_MESSAGE_MAP} from '../../../../core/global-constant/app.lo
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DeliveryAddressComponent implements AfterViewInit, OnDestroy {
+  @Input('userInfo') set hello( xHello) {
+
+  }
+
   @Input('data') set _data( xData ) {
     if ( xData !== null ) {
       this.deliveryData$ = xData.pipe(
@@ -119,7 +123,7 @@ export class DeliveryAddressComponent implements AfterViewInit, OnDestroy {
         })
       );
     }
-  };
+  }
 
   @ViewChild('inputSearchBox', {read: ElementRef}) inputSearchBoxEL;
   @ViewChildren('inputSearchBoxOuter') inputSearchBoxOuter;
@@ -147,7 +151,7 @@ export class DeliveryAddressComponent implements AfterViewInit, OnDestroy {
 
   jusoList;
 
-  deliveryErrorStatus;
+  deliveryErrorStatus = 0;
 
   pageData$;
   userStore$;
@@ -337,7 +341,7 @@ export class DeliveryAddressComponent implements AfterViewInit, OnDestroy {
 
   addDeliveryInfo() {
 
-    // this.validateDeliveryInfo();
+    this.validate(0);
 
     if ( this.deliveryErrorStatus === 0 ) {
       const JSON_deliveryInfo = this.setDeliveryInfo();
@@ -412,10 +416,6 @@ export class DeliveryAddressComponent implements AfterViewInit, OnDestroy {
       this.isShowSearchBox = false;
       this.renderer.setStyle( this.inputSearchBoxOuter.last.nativeElement, 'display', 'none' );
     }
-  }
-
-  getDeliveryData() {
-    return this.deliveryData;
   }
 
   updateDeliveryDataToDefault( index ) {

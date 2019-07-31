@@ -142,8 +142,7 @@ export class KrCheckoutComponent implements OnInit, AfterViewInit, OnDestroy {
     'shipping_message': '',
     'customs_id_owner': '',
     'customs_id_number': '',
-    'payment_method': 'card',
-    'is_mobile' : true,
+    'payment_method': 'card'
   };
 
   /*********checkout-mobile*******/
@@ -518,9 +517,7 @@ export class KrCheckoutComponent implements OnInit, AfterViewInit, OnDestroy {
       'street_address_2': '',
       'city': '',
       'state': '',
-      'phone_number': '',
-      // default를 false로 주던 true로주던 값이 API에서 허용 안되도록 막힘
-      'default': this.deliveryData[this.updateDeliveryIndex].default,
+      'phone_number': ''
     };
 
     temp.full_name = this.inputRecipientNameRef.first.nativeElement.children[0].value;
