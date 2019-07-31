@@ -117,12 +117,11 @@ onpicks-loading-icon {
     }
 
     &--figure {
-
       display:none;
       @include respond(desktop){
         display:block;
+        margin-left: 1.6rem;
       }
-
       margin-right :1.6rem;
       position: relative;
       border-bottom : 1px solid $color-light-grey;
