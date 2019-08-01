@@ -1,13 +1,15 @@
-@import '~src/assets/scss/abstracts/variables';
+@import '../../../../assets/scss/abstracts/variables';
 
 
 .delivery-address {
-
   margin-bottom : 4rem;
+
+  &--warning {
+    margin-top: 0.4rem;
+  }
 
   &__modal-width {
     width : 55.2rem;
-
 
     @include respond(actb){
       width : 100%;
@@ -73,9 +75,6 @@
 
       & > div {
         margin-bottom : 8px;
-      }
-      &:not(:last-child) {
-        margin-bottom : 1.6rem;
       }
     }
   }

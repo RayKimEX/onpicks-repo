@@ -1,11 +1,15 @@
 
 import {
   ADD_CLASS_OPEN_MODAL,
+  ADD_DELIVERY_INFO_SUCCESS,
   DISPLAY_ALERT_MESSAGE,
   GET_CATEGORY_ALL_SUCCESS,
-  REMOVE_ALERT_MESSAGE, REMOVE_CLASS_OPEN_MODAL,
+  GET_DELIVERY_INFO_SUCCESS,
+  REMOVE_ALERT_MESSAGE,
+  REMOVE_CLASS_OPEN_MODAL,
+  REMOVE_DELIVERY_INFO_SUCCESS,
   UiActions,
-  UPDATE_CATEGORY, UPDATE_GLOBAL_KAKAO_PLUS_FRIEND_FOR_DETAIL_PAGE, UPDATE_GLOBAL_KAKAO_PLUS_FRIEND_FOR_NORMAL, UPDATE_GLOBAL_KAKAO_PLUS_FRIEND_FOR_PURCHASE,
+  UPDATE_CATEGORY, UPDATE_DELIVERY_DATA_TO_DEFAULT_SUCCESS, UPDATE_DELIVERY_INFO_SUCCESS, UPDATE_GLOBAL_KAKAO_PLUS_FRIEND_FOR_DETAIL_PAGE, UPDATE_GLOBAL_KAKAO_PLUS_FRIEND_FOR_NORMAL, UPDATE_GLOBAL_KAKAO_PLUS_FRIEND_FOR_PURCHASE,
   UPDATE_URL_ACTIVE
 } from './ui.actions';
 
@@ -18,6 +22,7 @@ export interface UiState {
   alertMessage: any;
   globalKakaoPosition: any;
   addClassOpenModal: any;
+  deliveryAddress: any;
 }
 
 export const initialState: UiState = {
@@ -27,7 +32,9 @@ export const initialState: UiState = {
   activeUrl : [],
   alertMessage: '',
   globalKakaoPosition: '3rem',
-  addClassOpenModal : false
+  addClassOpenModal : false,
+  deliveryAddress: [
+  ]
 };
 
 
@@ -61,6 +68,59 @@ let notChangeThirdPrevious;
 export function UiReducer(state = initialState, action: UiActions): UiState {
 
   switch (action.type) {
+
+    case GET_DELIVERY_INFO_SUCCESS:
+
+      console.log(action.payload);
+      return {
+        ...state,
+        deliveryAddress : [
+          ...action.payload
+        ]
+      }
+
+    case UPDATE_DELIVERY_DATA_TO_DEFAULT_SUCCESS:
+      const temp = [];
+
+      state.deliveryAddress.forEach( ( item, itemIndex ) => {
+        if ( itemIndex === action.payload.defaultIndex ) {
+          const itemTemp = {
+            ...item,
+            default : true,
+          }
+          temp.unshift(itemTemp);
+        } else {
+          const valueTemp = {
+            ...item,
+            default : false,
+          }
+          temp.push(valueTemp);
+        }
+      });
+      return {
+        ...state,
+        deliveryAddress : [
+          ...temp
+        ]
+      }
+
+    case UPDATE_DELIVERY_INFO_SUCCESS:
+
+      return {
+        ...state
+      }
+
+    case ADD_DELIVERY_INFO_SUCCESS:
+      state.deliveryAddress.push(action.payload)
+      return {
+        ...state
+      }
+
+    case REMOVE_DELIVERY_INFO_SUCCESS:
+      state.deliveryAddress.splice(action.payload.deliveryId, 1);
+      return {
+        ...state
+      }
 
     case ADD_CLASS_OPEN_MODAL :
 

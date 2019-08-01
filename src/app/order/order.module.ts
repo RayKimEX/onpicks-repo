@@ -10,7 +10,6 @@ import { UiModule} from '../ui/ui.module';
 import { CheckoutSuccessComponent } from './pages/checkout-success/checkout-success.component';
 import { CheckoutSuccessVirtualAccountComponent } from './pages/checkout-success-virtual-account/checkout-success-virtual-account.component';
 import { PipeModule } from '../core/pipe/pipe.module';
-import { CartToCheckoutService } from './share/cart-to-checkout.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { KrCheckoutComponent } from './components/kr/checkout/kr-checkout.component';
 import { UsCheckoutComponent } from './components/us/checkout/us-checkout.component';
@@ -38,9 +37,6 @@ import { UsCheckoutMenuComponent } from './components/us/checkout/checkout-menu/
     CheckoutFailureComponent,
     KrCheckoutMenuComponent,
     UsCheckoutMenuComponent,
-  ],
-  providers: [
-    CartToCheckoutService
   ]
 })
 export class OrderModule { }

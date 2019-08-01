@@ -8,6 +8,11 @@
   }
 }
 
+emitter-delivery-address {
+  display :block;
+  margin-top :2.4rem;
+}
+
 onpicks-input-box {
   width : 40.8rem;
   @include respond(sb){
@@ -116,8 +121,8 @@ onpicks-input-box {
     margin-top : 0;
   }
 
-  &_warning {
-    margin-top : 0.8rem;
+  &--warning {
+    margin-top : 0.4rem;
   }
   &-order-info {
     padding-bottom : 8px;
@@ -170,16 +175,16 @@ onpicks-input-box {
     }
 
     &__description2 {
+      margin-top: 0.8rem;
       margin-bottom : 1.6rem;
     }
 
     &__checkbox {
       display:inline-block;
-      margin-bottom : 1.2rem;
     }
 
     &__question {
-      margin-bottom : 1.6rem;
+      margin : 1.6rem 0;
     }
   }
 

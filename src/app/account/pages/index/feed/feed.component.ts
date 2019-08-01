@@ -19,22 +19,15 @@ import {AccountDataService} from '../../../../core/service/data-pages/account/ac
 })
 export class FeedComponent implements OnInit, OnDestroy {
 
-
-
-  numbers;
-
   imageIndex = 1000;
   body;
-
-  scroll$;
   willLoadData = false;
-
-  userState$;
-
   contentHeight;
 
-  feedList = []
+  // Observable
+  userState$;
   feedList$;
+  scroll$;
   constructor(
     @Inject( LOCALE_ID ) public locale: string,
     private store: Store<any>,

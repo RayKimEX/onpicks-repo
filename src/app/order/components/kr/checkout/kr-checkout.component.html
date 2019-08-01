@@ -117,7 +117,7 @@
           <div
             i18n="@@sentence__insert-buyer-name"
             *ngIf="checkBitWise(EMPTY_ORDER_NAME)"
-            class="checkout_warning subtitle-2-regular u-color-orange">
+            class="checkout--warning subtitle-2-regular u-color-orange">
             주문자 성함을 입력해주세요
           </div>
         </div>
@@ -138,94 +138,22 @@
           </onpicks-input-box>
           <div
             *ngIf="checkBitWise(EMPTY_ORDER_NUMBER)"
-            class="checkout_warning subtitle-2-regular u-color-orange">
+            class="checkout--warning subtitle-2-regular u-color-orange">
             주문자 연락처를 입력해주세요
           </div>
           <div
             *ngIf="checkBitWise(INVALID_ORDER_NUMBER)"
-            class="checkout_warning subtitle-2-regular u-color-orange">
+            class="checkout--warning subtitle-2-regular u-color-orange">
             주문자 연락처를 정확하게 입력해주세요
           </div>
         </div>
       </div>
 
       <div class="checkout-left__info--delivery">
-        <h1
-          i18n="@@word__shipping-addresses"
-          class="checkout-left__info--delivery-title h1-bold">
-          배송지 정보
-        </h1>
-
-        <ng-container *ngLet="(deliveryData$ | async) as data">
-
-          <ng-container *ngIf="data?.length > 0; else addDeliveryView">
-            <div
-              class="checkout-left__info--delivery__row">
-              <!--TODO : use a method : propotionally increase or decrease size https://stackoverflow.com/questions/8894506/can-i-scale-a-divs-height-proportionally-to-its-width-using-css-->
-              <div
-                *ngFor="let item of data; index as i"
-
-                class="checkout-left__info--delivery__col">
-                <div class="checkout-left__info--delivery__col--padding"
-                     [ngClass]="item.default ? 'isActive' : 'isNotActive'">
-                  <div class="checkout-left__info--delivery__col--name subtitle-2-bold">{{item.full_name}}</div>
-                  <div class="checkout-left__info--delivery__col--address subtitle-2-regular">{{item.zip_code}}, {{item.street_address_1}}, {{item.street_address_2}}</div>
-                  <div class="checkout-left__info--delivery__col--phoneNumber subtitle-2-regular">{{item.phone_number}}</div>
-                  <div class="checkout-left__info--delivery__col-bottom">
-
-                    <div *ngIf="item.default" class="checkout-left__info--delivery__col-bottom--isDefault subtitle-2-regular u-color-green">기본 배송지</div>
-                    <div *ngIf="!item.default" class="checkout-left__info--delivery__col-bottom--isDefault">
-                      <a
-                        (click)="updateDeliveryDataToDefault(i )"
-                        class="subtitle-2-regular u-color-dark-grey">
-                        기본 배송지로 설정
-                      </a>
-                    </div>
-                    <div class="checkout-left__info--delivery__col-bottom--modify">
-                      <a
-                        (click)="showModifyDeliveryModal(i)"
-                        class="subtitle-2-regular u-color-grey">
-                        수정하기
-                      </a>
-                    </div>
-                    <div class="checkout-left__info--delivery__col-bottom--remove">
-                      <a
-                        (click)="removeDeliveryInfo(i)"
-                        class="subtitle-2-regular u-color-grey">
-                        삭제하기
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <onpicks-button
-              *ngIf="data?.length < 6"
-              (click)="isShowDeliveryView = !isShowDeliveryView"
-              [width]="isShowDeliveryView ? '13.6rem' : '10.9rem'"
-              [type]="'white'"
-              [padding]="false"
-              [size]="'small'">
-              {{isShowDeliveryView ? '배송지 추가 닫기' : '+배송지 추가'}}
-            </onpicks-button>
-
-          </ng-container>
-          <div [ngStyle]="{ 'display' : isShowDeliveryView ? 'block' : 'none' }">
-
-            <ng-container *ngTemplateOutlet="templateRef">
-            </ng-container>
-            <onpicks-button
-              [padding]="false"
-              i18n="@@sentence__save-address"
-              (click)="addDeliveryInfo()"
-              [type]="'white'"
-              [width]="'11.4rem'"
-              class="checkout-left__info--delivery-save-btn">
-              배송지 저장
-            </onpicks-button>
-          </div>
-        </ng-container>
+        <emitter-delivery-address
+          #deliveryComponent
+          [userId]="userStore?.id">
+        </emitter-delivery-address>
         <div
           i18n="@@word__delivery-requirements"
           class="checkout-left__info--delivery-tag subtitle-2-regular">
@@ -260,17 +188,19 @@
             [placeholder]="'P로 시작하는 13자리를 입력하세요'">
           </onpicks-input-box>
 
-          <div *ngIf="!checkBitWise(EMPTY_CUSTOMS_ID_NUMBER) && !checkBitWise(INVALID_CUSTOMS_ID_NUMBER)" class="subtitle-2-regular u-color-dark-grey checkout-addition-info__description">상품을 받는분의 개인통관고유부호를 입력해주세요</div>
-          <div *ngIf="checkBitWise(EMPTY_CUSTOMS_ID_NUMBER)" class="checkout_warning subtitle-2-regular u-color-orange">받는분의 개인통관고유부호를 입력해주세요</div>
-          <div *ngIf="checkBitWise(INVALID_CUSTOMS_ID_NUMBER)" class="checkout_warning subtitle-2-regular u-color-orange">올바른 개인통관고유부호를 입력해주세요</div>
+          <div *ngIf="!checkBitWise(EMPTY_CUSTOMS_ID_NUMBER) && !checkBitWise(INVALID_CUSTOMS_ID_NUMBER)" class="checkout--warning subtitle-2-regular u-color-dark-grey checkout-addition-info__description">상품을 받는분의 개인통관고유부호를 입력해주세요</div>
+          <div *ngIf="checkBitWise(EMPTY_CUSTOMS_ID_NUMBER)" class="checkout--warning subtitle-2-regular u-color-orange">받는분의 개인통관고유부호를 입력해주세요</div>
+          <div *ngIf="checkBitWise(INVALID_CUSTOMS_ID_NUMBER)" class="checkout--warning subtitle-2-regular u-color-orange">올바른 개인통관고유부호를 입력해주세요</div>
         </div>
 
         <onpicks-check-box
           (click)="isAgreementDirectBuyingInfo = !isAgreementDirectBuyingInfo"
           [type]="'checkbox'"
-          class="checkout-addition-info__checkbox">통관정보 수집, 제공에 동의 (필수)</onpicks-check-box>
-        <div *ngIf="checkBitWise(EMPTY_AGREEMENT_DIRECT_BUYING)" class="subtitle-2-regular u-color-orange">통관정보 수집, 제공에 대한 동의가 필요합니다</div>
-        <div *ngIf="!checkBitWise(EMPTY_AGREEMENT_DIRECT_BUYING)"class="checkout-addition-info__description2 subtitle-2-regular u-color-dark-grey">받는분의 이름과 개인통관고유부호의 불일치로 인한 배송지연/환불에 대해서는 책임지지 않으니 이점 유의 하시기 바랍니다.</div>
+          class="checkout-addition-info__checkbox">
+          통관정보 수집, 제공에 동의 (필수)
+        </onpicks-check-box>
+        <div *ngIf="checkBitWise(EMPTY_AGREEMENT_DIRECT_BUYING)" class="checkout--warning subtitle-2-regular u-color-orange">통관정보 수집, 제공에 대한 동의가 필요합니다</div>
+        <div *ngIf="!checkBitWise(EMPTY_AGREEMENT_DIRECT_BUYING)"class="checkout--warning checkout-addition-info__description2 subtitle-2-regular u-color-dark-grey">받는분의 이름과 개인통관고유부호의 불일치로 인한 배송지연/환불에 대해서는 책임지지 않으니 이점 유의 하시기 바랍니다.</div>
         <div class="checkout-addition-info__question">
           <a
             href="https://unipass.customs.go.kr/csp/persIndex.do" target="_blank">
@@ -338,13 +268,13 @@
           [value]="'mobile'"
           [type]="'radio'">휴대폰결제</onpicks-check-box>
         <!--<onpicks-check-box [type]="'radio'">네이버페이</onpicks-check-box>-->
-        <div *ngIf="checkBitWise(EMPTY_PAYMENT_METHOD)" class="write-review__photo--description subtitle-2-regular u-color-orange">결제방법을 선택해주세요.</div>
+        <div *ngIf="checkBitWise(EMPTY_PAYMENT_METHOD)" class="checkout--warning write-review__photo--description subtitle-2-regular u-color-orange">결제방법을 선택해주세요.</div>
 
         <div
           *ngIf="!isThirdBreakPoint" class="checkout-right__menu--checkout">
           <onpicks-button
             i18n="@@word__confirm-and-pay"
-            (click)="payment(form)"
+            (click)="payment(form, deliveryComponent)"
             [type]="'black'"
             [width]="'100%'"
             [size]="'big'">
@@ -358,202 +288,29 @@
 
   <div
     [ngClass]="[ isThirdBreakPoint ? 'col-6-of-12 checkout-right' : 'checkout-right'] ">
-    <onpicks-kr-checkout-menu *ngIf="(checkoutStore$ | async) as data; "
+    <onpicks-kr-checkout-menu
+      *ngIf="(checkoutStore$ | async) as data; "
+      #checkoutMenu
       [data]="data"
       [inputOrderName]="inputOrderNameRef"
       [inputOrderNumber]="inputOrderNumberRef"
-      [inputRecipientName]="inputRecipientNameRef"
-      [inputRecipientNumber]="inputRecipientNumberRef"
-      [inputJuso]="inputJusoRef"
-      [inputDetailJuso]="inputDetailJusoRef"
-      [inputZipnumber]="inputZipnumberRef"
+      [inputRecipientName]="deliveryComponent.inputRecipientNameRef"
+      [inputRecipientNumber]="deliveryComponent.inputRecipientNumberRef"
+      [inputJuso]="deliveryComponent.inputJusoRef"
+      [inputDetailJuso]="deliveryComponent.inputDetailJusoRef"
+      [inputZipnumber]="deliveryComponent.inputZipnumberRef"
       [checkoutAdditionNumber]="checkoutAdditionNumberRef"
       [isAgreementDirectBuyingInfo]="isAgreementDirectBuyingInfo"
       [shippingMessage]="formData.shipping_message"
-      [deliveryData]="deliveryData"
       [payment_method]="formData.payment_method"
-      (errorStatusEmitter)="onErrorEmitter($event)"
-    >
+      [errorStatus]="errorStatus"
+      (validateEmitter)="validate(deliveryComponent)">
     </onpicks-kr-checkout-menu>
 
   </div>
 </div>
 
 
-
-<!--modal-->
-<onpicks-modal
-  class="modal"
-  (exit)="exitModifyDeliveryModal()"
-  [isShow]="isShowDeliveryModal">
-  <h1 class="h1-bold">배송지 수정</h1>
-  <div class="modal__body">
-    <ng-container *ngTemplateOutlet="templateRef"></ng-container>
-  </div>
-
-  <onpicks-button
-    (click)="updateDeliveryInfo()"
-    [width]="'10.3rem'"
-    [size]="'big'"
-    [type]="'black'">
-    수정하기
-  </onpicks-button>
-</onpicks-modal>
-
-
-<!--template-->
-<ng-template #templateRef>
-  <div
-    class="checkout-left__info--delivery-tag--outer">
-    <div
-      i18n="@@word__recipient"
-      class="checkout-left__info--delivery-tag subtitle-2-regular">
-      받는분
-    </div>
-    <onpicks-input-box
-      #inputRecipientName
-      (keyup)="markForCheck($event)"
-      class="checkout-left__info--delivery-input body-2-regular"
-      i18n-placeholder="@@word__recipient-name"
-      placeholder="'받는분 성함'">
-    </onpicks-input-box>
-    <div *ngIf="checkBitWise(EMPTY_RECIPIENT_NAME)" class="checkout_warning subtitle-2-regular u-color-orange">받는분 성함을 입력해주세요</div>
-  </div>
-
-  <div class="checkout-left__info--delivery-tag--outer">
-    <div
-      i18n="@@word__recipient-phone-number"
-      class="checkout-left__info--delivery-tag subtitle-2-regular">
-      받는분 연락처
-    </div>
-    <onpicks-input-box
-      #inputRecipientNumber
-      (keyup)="markForCheck($event)"
-      class="checkout-left__info--delivery-input body-2-regular"
-      i18n-placeholder="@@word__recipient-phone-number"
-      placeholder="'받는분 연락처'">
-    </onpicks-input-box>
-    <div *ngIf="checkBitWise(EMPTY_RECIPIENT_NUMBER)" class="checkout_warning subtitle-2-regular u-color-orange">받는분 연락처를 입력해주세요</div>
-    <div *ngIf="checkBitWise(INVALID_RECIPIENT_NUMBER)" class="checkout_warning subtitle-2-regular u-color-orange">받는분 연락처를 정확하게 입력해주세요</div>
-  </div>
-
-  <div
-    i18n="@@word__address"
-    class="checkout-left__info--delivery-tag subtitle-2-regular">
-    주소
-  </div>
-
-  <onpicks-input-box
-    #inputZipnumber
-    (click)="showSearchBox('input')"
-    [readonly]="true"
-    (keyup)="markForCheck($event)"
-    class="checkout-left__info--delivery-input-address  body-2-regular"
-    i18n-placeholder="@@word__zip-code"
-    placeholder="'우편번호'">
-  </onpicks-input-box>
-
-  <onpicks-button
-    i18n="@@sentence__search-zip-code"
-    [padding]="false"
-    [type]="'white'"
-    [width]="'11.4rem'"
-    class="checkout-left__info--delivery-search-btn"
-    (click)="showSearchBox()">
-    우편번호 찾기
-  </onpicks-button>
-
-  <div #inputSearchBoxOuter class="checkout-left__info--delivery-searchBox-outer">
-    <onpicks-search-box
-      #inputSearchBox
-      (keyup)="markForCheck($event)"
-      class="checkout-left__info--delivery-searchBox"
-      [placeholder]="'검색할 주소를 입력해주세요'" >
-    </onpicks-search-box>
-    <div class="checkout-left__info--delivery-searchBox-option">
-      <div *ngIf="searchState === 1" class="checkout-left__info--delivery-searchBox-option-list" >
-        <div class="checkout-left__info--delivery-searchBox-option-list-outer" *ngFor="let item of jusoList ">
-          <div class="checkout-left__info--delivery-searchBox-option-list-1">{{item.zipNo}}</div>
-          <table>
-            <tr>
-              <td>도로명</td>
-              <td>
-                <button
-                  (click)="getCurrentText($event)"
-                  [attr.data-zipnumber]="item.zipNo">{{item.jibunAddr}}</button>
-              </td>
-            </tr>
-            <tr>
-              <td>지번</td>
-              <td>
-                <button
-                  (click)="getCurrentText($event)"
-                  [attr.data-zipnumber]="item.zipNo">{{item.roadAddrPart1}}</button>
-              </td>
-            </tr>
-          </table>
-        </div>
-      </div>
-      <div *ngIf="searchState === 2" class="checkout-left__info--delivery-searchBox-option-no-result">
-        <div>검색결과가 없습니다. 검색어에 잘못된 철자가 없는지,</div>
-        <div>정확한 주소인지 확인 후 검색해 주세요.</div>
-      </div>
-      <div *ngIf="searchState === 0"  class="checkout-left__info--delivery-searchBox-option-init">
-        <div class="checkout-left__info--delivery-searchBox-option-init-main">
-          다음과 같이 검색을 하시면 정확한 결과를 얻을 수 있습니다.
-        </div>
-        <div class="checkout-left__info--delivery-searchBox-option-init-title">
-          도로명 + 건물번호
-        </div>
-        <div class="checkout-left__info--delivery-searchBox-option-init-sub">
-          예) 판교역로 235, 제주 첨단로 242
-        </div>
-        <div class="checkout-left__info--delivery-searchBox-option-init-title">
-          지역명 + 번지
-        </div>
-        <div class="checkout-left__info--delivery-searchBox-option-init-sub">
-          예) 판교역로 235, 제주 첨단로 242
-        </div>
-        <div class="checkout-left__info--delivery-searchBox-option-init-title">
-          지역명 + 건물명
-        </div>
-        <div class="checkout-left__info--delivery-searchBox-option-init-sub">
-          예) 판교역로 235, 제주 첨단로 242
-        </div>
-        <div class="checkout-left__info--delivery-searchBox-option-init-title">
-          사서함명 + 번호
-        </div>
-        <div class="checkout-left__info--delivery-searchBox-option-init-sub">
-          예) 판교역로 235, 제주 첨단로 242
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <onpicks-input-box
-    #inputJuso
-    (keyup)="markForCheck($event)"
-    (click)="showSearchBox('input')"
-    [readonly]="true"
-    class="checkout-left__info--delivery-input  body-2-regular"
-    [placeholder]="''">
-  </onpicks-input-box>
-
-  <onpicks-input-box
-    #inputDetailJuso
-    (keyup)="markForCheck($event)"
-    class="checkout-left__info--delivery-input  body-2-regular"
-    i18n-placeholder="@@sentence__insert-detail-address"
-    placeholder="'상세주소를 입력하세요'">
-  </onpicks-input-box>
-
-  <div
-    *ngIf="checkBitWise(EMPTY_DELIVERY_ADDRESS)"
-    class="checkout_warning subtitle-2-regular u-color-orange">
-    배송지를 입력해주세요
-  </div>
-
-</ng-template>
 <form #form [formGroup]="initialGroup">
 
 </form>

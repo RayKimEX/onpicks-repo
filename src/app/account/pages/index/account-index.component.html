@@ -1,8 +1,12 @@
 <div class="account-index">
   <div class="row account-profile">
-    <div class="account-profile__info" *ngLet="(user$ | async) as userData">
+    <div
+      class="account-profile__info"
+      *ngLet="(user$ | async) as userData">
       <div class="account-profile__info--image">
-        <img [src]=" userData?.avatar === ''? imageHost + '/assets/default_avatar.png' : userData?.avatar " alt="">
+        <img
+          [src]=" userData?.avatar === ''? imageHost + '/assets/default_avatar.png' : userData?.avatar "
+          alt="">
       </div>
       <div class="account-profile__info-description">
         <div class="account-profile__info-description--name h1-bold" >
@@ -15,8 +19,8 @@
         </div>
         <div
           i18n="@@account-profile__modify"
-          routerLink="/account/settings/profile"
-          class="account-profile__info-description--modify subtitle-2-regular u-color-grey u-button-effect">
+          class="account-profile__info-description--modify subtitle-2-regular u-color-grey u-button-effect"
+          [routerLink]="'/account/settings/profile'">
           수정하기
         </div>
       </div>
@@ -30,8 +34,8 @@
           <button
             i18n="@@account-navigator__feed"
             class="subtitle-2-bold u-color-grey account-navigator--button"
-            routerLinkActive="u-color-black account-navigator--button--active"
-            routerLink="/account/feed">
+            [routerLink]="'/account/feed'"
+            [routerLinkActive]="'u-color-black account-navigator--button--active'">
             피드
           </button>
         </li>
@@ -39,8 +43,8 @@
           <button
             i18n="@@word__my-shopping"
             class="subtitle-2-bold u-color-grey account-navigator--button"
-            routerLinkActive="u-color-black account-navigator--button--active"
-            routerLink="/account/my-shopping">
+            [routerLink]="'/account/my-shopping'"
+            [routerLinkActive]="'u-color-black account-navigator--button--active'">
             나의 쇼핑
           </button>
         </li>
@@ -48,8 +52,8 @@
           <button
             i18n="@@word__my-review"
             class="subtitle-2-bold u-color-grey account-navigator--button"
-            routerLinkActive="u-color-black account-navigator--button--active"
-            routerLink="/account/my-reviews">
+            [routerLink]="'/account/my-reviews'"
+            [routerLinkActive]="'u-color-black account-navigator--button--active'">
             나의 리뷰
           </button>
         </li>
@@ -57,8 +61,8 @@
           <button
             i18n="@@word__wish-list"
             class="subtitle-2-bold u-color-grey account-navigator--button"
-            routerLinkActive="u-color-black account-navigator--button--active"
-            routerLink="/account/wish-list">
+            [routerLink]="'/account/wish-list'"
+            [routerLinkActive]="'u-color-black account-navigator--button--active'">
             다음에 구매하기
           </button>
         </li>
@@ -66,16 +70,16 @@
           <button
             i18n="@@word__setting"
             class="subtitle-2-bold u-color-grey account-navigator--button"
-            routerLinkActive="u-color-black account-navigator--button--active"
-            routerLink="/account/settings">
+            [routerLink]="'/account/settings'"
+            [routerLinkActive]="'u-color-black account-navigator--button--active'">
             설정
           </button>
         </li>
         <li>
           <button
             i18n="@@word__logout"
-            (click)="logout()"
-            class="subtitle-2-bold u-color-grey">
+            class="subtitle-2-bold u-color-grey"
+            (click)="logout()">
             로그아웃
           </button>
         </li>
