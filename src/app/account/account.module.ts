@@ -20,7 +20,7 @@ import { MyShoppingIndexComponent } from './pages/index/my-shopping/index/my-sho
 import { OrdersDetailComponent } from './pages/index/my-shopping/index/orders-detail/orders-detail.component';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { WriteReviewComponent } from './components/emitter/write-review/write-review.component';
-import { DeliveryAddressComponent } from './components/emitter/delivery-address/delivery-address.component';
+import { DeliveryAddressComponent } from '../ui/emitter/delivery-address/delivery-address.component';
 
 @NgModule({
   imports: [

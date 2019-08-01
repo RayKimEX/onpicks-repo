@@ -27,9 +27,6 @@ export class PageDeliveryAddressComponent implements OnInit{
       .subscribe( v => {
         this.userStore = v;
         if ( v ===  null ) { return; }
-        // userStore정보가 usbscribe되면, 그때 다시 배송지 정보를 갖고옴
-        this.deliveryData$ = this.orderDataService.getDeliveryData(this.userStore.id)
-          .pipe(map( data => data['results']));
       });
   }
 

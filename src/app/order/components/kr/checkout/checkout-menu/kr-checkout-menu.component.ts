@@ -30,7 +30,6 @@ export class KrCheckoutMenuComponent implements OnInit, OnDestroy, AfterViewInit
   @Input('addDeliveryView') addDeliveryView;
   @Input('isAgreementDirectBuyingInfo') isAgreementDirectBuyingInfo: boolean;
   @Input('shippingMessage') shippingMessage;
-  @Input('deliveryData') deliveryData;
   @Input('data') data;
   @Input('payment_method') payment_method;
 
@@ -56,7 +55,8 @@ export class KrCheckoutMenuComponent implements OnInit, OnDestroy, AfterViewInit
   userStore$;
   userStore;
 
-  deliveryData$;
+  deliveryStoreData = [];
+
   paymentScript = null;
   isShowDeliveryView = true;
   initialGroup: FormGroup;
@@ -81,6 +81,15 @@ export class KrCheckoutMenuComponent implements OnInit, OnDestroy, AfterViewInit
       tap( v => console.log(v)),
     );
 
+    this.store.select( state => state.ui.deliveryAddress).subscribe(
+      deliveryStoreData => {
+        this.deliveryStoreData = deliveryStoreData;
+        if ( this.deliveryStoreData.length > 0 ) {
+          this.isShowDeliveryView = false;
+        }
+      }
+    )
+
     this.userStore$ = this.store.pipe( select( state => state.auth.user))
       .subscribe( v => {
         this.userStore = v;
@@ -88,21 +97,22 @@ export class KrCheckoutMenuComponent implements OnInit, OnDestroy, AfterViewInit
         if ( v ===  null ) { return; }
         console.log(v);
         // userStore정보가 usbscribe되면, 그때 다시 배송지 정보를 갖고옴
-        this.deliveryData$ = this.orderDataService.getDeliveryData(this.userStore.id)
-          .pipe(
-            map( value => value['results'] ),
-            tap( results => {
-              console.log(results);
-              this.deliveryData = results;
-              if ( results.length > 0 ) {
-                this.isShowDeliveryView = false;
-              }
-            }),
-            catchError( error => {
-              this.deliveryData = [];
-              return of();
-            })
-          );
+
+        // this.deliveryData$ = this.orderDataService.getDeliveryData(this.userStore.id)
+        //   .pipe(
+        //     map( value => value['results'] ),
+        //     tap( results => {
+        //       console.log(results);
+        //       this.deliveryData = results;
+        //       if ( results.length > 0 ) {
+        //         this.isShowDeliveryView = false;
+        //       }
+        //     }),
+        //     catchError( error => {
+        //       this.deliveryData = [];
+        //       return of();
+        //     })
+        //   );
       });
 
   }
@@ -168,7 +178,7 @@ export class KrCheckoutMenuComponent implements OnInit, OnDestroy, AfterViewInit
         // full_name 수신자 성함
         // 서버에 저장된 배송지 정보가 없을 경우
         console.log(this.deliveryData);
-        if ( this.deliveryData.length === 0 ) {
+        if ( this.deliveryStoreData.length === 0 ) {
 
           // inputRecipientNameRef
           // inputRecipientNumberRef
@@ -183,11 +193,11 @@ export class KrCheckoutMenuComponent implements OnInit, OnDestroy, AfterViewInit
 
         } else {
 
-          this.formData.phone_number = this.deliveryData[0].phone_number;
-          this.formData.full_name = this.deliveryData[0].full_name;
-          this.formData.zip_code = this.deliveryData[0].zip_code;
-          this.formData.street_address_1 = this.deliveryData[0].street_address_1;
-          this.formData.street_address_2 = this.deliveryData[0].street_address_2;
+          this.formData.phone_number = this.deliveryStoreData[0].phone_number;
+          this.formData.full_name = this.deliveryStoreData[0].full_name;
+          this.formData.zip_code = this.deliveryStoreData[0].zip_code;
+          this.formData.street_address_1 = this.deliveryStoreData[0].street_address_1;
+          this.formData.street_address_2 = this.deliveryStoreData[0].street_address_2;
 
         }
         if (this.shippingMessage){
@@ -253,8 +263,6 @@ export class KrCheckoutMenuComponent implements OnInit, OnDestroy, AfterViewInit
           });
       }
     }, 0 );
-
-
   }
 
 

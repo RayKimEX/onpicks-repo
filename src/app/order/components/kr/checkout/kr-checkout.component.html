@@ -152,7 +152,7 @@
       <div class="checkout-left__info--delivery">
         <emitter-delivery-address
           #deliveryComponent
-          [data]="deliveryData$">
+          [userId]="userStore?.id">
         </emitter-delivery-address>
         <div
           i18n="@@word__delivery-requirements"
@@ -288,7 +288,9 @@
 
   <div
     [ngClass]="[ isThirdBreakPoint ? 'col-6-of-12 checkout-right' : 'checkout-right'] ">
-    <onpicks-kr-checkout-menu *ngIf="(checkoutStore$ | async) as data; "
+    <onpicks-kr-checkout-menu
+      *ngIf="(checkoutStore$ | async) as data; "
+      #checkoutMenu
       [data]="data"
       [inputOrderName]="inputOrderNameRef"
       [inputOrderNumber]="inputOrderNumberRef"
@@ -300,7 +302,6 @@
       [checkoutAdditionNumber]="checkoutAdditionNumberRef"
       [isAgreementDirectBuyingInfo]="isAgreementDirectBuyingInfo"
       [shippingMessage]="formData.shipping_message"
-      [deliveryData]="deliveryData"
       [payment_method]="formData.payment_method"
       [errorStatus]="errorStatus"
       (validateEmitter)="validate(deliveryComponent)">

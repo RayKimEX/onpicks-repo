@@ -1,5 +1,6 @@
 <div [ngStyle]="{ minHeight : contentHeight }">
   <emitter-delivery-address
+    [userId]="userStore.id"
     [data]="deliveryData$">
   </emitter-delivery-address>
 </div>

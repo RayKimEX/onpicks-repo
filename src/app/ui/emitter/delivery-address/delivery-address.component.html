@@ -5,18 +5,18 @@
 
 <div
   class="delivery-address"
-  *ngIf="deliveryData$ | async as data; else loading">
+  *ngIf="deliveryStoreData !== null; else loading">
   <h1
     class="h1-bold">
     배송지
   </h1>
 
-    <ng-container *ngIf="data?.length != 0">
+    <ng-container *ngIf="deliveryStoreData?.length != 0">
       <div class="delivery-address__row">
         <!--TODO : use a method : propotionally increase or decrease size https://stackoverflow.com/questions/8894506/can-i-scale-a-divs-height-proportionally-to-its-width-using-css-->
         <div
           class="delivery-address__col"
-          *ngFor="let item of data; index as i">
+          *ngFor="let item of deliveryStoreData; index as i">
           <div
             class="delivery-address__col--padding"
             [ngClass]="item.default ? 'isActive' : 'isNotActive'">
@@ -59,7 +59,7 @@
       <hr>
 
       <onpicks-button
-        *ngIf="data?.length < 6"
+        *ngIf="deliveryStoreData?.length < 6"
         class="delivery-address__btn"
         (click)="isShowDeliveryView = !isShowDeliveryView"
         [width]="isShowDeliveryView ? '13.6rem' : '10.9rem'"
@@ -71,7 +71,7 @@
     </ng-container>
 
     <div
-      [ngStyle]="{ 'display' : data?.length === 0 || isShowDeliveryView ? 'block' : 'none' }">
+      [ngStyle]="{ 'display' : deliveryStoreData?.length === 0 || isShowDeliveryView ? 'block' : 'none' }">
       <ng-container
         *ngTemplateOutlet="templateRef">
       </ng-container>
