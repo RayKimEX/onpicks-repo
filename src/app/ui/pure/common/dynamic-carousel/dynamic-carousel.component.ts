@@ -11,6 +11,8 @@ import {
 } from '@angular/core';
 import {fromEvent} from 'rxjs';
 import {map} from 'rxjs/operators';
+import 'hammerjs';
+
 
 @Component({
   selector: 'ui-dynamic-carousel',
@@ -119,6 +121,32 @@ export class DynamicCarouselComponent implements AfterViewInit {
       console.log(this.imageIndex);
 
     }
+  }
+  swipe(action) {
+    console.log(action);
+    if (action === 'swiperight') {
+      this.prevButton();
+    } else {
+      this.nextButton();
+    }
+    // out of range
+/*
+    if (currentIndex > this.avatars.length || currentIndex < 0) return;
+
+    let nextIndex = 0;
+
+    // swipe right, next avatar
+    if (action === this.SWIPE_ACTION.RIGHT) {
+      const isLast = currentIndex === this.avatars.length - 1;
+      nextIndex = isLast ? 0 : currentIndex + 1;
+    }
+
+    // swipe left, previous avatar
+    if (action === this.SWIPE_ACTION.LEFT) {
+      const isFirst = currentIndex === 0;
+    }
+*/
+
   }
 
 }

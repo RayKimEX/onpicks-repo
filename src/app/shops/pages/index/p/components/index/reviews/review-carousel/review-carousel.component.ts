@@ -23,6 +23,7 @@ export class ReviewCarouselComponent implements OnInit, AfterViewInit {
   ngOnInit() {
 
   }
+  isIEOrEdge = /msie\s|trident\/|edge\//i.test(window.navigator.userAgent)
 
 
   @HostListener('window:resize', ['$event'])

@@ -129,6 +129,7 @@ export class CommunicateBoxComponent implements OnInit, AfterViewChecked, AfterV
                   that.haveImagesLoaded[index] = true;
                   // If all images have loaded, set your loader to false
                   that.popupState = !that.haveImagesLoaded.some(hasLoaded => !hasLoaded);
+                  this.cd.markForCheck();
                 };
 
                 console.log(imageUrl);

@@ -81,7 +81,6 @@ export class AuthEffects {
             ];
           }),
           catchError( (response) => {
-            console.log(response)
             return [
               new LoginFailure({ response : response }),
               new DisplayAlertMessage(response.error.detail)
