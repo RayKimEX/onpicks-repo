@@ -231,22 +231,9 @@ export class DeliveryAddressComponent implements OnDestroy {
       const JSON_deliveryInfo = this.getDeliveryInfo();
 
 
-      this.store.dispatch(new TryAddDeliveryInfo({ userId: this.userId, deliveryData: JSON_deliveryInfo}));
-      // this.orderDataService.addDeliveryData(this.userId, JSON_deliveryInfo).subscribe(
-      //   v => {
-      //   console.log(v);
-      //
-      //   this.deliveryData.push(v);
-      //   this.deliveryData$ = of(this.deliveryData);
-      //   this.isShowDeliveryView = false;
-      //   this.cd.markForCheck();
-      // }, error => {
-      //     if ( error.status === 502 ) {
-      //       this.store.dispatch(new DisplayAlertMessage(this.alertMap['unstable-network'][this.locale]));
-      //     } else {
-      //       this.store.dispatch(new DisplayAlertMessage(this.alertMap['complete-required-fields'][this.locale]));
-      //     }
-      // });
+      this.store.dispatch(
+        new TryAddDeliveryInfo({ deliveryData: JSON_deliveryInfo, userId: this.userId, })
+      );
     }
   }
 
@@ -313,35 +300,6 @@ export class DeliveryAddressComponent implements OnDestroy {
         defaultIndex : index
       }
     ));
-    // this.orderDataService.updateDeliveryDataToDefault(this.userId, this.deliveryData[index].id).subscribe(
-    //   v => {
-    //
-    //     const temp = [];
-    //     this.deliveryData.forEach( (value, forEachIndex) => {
-    //
-    //       if(forEachIndex === index) {
-    //         const valueTemp = {
-    //           ...value,
-    //           default : true,
-    //         }
-    //         temp.unshift(valueTemp);
-    //       } else {
-    //         const valueTemp = {
-    //           ...value,
-    //           default : false,
-    //         }
-    //         temp.push(valueTemp);
-    //       }
-    //     })
-    //
-    //     this.deliveryData = temp;
-    //     console.log(this.deliveryData);
-    //     this.deliveryData$ = of(temp);
-    //     this.store.dispatch(new SetSelectedDeliveryInfo(this.deliveryData[0]))
-    //
-    //     this.cd.markForCheck();
-    //   }
-    // );
   }
 
   setAddressInputEvent(){

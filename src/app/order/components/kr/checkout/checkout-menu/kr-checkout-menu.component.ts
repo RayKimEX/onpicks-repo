@@ -93,26 +93,7 @@ export class KrCheckoutMenuComponent implements OnInit, OnDestroy, AfterViewInit
     this.userStore$ = this.store.pipe( select( state => state.auth.user))
       .subscribe( v => {
         this.userStore = v;
-        console.log(v);
         if ( v ===  null ) { return; }
-        console.log(v);
-        // userStore정보가 usbscribe되면, 그때 다시 배송지 정보를 갖고옴
-
-        // this.deliveryData$ = this.orderDataService.getDeliveryData(this.userStore.id)
-        //   .pipe(
-        //     map( value => value['results'] ),
-        //     tap( results => {
-        //       console.log(results);
-        //       this.deliveryData = results;
-        //       if ( results.length > 0 ) {
-        //         this.isShowDeliveryView = false;
-        //       }
-        //     }),
-        //     catchError( error => {
-        //       this.deliveryData = [];
-        //       return of();
-        //     })
-        //   );
       });
 
   }
@@ -177,15 +158,7 @@ export class KrCheckoutMenuComponent implements OnInit, OnDestroy, AfterViewInit
         // 0인 경우가 배송지 default이므로,
         // full_name 수신자 성함
         // 서버에 저장된 배송지 정보가 없을 경우
-        console.log(this.deliveryData);
         if ( this.deliveryStoreData.length === 0 ) {
-
-          // inputRecipientNameRef
-          // inputRecipientNumberRef
-          // inputZipnumberRef
-          // inputJusoRef
-          // inputDetailJusoRef
-          console.log('length == 0');
           this.formData = {
             ...this.formData,
             ...this.setDeliveryInfo()
@@ -207,14 +180,12 @@ export class KrCheckoutMenuComponent implements OnInit, OnDestroy, AfterViewInit
 
         this.formData.city = '';
         this.formData.country = '';
-        console.log('formData');
-        console.log(this.formData);
+
         this.httpClient.post<any>( this.BASE_URL + '/api/orders/', this.formData )
           .subscribe( response => {
 
             // mobile 일경우
             if ( response.is_mobile ) {
-              console.log('hello');
               Object.keys(response.form_data).forEach(key => {
                 const input = document.createElement('input');
                 input.type = 'text';
