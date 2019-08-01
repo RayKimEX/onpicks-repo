@@ -177,7 +177,6 @@ export class KrCheckoutMenuComponent implements OnInit, OnDestroy, AfterViewInit
         // 0인 경우가 배송지 default이므로,
         // full_name 수신자 성함
         // 서버에 저장된 배송지 정보가 없을 경우
-        console.log(this.deliveryData);
         if ( this.deliveryStoreData.length === 0 ) {
 
           // inputRecipientNameRef

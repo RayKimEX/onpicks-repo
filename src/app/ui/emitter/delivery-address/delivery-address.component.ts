@@ -231,7 +231,9 @@ export class DeliveryAddressComponent implements OnDestroy {
       const JSON_deliveryInfo = this.getDeliveryInfo();
 
 
-      this.store.dispatch(new TryAddDeliveryInfo({ userId: this.userId, deliveryData: JSON_deliveryInfo}));
+      this.store.dispatch(
+        new TryAddDeliveryInfo({ deliveryData: JSON_deliveryInfo, userId: this.userId, })
+      );
       // this.orderDataService.addDeliveryData(this.userId, JSON_deliveryInfo).subscribe(
       //   v => {
       //   console.log(v);

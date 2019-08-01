@@ -97,7 +97,7 @@ export class TryAddDeliveryInfo implements Action {
         state: string,
         phone_number: string
       },
-      userId: string
+      userId: number
     }
   ) {  }
 }
