@@ -65,13 +65,16 @@ export class CartComponent {
       tap( v => {
         console.log(v);
         this.lengthCheckForPack = 0;
-        if( v.cartInfo.free.items !== undefined) {
+        if ( v.cartInfo.free.items !== undefined) {
           this.lengthCheckForFree = v.cartInfo.free.items.length;
+          console.log('cart info');
+          console.log(v.cartInfo);
         }
 
         v.cartInfo.pack.forEach( pack => {
           this.lengthCheckForPack += pack.items.length;
         });
+        this.cd.markForCheck();
 
         // this.cd.markForCheck();
       }),

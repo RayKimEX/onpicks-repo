@@ -11,10 +11,7 @@
           class="content__item"
           *ngFor="let image of imageList; index as imageIndex">
           <div
-            class="content__item--image-outer"
-            [ngStyle]="{ backgroundImage : isIEOrEdge ? 'url(' + image.imgSrc + ')'  : ''}"
-            [ngClass]=" isIEOrEdge ? 'isIEOrEdge' : ''"
-          >
+            class="content__item--image-outer">
             <img
               [src]="image"
               [alt]="">
