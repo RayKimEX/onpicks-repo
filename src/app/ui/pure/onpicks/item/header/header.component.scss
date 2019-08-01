@@ -61,7 +61,16 @@
   }
 
   &__icon {
+    @include clearfix;
     float:right;
+
+    &--relative {
+      @include clearfix;
+      position:relative;
+      @include clearfix;
+    }
+
+    @include clearfix;
   }
 
   &__searchbox {
@@ -221,6 +230,19 @@
 
   &__mobile-menu {
 
+    &--cart-count{
+      position: absolute;
+      width: 2rem;
+      height: 1.4rem;
+      border-radius: 0.8rem;
+      background-color: #018489;
+
+      font-size: 1rem;
+      font-weight: bold;
+      text-align: center;
+      right : -10px;
+    }
+
     &--category-navigator {
       padding: 0 1.6rem;
       display:none;
@@ -313,9 +335,9 @@
     }
 
     &--search-icon {
-      margin-top : 3px;
-      margin-right : 2.2rem;
+      margin-right : 2rem;
       cursor: pointer;
+      vertical-align: super;
       &:hover {
         opacity : 0.5;
       }
@@ -326,9 +348,16 @@
 
     &--shopping-bag-icon {
       float:right;
+
       cursor: pointer;
       &:hover {
         opacity : 0.5;
+      }
+
+      &--outer {
+        margin-right:0.8rem;
+        position:relative;
+        display:inline-block;
       }
     }
 
@@ -463,6 +492,22 @@
     }
 
     &--shopping-bag {
+      position:relative;
+      margin-right: 0.8rem;
+
+
+      &--cart-count{
+        position: absolute;
+        width: 2rem;
+        height: 1.4rem;
+        border-radius: 0.8rem;
+        background-color: #018489;
+
+        font-size: 1rem;
+        font-weight: bold;
+        text-align: center;
+        right : -10px;
+      }
       svg {
         vertical-align: middle;
         //position:relative;
