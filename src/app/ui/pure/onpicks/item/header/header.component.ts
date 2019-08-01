@@ -106,9 +106,9 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
   mobileAlertTop = '11rem';
   isShowSettingMenu = false;
 
-
-  activeUrl$;
   activeUrl;
+
+  cartLength = 0;
 
   constructor(
     @Inject( LOCALE_ID ) public locale: string,
@@ -234,14 +234,25 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
 
     // [ngStyle]="{ display : cartData.isViewCart ? 'block' : 'none'}"
     this.cart$ = this.store.pipe(
-      select(state => state.cart.cartInfo)
-    );
+      select(state => state.cart)
+    ).subscribe( v => {
+      this.cartLength = 0;
+      if ( v.cartInfo.free.items !== undefined) {
+        this.cartLength += v.cartInfo.free.items.length;
+      }
+
+      v.cartInfo.pack.forEach( pack => {
+        this.cartLength += pack.items.length;
+      });
+
+      this.cd.markForCheck();
+    });
 
   }
 
   ngOnDestroy() {
     this.uiActiveUrl$.unsubscribe();
-    // this.cart$.unsubscribe();
+    this.cart$.unsubscribe();
   }
 
   search(searchTerms) {

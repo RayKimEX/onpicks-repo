@@ -63,12 +63,9 @@ export class CartComponent {
       select( state => state.cart ),
       tap( state => this.cartStore = state),
       tap( v => {
-        console.log(v);
         this.lengthCheckForPack = 0;
         if ( v.cartInfo.free.items !== undefined) {
           this.lengthCheckForFree = v.cartInfo.free.items.length;
-          console.log('cart info');
-          console.log(v.cartInfo);
         }
 
         v.cartInfo.pack.forEach( pack => {
