@@ -1,3 +1,5 @@
+@import '~src/assets/scss/abstracts/variables';
+
 .content {
   width:inherit;
   white-space: nowrap;
@@ -24,6 +26,8 @@
         content: "";
         display: block;
         padding-bottom: 100%;
+        background-color :$color-black;
+
       }
       & > img {
         position: absolute;
