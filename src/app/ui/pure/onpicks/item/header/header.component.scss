@@ -61,16 +61,11 @@
   }
 
   &__icon {
-    @include clearfix;
     float:right;
 
     &--relative {
-      @include clearfix;
       position:relative;
-      @include clearfix;
     }
-
-    @include clearfix;
   }
 
   &__searchbox {
