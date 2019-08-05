@@ -4,7 +4,7 @@ import * as UiActions from './ui.actions';
 import {catchError, map, switchMap} from 'rxjs/operators';
 import {of} from 'rxjs';
 import {UiService} from '../../service/ui/ui.service';
-import {AddDeliveryInfoSuccess, DisplayAlertMessage, GetCategoryAll, GetCategoryAllSuccess, GetCategoryFailure, GetDeliveryInfoSuccess, RemoveDeliveryInfoSuccess, UpdateDeliveryDataToDefaultSuccess} from './ui.actions';
+import {AddDeliveryInfoSuccess, DisplayAlertMessage, GetCategoryAll, GetCategoryAllSuccess, GetCategoryFailure, GetDeliveryInfoSuccess, RemoveDeliveryInfoSuccess, UpdateDeliveryDataToDefaultSuccess, UpdateDeliveryInfoSuccess} from './ui.actions';
 import {OrderDataService} from '../../service/data-pages/order/order-data.service';
 import {TRY_ADD_DELIVERY_INFO} from './ui.actions';
 import {TRY_UPDATE_DELIVERY_DATA_TO_DEFAULT} from './ui.actions';
@@ -59,7 +59,7 @@ export class UiEffects {
   tryUpdateDeliveryInfo = this.actions$.pipe(
     ofType( UiActions.TRY_UPDATE_DELIVERY_INFO ),
     map( data => data['payload']),
-    switchMap( (payload: { userId, deliveryId, data }) => {
+    switchMap( (payload: { userId, deliveryId, data, dataIndex }) => {
       return this.orderDataService.updateDeliveryData(payload.userId, payload.deliveryId, payload.data)
         .pipe(
           map( (deliveryDataList: {
@@ -70,8 +70,8 @@ export class UiEffects {
             city: string,
             state: string,
             phone_number: string
-          }[]) => {
-            return new GetDeliveryInfoSuccess(deliveryDataList);
+          }) => {
+            return new UpdateDeliveryInfoSuccess({ data : deliveryDataList, dataIndex : payload.dataIndex });
           }),
           catchError( (error) => {
             return of(new DisplayAlertMessage( error ));
@@ -97,10 +97,10 @@ export class UiEffects {
       },
       userId: string
     }) => {
-      return this.orderDataService.addDeliveryData(payload.deliveryData, payload.userId)
+      return this.orderDataService.addDeliveryData( payload.userId, payload.deliveryData)
         .pipe(
           map( (response) => {
-            return new AddDeliveryInfoSuccess(payload.deliveryData);
+            return new AddDeliveryInfoSuccess(response);
           }),
           catchError( (error) => {
             return of(new DisplayAlertMessage( error ));
@@ -115,12 +115,13 @@ export class UiEffects {
     map( data => data['payload']),
     switchMap( (payload: {
       userId,
-      deliveryId
+      deliveryId,
+      dataIndex
     }) => {
-      return this.orderDataService.deleteDeliveryData(payload.userId, payload.deliveryId)
+      return this.orderDataService.deleteDeliveryData( payload.deliveryId)
         .pipe(
           map( (response) => {
-            return new RemoveDeliveryInfoSuccess(payload.deliveryId);
+            return new RemoveDeliveryInfoSuccess({ dataIndex : payload.dataIndex });
           }),
           catchError( (error) => {
             return of(new DisplayAlertMessage( error ));

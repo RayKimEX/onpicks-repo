@@ -71,7 +71,7 @@ export class UpdateDeliveryInfoSuccess implements Action {
   readonly type = UPDATE_DELIVERY_INFO_SUCCESS;
 
   constructor(
-    public payload: { deliveryId, dataIndex }
+    public payload: { data, dataIndex }
   ) { }
 }
 
@@ -124,7 +124,8 @@ export class TryRemoveDeliveryInfo implements Action {
   constructor (
     public payload: {
       userId,
-      deliveryId
+      deliveryId,
+      dataIndex
     }
   ) {  }
 }
@@ -135,7 +136,7 @@ export class RemoveDeliveryInfoSuccess implements Action {
 
   constructor (
     public payload: {
-      deliveryId
+      dataIndex
     }
   ) {  }
 }

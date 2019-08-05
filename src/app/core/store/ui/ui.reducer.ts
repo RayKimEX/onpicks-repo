@@ -106,20 +106,35 @@ export function UiReducer(state = initialState, action: UiActions): UiState {
 
     case UPDATE_DELIVERY_INFO_SUCCESS:
 
+
+      state.deliveryAddress[action.payload.dataIndex] = action.payload.data;
       return {
-        ...state
+        ...state,
+        deliveryAddress : [
+          ...state.deliveryAddress
+        ]
       }
 
     case ADD_DELIVERY_INFO_SUCCESS:
+      // 처음 등록되는 배송지라면, 기본 배송지로 설정
+      if ( state.deliveryAddress.length === 0 ){
+        action.payload['default'] = true;
+      }
       state.deliveryAddress.push(action.payload)
       return {
-        ...state
+        ...state,
+        deliveryAddress : [
+          ...state.deliveryAddress
+        ]
       }
 
     case REMOVE_DELIVERY_INFO_SUCCESS:
-      state.deliveryAddress.splice(action.payload.deliveryId, 1);
+      state.deliveryAddress.splice(action.payload.dataIndex, 1);
       return {
-        ...state
+        ...state,
+        deliveryAddress : [
+          ...state.deliveryAddress
+        ]
       }
 
     case ADD_CLASS_OPEN_MODAL :

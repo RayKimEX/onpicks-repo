@@ -168,7 +168,7 @@ export class DeliveryAddressComponent implements OnDestroy {
     if ( index === 0  ) { alert( '기본 배송지는 삭제할 수 없습니다. '); return;}
 
     this.store.dispatch(new TryRemoveDeliveryInfo(
-      { userId : this.userId, deliveryId : index }
+      { userId : this.userId, deliveryId : this.deliveryStoreData[index].id, dataIndex: index }
       ));
   }
 
@@ -244,34 +244,31 @@ export class DeliveryAddressComponent implements OnDestroy {
 
 
   validate(errorStatus) {
-    console.log(this.inputRecipientNameRef);
 
     this.deliveryErrorStatus = 0;
     this.deliveryErrorStatus |= errorStatus;
-    if ( this.deliveryStoreData.length === 0 ) {
-      if ( this.inputRecipientNameRef.last.nativeElement.children[0].value === '') {
-        if ( this.deliveryErrorStatus === 0 ) {this.inputRecipientNameRef.last.nativeElement.children[0].focus();}
-        this.deliveryErrorStatus |= this.EMPTY_RECIPIENT_NAME;
-      }
+    if ( this.inputRecipientNameRef.last.nativeElement.children[0].value === '') {
+      if ( this.deliveryErrorStatus === 0 ) {this.inputRecipientNameRef.last.nativeElement.children[0].focus();}
+      this.deliveryErrorStatus |= this.EMPTY_RECIPIENT_NAME;
+    }
 
-      if ( this.inputRecipientNumberRef.last.nativeElement.children[0].value === '') {
+    if ( this.inputRecipientNumberRef.last.nativeElement.children[0].value === '') {
+      if ( this.deliveryErrorStatus === 0 ) {this.inputRecipientNumberRef.last.nativeElement.children[0].focus();}
+      this.deliveryErrorStatus |= this.EMPTY_RECIPIENT_NUMBER;
+    } else {
+      const patt = new RegExp('^(?:\\+?\\d{1,2} ?)?[ -]?\\d{2,3}[ -]?\\d{3,4}[ -]?\\d{4}$');
+      if ( !patt.test(this.inputRecipientNumberRef.last.nativeElement.children[0].value) ) {
         if ( this.deliveryErrorStatus === 0 ) {this.inputRecipientNumberRef.last.nativeElement.children[0].focus();}
-        this.deliveryErrorStatus |= this.EMPTY_RECIPIENT_NUMBER;
-      } else {
-        const patt = new RegExp('^(?:\\+?\\d{1,2} ?)?[ -]?\\d{2,3}[ -]?\\d{3,4}[ -]?\\d{4}$');
-        if ( !patt.test(this.inputRecipientNumberRef.last.nativeElement.children[0].value) ) {
-          if ( this.deliveryErrorStatus === 0 ) {this.inputRecipientNumberRef.last.nativeElement.children[0].focus();}
-          this.deliveryErrorStatus |= this.INVALID_RECIPIENT_NUMBER;
-        }
+        this.deliveryErrorStatus |= this.INVALID_RECIPIENT_NUMBER;
       }
+    }
 
-      if ( this.inputZipnumberRef.last.nativeElement.children[0].value === ''
-        || this.inputJusoRef.last.nativeElement.children[0].value === ''
-      ) {
+    if ( this.inputZipnumberRef.last.nativeElement.children[0].value === ''
+      || this.inputJusoRef.last.nativeElement.children[0].value === ''
+    ) {
 
-        if ( this.deliveryErrorStatus === 0 ) {this.inputZipnumberRef.last.nativeElement.children[0].focus();}
-        this.deliveryErrorStatus |= this.EMPTY_DELIVERY_ADDRESS;
-      }
+      if ( this.deliveryErrorStatus === 0 ) {this.inputZipnumberRef.last.nativeElement.children[0].focus();}
+      this.deliveryErrorStatus |= this.EMPTY_DELIVERY_ADDRESS;
     }
 
     return this.deliveryErrorStatus;
@@ -292,7 +289,6 @@ export class DeliveryAddressComponent implements OnDestroy {
   }
 
   updateDeliveryDataToDefault( index ) {
-
     this.store.dispatch(new TryUpdateDeliveryDataToDefault(
       {
         userId: this.userId,

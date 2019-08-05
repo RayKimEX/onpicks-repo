@@ -36,7 +36,7 @@ export class OrderDataService {
     // this.httpClient.patch<any>( this.BASE_URL + '/api/customers/')
   }
 
-  deleteDeliveryData( userId, deliveryIndex) {
+  deleteDeliveryData( deliveryIndex) {
     return this.httpClient.delete<any>( this.BASE_URL + '/api/customers/address_book/' + deliveryIndex);
   }
 
