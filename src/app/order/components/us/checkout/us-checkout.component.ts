@@ -276,7 +276,6 @@ export class UsCheckoutComponent implements OnInit, AfterViewInit {
     this.inputZipCodeRef.nativeElement.children[0].value = '';
     this.inputCityRef.nativeElement.children[0].value = '';
     this.paymentData.state = xData.value;
-    console.log(xData);
   }
 
   stripePayemnt() {

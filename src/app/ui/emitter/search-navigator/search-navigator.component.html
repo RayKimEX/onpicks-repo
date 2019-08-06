@@ -19,7 +19,7 @@
   [state]="mobileFilterState"
   [searchState]="searchState"
 
-  [currentSortSlug]="currentSortSlug"
+  [currentSortSlug]="currentSortElement?.value"
   [isShowMobileFilter]="isShowMobileFilter"
   (sharedInfiniteListVariables)="shareInfiniteListVaraibles($event)"
 >
@@ -29,19 +29,28 @@
   <ng-container
     *ngIf="currentList?.length === 0 && router.url.split('/')[2].indexOf('search') > -1">
     <div class="search-content__empty">
-      <h1 class="search-content__empty--title h1-bold" *ngIf="locale == 'ko'" >
-        <span class="u-color-green">{{queryParams.term}}</span>에 대한 검색 결과를 찾을 수 없습니다.
+      <h1
+        *ngIf="locale == 'ko'"
+        class="search-content__empty--title h1-bold">
+        <span
+          class="u-color-green">
+          {{queryParams.term}}
+        </span>에 대한 검색 결과를 찾을 수 없습니다.
       </h1>
-      <h1 class="search-content__empty--title h1-bold" *ngIf="locale == 'en'" >
+      <h1
+        *ngIf="locale == 'en'"
+        class="search-content__empty--title h1-bold">
         No results for <span class="u-color-green">{{queryParams.term}}</span>
       </h1>
 
-      <div class="search-content__empty--description subtitle-1-regular u-color-grey"
-           i18n="@@sentence__search_no-result">
+      <div
+        class="search-content__empty--description subtitle-1-regular u-color-grey"
+        i18n="@@sentence__search_no-result">
         다른검색어를 입력하시거나 철자와 띄어쓰기를 확인해보세요
       </div>
-      <div class="search-content__empty--description subtitle-1-regular u-color-grey"
-           i18n="@@sentence__search_again">
+      <div
+        class="search-content__empty--description subtitle-1-regular u-color-grey"
+        i18n="@@sentence__search_again">
         현재 판매종료 상품일 수 있으니 나중에 다시 검색해보세요
       </div>
     </div>
@@ -76,13 +85,13 @@
                 [ngStyle]="{marginLeft : currentCategoryCode == undefined || currentCategoryCode / category?.code <= 1 ? '10px' : ''}"
                 *ngFor="let category of categoryList">
                 <div class="c-category-navigator__item subtitle-3-bold">
-                    <span
-                      class="c-category-navigator__category-indicator"
-                      *ngIf="category?.code / currentCategoryCode  < 1">
-                      <svg width="6" height="10" viewBox="0 0 6 10">
- 	                      <path fill="#B3B3B3" d="M5 10a.997.997 0 0 1-.707-.293l-4-4a.999.999 0 0 1 0-1.414l4-4a.999.999 0 1 1 1.414 1.414L2.414 5l3.293 3.293A.999.999 0 0 1 5 10" />
-                      </svg>
-                    </span>
+                  <span
+                    class="c-category-navigator__category-indicator"
+                    *ngIf="category?.code / currentCategoryCode  < 1">
+                    <svg width="6" height="10" viewBox="0 0 6 10">
+                      <path fill="#B3B3B3" d="M5 10a.997.997 0 0 1-.707-.293l-4-4a.999.999 0 0 1 0-1.414l4-4a.999.999 0 1 1 1.414 1.414L2.414 5l3.293 3.293A.999.999 0 0 1 5 10" />
+                    </svg>
+                  </span>
                   <span>
                       <a
                         [ngClass]="{'u-color-dark-grey' : (category?.code / currentCategoryCode < 1)}"
@@ -266,13 +275,13 @@
               </span>
             <span class="c-brand-navigator__title--count subtitle-3-regular u-color-dark-grey">{{brandList?.length}}</span>
             <span class="c-brand-navigator__title--remove">
-                <a
-                  i18n="@@word__clear-all"
-                  class="subtitle-3-regular u-color-grey"
-                  (click)="removeAllFilterBrand()">
-                  모두제거
-                </a>
-              </span>
+              <a
+                i18n="@@word__clear-all"
+                class="subtitle-3-regular u-color-grey"
+                (click)="removeAllFilterBrand()">
+                모두제거
+              </a>
+            </span>
           </div>
           <!--<onpicks-search-box-->
           <!--(keypress)="brandSearch($event)"-->
@@ -373,30 +382,30 @@
         <h1 class="search-content__title h1-bold">
           <div *ngIf="searchState == 'search'">
             <ng-container *ngIf="locale === 'ko'">
-                <span *ngIf="searchState == 'search' && queryParams.term !== undefined">
-                  <span
-                    class="u-color-green">{{queryParams.term}}
-                  </span>에 대한 검색 결과 {{totalCount}}건
-                </span>
+              <span *ngIf="searchState == 'search' && queryParams.term !== undefined">
+                <span
+                  class="u-color-green">{{queryParams.term}}
+                </span>에 대한 검색 결과 {{totalCount}}건
+              </span>
               <span
                 *ngIf="searchState == 'search' && queryParams.term === undefined">
-                  {{totalCount}}건
-                </span>
+                {{totalCount}}건
+              </span>
             </ng-container>
             <ng-container *ngIf="locale === 'en'">
-                <span
-                  *ngIf="searchState == 'search' && queryParams.term !== undefined">
-                  {{totalCount}} Results for {{queryParams.term}}
-                </span>
+              <span
+                *ngIf="searchState == 'search' && queryParams.term !== undefined">
+                {{totalCount}} Results for {{queryParams.term}}
+              </span>
               <span
                 *ngIf="searchState == 'search' && queryParams.term === undefined">
-                  {{totalCount}}Items
-                </span>
+                {{totalCount}}Items
+              </span>
             </ng-container>
 
             <onpicks-sort-box
               class="search-content__sort-box"
-              [selectedElement]="{ value : currentSortSlug }"
+              [selectedElement]="currentSortElement"
               (changeEvent)="sortClicked($event)"
               [sortList]="sortList">
             </onpicks-sort-box>
@@ -408,7 +417,7 @@
               <span>{{currentName[locale]}} {{totalCount}}</span><span i18n="@@word__results">건</span>
               <onpicks-sort-box
                 class="search-content__sort-box"
-                [selectedElement]="{ value : currentSortSlug}"
+                [selectedElement]="currentSortElement"
                 (changeEvent)="sortClicked($event)"
                 [sortList]="sortList">
               </onpicks-sort-box>
@@ -435,7 +444,7 @@
             <div
               (click)="showMobileFilter('sort')"
               class="search-content__mobile-sorting--table--vertical-center subtitle-2-regular">
-              {{ sortMap[currentSortSlug][locale] }}
+              {{ currentSortElement?.title[locale] }}
             </div>
           </div>
         </div>
@@ -446,9 +455,9 @@
                 <div
                   (click)="removeSpecificFilter(keys, currentParamList[keys])"
                   class="c-filter-navigator__content-ul--item-remove-outer">
-                      <span
-                        class="c-filter-navigator__content-ul--item-remove">
-                      </span>
+                  <span
+                    class="c-filter-navigator__content-ul--item-remove">
+                  </span>
                 </div>
                 <div
                   class="u-inline-block subtitle-2-regular">
@@ -462,9 +471,9 @@
                   <div
                     (click)="removeSpecificFilter(keys, item)"
                     class="c-filter-navigator__content-ul--item-remove-outer">
-                        <span
-                          class="c-filter-navigator__content-ul--item-remove">
-                        </span>
+                    <span
+                      class="c-filter-navigator__content-ul--item-remove">
+                    </span>
                   </div>
                   <div
                     class="u-inline-block subtitle-2-regular">
@@ -486,20 +495,22 @@
                     <div
                       class="search-content__item--image-outer">
                       <a routerLink="/shops/p/{{item.slug}}">
-                        <div *ngIf="item.in_stock === true && item.stock_quantity <= 10 && item.stock_quantity !== 0"
-                             class="search-content__item--stock">
-                            <span *ngIf="locale === 'ko'" class="search-content__item--stock--inner subtitle-2-bold u-color-white">
-                              품절임박 {{item.stock_quantity}}개
-                            </span>
+                        <div
+                          *ngIf="item.in_stock === true && item.stock_quantity <= 10 && item.stock_quantity !== 0"
+                          class="search-content__item--stock">
+                          <span *ngIf="locale === 'ko'" class="search-content__item--stock--inner subtitle-2-bold u-color-white">
+                            품절임박 {{item.stock_quantity}}개
+                          </span>
                           <span *ngIf="locale === 'en'" class="search-content__item--stock--inner subtitle-2-bold u-color-white">
-                              Only {{item.stock_quantity}} Left
-                            </span>
+                            Only {{item.stock_quantity}} Left
+                          </span>
                         </div>
-                        <div *ngIf="item.in_stock === false || item.in_stock === true && item.stock_quantity === 0"
-                             class="search-content__item--stock-empty">
-                            <span class="search-content__item--stock--inner subtitle-2-bold u-color-white">
-                              품절
-                            </span>
+                        <div
+                          *ngIf="item.in_stock === false || item.in_stock === true && item.stock_quantity === 0"
+                          class="search-content__item--stock-empty">
+                          <span class="search-content__item--stock--inner subtitle-2-bold u-color-white">
+                            품절
+                          </span>
                         </div>
                         <div class="search-content__item--image-inner">
                           <img
@@ -520,13 +531,6 @@
                         (addEvent)="addToCart($event, item, item.individual_shipping ? 'free' : locationMap[item.location.code].sequence)"
                         (subtractEvent)="subtractFromCart($event, item.slug, item.individual_shipping ? 'free' : locationMap[item.location.code].sequence)">
                       </onpicks-list-active-button>
-
-                      <!--<div-->
-                      <!--class="search-content__item&#45;&#45;option-product"-->
-                      <!--*ngSwitchDefault>-->
-                      <!--<span class="subtitle-3-regular">옵션선택상품</span>-->
-                      <!--</div>-->
-
                     </ng-container>
                   </div>
 
@@ -538,15 +542,12 @@
                         {{item.brand.name}}
                       </a>
                     </h1>
-
-
                     <span class="search-content__item--name-outer-name body-2-regular">
-                        <a
-                          routerLink="/shops/p/{{item.slug}}">
-                          {{item.title}}
-                        </a>
-                      </span>
-
+                      <a
+                        routerLink="/shops/p/{{item.slug}}">
+                        {{item.title}}
+                      </a>
+                    </span>
                   </div>
 
                   <ui-star-rating
@@ -568,42 +569,42 @@
                       <ng-container *ngSwitchCase="'LAX'" >
                         <span class="search-content__delivery-point--icon icon-small-la"></span>
                         <span class="search-content__delivery-point--text subtitle-2-regular u-color-black">
-                            <span *ngIf="locale === 'en'">Shipping from </span>
-                            <strong i18n="@@location-warehouse__LAX">엘에이</strong>
-                            <span *ngIf="locale === 'ko'"> 출고</span>
-                          </span>
+                          <span *ngIf="locale === 'en'">Shipping from </span>
+                          <strong i18n="@@location-warehouse__LAX">엘에이</strong>
+                          <span *ngIf="locale === 'ko'"> 출고</span>
+                        </span>
                       </ng-container>
                       <ng-container *ngSwitchCase="'JFK'">
                         <span class="search-content__delivery-point--icon icon-small-new"></span>
                         <span class="search-content__delivery-point--text subtitle-2-regular u-color-black">
-                            <span *ngIf="locale === 'en'">Shipping from </span>
-                            <strong i18n="@@location-warehouse__JFK">뉴저지</strong>
-                            <span *ngIf="locale === 'ko'"> 출고</span>
-                          </span>
+                          <span *ngIf="locale === 'en'">Shipping from </span>
+                          <strong i18n="@@location-warehouse__JFK">뉴저지</strong>
+                          <span *ngIf="locale === 'ko'"> 출고</span>
+                        </span>
                       </ng-container>
                       <ng-container *ngSwitchCase="'ATL'">
                         <span class="search-content__delivery-point--icon icon-small-gorgia"></span>
                         <span class="search-content__delivery-point--text subtitle-2-regular u-color-black">
-                            <span *ngIf="locale === 'en'">Shipping from </span>
-                            <strong i18n="@@location-warehouse__ATL">죠지아</strong>
-                            <span *ngIf="locale === 'ko'"> 출고</span>
-                          </span>
+                          <span *ngIf="locale === 'en'">Shipping from </span>
+                          <strong i18n="@@location-warehouse__ATL">죠지아</strong>
+                          <span *ngIf="locale === 'ko'"> 출고</span>
+                        </span>
                       </ng-container>
                       <ng-container *ngSwitchCase="'KIX'">
                         <span class="search-content__delivery-point--icon icon-small-osaka"></span>
                         <span class="search-content__delivery-point--text subtitle-2-regular u-color-black">
-                            <span *ngIf="locale === 'en'">Shipping from </span>
-                            <strong i18n="@@location-warehouse__KIX">오사카</strong>
-                            <span *ngIf="locale === 'ko'"> 출고</span>
-                          </span>
+                          <span *ngIf="locale === 'en'">Shipping from </span>
+                          <strong i18n="@@location-warehouse__KIX">오사카</strong>
+                          <span *ngIf="locale === 'ko'"> 출고</span>
+                        </span>
                       </ng-container>
                       <ng-container *ngSwitchCase="'HKG'">
                         <span class="search-content__delivery-point--icon icon-small-hong"></span>
                         <span class="search-content__delivery-point--text subtitle-2-regular u-color-black">
-                            <span *ngIf="locale === 'en'">Shipping from </span>
-                            <strong i18n="@@location-warehouse__HKG">홍콩</strong>
-                            <span *ngIf="locale === 'ko'"> 출고</span>
-                          </span>
+                          <span *ngIf="locale === 'en'">Shipping from </span>
+                          <strong i18n="@@location-warehouse__HKG">홍콩</strong>
+                          <span *ngIf="locale === 'ko'"> 출고</span>
+                        </span>
                       </ng-container>
                     </ng-container>
                   </div>
@@ -614,36 +615,50 @@
         </div>
 
         <div class="search-content__content--outer" *ngIf="isMobile">
-          <div class="search-content__content"
-               infinite-scroll
-               [immediateCheck]="false"
-               [infiniteScrollDistance]="0"
-               [infiniteScrollThrottle]="400"
-               (scrolled)="onScrollDown(this)">
-            <ul #container *ngLet="(currency| async) as currencyAync">
-              <li #itemList *ngFor="let item of infiniteList; index as i" class="search-content__item">
+          <div
+            class="search-content__content"
+            infinite-scroll
+            [immediateCheck]="false"
+            [infiniteScrollDistance]="0"
+            [infiniteScrollThrottle]="400"
+            (scrolled)="onScrollDown(this)">
+            <ul
+              #container
+              *ngLet="(currency| async) as currencyAync">
+              <li
+                #itemList
+                *ngFor="let item of infiniteList; index as i"
+                class="search-content__item">
                 <div>
 
                   <div class="search-content__item--image">
                     <div
                       class="search-content__item--image-outer">
                       <a routerLink="/shops/p/{{item.slug}}">
-                        <div *ngIf="item.in_stock === true && item.stock_quantity <= 10 && item.stock_quantity !== 0"
-                             class="search-content__item--stock">
-                            <span *ngIf="locale === 'ko'" class="search-content__item--stock--inner subtitle-2-bold u-color-white">
-                              품절임박 {{item.stock_quantity}}개
-                            </span>
-                          <span *ngIf="locale === 'en'" class="search-content__item--stock--inner subtitle-2-bold u-color-white">
-                              Only {{item.stock_quantity}} Left
-                            </span>
+                        <div
+                          *ngIf="item.in_stock === true && item.stock_quantity <= 10 && item.stock_quantity !== 0"
+                          class="search-content__item--stock">
+                          <span
+                            *ngIf="locale === 'ko'"
+                            class="search-content__item--stock--inner subtitle-2-bold u-color-white">
+                            품절임박 {{item.stock_quantity}}개
+                          </span>
+                          <span
+                            *ngIf="locale === 'en'"
+                            class="search-content__item--stock--inner subtitle-2-bold u-color-white">
+                            Only {{item.stock_quantity}} Left
+                          </span>
                         </div>
-                        <div *ngIf="item.in_stock === false || item.in_stock === true && item.stock_quantity === 0"
-                             class="search-content__item--stock-empty">
-                            <span class="search-content__item--stock--inner subtitle-2-bold u-color-white">
+                        <div
+                          *ngIf="item.in_stock === false || item.in_stock === true && item.stock_quantity === 0"
+                          class="search-content__item--stock-empty">
+                            <span
+                              class="search-content__item--stock--inner subtitle-2-bold u-color-white">
                               품절
                             </span>
                         </div>
-                        <div class="search-content__item--image-inner">
+                        <div
+                          class="search-content__item--image-inner">
                           <img
                             drLazyLoad
                             [relativeOption]="false"
@@ -662,11 +677,8 @@
                         (addEvent)="addToCart($event, item, item.individual_shipping ? 'free' : locationMap[item.location.code].sequence)"
                         (subtractEvent)="subtractFromCart($event, item.slug, item.individual_shipping ? 'free' : locationMap[item.location.code].sequence)">
                       </onpicks-list-active-button>
-
                     </ng-container>
                   </div>
-
-
                   <div class="search-content__item--name-outer">
                     <h1 class="search-content__item--name-outer-brand subtitle-2-bold">
                       <a
@@ -674,15 +686,12 @@
                         {{item.brand.name}}
                       </a>
                     </h1>
-
-
                     <span class="search-content__item--name-outer-name body-2-regular">
-                        <a
-                          routerLink="/shops/p/{{item.slug}}">
-                          {{item.title}}
-                        </a>
-                      </span>
-
+                      <a
+                        routerLink="/shops/p/{{item.slug}}">
+                        {{item.title}}
+                      </a>
+                    </span>
                   </div>
 
                   <ui-star-rating
@@ -704,42 +713,42 @@
                       <ng-container *ngSwitchCase="'LAX'" >
                         <span class="search-content__delivery-point--icon icon-small-la"></span>
                         <span class="search-content__delivery-point--text subtitle-2-regular u-color-black">
-                            <span *ngIf="locale === 'en'">Shipping from </span>
-                            <strong i18n="@@location-warehouse__LAX">엘에이</strong>
-                            <span *ngIf="locale === 'ko'"> 출고</span>
-                          </span>
+                          <span *ngIf="locale === 'en'">Shipping from </span>
+                          <strong i18n="@@location-warehouse__LAX">엘에이</strong>
+                          <span *ngIf="locale === 'ko'"> 출고</span>
+                        </span>
                       </ng-container>
                       <ng-container *ngSwitchCase="'JFK'">
                         <span class="search-content__delivery-point--icon icon-small-new"></span>
                         <span class="search-content__delivery-point--text subtitle-2-regular u-color-black">
-                            <span *ngIf="locale === 'en'">Shipping from </span>
-                            <strong i18n="@@location-warehouse__JFK">뉴저지</strong>
-                            <span *ngIf="locale === 'ko'"> 출고</span>
-                          </span>
+                          <span *ngIf="locale === 'en'">Shipping from </span>
+                          <strong i18n="@@location-warehouse__JFK">뉴저지</strong>
+                          <span *ngIf="locale === 'ko'"> 출고</span>
+                        </span>
                       </ng-container>
                       <ng-container *ngSwitchCase="'ATL'">
                         <span class="search-content__delivery-point--icon icon-small-gorgia"></span>
                         <span class="search-content__delivery-point--text subtitle-2-regular u-color-black">
-                            <span *ngIf="locale === 'en'">Shipping from </span>
-                            <strong i18n="@@location-warehouse__ATL">죠지아</strong>
-                            <span *ngIf="locale === 'ko'"> 출고</span>
-                          </span>
+                          <span *ngIf="locale === 'en'">Shipping from </span>
+                          <strong i18n="@@location-warehouse__ATL">죠지아</strong>
+                          <span *ngIf="locale === 'ko'"> 출고</span>
+                        </span>
                       </ng-container>
                       <ng-container *ngSwitchCase="'KIX'">
                         <span class="search-content__delivery-point--icon icon-small-osaka"></span>
                         <span class="search-content__delivery-point--text subtitle-2-regular u-color-black">
-                            <span *ngIf="locale === 'en'">Shipping from </span>
-                            <strong i18n="@@location-warehouse__KIX">오사카</strong>
-                            <span *ngIf="locale === 'ko'"> 출고</span>
-                          </span>
+                          <span *ngIf="locale === 'en'">Shipping from </span>
+                          <strong i18n="@@location-warehouse__KIX">오사카</strong>
+                          <span *ngIf="locale === 'ko'"> 출고</span>
+                        </span>
                       </ng-container>
                       <ng-container *ngSwitchCase="'HKG'">
                         <span class="search-content__delivery-point--icon icon-small-hong"></span>
                         <span class="search-content__delivery-point--text subtitle-2-regular u-color-black">
-                            <span *ngIf="locale === 'en'">Shipping from </span>
-                            <strong i18n="@@location-warehouse__HKG">홍콩</strong>
-                            <span *ngIf="locale === 'ko'"> 출고</span>
-                          </span>
+                          <span *ngIf="locale === 'en'">Shipping from </span>
+                          <strong i18n="@@location-warehouse__HKG">홍콩</strong>
+                          <span *ngIf="locale === 'ko'"> 출고</span>
+                        </span>
                       </ng-container>
                     </ng-container>
                   </div>
@@ -765,14 +774,50 @@
 
             <span *ngIf="currentPage <= (isMobile ? 2 : 4)">
             <!--5이하일 경우엔 가변 처리 없이, 무조건 5까지 다 보여줌-->
-                <span *ngIf="totalPageArray.length <= (isMobile ? 5 : 7)">
-                  <li *ngFor="let number of totalPageArray;  index as i;" >
-                    <div (click)="paginate(i + 1)" [ngClass]="{'search-content__pagination--number-bold' : currentPage === (1 + i)}">{{i + 1}}</div>
+              <span *ngIf="totalPageArray.length <= (isMobile ? 5 : 7)">
+                <li *ngFor="let number of totalPageArray;  index as i;" >
+                  <div (click)="paginate(i + 1)" [ngClass]="{'search-content__pagination--number-bold' : currentPage === (1 + i)}">{{i + 1}}</div>
+                </li>
+              </span>
+              <span *ngIf="totalPageArray.length >= (isMobile ? 6 : 8)">
+                <li *ngFor="let number of isMobile ? numberArray(3) : numberArray(5);  index as i;" >
+                  <div (click)="paginate(i+ 1)" [ngClass]="{'search-content__pagination--number-bold' : currentPage === (1 + i)}">{{i+ 1}}</div>
+                </li>
+                <li>
+                  <div class="search-content__pagination--finite-num">...</div>
+                </li>
+                <li>
+                  <div (click)="paginate( totalPageArray.length )" [ngClass]="{'search-content__pagination--number-bold' : currentPage === totalPageArray.length }">{{totalPageArray.length }}</div>
+                </li>
+              </span>
+            </span>
+
+            <span *ngIf="currentPage >= (isMobile ? 3 : 5)">
+              <!--currentPage가 5이상일 경우에도 가변 처리 없이, 무조건 7까지는 다 보여줌-->
+              <span *ngIf="totalPageArray.length <= (isMobile ? 5 : 7)">
+                <li *ngFor="let number of totalPageArray;  index as i;" >
+                  <div (click)="paginate(i + 1)" [ngClass]="{'search-content__pagination--number-bold' : currentPage === (1 + i)}">{{i + 1}}</div>
+                </li>
+              </span>
+              <!--currentPage가 5이상이고 totalPage가 8이상일 경우엔 가변처리를 뿌려줌-->
+              <span *ngIf="totalPageArray.length >= (isMobile ? 6 : 8)">
+                <li>
+                  <div (click)="paginate( 1 )" >1</div>
+                </li>
+                <li>
+                  <div class="search-content__pagination--finite-num">...</div>
+                </li>
+
+                <!--currentPage가 5이상이고 totalPage - currentPage가 4보다 크면 가변 처리 되는 조건 ( 거의 대부분의 조건에 해당 )-->
+                <span *ngIf="(totalPageArray.length - currentPage) >= (isMobile ? 2 : 4)">
+                  <li *ngIf="!isMobile">
+                   <div (click)="paginate( currentPage - 1 )">{{currentPage - 1}}</div>
                   </li>
-                </span>
-                <span *ngIf="totalPageArray.length >= (isMobile ? 6 : 8)">
-                  <li *ngFor="let number of isMobile ? numberArray(3) : numberArray(5);  index as i;" >
-                    <div (click)="paginate(i+ 1)" [ngClass]="{'search-content__pagination--number-bold' : currentPage === (1 + i)}">{{i+ 1}}</div>
+                  <li>
+                   <div (click)="paginate( currentPage )" class="search-content__pagination--number-bold">{{currentPage}}</div>
+                  </li>
+                  <li *ngIf="!isMobile">
+                   <div (click)="paginate( currentPage + 1)">{{currentPage + 1}}</div>
                   </li>
                   <li>
                     <div class="search-content__pagination--finite-num">...</div>
@@ -781,61 +826,25 @@
                     <div (click)="paginate( totalPageArray.length )" [ngClass]="{'search-content__pagination--number-bold' : currentPage === totalPageArray.length }">{{totalPageArray.length }}</div>
                   </li>
                 </span>
-              </span>
 
-            <span *ngIf="currentPage >= (isMobile ? 3 : 5)">
-                <!--currentPage가 5이상일 경우에도 가변 처리 없이, 무조건 7까지는 다 보여줌-->
-                <span *ngIf="totalPageArray.length <= (isMobile ? 5 : 7)">
-                  <li *ngFor="let number of totalPageArray;  index as i;" >
-                    <div (click)="paginate(i + 1)" [ngClass]="{'search-content__pagination--number-bold' : currentPage === (1 + i)}">{{i + 1}}</div>
-                  </li>
-                </span>
-              <!--currentPage가 5이상이고 totalPage가 8이상일 경우엔 가변처리를 뿌려줌-->
-                <span *ngIf="totalPageArray.length >= (isMobile ? 6 : 8)">
-                  <li>
-                    <div (click)="paginate( 1 )" >1</div>
-                  </li>
-                  <li>
-                    <div class="search-content__pagination--finite-num">...</div>
-                  </li>
-
-                  <!--currentPage가 5이상이고 totalPage - currentPage가 4보다 크면 가변 처리 되는 조건 ( 거의 대부분의 조건에 해당 )-->
-                  <span *ngIf="(totalPageArray.length - currentPage) >= (isMobile ? 2 : 4)">
-                    <li *ngIf="!isMobile">
-                     <div (click)="paginate( currentPage - 1 )">{{currentPage - 1}}</div>
-                    </li>
+                <!--totalPage - currentPage가 3이하면 특수 조건 발동 -->
+                <span *ngIf="(totalPageArray.length - currentPage) <= (isMobile ? 1 : 3)">
+                  <!-- 특수 조건에서 for 갯수는,totalPage - currentPage + 2가됨,
+                   마지막 page일 경우 ( currentPage === length )에는, 1을 더 추가해서, 앞에 하나 더 나오게 함  -->
+                  <!-- TODO : 아래의 소스는 가독성이 떨어지므로 한번 수정 필요  -->
+                  <span *ngFor="let item of numberArray(totalPageArray.length - currentPage + 2 + (  currentPage === totalPageArray.length ? 1 : 0));  index as i;">
                     <li>
-                     <div (click)="paginate( currentPage )" class="search-content__pagination--number-bold">{{currentPage}}</div>
+                      <!-- +1의 의미는 현재 페이지에서 앞에 li를 하나 더 나오게 한다는 의미-->
+                      <div
+                        (click)="paginate( totalPageArray.length - ( (totalPageArray.length - currentPage + 1 + ( currentPage === totalPageArray.length ? 1 : 0)) - i ) )"
+                        [ngClass]="{'search-content__pagination--number-bold' : currentPage === (totalPageArray.length - ( (totalPageArray.length - currentPage + 1 + ( currentPage === totalPageArray.length ? 1 : 0))- i)) }">
+                        {{totalPageArray.length - ( (totalPageArray.length - currentPage + 1 + ( currentPage === totalPageArray.length ? 1 : 0))- i) }}
+                      </div>
                     </li>
-                    <li *ngIf="!isMobile">
-                     <div (click)="paginate( currentPage + 1)">{{currentPage + 1}}</div>
-                    </li>
-                    <li>
-                      <div class="search-content__pagination--finite-num">...</div>
-                    </li>
-                    <li>
-                      <div (click)="paginate( totalPageArray.length )" [ngClass]="{'search-content__pagination--number-bold' : currentPage === totalPageArray.length }">{{totalPageArray.length }}</div>
-                    </li>
-                  </span>
-
-                  <!--totalPage - currentPage가 3이하면 특수 조건 발동 -->
-                  <span *ngIf="(totalPageArray.length - currentPage) <= (isMobile ? 1 : 3)">
-                    <!-- 특수 조건에서 for 갯수는,totalPage - currentPage + 2가됨,
-                     마지막 page일 경우 ( currentPage === length )에는, 1을 더 추가해서, 앞에 하나 더 나오게 함  -->
-                    <!-- TODO : 아래의 소스는 가독성이 떨어지므로 한번 수정 필요  -->
-                    <span *ngFor="let item of numberArray(totalPageArray.length - currentPage + 2 + (  currentPage === totalPageArray.length ? 1 : 0));  index as i;">
-                      <li>
-                        <!-- +1의 의미는 현재 페이지에서 앞에 li를 하나 더 나오게 한다는 의미-->
-                        <div
-                          (click)="paginate( totalPageArray.length - ( (totalPageArray.length - currentPage + 1 + ( currentPage === totalPageArray.length ? 1 : 0)) - i ) )"
-                          [ngClass]="{'search-content__pagination--number-bold' : currentPage === (totalPageArray.length - ( (totalPageArray.length - currentPage + 1 + ( currentPage === totalPageArray.length ? 1 : 0))- i)) }">
-                          {{totalPageArray.length - ( (totalPageArray.length - currentPage + 1 + ( currentPage === totalPageArray.length ? 1 : 0))- i) }}
-                        </div>
-                      </li>
-                    </span>
                   </span>
                 </span>
               </span>
+            </span>
             <li *ngIf="currentPage !== totalPageArray.length && totalPageArray.length !== 0">
               <div (click)="paginate(currentPage + 1)">
                 <svg width="9" height="14" viewBox="0 0 9 14">

@@ -243,10 +243,11 @@ export class DeliveryAddressComponent implements OnDestroy {
   }
 
 
-  validate(errorStatus) {
+  validate(errorStatus, type) {
 
     this.deliveryErrorStatus = 0;
     this.deliveryErrorStatus |= errorStatus;
+
     if ( this.inputRecipientNameRef.last.nativeElement.children[0].value === '') {
       if ( this.deliveryErrorStatus === 0 ) {this.inputRecipientNameRef.last.nativeElement.children[0].focus();}
       this.deliveryErrorStatus |= this.EMPTY_RECIPIENT_NAME;

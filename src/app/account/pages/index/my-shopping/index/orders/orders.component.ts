@@ -132,9 +132,9 @@ export class OrdersComponent implements OnInit {
   }
 
   test(vv) {
-    this.selectedElement.value = vv;
+    this.selectedElement = vv;
     this.orderData$ = this.accountDataService
-      .getOrdersData(vv)
+      .getOrdersData(this.selectedElement.value)
       .pipe(
         tap( v => {
           console.log(v);

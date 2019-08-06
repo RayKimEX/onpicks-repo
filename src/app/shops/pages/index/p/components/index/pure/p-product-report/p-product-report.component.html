@@ -4,13 +4,13 @@
     <h1 class="h1-bold">상품정보 제공 고시</h1>
     <onpicks-sort-box
       (click)="foldFlag = !foldFlag"
-      [selectedElement]="
-        {
+      [sortList]="[        {
         title : {
          ko : '더보기',
          en : ''
         },
-        value : 0 }"
+        value : 0 }]"
+      [selectedElement]="undefined"
       [showBox]="false">
       더보기
     </onpicks-sort-box>

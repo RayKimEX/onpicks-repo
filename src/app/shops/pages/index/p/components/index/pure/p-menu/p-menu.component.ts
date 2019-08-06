@@ -116,13 +116,6 @@ export class PMenuComponent implements OnInit, OnDestroy, AfterViewInit, OnChang
   discountPercent;
   _data;
 
-  chart;
-  dateTitle;
-  competitorPrice;
-  onpicksPrice;
-  savingPrice;
-  dataOuter;
-  hrLiner;
   initialDatesTitle;
   scrollEvent
   PStore$;
@@ -186,17 +179,16 @@ export class PMenuComponent implements OnInit, OnDestroy, AfterViewInit, OnChang
     }
   }
 
-  goBrandFilter(xBrand){
+  goBrandFilter(xBrand) {
     this.router.navigate(['/shops/search'], { queryParams: { page: 1, ordering: 'most_popular', brand: xBrand}, queryParamsHandling: 'merge'} );
   }
 
   optionSelect(xValue, xIndex) {
     this.keyListForSlug[xIndex] = xValue.value;
 
-    if ( xIndex === 0 ){
+    if ( xIndex === 0 ) {
       this.selectedFirstOptionIndex = xValue.index;
     }
-
   }
 
   amountSelect(xValue ) {

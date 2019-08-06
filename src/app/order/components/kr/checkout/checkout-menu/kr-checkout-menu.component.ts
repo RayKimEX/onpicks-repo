@@ -150,6 +150,7 @@ export class KrCheckoutMenuComponent implements OnInit, OnDestroy, AfterViewInit
 
     // emit후의 싱크를 맞추기 위해 setTimeout을 함
     setTimeout(() => {
+      console.log(this.errorStatus);
       if ( this.errorStatus === 0 ) {
 
         this.formData.buyer_name = this.inputOrderName.nativeElement.children[0].value;

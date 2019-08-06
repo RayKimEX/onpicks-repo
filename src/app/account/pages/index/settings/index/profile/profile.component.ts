@@ -15,14 +15,6 @@ import {DISPLAY_ALERT_MESSAGE_MAP} from '../../../../../../core/global-constant/
 
 export class ProfileComponent implements OnInit, OnDestroy {
 
-  // sortList = [
-  //   {title: '인기순', value: 'most_popular'},
-  //   // { title : '판매량', value : 'most_popular' },
-  //   {title: '리뷰 많은순', value: 'most_reviewed'},
-  //   {title: '평점순', value: 'top_rated'},
-  //   {title: '가격 높은순', value: 'price_high'},
-  //   {title: '가격 낮은순', value: 'price_low'}
-  // ]
   monthList = {
     title : '월',
     list : [

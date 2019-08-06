@@ -97,7 +97,6 @@ export class PIndexComponent implements OnInit, OnDestroy {
       tap( (v) => {
         // 해당 페이지에 들어 왔을때, reviews에서, scroll값이 있으면 해당 스크롤로 이동
         // TODO : 좀 가라로 한듯함
-        console.log(v);
         const url = this.router.url.split('/');
         if ( url.length > 4 && url[4] === 'reviews') {
           const temp = url[5].substring(url[5].indexOf('?'), url[5].length);
@@ -128,7 +127,6 @@ export class PIndexComponent implements OnInit, OnDestroy {
       .subscribe(val => {
         this.cartStore = val;
       });
-    console.log(this.route)
 
     this.weeklyBest$ = this.uiService.getWeeklyBestGoods();
 
@@ -137,7 +135,7 @@ export class PIndexComponent implements OnInit, OnDestroy {
   @HostListener('window:scroll', ['$event']) private onScroll($event: Event): void {
     const delta = window.pageYOffset - this.previousYOffset;
     // console.log(this.router.url);
-    if(this.pUI.isShowCommunicateBox === true ){
+    if ( this.pUI.isShowCommunicateBox === true ) {
       this.isShowMobileMenu = false;
       return ;
     };
@@ -202,7 +200,7 @@ export class PIndexComponent implements OnInit, OnDestroy {
     }
 
 
-    if ( currentProductSlug === undefined ){
+    if ( currentProductSlug === undefined ) {
       this.store.dispatch(new DisplayAlertMessage(this.alertMap['select-option'][this.locale]));
     }
 
@@ -216,7 +214,6 @@ export class PIndexComponent implements OnInit, OnDestroy {
   }
 
   amountSelect(xValue ) {
-    console.log(xValue);
     this.currentSelectOption.amount = xValue.value;
   }
 

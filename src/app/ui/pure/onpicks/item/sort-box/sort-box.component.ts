@@ -23,11 +23,26 @@ export class SortBoxComponent implements OnInit, AfterViewInit {
   @Input('sortList') sortList;
   @Input('fontSize') fontSize;
   @Input('showBox') showBox;
-  @Input('selectedElement') selectedElement;
-
+  @Input('selectedElement') set _selectedElement(xData){
+    this.selectedElement = xData;
+    if ( this.selectedElement === undefined ) {
+      this.selectedElement = this.sortList[0];
+    } else {
+      if ( this.selectedElement.value === undefined ) {
+        this.selectedElement = this.sortList[0];
+      } else {
+        this.sortList.forEach( v => {
+          if ( v.value === this.selectedElement.value ) {
+            this.selectedElement = v;
+          }
+        });
+      }
+    }
+  };
   @Output('changeEvent') changeEvent = new EventEmitter();
-
   @Input('isOpen') isOpen = false;
+
+  selectedElement = null;
 
   @HostListener('document:click', ['$event'])
   clickout(event) {
@@ -49,19 +64,7 @@ export class SortBoxComponent implements OnInit, AfterViewInit {
     // init시에 무조건 첫번째 Object를 가져옴
     console.log(this.selectedElement);
 
-    if ( this.selectedElement === undefined ) {
-      this.selectedElement = this.sortList[0];
-    } else {
-      if ( this.selectedElement.value === undefined ) {
-        this.selectedElement = this.sortList[0];
-      } else {
-        this.sortList.forEach( v => {
-          if ( v.value === this.selectedElement.value ) {
-            this.selectedElement = v;
-          }
-        });
-      }
-    }
+
   }
 
   ngAfterViewInit() {
@@ -83,7 +86,6 @@ export class SortBoxComponent implements OnInit, AfterViewInit {
   }
 
   clickSortBoxElement(inputValue) {
-    console.log(inputValue.name)
     this.selectedElement = {
       title : { [this.locale] : inputValue.name },
       value : inputValue.value
@@ -91,6 +93,6 @@ export class SortBoxComponent implements OnInit, AfterViewInit {
 
     this.isOpen = false;
     this.renderer.setStyle( this.HTMLdropDown.nativeElement, 'display', 'none');
-    this.changeEvent.emit(inputValue.value);
+    this.changeEvent.emit(this.selectedElement);
   }
 }

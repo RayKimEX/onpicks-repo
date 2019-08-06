@@ -205,7 +205,7 @@ export class PReviewsComponent implements AfterViewInit {
   }
 
   reviewSorting( xSortingValue ) {
-    this.selectedElement.value = xSortingValue
+    this.selectedElement.value = xSortingValue.value
     this.store.dispatch(new TryGetReviewProduct({ productSlug : this.route.snapshot.params.id, sorting: xSortingValue}));
   }
 

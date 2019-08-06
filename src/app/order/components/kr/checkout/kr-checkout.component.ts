@@ -379,7 +379,10 @@ export class KrCheckoutComponent implements OnInit, OnDestroy {
       }
     }
 
-    this.errorStatus = deliveryComponent.validate(this.errorStatus);
+    if ( this.deliveryDataStore.length === 0) {
+      this.errorStatus = deliveryComponent.validate(this.errorStatus);
+    }
+
 
     if ( this.checkoutAdditionNumberRef.nativeElement.children[0].value === '') {
       if ( this.errorStatus === 0 ) {this.checkoutAdditionNumberRef.nativeElement.children[0].focus();}
@@ -402,5 +405,4 @@ export class KrCheckoutComponent implements OnInit, OnDestroy {
   setShippingMessage(xShippingMessage) {
     this.formData.shipping_message = xShippingMessage.value;
   }
-
 }

@@ -27,6 +27,7 @@ import {BreakpointObserver, BreakpointState} from '../../../../../node_modules/@
 import {Title} from '@angular/platform-browser';
 import {DISPLAY_ALERT_MESSAGE_MAP} from '../../../core/global-constant/app.locale';
 import {switchMap, tap} from 'rxjs/operators';
+import {SORT_LIST} from '../../../core/global-constant/item-component.locale';
 
 @Component({
   selector: 'emitter-search-navigator',
@@ -51,7 +52,7 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
   filters = {};
 
   /** currentState **/
-  currentSortSlug = 'most_popular';
+  currentSortElement = this.sortList[0];
 
   normalizedCategoryCodeList;
   categoryList;
@@ -102,67 +103,6 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
 
   weeklyBest$;
 
-  sortList = [
-    {
-      title: {
-        ko : '인기순',
-        en : 'Popular'
-      },
-      value: 'most_popular'
-    },
-    {
-      title: {
-        ko : '리뷰 많은순',
-        en : 'Most Reviews'
-      },
-      value: 'most_reviewed'
-    },
-    {
-      title: {
-        ko : '평점순',
-        en : 'Most Ratings'
-      },
-      value: 'top_rated'
-    },
-    {
-      title: {
-        ko : '가격 높은순',
-        en : 'High Price'
-      },
-      value: 'price_high'
-    },
-    {
-      title: {
-        ko : '가격 낮은순',
-        en : 'Low Price'
-      },
-      value: 'price_low'
-    }
-  ]
-
-  sortMap = {
-    'most_popular' : {
-      ko : '인기순',
-      en : 'Popular'
-    },
-    'most_reviewed' : {
-      ko : '리뷰 많은순',
-      en : 'Most Reviews'
-    },
-    'top_rated' : {
-      ko : '평점순',
-      en : 'Most Ratings'
-    },
-    'price_high' : {
-      ko : '가격 높은순',
-      en : 'High Price'
-    },
-    'price_low' : {
-      ko : '가격 낮은순',
-      en : 'Low Price'
-    }
-  };
-
   // infinite scroll
   infiniteCurrentSortSlug;
   infiniteCurrentPage;
@@ -176,6 +116,7 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
     @Inject( RESPONSIVE_MAP ) public responsiveMap,
     @Inject( LOCALE_ID ) public locale: string,
     @Inject( DISPLAY_ALERT_MESSAGE_MAP ) private alertMap,
+    @Inject( SORT_LIST ) public sortList,
     private uiService: UiService,
     private renderer: Renderer2,
     private store: Store<any>,
@@ -275,7 +216,7 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
             const xparam = this.removeParameterFromUrl(this.router.url.indexOf('?') < 0 ? '' : '&' + this.router.url.substring(this.router.url.indexOf('?') + 1, this.router.url.length), 'ordering');
             return this.searchService.categorySearch(
               categoryCurrentCode,
-              this.currentSortSlug,
+              this.currentSortElement.value,
               this.currentPage,
               xparam
             );
@@ -284,7 +225,7 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
 
             return this.searchService.categorySearch(
               categoryCurrentCode,
-              this.currentSortSlug,
+              this.currentSortElement.value,
               this.currentPage,
               xparam
             );
@@ -334,23 +275,9 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
         this.currentList = null;
         this.filters = {};
         // category main페이지 일때
-        if (this.router.url.indexOf('&') < 0) {
-          const temp = this.router.url.substring(this.router.url.indexOf('&') + 1, this.router.url.length);
-          const tempArray = temp.split('&');
-          tempArray.forEach(item => {
-            const paramTemp = item.split('=');
-            // const paramTemp = item.split('=');
-            // console.log(paramTemp);
-            // if ( paramTemp[0] !== 'ordering' && paramTemp[0] !== 'category'  ) {
-            //   this.orderedFilterList.push(paramTemp[1]);
-            // } else {
-            //   if ( paramTemp[0] === 'ordering' ){
-            //     this.currentSortSlug = paramTemp[1];
-            //     console.log(this.currentSortSlug);
-            //             //   }
-            //             // }
-          });
-        }
+        // if (this.router.url.indexOf('&') < 0) {
+        //   const temp = this.router.url.substring(this.router.url.indexOf('&') + 1, this.router.url.length);
+        // }
 
 
         if (url.indexOf('/search') > -1) {
@@ -375,7 +302,9 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
         };
         this.currentPage = val.page === undefined ? 1 : parseInt(val.page, 10);
         this.currentCategoryCode = val.category;
-        this.currentSortSlug = val.ordering === undefined ? 'most_popular' : val.ordering;
+        this.currentSortElement = this.sortList.find( (item) => {
+          return item.value === (val.ordering === undefined ? 'most_popular' : val.ordering);
+        })
 
         this.brandListForCheck = {};
         this.valueListForCheck = {};
@@ -407,6 +336,7 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+
     this.contentHeight = (window.screen.height - 400) < 300 ? '' : (window.screen.height) + 'px';
     if ( this.isMobile ) {
       const url = this.router.url;
@@ -421,8 +351,7 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
     this.infiniteList = infiniteListVariables.infiniteList;
   }
   get filterList() {
-    console.log('!!!!!!! get filter list');
-    console.log(this.filters);
+
     let filterList = [];
 
     // 브랜드, 밸류, 출고지 필터들을 종류에 상관없이 1차원 배열로 나열한다.
@@ -628,7 +557,7 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
   }
 
   sortClicked(xSortSlug) {
-    this.currentSortSlug = xSortSlug;
+    this.currentSortElement = xSortSlug;
     // this.orderedFilterListForCheck[]
     if( this.searchState === 'search') {
       this.router.navigate(['/shops/search'], { queryParams: {page : 1, ordering: xSortSlug}, queryParamsHandling: 'merge'} );
@@ -731,7 +660,6 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
     if (currentParamList['ordering']) {
       delete currentParamList['ordering'];
     }
-    console.log(currentParamList);
     return currentParamList;
   }
 
@@ -752,16 +680,6 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
         const tempArray = temp.split('&');
         tempArray.forEach(item => {
           const paramTemp = item.split('=');
-          // const paramTemp = item.split('=');
-          // console.log(paramTemp);
-          // if ( paramTemp[0] !== 'ordering' && paramTemp[0] !== 'category'  ) {
-          //   this.orderedFilterList.push(paramTemp[1]);
-          // } else {
-          //   if ( paramTemp[0] === 'ordering' ){
-          //     this.currentSortSlug = paramTemp[1];
-          //     console.log(this.currentSortSlug);
-          //             //   }
-          //             // }
         });
       }
 
