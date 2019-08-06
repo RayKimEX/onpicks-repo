@@ -27,7 +27,7 @@ import {BreakpointObserver, BreakpointState} from '../../../../../node_modules/@
 import {Title} from '@angular/platform-browser';
 import {DISPLAY_ALERT_MESSAGE_MAP} from '../../../core/global-constant/app.locale';
 import {switchMap, tap} from 'rxjs/operators';
-import {SORT_LIST} from '../../../core/global-constant/item-component.locale';
+import {SORT_LIST} from '../../../core/global-constant/app.item-component.locale';
 
 @Component({
   selector: 'emitter-search-navigator',

@@ -41,7 +41,7 @@ import {DISPLAY_ALERT_MESSAGE_MAP, DISPLAY_ALERT_MESSAGE_MAP_CONST, MENU_MAP, ME
 import {STATE_LIST, STATE_LIST_CONST} from './core/global-constant/app.database';
 import {DISPLAY_ALERT_MESSAGE} from './core/store/ui/ui.actions';
 import {environment} from '../environments/environment';
-import {SORT_LIST, SORT_LIST_CONST} from './core/global-constant/item-component.locale';
+import {SORT_LIST, SORT_LIST_CONST} from './core/global-constant/app.item-component.locale';
 // export function getBaseHref(platformLocation: PlatformLocation): string {
 //   return platformLocation.getBaseHrefFromDOM();
 // }

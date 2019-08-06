@@ -243,7 +243,7 @@ export class DeliveryAddressComponent implements OnDestroy {
   }
 
 
-  validate(errorStatus, type) {
+  validate(errorStatus) {
 
     this.deliveryErrorStatus = 0;
     this.deliveryErrorStatus |= errorStatus;
