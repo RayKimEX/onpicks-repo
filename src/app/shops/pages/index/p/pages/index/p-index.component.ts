@@ -86,6 +86,8 @@ export class PIndexComponent implements OnInit, OnDestroy {
       }
       if (event instanceof NavigationEnd ) {
         this.store.dispatch(new TryGetProductInfo(this.route.snapshot.params.id));
+        this.pPictureReviews$ = this.pDataService.getPictureReviewsData(this.route.snapshot.params.id).pipe( tap( v => console.log(v)));
+        this.alsoViewed$ = this.uiService.getAlsoViewedGoods(this.route.snapshot.params.id);
       }
     });
     // 글로벌 하게 해야되서 reviews는 갖고옴, reviews component와, communicate-box
@@ -126,9 +128,10 @@ export class PIndexComponent implements OnInit, OnDestroy {
       .subscribe(val => {
         this.cartStore = val;
       });
-    this.pPictureReviews$ = this.pDataService.getPictureReviewsData(this.route.snapshot.params.id).pipe( tap( v => console.log(v)));
+    console.log(this.route)
+
     this.weeklyBest$ = this.uiService.getWeeklyBestGoods();
-    this.alsoViewed$ = this.uiService.getAlsoViewedGoods(this.route.snapshot.params.id);
+
   }
 
   @HostListener('window:scroll', ['$event']) private onScroll($event: Event): void {
