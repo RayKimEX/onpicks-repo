@@ -292,19 +292,7 @@
       *ngIf="(checkoutStore$ | async) as data; "
       #checkoutMenu
       [data]="data"
-      [inputOrderName]="inputOrderNameRef"
-      [inputOrderNumber]="inputOrderNumberRef"
-      [inputRecipientName]="deliveryComponent.inputRecipientNameRef"
-      [inputRecipientNumber]="deliveryComponent.inputRecipientNumberRef"
-      [inputJuso]="deliveryComponent.inputJusoRef"
-      [inputDetailJuso]="deliveryComponent.inputDetailJusoRef"
-      [inputZipnumber]="deliveryComponent.inputZipnumberRef"
-      [checkoutAdditionNumber]="checkoutAdditionNumberRef"
-      [isAgreementDirectBuyingInfo]="isAgreementDirectBuyingInfo"
-      [shippingMessage]="formData.shipping_message"
-      [payment_method]="formData.payment_method"
-      [errorStatus]="errorStatus"
-      (validateEmitter)="validate(deliveryComponent)">
+      (checkoutEmitter)="payment(form, deliveryComponent)">
     </onpicks-kr-checkout-menu>
 
   </div>
