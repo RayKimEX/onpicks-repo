@@ -28,8 +28,4 @@ import {CURRENCY} from './core/global-constant/app.config';
   ],
   bootstrap: [ AppComponent ],
 })
-export class AppServerModule {
-  constructor(@Inject(CURRENCY) private currency) {
-
-  }
-}
+export class AppServerModule { }

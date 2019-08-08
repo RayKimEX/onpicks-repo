@@ -63,7 +63,9 @@ app.get('*.*', express.static(join(DIST_FOLDER, 'onpicks')));
 
 // All regular routes use the Universal engine
 app.get('*', (req, res) => {
-  res.render(join(DIST_FOLDER, 'onpicks', 'index.html'), { req, res });
+  res.render(join(DIST_FOLDER, 'onpicks', 'index.html'),
+    { req, res }
+  );
 });
 
 // Start up the Node server

@@ -1,21 +1,21 @@
 import { InjectionToken } from '@angular/core';
 import {environment} from '../../../environments/environment';
 
-export const REGION_ID = new InjectionToken<any>('./core/global-constant/app.config');
+export const REGION_ID = new InjectionToken<any>('REGION_ID');
 
 
-export const IMAGE_HOST = new InjectionToken<any>('./core/global-constant/app.config');
-export const DOMAIN_HOST = new InjectionToken<any>('./core/global-constant/app.config');
-export const CURRENCY = new InjectionToken<any>('./core/global-constant/app.config');
+export const IMAGE_HOST = new InjectionToken<any>('IMAGE_HOST');
+export const DOMAIN_HOST = new InjectionToken<any>('DOMAIN_HOST');
+export const CURRENCY = new InjectionToken<any>('CURRENCY');
 
-export const BREAKPOINT =  new InjectionToken<any>('./core/global-constant/app.config');
+export const BREAKPOINT =  new InjectionToken<any>('BREAKPOINT');
 
 
-export const API_URL = new InjectionToken<any>('./core/global-constant/app.config');
-export const LOCATION_MAP = new InjectionToken<any>('./core/global-constant/app.config');
-export const RESPONSIVE_MAP = new InjectionToken<any>('./core/global-constant/app.config');
-export const STRIPE_API_KEY_TOKEN = new InjectionToken<any>('./core/global-constant/app.config');
-export const PAYPAL_API_KEY_TOKEN = new InjectionToken<any>('./core/global-constant/app.config');
+export const API_URL = new InjectionToken<any>('API_URL');
+export const LOCATION_MAP = new InjectionToken<any>('LOCATION_MAP');
+export const RESPONSIVE_MAP = new InjectionToken<any>('RESPONSIVE_MAP');
+export const STRIPE_API_KEY_TOKEN = new InjectionToken<any>('STRIPE_API_KEY_TOKEN');
+export const PAYPAL_API_KEY_TOKEN = new InjectionToken<any>('PAYPAL_API_KEY_TOKEN');
 
 export const PAYPAL_API_KEY = !environment.production ? 'AWt9c2qy20OweuAcv_qLKqmaDccTmGTbz6c3mnxRmtpAk-cwP3Q9RHIUTRHnHwrXpzB6_nppyWroVZSg' : 'AViPD7AOFOeDGPGs0hLzxTJ3aZTpZSVNfdtnJXX6xwSNVa-bQnwtpkLXbtaRlM8VJ2fA_yloZvHGX4Pq';
 
