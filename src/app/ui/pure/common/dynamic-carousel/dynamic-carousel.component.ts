@@ -9,9 +9,6 @@ import {
   ChangeDetectorRef,
   HostListener, AfterViewInit
 } from '@angular/core';
-import {fromEvent} from 'rxjs';
-import {map} from 'rxjs/operators';
-import 'hammerjs';
 
 
 @Component({

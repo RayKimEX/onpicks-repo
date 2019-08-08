@@ -22,7 +22,7 @@
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "outputPath": "dist/onpicks",
-            "index": "src/index.html",
+            "index": "src/index/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.app.json",
@@ -44,8 +44,8 @@
                   "with": "src/environments/environment.prod.ts"
                 },
                 {
-                  "replace": "src/index.html",
-                  "with": "src/index.prod-en.html"
+                  "replace": "src/index/index.html",
+                  "with": "src/index/index.prod-en.html"
                 }
               ],
               "optimization": true,
@@ -65,8 +65,8 @@
                   "with": "src/environments/environment.prod.ts"
                 },
                 {
-                  "replace": "src/index.html",
-                  "with": "src/index.prod-ko.html"
+                  "replace": "src/index/index.html",
+                  "with": "src/index/index.prod-ko.html"
                 }
               ],
               "optimization": true,
@@ -86,8 +86,8 @@
                   "with": "src/environments/environment.prod.ts"
                 },
                 {
-                  "replace": "src/index.html",
-                  "with": "src/index.staging-en.html"
+                  "replace": "src/index/index.html",
+                  "with": "src/index/index.staging-en.html"
                 }
               ],
               "optimization": true,
@@ -107,8 +107,8 @@
                   "with": "src/environments/environment.prod.ts"
                 },
                 {
-                  "replace": "src/index.html",
-                  "with": "src/index.staging-ko.html"
+                  "replace": "src/index/index.html",
+                  "with": "src/index/index.staging-ko.html"
                 }
               ],
               "optimization": true,
@@ -124,8 +124,8 @@
             "local-ko": {
               "fileReplacements": [
                 {
-                  "replace": "src/index.html",
-                  "with": "src/index.local-ko.html"
+                  "replace": "src/index/index.html",
+                  "with": "src/index/index.local-ko.html"
                 }
               ],
               "outputPath": "dist/ko/",
@@ -137,8 +137,8 @@
             "local-en": {
               "fileReplacements": [
                 {
-                  "replace": "src/index.html",
-                  "with": "src/index.local-en.html"
+                  "replace": "src/index/index.html",
+                  "with": "src/index/index.local-en.html"
                 }
               ],
               "outputPath": "dist/en/",
@@ -164,6 +164,14 @@
             "local-en": {
               "browserTarget": "onpicks:build:local-en"
             }
+          }
+        },
+        "server": {
+          "builder": "@angular-devkit/build-angular:server",
+          "options": {
+            "outputPath": "dist/server",
+            "main": "src/main.server.ts",
+            "tsConfig": "tsconfig.server.json"
           }
         },
         "extract-i18n": {

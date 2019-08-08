@@ -1,13 +1,15 @@
 import {
   Component,
-  OnInit,
   ChangeDetectionStrategy,
   ViewChildren,
   ViewChild,
   ElementRef,
   Renderer2,
   ChangeDetectorRef,
-  AfterViewInit, OnDestroy, Inject, LOCALE_ID, Input
+  OnDestroy,
+  Inject,
+  LOCALE_ID,
+  Input
 } from '@angular/core';
 
 import {

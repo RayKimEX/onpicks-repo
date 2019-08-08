@@ -9,9 +9,9 @@ export class CleanLoadDirective implements AfterViewInit, OnDestroy {
   imgLoad$;
   imgTransition$;
 
-  constructor(private el: ElementRef, private renderer: Renderer2) {
-
-  }
+  constructor(
+    private el: ElementRef, private renderer: Renderer2
+  ) { }
 
   ngOnDestroy() {
     this.imgLoad$.unsubscribe();
