@@ -34,12 +34,14 @@ global['document'] = win.document;
 // * NOTE :: leave this as require() since this file is built Dynamically from webpack
 const { AppServerModuleNgFactory, LAZY_MODULE_MAP } = require('./dist/server/main');
 
+
 // Express Engine
 import { ngExpressEngine } from '@nguniversal/express-engine';
 // Import module map for lazy loading
 import { provideModuleMap } from '@nguniversal/module-map-ngfactory-loader';
 
-
+console.log(AppServerModuleNgFactory);
+console.log(LAZY_MODULE_MAP);
 
 app.engine('html', ngExpressEngine({
   bootstrap: AppServerModuleNgFactory,
@@ -61,7 +63,7 @@ app.get('*.*', express.static(join(DIST_FOLDER, 'onpicks')));
 
 // All regular routes use the Universal engine
 app.get('*', (req, res) => {
-  res.render('index', { req });
+  res.render(join(DIST_FOLDER, 'onpicks', 'index.html'), { req, res });
 });
 
 // Start up the Node server

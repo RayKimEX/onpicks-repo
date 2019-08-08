@@ -1,4 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser';
+import {BrowserModule, BrowserTransferStateModule} from '@angular/platform-browser';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 
 import {isDevMode, LOCALE_ID, NgModule} from '@angular/core';
@@ -44,88 +44,7 @@ import {SORT_LIST, SORT_LIST_CONST} from './core/global-constant/item-component.
 // export function getBaseHref(platformLocation: PlatformLocation): string {
 //   return platformLocation.getBaseHrefFromDOM();
 // }
-function getCookie(cname) {
-  const name = cname + '=';
-  const decodedCookie = decodeURIComponent(document.cookie);
-  const ca = decodedCookie.split(';');
-  for ( let i = 0; i < ca.length; i++) {
-    let c = ca[i];
-    while (c.charAt(0) === ' ') {
-      c = c.substring(1);
-    }
-    if (c.indexOf(name) === 0) {
-      return c.substring(name.length, c.length);
-    }
-  }
-  return '';
-}
 
-
-function setCookie(cname, cvalue ) {
-  // const d = new Date();
-  // d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
-  // const expires = 'expires=' + d.toUTCString();
-  if ( !environment.production ) {
-    document.cookie = cname + '=' + cvalue + ';path=/';
-  } else {
-    document.cookie = cname + '=' + cvalue + ';domain=.onpicks.com;path=/';
-  }
-  return 'KRW';
-}
-
-export function getImageHost() {
-  if ( window.location.origin === 'http://localhost' ) {
-    return 'http://img.staging.onpicks.com.s3.amazonaws.com';
-  }
-
-  if ( window.location.origin === 'https://staging.onpicks.com' ) {
-    return 'http://img.staging.onpicks.com.s3.amazonaws.com';
-  }
-
-  return 'https://img.onpicks.com';
-}
-
-export function getCurrency() {
-  if (getCookie('onpicks-currency') === '') {
-    switch (window.location.pathname.split('/')[1]) {
-      case 'kr' :
-        setCookie( 'onpicks-language', 'ko' );
-        setCookie( 'onpicks-currency', 'KRW' );
-        break;
-      case 'us' :
-        setCookie( 'onpicks-language', 'en' );
-        setCookie( 'onpicks-currency', 'USD' );
-        break;
-      case 'cn' :
-        setCookie( 'onpicks-language', 'zh' );
-        setCookie( 'onpicks-currency', 'CNY' );
-        break;
-      default :
-        setCookie( 'onpicks-currency', '???' );
-        break;
-    }
-  } else {
-    switch (window.location.pathname.split('/')[1]) {
-      case 'kr' :
-        setCookie( 'onpicks-language', 'ko');
-        // setCookie( 'onpicks-currency', 'KRW');
-        break;
-      case 'us' :
-        setCookie( 'onpicks-language', 'en');
-        // setCookie( 'onpicks-currency', 'USD');
-        break;
-      case 'cn' :
-        setCookie( 'onpicks-language', 'zh');
-        // setCookie( 'onpicks-currency', 'CNY');
-        break;
-      default :
-        setCookie( 'onpicks-currency', '???');
-        break;
-    }
-  }
-
-  return new BehaviorSubject(getCookie('onpicks-currency'));
-}
 
 
 @NgModule({
@@ -135,7 +54,10 @@ export function getCurrency() {
     HeaderComponent,
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({
+      appId: 'my-app-id',
+    }),
+    BrowserTransferStateModule, // <--- Added
     BrowserAnimationsModule,
     LayoutModule,
     HttpClientModule,
@@ -190,15 +112,6 @@ export function getCurrency() {
       // https://localhost
       provide: DOMAIN_HOST,
       useValue : window.location.origin
-    },
-    {
-      provide: IMAGE_HOST,
-      useFactory : getImageHost
-    },
-    {
-      provide: CURRENCY,
-      useFactory : getCurrency,
-      // useValue : new BehaviorSubject(getCookie('onpicks-currency')),
     },
     {
       provide : DISPLAY_ALERT_MESSAGE_MAP,
