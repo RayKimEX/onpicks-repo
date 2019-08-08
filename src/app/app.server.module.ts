@@ -11,12 +11,12 @@ import {CURRENCY} from './core/global-constant/app.config';
 
 @NgModule({
   imports: [
+    AppModule,
+    ServerModule,
+    ModuleMapLoaderModule,
     BrowserModule.withServerTransition({
       appId: 'my-app-id',
     }),
-    AppModule,
-    ServerModule,
-    ModuleMapLoaderModule
   ],
   providers: [
     // Add universal-only providers here

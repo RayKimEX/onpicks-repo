@@ -46,6 +46,75 @@ import {SORT_LIST, SORT_LIST_CONST} from './core/global-constant/item-component.
 // }
 
 
+function getCookie(cname) {
+  const name = cname + '=';
+  const decodedCookie = decodeURIComponent(window.document.cookie);
+  const ca = decodedCookie.split(';');
+  for ( let i = 0; i < ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) === ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) === 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return '';
+}
+
+
+function setCookie(cname, cvalue ) {
+  // const d = new Date();
+  // d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+  // const expires = 'expires=' + d.toUTCString();
+  if ( !environment.production ) {
+    window.document.cookie = cname + '=' + cvalue + ';path=/';
+  } else {
+    window.document.cookie = cname + '=' + cvalue + ';domain=.onpicks.com;path=/';
+  }
+  return 'KRW';
+}
+export function getCurrency() {
+  if (getCookie('onpicks-currency') === '') {
+    switch (window.location.pathname.split('/')[1]) {
+      case 'kr' :
+        setCookie( 'onpicks-language', 'ko' );
+        setCookie( 'onpicks-currency', 'KRW' );
+        break;
+      case 'us' :
+        setCookie( 'onpicks-language', 'en' );
+        setCookie( 'onpicks-currency', 'USD' );
+        break;
+      case 'cn' :
+        setCookie( 'onpicks-language', 'zh' );
+        setCookie( 'onpicks-currency', 'CNY' );
+        break;
+      default :
+        setCookie( 'onpicks-currency', '???' );
+        break;
+    }
+  } else {
+    switch (window.location.pathname.split('/')[1]) {
+      case 'kr' :
+        setCookie( 'onpicks-language', 'ko');
+        // setCookie( 'onpicks-currency', 'KRW');
+        break;
+      case 'us' :
+        setCookie( 'onpicks-language', 'en');
+        // setCookie( 'onpicks-currency', 'USD');
+        break;
+      case 'cn' :
+        setCookie( 'onpicks-language', 'zh');
+        // setCookie( 'onpicks-currency', 'CNY');
+        break;
+      default :
+        setCookie( 'onpicks-currency', '???');
+        break;
+    }
+  }
+
+  return new BehaviorSubject(getCookie('onpicks-currency'));
+}
 
 @NgModule({
   declarations: [
@@ -112,6 +181,11 @@ import {SORT_LIST, SORT_LIST_CONST} from './core/global-constant/item-component.
       // https://localhost
       provide: DOMAIN_HOST,
       useValue : window.location.origin
+    },
+    {
+      provide: CURRENCY,
+      useFactory : getCurrency,
+      // useValue : new BehaviorSubject(getCookie('onpicks-currency')),
     },
     {
       provide : DISPLAY_ALERT_MESSAGE_MAP,
