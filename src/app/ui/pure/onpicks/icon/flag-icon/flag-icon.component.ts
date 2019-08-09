@@ -1,4 +1,9 @@
-import {Component, OnInit, ChangeDetectionStrategy, Inject, Input} from '@angular/core';
+import {
+  Component,
+  ChangeDetectionStrategy,
+  Inject,
+  Input
+} from '@angular/core';
 import {LOCATION_MAP} from '../../../../../core/global-constant/app.config';
 
 @Component({
@@ -7,15 +12,10 @@ import {LOCATION_MAP} from '../../../../../core/global-constant/app.config';
   styleUrls: ['./flag-icon.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class FlagIconComponent implements OnInit {
+export class FlagIconComponent {
   @Input() _data: any;
 
   constructor(
-    @Inject( LOCATION_MAP ) public locationMap: any,
-
+    @Inject( LOCATION_MAP ) public locationMap: any
   ) { }
-
-  ngOnInit() {
-  }
-
 }

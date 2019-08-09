@@ -10,16 +10,16 @@ import {
   Output,
   Renderer2
 } from '@angular/core';
-import {Store} from '@ngrx/store';
-import {UiService} from '../../../core/service/ui/ui.service';
-import {HttpClient} from '@angular/common/http';
+import { Store } from '@ngrx/store';
+import { UiService } from '../../../core/service/ui/ui.service';
+import { HttpClient } from '@angular/common/http';
 import { CURRENCY, RESPONSIVE_MAP } from '../../../core/global-constant/app.config';
-import {BehaviorSubject} from 'rxjs';
-import {BreakpointObserver, BreakpointState} from '../../../../../node_modules/@angular/cdk/layout';
-import {ShowCurrencyModal, ShowRegionModal} from '../../../core/store/modal/modal.actions';
-import {PREFERENCE_MAP} from '../../../core/global-constant/app.locale';
-import {environment} from '../../../../environments/environment';
-import {AddClassOpenModal, RemoveClassOpenModal} from '../../../core/store/ui/ui.actions';
+import { BehaviorSubject } from 'rxjs';
+import { BreakpointObserver, BreakpointState } from '../../../../../node_modules/@angular/cdk/layout';
+import { ShowCurrencyModal, ShowRegionModal } from '../../../core/store/modal/modal.actions';
+import { PREFERENCE_MAP } from '../../../core/global-constant/app.locale';
+import { AddClassOpenModal } from '../../../core/store/ui/ui.actions';
+import { setCookie } from '../../../app.module';
 
 @Component({
   selector: 'emitter-change-preference',
@@ -27,7 +27,6 @@ import {AddClassOpenModal, RemoveClassOpenModal} from '../../../core/store/ui/ui
   styleUrls: ['./change-preference.component.scss'],
   changeDetection : ChangeDetectionStrategy.OnPush,
 })
-
 export class ChangePreferenceComponent implements OnInit {
   @Input('type') type;
   @Input('color') color;
@@ -35,7 +34,6 @@ export class ChangePreferenceComponent implements OnInit {
   @Output('showEvent') showEvent = new EventEmitter();
 
   isShowModal = false;
-
   isDesktopBreakPoint = false;
 
   constructor(
@@ -52,10 +50,6 @@ export class ChangePreferenceComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.currency.subscribe( value => {
-      console.log(value);
-    });
-
     this.breakpointObserver
       .observe([this.responsiveMap['desktop']])
       .subscribe((state: BreakpointState) => {
@@ -95,7 +89,6 @@ export class ChangePreferenceComponent implements OnInit {
         break;
 
       case 'locale' :
-        console.log(xPreferenceCode);
         setCookie('onpicks-language', xPreferenceCode);
 
         if ( this.currency.getValue() !== xPreferenceCode ) {
@@ -104,19 +97,15 @@ export class ChangePreferenceComponent implements OnInit {
           this.isShowModal = false;
         }
         break;
-
     }
-
   }
 
   nonCompareFunction( a, b ) {
     return 0;
   }
 
-
   showModal() {
     if ( this.isDesktopBreakPoint ) {
-
       switch (this.type) {
         case 'region' :
           this.store.dispatch(new AddClassOpenModal());
@@ -130,25 +119,9 @@ export class ChangePreferenceComponent implements OnInit {
 
         case 'locale' :
       }
-
     } else {
       this.isShowModal = !this.isShowModal;
     }
     this.showEvent.emit();
   }
-}
-
-
-
-function setCookie(cname, cvalue ) {
-  // const d = new Date();
-  // d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
-  // const expires = 'expires=' + d.toUTCString();
-  if (!environment.production) {
-    document.cookie = cname + '=' + cvalue + ';path=/';
-  } else {
-    document.cookie = cname + '=' + cvalue + ';domain=.onpicks.com;path=/';
-  }
-
-  return 'KRW';
 }

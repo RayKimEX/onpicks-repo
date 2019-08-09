@@ -11,8 +11,7 @@
   <div
     *ngIf="!(bannerInfo.title?.length === 0 && bannerInfo.description?.length === 0)"
     class="banner__text row"
-    [ngStyle]="{ marginLeft : bannerInfo.marginLeftForText }"
-  >
+    [ngStyle]="{ marginLeft : bannerInfo.marginLeftForText }">
     <div
       class="banner__text-title-outer">
       <div
@@ -23,10 +22,10 @@
       </div>
     </div>
 
-    <div *ngFor="let description of bannerInfo.description[locale]"
-         class="banner__text-description"
-         [ngClass]="bannerInfo.descriptionFontType"
-    >
+    <div
+      *ngFor="let description of bannerInfo.description[locale]"
+      class="banner__text-description"
+      [ngClass]="bannerInfo.descriptionFontType">
       {{description}}
     </div>
   </div>

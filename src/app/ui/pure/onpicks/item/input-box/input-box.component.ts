@@ -6,7 +6,7 @@ import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output}
   styleUrls: ['./input-box.component.scss'],
   changeDetection : ChangeDetectionStrategy.OnPush,
 })
-export class InputBoxComponent implements OnInit {
+export class InputBoxComponent {
   @Input('placeholder') placeholder;
   @Input('width') width;
   @Input('marginRight') marginRight;
@@ -20,8 +20,4 @@ export class InputBoxComponent implements OnInit {
   constructor() {
     this.value = '';
   }
-
-  ngOnInit() {
-  }
-
 }

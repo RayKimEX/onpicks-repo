@@ -36,7 +36,6 @@
     right:0
   }
 
-
   ui-plus-minus-icon:nth-child(2) {
     display:inline-block;
     @include absCenter;
@@ -50,8 +49,8 @@
   .extendUI {
     display:none;
     width:100%;
-
     vertical-align: middle;
+
     ui-plus-minus-icon:nth-child(1) {
       display:inline-block;
       position: absolute;

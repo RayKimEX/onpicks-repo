@@ -100,8 +100,6 @@ onpicks-modal {
   }
 }
 
-
-
 .onpicks-padding {
   padding : 0 2.4rem;
   @include respond(fb){
@@ -117,13 +115,9 @@ router-outlet {
 
   @include respond(desktop){
     padding-top : 6rem;
-    // padding-top : 6.7rem;
-    // padding-top : 9.9rem;
     display:block;
   }
 }
-
-
 
 onpicks-free-delivery-notibox {
   z-index:9999;

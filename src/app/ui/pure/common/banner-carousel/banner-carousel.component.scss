@@ -7,13 +7,10 @@
 }
 
 .banner-carousel {
-
   top: 0;
   margin-top: 0;
   height:inherit;
   padding-top: 0;
-
-
 
   onpicks-circle-n-button {
     transition : opacity .3s ease 0s;
@@ -30,17 +27,15 @@
     position:relative;
 
     &--text {
-
       z-index : 1;
-
-      @include respond(fb){
-        margin: 0 2.4rem;
-      }
-
       position: inherit;
       top: 50%;
       -webkit-transform: translateY(-50%);
       transform: translateY(-50%);
+
+      @include respond(fb){
+        margin: 0 2.4rem;
+      }
 
       &-title-outer {
         margin-bottom : 1.6rem;
@@ -48,6 +43,7 @@
           display:none;
         }
       }
+
       &-description {
         @include respond(tb){
           display:none;
@@ -67,8 +63,6 @@
         height:inherit;
         object-fit : cover;
         object-position: center;
-
-
       }
 
       svg {
@@ -84,7 +78,6 @@
   }
 
   &__content {
-    // position:absolute;
     width:100%;
     height:inherit;
     position:absolute;
@@ -105,7 +98,6 @@
       position:relative;
     }
     .circle-navigate{
-
       position : relative;
       bottom : 50px;
 
@@ -121,7 +113,6 @@
         @include horizontalCenter;
         display:inline-block;
 
-
         span{
           z-index:100;
           width : 8px;
@@ -133,7 +124,6 @@
           display : inline-block;
 
           &:not(:last-child){
-
             margin-right: 0.8rem;
           }
         }

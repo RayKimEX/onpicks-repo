@@ -13,8 +13,6 @@ import {
 } from '@angular/core';
 import {BreakpointObserver, BreakpointState} from '../../../../../../node_modules/@angular/cdk/layout';
 import {RESPONSIVE_MAP} from '../../../../core/global-constant/app.config';
-import {ActivatedRoute, Router} from '@angular/router';
-import {fromEvent} from 'rxjs';
 
 @Component({
   selector: 'ui-banner-carousel',
@@ -39,7 +37,6 @@ export class BannerCarouselComponent implements OnInit, AfterViewInit, OnDestroy
   myInterval;
   scrollBarWidth;
   isMobile = false;
-
 
   // TODO : 화면이 넘어갔을때, 이미지를 안나오게 해서, resource 최적화
 
@@ -111,16 +108,12 @@ export class BannerCarouselComponent implements OnInit, AfterViewInit, OnDestroy
   }
 
   @HostListener('window:resize', ['$event'])
-  hello(event) {
-    // const temp = this.capturedTranslateX - ((this.capturedBrowserWidth - (window.innerWidth - this.scrollBarWidth) ) * ( this.imageIndex ))
-
-    // const temp = this.capturedTranslateX + this.capturedBrowserWidth;
+  onResize(event) {
     this.renderer.setStyle(this.container.nativeElement, 'transition', 'x');
     this.renderer.setStyle(this.container.nativeElement, 'transform', 'translateX(-' + ( (window.innerWidth - this.scrollBarWidth) * this.imageIndex )  + 'px)');
   }
 
   ngAfterViewInit() {
-
     this.renderer.setStyle(this.container.nativeElement, 'height', this.height + 'rem' );
     this.renderer.setStyle(this.container.nativeElement, 'transition', 'x');
     this.renderer.setStyle(this.container.nativeElement, 'transform', 'translateX(-' + ( (window.innerWidth - this.scrollBarWidth) * this.imageIndex ) + 'px)');
@@ -131,7 +124,6 @@ export class BannerCarouselComponent implements OnInit, AfterViewInit, OnDestroy
   }
 
   nextButton() {
-
     clearInterval( this.myInterval );
     this.myInterval = setInterval( () => this.moveNext(), 5000);
     if ( this.imageIndex === this.imagesLargeList.length - 2) {

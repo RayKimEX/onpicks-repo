@@ -1,6 +1,13 @@
 
 <div class="plus-minus-icon">
-  <span [ngStyle]="{ 'width' : size, 'borderColor': borderColor, 'opacity' : opacity}" class="plus-minus-icon__horizontal-line"></span>
-  <span [ngStyle]="{ 'height' : size, 'borderColor': borderColor, 'opacity' : opacity }" *ngIf="type === 'plus'" class="plus-minus-icon__vertical-line"></span>
+  <span
+    class="plus-minus-icon__horizontal-line"
+    [ngStyle]="{ 'width' : size, 'borderColor': borderColor, 'opacity' : opacity}">
+  </span>
+  <span
+    *ngIf="type === 'plus'"
+    class="plus-minus-icon__vertical-line"
+    [ngStyle]="{ 'height' : size, 'borderColor': borderColor, 'opacity' : opacity }">
+  </span>
 </div>
 

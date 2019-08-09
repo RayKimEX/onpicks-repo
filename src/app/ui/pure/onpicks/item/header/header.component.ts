@@ -38,7 +38,7 @@ import {normalize, schema} from 'normalizr';
   changeDetection : ChangeDetectionStrategy.OnPush
 })
 
-export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
+export class HeaderComponent implements OnInit, OnDestroy {
   @ViewChild('menu') menuRef;
   @ViewChild('shops') shopsRef;
   @ViewChild('form') form;
@@ -50,7 +50,6 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('mobileIconOuter') mobileIconOuter;
   @ViewChild('mobileHamburger') mobileHamburger;
 
-
   tempDiv;
   cart;
 
@@ -61,7 +60,6 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
   uiStore$;
   uiCategoryStore$;
   uiActiveUrl$;
-
 
   /** mobileCategoryFilterZone**/
   categoryList;
@@ -76,12 +74,6 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
   /*****************************/
   isOpenCategoryNavigator = false;
   normalizedCategory;
-  // categoryDepth = {
-  //   1 : {
-  //     code : 1000000
-  //   }
-  // };
-
   categoryNavigatedInfo = [
     {
       depth : 0,
@@ -94,20 +86,14 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
   /*****************************/
 
   scrollForAlert$ = null;
-
-
-  clearSetTimeout;
   // TODO: 이부분에 대해서 이방식이 맞는지? ngrx로 하려면, 한번더 update를 쳐야 되서 이방식이 아닌거같음 ->
   clearSetTimeoutForAlert;
-
-  firstLoadPreventCount = 0;
 
   /**mobileZone**/
   mobileAlertTop = '11rem';
   isShowSettingMenu = false;
 
   activeUrl;
-
   cartLength = 0;
 
   constructor(
@@ -129,7 +115,6 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
     private cd: ChangeDetectorRef,
   ) {
     this.normalizedCategory = this.normalizer(this.categoryMap);
-    console.log(this.normalizedCategory);
 
     this.breakpointObserver
       .observe([this.ResponsiveMap['desktop']])
@@ -147,11 +132,6 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
         this.currentUrl = val;
 
         if ( this.currentUrl.length === 0 || this.currentUrl.length <= 3 || this.currentUrl[2] === 'p' ) { return; }
-        console.log( this.currentUrl);
-        console.log( this.categoryCodeMap);
-        console.log( this.categoryCodeMap[this.currentUrl[3]]);
-        console.log( this.currentUrl[3]);
-        console.log( this.categoryNavigatedInfo[0].slug);
         if ( this.currentUrl[3] !== this.categoryNavigatedInfo[0].slug ) {
           this.categoryNavigatedInfo.length = 0;
           this.categoryNavigateCurrentDepth = 1;
@@ -161,13 +141,10 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
             slug : this.currentUrl[3]
           });
         }
-
-        console.log(this.currentUrl);
       });
 
     this.uiCategoryStore$ = this.store.pipe(select(state => state.ui.currentCategoryList))
       .subscribe(val => {
-        console.log(location.href.split('/'));
         // this.categoryList = val;
         this.categoryList = val.entities;
         this.result = val.result;
@@ -232,7 +209,6 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
       shareReplay(1)
     );
 
-    // [ngStyle]="{ display : cartData.isViewCart ? 'block' : 'none'}"
     this.cart$ = this.store.pipe(
       select(state => state.cart)
     ).subscribe( v => {
@@ -250,6 +226,11 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
 
   }
 
+
+  ngOnInit() {
+    this.tempDiv = this.renderer.createElement('div');
+  }
+
   ngOnDestroy() {
     this.uiActiveUrl$.unsubscribe();
     this.cart$.unsubscribe();
@@ -257,17 +238,8 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
 
   search(searchTerms) {
     if (searchTerms === '') { return; };
-
     // jet에서도 uri encode를 하지 않아서 했다가 다시 지움. 20181210 - ray
     this.router.navigate(   ['/shops/search'], { relativeTo: this.route, queryParams: { term : searchTerms, ordering : 'most_popular', page : 1 } } );
-  }
-
-  ngOnInit() {
-    this.tempDiv = this.renderer.createElement('div');
-  }
-
-
-  ngAfterViewInit() {
   }
 
   outMenu(xMenuToggle) {
@@ -284,7 +256,6 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   showMenuForMobile( xInputChecked ) {
-    console.log(xInputChecked.checked);
     if ( xInputChecked.checked ) {
       this.store.dispatch(new RemoveClassOpenModal());
     } else {
@@ -293,8 +264,7 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   routeForMobile(xUrl, xInputChecked) {
-
-    if(xInputChecked.checked){
+    if ( xInputChecked.checked ) {
       this.store.dispatch(new RemoveClassOpenModal());
       this.renderer.setStyle(this.mobileHamburger.nativeElement, 'display', 'none');
       this.renderer.setProperty(xInputChecked, 'checked', false);
@@ -303,7 +273,6 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
       this.renderer.setStyle(this.mobileHamburger.nativeElement, 'display', 'block');
       this.renderer.setProperty(xInputChecked, 'checked', true);
     }
-
     // search-engine crawling을 위해 아래와 같은 기능을 뺌
     this.router.navigate([xUrl]);
   }
@@ -371,7 +340,6 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
       return;
     }
 
-    // console.log(this.categoryNavigatedInfo.length);
     this.categoryNavigateCurrentDepth++;
     if ( this.categoryNavigatedInfo.length >= 3) {
       this.categoryNavigatedInfo[this.categoryNavigateCurrentDepth - 1] = {
@@ -399,11 +367,8 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   navigateAllCategory(xSlug, xCanNavigate = true) {
-    // currentUrl[2]가 c일때만 보이므로 3일때는 1depth슬러그를 무조건 불러옴
-    console.log(xCanNavigate);
 
-    // secondCategorySelected
-    if ( xCanNavigate ){
+    if ( xCanNavigate ) {
       if ( this.categoryNavigateCurrentDepth === 2 ) {
           this.router.navigate(['/shops/c/' + this.currentUrl[3] + '/' + xSlug ],
           {relativeTo: this.route});
@@ -428,8 +393,6 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
       }
     } else {
       if ( this.categoryNavigateCurrentDepth === 2 ) {
-        console.log(this.categoryNavigatedInfo[this.categoryNavigateCurrentDepth - 1].slug)
-        console.log(this.categoryNavigatedInfo[this.categoryNavigateCurrentDepth - 2].slug)
         this.router.navigate(
           ['/shops/c/' + this.currentUrl[3] + '/' +
           this.categoryNavigatedInfo[this.categoryNavigateCurrentDepth - 1].slug + '/' +
@@ -451,12 +414,8 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   normalizer ( data ) {
-    const slug = new schema.Entity('slug', {
-
-    });
 
     const fourthCategory = new schema.Entity('4', {
-
     }, { idAttribute: 'code' });
 
     const thirdCategory = new schema.Entity('3', {
@@ -474,10 +433,6 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
     }, { idAttribute: 'code' });
 
     const object = new schema.Array(firstCategory);
-
-    console.log('%%%%%%%%%%%%%%');
-    console.log(object);
-    console.log(data);
     return normalize(data, object);
   }
 }

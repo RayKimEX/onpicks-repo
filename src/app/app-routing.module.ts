@@ -1,15 +1,6 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import {RouterModule, Routes} from '@angular/router';
-import {ShopsModule} from './shops/shops.module';
-//
-// import { ShowcasesModule } from './showcases/showcases.module';
-// import { APP_BASE_HREF } from '@angular/common';
-// import { TermsModule } from './terms/terms.module';
-// import { HelpModule } from './help/help.module';
-// import {OrderModule} from './order/order.module';
-// import {MemberModule} from './member/member.module';
-// import {AccountModule} from './account/account.module';
+
 const appRoutes: Routes = [
   {
     path : '',
@@ -40,9 +31,6 @@ const appRoutes: Routes = [
     path: 'terms',
     loadChildren : './terms/terms.module#TermsModule',
   }
-
-  // { path: 'recipes', loadChildren: './recipes/recipes.module#RecipesModule'},
-  // { path: 'shopping-list', component: ShoppingListComponent }
 ];
 
 @NgModule({
@@ -57,15 +45,3 @@ const appRoutes: Routes = [
   exports: [ RouterModule ]
 })
 export class AppRoutingModule { }
-
-
-
-// @NgModule({
-//   imports: [
-//     RouterModule.forRoot(appRoutes, {preloadingStrategy: PreloadAllModules})
-//   ],
-//   exports: [RouterModule]
-// })
-// export class AppRoutingModule {
-//
-// }

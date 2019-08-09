@@ -1,21 +1,16 @@
-import {AfterViewInit, Component, Input, OnInit} from '@angular/core';
+import {
+  Component,
+  Input
+} from '@angular/core';
 
 @Component({
   selector: 'onpicks-numeric-button',
   templateUrl: './numeric-button.component.html',
   styleUrls: ['./numeric-button.component.scss']
 })
-export class NumericButtonComponent implements OnInit, AfterViewInit {
+export class NumericButtonComponent {
   @Input('type') type;
   @Input('active') active;
 
   constructor() { }
-
-  ngOnInit() {
-
-  }
-
-  ngAfterViewInit() {
-
-  }
 }

@@ -30,7 +30,6 @@
         bottom:0;
         border : none;
         height: 1px;
-        //color: $color-white; // for old IE
         background-color : $color-white;
       }
     }
@@ -50,16 +49,13 @@
       }
       span:not(:last-of-type) {
         margin-right: 3.2rem;
-
       }
-
     }
     &--nav {
 
       @include verticalCenter;
       display:inline-block;
       ul {
-
         li {
           a{
             color : $color-white;
@@ -72,8 +68,6 @@
         }
       }
     }
-
-
 
     &--inicis {
       display:inline-block;
@@ -98,8 +92,6 @@
       &--copyright-text {
         display: block;
       }
-      //@include verticalCenter;
-      //display: inline-block;
     }
   }
 
@@ -146,8 +138,6 @@
       height : 4.8rem;
       display:table;
 
-      
-
       &--outer {
         display:table-cell;
         position:relative;
@@ -165,6 +155,7 @@
               height : 100%;
             }
           }
+
           &--escrow {
             float:right;
             width:3rem;
@@ -175,7 +166,6 @@
               height : 100%;
             }
           }
-
         }
 
         &--inner {
@@ -230,7 +220,6 @@
         padding-bottom : 1.6rem;
       }
     }
-
   }
 
   &__miscell {
@@ -239,26 +228,23 @@
     right: 0;
     top: 0;
 
-
     &--partner-ship {
       display: inline-block;
     }
+
     &--share {
       margin-left : 5.6rem;
       vertical-align: top;
       display:inline-block;
     }
-    //margin-top: 2.4rem;
-    //position: absolute;
+
     @include respond(fb){
       @include verticalCenter;
       margin-top: 0;
     }
+
     &--instargram {
       margin-right: 1.6rem;
-    }
-
-    &--facebook {
     }
   }
 }

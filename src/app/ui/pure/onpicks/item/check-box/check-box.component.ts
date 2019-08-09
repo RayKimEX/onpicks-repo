@@ -4,7 +4,6 @@ import {
   Component,
   EventEmitter,
   Input,
-  OnInit,
   Output,
   ViewChild
 } from '@angular/core';
@@ -43,12 +42,10 @@ export class CheckBoxComponent implements AfterViewInit {
   }
 
   handleChangeForRadio(evt) {
-    console.log(this.value);
     this.boxEvent.emit(this.value);
   }
 
   handleChangeForCheckbox(ref) {
-    // ref.checked = !ref.checked;
     this.boxEvent.emit(this.value);
     this.isChecked = !this.isChecked;
   }

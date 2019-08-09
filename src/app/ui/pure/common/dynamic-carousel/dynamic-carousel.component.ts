@@ -1,6 +1,5 @@
 import {
   Component,
-  OnInit,
   ChangeDetectionStrategy,
   ViewChildren,
   ViewChild,
@@ -9,8 +8,6 @@ import {
   ChangeDetectorRef,
   HostListener, AfterViewInit
 } from '@angular/core';
-import {fromEvent} from 'rxjs';
-import {map} from 'rxjs/operators';
 import 'hammerjs';
 
 
@@ -27,8 +24,7 @@ export class DynamicCarouselComponent implements AfterViewInit {
   @Input() width;
   @Input() height;
   @Input('imagesLargeList') set _imagesLargeList (xImagesLargeList){
-
-    if(xImagesLargeList === null ) { return };
+    if ( xImagesLargeList === null ) { return; }
     this.imagesLargeList = xImagesLargeList;
     this.imagesLargeList.splice(0, 0, this.imagesLargeList.slice(this.imagesLargeList.length - 1, this.imagesLargeList.length)[0]);
     this.imagesLargeList.push(this.imagesLargeList.slice(1, 2)[0]);
@@ -40,21 +36,15 @@ export class DynamicCarouselComponent implements AfterViewInit {
   }
 
   // TODO : 모든 subscription에 대해서 unsubscribe확실하게 정리하기
-
   imageIndex = 1;
-  // 456(width) + 16 ( margin )
-
   imagesLargeList = null;
   imagesSmallList = null;
-
   translateXWidth;
 
   constructor(
     private renderer: Renderer2,
     private cd: ChangeDetectorRef
-  ) {
-
-  }
+  ) { }
 
   ngAfterViewInit() {
     const computedStyle = getComputedStyle(( this.imageLargeOuter.first.nativeElement ), null);
@@ -67,7 +57,6 @@ export class DynamicCarouselComponent implements AfterViewInit {
   onResize(event) {
     const computedStyle = getComputedStyle(( this.imageLargeOuter.first.nativeElement ), null);
     this.translateXWidth =  parseInt(computedStyle.width, 10 );
-
     this.renderer.setStyle(this.container.nativeElement, 'transition', 'x');
     this.renderer.setStyle(this.container.nativeElement, 'transform', 'translateX(-' + this.translateXWidth  + 'px)');
   }
@@ -79,9 +68,6 @@ export class DynamicCarouselComponent implements AfterViewInit {
   }
 
   prevButton() {
-    // 사라지는 조건  this.imageIndex == 0
-    // clearInterval( this.myInterval );
-    // this.myInterval = setInterval( () => this.moveNext(), 4000);
     if ( this.imageIndex === 1 ) {
       this.imageIndex = this.imagesLargeList.length - 1;
       this.renderer.setStyle(this.container.nativeElement, 'transition', 'x');
@@ -92,13 +78,11 @@ export class DynamicCarouselComponent implements AfterViewInit {
         this.renderer.setStyle(this.container.nativeElement, 'transition', 'transform .5s ease 0s');
         this.renderer.setStyle(this.container.nativeElement, 'transform', 'translateX(-' + ( this.translateXWidth * this.imageIndex ) + 'px)');
         this.cd.markForCheck();
-        console.log(this.imageIndex);
       }, 20);
     } else {
       this.imageIndex--;
       this.renderer.setStyle(this.container.nativeElement, 'transition', 'transform .5s ease 0s');
       this.renderer.setStyle(this.container.nativeElement, 'transform', 'translateX(-' + ( this.translateXWidth * this.imageIndex ) + 'px)');
-      console.log(this.imageIndex);
     }
   }
 
@@ -112,41 +96,19 @@ export class DynamicCarouselComponent implements AfterViewInit {
         this.renderer.setStyle(this.container.nativeElement, 'transition', 'transform .5s ease 0s');
         this.renderer.setStyle(this.container.nativeElement, 'transform', 'translateX(-' + (this.translateXWidth * this.imageIndex ) + 'px)');
         this.cd.markForCheck();
-        console.log(this.imageIndex);
       }, 20);
     } else {
       this.imageIndex++;
       this.renderer.setStyle(this.container.nativeElement, 'transition', 'transform .5s ease 0s');
       this.renderer.setStyle(this.container.nativeElement, 'transform', 'translateX(-' + (this.translateXWidth * this.imageIndex ) + 'px)');
-      console.log(this.imageIndex);
-
     }
   }
   swipe(action) {
-    console.log(action);
     if (action === 'swiperight') {
       this.prevButton();
     } else {
       this.nextButton();
     }
-    // out of range
-/*
-    if (currentIndex > this.avatars.length || currentIndex < 0) return;
-
-    let nextIndex = 0;
-
-    // swipe right, next avatar
-    if (action === this.SWIPE_ACTION.RIGHT) {
-      const isLast = currentIndex === this.avatars.length - 1;
-      nextIndex = isLast ? 0 : currentIndex + 1;
-    }
-
-    // swipe left, previous avatar
-    if (action === this.SWIPE_ACTION.LEFT) {
-      const isFirst = currentIndex === 0;
-    }
-*/
-
   }
 
 }

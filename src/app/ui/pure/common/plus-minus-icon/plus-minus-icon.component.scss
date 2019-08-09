@@ -1,8 +1,8 @@
 @import '~src/assets/scss/abstracts/variables';
 
-
 .plus-minus-icon {
   position:relative;
+
   &__horizontal-line {
     transition-duration: .25s;
     transition-property: color;
@@ -14,7 +14,6 @@
   }
 
   &__vertical-line {
-
     transition-duration: .25s;
     transition-property: color;
     transition-timing-function: ease-in-out;

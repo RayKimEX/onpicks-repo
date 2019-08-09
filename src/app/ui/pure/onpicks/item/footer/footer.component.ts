@@ -1,5 +1,9 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, Inject, InjectionToken, LOCALE_ID, OnInit} from '@angular/core';
-import {APP_BASE_HREF} from '@angular/common';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Inject,
+  LOCALE_ID
+} from '@angular/core';
 import {CURRENCY, REGION_ID} from '../../../../../core/global-constant/app.config';
 import {BehaviorSubject} from 'rxjs';
 
@@ -11,30 +15,16 @@ import {BehaviorSubject} from 'rxjs';
 })
 
 
-export class FooterComponent implements OnInit {
-  isShowMobileToggleBusinessInfo = false;
+export class FooterComponent {
 
   constructor(
     @Inject(LOCALE_ID) public locale: string,
     @Inject(REGION_ID) public region: string,
-    @Inject(CURRENCY) public currency: BehaviorSubject<any>,
-    private cd: ChangeDetectorRef
-
-  ) {
-
-  }
-
-  ngOnInit() {
-
-  }
+    @Inject(CURRENCY) public currency: BehaviorSubject<any>
+  ) { }
 
   openBizCommPop(xWrkrNo) {
     window.open('http://www.ftc.go.kr/bizCommPop.do?wrkr_no=' + xWrkrNo, 'mark', 'scrollbars=no,resizable=no,width=700,height=750');
-  }
-
-  toggleMobileBusinessInfo() {
-    this.isShowMobileToggleBusinessInfo = !this.isShowMobileToggleBusinessInfo;
-    this.cd.markForCheck();
   }
 
   inicisOpen(xFlag) {

@@ -1,17 +1,15 @@
-<div class="button-outer"
-     #outer
-     [ngStyle]="
-     {
-        width : isFixExtend || amount !== 0 ? '12.8rem' : '4rem',
-        borderColor : isFixExtend || amount !== 0 ? '#e5e5e5' : '#292929',
-        backgroundColor : mouseHover ? amount !== 0 ? '#FFFFFF' : '#292929' : '#FFFFFF'
-     }">
-
-<!--{{isExtend}}-->
-  <!--{{isFixExtend}}-->
-  <span #extendUI
-        [ngStyle]="{ display : isFixExtend || amount !== 0 ? 'table-cell' : 'none'}"
-        class="extendUI">
+<div
+  #outer
+  class="button-outer"
+  [ngStyle]="{
+    width : isFixExtend || amount !== 0 ? '12.8rem' : '4rem',
+    borderColor : isFixExtend || amount !== 0 ? '#e5e5e5' : '#292929',
+    backgroundColor : mouseHover ? amount !== 0 ? '#FFFFFF' : '#292929' : '#FFFFFF'
+  }">
+  <span
+    #extendUI
+    class="extendUI"
+    [ngStyle]="{ display : isFixExtend || amount !== 0 ? 'table-cell' : 'none'}">
     <ui-plus-minus-icon
       [opacity]="minusOpacity"
       [borderColor]=" isFixExtend && (amount == 1) ? '#b3b3b3' : '#292929'"
@@ -24,31 +22,30 @@
     </span>
   </span>
   <ui-plus-minus-icon
+    #plusIcon
     [opacity]="plusOpactiy"
     [borderColor]="(mouseHover && (amount === 0)) ? '#FFFFFF' : amount == limitCount ? '#e5e5e5' : '#292929'"
     [size]="'12px'"
-    #plusIcon
     [ngStyle]="
      {
         left : isFixExtend || this.amount !== 0  ? 'auto' : '',
         right : isFixExtend || this.amount !== 0  ? '1.9rem' : ''
      }"
     [type]="'plus'">
-
   </ui-plus-minus-icon>
-
-  <span class="touch__amount-up"
-        (mousedown)="downOpacity('plus')"
-        (mouseup)="upOpacity('plus')"
-        (mouseleave)="upOpacity('plus')"
-        (click)="extendWidth()">
+  <span
+    class="touch__amount-up"
+    (mousedown)="downOpacity('plus')"
+    (mouseup)="upOpacity('plus')"
+    (mouseleave)="upOpacity('plus')"
+    (click)="extendWidth()">
   </span>
   <span
     *ngIf="amount !== 0" class="touch__amount-down"
-        (mousedown)="downOpacity('minus')"
-        (mouseup)="upOpacity('minus')"
-        (mouseleave)="upOpacity('minus')"
-        (click)="amountDown()">
+    (mousedown)="downOpacity('minus')"
+    (mouseup)="upOpacity('minus')"
+    (mouseleave)="upOpacity('minus')"
+    (click)="amountDown()">
   </span>
 </div>
 

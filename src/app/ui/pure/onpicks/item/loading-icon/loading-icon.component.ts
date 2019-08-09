@@ -6,12 +6,8 @@ import {Component, OnInit, ChangeDetectionStrategy, Input} from '@angular/core';
   styleUrls: ['./loading-icon.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class LoadingIconComponent implements OnInit {
+export class LoadingIconComponent {
   @Input('sizeType') sizeType;
 
   constructor() { }
-
-  ngOnInit() {
-  }
-
 }

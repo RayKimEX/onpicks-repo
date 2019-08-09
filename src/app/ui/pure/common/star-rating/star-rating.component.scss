@@ -2,15 +2,6 @@ label {
   cursor: pointer;
 }
 
-
-
-//svg {
-
-  //& polygon {
-  //  fill : grey;
-  //}-
-//}
-
 .star{
    &--10 {
      display:inline-block;
@@ -31,17 +22,6 @@ label {
     input[id^="star28"] {
       display : none;
     }
-    //input[id $="--half"] {
-    //  &:checked ~ svg use {
-    //    fill : url(#grad) !important;
-    //  }
-    //}
-    //input[id $="--full"] {
-    //  &:checked ~ svg use {
-    //    fill : #292929 !important;
-    //  }
-    //}
-
 
     svg {
       width : 100%;
@@ -54,16 +34,12 @@ label {
       display:inline-block;
       width : 100%;
       height :100%;
+
       &[for $= '--half'] {
         width : 50%;
         backgorund-color : blue;
 
       }
-      //& {
-      //  background-color : blue;
-      //}
-
-
     }
 
     display:inline-block;

@@ -10,11 +10,8 @@
       <ng-content></ng-content>
     </div>
   </div>
-  <div *ngIf="(modalForMenu && isDesktopBreakPoint === false) || modalForMenu === false " class="outer"></div>
+  <div
+    *ngIf="(modalForMenu && isDesktopBreakPoint === false) || modalForMenu === false "
+    class="outer">
+  </div>
 </ng-container>
-
-
-<!--<span *ngIf="insertedValue !== ''"-->
-  <!--(click)="deleteText()"-->
-  <!--class="p-reviews__search-reviews&#45;&#45;input-delete">-->
-<!--</span>-->

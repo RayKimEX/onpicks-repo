@@ -1,6 +1,5 @@
 import {
   AfterViewChecked,
-  AfterViewInit,
   ChangeDetectionStrategy, ChangeDetectorRef,
   Component, HostListener,
   Inject,
@@ -25,7 +24,7 @@ import {BreakpointObserver, BreakpointState} from '../../../../../../node_module
   styleUrls: ['./mini-list.component.scss'],
   changeDetection : ChangeDetectionStrategy.OnPush
 })
-export class MiniListComponent implements OnInit, OnDestroy, AfterViewChecked {
+export class MiniListComponent implements OnDestroy, AfterViewChecked {
   @ViewChildren('itemList') itemList;
   @ViewChild('insertTitle') insertTitle;
   @ViewChild('container') container;
@@ -69,13 +68,27 @@ export class MiniListComponent implements OnInit, OnDestroy, AfterViewChecked {
       .subscribe((state: BreakpointState) => {
         if (state.matches) {
           this.isFirstBreakPoint = true;
-          // this.cd.markForCheck();
         } else {
-          // this.mobileAlertTop = '11rem';
           this.isFirstBreakPoint = false;
         }
       });
   }
+
+  ngAfterViewChecked() {
+    if (this.itemList.first === undefined || this.isFirstCalcTranslateXWidth ){
+      return ;
+    }
+    const computedStyle = getComputedStyle(( this.itemList.first.nativeElement ), null);
+    this.translateXWidth =  parseInt(computedStyle.width, 10 ) + parseInt(computedStyle.marginRight, 10);
+    this.isFirstCalcTranslateXWidth = true;
+  }
+
+  ngOnDestroy() {
+    if ( this.cartStore$ !== undefined ) {
+      this.cartStore$.unsubscribe();
+    }
+  }
+
   @HostListener('window:resize', ['$event'])
   onResize(event) {
     if ( this.itemList.length !== 0 ) {
@@ -84,24 +97,12 @@ export class MiniListComponent implements OnInit, OnDestroy, AfterViewChecked {
     }
   }
 
-  ngAfterViewChecked() {
-
-    if (this.itemList.first === undefined || this.isFirstCalcTranslateXWidth ){
-      return ;
-    }
-
-    const computedStyle = getComputedStyle(( this.itemList.first.nativeElement ), null);
-    this.translateXWidth =  parseInt(computedStyle.width, 10 ) + parseInt(computedStyle.marginRight, 10);
-    this.isFirstCalcTranslateXWidth = true;
-  }
-
   goBrandFilter(xBrand) {
     this.router.navigate(['/shops/search'], { queryParams: { page: 1, ordering: 'most_popular', brand: xBrand}, queryParamsHandling: 'merge'} );
   }
 
   addToCart(xAmount, xData, xPackIndex) {
     xAmount++;
-
     xData.product = xData.slug;
 
     // 만약 카트 아이디가. 카트스토어 카트리스트에 있다면, increase cart를 하고, create cart를 하지 않는다.
@@ -124,18 +125,6 @@ export class MiniListComponent implements OnInit, OnDestroy, AfterViewChecked {
       subtractOrDelete: xAmount !== 0 ? true : false
     }));
   }
-  ngOnInit() {
-  }
-
-  ngOnDestroy() {
-    if ( this.cartStore$ !== undefined ) {
-      this.cartStore$.unsubscribe();
-    }
-  }
-
-  // ngAfterViewInit() {
-  //   this.renderer.setProperty( this.insertTitle.nativeElement, 'innerHTML', this.setTitle);
-  // }
 
   nextButton() {
     this.pressedPrev = false;
