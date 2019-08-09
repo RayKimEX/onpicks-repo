@@ -22,6 +22,7 @@ export class PMenuComponent implements OnDestroy, AfterViewInit {
   @ViewChild('titleHeight') titleHeightElement;
   @ViewChild('pMenu') pMenu: ElementRef;
   @Input('isMobile') isMobile = false;
+  @Input('cartStore') cartStore;
   @Input('data')
     set data( xData) {
 
@@ -129,8 +130,6 @@ export class PMenuComponent implements OnDestroy, AfterViewInit {
     slug : ''
   }
 
-  cartStore$;
-  cartStore;
   constructor(
     @Inject( LOCALE_ID ) public locale: string,
     @Inject( DISPLAY_ALERT_MESSAGE_MAP ) private alertMap,
@@ -142,10 +141,6 @@ export class PMenuComponent implements OnDestroy, AfterViewInit {
     private router: Router
   ) {
     this.initialDatesTitle = ['Date1', 'Date2', 'Date3'];
-    this.cartStore$ = this.store.pipe(select(state => state.cart))
-      .subscribe(val => {
-        this.cartStore = val;
-      });
   }
   ngOnDestroy() {
     this._data = null;
@@ -155,10 +150,6 @@ export class PMenuComponent implements OnDestroy, AfterViewInit {
 
     if ( this.PStore$ !== undefined ) {
       this.PStore$.unsubscribe();
-    }
-
-    if ( this.cartStore$ !== undefined) {
-      this.cartStore$.unsubscribe();
     }
   }
 

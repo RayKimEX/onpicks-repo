@@ -26,6 +26,7 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { PEffects } from './store/p.effects';
 import { PReducer } from './store/p.reducer';
+import { PMobileMenuComponent } from './components/index/pure/p-mobile-menu/p-mobile-menu.component';
 
 @NgModule({
   imports: [
@@ -52,6 +53,7 @@ import { PReducer } from './store/p.reducer';
     PRefundComponent,
     PProductReportComponent,
     POtherSellersComponent,
+    PMobileMenuComponent,
   ]
 })
 export class PModule { }
