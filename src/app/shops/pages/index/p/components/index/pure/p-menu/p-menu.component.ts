@@ -9,7 +9,7 @@ import {Router} from '@angular/router';
 import {DISPLAY_ALERT_MESSAGE_MAP} from '../../../../../../../../core/global-constant/app.locale';
 
 @Component({
-  selector: 'onpicks-p-menu',
+  selector: 'p-menu',
   templateUrl: './p-menu.component.html',
   styleUrls: ['./p-menu.component.scss'],
   changeDetection : ChangeDetectionStrategy.OnPush,

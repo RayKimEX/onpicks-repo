@@ -4,7 +4,7 @@ import {Store} from '@ngrx/store';
 import {DISPLAY_ALERT_MESSAGE_MAP} from '../../../../../../../../core/global-constant/app.locale';
 
 @Component({
-  selector: 'onpicks-p-thumbnail',
+  selector: 'p-thumbnail',
   templateUrl: './p-thumbnail.component.html',
   styleUrls: ['./p-thumbnail.component.scss'],
   changeDetection : ChangeDetectionStrategy.OnPush,

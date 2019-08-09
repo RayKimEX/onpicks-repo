@@ -12,7 +12,7 @@ import { PDataService } from '../../../../../../../../core/service/data-pages/p/
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
-  selector: 'onpicks-p-picture-review',
+  selector: 'p-picture-review',
   templateUrl: './p-picture-review.component.html',
   styleUrls: ['./p-picture-review.component.scss'],
   changeDetection : ChangeDetectionStrategy.OnPush,
@@ -81,11 +81,13 @@ export class PPictureReviewComponent {
 
   @HostListener('window:resize', ['$event'])
   onResize(event) {
-    const computedStyle = getComputedStyle(( this.itemList.first.nativeElement ), null);
-    this.firstOffset = parseFloat(computedStyle.width) * 0.8245;
-    this.translateXWidth =  parseInt(computedStyle.width, 10 ) + parseInt(computedStyle.marginRight, 10);
-    this.renderer.setStyle(this.container.nativeElement, 'transition', 'x');
-    this.renderer.setStyle(this.container.nativeElement, 'transform', 'translateX(-' + (this.firstOffset + (this.imageIndex * this.translateXWidth)) + 'px');
+    if ( this.itemList.length !== 0) {
+      const computedStyle = getComputedStyle(( this.itemList.first.nativeElement ), null);
+      this.firstOffset = parseFloat(computedStyle.width) * 0.8245;
+      this.translateXWidth =  parseInt(computedStyle.width, 10 ) + parseInt(computedStyle.marginRight, 10);
+      this.renderer.setStyle(this.container.nativeElement, 'transition', 'x');
+      this.renderer.setStyle(this.container.nativeElement, 'transform', 'translateX(-' + (this.firstOffset + (this.imageIndex * this.translateXWidth)) + 'px');
+    }
   }
 
   clickImageSmall( f ) {

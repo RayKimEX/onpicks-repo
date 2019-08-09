@@ -3,7 +3,7 @@ import * as MenuActions from '../../../../store/p.actions';
 import {Store} from '@ngrx/store';
 
 @Component({
-  selector: 'onpicks-p-refund',
+  selector: 'p-refund',
   templateUrl: './p-refund.component.html',
   styleUrls: ['./p-refund.component.scss'],
   changeDetection : ChangeDetectionStrategy.OnPush,

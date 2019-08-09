@@ -7,7 +7,7 @@ import {
 import {IMAGE_HOST} from '../../../../../../../../core/global-constant/app.config';
 
 @Component({
-  selector: 'onpicks-p-item-detail',
+  selector: 'p-item-detail',
   templateUrl: './p-item-detail.component.html',
   styleUrls: ['./p-item-detail.component.scss'],
   changeDetection : ChangeDetectionStrategy.OnPush,

@@ -30,7 +30,7 @@ import { TryGetReviewProduct, TryToggleVoteReview } from '../../../../store/p.ac
 import { tap } from 'rxjs/operators';
 
 @Component({
-  selector: 'onpicks-p-reviews',
+  selector: 'p-reviews',
   templateUrl: './p-reviews.component.html',
   styleUrls: ['./p-reviews.component.scss'],
   changeDetection : ChangeDetectionStrategy.OnPush,
