@@ -46,7 +46,7 @@
         <onpicks-p-reviews #onpicksReview></onpicks-p-reviews>
         <onpicks-p-refund *ngIf="locale === 'ko'"></onpicks-p-refund>
         <onpicks-p-product-report
-          ngIf="locale === 'ko'"
+          *ngIf="locale === 'ko'"
           [categoryCode]="data?.category[data?.category.length - 1].code" >
         </onpicks-p-product-report>
       </div>
