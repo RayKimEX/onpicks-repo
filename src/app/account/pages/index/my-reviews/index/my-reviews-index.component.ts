@@ -1,4 +1,7 @@
-import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component
+} from '@angular/core';
 
 @Component({
   selector: 'onpicks-my-reviews-index',
@@ -6,11 +9,7 @@ import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
   styleUrls: ['./my-reviews-index.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class MyReviewsIndexComponent implements OnInit {
+export class MyReviewsIndexComponent {
 
   constructor() { }
-
-  ngOnInit() {
-  }
-
 }

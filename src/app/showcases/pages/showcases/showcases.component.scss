@@ -1,26 +1,5 @@
 @import "~src/assets/scss/abstracts/variables";
 
-//.box{
-//
-//  &__input{
-//    height : 100px;
-//    width : 200px;
-//    background-color: rosybrown;;
-//
-//    label {
-//      display:block;
-//      height : 100%;
-//      width : 100%;
-//    }
-//  }
-//
-//
-//
-//  &__file {
-//    display:none;
-//  }
-//}
-
 .drag-and-drop {
   height : 100px;
   width : 200px;
@@ -34,7 +13,7 @@
   color : $color-black;
 
   line-height:1.14;
-  //0.1px;
+
   letter-spacing: 0.01rem;//0.01rem = 0.1px, 0.1rem = 1px
 
   span{
@@ -47,7 +26,6 @@
     margin-bottom : 3rem;
   }
 }
-
 
 .lazyLoadOuter {
   width : 36rem;

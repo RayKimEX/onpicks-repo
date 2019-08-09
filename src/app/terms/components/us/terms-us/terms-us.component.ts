@@ -6,11 +6,7 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
   styleUrls: ['./terms-us.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TermsUsComponent implements OnInit {
+export class TermsUsComponent {
 
   constructor() { }
-
-  ngOnInit() {
-  }
-
 }

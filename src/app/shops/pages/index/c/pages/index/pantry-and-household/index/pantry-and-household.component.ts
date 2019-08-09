@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, Inject, LOCALE_ID, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Inject, LOCALE_ID, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, Params} from '@angular/router';
 import {UiService} from '../../../../../../../../core/service/ui/ui.service';
 import {Meta, Title} from '@angular/platform-browser';
@@ -12,7 +12,7 @@ import {TITLE_MAP} from '../../../../../../../../core/global-constant/app.locale
   changeDetection : ChangeDetectionStrategy.OnPush,
 })
 
-export class PantryAndHouseholdComponent implements OnInit {
+export class PantryAndHouseholdComponent implements OnInit, OnDestroy {
 
   pantryAndHouseHoldBannerImages =  [
     {
@@ -196,6 +196,8 @@ export class PantryAndHouseholdComponent implements OnInit {
   ]
 
   popularBrand$;
+  getCategoryOneDepth;
+  routeSubScription$;
 
   constructor(
     @Inject(IMAGE_HOST) public imageHost: string,
@@ -204,19 +206,19 @@ export class PantryAndHouseholdComponent implements OnInit {
     public route: ActivatedRoute,
     private uiDataService: UiService,
     private titleService: Title,
-    private meta: Meta
   ) {
     this.titleService.setTitle(this.titleMap['pantry-and-household'][this.locale]);
-    // this.meta.addTag({ name: 'description', content: '프리미엄 라이프스타일' });
     this.popularBrand$ = this.uiDataService.getPopularBrands('pantry-and-household');
   }
 
-  getCategoryOneDepth;
-  routeSubScription$;
 
   ngOnInit() {
     this.routeSubScription$ = this.route.params.subscribe((params: Params) => {
       this.getCategoryOneDepth = params['categoryOneDepth'];
     });
+  }
+
+  ngOnDestroy() {
+    this.routeSubScription$.unsubscribe();
   }
 }

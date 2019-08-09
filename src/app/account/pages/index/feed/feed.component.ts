@@ -35,9 +35,7 @@ export class FeedComponent implements OnInit, OnDestroy {
   ) {
 
     this.userState$ = this.store.pipe(select( state => state.auth.user));
-
     this.feedList$ = this.accountDataService.getFeedListData().pipe( tap( v => console.log(v)));
-
     this.body = document.body;
 
     this.scroll$ = fromEvent(window, 'scroll').pipe(sampleTime(50))
@@ -59,11 +57,6 @@ export class FeedComponent implements OnInit, OnDestroy {
   }
 
   willLoadDataFunction() {
-    // for ( let i = 0 ; i < 20; i ++ ) {
-    //   if (this.exceptionDatabase[this.imageIndex]) { this.imageIndex -= 5;  continue; }
-    //   this.feedList.push({ imgSrc : 'https://picsum.photos/264/264?image=' + this.imageIndex});
-    //   this.imageIndex -= 5;
-    // }
 
     this.willLoadData = false;
   }

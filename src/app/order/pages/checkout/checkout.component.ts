@@ -1,7 +1,7 @@
 import {
   ChangeDetectionStrategy,
-  Component, Inject,
-  OnInit,
+  Component,
+  Inject,
 } from '@angular/core';
 import {REGION_ID} from '../../../core/global-constant/app.config';
 
@@ -11,14 +11,10 @@ import {REGION_ID} from '../../../core/global-constant/app.config';
   styleUrls: ['./checkout.component.scss'],
   changeDetection : ChangeDetectionStrategy.OnPush,
 })
-export class CheckoutComponent implements OnInit {
+export class CheckoutComponent {
 
   constructor(
     @Inject(REGION_ID) public region: string,
   ) { }
-
-  ngOnInit() {
-  }
-
 }
 

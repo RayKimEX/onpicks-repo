@@ -8,7 +8,6 @@
   [isShow]="isShowModal">
 
   <h1 class="modal__title h1-bold">신고사유를 선택해주세요.</h1>
-
   <div
     *ngFor="let key of objectKeys(reasonMap)"
     class="modal__item subtitle-2-regular">
@@ -114,24 +113,22 @@
           </div>
         </figure>
         <div
-          class="subtitle-1-regular u-color-grey"><!--Size: X-Large · Color: Aqua · -->{{data.reviews.list[item].helpful_count}}<span i18n="@@sentence__people-liked-this-review">명이 추천하였습니다</span>
+          class="subtitle-1-regular u-color-grey">
+          {{data.reviews.list[item].helpful_count}}
+          <span i18n="@@sentence__people-liked-this-review">명이 추천하였습니다</span>
         </div>
 
 
         <div
           class="p-reviews__content-outer">
-
-          <!--array length가 0이거나, pictures[0]이 ''인경우 : 이미지가 없는경우-->
           <p
             class="p-reviews__content body-1-regular"
-             [ngStyle]="{'width' : data.reviews.list[item].pictures.length === 0 || data.reviews.list[item].pictures[0] === '' ? 'auto' : 'calc(100% - 12rem)'}">
+            [ngStyle]="{'width' : data.reviews.list[item].pictures.length === 0 || data.reviews.list[item].pictures[0] === '' ? 'auto' : 'calc(100% - 12rem)'}">
             {{data.reviews.list[item].text}}
           </p>
-
-          <!--array length이 0이 아니면, pictures[0]도 ''가 아니어야한다. : 이미지가 있는 경우-->
           <span
-            class="p-reviews__image"
-                *ngIf="data.reviews.list[item].pictures.length !== 0 && data.reviews.list[item].pictures[0] !== ''">
+            *ngIf="data.reviews.list[item].pictures.length !== 0 && data.reviews.list[item].pictures[0] !== ''"
+            class="p-reviews__image">
             <img
               [drLazyLoad]="{method:'animation'}"
               src="{{data.reviews.list[item].pictures[0]}}"
@@ -173,8 +170,9 @@
             </svg>
             <span
               i18n="@@word__comment"
-              class="p-reviews__option--feature action-1-medium"
-            >댓글 달기</span>
+              class="p-reviews__option--feature action-1-medium">
+              댓글 달기
+            </span>
           </a>
           <a
             (click)="shareReview('/shops/p/' + data.reviews.list[item].product + '/reviews/' + data.reviews.list[item].id)">

@@ -1,4 +1,11 @@
-import {ChangeDetectionStrategy, Component, Inject, LOCALE_ID, OnDestroy, OnInit} from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Inject,
+  LOCALE_ID,
+  OnDestroy,
+  OnInit
+} from '@angular/core';
 import {select, Store} from '@ngrx/store';
 import {tap} from 'rxjs/operators';
 import {CURRENCY, LOCATION_MAP} from '../../../../core/global-constant/app.config';
@@ -21,7 +28,6 @@ export class WishListComponent implements OnInit, OnDestroy {
   cartStore;
 
   weeklyBest$;
-
   contentHeight = '';
 
   constructor(
@@ -67,8 +73,6 @@ export class WishListComponent implements OnInit, OnDestroy {
 
     this.store.dispatch( new TryDeleteWishList( { wishListSlug : xData.slug, index : xIndex}));
   }
-
-
 
   deleteWishList( xProductSlug, xIndex ) {
     this.store.dispatch( new TryDeleteWishList( { wishListSlug : xProductSlug, index : xIndex}));

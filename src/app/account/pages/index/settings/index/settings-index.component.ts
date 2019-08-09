@@ -1,4 +1,10 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, Inject, OnInit} from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  Inject,
+  OnInit
+} from '@angular/core';
 import {BreakpointObserver, BreakpointState} from '../../../../../../../node_modules/@angular/cdk/layout';
 import {REGION_ID, RESPONSIVE_MAP} from '../../../../../core/global-constant/app.config';
 
@@ -18,7 +24,7 @@ export class SettingsIndexComponent implements OnInit {
     @Inject(REGION_ID) public region: string,
     private breakpointObserver:  BreakpointObserver,
   ) { }
-
+s
   ngOnInit() {
     this.breakpointObserver
       .observe([this.responsiveMap['actb']])

@@ -22,8 +22,7 @@ import { LetDirective } from './ng-let/ng-let.directive';
   ]
 })
 
-export class DirectivesModule {
-  
-}
+export class DirectivesModule {}
+
 
 

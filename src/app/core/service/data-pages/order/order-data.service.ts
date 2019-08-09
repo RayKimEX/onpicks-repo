@@ -10,9 +10,7 @@ export class OrderDataService {
   constructor(
     @Inject(DOMAIN_HOST) private BASE_URL: string,
     private httpClient: HttpClient,
-  ) {
-
-  }
+  ) { }
 
   getOrderInfo( xCode ) {
     return this.httpClient.get(this.BASE_URL + '/api/orders/' + xCode );

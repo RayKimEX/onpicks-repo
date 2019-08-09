@@ -1,4 +1,8 @@
-import {ChangeDetectionStrategy, Component, Inject, OnInit} from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Inject
+} from '@angular/core';
 import {select, Store} from '@ngrx/store';
 import {AppState} from '../../../core/store/app.reducer';
 import {TryLogout} from '../../../core/store/auth/auth.actions';
@@ -11,7 +15,7 @@ import {CURRENCY, IMAGE_HOST} from '../../../core/global-constant/app.config';
   styleUrls: ['./account-index.component.scss'],
   changeDetection : ChangeDetectionStrategy.OnPush,
 })
-export class AccountIndexComponent implements OnInit {
+export class AccountIndexComponent {
 
   user$;
 
@@ -26,17 +30,8 @@ export class AccountIndexComponent implements OnInit {
     );
   }
 
-  ngOnInit() {
-    this.currency.subscribe( a => {
-      console.log(a);
-    });
-  }
-
-
-
   logout() {
     this.store.dispatch(new TryLogout());
     this.router.navigate( ['/']);
   }
-
 }

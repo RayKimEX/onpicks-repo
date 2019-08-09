@@ -8,7 +8,6 @@ onpicks-loading-icon {
 
 .mobile-row {
   @include respond(desktop){
-
     width:74.8rem;
     margin : 0 auto;
   }
@@ -29,6 +28,11 @@ onpicks-loading-icon {
   background-color : $color-white;
   transition : transform .5s;
   transition-delay : .2s;
+  display : none;
+
+  @include respond(desktop){
+    display : block;
+  }
 
   &--outer {
     z-index:9001;
@@ -41,17 +45,15 @@ onpicks-loading-icon {
     background-color : $color-black;
     opacity : .5;
   }
+
   &__options {
     margin-top : 1.6rem;
   }
+
   &__add-to-cart-button {
     float : right;
   }
 
-  display : none;
-  @include respond(desktop){
-    display : block;
-  }
   &__button {
     float:right;
     vertical-align: top;
@@ -133,22 +135,6 @@ onpicks-loading-icon {
   }
 }
 
-//
-//.product-detail-mobile {
-//  display:none;
-//  width:74.8rem;
-//  margin : 0 auto;
-//  @include respond(fb){
-//    display:block;
-//  }
-//
-//  @include respond(sb){
-//    width:100%;
-//    padding: 0 1.6rem
-//  }
-//}
-
-
 [class ^= "col-"]{
   background-color : #FFFFFF;
 }
@@ -157,6 +143,7 @@ onpicks-loading-icon {
 onpicks-value-list{
   display:block;
   margin-bottom: 4rem;
+
   @include respond(fb){
     padding-bottom : 2.4rem;
     border-bottom : 1px solid $color-light-grey;

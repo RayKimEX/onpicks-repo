@@ -8,13 +8,9 @@ import {BehaviorSubject} from 'rxjs';
   styleUrls: ['./p-other-sellers.component.scss'],
   changeDetection : ChangeDetectionStrategy.OnPush
 })
-export class POtherSellersComponent implements OnInit {
+export class POtherSellersComponent {
 
   constructor(
     @Inject(CURRENCY) public currency: BehaviorSubject<any>,
   ) { }
-
-  ngOnInit() {
-  }
-
 }

@@ -3,7 +3,7 @@
 import { Injectable } from '@angular/core';
 
 // NgRX & RxJS
-import {catchError, map, switchMap, tap} from 'rxjs/operators';
+import { catchError, map, switchMap, tap } from 'rxjs/operators';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
 import {
@@ -12,14 +12,12 @@ import {
   GetCommentsProductFailure,
   GetCommentsProductSuccess, GetProductInfoFailure, GetProductInfoSuccess,
   GetReviewProductFailure,
-  GetReviewProductSuccess, ToggleVoteReviewFailure, ToggleVoteReviewSuccess, TRY_TOGGLE_VOTE_REIVEW
+  GetReviewProductSuccess, ToggleVoteReviewFailure, ToggleVoteReviewSuccess,
 } from './p.actions';
 import * as PActions from './p.actions';
 
 // Custom
 import { PDataService } from '../../../../../core/service/data-pages/p/p-data.service';
-
-
 
 
 @Injectable()
@@ -28,10 +26,7 @@ export class PEffects {
   constructor(
     private actions$: Actions,
     private pDataService: PDataService,
-  ) {
-
-  }
-
+  ) { }
 
   @Effect()
   tryToggleVoteReview = this.actions$.pipe(
@@ -46,7 +41,7 @@ export class PEffects {
               return new ToggleVoteReviewSuccess(response);
             }),
             catchError( (error) => {
-              console.log(error);
+              console.error(error);
               return of(new ToggleVoteReviewFailure({ error : error}));
             })
           );
@@ -57,7 +52,7 @@ export class PEffects {
               return new ToggleVoteReviewSuccess(response);
             }),
             catchError( (error) => {
-              console.log(error);
+              console.error(error);
               return of(new ToggleVoteReviewFailure({ error : error}));
             })
           );
@@ -79,7 +74,7 @@ export class PEffects {
             return new GetProductInfoSuccess( getProductInfo);
           }),
           catchError( (error) => {
-            console.log(error);
+            console.error(error);
             return of(new GetProductInfoFailure({ error : error}));
           })
         );
@@ -91,8 +86,6 @@ export class PEffects {
     ofType( PActions.TRY_GET_REVIEWS_PRODUCT ),
     map( payload => payload['payload']),
     switchMap( (subLoad: { productSlug, sorting }) => {
-      console.log('subLoad TRY_GET_REVIEWS_PRODUCT');
-      console.log(subLoad);
       return this.pDataService.getReviewsData(subLoad.productSlug, subLoad.sorting)
         .pipe(
           map( (getReviews) => {
@@ -117,6 +110,7 @@ export class PEffects {
             return new GetCommentsProductSuccess( { currentComments : getReviews, reviewsId : subLoad.reviewsId } );
           }),
           catchError( (error) => {
+            console.error(error);
             return of(new GetCommentsProductFailure({ error : error }));
           })
         );
@@ -135,6 +129,7 @@ export class PEffects {
             return new AddCommentSuccess({ respond : respond, reviewsId : subLoad.reviewsId });
           }),
           catchError( (error) => {
+            console.error(error);
             return of(new AddCommentFailure({ error : error }));
           })
         );

@@ -23,9 +23,7 @@ export class LazyLoadDirective implements AfterViewInit, OnChanges {
   imgAnimation$;
   obs;
 
-  constructor(private el: ElementRef, private renderer: Renderer2) {
-
-  }
+  constructor(private el: ElementRef, private renderer: Renderer2) { }
 
   ngOnChanges( changes: SimpleChanges) {
     this.srcAttr = this.src;
@@ -86,10 +84,6 @@ export class LazyLoadDirective implements AfterViewInit, OnChanges {
       this.renderer.setStyle(this.el.nativeElement.parentNode, 'display', 'inline-block');
       this.renderer.appendChild(this.el.nativeElement.parentNode, backgroundColor);
 
-
-
-      // this.renderer.addClass(this.el.nativeElement, 'u-opacity-zero');
-
       this.canLazyLoad() ? this.lazyLoadImage() : this.loadImage();
       this.imgLoad$ = fromEvent(this.el.nativeElement, 'load').subscribe( val => {
         this.renderer.removeChild(this.el.nativeElement.parentNode, backgroundColor);
@@ -119,7 +113,6 @@ export class LazyLoadDirective implements AfterViewInit, OnChanges {
           this.obs.unobserve(this.el.nativeElement);
         }
       });
-    // }, {root : this.dom === undefined ? null : this.dom });
      }, {});
     this.obs.observe(this.el.nativeElement);
   }

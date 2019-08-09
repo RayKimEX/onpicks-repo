@@ -9,7 +9,7 @@ import {Store} from '@ngrx/store';
   changeDetection : ChangeDetectionStrategy.OnPush,
 })
 
-export class PRefundComponent implements OnInit, AfterViewInit, OnDestroy {
+export class PRefundComponent implements AfterViewInit, OnDestroy {
 
   @ViewChild('bottomLine') bottomLine;
   constructor(
@@ -21,9 +21,6 @@ export class PRefundComponent implements OnInit, AfterViewInit, OnDestroy {
   previousMenuPositionOffset;
   menuPositionCount = 0;
 
-  ngOnInit() {
-  }
-
   ngOnDestroy() {
     clearInterval(this.menuPositionInterval);
   }
@@ -31,8 +28,6 @@ export class PRefundComponent implements OnInit, AfterViewInit, OnDestroy {
   ngAfterViewInit() {
 
     // TODO: 이 부분이 현재, 맨처음 로딩시 계산으로 하는형식이 생각처럼 잘 되지 않음. 그래서 interval 형식으로 dynamic하게 계산
-
-
     this.menuPositionInterval = setInterval( () => {
       const bodyRect = document.body.getBoundingClientRect();
       const elemRect = this.bottomLine.nativeElement.getBoundingClientRect();
@@ -51,5 +46,4 @@ export class PRefundComponent implements OnInit, AfterViewInit, OnDestroy {
       this.previousMenuPositionOffset = this.currentMenuPositionOffset;
     }, 500);
   }
-
 }

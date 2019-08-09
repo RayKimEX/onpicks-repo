@@ -1,4 +1,10 @@
-import {ChangeDetectionStrategy, Component, Inject, LOCALE_ID, OnInit} from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Inject,
+  LOCALE_ID,
+  OnInit
+} from '@angular/core';
 import {UiService} from '../../../../../../../../core/service/ui/ui.service';
 import {Meta, Title} from '@angular/platform-browser';
 import {IMAGE_HOST} from '../../../../../../../../core/global-constant/app.config';
@@ -10,33 +16,14 @@ import {TITLE_MAP} from '../../../../../../../../core/global-constant/app.locale
   styleUrls: ['./beauty-index.component.scss'],
   changeDetection : ChangeDetectionStrategy.OnPush,
 })
-export class BeautyIndexComponent implements OnInit {
+export class BeautyIndexComponent {
   pantryAndHouseHoldBannerImages = [
     {
       imgSrc : this.imageHost + '/intro/beauty/2019-04-01/beauty1.jpg',
       imgSrcForDesktop : this.imageHost + '/intro/beauty/2019-04-01/beauty1.jpg',
-      // marginLeftForText : '6.2%',
       title : [],
       description : []
-    },
-    // {
-    //   imgSrc : 'https://img.onpicks.com/intro/beauty/2019-04-01/beauty-banner2.jpg',
-    //   // marginLeftForText : '6.2%',
-    //   title : [],
-    //   description : []
-    // },
-    // {
-    //   imgSrc : 'https://img.onpicks.com/intro/beauty/2019-04-01/beauty-banner3.jpg',
-    //   // marginLeftForText : '6.2%',
-    //   title : [],
-    //   description : []
-    // },
-    // {
-    //   imgSrc : 'https://img.onpicks.com/intro/beauty/2019-04-01/beauty-banner4.jpg',
-    //   // marginLeftForText : '6.2%',
-    //   title : [],
-    //   description : []
-    // }
+    }
   ]
 
   popularPantryCategory = [
@@ -137,15 +124,9 @@ export class BeautyIndexComponent implements OnInit {
     @Inject(TITLE_MAP) public titleMap: string,
     @Inject(LOCALE_ID) public locale: string,
     private uiDataService: UiService,
-    private titleService: Title,
-    private meta: Meta
+    private titleService: Title
   ) {
     this.titleService.setTitle(this.titleMap['beauty'][this.locale]);
-    // this.meta.addTag({ name: 'description', content: '유러피안 럭셔리 뷰티' });
     this.popularBrand$ = this.uiDataService.getPopularBrands('beauty');
   }
-
-  ngOnInit() {
-  }
-
 }

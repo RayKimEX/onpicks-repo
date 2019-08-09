@@ -1,15 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component
+} from '@angular/core';
 
 @Component({
   selector: 'onpicks-electronics',
   templateUrl: './electronics.component.html',
-  styleUrls: ['./electronics.component.scss']
+  styleUrls: ['./electronics.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ElectronicsComponent implements OnInit {
+export class ElectronicsComponent {
 
   constructor() { }
-
-  ngOnInit() {
-  }
-
 }
+

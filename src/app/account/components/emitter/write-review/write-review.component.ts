@@ -31,26 +31,24 @@ import {DISPLAY_ALERT_MESSAGE_MAP} from '../../../../core/global-constant/app.lo
 
 export class WriteReviewComponent implements OnInit, OnChanges, OnDestroy {
   @ViewChildren('imageViewList') imageViewList;
+  @ViewChild('reviewTextView') reviewTextView;
+  @Output('exit') exitEvent = new EventEmitter();
+  @Output('publishReview') publishReviewEvent = new EventEmitter()
   @Input('isShow') isShow = false;
   @Input('writeReview') set data(xWriteReview) {
     if ( xWriteReview === undefined || xWriteReview.reviewData === undefined ) { return; }
 
     this._data = xWriteReview;
     this.imageFileList = [];
-    console.log(this._data.reviewData);
     this.accountDataService.getPendingReviewData(this._data.reviewData['product'], this._data.reviewData['review'])
       .subscribe( v => {
         v.pictures.forEach( item => {
           this.imageFileList.push({file : '', blobData : item, rotate: ''});
           this.cd.markForCheck();
-          console.log(this.imageViewList);
         });
       });
   }
 
-  @Output('exit') exitEvent = new EventEmitter();
-  @Output('publishReview') publishReviewEvent = new EventEmitter()
-  @ViewChild('reviewTextView') reviewTextView;
   imageFileList: { file, blobData, rotate }[] = [];
   errorStatus = 0;
   totalFileSize = 0;
@@ -88,7 +86,6 @@ export class WriteReviewComponent implements OnInit, OnChanges, OnDestroy {
 
   @HostListener('document:keydown.escape', ['$event'])
   onKeydownHandler(event: KeyboardEvent) {
-    // &&  this.communicateBox.nativeElement.style.display !== 'none'
     if ( event.key === 'Escape' ) {
       this.exitEvent.emit();
       this.imageFileList.length = 0;
@@ -202,7 +199,6 @@ export class WriteReviewComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   publishReview( xProductSlug, xReviewId ) {
-    // xProductSlug, xReviewId, xRating, xText
 
     this.accountDataService
       .publishReviewData(xProductSlug, xReviewId, this.starRating, this.reviewTextView.nativeElement.value)
@@ -216,7 +212,6 @@ export class WriteReviewComponent implements OnInit, OnChanges, OnDestroy {
         response => {
           //
           Object.keys(response.error).forEach( (item, index ) => {
-            // console.log(response.error[item]);
             this.store.dispatch(new DisplayAlertMessage(response.error[item]));
           });
         }
@@ -225,21 +220,6 @@ export class WriteReviewComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   imgLoaded(event) {
-    // EXIF.getData(event.target, function() {
-    //   const orientation = EXIF.getTag(this, 'Orientation');
-    //   console.log(orientation);
-    //   // console.log(this.imageFileList);
-    //   // switch (orientation) {
-    //   //   case 3:
-    //   //     rotate = 'rotate(180deg)';
-    //   //     break;
-    //   //   case 6:
-    //   //     rotate = 'rotate(90deg)';
-    //   //     break;
-    //   //   case 8:
-    //   //     rotate = 'rotate(-90deg)';
-    //   //     break;
-    //   // }
-    // });
+
   }
 }

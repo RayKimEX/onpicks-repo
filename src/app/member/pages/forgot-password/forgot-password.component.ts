@@ -1,4 +1,9 @@
-import {ChangeDetectionStrategy, Component, Inject, LOCALE_ID, OnInit} from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Inject,
+  LOCALE_ID,
+} from '@angular/core';
 import {HttpClient} from '../../../../../node_modules/@angular/common/http';
 import {DisplayAlertMessage} from '../../../core/store/ui/ui.actions';
 import {Store} from '@ngrx/store';
@@ -10,19 +15,13 @@ import {AppState} from '../../../core/store/app.reducer';
   styleUrls: ['./forgot-password.component.scss'],
   changeDetection : ChangeDetectionStrategy.OnPush
 })
-export class ForgotPasswordComponent implements OnInit {
+export class ForgotPasswordComponent {
 
   constructor(
     @Inject(LOCALE_ID) public locale: string,
     private store: Store<AppState>,
     private httpClient: HttpClient,
-  ) {
-
-  }
-
-  ngOnInit() {
-
-  }
+  ) { }
 
   passwordReset(xEmail) {
     this.httpClient.post('/api/customers/password/recover/', { email : xEmail.value, redirect_url : 'http://www.naver.com'})
@@ -36,5 +35,4 @@ export class ForgotPasswordComponent implements OnInit {
         this.store.dispatch(new DisplayAlertMessage(response.error.email));
       });
   }
-
 }

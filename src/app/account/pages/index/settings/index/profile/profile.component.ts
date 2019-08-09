@@ -1,9 +1,18 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, Inject, LOCALE_ID, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  Inject,
+  LOCALE_ID,
+  OnDestroy,
+  OnInit,
+  ViewChild
+} from '@angular/core';
 import {select, Store} from '@ngrx/store';
 import {AccountDataService} from '../../../../../../core/service/data-pages/account/account-data.service';
 import {DisplayAlertMessage } from '../../../../../../core/store/ui/ui.actions';
 import {tap} from 'rxjs/operators';
-import {BreakpointState} from '../../../../../../../../node_modules/@angular/cdk/layout';
 import {DISPLAY_ALERT_MESSAGE_MAP} from '../../../../../../core/global-constant/app.locale';
 
 @Component({
@@ -80,7 +89,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
   userStore;
 
   profileData$;
-  profileData;
   errorStatus = 0;
 
   constructor(
@@ -148,21 +156,11 @@ export class ProfileComponent implements OnInit, OnDestroy {
     this.userStore$.unsubscribe();
   }
 
-  updatePassword() {
-    this.store.dispatch(new DisplayAlertMessage(this.alertMap['changes-saved'][this.locale]));
-  }
-
   saveProfile() {
 
     this.errorStatus = 0;
     this.validate();
     if ( this.errorStatus !== 0 ) { return; };
-    // @ViewChild('nickname', { read: ElementRef}) nickname;
-    // @ViewChild('email', { read: ElementRef}) email;
-    // @ViewChild('password', { read: ElementRef}) password;
-    // @ViewChild('tel', { read: ElementRef}) tel;
-    // @ViewChild('height', { read: ElementRef}) height;
-    // @ViewChild('weight', { read: ElementRef}) weight;
 
 
     if ( this.dateData.month !== '' ||  this.dateData.day !== '' || this.dateData.year !== '') {
@@ -178,7 +176,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
     this.accountDataService.saveProfileData(this.userStore.id, this.formData).subscribe( response => {
       this.store.dispatch(new DisplayAlertMessage(this.alertMap['changes-saved'][this.locale]));
     }, error => {
-
+      console.error(error)
     });
   }
 

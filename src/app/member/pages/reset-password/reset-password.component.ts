@@ -1,4 +1,12 @@
-import {Component, OnInit, ChangeDetectionStrategy, ViewChildren, ElementRef, ViewChild, Inject, LOCALE_ID} from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ChangeDetectionStrategy,
+  ElementRef,
+  ViewChild,
+  Inject,
+  LOCALE_ID
+} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
 import {Store} from '@ngrx/store';
@@ -11,14 +19,13 @@ import {DISPLAY_ALERT_MESSAGE_MAP} from '../../../core/global-constant/app.local
   styleUrls: ['./reset-password.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ResetPasswordComponent implements OnInit {
+export class ResetPasswordComponent {
 
   @ViewChild('inputPasswordOrigin', {read : ElementRef}) inputPasswordOrigin;
   @ViewChild('inputPasswordConfirm', {read : ElementRef}) inputPasswordConfirm;
 
   uuid;
   secret;
-
   queryParams$;
 
   constructor(
@@ -36,12 +43,7 @@ export class ResetPasswordComponent implements OnInit {
       });
   }
 
-  ngOnInit() {
-
-  }
-
   passwordReset() {
-    console.log(this.inputPasswordOrigin);
     if ( this.inputPasswordOrigin.nativeElement.children[0].value !== this.inputPasswordConfirm.nativeElement.children[0].value){
       this.store.dispatch(new DisplayAlertMessage(this.alertMap['password-must-match'][this.locale]));
       return ;

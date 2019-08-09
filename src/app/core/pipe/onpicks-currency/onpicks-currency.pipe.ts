@@ -1,4 +1,9 @@
-import {Inject, LOCALE_ID, Pipe, PipeTransform} from '@angular/core';
+import {
+  Inject,
+  LOCALE_ID,
+  Pipe,
+  PipeTransform
+} from '@angular/core';
 import {CurrencyPipe} from '@angular/common';
 
 @Pipe({
@@ -9,13 +14,9 @@ export class OnpicksCurrencyPipe implements PipeTransform {
   constructor(
     @Inject(LOCALE_ID) public locale: string,
     private currencyPipe: CurrencyPipe,
-  ) {
-  }
+  ) { }
 
   transform(value: any, currencyCode: any): any {
-
-    // console.log(value);
-    // console.log(currencyCode);
     if ( currencyCode === 'KRW' ) {
       let temp = this.currencyPipe.transform(value, currencyCode);
       // null의 경우가 있을때는 리턴

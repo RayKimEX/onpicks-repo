@@ -18,12 +18,7 @@ import {DISPLAY_ALERT_MESSAGE_MAP} from '../../../../../../../../core/global-con
 
 // MUST TODO: p.component.ts에서 store async를 받아서 pmenu에는 단순히 처리만
 // TODO : 스크롤 메뉴 관련 // https://www.29cm.co.kr/order/checkout?pay_code=10 참고해서, fix메뉴가 충분히 아래로 내려가면, 그때 내려갈 수 있도록 변경
-export class PMenuComponent implements OnInit, OnDestroy, AfterViewInit, OnChanges {
-
-  keyMapForSlug = {};
-  optionObject = {};
-  selectedFirstOptionIndex = null;
-
+export class PMenuComponent implements OnDestroy, AfterViewInit {
   @ViewChild('titleHeight') titleHeightElement;
   @ViewChild('pMenu') pMenu: ElementRef;
   @Input('isMobile') isMobile = false;
@@ -40,7 +35,6 @@ export class PMenuComponent implements OnInit, OnDestroy, AfterViewInit, OnChang
       let cnt = 0;
       const test = {}
       let depthKey = '';
-
 
       /* async를 통해 데이터가 들어올때만 다음으로 넘어감*/
       const result = parseInt(getComputedStyle(this.titleHeightElement.nativeElement).height, 10);
@@ -75,8 +69,6 @@ export class PMenuComponent implements OnInit, OnDestroy, AfterViewInit, OnChang
           });
         });
 
-        const listTemp = [];
-
         let depthCnt = 0;
         let listFirstDepthTemp = [];
         let listTwoDepthParentTemp = {};
@@ -106,12 +98,15 @@ export class PMenuComponent implements OnInit, OnDestroy, AfterViewInit, OnChang
 
         });
 
-
         this.cd.markForCheck();
       }, 0);
 
       this.discountPercent = 100 - Math.round((xData.price / xData.msrp * 100));
     }
+
+  keyMapForSlug = {};
+  optionObject = {};
+  selectedFirstOptionIndex = null;
 
   discountPercent;
   _data;
@@ -121,18 +116,6 @@ export class PMenuComponent implements OnInit, OnDestroy, AfterViewInit, OnChang
   PStore$;
 
   titleHeight;
-
-
-  chartSortList = [
-    {
-      title : '30일',
-      value : 0,
-    },
-    {
-      title : '90일',
-      value : 1,
-    }
-  ]
 
   numberOptionList = {
     list : [
@@ -225,15 +208,7 @@ export class PMenuComponent implements OnInit, OnDestroy, AfterViewInit, OnChang
     }));
   }
 
-  ngOnChanges( changes: SimpleChanges ) {
-
-  }
-
-
-
   ngAfterViewInit() {
-
-    const weatherDates = []
 
     if (!this.isMobile) {
       this.scrollEvent = fromEvent(window, 'scroll');
@@ -249,7 +224,6 @@ export class PMenuComponent implements OnInit, OnDestroy, AfterViewInit, OnChang
           this.renderer.setStyle(this.pMenu.nativeElement, 'position', 'absolute');
           this.renderer.setStyle(this.pMenu.nativeElement, 'z-index', '1');
           this.renderer.setStyle(this.pMenu.nativeElement, 'top', (menuTopValue.menuPosition - this.titleHeight) * 0.1 + 'rem');
-          // this.renderer.setStyle(this.pMenu.nativeElement, 'top', (menuTopValue.menuPosition - this.titleHeight) * 0.1 + 'rem');
         }
 
         this.cd.markForCheck();
@@ -286,12 +260,6 @@ export class PMenuComponent implements OnInit, OnDestroy, AfterViewInit, OnChang
         this.cd.markForCheck();
       });
     }
-
-    // // @ts-ignore
-  }
-
-  ngOnInit() {
-
   }
 
   shareProductDetail() {
@@ -315,13 +283,5 @@ export class PMenuComponent implements OnInit, OnDestroy, AfterViewInit, OnChang
     // Remove it as its not needed anymore
     document.body.removeChild(dummy);
     this.store.dispatch( new DisplayAlertMessage(this.alertMap['link-copied'][this.locale]));
-  }
-
-  toFixed( data: number) {
-    return data.toFixed(2);
-  }
-
-  typeof( hello ) {
-    return typeof(hello);
   }
 }

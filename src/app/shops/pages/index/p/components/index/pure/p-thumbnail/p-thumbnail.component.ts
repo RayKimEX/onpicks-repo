@@ -17,12 +17,7 @@ export class PThumbnailComponent {
     @Inject( LOCALE_ID ) public locale: string,
     @Inject( DISPLAY_ALERT_MESSAGE_MAP ) private alertMap,
     private store: Store<any>
-  ) {
-
-  }
-
-
-
+  ) { }
 
   shareProductDetail() {
     const const_url = location.href;

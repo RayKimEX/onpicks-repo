@@ -1,4 +1,8 @@
-import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnInit
+} from '@angular/core';
 import {AccountDataService} from '../../../../../../core/service/data-pages/account/account-data.service';
 import {tap} from 'rxjs/operators';
 import {UiService} from '../../../../../../core/service/ui/ui.service';
@@ -12,11 +16,9 @@ import {UiService} from '../../../../../../core/service/ui/ui.service';
 export class WrittenReviewsComponent implements OnInit {
 
   writtenReviews$;
-  writtenReviews;
-
   weeklyBest$;
-
   contentHeight = '';
+
   constructor(
     private accountDataService: AccountDataService,
     private uiService: UiService
@@ -29,5 +31,4 @@ export class WrittenReviewsComponent implements OnInit {
   ngOnInit() {
     this.contentHeight = (window.screen.height - 400) < 300 ? '' : (window.screen.height - 400) + 'px';
   }
-
 }

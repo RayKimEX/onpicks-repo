@@ -1,4 +1,9 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, HostListener, OnInit} from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  OnInit
+} from '@angular/core';
 import {tap} from 'rxjs/operators';
 import {AccountDataService} from '../../../../../../core/service/data-pages/account/account-data.service';
 import {UiService} from '../../../../../../core/service/ui/ui.service';
@@ -14,11 +19,9 @@ export class AvailableReviewsComponent implements OnInit {
   orderData$;
   writeReview = {
     isShow : false,
-    reviewData : undefined,
+    reviewData : {},
   }
-
   weeklyBest$;
-  weeklyBest;
 
   contentHeight = '';
   constructor(
@@ -40,8 +43,6 @@ export class AvailableReviewsComponent implements OnInit {
   }
 
   viewModal(xPassedData) {
-
-    console.log(xPassedData.item);
     if (xPassedData.item.review === null ) {
       this.accountDataService.createReviewData(xPassedData.item.product, xPassedData.orderId).subscribe(
         response => {
@@ -54,11 +55,10 @@ export class AvailableReviewsComponent implements OnInit {
                 review : response.id
               }
             }
-            console.log(this.writeReview);
           }
           this.cd.markForCheck();
         }, error => {
-          console.log(error);
+          console.error(error);
         }
       );
     } else {
@@ -69,13 +69,8 @@ export class AvailableReviewsComponent implements OnInit {
             ...xPassedData.item
           }
         }
-
-        console.log(this.writeReview);
         this.cd.markForCheck();
       }
     }
-
-
-
   }
 }

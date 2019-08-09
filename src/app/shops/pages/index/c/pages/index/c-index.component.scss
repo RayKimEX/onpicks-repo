@@ -1,26 +1,26 @@
 @import '~src/assets/scss/abstracts/variables';
 
 .c-header{
-
   margin : 0 -2.4rem;
   height : 6rem;
+
   @include respond(desktop){
     display:none;
   }
+
   &__category {
     position: relative;
     height:inherit;
     margin : 0 8rem;
+
     @include respond(sb){
       width : calc(100% - 4rem);
       margin : 0 2rem;
     }
 
-
     &--ul {
       width:100%;
       @include verticalCenter;
-
     }
 
     &--li{

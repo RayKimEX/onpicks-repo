@@ -1,3 +1,5 @@
+
+// Angular
 import {
   ChangeDetectionStrategy,
   Component,
@@ -5,12 +7,15 @@ import {
   OnInit,
   ViewChild
 } from '@angular/core';
-import {AppState} from '../../../core/store/app.reducer';
+import {Router} from '@angular/router';
+
+// Store
 import {Store} from '@ngrx/store';
+import {AppState} from '../../../core/store/app.reducer';
+
+// Component
 import {TryLogin} from '../../../core/store/auth/auth.actions';
 import {AuthService} from '../../../core/service/auth/auth.service';
-import {Router} from '@angular/router';
-import {Title} from '@angular/platform-browser';
 import {REGION_ID} from '../../../core/global-constant/app.config';
 
 
@@ -20,7 +25,7 @@ import {REGION_ID} from '../../../core/global-constant/app.config';
   styleUrls: ['./login.component.scss'],
   changeDetection : ChangeDetectionStrategy.OnPush,
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
   @ViewChild('inputEmail') inputEmail;
   @ViewChild('inputPassword') inputPassword;
   @ViewChild('isPersistent', {read : ElementRef}) isPersistent;
@@ -39,10 +44,6 @@ export class LoginComponent implements OnInit {
     isPersistent : false,
   };
 
-  ngOnInit() {
-
-  }
-
   getQueryString(...xArguments) {
     let key = 'false';
     const res = {}
@@ -51,15 +52,11 @@ export class LoginComponent implements OnInit {
     const qs = location.search.substring(1);
     // check for the key as an argument
     if (xArguments.length > 0 && xArguments[0].length > 1){
-
       key = arguments[0];
     }
+
     // make a regex pattern to grab key/value
     const pattern = /([^&=]+)=([^&]*)/g;
-    // loop the items in the query string, either
-    // find a match to the argument, or build an object
-    // with key/value pairs
-
     while (itm = pattern.exec(qs)) {
       if ( key !== 'false' && decodeURIComponent(itm[1]) === key ) {
         return decodeURIComponent(itm[2]);
@@ -72,13 +69,9 @@ export class LoginComponent implements OnInit {
   }
 
   loginClick() {
-    console.log('hello');
-    // const url = new URL(location.href);
     const returnURL = this.getQueryString('return');
-    console.log(returnURL);
     this.info.email = this.inputEmail.nativeElement.value;
     this.info.password = this.inputPassword.nativeElement.value;
-
     this.store.dispatch( new TryLogin({info : this.info, returnURL: returnURL }));
   }
 
@@ -105,5 +98,4 @@ export class LoginComponent implements OnInit {
   loginWithSocial (xType) {
     this.authService.loginWithSocial(xType).subscribe( v => location.href = v.authorization_url);
   }
-
 }

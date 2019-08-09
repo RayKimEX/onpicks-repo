@@ -6,11 +6,7 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
   styleUrls: ['./faq-kr.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class FaqKrComponent implements OnInit {
+export class FaqKrComponent {
 
   constructor() { }
-
-  ngOnInit() {
-  }
-
 }
