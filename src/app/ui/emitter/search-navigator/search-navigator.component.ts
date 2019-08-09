@@ -21,7 +21,7 @@ import {CURRENCY, LOCATION_MAP, RESPONSIVE_MAP} from '../../../core/global-const
 import {UiService} from '../../../core/service/ui/ui.service';
 import {normalize, schema} from 'normalizr';
 import {AddClassOpenModal, DisplayAlertMessage, RemoveClassOpenModal} from '../../../core/store/ui/ui.actions';
-import {BehaviorSubject, combineLatest, merge, pipe, Subject} from 'rxjs';
+import {BehaviorSubject, Subject} from 'rxjs';
 import {CATEGORY_CODE_MAP} from '../../../core/global-constant/app.category-database-long';
 import {BreakpointObserver, BreakpointState} from '../../../../../node_modules/@angular/cdk/layout';
 import {Title} from '@angular/platform-browser';
@@ -146,7 +146,6 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
         // this.categoryList = val;
         this.normalizedCategoryInfoList = val.entities;
         this.normalizedCategoryCodeList = val.result;
-        console.log(val.result);
         this.previous = val.previous;
         this.currentSlug = val.currentSlug;
         this.currentCode = val.currentCode;
@@ -178,17 +177,15 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
       if (_infoList != null) {
         this.isLoading = false;
 
+        this.infoList = _infoList.results;
         this.filters = _infoList.filters;
         this.valueList = _infoList.aggregation.values;
         this.locationList = _infoList.aggregation.locations;
         this.brandList = _infoList.aggregation.brands;
         this.categoryList = _infoList.aggregation.categories;
 
-        this.infoList = _infoList.results;
-
         this.totalCount = _infoList.count;
         this.totalPage = this.totalCount / this.maxRow;
-
         this.totalPageArray = Array(parseInt(this.totalPage, 10));
         this.totalPageArray.push(this.totalPageArray.length + 1);
         this.currentList = this.infoList.slice(0, this.maxRow);
@@ -197,13 +194,11 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
           this.infiniteList = this.infiniteList.concat(this.infoList);
 
         }
-
         this.cd.markForCheck();
 
       }
     }, (err) => {
       this.isLoading = false;
-
       console.log(err);
       alert('더이상 불러올 목록이 없습니다.');
     });
@@ -234,7 +229,6 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
       ).subscribe( (_infoList: {filters, aggregation, results, count}) => {
         this.searchState = 'category';
         this.isLoading = false;
-
         /* async 데이터가 들어오는데, null이라면 return을 해줌 */
 
         if (_infoList != null) {
@@ -253,15 +247,12 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
           this.currentList = this.infoList.slice(0, this.maxRow);
           if (this.isMobile) {
             this.infiniteList = this.infiniteList.concat(this.infoList);
-
           }
-
           this.cd.markForCheck();
-
         }
-
       }, (err) => {
         this.isLoading = false;
+        console.log(err)
       });
 
     this.routerEvent$ = this.router.events.subscribe( (event: RouterEvent) => {
@@ -274,11 +265,6 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
 
         this.currentList = null;
         this.filters = {};
-        // category main페이지 일때
-        // if (this.router.url.indexOf('&') < 0) {
-        //   const temp = this.router.url.substring(this.router.url.indexOf('&') + 1, this.router.url.length);
-        // }
-
 
         if (url.indexOf('/search') > -1) {
           this.searchState = 'search';
@@ -345,13 +331,22 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
       }
     }
   }
+
+  ngOnDestroy() {
+    this.uiStore$.unsubscribe();
+    this.queryParams$.unsubscribe();
+    this.cartStore$.unsubscribe();
+    this.routerEvent$.unsubscribe();
+    this.totalSearchData$.unsubscribe();
+    this.categorySearchData$.unsubscribe();
+  }
+
   shareInfiniteListVaraibles(infiniteListVariables) {
     this.infiniteCurrentSortSlug = infiniteListVariables.currentSortSlug;
     this.infiniteCurrentPage = infiniteListVariables.currentPage;
     this.infiniteList = infiniteListVariables.infiniteList;
   }
   get filterList() {
-
     let filterList = [];
 
     // 브랜드, 밸류, 출고지 필터들을 종류에 상관없이 1차원 배열로 나열한다.
@@ -378,15 +373,6 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
     });
 
     return filterList;
-  }
-
-  ngOnDestroy() {
-    this.uiStore$.unsubscribe();
-    this.queryParams$.unsubscribe();
-    this.cartStore$.unsubscribe();
-    this.routerEvent$.unsubscribe();
-    this.totalSearchData$.unsubscribe();
-    this.categorySearchData$.unsubscribe();
   }
 
   showMobileFilter(xMenuState) {
@@ -509,11 +495,9 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
     } else {
       this.router.navigate(['./'], { relativeTo: this.route, queryParams: {value: this.queryParams.value.length === 0 ? null : this.queryParams.value}, queryParamsHandling: 'merge'} );
     }
-
   }
 
   brandClicked(xBrandSlug) {
-
     if (this.brandListForCheck[xBrandSlug] === true) {
       this.brandListForCheck[xBrandSlug] = false;
       const index = this.queryParams.brand.indexOf(xBrandSlug);
@@ -521,9 +505,7 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
     } else {
       this.queryParams.brand.push(xBrandSlug);
     }
-
-
-    if( this.searchState === 'search') {
+    if ( this.searchState === 'search') {
       this.router.navigate(['/shops/search'], {
         queryParams: {page: null, brand: this.queryParams.brand.length === 0 ? null : this.queryParams.brand},
         queryParamsHandling: 'merge'
@@ -532,11 +514,9 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
       this.router.navigate(['./'], { relativeTo: this.route, queryParams: {brand: this.queryParams.brand.length === 0 ? null : this.queryParams.brand},
         queryParamsHandling: 'merge'} );
     }
-
   }
 
   locationClicked(xLocationSlug) {
-
     if ( this.locationListForCheck[xLocationSlug] === true ) {
       this.locationListForCheck[xLocationSlug] = false;
       const index = this.queryParams.location.indexOf(xLocationSlug);
@@ -544,8 +524,7 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
     } else {
       this.queryParams.location.push(xLocationSlug);
     }
-
-    if( this.searchState === 'search') {
+    if ( this.searchState === 'search') {
       this.router.navigate(['/shops/search'], {
         queryParams: {page: null, location: this.queryParams.location.length === 0 ? null : this.queryParams.location},
         queryParamsHandling: 'merge'
@@ -553,16 +532,20 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
     } else {
       this.router.navigate(['./'], { relativeTo: this.route, queryParams: {location: xLocationSlug}, queryParamsHandling: 'merge'} );
     }
-
   }
 
-  sortClicked(xSortSlug) {
-    this.currentSortElement = xSortSlug;
-    // this.orderedFilterListForCheck[]
+  sortClicked(currentSortElement) {
+    this.currentSortElement = currentSortElement;
     if( this.searchState === 'search') {
-      this.router.navigate(['/shops/search'], { queryParams: {page : 1, ordering: xSortSlug}, queryParamsHandling: 'merge'} );
+      this.router.navigate(['/shops/search'], {
+        queryParams: {page : 1, ordering: currentSortElement.value
+        }, queryParamsHandling: 'merge'
+      });
     } else {
-      this.router.navigate(['./'], { relativeTo: this.route, queryParams: {ordering: xSortSlug}, queryParamsHandling: 'merge'} );
+      this.router.navigate(['./'], {
+        relativeTo: this.route, queryParams: { ordering: currentSortElement.value
+        }, queryParamsHandling: 'merge'
+      });
     }
   }
 
@@ -589,21 +572,10 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
       }
     }
 
-    // this.queryParams
-
     if( this.searchState === 'search') {
       this.router.navigate( ['/shops/search'], {queryParams: this.currentParamList});
     } else {
       this.router.navigate(['./'], { relativeTo: this.route, queryParams: this.currentParamList } );
-    }
-  }
-
-  // TODO : 리뷰 검색, 브랜드 검색 2차 스콥때 하기
-
-  brandSearch(event: KeyboardEvent) {
-
-    if ( event.key === 'Enter' ) {
-      this.store.dispatch(new DisplayAlertMessage(this.alertMap['comming-soon'][this.locale]));
     }
   }
 
@@ -627,31 +599,6 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
     this.router.navigate(['/shops/search'], {queryParams: {location: null}, queryParamsHandling: 'merge'});
   }
 
-  normalizer ( data ) {
-    const slug = new schema.Entity('slug', {
-
-    });
-
-    const fourthCategory = new schema.Entity('fourthCategory', {
-
-    });
-
-    // // // Define your comments schema
-    const thirdCategory = new schema.Entity('thirdCategory', {
-      name : name,
-      children : [fourthCategory]
-    });
-
-    const secondCategory = new schema.Entity('secondCategory', {
-      // idAttribute: () => slug
-      children : [thirdCategory]
-    });
-
-    const object = new schema.Array(secondCategory);
-
-
-    return normalize(data, object);
-  }
   getCurrentParamListExceptPage() {
     const currentParamList = this.currentParamList;
     if (currentParamList['page']) {
@@ -663,17 +610,16 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
     return currentParamList;
   }
 
-
   typeOf( val ) {
     return typeof val;
   }
+
   loadNextPageItems( currentPage: number) {
       const url = this.router.url;
       this.currentUrl = url;
       if ( url.indexOf('/search') <= -1 && url.indexOf('/c/') <= -1) {
         return ;
       }
-
       // category main페이지 일때
       if (this.router.url.indexOf('&') < 0) {
         const temp = this.router.url.substring(this.router.url.indexOf('&') + 1, this.router.url.length);
@@ -683,16 +629,13 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
         });
       }
 
-
       if (url.indexOf('/search') > -1) {
         this.searchState = 'search';
         this.normalizedCategoryCodeList = null;
         this.previous = null;
         this.currentSlug = null;
-
         let param = this.router.url.indexOf('?') < 0 ? null : this.router.url.substring(this.router.url.indexOf('?'), this.router.url.length);
         param = this.replaceStringParam(param, 'page', currentPage);
-
         this.totalSearchRequest$.next(param);
       } else {
         this.categorySearchReqeust$.next(this.getCategoryCurrentCode());
@@ -706,6 +649,7 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
 
     }
   }
+
   replaceStringParam(string, paramName, paramValue) {
     if (paramValue == null) {
       paramValue = '';
@@ -718,6 +662,7 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
     string = string.replace(/[?#]$/, '');
     return string + '&' + paramName + '=' + paramValue;
   }
+
   getCategoryCurrentCode() {
     const categoryUrl = this.router.url.split('/');
     let categoryCurrentCode = 0;
@@ -737,6 +682,7 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
     }
     return categoryCurrentCode;
   }
+
   removeParameterFromUrl(url, parameter) {
     return url
       .replace(new RegExp('[?&]' + parameter + '=[^&#]*(#.*)?$'), '$1')

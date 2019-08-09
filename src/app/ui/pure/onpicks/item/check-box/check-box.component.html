@@ -1,17 +1,14 @@
 
 <ng-container [ngSwitch]="type">
-
-
   <label for="{{uuid}}" *ngSwitchDefault [ngClass]="[ radioType === 'normal' ? 'radio-checkbox' : 'radio-checkbox--radius' ]" [ngStyle]="{ 'margin-right' : marginRight }">
     <input
+      #radioBoxView
       id="{{uuid}}"
       [checked]="isChecked"
       class="radio-checkbox__input"
       (change)="handleChangeForRadio($event)"
       type="radio"
-      name="radio"
-      #radioBoxView
-    >
+      name="radio">
     <span [ngStyle]="{ display : radioType === 'normal' ? 'inline-block' : 'none'}" class="radio-checkbox__checkmark">
     </span>
     <span [ngClass]="[ radioType === 'normal' ? 'radio-checkbox__content' : 'radio-checkbox__content--radius' ]" >

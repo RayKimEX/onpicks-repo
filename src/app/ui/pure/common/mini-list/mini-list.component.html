@@ -12,18 +12,15 @@
       [ngClass]=
         "[ mobileType === 'half' ? 'ui-mini-list-halfM' : 'ui-mini-list-fullM']"
       class="u-margin-bottom">
-
       <h1
         #insertTitle
-        [ngClass]=
-          "[ mobileType === 'half' ? 'ui-mini-list-halfM__title' : 'ui-mini-list-fullM__title']"
+        [ngClass]="[ mobileType === 'half' ? 'ui-mini-list-halfM__title' : 'ui-mini-list-fullM__title']"
         class="h1-bold">{{setTitle}}</h1>
       <div
         [ngClass]="[
             mobileType === 'half' ?
             'ui-mini-list-halfM__content--outer' :
-            'ui-mini-list-fullM__content--outer'
-          ]">
+            'ui-mini-list-fullM__content--outer']">
           <onpicks-circle-n-button
             *ngIf="imageIndex  < (infoList?.length - carouselLength) "
             [top]="'12.6rem'"
@@ -64,7 +61,7 @@
                         mobileType === 'half' ?
                         'ui-mini-list-halfM__item--image' :
                         'ui-mini-list-fullM__item--image'
-                      ]">
+                    ]">
                     <div
                       [ngClass]="[
                         mobileType === 'half' ?
@@ -114,7 +111,7 @@
                           'ui-mini-list-halfM__item--image-inner' :
                           'ui-mini-list-fullM__item--image-inner'
                         ]">
-                            <img drLazyLoad [relativeOption]="false" src="{{item.thumbnail}}" alt="{{item.title}}">
+                          <img drLazyLoad [relativeOption]="false" src="{{item.thumbnail}}" alt="{{item.title}}">
                         </div>
                       </a>
                     </div>
@@ -142,7 +139,6 @@
                         {{item.brand.name}}
                       </a>
                     </h1>
-
                     <a [routerLink]="'/shops/p/' + item.slug">
                       <span
                         [ngClass]="[
@@ -155,7 +151,6 @@
                       </span>
                     </a>
                   </div>
-
                   <ui-star-rating
                     [star-point]="item.review_avg_rating"
                     [size]="10">

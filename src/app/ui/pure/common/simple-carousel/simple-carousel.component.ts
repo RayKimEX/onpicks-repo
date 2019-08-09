@@ -2,10 +2,9 @@ import {
   AfterViewInit,
   ChangeDetectionStrategy, ChangeDetectorRef,
   Component,
-  Input, OnChanges,
+  Input,
   OnDestroy,
-  OnInit,
-  Renderer2, SimpleChanges,
+  Renderer2,
   ViewChild,
   ViewChildren
 } from '@angular/core';
@@ -18,14 +17,10 @@ import {map} from 'rxjs/operators';
   templateUrl: './simple-carousel.component.html',
   styleUrls: ['./simple-carousel.component.scss'],
   changeDetection : ChangeDetectionStrategy.OnPush,
-  // animations: [
-  //   trigger('')
-  // ]
 })
 
 // TODO : 29cm 참고해서 다시 재 도전
 // 일렬로 나열해서 해야될 것 같음
-//
 export class SimpleCarouselComponent implements AfterViewInit, OnDestroy {
 
   @ViewChildren('imageLargeOuter') imageLargeOuter;
@@ -37,9 +32,7 @@ export class SimpleCarouselComponent implements AfterViewInit, OnDestroy {
   @Input('imagesSmallList') imagesSmallList = null;
 
   // TODO : 모든 subscription에 대해서 unsubscribe확실하게 정리하기
-
   imageIndex = 0;
-  // 456(width) + 16 ( margin )
   state = 'stay';
 
   imageLargeOuterArray = [];

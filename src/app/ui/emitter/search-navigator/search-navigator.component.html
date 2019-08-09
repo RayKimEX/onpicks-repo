@@ -18,11 +18,9 @@
   (exit)="hideMobileFilter()"
   [state]="mobileFilterState"
   [searchState]="searchState"
-
   [currentSortSlug]="currentSortElement?.value"
   [isShowMobileFilter]="isShowMobileFilter"
-  (sharedInfiniteListVariables)="shareInfiniteListVaraibles($event)"
->
+  (sharedInfiniteListVariables)="shareInfiniteListVaraibles($event)">
 </onpicks-search-navigator-mobile-filter>
 
 <div class="row" [ngStyle]="{ minHeight : contentHeight }">

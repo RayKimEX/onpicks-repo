@@ -1,21 +1,5 @@
 @import '~src/assets/scss/abstracts/variables';
 
-
-//<div class="onpicks-sort-box">
-//<button class="onpicks-sort-box__fore-button">
-//                                        Most Helpful
-//<svg>
-//
-//</svg>
-//</button>
-//<div class="onpicks-sort-box__dropdown">
-//<div class="onpicks-sort-box__dropdown--design">
-//<div>
-//<div class="onpicks-sort-box__dropdown--element">
-//<label for="">
-
-
-
 .onpicks-sort-box{
   position:relative;
   display:inline-block;
@@ -33,7 +17,6 @@
       margin-bottom: 3px;
       margin-left:3px;
     }
-
   }
 
   &__dropdown {
@@ -105,7 +88,7 @@
         height : 20px;
         cursor:pointer;
         width:100%;
-        padding : 0px 24px 0px 12px;
+        padding : 0px 2.4rem 0px 1.2rem;
         // padding: auto 12px;
         input {
           display : none;
@@ -113,11 +96,6 @@
       }
 
       &-text {
-        //font-size : 1.4rem;
-        //font-weight : 500;
-        //letter-spacing : 0.03rem;
-        //color : $color-black;
-        // color : #767676;
         white-space : nowrap;
 
       }

@@ -5,13 +5,12 @@
   &:first-child{
     border-top : 1px solid $color-light-grey;
   }
-  // border-bottom: 1px solid $color-light-grey;
 
   &__sub-title-box {
     width: 100%;
     display:table;
     padding: 1.6rem 2.4rem;
-
+    height : 5.2rem;
     &--order-date-title {
       @include respond(actb){
         display: none;
@@ -27,7 +26,6 @@
     @include respond(actb){
       padding : 1.6rem 0rem;
     }
-    height : 5.2rem;
 
     div {
       display: table-cell;
@@ -131,8 +129,6 @@
       vertical-align:top;
       display:inline-block;
       float:right;
-
-
 
       &--title {
         padding-bottom : 4px;

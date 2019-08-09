@@ -5,7 +5,7 @@ import {
   ElementRef, EventEmitter,
   HostListener, Inject,
   Input, LOCALE_ID,
-  OnInit, Output,
+  Output,
   Renderer2,
   ViewChild
 } from '@angular/core';
@@ -17,7 +17,8 @@ import {
   styleUrls: ['./sort-box.component.scss'],
   changeDetection : ChangeDetectionStrategy.OnPush,
 })
-export class SortBoxComponent implements OnInit, AfterViewInit {
+export class SortBoxComponent implements AfterViewInit {
+  @Output('changeEvent') changeEvent = new EventEmitter();
   @ViewChild('HTMLdropDown') HTMLdropDown;
   @Input('multiLanguage') multiLanguage = false;
   @Input('sortList') sortList;
@@ -39,11 +40,9 @@ export class SortBoxComponent implements OnInit, AfterViewInit {
       }
     }
   };
-  @Output('changeEvent') changeEvent = new EventEmitter();
   @Input('isOpen') isOpen = false;
 
   selectedElement = null;
-
   @HostListener('document:click', ['$event'])
   clickout(event) {
     if ( this.eRef.nativeElement.contains(event.target)) {
@@ -60,12 +59,6 @@ export class SortBoxComponent implements OnInit, AfterViewInit {
     private renderer: Renderer2
   ) { }
 
-  ngOnInit() {
-    // init시에 무조건 첫번째 Object를 가져옴
-    console.log(this.selectedElement);
-
-
-  }
 
   ngAfterViewInit() {
     if ( this.fontSize !== undefined ) {

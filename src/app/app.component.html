@@ -3,10 +3,6 @@
   <font-spoqa *ngSwitchCase="'ko'"></font-spoqa>
 </div>
 
-<!--<div class="onpicks__advertisement subtitle-2-regular u-color-white">-->
-  <!--<div class="onpicks__advertisement&#45;&#45;center">런칭 이벤트 10만원 이상 구매 시 무료 배송</div>-->
-<!--</div>-->
-
 <ui-header></ui-header>
 
 <onpicks-free-delivery-notibox
@@ -26,16 +22,17 @@
 <ui-footer [ngStyle]="{ paddingTop : deltaHeight }">
 
 <div *ngIf="region === 'kr'">
-  <span *ngIf="isKakaoSpeachBubble" class="kakao-speach-bubble u-cursor-pointer" (click)="isKakaoSpeachBubble = false"></span>
+  <span
+    *ngIf="isKakaoSpeachBubble"
+    class="kakao-speach-bubble u-cursor-pointer"
+    (click)="isKakaoSpeachBubble = false">
+  </span>
   <a
     [ngStyle]="{ bottom : isDesktopBreakPoint ? globalKakaoPosition : '3rem' }"
     class="kakao-plus-friend"
     (click)="plusFriendChat()">
-
     <div class="kakao-plus-friend__image"></div>
   </a>
-
-  <!--kakao-plus-friend-desktop.jpg-->
 </div>
 
 <onpicks-modal
@@ -44,7 +41,9 @@
   [isShow]="(modalState$ | async).currencyModal">
   <div class="modal__currency">
     <div class="modal__currency--title">
-      <div class="u-vertical-center-with-table-cell h1-bold">{{preferenceMap['currency'].title[locale]}}</div>
+      <div class="u-vertical-center-with-table-cell h1-bold">
+        {{preferenceMap['currency'].title[locale]}}
+      </div>
     </div>
     <div
       (click)="changeCurrencyPreference(item.key)"
@@ -52,7 +51,13 @@
       class="modal__currency--item subtitle-1-regular">
       <div class="modal__currency--item--inner u-vertical-center-with-table-cell subtitle-1-regular">
         {{item.value[locale]}}
-        <svg *ngIf="(currency | async) === item.key" class="preference-modal__item--check-svg u-float-right" xmlns="http://www.w3.org/2000/svg" width="10" height="7" viewBox="0 0 10 7">
+        <svg
+          *ngIf="(currency | async) === item.key"
+          class="preference-modal__item--check-svg u-float-right"
+          xmlns="http://www.w3.org/2000/svg"
+          width="10"
+          height="7"
+          viewBox="0 0 10 7">
           <path fill="#000" fill-rule="evenodd" d="M4.024 7h-.007a1.413 1.413 0 0 1-1.023-.448L.279 3.708a1.008 1.008 0 0 1 .029-1.421 1 1 0 0 1 1.414.03L4.025 4.73 8.282.305A1 1 0 0 1 9.696.281a1.01 1.01 0 0 1 .023 1.421l-4.68 4.864A1.411 1.411 0 0 1 4.025 7z"/>
         </svg>
       </div>
@@ -66,15 +71,23 @@
   [isShow]="(modalState$ | async).regionModal">
   <div class="modal__currency">
     <div class="modal__currency--title">
-      <div class="u-vertical-center-with-table-cell h1-bold">{{preferenceMap['region'].title[locale]}}</div>
+      <div class="u-vertical-center-with-table-cell h1-bold">
+        {{preferenceMap['region'].title[locale]}}
+      </div>
     </div>
     <div
-      (click)="changeRegionPreference(item.key)"
       *ngFor="let item of preferenceMap['region'].list | keyvalue: nonCompareFunction"
-      class="modal__currency--item subtitle-1-regular">
+      class="modal__currency--item subtitle-1-regular"
+      (click)="changeRegionPreference(item.key)">
       <div class="modal__currency--item--inner u-vertical-center-with-table-cell subtitle-1-regular">
         {{item.value[locale]}}
-        <svg *ngIf="region === item.key" class="preference-modal__item--check-svg u-float-right" xmlns="http://www.w3.org/2000/svg" width="10" height="7" viewBox="0 0 10 7">
+        <svg
+          *ngIf="region === item.key"
+          class="preference-modal__item--check-svg u-float-right"
+          xmlns="http://www.w3.org/2000/svg"
+          width="10"
+          height="7"
+          viewBox="0 0 10 7">
           <path fill="#000" fill-rule="evenodd" d="M4.024 7h-.007a1.413 1.413 0 0 1-1.023-.448L.279 3.708a1.008 1.008 0 0 1 .029-1.421 1 1 0 0 1 1.414.03L4.025 4.73 8.282.305A1 1 0 0 1 9.696.281a1.01 1.01 0 0 1 .023 1.421l-4.68 4.864A1.411 1.411 0 0 1 4.025 7z"/>
         </svg>
       </div>
@@ -85,10 +98,9 @@
 <div *ngIf="region === 'kr'">
   <span *ngIf="isKakaoSpeachBubble" class="kakao-speach-bubble u-cursor-pointer" (click)="isKakaoSpeachBubble = false"></span>
   <a
-    [ngStyle]="{ bottom : isDesktopBreakPoint ? globalKakaoPosition : '3rem' }"
     class="kakao-plus-friend"
+    [ngStyle]="{ bottom : isDesktopBreakPoint ? globalKakaoPosition : '3rem' }"
     (click)="plusFriendChat()">
-
     <div class="kakao-plus-friend__image"></div>
   </a>
 </div>

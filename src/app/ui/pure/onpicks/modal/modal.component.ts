@@ -1,14 +1,13 @@
 import {
-  AfterViewInit,
-  ChangeDetectionStrategy, ChangeDetectorRef,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   EventEmitter, HostListener, Inject,
-  Input, LOCALE_ID,
-  OnChanges, OnDestroy,
+  Input,
+  OnDestroy,
   OnInit,
   Output, Renderer2,
-  SimpleChanges, ViewChild,
-  ViewEncapsulation
+  ViewChild,
 } from '@angular/core';
 import {RESPONSIVE_MAP} from '../../../../core/global-constant/app.config';
 import {BreakpointObserver, BreakpointState} from '../../../../../../node_modules/@angular/cdk/layout';
@@ -22,10 +21,9 @@ import {AddClassOpenModal, RemoveClassOpenModal} from '../../../../core/store/ui
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 
-export class ModalComponent implements OnInit, AfterViewInit, OnDestroy {
+export class ModalComponent implements OnInit, OnDestroy {
   @Input('isShow') set _isShow(xIsShow) {
     if (xIsShow === null ) { return; }
-
 
     this.popupState = false;
     if ( xIsShow === true ) {
@@ -89,20 +87,14 @@ export class ModalComponent implements OnInit, AfterViewInit, OnDestroy {
 
   @HostListener('document:keydown.escape', ['$event'])
   onKeydownHandler(event: KeyboardEvent) {
-    // &&  this.communicateBox.nativeElement.style.display !== 'none'
     if ( event.key === 'Escape' ) {
       this.exitEvent.emit();
     }
   }
 
-  ngAfterViewInit() {
-
-  }
-
   ngOnDestroy() {
     this.popupState = false;
   }
-
 
   @HostListener('document:click', ['$event'])
   clickout(event) {

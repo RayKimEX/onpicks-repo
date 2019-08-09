@@ -6,7 +6,7 @@ import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
   styleUrls: ['./button.component.scss'],
   changeDetection : ChangeDetectionStrategy.OnPush,
 })
-export class ButtonComponent implements OnInit {
+export class ButtonComponent {
   @Input('width') width;
   @Input('type') type;
   @Input('size') size;
@@ -15,13 +15,5 @@ export class ButtonComponent implements OnInit {
   @Input('marginLeft') marginLeft;
   @Input('padding') padding = true;
 
-
-
-  constructor() {
-
-  }
-
-  ngOnInit() {
-  }
-
+  constructor() { }
 }

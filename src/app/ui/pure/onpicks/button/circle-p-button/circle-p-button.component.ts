@@ -6,15 +6,12 @@ import {AfterViewInit, ChangeDetectionStrategy, Component, Input, OnInit, Render
   styleUrls: ['./circle-p-button.component.scss'],
   changeDetection : ChangeDetectionStrategy.OnPush,
 })
-export class CirclePButtonComponent implements OnInit, AfterViewInit {
+export class CirclePButtonComponent implements AfterViewInit {
   @ViewChild('prevButton') prevButton;
   @Input('left') left;
   @Input('top') top;
 
   constructor(private renderer: Renderer2) {  }
-
-  ngOnInit() {
-  }
 
   ngAfterViewInit() {
     this.renderer.setStyle(this.prevButton.nativeElement, 'left', this.left);

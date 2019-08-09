@@ -39,9 +39,9 @@
     @include respond(sb){
       margin-top : 0.4rem;
     }
+
     &--MSRP {
       margin-right: 0.2rem;
-
       @include respond(tb){
         display:none;
       }
@@ -53,6 +53,7 @@
           display:inline-block;
         }
       }
+
       &-discount {
 
         vertical-align: text-top;;
@@ -83,7 +84,6 @@
   }
 
   &__content {
-
     position: relative;
     overflow: hidden;
     width: inherit;
@@ -360,7 +360,6 @@
       @include respond(fb){
         margin-left:-1.6rem;
         margin-top :-1.6rem;
-        //height: 1.6rem;
       }
 
       &--inner {
@@ -468,7 +467,6 @@
   }
 
   &__content {
-
     position: relative;
     overflow: hidden;
     width: inherit;;
@@ -477,10 +475,10 @@
     @include respond(tb){
       white-space: normal;
     }
+
     &--outer {
       position: relative;
     }
-
 
     &-li{
       width: 28.8rem;
@@ -505,16 +503,9 @@
         margin-right: 2.4rem;
         @include respond(fb){
           margin-right : 0;
-          // padding-right: 2.4rem;
         }
         @include respond(tb){
           padding-right : 0;
-        }
-      }
-
-      @include respond(tb){
-        &:not(:nth-child(2n)) > div {
-          // padding-right : 2.4rem;
         }
       }
     }

@@ -8,7 +8,6 @@
     white-space: nowrap;
     overflow:hidden;
 
-
     &--ul{
       height:inherit;
       transition: transform .5s ease 0s;
@@ -49,14 +48,13 @@
       }
     }
 
-
     &-next-button {
       @include verticalCenter;
       background-color:transparent;
       border-width: 0;
       right : 1.8rem;
-      width: 40px;
-      height: 40px;
+      width: 4rem;
+      height: 4rem;
 
       svg{
         cursor : pointer;
@@ -72,8 +70,8 @@
       background-color:transparent;;
       left : 1.8rem;
 
-      width: 40px;
-      height: 40px;
+      width: 4rem;
+      height: 4rem;
 
       svg{
         cursor : pointer;
@@ -123,9 +121,7 @@
       &-border {
         opacity :0.5;
         transition: all .5s;
-        //img {
-        //  opacity :0.5;
-        //}
+
         &::after {
           content : '';
           position:absolute;

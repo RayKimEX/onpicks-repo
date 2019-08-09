@@ -2,8 +2,6 @@
 <div
   [ngSwitch]="sizePoint"
   class="star-source">
-
-
   <span *ngSwitchCase="10">
     <svg class="star--10">>
       <linearGradient id="grad" x1="0" x2="100%" y1="0" y2="0">
@@ -26,13 +24,10 @@
       </symbol>
     </svg>
   </span>
-
-
 </div>
 
 
 <div [ngSwitch]="sizePoint" class="star-container">
-
   <span *ngSwitchCase="10">
     <svg *ngFor="let item of numberArray(5); index as i" class="star--10">
       <linearGradient id="grad" x1="0" x2="100%" y1="0" y2="0">
@@ -53,7 +48,6 @@
         </linearGradient>
       </defs>
       <path [attr.fill]="starInt > i ? '#292929' : starInt == i && halfStarCondition ?  'url('+ window.location.href + '#grad)' : '#b3b3b3'" d="M21.52 16.083l2.934-2.238 2.933-2.238c.958-.73.773-1.328-.411-1.328h-9.404l-.666-2.15v-.001l-1.12-3.62-1.12-3.622c-.367-1.182-.966-1.182-1.331 0l-2.24 7.242-.666 2.15H1.024c-1.184 0-1.369.598-.41 1.33l2.932 2.237 2.934 2.238 1.742 1.329-1.787 5.77-1.12 3.621c-.366 1.183.119 1.552 1.077.821L14 21.821l4.675 3.565 2.933 2.238c.958.731 1.443.362 1.077-.82l-1.12-3.621-1.787-5.771 1.742-1.33z"/>
-      <!--<use #shapeStars [ngStyle]="{ fill : starInt > i ? '#292929' : starInt == i && halfStarCondition ?  'url(#grad)' : '#b3b3b3' }" xlink:href="#star14"/>-->
     </svg>
   </span>
 
@@ -62,7 +56,6 @@
     <div class="star--28" *ngFor="let item of numberArray(5); index as i">
       <input type="checkbox" value="{{i+0.5}}" name="input-star" (change)="updatedChecked($event)" id="star28-{{i+1}}--half">
       <input type="checkbox" value="{{i+1}}" name="input-star" (change)="updatedChecked($event)" id="star28-{{i+1}}--full">
-      <!--i == 0, 1, 2, 3, 4-->
       <svg>
         <use
           #shapeStars

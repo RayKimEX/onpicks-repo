@@ -1,16 +1,14 @@
 import {
-  AfterViewInit,
   ChangeDetectionStrategy, ChangeDetectorRef,
   Component,
   ElementRef, EventEmitter,
   HostListener,
   Input, OnChanges,
-  OnInit, Output,
+  Output,
   Renderer2, SimpleChanges,
   ViewChildren
 } from '@angular/core';
 import {UtilService} from '../../../../core/service/util/util.service';
-import {interval} from 'rxjs';
 
 @Component({
   selector: 'ui-star-rating',
@@ -18,7 +16,7 @@ import {interval} from 'rxjs';
   styleUrls: ['./star-rating.component.scss'],
   changeDetection : ChangeDetectionStrategy.OnPush,
 })
-export class StarRatingComponent implements OnInit, AfterViewInit, OnChanges {
+export class StarRatingComponent implements OnChanges {
   @Input('star-point') starPoint;
   @Input('size') sizePoint;
   @ViewChildren('shapeStars') shapeStars;
@@ -30,7 +28,6 @@ export class StarRatingComponent implements OnInit, AfterViewInit, OnChanges {
   starInt;
   halfStarCondition = false;
   isChecked = false;
-
   window = window;
 
   constructor(
@@ -39,9 +36,6 @@ export class StarRatingComponent implements OnInit, AfterViewInit, OnChanges {
     private util: UtilService,
     private cd: ChangeDetectorRef
   ) { }
-
-  ngOnInit() {
-  }
 
   ngOnChanges(changes: SimpleChanges) {
     this.starFloat = this.util.getFloat(this.starPoint);
@@ -53,15 +47,6 @@ export class StarRatingComponent implements OnInit, AfterViewInit, OnChanges {
 
     // hlafStar의 조건은 0보다 크고 0.5이하일때 해당
     this.halfStarCondition = (this.starFloat <= 0.5 && this.starFloat !== 0 ) ? true : false;
-
-
-    /* 28 star point를 위한 initializing */
-    // this.checkedIndex = this.currentIndex = 3.5
-    // this.isChecked = true;
-  }
-
-  ngAfterViewInit() {
-
   }
 
   numberArray(n: number): any[] {
@@ -69,7 +54,6 @@ export class StarRatingComponent implements OnInit, AfterViewInit, OnChanges {
   }
 
   mouseOver(value, type) {
-
     if ( this.isChecked ) {
       if ( this.checkedIndex <= value ) {
         this.currentIndex = value;
@@ -80,6 +64,7 @@ export class StarRatingComponent implements OnInit, AfterViewInit, OnChanges {
       this.currentIndex = value;
     }
   }
+
   @HostListener('mouseleave', ['$event'])
   mouseHandling(event) {
     if (this.isChecked) {
@@ -90,9 +75,7 @@ export class StarRatingComponent implements OnInit, AfterViewInit, OnChanges {
 
   }
 
-
   updatedChecked($event) {
-    console.log($event.target.value);
     this.isChecked = true;
     this.checkedIndex = parseFloat($event.target.value );
     this.currentIndex = this.checkedIndex;

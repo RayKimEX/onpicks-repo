@@ -1,4 +1,8 @@
-import {ChangeDetectionStrategy, Component, Input, OnInit, Renderer2} from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input
+} from '@angular/core';
 
 @Component({
   selector: 'onpicks-circle-n-button',
@@ -6,15 +10,9 @@ import {ChangeDetectionStrategy, Component, Input, OnInit, Renderer2} from '@ang
   styleUrls: ['./circle-n-button.component.scss'],
   changeDetection : ChangeDetectionStrategy.OnPush,
 })
-export class CircleNButtonComponent implements OnInit{
+export class CircleNButtonComponent {
   @Input('right') right;
   @Input('top') top;
-  // @Input('')
 
-  constructor(private renderer: Renderer2) { }
-
-  ngOnInit() {
-
-  }
-
+  constructor() { }
 }

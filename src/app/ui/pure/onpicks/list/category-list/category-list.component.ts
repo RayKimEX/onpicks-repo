@@ -34,9 +34,7 @@ export class CategoryListComponent implements OnInit, AfterViewInit {
     private renderer: Renderer2,
     private breakpointObserver:  BreakpointObserver,
     private cd: ChangeDetectorRef
-  ) {
-
-  }
+  ) { }
 
   ngOnInit() {
     // tb
@@ -45,11 +43,9 @@ export class CategoryListComponent implements OnInit, AfterViewInit {
       .subscribe((state: BreakpointState) => {
         if (state.matches) {
           this.isShowButton = false;
-
           this.cd.markForCheck();
         } else {
           this.isShowButton = true;
-
         }
       });
   }

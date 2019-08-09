@@ -6,12 +6,8 @@ import {Component, OnInit, ChangeDetectionStrategy, Input} from '@angular/core';
   styleUrls: ['./angle-bracket-navigator.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AngleBracketNavigatorComponent implements OnInit {
+export class AngleBracketNavigatorComponent {
   @Input('verticalAlign') verticalAlign = 'text-top';
 
   constructor() { }
-
-  ngOnInit() {
-  }
-
 }
