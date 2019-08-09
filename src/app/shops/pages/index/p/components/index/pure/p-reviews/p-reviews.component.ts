@@ -1,6 +1,8 @@
+
+// Angular
 import {
-  AfterViewInit,
-  ChangeDetectionStrategy, ChangeDetectorRef,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   EventEmitter, Inject,
   Input,
@@ -9,16 +11,23 @@ import {
   Renderer2,
   ViewChildren
 } from '@angular/core';
-import { select, Store } from '@ngrx/store';
-import { DOMAIN_HOST } from '../../../../../../../../core/global-constant/app.config';
-import { tap } from 'rxjs/operators';
-import { PDataService } from '../../../../../../../../core/service/data-pages/p/p-data.service';
-import { TryGetReviewProduct, TryToggleVoteReview } from '../../../../store/p.actions';
-import { DisplayAlertMessage } from '../../../../../../../../core/store/ui/ui.actions';
 import { APP_BASE_HREF } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
-import {DISPLAY_ALERT_MESSAGE_MAP, REPORT_REASON_MAP} from '../../../../../../../../core/global-constant/app.locale';
 
+// Constant
+import { DOMAIN_HOST } from '../../../../../../../../core/global-constant/app.config';
+import { DISPLAY_ALERT_MESSAGE_MAP, REPORT_REASON_MAP } from '../../../../../../../../core/global-constant/app.locale';
+
+// Service
+import { PDataService } from '../../../../../../../../core/service/data-pages/p/p-data.service';
+
+// NgRX
+import { select, Store } from '@ngrx/store';
+import { DisplayAlertMessage } from '../../../../../../../../core/store/ui/ui.actions';
+import { TryGetReviewProduct, TryToggleVoteReview } from '../../../../store/p.actions';
+
+// RxJS
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'onpicks-p-reviews',
@@ -26,7 +35,7 @@ import {DISPLAY_ALERT_MESSAGE_MAP, REPORT_REASON_MAP} from '../../../../../../..
   styleUrls: ['./p-reviews.component.scss'],
   changeDetection : ChangeDetectionStrategy.OnPush,
 })
-export class PReviewsComponent implements AfterViewInit {
+export class PReviewsComponent {
   @ViewChildren('lineList') lineList;
   @ViewChildren('hrLineList') hrLineList;
   @Output('updateState') updateState = new EventEmitter<any>();
@@ -49,24 +58,15 @@ export class PReviewsComponent implements AfterViewInit {
   totalPageArray = [];
   currentList = [];
 
-
   starMaxList = {};
-  // {Star5 : 55, Star4 : 18, Star3 : 6, Star2 : 7, Star1 : 14}
-
-
   reviews$;
   userState$;
-
-
 
   selectedElement = {
     value : 'created'
   }
+
   reviewSortList = [
-    // {
-    //   title : '추천순',
-    //   value : 0
-    // },
     {
       title : {
         ko : '최신순',
@@ -103,14 +103,11 @@ export class PReviewsComponent implements AfterViewInit {
     private router: Router,
     private route: ActivatedRoute
   ) {
-
-
     this.store.dispatch(new TryGetReviewProduct({ productSlug : this.route.snapshot.params.id, sorting: 'created'}));
     this.reviews$ = this.store.pipe(
       select((state) => state['p']['reviews']),
       tap( v => {
         if ( v.extraInfo === undefined ) { return };
-        console.log(v);
         this.starMaxList = v.extraInfo.reviewRatingsDist;
 
         this.totalList = v.results;
@@ -120,25 +117,12 @@ export class PReviewsComponent implements AfterViewInit {
         this.totalPageArray =  Array(parseInt(this.totalPage, 10));
         this.totalPageArray.push(this.totalPageArray.length + 1);
         this.currentList = this.totalList.slice( 0, this.maxRow );
-        console.log(this.currentList);
       })
     );
 
     this.userState$ = this.store.pipe(
-      select(
-        (state: any) => state.auth
-      ),
-      tap( v => console.log(v))
-
+      select((state: any) => state.auth)
     );
-
-    // this.store.dispatch(new DisplayAlertMessage('로그인 후 이용 가능합니다'))
-    // this.router.navigateByUrl('/member/login?return=' + encodeURI(location.href.split(this.BASE_URL.substring(1, this.BASE_URL.length))[1]));
-  }
-
-
-  ngAfterViewInit() {
-
   }
 
   numberArray(n: number): any[] {
@@ -159,8 +143,6 @@ export class PReviewsComponent implements AfterViewInit {
 
     }
   }
-
-
 
   reportReview( xProductSlug, xReviewId, xReportReason ) {
     this.pDataService.reportReviewData( xProductSlug, xReviewId, xReportReason)

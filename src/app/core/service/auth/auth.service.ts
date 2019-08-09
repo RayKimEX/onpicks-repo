@@ -1,8 +1,12 @@
-import {Inject, Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
-import {API_URL, DOMAIN_HOST} from '../../global-constant/app.config';
-import {UserSignUpAPI} from '../../store/user.model';
+import {
+  Inject,
+  Injectable
+} from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+
+import { Observable } from 'rxjs';
+import { DOMAIN_HOST } from '../../global-constant/app.config';
+import { UserSignUpAPI } from '../../store/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +16,7 @@ export class AuthService {
   constructor(
     @Inject(DOMAIN_HOST) private BASE_URL: string,
     private httpClient: HttpClient
-  ) {
-  }
+  ) { }
 
   login(email: string, password: string, isPersistent: boolean): Observable<any> {
     return this.httpClient.post<any>(this.BASE_URL + '/api/customers/login/', { email : email, password : password, is_persistent : isPersistent});
@@ -24,7 +27,6 @@ export class AuthService {
   }
 
   signup(parameters: UserSignUpAPI): Observable<any> {
-
     return this.httpClient.post<any>(this.BASE_URL + '/api/customers/', parameters);
   }
 

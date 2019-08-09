@@ -1,4 +1,7 @@
-import {Inject, Injectable, Renderer2, RendererFactory2} from '@angular/core';
+import {
+  Inject,
+  Injectable
+} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {DOMAIN_HOST} from '../../../global-constant/app.config';
 import {CATEGORY_CODE_MAP} from '../../../global-constant/app.category-database-long';

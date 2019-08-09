@@ -1,4 +1,9 @@
-import {Component, OnInit, ChangeDetectionStrategy, Input, Inject} from '@angular/core';
+import {
+  Component,
+  ChangeDetectionStrategy,
+  Input,
+  Inject
+} from '@angular/core';
 import {CATEGORY_REPORT_MAP} from '../../../../../../../../core/global-constant/app.category-database-long';
 
 @Component({
@@ -7,7 +12,7 @@ import {CATEGORY_REPORT_MAP} from '../../../../../../../../core/global-constant/
   styleUrls: ['./p-product-report.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class PProductReportComponent implements OnInit {
+export class PProductReportComponent {
 
   foldFlag = false;
   categoryCode = null;
@@ -19,8 +24,4 @@ export class PProductReportComponent implements OnInit {
   constructor(
     @Inject(CATEGORY_REPORT_MAP) public categoryReportMap,
   ) { }
-
-  ngOnInit() {
-  }
-
 }

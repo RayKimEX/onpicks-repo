@@ -1,16 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component
+} from '@angular/core';
 
 @Component({
   selector: 'onpicks-page-health',
   templateUrl: './page-health.component.html',
-  styleUrls: ['./page-health.component.scss']
+  styleUrls: ['./page-health.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class PageHealthComponent implements OnInit {
-
+export class PageHealthComponent {
 
   constructor() { }
-
-  ngOnInit() {
-  }
-
 }

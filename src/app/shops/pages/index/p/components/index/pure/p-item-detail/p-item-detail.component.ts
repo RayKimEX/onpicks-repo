@@ -1,4 +1,9 @@
-import {ChangeDetectionStrategy, Component, Inject, Input, LOCALE_ID, OnInit} from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Inject,
+  Input
+} from '@angular/core';
 import {IMAGE_HOST} from '../../../../../../../../core/global-constant/app.config';
 
 @Component({
@@ -7,15 +12,11 @@ import {IMAGE_HOST} from '../../../../../../../../core/global-constant/app.confi
   styleUrls: ['./p-item-detail.component.scss'],
   changeDetection : ChangeDetectionStrategy.OnPush,
 })
-export class PItemDetailComponent implements OnInit {
+export class PItemDetailComponent {
   @Input('description') description;
   @Input('categoryInfo') categoryInfo;
 
   constructor(
     @Inject(IMAGE_HOST) public imageHost: string,
   ) { }
-
-  ngOnInit() {
-  }
-
 }

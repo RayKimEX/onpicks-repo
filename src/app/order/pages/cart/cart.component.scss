@@ -26,12 +26,15 @@
 
   &__table {
     clear:both;
+
     &--item {
       padding: 1.6rem 0;
       border-top: 1px solid $color-light-grey;
+
       &:last-child{
         border-bottom : 1px solid $color-light-grey;
       }
+
       &-info{
         &--title {
           margin-bottom : 4px;

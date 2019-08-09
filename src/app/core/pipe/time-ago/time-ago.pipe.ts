@@ -6,7 +6,6 @@ import {
   OnDestroy, Inject, LOCALE_ID
 } from '@angular/core';
 
-// MUST TODO : 크리스가 말한. 한국 날짜는 어떻게 잡히는지 피드백 필요
 @Pipe({
   name: 'timeAgo',
   pure: true
@@ -20,9 +19,7 @@ export class TimeAgoPipe implements PipeTransform, OnDestroy {
     private changeDetectorRef: ChangeDetectorRef,
     private ngZone: NgZone,
     @Inject(LOCALE_ID) public locale: string,
-  ) {
-
-  }
+  ) { }
 
   transform(value: string) {
 
@@ -46,8 +43,6 @@ export class TimeAgoPipe implements PipeTransform, OnDestroy {
     const months = Math.round(Math.abs(days / 30.416));
     const years = Math.round(Math.abs(days / 365));
 
-    // var locale = "en-us";
-    // var month = dateToday.toLocaleString(locale, {month: "long"});
     if (Number.isNaN(seconds)) {
       return '';
     } else if (seconds <= 45) {

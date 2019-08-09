@@ -1,4 +1,7 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import {
+  Component,
+  ChangeDetectionStrategy
+} from '@angular/core';
 
 @Component({
   selector: 'onpicks-hair',
@@ -6,11 +9,7 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
   styleUrls: ['./page-hair-care.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class PageHairCareComponent implements OnInit {
+export class PageHairCareComponent {
 
   constructor() { }
-
-  ngOnInit() {
-  }
-
 }

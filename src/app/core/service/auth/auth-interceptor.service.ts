@@ -10,9 +10,7 @@ import {Observable} from 'rxjs';
 @Injectable()
 export class AuthInterceptorService implements HttpInterceptor {
 
-  constructor() {
-
-  }
+  constructor() { }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
@@ -36,7 +34,6 @@ export class AuthInterceptorService implements HttpInterceptor {
       return next.handle(request);
     }
 
-
     request = request.clone(
       { headers: new HttpHeaders({
           'X-CSRFTOKEN' : csrfToken,
@@ -47,9 +44,6 @@ export class AuthInterceptorService implements HttpInterceptor {
     console.log('%c' + request.url.substring(6, request.url.length - 1), 'color : #007755');;
     return next.handle(request);
   }
-
-
-
 
   getCookie(cname) {
     const name = cname + '=';

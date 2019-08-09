@@ -1,5 +1,9 @@
 import {
-  AfterViewInit, Directive, ElementRef, Input, Renderer2
+  AfterViewInit,
+  Directive,
+  ElementRef,
+  Input,
+  Renderer2
 } from '@angular/core';
 
 @Directive({
@@ -17,9 +21,7 @@ export class AnimateOnScrollDirective implements AfterViewInit {
   constructor(
     private el: ElementRef,
     private renderer: Renderer2
-  ) {
-    //
-  }
+  ) { }
 
 
   ngAfterViewInit() {
@@ -27,8 +29,6 @@ export class AnimateOnScrollDirective implements AfterViewInit {
     this.duration = this.duration === undefined ? '.5s' : this.duration;
     this.renderer.setStyle(this.el.nativeElement, 'transition', 'all ' + this.duration + ' ' + this.timingFunction + ' 0s');
     this.canLazyLoad() ? this.lazyLoadImage() : this.animateOnScroll();
-
-    // this.el.nativeElement
   }
 
 
@@ -46,7 +46,6 @@ export class AnimateOnScrollDirective implements AfterViewInit {
           this.obs.unobserve(this.el.nativeElement);
         }
       });
-      // }, {root : this.dom === undefined ? null : this.dom });
     }, {});
     this.obs.observe(this.el.nativeElement);
   }

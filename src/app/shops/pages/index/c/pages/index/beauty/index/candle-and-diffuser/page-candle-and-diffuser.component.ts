@@ -1,4 +1,7 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import {
+  Component,
+  ChangeDetectionStrategy
+} from '@angular/core';
 
 @Component({
   selector: 'onpicks-candle-and-diffuser',
@@ -6,11 +9,7 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
   styleUrls: ['./page-candle-and-diffuser.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class PageCandleAndDiffuserComponent implements OnInit {
+export class PageCandleAndDiffuserComponent {
 
   constructor() { }
-
-  ngOnInit() {
-  }
-
 }

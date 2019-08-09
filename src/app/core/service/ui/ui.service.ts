@@ -1,9 +1,12 @@
+
+// Angular
 import {Inject, Injectable} from '@angular/core';
-import {DOMAIN_HOST} from '../../global-constant/app.config';
-import {of} from 'rxjs';
 import {HttpClient, HttpParams} from '@angular/common/http';
-import {map} from 'rxjs/operators';
+
+// Constant
+import {DOMAIN_HOST} from '../../global-constant/app.config';
 import {CATEGORY_MAP} from '../../global-constant/app.category-database-long';
+import {of} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -43,19 +46,6 @@ export class UiService {
   }
 
   getCategoryAll(oneDepthCode) {
-    // return this.httpClient.get<any>(this.BASE_URL + '/api/categories/' + oneDepthCode + '/descendants/' );
     return of(this.CATEGORY_MAP_CONST[oneDepthCode]);
   }
-
-  postLanguageSetting(xLanguageCode) {
-
-    // ko = 한국어
-    // en = 영어
-
-    // us = 미국
-    // kr = 한국
-
-    return this.httpClient.post<any>( this.BASE_URL + '/api/preferences/language/', { language : xLanguageCode } );
-  }
-
 }

@@ -1,15 +1,38 @@
-import {Component, OnInit, ChangeDetectionStrategy, AfterViewInit, OnDestroy, ViewChildren, ViewChild, ElementRef, Inject, Renderer2, ChangeDetectorRef, LOCALE_ID, HostListener} from '@angular/core';
-import {FormControl, FormGroup} from '@angular/forms';
-import {CURRENCY, DOMAIN_HOST, REGION_ID, RESPONSIVE_MAP} from '../../../../core/global-constant/app.config';
-import {BehaviorSubject, fromEvent, of} from 'rxjs';
-import {OrderDataService} from '../../../../core/service/data-pages/order/order-data.service';
-import {HttpClient, HttpParams} from '../../../../../../node_modules/@angular/common/http';
-import {select, Store} from '@ngrx/store';
-import {Router} from '@angular/router';
-import {BreakpointObserver, BreakpointState} from '../../../../../../node_modules/@angular/cdk/layout';
-import {catchError, debounceTime, distinctUntilChanged, flatMap, map, tap} from 'rxjs/operators';
-import {DisplayAlertMessage} from '../../../../core/store/ui/ui.actions';
-import {DISPLAY_ALERT_MESSAGE_MAP} from '../../../../core/global-constant/app.locale';
+
+// Angular
+import {
+  Component,
+  OnInit,
+  ChangeDetectionStrategy,
+  OnDestroy,
+  ViewChildren,
+  ViewChild,
+  ElementRef,
+  Inject,
+  Renderer2,
+  ChangeDetectorRef,
+  LOCALE_ID
+} from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
+
+// Global Constant
+import {
+  CURRENCY,
+  DOMAIN_HOST,
+  REGION_ID,
+  RESPONSIVE_MAP
+} from '../../../../core/global-constant/app.config';
+import { DISPLAY_ALERT_MESSAGE_MAP } from '../../../../core/global-constant/app.locale';
+
+// Miscell
+import { BehaviorSubject } from 'rxjs';
+import { tap } from 'rxjs/operators';
+import { select, Store } from '@ngrx/store';
+import { DisplayAlertMessage } from '../../../../core/store/ui/ui.actions';
+import { OrderDataService } from '../../../../core/service/data-pages/order/order-data.service';
 
 @Component({
   selector: 'onpicks-kr-checkout',
@@ -20,18 +43,19 @@ import {DISPLAY_ALERT_MESSAGE_MAP} from '../../../../core/global-constant/app.lo
 export class KrCheckoutComponent implements OnInit, OnDestroy {
 
   @ViewChildren('inputSearchBoxOuter') inputSearchBoxOuter;
-  @ViewChild('inputSearchBox', {read: ElementRef}) inputSearchBoxEL;
   @ViewChildren('inputSearchBox') inputSearchBox;
-
-  ////
+  @ViewChild('inputSearchBox', {read: ElementRef}) inputSearchBoxEL;
   @ViewChild('inputOrderName', { read : ElementRef }) inputOrderNameRef;
   @ViewChild('inputOrderNumber', { read : ElementRef }) inputOrderNumberRef;
-
   @ViewChild('checkoutAdditionNumber', { read : ElementRef}) checkoutAdditionNumberRef;
   @ViewChild('addDeliveryView') addDeliveryView;
 
-
-  isShowDeliveryModal = false;
+  readonly EMPTY_ORDER_NAME          = 0b00000000001;
+  readonly EMPTY_ORDER_NUMBER        = 0b00000000010;
+  readonly INVALID_ORDER_NUMBER      = 0b00000100000;
+  readonly EMPTY_CUSTOMS_ID_NUMBER   = 0b00010000000;
+  readonly INVALID_CUSTOMS_ID_NUMBER = 0b00100000000;
+  readonly EMPTY_AGREEMENT_DIRECT_BUYING = 0b10000000000;
 
   deliveryOption = {
     title : {
@@ -67,55 +91,21 @@ export class KrCheckoutComponent implements OnInit, OnDestroy {
         },
         value : '배송전에 연락 주세요'
       },
-      // {
-      //   title : '직접 입력[선택 시 100자정도 텍스트 입력],[이전 입력내용 남아있음]',
-      //   value : '직접 입력[선택 시 100자정도 텍스트 입력],[이전 입력내용 남아있음]'
-      // },
     ]};
 
-  readonly EMPTY_ORDER_NAME          = 0b00000000001;
-  readonly EMPTY_ORDER_NUMBER        = 0b00000000010;
-  readonly INVALID_ORDER_NUMBER      = 0b00000100000;
-
-  readonly EMPTY_RECIPIENT_NAME      = 0b00000000100;
-  readonly EMPTY_RECIPIENT_NUMBER    = 0b00000001000;
-  readonly INVALID_RECIPIENT_NUMBER  = 0b00001000000;
-  readonly EMPTY_DELIVERY_ADDRESS    = 0b00000010000;
-
-  readonly EMPTY_CUSTOMS_ID_NUMBER   = 0b00010000000;
-  readonly INVALID_CUSTOMS_ID_NUMBER = 0b00100000000;
-
-  readonly EMPTY_AGREEMENT_DIRECT_BUYING = 0b10000000000;
 
   // MUST TODO : 이미지 안보인는건 src를 초기화 해서 memory낭비 적게 하기
-
-  jusoList;
   initialGroup: FormGroup;
 
-  //
   errorStatus = 0;
   isAgreementDirectBuyingInfo = false;
-  isShowSearchBox = false;
-
-  // popup
-  isShowDeliveryView = true;
-  updateDeliveryIndex = 0;
-
-  // 0 : init
-  // 1 : result
-  // 2 : not searched
-  searchState = 0;
-
-  //
   checkoutStore$;
+
   userStore$;
   userStore;
 
   deliveryDataStore$;
   deliveryDataStore;
-
-  searchInputFirstEvent$;
-  searchInputLastEvent$;
 
   searchFirst$;
   searchLast$;
@@ -142,9 +132,6 @@ export class KrCheckoutComponent implements OnInit, OnDestroy {
   /*********checkout-mobile*******/
   isThirdBreakPoint = false;
   isShowMobilePriceInfo = true;
-  isShowMobileOrderInfo = false;
-  isShowMobileDeliveryInfo = false;
-  isShowMobileAdditionInfo = false;
 
   constructor(
     @Inject(CURRENCY) public currency: BehaviorSubject<any>,
@@ -241,19 +228,12 @@ export class KrCheckoutComponent implements OnInit, OnDestroy {
 
       if ( this.deliveryDataStore.length === 0 ) {
 
-        // inputRecipientNameRef
-        // inputRecipientNumberRef
-        // inputZipnumberRef
-        // inputJusoRef
-        // inputDetailJusoRef
-
         this.formData = {
           ...this.formData,
           ...this.setDeliveryInfo(deliveryComponent)
         };
 
       } else {
-
         this.formData.phone_number = this.deliveryDataStore[0].phone_number;
         this.formData.full_name = this.deliveryDataStore[0].full_name;
         this.formData.zip_code = this.deliveryDataStore[0].zip_code;
@@ -272,7 +252,6 @@ export class KrCheckoutComponent implements OnInit, OnDestroy {
 
           // mobile 일경우
           if ( response.is_mobile ) {
-            console.log('hello');
             Object.keys(response.form_data).forEach(key => {
               const input = document.createElement('input');
               input.type = 'text';
@@ -382,7 +361,6 @@ export class KrCheckoutComponent implements OnInit, OnDestroy {
     if ( this.deliveryDataStore.length === 0) {
       this.errorStatus = deliveryComponent.validate(this.errorStatus);
     }
-
 
     if ( this.checkoutAdditionNumberRef.nativeElement.children[0].value === '') {
       if ( this.errorStatus === 0 ) {this.checkoutAdditionNumberRef.nativeElement.children[0].focus();}

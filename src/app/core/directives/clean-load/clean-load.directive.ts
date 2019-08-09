@@ -1,4 +1,10 @@
-import {AfterViewInit, Directive, ElementRef, HostBinding, Input, OnDestroy, Renderer2} from '@angular/core';
+import {
+  AfterViewInit,
+  Directive,
+  ElementRef,
+  OnDestroy,
+  Renderer2
+} from '@angular/core';
 import {fromEvent} from 'rxjs';
 
 @Directive({
@@ -9,17 +15,16 @@ export class CleanLoadDirective implements AfterViewInit, OnDestroy {
   imgLoad$;
   imgTransition$;
 
-  constructor(private el: ElementRef, private renderer: Renderer2) {
-
-  }
+  constructor(
+    private el: ElementRef,
+    private renderer: Renderer2
+  ) { }
 
   ngOnDestroy() {
     this.imgLoad$.unsubscribe();
     this.imgTransition$.unsubscribe();
   }
   ngAfterViewInit() {
-
-
     const backgroundColor = this.renderer.createElement('div');
 
     this.renderer.addClass(backgroundColor, 'u-img-background');

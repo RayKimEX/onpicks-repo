@@ -1,4 +1,7 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import {
+  Component,
+  ChangeDetectionStrategy
+} from '@angular/core';
 
 @Component({
   selector: 'onpicks-faq-us',
@@ -6,11 +9,7 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
   styleUrls: ['./faq-us.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class FaqUsComponent implements OnInit {
+export class FaqUsComponent {
 
   constructor() { }
-
-  ngOnInit() {
-  }
-
 }

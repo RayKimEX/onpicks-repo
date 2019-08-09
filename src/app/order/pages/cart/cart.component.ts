@@ -19,7 +19,6 @@ import {HttpClient} from '@angular/common/http';
 import {UiService} from '../../../core/service/ui/ui.service';
 import {DisplayAlertMessage} from '../../../core/store/ui/ui.actions';
 import {BehaviorSubject} from 'rxjs';
-import {Title} from '@angular/platform-browser';
 import {DISPLAY_ALERT_MESSAGE_MAP} from '../../../core/global-constant/app.locale';
 
 @Component({
@@ -41,7 +40,6 @@ export class CartComponent {
   /* Observable */
   weeklyBest$;
   cartStore$;
-
   isShowWishlist = false;
 
   constructor(
@@ -51,7 +49,6 @@ export class CartComponent {
     @Inject( LOCALE_ID ) public locale: string,
     @Inject( DISPLAY_ALERT_MESSAGE_MAP ) private alertMap,
     @Inject( DOMAIN_HOST ) private BASE_URL: string,
-    // @Inject()
     private renderer: Renderer2,
     private router: Router,
     private store: Store<any>,
@@ -73,7 +70,6 @@ export class CartComponent {
         });
         this.cd.markForCheck();
 
-        // this.cd.markForCheck();
       }),
       shareReplay(1)
     );
@@ -120,7 +116,6 @@ export class CartComponent {
   denormalizr ( data ){
 
     const array = []
-    console.log(data);
     Object.keys(data).forEach( key => {
       array.push(data[key]);
     });
@@ -140,10 +135,6 @@ export class CartComponent {
     }
   }
 
-  deleteCart(xProductSlug, xItemIndex, xPackIndex, xType) {
-    this.store.dispatch(new TryDeleteFromCart({ productSlug : xProductSlug, itemIndex : xItemIndex, packIndex : xPackIndex, packType : xType}));
-  }
-
   addToCart(xAmount, xData, xPackIndex) {
     xAmount++;
 
@@ -151,7 +142,6 @@ export class CartComponent {
     if ( xData.slug === undefined ) {
       xData.slug = xData.product;
     }
-    // 만약 카트 아이디가. 카트스토어 카트리스트에 있다면, increase cart를 하고, create cart를 하지 않는다.
 
     this.store.dispatch( new TryAddOrCreateToCart(
       {

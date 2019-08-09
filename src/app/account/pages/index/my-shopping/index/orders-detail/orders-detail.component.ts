@@ -1,4 +1,9 @@
-import {ChangeDetectionStrategy, Component, Inject, OnDestroy, OnInit} from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Inject,
+  OnDestroy
+} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {AccountDataService} from '../../../../../../core/service/data-pages/account/account-data.service';
 import {tap} from 'rxjs/operators';
@@ -11,14 +16,10 @@ import {BehaviorSubject} from 'rxjs';
   styleUrls: ['./orders-detail.component.scss'],
   changeDetection : ChangeDetectionStrategy.OnPush,
 })
-export class OrdersDetailComponent implements OnInit, OnDestroy {
-
+export class OrdersDetailComponent implements OnDestroy {
 
   queryParams$;
-
   orderDetailData$;
-  orderDetailData;
-
   isShowDeliveryModal = false;
 
   constructor(
@@ -37,9 +38,4 @@ export class OrdersDetailComponent implements OnInit, OnDestroy {
     this.queryParams$.unsubscribe();
 
   }
-
-  ngOnInit(){
-
-  }
-
 }

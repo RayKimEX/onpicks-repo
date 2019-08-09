@@ -1,23 +1,15 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {select, Store} from '@ngrx/store';
+import {
+  ChangeDetectionStrategy,
+  Component
+} from '@angular/core';
 
 @Component({
   selector: 'onpicks-page-household-supplies',
   templateUrl: './page-household-supplies.component.html',
-  styleUrls: ['./page-household-supplies.component.scss']
+  styleUrls: ['./page-household-supplies.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class PageHouseholdSuppliesComponent implements OnInit, OnDestroy {
+export class PageHouseholdSuppliesComponent {
 
-  constructor(
-
-  ) {
-
-  }
-
-  ngOnDestroy() {
-  }
-
-  ngOnInit() {
-  }
-
+  constructor() { }
 }

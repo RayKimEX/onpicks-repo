@@ -21,7 +21,6 @@ import {AuthService} from '../../service/auth/auth.service';
 import {Router} from '@angular/router';
 import {of} from 'rxjs';
 import {UserSignUpAPI} from '../user.model';
-import {UiService} from '../../service/ui/ui.service';
 import {TryGetCartInfo} from '../cart/cart.actions';
 import {DisplayAlertMessage} from '../ui/ui.actions';
 
@@ -32,10 +31,7 @@ export class AuthEffects {
     private authService: AuthService,
     private router: Router,
     private actions$: Actions,
-    private uiService: UiService,
-  ) {
-
-  }
+  ) { }
 
 
   @Effect()

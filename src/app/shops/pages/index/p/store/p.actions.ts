@@ -81,9 +81,6 @@ export class HideCommunicateBox implements Action {
 
 }
 
-// export const SHOW_COMMUNICATE_BOX = '[P] SHOW_COMMUNICATE_BOX';
-// export const HIDE_COMMUNICATE_BOX = '[P] HIDE_COMMUNICATE_BOX';
-
 /* GET_PRODUCT_INFO */
 export class TryGetProductInfo implements Action {
   readonly type = TRY_GET_PRODUCT_INFO
@@ -102,7 +99,6 @@ export class GetProductInfoFailure implements Action {
 
   constructor(public payload: { error: any }) {}
 }
-
 
 /* GET_REVIEWS */
 export class TryGetReviewProduct implements Action {
@@ -126,7 +122,6 @@ export class GetReviewProductFailure implements Action {
 }
 
 
-
 /* GET_COMMENTS */
 export class TryGetCommentsProduct implements Action {
   readonly type = TRY_GET_COMMENTS_PRODUCT;
@@ -145,8 +140,6 @@ export class GetCommentsProductFailure implements Action {
 
   constructor(public payload: any) {}
 }
-
-
 
 
 /* ADD_COMMENTS */

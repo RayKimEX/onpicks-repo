@@ -1,4 +1,7 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import {
+  Component,
+  ChangeDetectionStrategy
+} from '@angular/core';
 
 @Component({
   selector: 'onpicks-cleansing-and-peeling',
@@ -6,11 +9,7 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
   styleUrls: ['./page-cleansing-and-peeling.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class PageCleansingAndPeelingComponent implements OnInit {
+export class PageCleansingAndPeelingComponent {
 
   constructor() { }
-
-  ngOnInit() {
-  }
-
 }

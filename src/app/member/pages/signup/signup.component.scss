@@ -11,6 +11,7 @@
     border : 0;
     margin: 0 auto 4rem auto ;
   }
+
   input {
     width : 100%;
     height: 4rem;
@@ -27,6 +28,7 @@
     overflow : hidden;
     text-align : center;
     margin-bottom :1.6rem;
+
     &--active {
       padding : 1rem;
       position : relative;
@@ -49,9 +51,6 @@
         border-bottom : 1px solid #e5e5e5;
       }
     }
-
-    &--text {
-    }
   }
 
   &__social {
@@ -71,11 +70,10 @@
         @include absCenter;
       }
     }
+
     &--naver {
       position:relative;
-
       background-color : #03c63b;
-
     }
 
     &--kakao {
@@ -101,10 +99,10 @@
 
   &__already-account {
     text-align : center;
+
     &--text {
       margin-right: 1.6rem;
     }
-
   }
 
   &__line {
@@ -118,5 +116,4 @@
     border-radius : 4px;
     margin-bottom : 2.4rem;
   }
-
 }

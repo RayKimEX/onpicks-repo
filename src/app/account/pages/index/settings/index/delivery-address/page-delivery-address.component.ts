@@ -1,8 +1,5 @@
-import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, OnDestroy, OnInit} from '@angular/core';
 import {select, Store} from '@ngrx/store';
-import {catchError, map, tap} from 'rxjs/operators';
-import {of} from 'rxjs';
-import {OrderDataService} from '../../../../../../core/service/data-pages/order/order-data.service';
 
 @Component({
   selector: 'onpicks-delivery-address',
@@ -11,17 +8,14 @@ import {OrderDataService} from '../../../../../../core/service/data-pages/order/
   changeDetection : ChangeDetectionStrategy.OnPush
 })
 
-export class PageDeliveryAddressComponent implements OnInit{
+export class PageDeliveryAddressComponent implements OnInit, OnDestroy{
 
   userStore$;
   userStore;
-
-  deliveryData$;
-
   contentHeight = '';
+
   constructor(
     private store: Store<any>,
-    private orderDataService: OrderDataService,
   ) {
     this.userStore$ = this.store.pipe( select( state => state.auth.user))
       .subscribe( v => {
@@ -33,4 +27,8 @@ export class PageDeliveryAddressComponent implements OnInit{
   ngOnInit() {
     this.contentHeight = (window.screen.height - 400) < 300 ? '' : (window.screen.height - 400) + 'px';
   }
+
+   ngOnDestroy() {
+     this.userStore$.unsubscribe();
+   }
 }

@@ -6,11 +6,7 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
   styleUrls: ['./terms-kr.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TermsKrComponent implements OnInit {
+export class TermsKrComponent {
 
   constructor() { }
-
-  ngOnInit() {
-  }
-
 }

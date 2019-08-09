@@ -132,13 +132,13 @@ export class PIndexComponent implements OnInit, OnDestroy {
 
   }
 
-  @HostListener('window:scroll', ['$event']) private onScroll($event: Event): void {
+  @HostListener('window:scroll', ['$event'])
+  private onScroll($event: Event): void {
     const delta = window.pageYOffset - this.previousYOffset;
-    // console.log(this.router.url);
     if ( this.pUI.isShowCommunicateBox === true ) {
       this.isShowMobileMenu = false;
-      return ;
-    };
+      return;
+    }
 
     if ( delta < -1 && this.isFB) {
       this.isShowMobileMenu = true;
@@ -148,8 +148,6 @@ export class PIndexComponent implements OnInit, OnDestroy {
       this.store.dispatch(new UpdateGlobalKakaoPlusFriendForNormal());
     }
     this.previousYOffset = window.pageYOffset;
-    // this.previousYOffset = window.pageYOffset;
-    // console.log(window.pageYOffset);
   }
 
   ngOnInit() {
@@ -171,18 +169,15 @@ export class PIndexComponent implements OnInit, OnDestroy {
 
   expandMobileMenu() {
     this.isExpendMobileMenu = true;
-
     this.store.dispatch(new UpdateGlobalKakaoPlusFriendForPurchase());
   }
 
   revertMobileMenu() {
     this.isExpendMobileMenu = false;
-
     this.store.dispatch(new UpdateGlobalKakaoPlusFriendForDetailPage());
   }
 
   addToCart(xPackIndex, data) {
-    console.log(data);
     let keyForSlug = '';
     this.keyListForSlug.forEach( (value, index) => {
       if ( (this.keyListForSlug.length - 1) === index ){
@@ -198,7 +193,6 @@ export class PIndexComponent implements OnInit, OnDestroy {
     } else {
       currentProductSlug = this.keyMapForSlug[keyForSlug];
     }
-
 
     if ( currentProductSlug === undefined ) {
       this.store.dispatch(new DisplayAlertMessage(this.alertMap['select-option'][this.locale]));

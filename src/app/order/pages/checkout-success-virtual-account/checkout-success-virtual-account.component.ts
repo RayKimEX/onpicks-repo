@@ -1,4 +1,9 @@
-import {ChangeDetectionStrategy, Component, Inject, OnInit} from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Inject,
+  OnDestroy
+} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {OrderDataService} from '../../../core/service/data-pages/order/order-data.service';
 import {CURRENCY} from '../../../core/global-constant/app.config';
@@ -10,10 +15,9 @@ import {BehaviorSubject} from 'rxjs';
   styleUrls: ['./checkout-success-virtual-account.component.scss'],
   changeDetection : ChangeDetectionStrategy.OnPush
 })
-export class CheckoutSuccessVirtualAccountComponent implements OnInit {
+export class CheckoutSuccessVirtualAccountComponent implements OnDestroy {
 
   queryParams$;
-
   orderCode = 0;
   orderInfo$;
 
@@ -26,12 +30,10 @@ export class CheckoutSuccessVirtualAccountComponent implements OnInit {
       .subscribe((val: {order_code}) => {
         this.orderCode = val.order_code;
         this.orderInfo$ = this.orderDataService.getOrderInfo(this.orderCode);
-        console.log('checkout-success param' + this.orderCode);
       });
   }
 
-  ngOnInit() {
-
+  ngOnDestroy() {
+    this.queryParams$.unsubscribe();
   }
-
 }

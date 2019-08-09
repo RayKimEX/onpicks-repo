@@ -1,4 +1,7 @@
-import {AfterViewInit, ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component
+} from '@angular/core';
 
 @Component({
   selector: 'onpicks-showcases',
@@ -6,7 +9,7 @@ import {AfterViewInit, ChangeDetectionStrategy, Component, OnInit} from '@angula
   styleUrls: ['./showcases.component.scss'],
   changeDetection : ChangeDetectionStrategy.OnPush
 })
-export class ShowcasesComponent implements OnInit, AfterViewInit {
+export class ShowcasesComponent {
 
   imgSrc = '';
   showcasesDataList = [
@@ -71,26 +74,8 @@ export class ShowcasesComponent implements OnInit, AfterViewInit {
       imgSrc : 'https://picsum.photos/360/360?image=600'
     },
   ]
-  scroll$;
-  willLoadData = false;
-  constructor() {
 
-    // this.scroll$ = fromEvent(window, 'scroll').pipe(sampleTime(50))
-    //   .subscribe( val => {
-    //     if (((( window.scrollY + window.innerHeight ) / document.body.scrollHeight) * 100) >= 90 && !this.willLoadData) {
-    //       console.log(this.willLoadData);
-    //       this.willLoadData = true;
-    //       console.log('hello');
-    //       this.willLoadDataFunction();
-    //     }
-    //   });
-  }
-
-  ngOnInit() {
-  }
-
-  ngAfterViewInit() {
-  }
+  constructor() { }
 
   onDragOver(files) {
     files.preventDefault();

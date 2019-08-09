@@ -1,4 +1,7 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import {
+  Component,
+  ChangeDetectionStrategy
+} from '@angular/core';
 
 @Component({
   selector: 'onpicks-bath-and-body',
@@ -6,11 +9,7 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
   styleUrls: ['./page-body-care.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class PageBodyCareComponent implements OnInit {
+export class PageBodyCareComponent {
 
   constructor() { }
-
-  ngOnInit() {
-  }
-
 }

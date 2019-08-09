@@ -1,20 +1,15 @@
 import {
-  AfterViewInit,
-  ChangeDetectionStrategy, ChangeDetectorRef,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component, HostListener,
   Input,
-  OnDestroy,
-  OnInit,
   Renderer2,
   ViewChild,
   ViewChildren
 } from '@angular/core';
-import {fromEvent} from 'rxjs';
-import {map} from 'rxjs/operators';
-import {select, Store} from '@ngrx/store';
-import {PDataService} from '../../../../../../../../core/service/data-pages/p/p-data.service';
-import {ActivatedRoute, Router} from '@angular/router';
-import {DisplayAlertMessage} from '../../../../../../../../core/store/ui/ui.actions';
+import { Store } from '@ngrx/store';
+import { PDataService } from '../../../../../../../../core/service/data-pages/p/p-data.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'onpicks-p-picture-review',
@@ -22,16 +17,9 @@ import {DisplayAlertMessage} from '../../../../../../../../core/store/ui/ui.acti
   styleUrls: ['./p-picture-review.component.scss'],
   changeDetection : ChangeDetectionStrategy.OnPush,
 })
-
-
-
-
 export class PPictureReviewComponent {
   @ViewChildren('itemList') itemList;
   @ViewChild('container') container;
-
-
-
   @Input('pictureReviewList') set setList(xData) {
 
     if ( xData === null ) { return ; };
@@ -49,9 +37,6 @@ export class PPictureReviewComponent {
           this.imagesSmallList.push(item.url + '?d=w128-h128');
         }
       });
-
-      // this.imageSmallOuterArray = this.imageSmallOuter.toArray();
-      // this.imageLargeOuterArray = this.imageLargeOuter.toArray();
 
       this.itemListArray = this.itemList.toArray();
       if ( this.itemList.first !== undefined ){
@@ -82,13 +67,8 @@ export class PPictureReviewComponent {
   imagesLargeList = [];
   imagesSmallList = [];
 
-
-
   itemListArray;
   imageIndex = 0;
-  // 456(width) + 16 ( margin )
-
-  animationEndEvent;
 
   constructor(
     private renderer: Renderer2,
@@ -97,9 +77,7 @@ export class PPictureReviewComponent {
     private cd: ChangeDetectorRef,
     private router: Router,
     private route: ActivatedRoute
-    //
-  ) {
-  }
+  ) { }
 
   @HostListener('window:resize', ['$event'])
   onResize(event) {
@@ -117,19 +95,13 @@ export class PPictureReviewComponent {
   }
 
   prevButton() {
-    // if ( this.imageIndex === 0) { return; };
     this.imageIndex--;
     this.renderer.setStyle(this.container.nativeElement, 'transition', 'transform .5s ease 0s');
     this.renderer.setStyle(this.container.nativeElement, 'transform', 'translateX(-' + (this.firstOffset + (this.imageIndex * this.translateXWidth)) + 'px)');
   }
 
   nextButton() {
-
-    // if ( this.imageIndex >= this.imageLargeOuterArray.length - 3) { return; };
     this.imageIndex++;
-    console.log(this.translateXWidth);
-    console.log(this.imageIndex);
-    console.log(this.firstOffset);
     this.renderer.setStyle(this.container.nativeElement, 'transition', 'transform .5s ease 0s');
     this.renderer.setStyle(this.container.nativeElement, 'transform', 'translateX(-' + (this.firstOffset + (this.imageIndex * this.translateXWidth)) + 'px)');
   }
@@ -139,5 +111,4 @@ export class PPictureReviewComponent {
       this.router.navigate(['reviews/' + xReviewId], {relativeTo: this.route});
     }
   }
-
 }

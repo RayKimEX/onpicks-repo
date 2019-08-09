@@ -1,6 +1,12 @@
-import {Component, OnInit, ChangeDetectionStrategy, Inject} from '@angular/core';
-import {IMAGE_HOST} from '../../../core/global-constant/app.config';
+import {
+  Component,
+  ChangeDetectionStrategy,
+  OnDestroy,
+  Inject
+} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
+import {IMAGE_HOST} from '../../../core/global-constant/app.config';
+
 
 @Component({
   selector: 'onpicks-checkout-failure',
@@ -8,7 +14,7 @@ import {ActivatedRoute} from '@angular/router';
   styleUrls: ['./checkout-failure.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CheckoutFailureComponent implements OnInit {
+export class CheckoutFailureComponent implements OnDestroy {
   queryParams$;
   failureMassage = '';
 
@@ -22,7 +28,7 @@ export class CheckoutFailureComponent implements OnInit {
       });
   }
 
-  ngOnInit() {
+  ngOnDestroy() {
+    this.queryParams$.unsubscribe();
   }
-
 }

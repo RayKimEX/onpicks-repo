@@ -1,33 +1,15 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {select, Store} from '@ngrx/store';
-import { normalize, schema } from 'normalizr';
+import {
+  ChangeDetectionStrategy,
+  Component
+} from '@angular/core';
 
 @Component({
   selector: 'onpicks-page-grocery',
   templateUrl: './page-grocery.component.html',
-  styleUrls: ['./page-grocery.component.scss']
+  styleUrls: ['./page-grocery.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class PageGroceryComponent implements OnInit, OnDestroy {
+export class PageGroceryComponent {
 
-  storeSubscription$;
-
-  categoryList;
-  result;
-  constructor(
-    private store: Store<any>,
-
-  ) {
-
-
-  }
-
-  ngOnDestroy() {
-  }
-
-  ngOnInit() {
-
-
-
-  }
-
+  constructor( ) { }
 }

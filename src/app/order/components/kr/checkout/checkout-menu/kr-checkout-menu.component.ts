@@ -1,12 +1,30 @@
-import {Component, OnInit, ChangeDetectionStrategy, Inject, ChangeDetectorRef, AfterViewInit, HostListener, Input, OnDestroy, ElementRef, EventEmitter, Output} from '@angular/core';
-import {BreakpointObserver, BreakpointState} from '@angular/cdk/layout';
-import {CURRENCY, DOMAIN_HOST, RESPONSIVE_MAP} from '../../../../../core/global-constant/app.config';
-import {HttpClient, HttpParams} from '@angular/common/http';
-import {catchError, map, tap} from 'rxjs/operators';
-import {select, Store} from '@ngrx/store';
-import {BehaviorSubject, of} from 'rxjs';
-import {OrderDataService} from '../../../../../core/service/data-pages/order/order-data.service';
-import {FormControl, FormGroup} from '@angular/forms';
+import {
+  Component,
+  OnInit,
+  ChangeDetectionStrategy,
+  Inject,
+  ChangeDetectorRef,
+  AfterViewInit,
+  HostListener,
+  Input,
+  OnDestroy,
+  EventEmitter,
+  Output
+} from '@angular/core';
+import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
+import { HttpClient } from '@angular/common/http';
+import { FormControl, FormGroup } from '@angular/forms';
+
+import { select, Store } from '@ngrx/store';
+
+import {
+  CURRENCY,
+  DOMAIN_HOST,
+  RESPONSIVE_MAP
+} from '../../../../../core/global-constant/app.config';
+import { BehaviorSubject } from 'rxjs';
+import { OrderDataService } from '../../../../../core/service/data-pages/order/order-data.service';
+
 
 @Component({
   selector: 'onpicks-kr-checkout-menu',
@@ -19,29 +37,11 @@ export class KrCheckoutMenuComponent implements OnInit, OnDestroy, AfterViewInit
   @Output() checkoutEmitter = new EventEmitter();
   @Input('data') data;
 
-  formData = {
-    'buyer_name': '',
-    'buyer_contact': '',
-    'full_name': '',
-    'street_address_1': '',
-    'street_address_2': '',
-    'city': '',
-    'state': '',
-    'country': '',
-    'zip_code': '',
-    'phone_number': '',
-    'shipping_message': '',
-    'customs_id_owner': '',
-    'customs_id_number': '',
-    'payment_method': 'card'
-  };
   checkoutStore$;
   userStore$;
   userStore;
 
   deliveryStoreData = [];
-
-  paymentScript = null;
   isShowDeliveryView = true;
   initialGroup: FormGroup;
 
@@ -61,9 +61,7 @@ export class KrCheckoutMenuComponent implements OnInit, OnDestroy, AfterViewInit
     private orderDataService: OrderDataService,
     private store: Store<any>,
   ) {
-    this.checkoutStore$ = this.orderDataService.getCheckoutData().pipe(
-      tap( v => console.log(v)),
-    );
+    this.checkoutStore$ = this.orderDataService.getCheckoutData();
 
     this.store.select( state => state.ui.deliveryAddress).subscribe(
       deliveryStoreData => {
@@ -113,10 +111,10 @@ export class KrCheckoutMenuComponent implements OnInit, OnDestroy, AfterViewInit
   @HostListener('window:resize', ['$event'])
   onResize(event) {
     this.windowInnerHeight = window.innerHeight;
-    this.scrollHandler(event);
+    this.onScroll(event);
   }
   @HostListener('window:scroll', ['$event'])
-  scrollHandler(event) {
+  onScroll(event) {
     if (this.isThirdBreakPoint) {
       const checkoutRightMenu = (document.querySelector('.checkout-right__menu') as HTMLElement);
       const bodyHeight = (document.querySelector('body') as HTMLElement).offsetHeight;
@@ -130,6 +128,6 @@ export class KrCheckoutMenuComponent implements OnInit, OnDestroy, AfterViewInit
   }
 
   payment() {
-    this.checkoutEmitter.emit()
+    this.checkoutEmitter.emit();
   }
 }

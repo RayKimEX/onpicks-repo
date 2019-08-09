@@ -1,9 +1,11 @@
-import {AfterViewInit, ChangeDetectionStrategy, Component, Inject, LOCALE_ID, OnInit} from '@angular/core';
-import {UiService} from '../../../core/service/ui/ui.service';
-import {tap} from 'rxjs/operators';
-import {Title} from '@angular/platform-browser';
-import {IMAGE_HOST, REGION_ID} from '../../../core/global-constant/app.config';
-import {TITLE_MAP} from '../../../core/global-constant/app.locale';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Inject
+} from '@angular/core';
+import { UiService } from '../../../core/service/ui/ui.service';
+import { tap } from 'rxjs/operators';
+import { IMAGE_HOST, REGION_ID } from '../../../core/global-constant/app.config';
 
 @Component({
   selector: 'onpicks-shops-index',
@@ -12,11 +14,10 @@ import {TITLE_MAP} from '../../../core/global-constant/app.locale';
   changeDetection : ChangeDetectionStrategy.OnPush,
 })
 
-export class ShopsIndexComponent implements OnInit, AfterViewInit {
+export class ShopsIndexComponent {
 
   shopsBannerImage = {
     imgSrc : this.imageHost + '/intro/pantry-and-household/2019-02-27/PAH1.jpg?d=w2576-h800',
-    // marginLeftForText : '6.2%',
     title : {
       ko : [
         '모든 피부에 적합한',
@@ -53,21 +54,18 @@ export class ShopsIndexComponent implements OnInit, AfterViewInit {
           + this.imageHost + '/intro/main/2019-04-01/main1.jpg 3840w',
         imgSrcForMobile : this.imageHost + '/intro/main/2019-04-01/main-mobile1.jpg',
         srcSetForMobile : this.imageHost + '/intro/main/2019-04-01/main-mobile1.jpg 640w',
-        // marginLeftForText : '6.2%',
         title : [],
         titleFontType : '',
         description : [],
         descriptionFontType : '',
       },
       {
-        // imgSrc : 'https://img.onpicks.com/intro/main/2019-04-01/main2.jpg',
         imgSrcForDesktop : this.imageHost + '/intro/main/2019-04-01/main2.jpg',
         srcSetForDesktop : this.imageHost + '/intro/main/2019-04-01/main2.jpg?d=w1920-h400 1920w,'
           + this.imageHost + '/intro/main/2019-04-01/main2.jpg?d=w2400-h500 2400w,'
           + this.imageHost + '/intro/main/2019-04-01/main2.jpg 3840w',
         imgSrcForMobile : this.imageHost + '/intro/main/2019-04-01/main-mobile2.jpg',
         srcSetForMobile : this.imageHost + '/intro/main/2019-04-01/main-mobile2.jpg 640w',
-        // marginLeftForText : '6.2%',
         title : [],
         titleFontType : '',
         description : [],
@@ -82,7 +80,6 @@ export class ShopsIndexComponent implements OnInit, AfterViewInit {
           + this.imageHost + '/intro/main/us/main1.jpg?d=w2400-h500 3840w',
         imgSrcForMobile : this.imageHost + '/intro/main/us/main-mobile1.jpg',
         srcSetForMobile : this.imageHost + '/intro/main/us/main-mobile1.jpg 640w',
-        // marginLeftForText : '6.2%',
         title : [],
         titleFontType : '',
         description : [],
@@ -91,7 +88,6 @@ export class ShopsIndexComponent implements OnInit, AfterViewInit {
     ]
   }
 
-  // https://s3.ap-northeast-2.amazonaws.com/img.onpicks.com/onpicks_banner_banner_3840x800.png
   popularCategory = [
     {
       imgSrc : this.imageHost + '/categories/category-grocery.png',
@@ -259,9 +255,7 @@ export class ShopsIndexComponent implements OnInit, AfterViewInit {
     }
   ];
 
-  trendingReviews = [];
   trendingReviews$;
-
   weeklyBest$;
   recentlyViewed$;
   popularBrands$;
@@ -280,14 +274,6 @@ export class ShopsIndexComponent implements OnInit, AfterViewInit {
     this.recentlyViewed$ = this.uiDataService.getRecentlyViewed();
     this.popularBrands$ = this.uiDataService.getPopularBrands();
     this.valueList$ = this.uiDataService.getValueList();
-  }
-
-  ngOnInit() {
-
-  }
-
-  ngAfterViewInit() {
-
   }
 }
 

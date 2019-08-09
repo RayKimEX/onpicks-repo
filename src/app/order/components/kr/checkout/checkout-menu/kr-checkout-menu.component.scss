@@ -3,16 +3,16 @@
 
 .checkout-right {
   will-change: transform;
+
   &__menu {
     background: white;
     position: relative;
+    border : 1px solid #e5e5e5;
+    padding : 2.4rem;
 
     @include respond(tb){
       display:none;
     }
-
-    border : 1px solid #e5e5e5;
-    padding : 2.4rem;
 
     &--title {
       margin-bottom : 18px;

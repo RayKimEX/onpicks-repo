@@ -12,10 +12,6 @@ export class PDataService {
     private httpClient: HttpClient,
   ) {  }
 
-  // login(email: string, password: string, isPersistent: boolean): Observable<any> {
-  //   return this.httpClient.post<any>(this.BASE_URL + '/api/customers/login/', { email : email, password : password, is_persistent : isPersistent});
-  // }
-
   getPageData(id) {
     return this.httpClient.get<any>( this.BASE_URL + '/api/products/' + id + '/');
   }
@@ -30,8 +26,6 @@ export class PDataService {
       requestUrl = '/api/products/' + productId + '/reviews/?period=' + xSorting;
     }
 
-    console.log(xSorting);
-
     return this.httpClient.get<any>( this.BASE_URL + requestUrl);
   }
 
@@ -44,7 +38,6 @@ export class PDataService {
   }
 
   getPictureReviewsData( productId ) {
-    // api/products/{{slug}}/picture_reviews/
     return this.httpClient.get<any>( this.BASE_URL + '/api/products/' + productId + '/picture_reviews/');
   }
 
@@ -55,10 +48,6 @@ export class PDataService {
   unvoteReviewsData( productSlug, reviewsId) {
     return this.httpClient.post<any>( this.BASE_URL + '/api/products/' + productSlug + '/reviews/' + reviewsId + '/unvote/', {});
   }
-
-//   [POST] api/products/[ slug] /reviews/ [ id ] / report
-//
-// { text : "" }
 
   reportReviewData( xProductSlug, xReviewId, xReportReason) {
     return this.httpClient.post<any>( this.BASE_URL + '/api/products/' + xProductSlug + '/reviews/' + xReviewId + '/report/', { reason : xReportReason });

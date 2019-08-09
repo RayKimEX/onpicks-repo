@@ -1,5 +1,6 @@
 import {
-  ChangeDetectionStrategy, ChangeDetectorRef,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   OnInit
 } from '@angular/core';
@@ -12,8 +13,6 @@ import {
   tap
 } from 'rxjs/operators';
 import {UiService} from '../../../../../../core/service/ui/ui.service';
-import {Store} from '@ngrx/store';
-import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'onpicks-orders',
@@ -64,7 +63,6 @@ export class OrdersComponent implements OnInit {
     reviewData : undefined,
   }
 
-  isShowWriteReview = false;
 
   /*******data********/
   orderData$;
@@ -78,8 +76,6 @@ export class OrdersComponent implements OnInit {
     private uiDataService: UiService,
     private accountDataService: AccountDataService,
     private cd: ChangeDetectorRef,
-    private route: ActivatedRoute,
-    private store: Store<any>
   ) {
 
     this.weeklyBest$ = this.uiDataService.getWeeklyBestGoods();
@@ -95,22 +91,19 @@ export class OrdersComponent implements OnInit {
 
   viewModal(xPassedData) {
     if (xPassedData.item.review === null ) {
-      console.log('create_review condition');
       this.accountDataService.createReviewData(xPassedData.item.product, xPassedData.orderId).subscribe(
         response => {
           if ( xPassedData.condition === 'write_review' ) {
             xPassedData.item['review'] = response.id;
-            console.log(xPassedData);
             this.writeReview = {
               isShow : true,
               reviewData : xPassedData.item
             }
             this.reviewData = xPassedData.item;
-            console.log(this.writeReview);
           }
           this.cd.markForCheck();
         }, error => {
-          console.log(error);
+          console.error(error);
         }
       );
     } else {
@@ -120,8 +113,6 @@ export class OrdersComponent implements OnInit {
           reviewData : xPassedData.item
         }
         this.reviewData = xPassedData.item;
-        console.log( 'write_review condition' );
-        console.log( this.writeReview )
         this.cd.markForCheck();;
       }
     }

@@ -1,4 +1,9 @@
-import {ChangeDetectionStrategy, Component, Inject, Input, OnInit} from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Inject,
+  Input
+} from '@angular/core';
 import {IMAGE_HOST} from '../../../../../../../../core/global-constant/app.config';
 
 @Component({
@@ -7,30 +12,11 @@ import {IMAGE_HOST} from '../../../../../../../../core/global-constant/app.confi
   styleUrls: ['./p-description.component.scss'],
   changeDetection : ChangeDetectionStrategy.OnPush,
 })
-export class PDescriptionComponent implements OnInit {
+export class PDescriptionComponent {
   @Input('description') description;
   @Input('location') location;
-
-  shopsBannerImage = {
-    imgSrc : this.imageHost + '/assets/beauty_banner1.jpg',
-    // marginLeftForText : '6.2%',
-    title : [
-      '모든 피부에 적합한',
-      '마법같은 토너 세이어스'
-    ],
-    titleFontType : 'h2-regular',
-    description : [
-      '170년 전통의 미국 오리지널 위치하젤 토너 전문 브랜드',
-      '피부타입과 취향에 따라 골라쓰는 재미를 느껴보세요.'
-    ],
-    descriptionFontType : 'subtitle-1-regular'
-  };
 
   constructor(
     @Inject(IMAGE_HOST) public imageHost: string,
   ) { }
-
-  ngOnInit() {
-  }
-
 }

@@ -1,9 +1,14 @@
-import {ChangeDetectionStrategy, Component, Inject, OnInit, ViewChild} from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Inject,
+  OnInit,
+  ViewChild
+} from '@angular/core';
 import {AppState} from '../../../core/store/app.reducer';
 import {Store} from '@ngrx/store';
 import {Signup, TryLogin} from '../../../core/store/auth/auth.actions';
 import {AuthService} from '../../../core/service/auth/auth.service';
-import {Title} from '@angular/platform-browser';
 import {REGION_ID} from '../../../core/global-constant/app.config';
 
 @Component({
@@ -12,7 +17,7 @@ import {REGION_ID} from '../../../core/global-constant/app.config';
   styleUrls: ['./signup.component.scss'],
   changeDetection : ChangeDetectionStrategy.OnPush
 })
-export class SignupComponent implements OnInit {
+export class SignupComponent {
   @ViewChild('inputEmail') inputEmail;
   @ViewChild('inputNickName') inputNickName;
   @ViewChild('inputPassword') inputPassword;
@@ -21,23 +26,16 @@ export class SignupComponent implements OnInit {
     @Inject(REGION_ID) public region: string,
     private store: Store<AppState>,
     private authService: AuthService,
-  ) {
-  }
-
-  ngOnInit() {
-
-  }
+  ) { }
 
   signUp(event: KeyboardEvent) {
 
     if (event === undefined) {
-
       this.store.dispatch( new Signup({
         email: this.inputEmail.nativeElement.value,
         nickname: this.inputNickName.nativeElement.value,
         password: this.inputPassword.nativeElement.value,
       }));
-
     } else {
       if ( event.key === 'Enter' ) {
         this.store.dispatch(new Signup(
@@ -54,6 +52,4 @@ export class SignupComponent implements OnInit {
   loginWithSocial (xType) {
     this.authService.loginWithSocial(xType).subscribe( v => location.href = v.authorization_url);
   }
-
-
 }

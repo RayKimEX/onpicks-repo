@@ -1,9 +1,8 @@
-import {ChangeDetectionStrategy, Component, Inject, OnInit, Renderer2} from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component
+} from '@angular/core';
 import {select, Store} from '@ngrx/store';
-import {tap} from 'rxjs/operators';
-import {AccountDataService} from '../../../../../core/service/data-pages/account/account-data.service';
-import {BreakpointObserver, BreakpointState} from '../../../../../../../node_modules/@angular/cdk/layout';
-import {RESPONSIVE_MAP} from '../../../../../core/global-constant/app.config';
 
 @Component({
   selector: 'onpicks-my-shopping-index',
@@ -11,7 +10,9 @@ import {RESPONSIVE_MAP} from '../../../../../core/global-constant/app.config';
   styleUrls: ['./my-shopping-index.component.scss'],
   changeDetection : ChangeDetectionStrategy.OnPush,
 })
-export class MyShoppingIndexComponent implements OnInit {
+export class MyShoppingIndexComponent {
+
+  url$;
 
   constructor(
     private store: Store<any>,
@@ -20,11 +21,4 @@ export class MyShoppingIndexComponent implements OnInit {
       select(state => state.ui.activeUrl),
     );
   }
-
-  url$;
-
-  ngOnInit() {
-
-  }
-
 }

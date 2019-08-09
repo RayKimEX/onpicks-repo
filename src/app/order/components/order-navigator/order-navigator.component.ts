@@ -7,12 +7,7 @@ import {ActivatedRoute} from '@angular/router';
   styleUrls: ['./order-navigator.component.scss'],
   changeDetection : ChangeDetectionStrategy.OnPush,
 })
-export class OrderNavigatorComponent implements OnInit {
+export class OrderNavigatorComponent {
 
   constructor(public routeSnapshot: ActivatedRoute) { }
-
-  ngOnInit() {
-
-  }
-
 }

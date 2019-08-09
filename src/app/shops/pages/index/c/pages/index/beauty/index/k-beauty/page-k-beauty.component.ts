@@ -1,4 +1,7 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import {
+  Component,
+  ChangeDetectionStrategy
+} from '@angular/core';
 
 @Component({
   selector: 'onpicks-k-beauty',
@@ -6,11 +9,7 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
   styleUrls: ['./page-k-beauty.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class PageKBeautyComponent implements OnInit {
+export class PageKBeautyComponent {
 
   constructor() { }
-
-  ngOnInit() {
-  }
-
 }

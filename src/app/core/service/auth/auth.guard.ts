@@ -1,5 +1,13 @@
+// Angular
+import {
+  CanActivate,
+  ActivatedRouteSnapshot,
+  RouterStateSnapshot,
+  Router
+} from '@angular/router';
 import { Injectable } from '@angular/core';
-import {CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router} from '@angular/router';
+
+// Miscell
 import { Observable } from 'rxjs';
 import {select, Store} from '@ngrx/store';
 import {take, tap} from 'rxjs/operators';
@@ -11,9 +19,7 @@ export class AuthGuard implements CanActivate {
   constructor(
     private store: Store<any>,
     private router: Router
-  ) {
-
-  }
+  ) { }
 
   canActivate(
     next: ActivatedRouteSnapshot,

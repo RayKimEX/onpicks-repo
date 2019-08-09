@@ -9,5 +9,4 @@ export class PercentPipePipe implements PipeTransform {
 
     return (value * 100).toFixed(2);
   }
-
 }
