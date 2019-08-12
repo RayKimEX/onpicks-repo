@@ -28,7 +28,7 @@ import {
 import { DISPLAY_ALERT_MESSAGE_MAP } from '../../../../core/global-constant/app.locale';
 
 // Miscell
-import {BehaviorSubject, Observable, Subject} from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { select, Store } from '@ngrx/store';
 import { DisplayAlertMessage } from '../../../../core/store/ui/ui.actions';
@@ -49,7 +49,6 @@ export class KrCheckoutComponent implements OnInit, OnDestroy {
   @ViewChild('inputOrderNumber', { read : ElementRef }) inputOrderNumberRef;
   @ViewChild('checkoutAdditionNumber', { read : ElementRef}) checkoutAdditionNumberRef;
   @ViewChild('addDeliveryView') addDeliveryView;
-  private invalidInput: Subject<void> = new Subject<void>();
 
   readonly EMPTY_ORDER_NAME          = 0b00000000001;
   readonly EMPTY_ORDER_NUMBER        = 0b00000000010;
@@ -338,26 +337,30 @@ export class KrCheckoutComponent implements OnInit, OnDestroy {
   checkBitWise( data ) {
     return ((this.errorStatus & data) > 0);
   }
-  emitInvalid() {
-    this.invalidInput.next();
-  }
   validate(deliveryComponent) {
     this.errorStatus = 0;
 
     if ( this.inputOrderNameRef.nativeElement.children[0].value === '') {
+      this.inputOrderNameRef.nativeElement.children[0].scrollIntoView();
       this.inputOrderNameRef.nativeElement.children[0].focus();
       this.errorStatus |= this.EMPTY_ORDER_NAME;
 
     }
 
     if ( this.inputOrderNumberRef.nativeElement.children[0].value === '') {
-      if ( this.errorStatus === 0 ) {this.inputOrderNumberRef.nativeElement.children[0].focus();}
+      if ( this.errorStatus === 0 ) {
+        this.inputOrderNumberRef.nativeElement.children[0].scrollIntoView();
+        this.inputOrderNumberRef.nativeElement.children[0].focus();
+      }
       this.errorStatus |= this.EMPTY_ORDER_NUMBER;
     } else {
       const patt = new RegExp('^(?:\\+?\\d{1,2} ?)?[ -]?\\d{2,3}[ -]?\\d{3,4}[ -]?\\d{4}$');
       if ( !patt.test(this.inputOrderNumberRef.nativeElement.children[0].value) ) {
 
-        if ( this.errorStatus === 0 ) {this.inputOrderNumberRef.nativeElement.children[0].focus();}
+        if ( this.errorStatus === 0 ) {
+          this.inputOrderNumberRef.nativeElement.children[0].scrollIntoView();
+          this.inputOrderNumberRef.nativeElement.children[0].focus();
+        }
         this.errorStatus |= this.INVALID_ORDER_NUMBER;
       }
     }
@@ -367,12 +370,18 @@ export class KrCheckoutComponent implements OnInit, OnDestroy {
     }
 
     if ( this.checkoutAdditionNumberRef.nativeElement.children[0].value === '') {
-      if ( this.errorStatus === 0 ) {this.checkoutAdditionNumberRef.nativeElement.children[0].focus();}
+      if ( this.errorStatus === 0 ) {
+        this.checkoutAdditionNumberRef.nativeElement.children[0].scrollIntoView();
+        this.checkoutAdditionNumberRef.nativeElement.children[0].focus();
+      }
       this.errorStatus |= this.EMPTY_CUSTOMS_ID_NUMBER;
     } else {
       const patt = new RegExp('^[pP][0-9]{12}$');
       if ( !(patt.test(this.checkoutAdditionNumberRef.nativeElement.children[0].value))) {
-        if ( this.errorStatus === 0 ) {this.checkoutAdditionNumberRef.nativeElement.children[0].focus();}
+        if ( this.errorStatus === 0 ) {
+          this.checkoutAdditionNumberRef.nativeElement.children[0].scrollIntoView();
+          this.checkoutAdditionNumberRef.nativeElement.children[0].focus();
+        }
         this.errorStatus |= this.INVALID_CUSTOMS_ID_NUMBER;
       }
     }
@@ -382,9 +391,6 @@ export class KrCheckoutComponent implements OnInit, OnDestroy {
     }
 
     this.cd.markForCheck();
-    if (this.errorStatus ){
-      this.emitInvalid();
-    }
   }
 
   setShippingMessage(xShippingMessage) {

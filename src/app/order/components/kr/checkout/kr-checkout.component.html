@@ -292,9 +292,7 @@
       *ngIf="(checkoutStore$ | async) as data; "
       #checkoutMenu
       [data]="data"
-      (checkoutEmitter)="payment(form, deliveryComponent)"
-      [invalidInput]="invalidInput.asObservable()"
-      >
+      (checkoutEmitter)="payment(form, deliveryComponent)">
     </onpicks-kr-checkout-menu>
 
   </div>

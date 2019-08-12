@@ -57,8 +57,6 @@ export class KrCheckoutMenuComponent implements OnInit, OnDestroy, AfterViewInit
   /*********checkout-mobile*******/
   isThirdBreakPoint = false;
 
-  @Input() invalidInput: Observable<void>;
-  private inputSubscription: any;
   constructor(
     @Inject(CURRENCY) public currency: BehaviorSubject<any>,
     @Inject( RESPONSIVE_MAP ) public responsiveMap,
@@ -94,7 +92,6 @@ export class KrCheckoutMenuComponent implements OnInit, OnDestroy, AfterViewInit
     this.initialGroup = new FormGroup({
       dummy: new FormControl( null),
     });
-    this.inputSubscription = this.invalidInput.subscribe(() => this.resetLayout())
 
     this.breakpointObserver
       .observe([this.responsiveMap['tb']])
@@ -112,7 +109,6 @@ export class KrCheckoutMenuComponent implements OnInit, OnDestroy, AfterViewInit
     if ( this.userStore$ !== undefined ) {
       this.userStore$.unsubscribe();
     }
-    this.inputSubscription.unsubscribe();
   }
 
   ngAfterViewInit() {
@@ -124,7 +120,7 @@ export class KrCheckoutMenuComponent implements OnInit, OnDestroy, AfterViewInit
   onResize(event) {
     this.windowInnerHeight = window.innerHeight;
     this.onScroll(event);
-    //this.setConstant();
+    this.setConstant();
   }
   @HostListener('window:scroll', ['$event'])
   onScroll(event) {
@@ -135,10 +131,6 @@ export class KrCheckoutMenuComponent implements OnInit, OnDestroy, AfterViewInit
         this.checkoutRightMenu.style.top = (this.scrollTop - this.headerHeight - this.BREADCRUMB_HEIGHT) + 'px';
       }
     }
-  }
-  resetLayout(){
-    this.checkoutRightMenu.style.top = (this.headerHeight - this.BREADCRUMB_HEIGHT) + 'px';
-
   }
   payment() {
     this.checkoutEmitter.emit();
