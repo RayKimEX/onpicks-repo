@@ -7,8 +7,7 @@
         <li
           *ngFor="let item of imagesLargeList; index as i"
           #imageLargeOuter
-          class="ui-dynamic-carousel__content--item"
-          (swipeleft)="swipe($event.type)" (swiperight)="swipe($event.type)">
+          class="ui-dynamic-carousel__content--item">
           <div class="ui-dynamic-carousel__content--item--padding">
             <div>
               <img [src]="item" alt="">
