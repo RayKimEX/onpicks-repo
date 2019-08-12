@@ -9,9 +9,9 @@
 
   <h1 class="modal__title h1-bold">신고사유를 선택해주세요.</h1>
   <div
-    *ngFor="let key of objectKeys(reasonMap)"
+    *ngFor="let key of objectKeys(REASON_MAP)"
     class="modal__item subtitle-2-regular">
-    {{reasonMap[key][locale]}}
+    {{REASON_MAP[key][locale]}}
     <onpicks-check-box
       (boxEvent)="textReportReasonForModal = $event"
       class="modal__item--check-box"
@@ -87,7 +87,7 @@
         <onpicks-sort-box
           [selectedElement]="selectedElement"
           (changeEvent)="reviewSorting($event)"
-          [sortList]="reviewSortList">
+          [sortList]="REVIEW_SORT_LIST">
         </onpicks-sort-box>
       </div>
 

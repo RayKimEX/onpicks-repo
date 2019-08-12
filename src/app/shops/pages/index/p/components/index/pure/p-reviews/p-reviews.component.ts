@@ -73,7 +73,7 @@ export class PReviewsComponent {
     @Inject( DOMAIN_HOST ) private _HOST: string,
     @Inject( APP_BASE_HREF ) private _BASE_URL: string,
     @Inject( DISPLAY_ALERT_MESSAGE_MAP ) private _ALERT_MAP,
-    @Inject( REVIEW_SORT_LIST ) private _REVIEW_SORT_LIST,
+    @Inject( REVIEW_SORT_LIST ) public REVIEW_SORT_LIST,
     private _pDataService: PDataService,
     private _renderer: Renderer2,
     private _store: Store<any>,
