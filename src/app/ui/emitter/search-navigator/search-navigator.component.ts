@@ -322,7 +322,6 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-
     this.contentHeight = (window.screen.height - 400) < 300 ? '' : (window.screen.height) + 'px';
     if ( this.isMobile ) {
       const url = this.router.url;
@@ -402,7 +401,7 @@ export class SearchNavigatorComponent implements OnInit, OnDestroy {
 
   }
 
-  subtractFromCart(xAmount, xProductSlug, xPackIndex, isShipAlone) {
+  subtractFromCart(xAmount, xProductSlug, xPackIndex ) {
     xAmount--;
     this.store.dispatch(new TrySubtractOrDeleteFromCart({
       isPopUp : true,

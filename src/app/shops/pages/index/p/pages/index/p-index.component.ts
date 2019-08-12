@@ -92,6 +92,7 @@ export class PIndexComponent implements OnInit, OnDestroy {
     this.pData$ = this.store.pipe(
       select( state => state.p.data),
       tap( (v) => {
+        console.log('#######')
         // 해당 페이지에 들어 왔을때, reviews에서, scroll값이 있으면 해당 스크롤로 이동
         // TODO : 좀 가라로 한듯함
         const url = this.router.url.split('/');

@@ -31,15 +31,14 @@ export class PPictureReviewComponent {
 
     setTimeout( () => {
       this.imagesLargeList.forEach( item => {
-        console.log(item.url);
-        if ( item.url !== undefined ){
+        if ( item.url !== undefined ) {
           // 작은 이미지 만들어서 불러오기
           this.imagesSmallList.push(item.url + '?d=w128-h128');
         }
       });
 
       this.itemListArray = this.itemList.toArray();
-      if ( this.itemList.first !== undefined ){
+      if ( this.itemList.first !== undefined ) {
         const computedStyle = getComputedStyle(( this.itemList.first.nativeElement ), null);
         this.calculatePercentToPXInterval = setInterval( () => {
           const isPX = computedStyle.width.endsWith('px');
@@ -71,9 +70,9 @@ export class PPictureReviewComponent {
   imageIndex = 0;
 
   constructor(
+    private pDataService: PDataService,
     private renderer: Renderer2,
     private store: Store<any>,
-    private pDataService: PDataService,
     private cd: ChangeDetectorRef,
     private router: Router,
     private route: ActivatedRoute

@@ -10,17 +10,17 @@
     else loading">
     <div
       [ngClass]=
-        "[ mobileType === 'half' ? 'ui-mini-list-halfM' : 'ui-mini-list-fullM']"
+        "[ mobileType === 'half' ? 'ui-carousel-list-halfM' : 'ui-carousel-list-fullM']"
       class="u-margin-bottom">
       <h1
         #insertTitle
-        [ngClass]="[ mobileType === 'half' ? 'ui-mini-list-halfM__title' : 'ui-mini-list-fullM__title']"
+        [ngClass]="[ mobileType === 'half' ? 'ui-carousel-list-halfM__title' : 'ui-carousel-list-fullM__title']"
         class="h1-bold">{{setTitle}}</h1>
       <div
         [ngClass]="[
             mobileType === 'half' ?
-            'ui-mini-list-halfM__content--outer' :
-            'ui-mini-list-fullM__content--outer']">
+            'ui-carousel-list-halfM__content--outer' :
+            'ui-carousel-list-fullM__content--outer']">
           <onpicks-circle-n-button
             *ngIf="imageIndex  < (infoList?.length - carouselLength) "
             [top]="'12.6rem'"
@@ -36,71 +36,71 @@
         <div
           [ngClass]="[
             mobileType === 'half' ?
-            'ui-mini-list-halfM__content' :
-            'ui-mini-list-fullM__content'
+            'ui-carousel-list-halfM__content' :
+            'ui-carousel-list-fullM__content'
           ]">
           <ul
-            class="ui-mini-list-halfM__content-ul"
+            class="ui-carousel-list-halfM__content-ul"
             #container>
             <ng-container *ngFor="let item of infoList; index as i">
               <li #itemList
                 [ngClass]="[
                     mobileType === 'half' ?
-                    'ui-mini-list-halfM__content-li' :
-                    'ui-mini-list-fullM__content-li'
+                    'ui-carousel-list-halfM__content-li' :
+                    'ui-carousel-list-fullM__content-li'
                   ]"
                 *ngIf="pressedPrev ? i < imageIndex + 7 : i < imageIndex + carouselLength">
                 <div
                   [ngClass]="[
                     mobileType === 'half' ?
-                    'ui-mini-list-halfM__item' :
-                    'ui-mini-list-fullM__item'
+                    'ui-carousel-list-halfM__item' :
+                    'ui-carousel-list-fullM__item'
                   ]">
                   <div
                     [ngClass]="[
                         mobileType === 'half' ?
-                        'ui-mini-list-halfM__item--image' :
-                        'ui-mini-list-fullM__item--image'
+                        'ui-carousel-list-halfM__item--image' :
+                        'ui-carousel-list-fullM__item--image'
                     ]">
                     <div
                       [ngClass]="[
                         mobileType === 'half' ?
-                        'ui-mini-list-halfM__item--image-outer' :
-                        'ui-mini-list-fullM__item--image-outer'
+                        'ui-carousel-list-halfM__item--image-outer' :
+                        'ui-carousel-list-fullM__item--image-outer'
                       ]">
                       <a [routerLink]="'/shops/p/' + item.slug">
                         <div *ngIf="item.in_stock === true && item.stock_quantity <= 10 && item.stock_quantity !== 0" [ngClass]="[
                           mobileType === 'half' ?
-                          'ui-mini-list-halfM__item--stock' :
-                          'ui-mini-list-fullM__item--stock']">
+                          'ui-carousel-list-halfM__item--stock' :
+                          'ui-carousel-list-fullM__item--stock']">
                           <span
                             *ngIf="locale === 'ko'"
                             [ngClass]="[
                               mobileType === 'half' ?
-                              'ui-mini-list-halfM__item--stock--inner' :
-                              'ui-mini-list-fullM__item--stock--inner']"
+                              'ui-carousel-list-halfM__item--stock--inner' :
+                              'ui-carousel-list-fullM__item--stock--inner']"
                             class="u-color-white">
                             품절임박 {{item.stock_quantity}}개
                           </span>
                           <span *ngIf="locale === 'en'"
                                 [ngClass]="[
                                 mobileType === 'half' ?
-                                'ui-mini-list-halfM__item--stock--inner' :
-                                'ui-mini-list-fullM__item--stock--inner']"
+                                'ui-carousel-list-halfM__item--stock--inner' :
+                                'ui-carousel-list-fullM__item--stock--inner']"
                                 class="u-color-white">
                             Only {{item.stock_quantity}} Left
                           </span>
                         </div>
                         <div *ngIf="item.in_stock === false || item.in_stock === true && item.stock_quantity === 0" [ngClass]="[
                           mobileType === 'half' ?
-                          'ui-mini-list-halfM__item--stock-empty' :
-                          'ui-mini-list-fullM__item--stock-empty']">
+                          'ui-carousel-list-halfM__item--stock-empty' :
+                          'ui-carousel-list-fullM__item--stock-empty']">
                           <span
                             i18n="@@word__sold-out"
                             [ngClass]="[
                           mobileType === 'half' ?
-                          'ui-mini-list-halfM__item--stock--inner' :
-                          'ui-mini-list-fullM__item--stock--inner']"
+                          'ui-carousel-list-halfM__item--stock--inner' :
+                          'ui-carousel-list-fullM__item--stock--inner']"
                             class="u-color-white">
                             품절
                           </span>
@@ -108,8 +108,8 @@
                         <div
                           [ngClass]="[
                           mobileType === 'half' ?
-                          'ui-mini-list-halfM__item--image-inner' :
-                          'ui-mini-list-fullM__item--image-inner'
+                          'ui-carousel-list-halfM__item--image-inner' :
+                          'ui-carousel-list-fullM__item--image-inner'
                         ]">
                           <img drLazyLoad [relativeOption]="false" src="{{item.thumbnail}}" alt="{{item.title}}">
                         </div>
@@ -125,14 +125,14 @@
                   <div
                     [ngClass]="[
                       mobileType === 'half' ?
-                      'ui-mini-list-halfM__item--name-outer' :
-                      'ui-mini-list-fullM__item--name-outer'
+                      'ui-carousel-list-halfM__item--name-outer' :
+                      'ui-carousel-list-fullM__item--name-outer'
                     ]">
                     <h1
                       [ngClass]="[
                         mobileType === 'half' ?
-                        'ui-mini-list-halfM__item--name-outer-brand' :
-                        'ui-mini-list-fullM__item--name-outer-brand'
+                        'ui-carousel-list-halfM__item--name-outer-brand' :
+                        'ui-carousel-list-fullM__item--name-outer-brand'
                       ]"
                       class="subtitle-2-bold">
                       <a (click)="goBrandFilter(item?.brand?.slug)">
@@ -143,8 +143,8 @@
                       <span
                         [ngClass]="[
                           mobileType === 'half' ?
-                          'ui-mini-list-halfM__item--name-outer-name' :
-                          'ui-mini-list-fullM__item--name-outer-name'
+                          'ui-carousel-list-halfM__item--name-outer-name' :
+                          'ui-carousel-list-fullM__item--name-outer-name'
                         ]"
                         class="body-2-regular">
                         {{item.title}}
@@ -160,8 +160,8 @@
                   <span
                     [ngClass]="[
                         mobileType === 'half' ?
-                        'ui-mini-list-halfM__price-info--MSRP-mobile' :
-                        'ui-mini-list-fullM__price-info--MSRP-mobile'
+                        'ui-carousel-list-halfM__price-info--MSRP-mobile' :
+                        'ui-carousel-list-fullM__price-info--MSRP-mobile'
                       ]"
                     class="subtitle-3-regular u-color-grey"
                     *ngIf="locale == 'en'">
@@ -170,8 +170,8 @@
                   <span
                     [ngClass]="[
                         mobileType === 'half' ?
-                        'ui-mini-list-halfM__price-info--MSRP-mobile-discount' :
-                        'ui-mini-list-fullM__price-info--MSRP-mobile-discount'
+                        'ui-carousel-list-halfM__price-info--MSRP-mobile-discount' :
+                        'ui-carousel-list-fullM__price-info--MSRP-mobile-discount'
                       ]"
                     class="subtitle-3-regular u-color-grey">
                     {{ item.msrp | onpicksCurrency: currencyAsync }}
@@ -179,14 +179,14 @@
                   <div
                     [ngClass]="[
                       mobileType === 'half' ?
-                      'ui-mini-list-halfM__price-info' :
-                      'ui-mini-list-fullM__price-info'
+                      'ui-carousel-list-halfM__price-info' :
+                      'ui-carousel-list-fullM__price-info'
                     ]">
                     <span
                       [ngClass]="[
                         mobileType === 'half' ?
-                        'ui-mini-list-halfM__price-info--discount' :
-                        'ui-mini-list-fullM__price-info--discount'
+                        'ui-carousel-list-halfM__price-info--discount' :
+                        'ui-carousel-list-fullM__price-info--discount'
                       ]"
                       class="subtitle-1-bold u-color-orange">
                       {{ 100 - round((item.price / item.msrp * 100)) }}%
@@ -194,8 +194,8 @@
                     <span
                       [ngClass]="[
                         mobileType === 'half' ?
-                        'ui-mini-list-halfM__price-info--price' :
-                        'ui-mini-list-fullM__price-info--price'
+                        'ui-carousel-list-halfM__price-info--price' :
+                        'ui-carousel-list-fullM__price-info--price'
                       ]"
                       class="subtitle-1-bold">
                       {{ item.price | onpicksCurrency: currencyAsync }}
@@ -203,8 +203,8 @@
                     <span
                       [ngClass]="[
                         mobileType === 'half' ?
-                        'ui-mini-list-halfM__price-info--MSRP' :
-                        'ui-mini-list-fullM__price-info--MSRP'
+                        'ui-carousel-list-halfM__price-info--MSRP' :
+                        'ui-carousel-list-fullM__price-info--MSRP'
                       ]"
                       class="subtitle-3-regular u-color-grey"
                       *ngIf="locale == 'en'">
@@ -213,8 +213,8 @@
                     <span
                       [ngClass]="[
                         mobileType === 'half' ?
-                        'ui-mini-list-halfM__price-info--MSRP-discount' :
-                        'ui-mini-list-fullM__price-info--MSRP-discount'
+                        'ui-carousel-list-halfM__price-info--MSRP-discount' :
+                        'ui-carousel-list-fullM__price-info--MSRP-discount'
                       ]"
                       class="subtitle-3-regular u-color-grey">
                       {{ item.msrp | onpicksCurrency: currencyAsync }}
@@ -223,24 +223,24 @@
                   <div
                     [ngClass]="[
                       mobileType === 'half' ?
-                      'ui-mini-list-halfM__delivery-point' :
-                      'ui-mini-list-fullM__delivery-point'
+                      'ui-carousel-list-halfM__delivery-point' :
+                      'ui-carousel-list-fullM__delivery-point'
                     ]">
                     <ng-container [ngSwitch]="item.location?.code">
                       <ng-container *ngSwitchCase="'LAX'" >
                         <span
                           [ngClass]="[
                             mobileType === 'half' ?
-                            'ui-mini-list-halfM__delivery-point--icon' :
-                            'ui-mini-list-fullM__delivery-point--icon'
+                            'ui-carousel-list-halfM__delivery-point--icon' :
+                            'ui-carousel-list-fullM__delivery-point--icon'
                           ]"
                           class="icon-small-la">
                         </span>
                         <span
                           [ngClass]="[
                             mobileType === 'half' ?
-                            'ui-mini-list-halfM__delivery-point--text' :
-                            'ui-mini-list-fullM__delivery-point--text'
+                            'ui-carousel-list-halfM__delivery-point--text' :
+                            'ui-carousel-list-fullM__delivery-point--text'
                           ]"
                           class="subtitle-2-regular u-color-black">
                           <span *ngIf="locale === 'en'">Shipping from </span>
@@ -252,15 +252,15 @@
                         <span
                           [ngClass]="[
                             mobileType === 'half' ?
-                            'ui-mini-list-halfM__delivery-point--icon' :
-                            'ui-mini-list-fullM__delivery-point--icon'
+                            'ui-carousel-list-halfM__delivery-point--icon' :
+                            'ui-carousel-list-fullM__delivery-point--icon'
                           ]"
                           class="icon-small-new"></span>
                         <span
                           [ngClass]="[
                             mobileType === 'half' ?
-                            'ui-mini-list-halfM__delivery-point--text' :
-                            'ui-mini-list-fullM__delivery-point--text'
+                            'ui-carousel-list-halfM__delivery-point--text' :
+                            'ui-carousel-list-fullM__delivery-point--text'
                           ]"
                           class="subtitle-2-regular u-color-black">
                           <span *ngIf="locale === 'en'">Shipping from </span>
@@ -272,16 +272,16 @@
                         <span
                           [ngClass]="[
                             mobileType === 'half' ?
-                            'ui-mini-list-halfM__delivery-point--icon' :
-                            'ui-mini-list-fullM__delivery-point--icon'
+                            'ui-carousel-list-halfM__delivery-point--icon' :
+                            'ui-carousel-list-fullM__delivery-point--icon'
                           ]"
                           class="icon-small-gorgia">
                         </span>
                         <span
                           [ngClass]="[
                             mobileType === 'half' ?
-                            'ui-mini-list-halfM__delivery-point--text' :
-                            'ui-mini-list-fullM__delivery-point--text'
+                            'ui-carousel-list-halfM__delivery-point--text' :
+                            'ui-carousel-list-fullM__delivery-point--text'
                           ]"
                           class="subtitle-2-regular u-color-black">
                           <span *ngIf="locale === 'en'">Shipping from </span>
@@ -293,15 +293,15 @@
                         <span
                           [ngClass]="[
                             mobileType === 'half' ?
-                            'ui-mini-list-halfM__delivery-point--icon' :
-                            'ui-mini-list-fullM__delivery-point--icon'
+                            'ui-carousel-list-halfM__delivery-point--icon' :
+                            'ui-carousel-list-fullM__delivery-point--icon'
                           ]"
                           class="icon-small-osaka"></span>
                         <span
                           [ngClass]="[
                             mobileType === 'half' ?
-                            'ui-mini-list-halfM__delivery-point--text' :
-                            'ui-mini-list-fullM__delivery-point--text'
+                            'ui-carousel-list-halfM__delivery-point--text' :
+                            'ui-carousel-list-fullM__delivery-point--text'
                           ]" class="subtitle-2-regular u-color-black">
                           <span *ngIf="locale === 'en'">Shipping from </span>
                           <strong i18n="@@location-warehouse__KIX">오사카</strong>
@@ -312,15 +312,15 @@
                         <span
                           [ngClass]="[
                             mobileType === 'half' ?
-                            'ui-mini-list-halfM__delivery-point--icon' :
-                            'ui-mini-list-fullM__delivery-point--icon'
+                            'ui-carousel-list-halfM__delivery-point--icon' :
+                            'ui-carousel-list-fullM__delivery-point--icon'
                           ]"
                           class="icon-small-hong"></span>
                         <span
                           [ngClass]="[
                             mobileType === 'half' ?
-                            'ui-mini-list-halfM__delivery-point--text' :
-                            'ui-mini-list-fullM__delivery-point--text'
+                            'ui-carousel-list-halfM__delivery-point--text' :
+                            'ui-carousel-list-fullM__delivery-point--text'
                           ]"
                           class="subtitle-2-regular u-color-black">
                           <span *ngIf="locale === 'en'">Shipping from </span>

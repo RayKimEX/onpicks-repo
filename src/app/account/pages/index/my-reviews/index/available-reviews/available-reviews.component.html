@@ -17,14 +17,14 @@
         작성 가능한 리뷰가 없습니다. 다양한 아이템을 최적의 가격으로 쇼핑하여 리뷰를 남겨주세요!
       </div>
 
-      <ui-mini-list
+      <ui-carousel-list
         [mobileType]="'full'"
         [carouselLength]="3"
         [infoList]="weeklyBest$ | async"
         setTitle="'추천상품'"
         i18n-setTitle="@@recommand-products__title"
       >
-      </ui-mini-list>
+      </ui-carousel-list>
     </ng-container>
 
     <ng-container  *ngIf="data?.results?.length !== 0; ">
@@ -45,5 +45,5 @@
 
 
   <!--<div>작성 가능한 리뷰가 없습니다. 다양한 아이템을 최적의 가격으로 쇼핑하여 리뷰를 남겨주세요!</div>-->
-  <!--<ui-mini-list [setTitle]="'추천상품'"></ui-mini-list>-->
+  <!--<ui-carousel-list [setTitle]="'추천상품'"></ui-carousel-list>-->
 </div>

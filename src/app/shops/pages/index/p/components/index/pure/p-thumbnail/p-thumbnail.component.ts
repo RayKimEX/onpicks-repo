@@ -1,7 +1,14 @@
-import {ChangeDetectionStrategy, Component, Inject, Input, LOCALE_ID, OnDestroy, OnInit} from '@angular/core';
-import {DisplayAlertMessage} from '../../../../../../../../core/store/ui/ui.actions';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Inject,
+  Input, LOCALE_ID,
+} from '@angular/core';
+import { DisplayAlertMessage } from '../../../../../../../../core/store/ui/ui.actions';
+import { DISPLAY_ALERT_MESSAGE_MAP } from '../../../../../../../../core/global-constant/app.locale';
+import {Router} from '@angular/router';
 import {Store} from '@ngrx/store';
-import {DISPLAY_ALERT_MESSAGE_MAP} from '../../../../../../../../core/global-constant/app.locale';
+import {AppState} from '../../../../../../../../core/store/app.reducer';
 
 @Component({
   selector: 'p-thumbnail',
@@ -16,10 +23,10 @@ export class PThumbnailComponent {
   constructor(
     @Inject( LOCALE_ID ) public locale: string,
     @Inject( DISPLAY_ALERT_MESSAGE_MAP ) private alertMap,
-    private store: Store<any>
+    private store: Store<any>,
   ) { }
 
-  shareProductDetail() {
+  copyProductURL() {
     const const_url = location.href;
 
     // Create a dummy input to copy the string array inside it

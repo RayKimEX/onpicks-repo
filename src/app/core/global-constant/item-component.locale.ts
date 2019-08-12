@@ -39,25 +39,28 @@ export const SORT_LIST_CONST = [
   }
 ]
 
-// sortMap = {
-//   'most_popular' : {
-//     ko : '인기순',
-//     en : 'Popular'
-//   },
-//   'most_reviewed' : {
-//     ko : '리뷰 많은순',
-//     en : 'Most Reviews'
-//   },
-//   'top_rated' : {
-//     ko : '평점순',
-//     en : 'Most Ratings'
-//   },
-//   'price_high' : {
-//     ko : '가격 높은순',
-//     en : 'High Price'
-//   },
-//   'price_low' : {
-//     ko : '가격 낮은순',
-//     en : 'Low Price'
-//   }
-// };
+export const REVIEW_SORT_LIST = new InjectionToken<any>( './core/global-constant/item-component.locale');
+export const REVIEW_SORT_LIST_CONST = [
+  {
+    title : {
+      ko : '최신순',
+      en : 'Newest'
+    },
+    value : 'created'
+  },
+  {
+    title : {
+      ko : '별점 낮은순',
+      en : 'Lowest to Highest'
+    },
+    value : '-rating'
+  },
+  {
+    title : {
+      ko : '별점 높은순',
+      en : 'Highest to Lowest'
+    },
+    value : 'rating'
+  }
+]
+

@@ -2,18 +2,18 @@
   <onpicks-loading-icon ></onpicks-loading-icon>
 </ng-template>
 
-<div [ngStyle]="{ minHeight : contentHeight }">
-  <ng-container *ngIf="
-  {
-    cartStore : cartStore$ | async,
-    currency : currency | async,
-    data : pData$ | async
-  } as synced;else loading">
+<div
+  [ngStyle]="{ minHeight : contentHeight }">
+  <ng-container *ngIf="pData$ | async as data;else loading">
     <div class="current-nav">
       <div class="row current-nav__border-bottom">
-        <span *ngFor="let item of synced?.data?.category; index as i">
-          <span class="current-nav__category subtitle-2-bold">{{item.name}}</span>
-          <span *ngIf="synced?.data?.category.length - 1 !== (i)" class="current-nav__slash">/</span>
+        <span *ngFor="let item of data?.category; index as i">
+          <span class="current-nav__category subtitle-2-bold">
+            {{item.name}}
+          </span>
+          <span
+            *ngIf="data?.category.length - 1 !== (i)"
+            class="current-nav__slash">/</span>
         </span>
       </div>
     </div>
@@ -24,13 +24,21 @@
       <div
         [ngClass]="[!isFB ? 'col-7-of-12' : '']">
         <p-thumbnail
-          [imagesLargeList]="synced?.data.thumbnails.slice()"
-          [imagesSmallList]="synced?.data.thumbnails.slice()">
+          [imagesLargeList]="data?.thumbnails.slice()"
+          [imagesSmallList]="data?.thumbnails.slice()">
         </p-thumbnail>
         <div *ngIf="isFB">
-          <p-menu [isMobile]="isFB" [data]="synced?.data"></p-menu>
+          <p-menu
+            [discountPercent]="discountPercent"
+            [numberOptionList]="numberOptionList"
+            [isMobile]="isFB"
+            [data]="data">
+          </p-menu>
         </div>
-        <onpicks-value-list [type]="'product'" [valueList]="synced?.data.values"></onpicks-value-list>
+        <onpicks-value-list
+          [type]="'product'"
+          [valueList]="data?.values">
+        </onpicks-value-list>
 
         <!--<p-other-sellers></p-other-sellers>-->
 
@@ -39,44 +47,49 @@
         </p-picture-review>
 
         <p-item-detail
-          [categoryInfo]="synced?.data.category">
+          [categoryData]="data?.category">
         </p-item-detail>
 
         <p-description
-          [location]="synced?.data.location.code"
-          [description]="synced?.data.description">
+          [location]="data?.location.code"
+          [description]="data?.description">
         </p-description>
 
-        <!--async를 붙여서 넘기는 이유는 받을때 좀더 편
-        하게 받게 하기 위함-->
         <p-reviews #onpicksReview></p-reviews>
         <p-refund *ngIf="locale === 'ko'"></p-refund>
         <p-product-report
           *ngIf="locale === 'ko'"
-          [categoryCode]="synced?.data.category[synced?.data?.category.length - 1].code" >
+          [categoryCode]="data?.category[data?.category.length - 1].code" >
         </p-product-report>
       </div>
 
       <div *ngIf="!isFB" class="col-5-of-12">
-        <p-menu [data]="synced?.data"></p-menu>
+        <p-menu
+          [discountPercent]="discountPercent"
+          [numberOptionList]="numberOptionList"
+          [data]="data">
+        </p-menu>
       </div>
     </div>
 
     <p-mobile-menu
       [locale]="locale"
-      [data]="synced?.data"
+      [data]="data"
       [alertMap]="alertMap"
-      [currency]="synced?.currency"
+      [currency]="currency | async"
       [discountPercent]="discountPercent"
       [numberOptionList]="numberOptionList"
       [locationMap]="locationMap"
       [isFB]="isFB"
-      [cartStore]="synced.cartStore">
-
+      [cartStore]="cartStore$ | async">
     </p-mobile-menu>
 
     <div class="mobile-row">
-      <ui-mini-list [infoList]="alsoViewed$ | async" i18n-setTitle="@@sentence__people-also-looked-at" setTitle="이 상품 구매자가 함께 본 상품"></ui-mini-list>
+      <ui-carousel-list
+        [infoList]="alsoViewed$ | async"
+        i18n-setTitle="@@sentence__people-also-looked-at"
+        setTitle="이 상품 구매자가 함께 본 상품">
+      </ui-carousel-list>
     </div>
   </ng-container>
 </div>

@@ -37,16 +37,12 @@ export class ValueListComponent implements OnInit, AfterViewInit {
   @Input('valueList') set _popularBrand(xValueList) {
     if ( xValueList == null ) { return; }
     this.valueList = xValueList;
-    // console.log(this.popularBrand);
   }
 
   imageIndex = 0;
   itemListArray;
   translateXWidth = 188;
   isShowButton = true;
-  currentX = 0;
-  currentPanVelocityX = 0;
-  panInterval = null;
 
   isShowDescription = false;
   currentDescriptionIndex = 0;
@@ -55,30 +51,7 @@ export class ValueListComponent implements OnInit, AfterViewInit {
 
   pressedPrev = false;
   valueList = [];
-
   isThirdBreakPoint = false;
-  // valueList = [
-  //   {
-  //     imgSrc : 'https:///img.onpicks.com/values/zero-calories.png',
-  //     title : 'Zero Calories',
-  //     description : '1회 제공량(per serving)에 칼로리가 0.5 Calorie 미만정도로 적게 포함.',
-  //   },
-  //   {
-  //     imgSrc : 'https:///img.onpicks.com/values/alcohol-free.png',
-  //     title : 'Big 8 Allergen Free',
-  //     description : 'FDA (미국 식품 의약국)에서 정한 음식 알러지 원인의 90 %를 차지하는 식품군인 우유, 계란, 생선, 조개류, 견과류, 땅콩, 밀 및 콩이 포함되지 않음.',
-  //   },
-  //   {
-  //     imgSrc : 'https:///img.onpicks.com/values/value-alcohol-free.png',
-  //     title : 'Alcohol Free',
-  //     description : '알코올 성분이 첨가되어 있지 않음.',
-  //   },
-  //   {
-  //     imgSrc : 'https:///img.onpicks.com/values/value-alcohol-free.png',
-  //     title : 'Gluten Free',
-  //     description : 'Cras congue hendrerit eleifend. Nunc in lacinia leo. Quisque a dolor quis nulla laoreet elementum. In porttitor urna enim, eu rutrum neque porttitor commodo. Interdum et malesuada fames ac ante ipsum primis in faucibus.',
-  //   }
-  // ]
 
   constructor(
     @Inject( RESPONSIVE_MAP ) public responsiveMap,
@@ -87,13 +60,10 @@ export class ValueListComponent implements OnInit, AfterViewInit {
     private renderer: Renderer2,
     private breakpointObserver:  BreakpointObserver,
     private cd: ChangeDetectorRef
-  ) {
-
-  }
+  ) { }
 
   // TODO : shave는 나중에 하자
   // https://github.com/NetanelBasal/angular2-shave
-  //
   ngOnInit() {
     // tb
     this.breakpointObserver
@@ -110,12 +80,8 @@ export class ValueListComponent implements OnInit, AfterViewInit {
       });
   }
 
-
   ngAfterViewInit() {
     this.itemListArray = this.itemList.toArray();
-    // const computedStyle = getComputedStyle(( this.itemList.first.nativeElement ), null);
-    // this.translateXWidth =  parseInt(computedStyle.width, 10 ) + parseInt(computedStyle.marginRight, 10);
-
   }
 
   @HostListener('window:resize', ['$event'])
@@ -130,7 +96,7 @@ export class ValueListComponent implements OnInit, AfterViewInit {
   @HostListener('document:click', ['$event', '$event.target'])
   onClick(event: MouseEvent, targetElement: HTMLElement): void {
     if ( this.container === undefined ) { return; }
-    if (this.container.nativeElement.contains(event.target)) {
+    if ( this.container.nativeElement.contains(event.target) ) {
 
     } else {
       this.isShowDescription = false;
@@ -152,5 +118,4 @@ export class ValueListComponent implements OnInit, AfterViewInit {
   navigate(xSlug) {
     this.router.navigateByUrl('/shops/search?ordering=most_popular&value=' + xSlug);
   }
-
 }

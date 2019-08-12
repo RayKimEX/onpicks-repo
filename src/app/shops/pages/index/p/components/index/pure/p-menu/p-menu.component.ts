@@ -1,12 +1,24 @@
-import {AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, Inject, Input, LOCALE_ID, OnChanges, OnDestroy, OnInit, Renderer2, SimpleChanges, ViewChild} from '@angular/core';
-import {BehaviorSubject, fromEvent, Observable} from 'rxjs';
-import {select, Store} from '@ngrx/store';
+import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  Inject,
+  Input,
+  LOCALE_ID,
+  OnDestroy,
+  Renderer2,
+  ViewChild
+} from '@angular/core';
+import { BehaviorSubject, fromEvent } from 'rxjs';
+import { select, Store } from '@ngrx/store';
 import ResizeSensor from 'css-element-queries/src/ResizeSensor';
-import {TryAddOrCreateToCart} from '../../../../../../../../core/store/cart/cart.actions';
-import {DisplayAlertMessage} from '../../../../../../../../core/store/ui/ui.actions';
-import {CURRENCY, LOCATION_MAP} from '../../../../../../../../core/global-constant/app.config';
-import {Router} from '@angular/router';
-import {DISPLAY_ALERT_MESSAGE_MAP} from '../../../../../../../../core/global-constant/app.locale';
+import { TryAddOrCreateToCart } from '../../../../../../../../core/store/cart/cart.actions';
+import { DisplayAlertMessage } from '../../../../../../../../core/store/ui/ui.actions';
+import { CURRENCY, LOCATION_MAP } from '../../../../../../../../core/global-constant/app.config';
+import { Router } from '@angular/router';
+import { DISPLAY_ALERT_MESSAGE_MAP } from '../../../../../../../../core/global-constant/app.locale';
 
 @Component({
   selector: 'p-menu',
@@ -15,22 +27,20 @@ import {DISPLAY_ALERT_MESSAGE_MAP} from '../../../../../../../../core/global-con
   changeDetection : ChangeDetectionStrategy.OnPush,
 })
 
-
 // MUST TODO: p.component.ts에서 store async를 받아서 pmenu에는 단순히 처리만
 // TODO : 스크롤 메뉴 관련 // https://www.29cm.co.kr/order/checkout?pay_code=10 참고해서, fix메뉴가 충분히 아래로 내려가면, 그때 내려갈 수 있도록 변경
 export class PMenuComponent implements OnDestroy, AfterViewInit {
   @ViewChild('titleHeight') titleHeightElement;
   @ViewChild('pMenu') pMenu: ElementRef;
+  @Input('discountPercent') discountPercent;
   @Input('isMobile') isMobile = false;
   @Input('cartStore') cartStore;
+  @Input('numberOptionList') numberOptionList;
   @Input('data')
     set data( xData) {
 
       if ( xData === undefined || xData === null ) { return; };
       this._data = xData;
-      for ( var i = 1; i <= (this._data.stock_quantity <= 10 ? this._data.stock_quantity : 10); i ++ ) {
-        this.numberOptionList.list.push({ title : i, value : i });
-      }
       const ObjectKeysCount =  xData.attributes.length;
       let mergeKey = '';
       let cnt = 0;
@@ -101,15 +111,11 @@ export class PMenuComponent implements OnDestroy, AfterViewInit {
 
         this.cd.markForCheck();
       }, 0);
-
-      this.discountPercent = 100 - Math.round((xData.price / xData.msrp * 100));
     }
 
   keyMapForSlug = {};
   optionObject = {};
   selectedFirstOptionIndex = null;
-
-  discountPercent;
   _data;
 
   initialDatesTitle;
@@ -117,12 +123,6 @@ export class PMenuComponent implements OnDestroy, AfterViewInit {
   PStore$;
 
   titleHeight;
-
-  numberOptionList = {
-    list : [
-    ]
-  }
-
   keyListForSlug = [];
 
   currentSelectOption = {
@@ -142,6 +142,60 @@ export class PMenuComponent implements OnDestroy, AfterViewInit {
   ) {
     this.initialDatesTitle = ['Date1', 'Date2', 'Date3'];
   }
+
+
+  ngAfterViewInit() {
+
+    if (!this.isMobile) {
+      this.scrollEvent = fromEvent(window, 'scroll');
+      this.PStore$ = this.store.pipe(select(state => state['p']['ui']));
+      let setStatus = '';
+      let menuTopValue: { menuPosition };
+      this.PStore$ = this.PStore$.subscribe((val: { menuPosition }) => {
+        menuTopValue = val;
+        // absolute
+        if (window.pageYOffset >= (menuTopValue.menuPosition - this.titleHeight) - 32) {
+          this.renderer.setStyle(this.pMenu.nativeElement, 'position', 'absolute');
+          this.renderer.setStyle(this.pMenu.nativeElement, 'z-index', '1');
+          this.renderer.setStyle(this.pMenu.nativeElement, 'top', (menuTopValue.menuPosition - this.titleHeight) * 0.1 + 'rem');
+        }
+
+        this.cd.markForCheck();
+      });
+      this.scrollEvent = this.scrollEvent.subscribe(val => {
+        if (window.pageYOffset >= 172) {
+          if (window.pageYOffset >= (menuTopValue.menuPosition - this.titleHeight) - 32) {
+            if (setStatus === 'absolute') {
+              return;
+            }
+            setStatus = 'absolute';
+            this.renderer.setStyle(this.pMenu.nativeElement, 'position', 'absolute');
+            this.renderer.setStyle(this.pMenu.nativeElement, 'z-index', '1');
+            this.renderer.setStyle(this.pMenu.nativeElement, 'top', (menuTopValue.menuPosition - this.titleHeight) * 0.1 + 'rem');
+          } else {
+            if (setStatus === 'fixed') {
+              return;
+            }
+            setStatus = 'fixed';
+            this.renderer.setStyle(this.pMenu.nativeElement, 'position', 'fixed');
+            this.renderer.setStyle(this.pMenu.nativeElement, 'z-index', '1');
+            this.renderer.setStyle(this.pMenu.nativeElement, 'top', '32px');
+          }
+        } else {
+          if (setStatus === '') {
+            return;
+          }
+          setStatus = '';
+          this.renderer.setStyle(this.pMenu.nativeElement, 'position', 'absolute');
+          this.renderer.setStyle(this.pMenu.nativeElement, 'z-index', '1');
+          this.renderer.setStyle(this.pMenu.nativeElement, 'top', 'auto');
+        }
+
+        this.cd.markForCheck();
+      });
+    }
+  }
+
   ngOnDestroy() {
     this._data = null;
     if ( this.scrollEvent !== undefined ) {
@@ -197,60 +251,6 @@ export class PMenuComponent implements OnDestroy, AfterViewInit {
       packIndex: xPackIndex,
       increaseOrCreate: this._data.slug in this.cartStore.cartList
     }));
-  }
-
-  ngAfterViewInit() {
-
-    if (!this.isMobile) {
-      this.scrollEvent = fromEvent(window, 'scroll');
-      this.PStore$ = this.store.pipe(select(state => state['p']['ui']));
-      let setStatus = '';
-      let menuTopValue: { menuPosition };
-      this.PStore$ = this.PStore$.subscribe((val: { menuPosition }) => {
-        menuTopValue = val;
-
-        console.log(val);
-        // absolute
-        if (window.pageYOffset >= (menuTopValue.menuPosition - this.titleHeight) - 32) {
-          this.renderer.setStyle(this.pMenu.nativeElement, 'position', 'absolute');
-          this.renderer.setStyle(this.pMenu.nativeElement, 'z-index', '1');
-          this.renderer.setStyle(this.pMenu.nativeElement, 'top', (menuTopValue.menuPosition - this.titleHeight) * 0.1 + 'rem');
-        }
-
-        this.cd.markForCheck();
-      });
-      this.scrollEvent = this.scrollEvent.subscribe(val => {
-        if (window.pageYOffset >= 172) {
-          if (window.pageYOffset >= (menuTopValue.menuPosition - this.titleHeight) - 32) {
-            if (setStatus === 'absolute') {
-              return;
-            }
-            setStatus = 'absolute';
-            this.renderer.setStyle(this.pMenu.nativeElement, 'position', 'absolute');
-            this.renderer.setStyle(this.pMenu.nativeElement, 'z-index', '1');
-            this.renderer.setStyle(this.pMenu.nativeElement, 'top', (menuTopValue.menuPosition - this.titleHeight) * 0.1 + 'rem');
-          } else {
-            if (setStatus === 'fixed') {
-              return;
-            }
-            setStatus = 'fixed';
-            this.renderer.setStyle(this.pMenu.nativeElement, 'position', 'fixed');
-            this.renderer.setStyle(this.pMenu.nativeElement, 'z-index', '1');
-            this.renderer.setStyle(this.pMenu.nativeElement, 'top', '32px');
-          }
-        } else {
-          if (setStatus === '') {
-            return;
-          }
-          setStatus = '';
-          this.renderer.setStyle(this.pMenu.nativeElement, 'position', 'absolute');
-          this.renderer.setStyle(this.pMenu.nativeElement, 'z-index', '1');
-          this.renderer.setStyle(this.pMenu.nativeElement, 'top', 'auto');
-        }
-
-        this.cd.markForCheck();
-      });
-    }
   }
 
   shareProductDetail() {

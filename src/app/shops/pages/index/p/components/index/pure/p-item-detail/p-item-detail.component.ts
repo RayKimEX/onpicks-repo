@@ -13,8 +13,7 @@ import {IMAGE_HOST} from '../../../../../../../../core/global-constant/app.confi
   changeDetection : ChangeDetectionStrategy.OnPush,
 })
 export class PItemDetailComponent {
-  @Input('description') description;
-  @Input('categoryInfo') categoryInfo;
+  @Input('categoryData') categoryData;
 
   constructor(
     @Inject(IMAGE_HOST) public imageHost: string,

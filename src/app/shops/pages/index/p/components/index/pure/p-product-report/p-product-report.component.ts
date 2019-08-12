@@ -15,11 +15,8 @@ import {CATEGORY_REPORT_MAP} from '../../../../../../../../core/global-constant/
 export class PProductReportComponent {
 
   foldFlag = false;
-  categoryCode = null;
 
-  @Input('categoryCode') set _categoryCode(xData) {
-    this.categoryCode = xData;
-  }
+  @Input('categoryCode') categoryCode = null;
 
   constructor(
     @Inject(CATEGORY_REPORT_MAP) public categoryReportMap,

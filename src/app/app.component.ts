@@ -72,6 +72,8 @@ export class AppComponent implements OnInit, OnDestroy {
   previousUrl = [];
   activeUrl;
 
+  window = window;
+
   constructor(
     @Inject(CATEGORY_CODE_MAP) public categoryMap,
     @Inject(RESPONSIVE_MAP) public responsiveMap,

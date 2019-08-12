@@ -35,7 +35,9 @@
     reviews : (reviews$ | async),
     userState : (userState$ | async)
   } as data ">
-  <div id="reviewHello" class="p-reviews u-margin-bottom" *ngIf="data.reviews?.results?.length > 0">
+  <div
+    class="p-reviews u-margin-bottom"
+    *ngIf="data.reviews?.results?.length > 0">
     <!--async에대한 처리로 추가로 감싸줌-->
 
       <h1 *ngIf="locale === 'en'" class="p-reviews__title h1-bold">
@@ -54,7 +56,7 @@
         별점 분포
       </div>
       <table class="p-reviews__table">
-        <tr  *ngFor="let key of objectKeys(starMaxList);  index as i ">
+        <tr *ngFor="let key of objectKeys(starMaxList);  index as i ">
           <td
             [ngStyle]="{ width : locale === 'ko' ? '7.2rem' : '9.2rem' }"
             class="p-reviews__table--col subtitle-1-regular">

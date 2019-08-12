@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MiniListComponent } from './mini-list.component';
+import { CarouselListComponent } from './carousel-list.component';
 
-describe('MiniListComponent', () => {
-  let component: MiniListComponent;
-  let fixture: ComponentFixture<MiniListComponent>;
+describe('CarouselListComponent', () => {
+  let component: CarouselListComponent;
+  let fixture: ComponentFixture<CarouselListComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MiniListComponent ]
+      declarations: [ CarouselListComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MiniListComponent);
+    fixture = TestBed.createComponent(CarouselListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

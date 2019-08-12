@@ -5,17 +5,7 @@ onpicks-loading-icon {
   margin-top : 10rem;
 }
 
-.mobile-row {
-  @include respond(desktop){
-    width:74.8rem;
-    margin : 0 auto;
-  }
 
-  @include respond(sb){
-    width: 100%;
-    padding: 0 1.6rem;
-  }
-}
 
 .current-nav {
   margin-top : 3.2rem;
@@ -29,6 +19,7 @@ onpicks-loading-icon {
     padding-bottom : 1.6rem;
     margin-bottom : 3rem;
   }
+
   @include respond(desktop){
     margin-top : 0;
   }
@@ -44,14 +35,27 @@ onpicks-loading-icon {
 
 .product-detail {
   display:block;
-  @include respond(desktop){
 
+  @include respond(desktop){
     width:74.8rem;
     margin : 0 auto;
   }
+
   @include respond(sb){
     width:100%;
-    overflow:hidden;
+  }
+}
+
+.mobile-row{
+  display:block;
+
+  @include respond(desktop){
+    width:74.8rem;
+    margin : 0 auto;
+  }
+
+  @include respond(sb){
+    width:100%;
   }
 }
 
