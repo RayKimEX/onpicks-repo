@@ -14,12 +14,9 @@
       [showBox]="false">
       더보기
     </onpicks-sort-box>
-    <!--<onpicks-sort-box (click)="foldFlag = !foldFlag" [selectedElement]="{ title : '더보기' }" [showBox]="false">더보기</onpicks-sort-box>-->
   </div>
 
   <div *ngIf="foldFlag && categoryCode !== null">
-
-
     <ng-container
       [ngSwitch]="categoryReportMap[categoryCode]">
       <!--가공 식품 -->

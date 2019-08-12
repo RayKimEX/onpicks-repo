@@ -13,13 +13,13 @@
         class="u-margin-bottom subtitle-1-regular u-color-dark-grey">
         작성 가능한 리뷰가 없습니다. 다양한 아이템을 최적의 가격으로 쇼핑하여 리뷰를 남겨주세요!
       </div>
-      <ui-mini-list
+      <ui-carousel-list
         i18n-setTitle="@@recommand-products__title"
         [mobileType]="'full'"
         [carouselLength]="3"
         setTitle=" "
         [infoList]="weeklyBest$ | async"
-      ></ui-mini-list>
+      ></ui-carousel-list>
     </ng-container>
 
     <div class="written-reviews__item" *ngFor="let item of reivewsData">

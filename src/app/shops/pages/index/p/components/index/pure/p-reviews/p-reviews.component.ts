@@ -15,7 +15,7 @@ import { APP_BASE_HREF } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 
 // Constant
-import { DOMAIN_HOST } from '../../../../../../../../core/global-constant/app.config';
+import { DOMAIN_HOST} from '../../../../../../../../core/global-constant/app.config';
 import { DISPLAY_ALERT_MESSAGE_MAP, REPORT_REASON_MAP } from '../../../../../../../../core/global-constant/app.locale';
 
 // Service
@@ -28,9 +28,10 @@ import { TryGetReviewProduct, TryToggleVoteReview } from '../../../../store/p.ac
 
 // RxJS
 import { tap } from 'rxjs/operators';
+import { REVIEW_SORT_LIST } from '../../../../../../../../core/global-constant/item-component.locale';
 
 @Component({
-  selector: 'onpicks-p-reviews',
+  selector: 'p-reviews',
   templateUrl: './p-reviews.component.html',
   styleUrls: ['./p-reviews.component.scss'],
   changeDetection : ChangeDetectionStrategy.OnPush,
@@ -64,53 +65,30 @@ export class PReviewsComponent {
 
   selectedElement = {
     value : 'created'
-  }
-
-  reviewSortList = [
-    {
-      title : {
-        ko : '최신순',
-        en : 'Newest'
-      },
-      value : 'created'
-    },
-    {
-      title : {
-        ko : '별점 낮은순',
-        en : 'Lowest to Highest'
-      },
-      value : '-rating'
-    },
-    {
-      title : {
-        ko : '별점 높은순',
-        en : 'Highest to Lowest'
-      },
-      value : 'rating'
-    }
-  ]
+  };
 
   constructor(
-    @Inject( DOMAIN_HOST ) private HOST: string,
-    @Inject( APP_BASE_HREF ) private BASE_URL: string,
     @Inject( LOCALE_ID ) public locale: string,
-    @Inject( REPORT_REASON_MAP ) public reasonMap: string,
-    @Inject( DISPLAY_ALERT_MESSAGE_MAP ) private alertMap,
-    private pDataService: PDataService,
-    private renderer: Renderer2,
-    private store: Store<any>,
-    private cd: ChangeDetectorRef,
-    private router: Router,
-    private route: ActivatedRoute
+    @Inject( REPORT_REASON_MAP ) public REASON_MAP: string,
+    @Inject( DOMAIN_HOST ) private _HOST: string,
+    @Inject( APP_BASE_HREF ) private _BASE_URL: string,
+    @Inject( DISPLAY_ALERT_MESSAGE_MAP ) private _ALERT_MAP,
+    @Inject( REVIEW_SORT_LIST ) public REVIEW_SORT_LIST,
+    private _pDataService: PDataService,
+    private _renderer: Renderer2,
+    private _store: Store<any>,
+    private _cd: ChangeDetectorRef,
+    private _router: Router,
+    private _route: ActivatedRoute,
   ) {
-    this.store.dispatch(new TryGetReviewProduct({ productSlug : this.route.snapshot.params.id, sorting: 'created'}));
-    this.reviews$ = this.store.pipe(
+    this._store.dispatch(new TryGetReviewProduct({ productSlug : this._route.snapshot.params.id, sorting: 'created'}));
+    this.reviews$ = this._store.pipe(
       select((state) => state['p']['reviews']),
-      tap( v => {
-        if ( v.extraInfo === undefined ) { return };
-        this.starMaxList = v.extraInfo.reviewRatingsDist;
+      tap( reviewData => {
+        if ( reviewData.extraInfo === undefined ) { return; }
+        this.starMaxList = reviewData.extraInfo.reviewRatingsDist;
 
-        this.totalList = v.results;
+        this.totalList = reviewData.results;
         this.totalCount = this.totalList.length;
         this.totalPage = this.totalCount / this.maxRow;
 
@@ -120,7 +98,7 @@ export class PReviewsComponent {
       })
     );
 
-    this.userState$ = this.store.pipe(
+    this.userState$ = this._store.pipe(
       select((state: any) => state.auth)
     );
   }
@@ -131,26 +109,25 @@ export class PReviewsComponent {
 
   paginate(pageIndex) {
     this.currentPage = pageIndex;
-    this.currentList = this.totalList.slice(  (this.currentPage - 1 ) * this.maxRow , this.currentPage * this.maxRow )
+    this.currentList = this.totalList.slice(  (this.currentPage - 1 ) * this.maxRow , this.currentPage * this.maxRow );
   }
 
   toggleVoteReviews( xProductSlug, xReviewsId, xIsVoted, xIsAuthenticated) {
-    if(xIsAuthenticated){
-      this.store.dispatch( new TryToggleVoteReview({ productSlug: xProductSlug, reviewId : xReviewsId, isVote: !xIsVoted}));
+    if ( xIsAuthenticated ) {
+      this._store.dispatch( new TryToggleVoteReview({ productSlug: xProductSlug, reviewId : xReviewsId, isVote: !xIsVoted}));
     } else {
-      this.store.dispatch(new DisplayAlertMessage(this.alertMap['need-log-in-to-continue'][this.locale]))
-      this.router.navigateByUrl('/member/login?return=' + encodeURI(location.href.split(this.BASE_URL.substring(1, this.BASE_URL.length))[1]));
-
+      this._store.dispatch( new DisplayAlertMessage(this._ALERT_MAP['need-log-in-to-continue'][this.locale]) )
+      this._router.navigateByUrl('/member/login?return=' + encodeURI(location.href.split(this._BASE_URL.substring(1, this._BASE_URL.length))[1]));
     }
   }
 
   reportReview( xProductSlug, xReviewId, xReportReason ) {
-    this.pDataService.reportReviewData( xProductSlug, xReviewId, xReportReason)
+    this._pDataService.reportReviewData( xProductSlug, xReviewId, xReportReason)
       .subscribe(
         response => {
           this.isShowModal = false;
-          this.store.dispatch(new DisplayAlertMessage(this.alertMap['report-submitted'][this.locale]));
-          this.cd.markForCheck();
+          this._store.dispatch(new DisplayAlertMessage(this._ALERT_MAP['report-submitted'][this.locale]));
+          this._cd.markForCheck();
         },
         error => {
           alert('신고 중 에러가 발생하였습니다.');
@@ -160,11 +137,11 @@ export class PReviewsComponent {
 
   commentReview( xUrl ) {
     const const_url = xUrl + '?scroll=' + window.pageYOffset;
-    this.router.navigateByUrl( const_url);
+    this._router.navigateByUrl( const_url);
   }
 
   shareReview( xUrl ) {
-    const const_url = this.HOST + this.BASE_URL + xUrl + '?scroll=' + window.pageYOffset;
+    const const_url = this._HOST + this._BASE_URL + xUrl + '?scroll=' + window.pageYOffset;
 
     // Create a dummy input to copy the string array inside it
     const dummy = document.createElement('input');
@@ -183,25 +160,23 @@ export class PReviewsComponent {
 
     // Remove it as its not needed anymore
     document.body.removeChild(dummy);
-    this.store.dispatch( new DisplayAlertMessage(this.alertMap['link-copied'][this.locale]));
+    this._store.dispatch( new DisplayAlertMessage(this._ALERT_MAP['link-copied'][this.locale]));
   }
 
   reviewSorting( xSortingValue ) {
-    this.selectedElement.value = xSortingValue.value
-    this.store.dispatch(new TryGetReviewProduct({ productSlug : this.route.snapshot.params.id, sorting: xSortingValue}));
+    this.selectedElement.value = xSortingValue.value;
+    this._store.dispatch(new TryGetReviewProduct({ productSlug : this._route.snapshot.params.id, sorting: xSortingValue}));
   }
 
   showReportModal(xReviewId, xPrdocutSlug, xIsAuthenticated) {
-
-    if ( xIsAuthenticated ){
+    if ( xIsAuthenticated ) {
       this.isShowModal = true;
       this.reviewIndexForModal = xReviewId;
       this.productSlugForModal = xPrdocutSlug;
     } else {
-      this.store.dispatch(new DisplayAlertMessage(this.alertMap['need-log-in-to-continue'][this.locale]))
-      this.router.navigateByUrl('/member/login?return=' + encodeURI(location.href.split(this.BASE_URL.substring(1, this.BASE_URL.length))[1]));
+      this._store.dispatch(new DisplayAlertMessage(this._ALERT_MAP['need-log-in-to-continue'][this.locale]))
+      this._router.navigateByUrl('/member/login?return=' + encodeURI(location.href.split(this._BASE_URL.substring(1, this._BASE_URL.length))[1]));
     }
-
   }
 }
 

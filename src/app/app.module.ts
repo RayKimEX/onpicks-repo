@@ -61,7 +61,7 @@ import {
 } from './core/global-constant/app.category-database-long';
 import {CATEGORY_SECOND_MAP, CATEGORY_SECOND_MAP_CONST} from './core/global-constant/app.category-database-short';
 import {STATE_LIST, STATE_LIST_CONST} from './core/global-constant/app.database';
-import {SORT_LIST, SORT_LIST_CONST} from './core/global-constant/item-component.locale';
+import {REVIEW_SORT_LIST, REVIEW_SORT_LIST_CONST, SORT_LIST, SORT_LIST_CONST} from './core/global-constant/item-component.locale';
 
 // Miscell
 import 'hammerjs';
@@ -268,6 +268,10 @@ export function getCurrency() {
     {
       provide : SORT_LIST,
       useValue : SORT_LIST_CONST
+    },
+    {
+      provide : REVIEW_SORT_LIST,
+      useValue : REVIEW_SORT_LIST_CONST
     }
   ],
   bootstrap: [ AppComponent ]

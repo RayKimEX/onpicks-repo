@@ -1,6 +1,23 @@
-import {Component, OnInit, ChangeDetectionStrategy, ViewChildren, ViewChild, ElementRef, Input, Inject, ChangeDetectorRef, HostListener, OnDestroy, AfterViewInit, Output, EventEmitter} from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ChangeDetectionStrategy,
+  Input,
+  Inject,
+  ChangeDetectorRef,
+  HostListener,
+  AfterViewInit,
+  Output,
+  EventEmitter
+} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
-import {CURRENCY, DOMAIN_HOST, PAYPAL_API_KEY_TOKEN, RESPONSIVE_MAP, STRIPE_API_KEY_TOKEN} from '../../../../../core/global-constant/app.config';
+import {
+  CURRENCY,
+  DOMAIN_HOST,
+  PAYPAL_API_KEY_TOKEN,
+  RESPONSIVE_MAP,
+  STRIPE_API_KEY_TOKEN
+} from '../../../../../core/global-constant/app.config';
 import {BehaviorSubject, of} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {BreakpointObserver, BreakpointState} from '@angular/cdk/layout';
@@ -8,6 +25,7 @@ import {OrderDataService} from '../../../../../core/service/data-pages/order/ord
 import {select, Store} from '@ngrx/store';
 import {catchError, map, tap} from 'rxjs/operators';
 import {Router} from '@angular/router';
+import {getCookie} from '../../../../../app.module';
 
 @Component({
   selector: 'onpicks-us-checkout-menu',
@@ -15,7 +33,7 @@ import {Router} from '@angular/router';
   styleUrls: ['./us-checkout-menu.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class UsCheckoutMenuComponent implements OnInit, OnDestroy, AfterViewInit {
+export class UsCheckoutMenuComponent implements OnInit, AfterViewInit {
   @Input('inputZipCode') inputZipCode;
   @Input('inputFullName') inputFullName;
   @Input('inputAddressName') inputAddressName;
@@ -25,11 +43,6 @@ export class UsCheckoutMenuComponent implements OnInit, OnDestroy, AfterViewInit
 
   @Input('cardErrors') cardErrors;
   @Input('cardElement') cardElement;
-//  @Input('checkoutAdditionNumber') checkoutAdditionNumber;
-//  @Input('addDeliveryView') addDeliveryView;
-//  @Input('isAgreementDirectBuyingInfo') isAgreementDirectBuyingInfo: boolean;
-//  @Input('shippingMessage') shippingMessage;
-//  @Input('deliveryData') deliveryData;
   @Input('paypalPayment') paypalPayment;
   @Input ('data') data;
   @Output() errorStatusEmitter = new EventEmitter();
@@ -68,8 +81,6 @@ export class UsCheckoutMenuComponent implements OnInit, OnDestroy, AfterViewInit
   stripe;
   stripeCard;
 
-  deliveryData$;
-
   private headerHeight: number;
   private footerHeight: number;
   private windowInnerHeight: number;
@@ -78,9 +89,9 @@ export class UsCheckoutMenuComponent implements OnInit, OnDestroy, AfterViewInit
   isThirdBreakPoint = false;
 
   constructor(
-    @Inject(CURRENCY) public currency: BehaviorSubject<any>,
+    @Inject( CURRENCY ) public currency: BehaviorSubject<any>,
     @Inject( RESPONSIVE_MAP ) public responsiveMap,
-    @Inject(DOMAIN_HOST) private BASE_URL: string,
+    @Inject( DOMAIN_HOST ) private BASE_URL: string,
     @Inject( PAYPAL_API_KEY_TOKEN ) public PaypalAPIKey,
     @Inject( STRIPE_API_KEY_TOKEN ) public StripeAPIKey,
     private cd: ChangeDetectorRef,
@@ -150,7 +161,7 @@ export class UsCheckoutMenuComponent implements OnInit, OnDestroy, AfterViewInit
                 console.log(data)
                 console.log(actions);
 
-                const csrfToken = that.getCookie('csrftoken');
+                const csrfToken = getCookie('csrftoken');
                 that.paymentData.token = data.orderID;
                 that.paymentData.payment_provider = 'paypal';
                 return fetch('/api/orders/', {
@@ -200,8 +211,7 @@ export class UsCheckoutMenuComponent implements OnInit, OnDestroy, AfterViewInit
         }
       });
   }
-  ngOnDestroy() {
-  }
+
   ngAfterViewInit() {
     this.windowInnerHeight = window.innerHeight;
     this.footerHeight = (document.querySelector('footer') as HTMLElement).offsetHeight;
@@ -263,6 +273,7 @@ export class UsCheckoutMenuComponent implements OnInit, OnDestroy, AfterViewInit
     this.windowInnerHeight = window.innerHeight;
     this.scrollHandler(event);
   }
+
   @HostListener('window:scroll', ['$event'])
   scrollHandler(event) {
     if (this.isThirdBreakPoint) {
@@ -300,21 +311,8 @@ export class UsCheckoutMenuComponent implements OnInit, OnDestroy, AfterViewInit
 
     console.log(this.paymentData);
 
-/*
-    this.paymentData.city = this.inputCity;
-    this.paymentData.full_name = this.inputFullName;
-    this.paymentData.street_address_1 = this.inputAddressName;
-    this.paymentData.street_address_2 = this.inputFloor;
-    this.paymentData.zip_code = this.inputZipCode;
-    this.paymentData.phone_number = this.inputPhone;
-*/
-
     const that = this;
-    // this.httpClient.post<any>('/api/orders/KR-001000001/payments/inipay_webstd_return/', {}).subscribe( response => {
-    //   console.log(response);
-    // }, error => {
-    //   console.log(error);
-    // });
+
     this.stripe.createToken(this.stripeCard).then(function(result) {
 
       if (result.error) {
@@ -435,20 +433,4 @@ export class UsCheckoutMenuComponent implements OnInit, OnDestroy, AfterViewInit
       this.errorEmitter(this.errorStatus);
     }
   }
-  getCookie(cname) {
-    const name = cname + '=';
-    const decodedCookie = decodeURIComponent(document.cookie);
-    const ca = decodedCookie.split(';');
-    for ( let i = 0; i < ca.length; i++) {
-      let c = ca[i];
-      while (c.charAt(0) === ' ') {
-        c = c.substring(1);
-      }
-      if (c.indexOf(name) === 0) {
-        return c.substring(name.length, c.length);
-      }
-    }
-    return '';
-  }
-
 }

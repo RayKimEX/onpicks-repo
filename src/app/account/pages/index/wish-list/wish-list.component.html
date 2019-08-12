@@ -6,11 +6,11 @@
       class="u-margin-bottom subtitle-1-regular u-color-dark-grey">
       다음에 구매할 상품이 없습니다. 다음에 구매할 상품을 담아주세요!
     </div>
-    <ui-mini-list
+    <ui-carousel-list
       setTitle="'추천상품'"
       i18n-setTitle="@@recommand-products__title"
       [infoList]="weeklyBest$ | async">
-    </ui-mini-list>
+    </ui-carousel-list>
   </ng-container>
 
   <div class="cart-mobile">

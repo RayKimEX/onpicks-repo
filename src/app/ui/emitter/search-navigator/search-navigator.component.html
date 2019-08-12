@@ -53,10 +53,10 @@
       </div>
     </div>
 
-    <ui-mini-list
+    <ui-carousel-list
       [infoList]="weeklyBest$ | async"
       [setTitle]="'추천 상품'">
-    </ui-mini-list>
+    </ui-carousel-list>
   </ng-container>
   <ng-container
     *ngIf="currentList?.length !== 0 || !(router.url.split('/')[2].indexOf('search') > -1)">

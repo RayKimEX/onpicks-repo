@@ -6,96 +6,6 @@ onpicks-loading-icon {
 }
 
 
-.mobile-row {
-  @include respond(desktop){
-    width:74.8rem;
-    margin : 0 auto;
-  }
-
-  @include respond(sb){
-    width: 100%;
-    padding: 0 1.6rem;
-  }
-}
-.mobile-menu {
-  padding : 1.6rem;
-  position : fixed;
-  margin : 0 -2.4rem;
-  bottom : 0;
-  width : 100%;
-  z-index : 9999;
-  border-top : 1px solid $color-light-grey;
-  background-color : $color-white;
-  transition : transform .5s;
-  transition-delay : .2s;
-  display : none;
-
-  @include respond(desktop){
-    display : block;
-  }
-
-  &--outer {
-    z-index:9001;
-    position:fixed;
-    top : 0;
-    margin : 0 -2.4rem;
-
-    height : 100%;
-    width :100%;
-    background-color : $color-black;
-    opacity : .5;
-  }
-
-  &__options {
-    margin-top : 1.6rem;
-  }
-
-  &__add-to-cart-button {
-    float : right;
-  }
-
-  &__button {
-    float:right;
-    vertical-align: top;
-  }
-  &__product-info {
-    display:inline-block;
-    &--price {
-      &--svg{
-        vertical-align: text-bottom;
-        display:inline-block;
-        margin-right : 0.4rem;
-      }
-
-      &-discount {
-        margin-right : 0.8rem;
-      }
-
-      &-realprice {
-        margin-right : 0.8rem;
-      }
-    }
-
-    &--MSRP {
-      margin-bottom : 0.4rem;
-      &-discount {
-        text-decoration: line-through;
-        margin-right : 0.8rem;
-      }
-    }
-
-
-    &--reviews {
-      &--read-reviews {
-        margin-left: 0.8rem;
-      }
-    }
-  }
-
-  &--hide {
-    transform: translateY(100%);
-  }
-}
 
 .current-nav {
   margin-top : 3.2rem;
@@ -109,6 +19,7 @@ onpicks-loading-icon {
     padding-bottom : 1.6rem;
     margin-bottom : 3rem;
   }
+
   @include respond(desktop){
     margin-top : 0;
   }
@@ -124,14 +35,27 @@ onpicks-loading-icon {
 
 .product-detail {
   display:block;
-  @include respond(desktop){
 
+  @include respond(desktop){
     width:74.8rem;
     margin : 0 auto;
   }
+
   @include respond(sb){
     width:100%;
-    overflow:hidden;
+  }
+}
+
+.mobile-row{
+  display:block;
+
+  @include respond(desktop){
+    width:74.8rem;
+    margin : 0 auto;
+  }
+
+  @include respond(sb){
+    width:100%;
   }
 }
 

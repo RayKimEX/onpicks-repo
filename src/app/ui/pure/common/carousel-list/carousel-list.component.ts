@@ -19,12 +19,12 @@ import {Router} from '@angular/router';
 import {BreakpointObserver, BreakpointState} from '../../../../../../node_modules/@angular/cdk/layout';
 
 @Component({
-  selector: 'ui-mini-list',
-  templateUrl: './mini-list.component.html',
-  styleUrls: ['./mini-list.component.scss'],
+  selector: 'ui-carousel-list',
+  templateUrl: './carousel-list.component.html',
+  styleUrls: ['./carousel-list.component.scss'],
   changeDetection : ChangeDetectionStrategy.OnPush
 })
-export class MiniListComponent implements OnDestroy, AfterViewChecked {
+export class CarouselListComponent implements OnDestroy, AfterViewChecked {
   @ViewChildren('itemList') itemList;
   @ViewChild('insertTitle') insertTitle;
   @ViewChild('container') container;

@@ -10,7 +10,7 @@ import { PipeModule } from '../core/pipe/pipe.module';
 
 // UI Component
 import { StarRatingComponent } from './pure/common/star-rating/star-rating.component';
-import { MiniListComponent } from './pure/common/mini-list/mini-list.component';
+import { CarouselListComponent } from './pure/common/carousel-list/carousel-list.component';
 import { SimpleCarouselComponent } from './pure/common/simple-carousel/simple-carousel.component';
 import { CircleNButtonComponent } from './pure/onpicks/button/circle-n-button/circle-n-button.component';
 import { CirclePButtonComponent } from './pure/onpicks/button/circle-p-button/circle-p-button.component';
@@ -61,7 +61,7 @@ import { DeliveryAddressComponent } from './emitter/delivery-address/delivery-ad
   declarations: [
     SimpleCarouselComponent,
     StarRatingComponent,
-    MiniListComponent,
+    CarouselListComponent,
     CircleNButtonComponent,
     CirclePButtonComponent,
     SearchBoxComponent,
@@ -119,7 +119,7 @@ import { DeliveryAddressComponent } from './emitter/delivery-address/delivery-ad
     InputBoxComponent,
     ListActiveButtonComponent,
     LoadingIconComponent,
-    MiniListComponent,
+    CarouselListComponent,
     ModalComponent,
     NumericButtonComponent,
 

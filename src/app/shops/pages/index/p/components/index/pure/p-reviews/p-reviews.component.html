@@ -9,9 +9,9 @@
 
   <h1 class="modal__title h1-bold">신고사유를 선택해주세요.</h1>
   <div
-    *ngFor="let key of objectKeys(reasonMap)"
+    *ngFor="let key of objectKeys(REASON_MAP)"
     class="modal__item subtitle-2-regular">
-    {{reasonMap[key][locale]}}
+    {{REASON_MAP[key][locale]}}
     <onpicks-check-box
       (boxEvent)="textReportReasonForModal = $event"
       class="modal__item--check-box"
@@ -35,7 +35,9 @@
     reviews : (reviews$ | async),
     userState : (userState$ | async)
   } as data ">
-  <div id="reviewHello" class="p-reviews u-margin-bottom" *ngIf="data.reviews?.results?.length > 0">
+  <div
+    class="p-reviews u-margin-bottom"
+    *ngIf="data.reviews?.results?.length > 0">
     <!--async에대한 처리로 추가로 감싸줌-->
 
       <h1 *ngIf="locale === 'en'" class="p-reviews__title h1-bold">
@@ -54,7 +56,7 @@
         별점 분포
       </div>
       <table class="p-reviews__table">
-        <tr  *ngFor="let key of objectKeys(starMaxList);  index as i ">
+        <tr *ngFor="let key of objectKeys(starMaxList);  index as i ">
           <td
             [ngStyle]="{ width : locale === 'ko' ? '7.2rem' : '9.2rem' }"
             class="p-reviews__table--col subtitle-1-regular">
@@ -85,7 +87,7 @@
         <onpicks-sort-box
           [selectedElement]="selectedElement"
           (changeEvent)="reviewSorting($event)"
-          [sortList]="reviewSortList">
+          [sortList]="REVIEW_SORT_LIST">
         </onpicks-sort-box>
       </div>
 

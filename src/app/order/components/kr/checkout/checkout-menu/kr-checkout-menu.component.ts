@@ -77,7 +77,6 @@ export class KrCheckoutMenuComponent implements OnInit, OnDestroy, AfterViewInit
         this.userStore = v;
         if ( v ===  null ) { return; }
       });
-
   }
 
   ngOnInit() {

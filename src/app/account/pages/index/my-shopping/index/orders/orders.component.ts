@@ -77,9 +77,7 @@ export class OrdersComponent implements OnInit {
     private accountDataService: AccountDataService,
     private cd: ChangeDetectorRef,
   ) {
-
     this.weeklyBest$ = this.uiDataService.getWeeklyBestGoods();
-
     this.orderData$ = this.accountDataService
       .getOrdersData('3m')
       .pipe(
@@ -87,6 +85,10 @@ export class OrdersComponent implements OnInit {
           console.log(v);
         })
       );
+  }
+
+  ngOnInit() {
+    this.contentHeight = (window.screen.height - 400) < 300 ? '' : (window.screen.height - 400) + 'px';
   }
 
   viewModal(xPassedData) {
@@ -118,11 +120,7 @@ export class OrdersComponent implements OnInit {
     }
   }
 
-  ngOnInit() {
-    this.contentHeight = (window.screen.height - 400) < 300 ? '' : (window.screen.height - 400) + 'px';
-  }
-
-  test(vv) {
+ test(vv) {
     this.selectedElement = vv;
     this.orderData$ = this.accountDataService
       .getOrdersData(this.selectedElement.value)

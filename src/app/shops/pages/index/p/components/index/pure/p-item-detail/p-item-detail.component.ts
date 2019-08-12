@@ -7,14 +7,13 @@ import {
 import {IMAGE_HOST} from '../../../../../../../../core/global-constant/app.config';
 
 @Component({
-  selector: 'onpicks-p-item-detail',
+  selector: 'p-item-detail',
   templateUrl: './p-item-detail.component.html',
   styleUrls: ['./p-item-detail.component.scss'],
   changeDetection : ChangeDetectionStrategy.OnPush,
 })
 export class PItemDetailComponent {
-  @Input('description') description;
-  @Input('categoryInfo') categoryInfo;
+  @Input('categoryData') categoryData;
 
   constructor(
     @Inject(IMAGE_HOST) public imageHost: string,

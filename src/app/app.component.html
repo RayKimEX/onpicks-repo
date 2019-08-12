@@ -12,7 +12,9 @@
   [ngStyle]="{ opacity : '0'}">
 </onpicks-free-delivery-notibox>
 
-<div class="onpicks-padding">
+<div
+  [ngStyle]="{'minHeight' : (window.screen.height - 300)+'px'}"
+  class="onpicks-padding">
   <router-outlet
     [ngStyle]="{ 'paddingTop' : (isSecondBreakPoint && activeUrl[2] === 'c') ? '9.9rem' : '6rem', 'display' : (isDesktopBreakPoint) ? 'block' : ''}">
 
