@@ -28,7 +28,7 @@ import {
 import { DISPLAY_ALERT_MESSAGE_MAP } from '../../../../core/global-constant/app.locale';
 
 // Miscell
-import { BehaviorSubject } from 'rxjs';
+import {BehaviorSubject, Observable, Subject} from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { select, Store } from '@ngrx/store';
 import { DisplayAlertMessage } from '../../../../core/store/ui/ui.actions';
@@ -49,6 +49,7 @@ export class KrCheckoutComponent implements OnInit, OnDestroy {
   @ViewChild('inputOrderNumber', { read : ElementRef }) inputOrderNumberRef;
   @ViewChild('checkoutAdditionNumber', { read : ElementRef}) checkoutAdditionNumberRef;
   @ViewChild('addDeliveryView') addDeliveryView;
+  private invalidInput: Subject<void> = new Subject<void>();
 
   readonly EMPTY_ORDER_NAME          = 0b00000000001;
   readonly EMPTY_ORDER_NUMBER        = 0b00000000010;
@@ -337,6 +338,9 @@ export class KrCheckoutComponent implements OnInit, OnDestroy {
   checkBitWise( data ) {
     return ((this.errorStatus & data) > 0);
   }
+  emitInvalid() {
+    this.invalidInput.next();
+  }
   validate(deliveryComponent) {
     this.errorStatus = 0;
 
@@ -378,6 +382,9 @@ export class KrCheckoutComponent implements OnInit, OnDestroy {
     }
 
     this.cd.markForCheck();
+    if (this.errorStatus ){
+      this.emitInvalid();
+    }
   }
 
   setShippingMessage(xShippingMessage) {

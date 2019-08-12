@@ -22,7 +22,7 @@ import {
   DOMAIN_HOST,
   RESPONSIVE_MAP
 } from '../../../../../core/global-constant/app.config';
-import { BehaviorSubject } from 'rxjs';
+import {BehaviorSubject, Observable} from 'rxjs';
 import { OrderDataService } from '../../../../../core/service/data-pages/order/order-data.service';
 
 
@@ -49,8 +49,16 @@ export class KrCheckoutMenuComponent implements OnInit, OnDestroy, AfterViewInit
   private footerHeight: number;
   private windowInnerHeight: number;
 
+  checkoutRightMenu;
+  bodyHeight;
+  BREADCRUMB_HEIGHT;
+  scrollTop;
+
   /*********checkout-mobile*******/
   isThirdBreakPoint = false;
+
+  @Input() invalidInput: Observable<void>;
+  private inputSubscription: any;
   constructor(
     @Inject(CURRENCY) public currency: BehaviorSubject<any>,
     @Inject( RESPONSIVE_MAP ) public responsiveMap,
@@ -81,9 +89,12 @@ export class KrCheckoutMenuComponent implements OnInit, OnDestroy, AfterViewInit
   }
 
   ngOnInit() {
+    this.setConstant();
+
     this.initialGroup = new FormGroup({
       dummy: new FormControl( null),
     });
+    this.inputSubscription = this.invalidInput.subscribe(() => this.resetLayout())
 
     this.breakpointObserver
       .observe([this.responsiveMap['tb']])
@@ -101,6 +112,7 @@ export class KrCheckoutMenuComponent implements OnInit, OnDestroy, AfterViewInit
     if ( this.userStore$ !== undefined ) {
       this.userStore$.unsubscribe();
     }
+    this.inputSubscription.unsubscribe();
   }
 
   ngAfterViewInit() {
@@ -112,22 +124,29 @@ export class KrCheckoutMenuComponent implements OnInit, OnDestroy, AfterViewInit
   onResize(event) {
     this.windowInnerHeight = window.innerHeight;
     this.onScroll(event);
+    //this.setConstant();
   }
   @HostListener('window:scroll', ['$event'])
   onScroll(event) {
     if (this.isThirdBreakPoint) {
-      const checkoutRightMenu = (document.querySelector('.checkout-right__menu') as HTMLElement);
-      const bodyHeight = (document.querySelector('body') as HTMLElement).offsetHeight;
-      const BREADCRUMB_HEIGHT = 69;
 
-      const scrollTop = event.target.scrollingElement.scrollTop;
-      if (scrollTop > this.headerHeight + BREADCRUMB_HEIGHT && scrollTop + this.windowInnerHeight < bodyHeight - this.footerHeight ) {
-        checkoutRightMenu.style.top = (scrollTop - this.headerHeight - BREADCRUMB_HEIGHT) + 'px';
+      this.scrollTop = event.target.scrollingElement.scrollTop;
+      if (this.scrollTop > this.headerHeight + this.BREADCRUMB_HEIGHT && this.scrollTop + this.windowInnerHeight < this.bodyHeight - this.footerHeight ) {
+        this.checkoutRightMenu.style.top = (this.scrollTop - this.headerHeight - this.BREADCRUMB_HEIGHT) + 'px';
       }
     }
   }
+  resetLayout(){
+    this.checkoutRightMenu.style.top = (this.headerHeight - this.BREADCRUMB_HEIGHT) + 'px';
 
+  }
   payment() {
     this.checkoutEmitter.emit();
+  }
+  setConstant(){
+    this.checkoutRightMenu = (document.querySelector('.checkout-right__menu') as HTMLElement);
+    this.bodyHeight = (document.querySelector('body') as HTMLElement).offsetHeight;
+    this.BREADCRUMB_HEIGHT = 69;
+
   }
 }
