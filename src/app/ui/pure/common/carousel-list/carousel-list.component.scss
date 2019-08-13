@@ -92,10 +92,12 @@
     width: inherit;
     white-space: nowrap;
 
-    @include respond(tb){
+    @include respond(tb) {
       overflow-x : auto;
+      margin-left : -2.4rem;
+      margin-right : -2.4rem;
 
-      &::-webkit-scrollbar{
+      &::-webkit-scrollbar {
         display :none;
       }
     }
@@ -106,6 +108,10 @@
 
     &-ul {
       transition: transform .5s ease 0s;
+
+      @include respond(tb) {
+        margin-left: 2.4rem;
+      }
     }
 
     &-li{
