@@ -1,7 +1,7 @@
-
-
-<ng-container *ngLet="(currency| async) as currencyAsync">
-  <div class="row-list-scroll" *ngIf="infoList?.length !== 0">
+<ng-container *ngLet="(currency| async) as currencyAsync; ">
+  <div
+    class="row-list-scroll"
+    [ngStyle]=" { display :infoList !== null ? 'block': 'none' }">
     <div
       [ngClass]=
         "[ mobileType === 'half' ? 'trending-reviews-halfM' : 'trending-reviews-fullM']"
@@ -12,6 +12,7 @@
           "[ mobileType === 'half' ? 'trending-reviews-halfM__title' : 'trending-reviews-fullM__title']"
         class="h1-bold"></h1>
       <div
+
         [ngClass]="[
             mobileType === 'half' ?
             'trending-reviews-halfM__content--outer' :
@@ -56,7 +57,7 @@
                         'trending-reviews-fullM__item--image'
                       ]">
                     <div
-                      [routerLink]="'/shops/p/' + item.product.slug"
+                      [routerLink]="'/shops/p/' + item.product.slug +'/reviews/' + item.review_id"
                       [ngClass]="[
                         mobileType === 'half' ?
                         'trending-reviews-halfM__item--image-outer' :

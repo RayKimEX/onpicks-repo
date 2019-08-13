@@ -31,7 +31,7 @@ export const initialState: UiState = {
   },
   activeUrl : [],
   alertMessage: '',
-  globalKakaoPosition: '3rem',
+  globalKakaoPosition: 'normal',
   addClassOpenModal : false,
   deliveryAddress: [
   ]
@@ -154,21 +154,21 @@ export function UiReducer(state = initialState, action: UiActions): UiState {
 
       return {
         ...state,
-        globalKakaoPosition : '17rem'
+        globalKakaoPosition : 'purchase'
       }
 
     case UPDATE_GLOBAL_KAKAO_PLUS_FRIEND_FOR_DETAIL_PAGE :
 
       return {
         ...state,
-        globalKakaoPosition : '14rem'
+        globalKakaoPosition : 'detail-page'
       };
 
     case UPDATE_GLOBAL_KAKAO_PLUS_FRIEND_FOR_NORMAL :
 
       return {
         ...state,
-        globalKakaoPosition : '3rem'
+        globalKakaoPosition : 'normal'
       };
 
     case UPDATE_URL_ACTIVE :

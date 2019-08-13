@@ -6,8 +6,7 @@
 <ng-container *ngLet="(currency| async) as currencyAsync">
   <div
     class="row-list-scroll"
-    *ngIf="infoList !== null || infoList?.length !== 0;
-    else loading">
+    [ngStyle]="{ display : infoList !== null ? 'block' : 'none'}">
     <div
       [ngClass]=
         "[ mobileType === 'half' ? 'ui-carousel-list-halfM' : 'ui-carousel-list-fullM']"
@@ -141,6 +140,7 @@
                     </h1>
                     <a [routerLink]="'/shops/p/' + item.slug">
                       <span
+                        #itemTitle
                         [ngClass]="[
                           mobileType === 'half' ?
                           'ui-carousel-list-halfM__item--name-outer-name' :

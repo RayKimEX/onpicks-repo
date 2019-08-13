@@ -122,9 +122,22 @@ export class AppComponent implements OnInit, OnDestroy {
       this.isCategoryLoaded = val.currentCategoryList.isLoaded;
       this.categoryLoadType = val.currentCategoryList.type;
       this.globalKakaoPosition = val.globalKakaoPosition;
+
+      switch ( val.globalKakaoPosition ) {
+        case 'normal' :
+          this.globalKakaoPosition = '3rem';
+          break;
+        case 'detail-page':
+          this.globalKakaoPosition = '14rem';
+          break;
+        case 'purchase' :
+          this.globalKakaoPosition = '17rem';
+          break;
+      }
+
       this.activeUrl = val.activeUrl;
 
-      if( val.addClassOpenModal === true ) {
+      if ( val.addClassOpenModal === true ) {
         this.renderer.addClass(document.body , 'u-open-modal');
       } else {
         const url = this.router.url.split('/');

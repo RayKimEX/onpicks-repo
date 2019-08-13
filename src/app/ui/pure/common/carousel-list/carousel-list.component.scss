@@ -191,6 +191,15 @@
       &-name {
         white-space: normal;
         width: 26.4rem;
+
+        @include respond(desktop) {
+          width:100%;
+          display: -webkit-box;
+          /* autoprefixer: off */
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+          -webkit-line-clamp: 2;
+        }
       }
     }
 
@@ -403,6 +412,16 @@
       &-name {
         white-space: normal;
         width: 26.4rem;
+
+        @include respond(desktop) {
+          width:100%;
+          display: -webkit-box;
+          /* autoprefixer: off */
+          -webkit-box-orient: vertical;
+          /* autoprefixer: on */
+          overflow: hidden;
+          -webkit-line-clamp: 2;
+        }
       }
     }
 

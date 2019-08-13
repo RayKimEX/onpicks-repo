@@ -32,10 +32,9 @@ export class TrendingReviewsComponent implements OnDestroy, AfterViewInit {
   @ViewChild('container') container;
   @Input('carouselLength') carouselLength = 4;
   @Input('setTitle') setTitle;
-  @Input('infoList') infoList;
+  @Input('infoList') infoList = null;
   @Input('mobileType') mobileType = 'half';
   // TODO : 보이지 않는 부분에 대해서 img display : none 하는식으로, 메모리 최적화
-
   imageIndex = 0;
   pressedPrev = false;
   cartStore$;
@@ -43,13 +42,13 @@ export class TrendingReviewsComponent implements OnDestroy, AfterViewInit {
   translateXWidth = 288;
 
   constructor(
-    @Inject(CURRENCY) public currency: BehaviorSubject<any>,
+    @Inject( CURRENCY ) public currency: BehaviorSubject<any>,
+    @Inject( LOCATION_MAP ) public locationMap: any,
+    @Inject( LOCALE_ID ) public locale: string,
+    @Inject( APP_BASE_HREF ) public region: string,
     private renderer: Renderer2,
     private store: Store<any>,
     private cd: ChangeDetectorRef,
-    @Inject( LOCATION_MAP ) public locationMap: any,
-    @Inject(LOCALE_ID) public locale: string,
-    @Inject(APP_BASE_HREF) public region: string,
     private router: Router,
   ) {
     this.cartStore$ = this.store.pipe(select(state => state.cart))

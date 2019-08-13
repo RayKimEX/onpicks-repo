@@ -52,24 +52,6 @@ export class PMobileMenuComponent {
     });
   }
 
-  @HostListener('window:scroll', ['$event'])
-  private onScroll($event: Event): void {
-    const delta = window.pageYOffset - this.previousYOffset;
-    if ( this.pUI.isShowCommunicateBox === true ) {
-      this.isShowMobileMenu = false;
-      return;
-    }
-
-    if ( delta < -1 && this.isFB) {
-      this.isShowMobileMenu = true;
-      this.store.dispatch(new UpdateGlobalKakaoPlusFriendForDetailPage());
-    } else if ( delta > 1  && this.isFB ) {
-      this.isShowMobileMenu = false;
-      this.store.dispatch(new UpdateGlobalKakaoPlusFriendForNormal());
-    }
-    this.previousYOffset = window.pageYOffset;
-  }
-
   expandMobileMenu() {
     this.isExpendMobileMenu = true;
     this.store.dispatch(new UpdateGlobalKakaoPlusFriendForPurchase());

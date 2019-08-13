@@ -29,6 +29,7 @@
         </p-thumbnail>
         <div *ngIf="isFB">
           <p-menu
+            [cartStore]="cartStore$ | async"
             [discountPercent]="discountPercent"
             [numberOptionList]="numberOptionList"
             [isMobile]="isFB"
@@ -65,6 +66,7 @@
 
       <div *ngIf="!isFB" class="col-5-of-12">
         <p-menu
+          [cartStore]="cartStore$ | async"
           [discountPercent]="discountPercent"
           [numberOptionList]="numberOptionList"
           [data]="data">

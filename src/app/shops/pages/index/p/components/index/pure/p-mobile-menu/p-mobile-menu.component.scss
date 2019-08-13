@@ -6,7 +6,7 @@
   margin : 0 -2.4rem;
   bottom : 0;
   width : 100%;
-             z-index : 9999;
+  z-index : 9999;
   border-top : 1px solid $color-light-grey;
   background-color : $color-white;
   transition : transform .5s;
@@ -22,7 +22,6 @@
     position:fixed;
     top : 0;
     margin : 0 -2.4rem;
-
     height : 100%;
     width :100%;
     background-color : $color-black;

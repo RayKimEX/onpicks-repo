@@ -1,12 +1,11 @@
 import {
-  AfterViewChecked,
+  AfterViewChecked, AfterViewInit,
   ChangeDetectionStrategy, ChangeDetectorRef,
   Component, HostListener,
   Inject,
   Input,
   LOCALE_ID,
   OnDestroy,
-  OnInit,
   Renderer2,
   ViewChild, ViewChildren,
 } from '@angular/core';
@@ -14,8 +13,9 @@ import {APP_BASE_HREF} from '@angular/common';
 import {select, Store} from '@ngrx/store';
 import {TryAddOrCreateToCart, TrySubtractOrDeleteFromCart} from '../../../../core/store/cart/cart.actions';
 import {CURRENCY, LOCATION_MAP, RESPONSIVE_MAP} from '../../../../core/global-constant/app.config';
-import {BehaviorSubject} from 'rxjs';
+import {BehaviorSubject, interval} from 'rxjs';
 import {Router} from '@angular/router';
+import shave from 'shave';
 import {BreakpointObserver, BreakpointState} from '../../../../../../node_modules/@angular/cdk/layout';
 
 @Component({
@@ -26,14 +26,28 @@ import {BreakpointObserver, BreakpointState} from '../../../../../../node_module
 })
 export class CarouselListComponent implements OnDestroy, AfterViewChecked {
   @ViewChildren('itemList') itemList;
+  @ViewChildren('itemTitle') itemTitle;
   @ViewChild('insertTitle') insertTitle;
   @ViewChild('container') container;
+
   @Input('carouselLength') carouselLength = 4;
   @Input('setTitle') setTitle;
-  @Input('infoList') infoList;
+  @Input('infoList') set _infoList(xData) {
+    if (xData !== null) {
+      this.infoList = xData;
+
+      // javascript로 shave하는 법
+      // setTimeout(() => {
+      //   this.itemTitle.forEach((item, index) => {
+      //     shave(item.nativeElement, 50);
+      //   });
+      // });
+    }
+  }
   @Input('mobileType') mobileType = 'half';
   // TODO : 보이지 않는 부분에 대해서 img display : none 하는식으로, 메모리 최적화
 
+  infoList = null;
   imageIndex = 0;
   pressedPrev = false;
 
