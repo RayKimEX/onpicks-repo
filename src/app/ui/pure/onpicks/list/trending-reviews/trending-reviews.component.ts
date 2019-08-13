@@ -1,10 +1,22 @@
-import {Component, OnInit, ChangeDetectionStrategy, ViewChild, Input, Inject, Renderer2, ChangeDetectorRef, LOCALE_ID, ViewChildren, HostListener} from '@angular/core';
-import {CURRENCY, LOCATION_MAP} from '../../../../../core/global-constant/app.config';
-import {BehaviorSubject} from 'rxjs';
-import {select, Store} from '@ngrx/store';
-import {APP_BASE_HREF} from '@angular/common';
-import {TryAddOrCreateToCart, TrySubtractOrDeleteFromCart} from '../../../../../core/store/cart/cart.actions';
-import {Router} from '@angular/router';
+import {
+  Component,
+  ChangeDetectionStrategy,
+  ViewChild,
+  Input,
+  Inject,
+  Renderer2,
+  ChangeDetectorRef,
+  LOCALE_ID,
+  ViewChildren,
+  HostListener,
+  OnDestroy,
+  AfterViewInit
+} from '@angular/core';
+import { CURRENCY, LOCATION_MAP } from '../../../../../core/global-constant/app.config';
+import { BehaviorSubject } from 'rxjs';
+import { select, Store } from '@ngrx/store';
+import { APP_BASE_HREF } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'onpicks-trending-reviews',
@@ -13,7 +25,7 @@ import {Router} from '@angular/router';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 
-export class TrendingReviewsComponent implements OnInit {
+export class TrendingReviewsComponent implements OnDestroy, AfterViewInit {
 
   @ViewChild('insertTitle') insertTitle;
   @ViewChildren('itemList') itemList;
@@ -26,11 +38,10 @@ export class TrendingReviewsComponent implements OnInit {
 
   imageIndex = 0;
   pressedPrev = false;
-
   cartStore$;
   cartStore;
-
   translateXWidth = 288;
+
   constructor(
     @Inject(CURRENCY) public currency: BehaviorSubject<any>,
     private renderer: Renderer2,
@@ -48,34 +59,6 @@ export class TrendingReviewsComponent implements OnInit {
       });
   }
 
-
-
-  // addToCart(xAmount, xProductSlug, xPackIndex) {
-  //
-  //   xAmount++;
-  //   // 만약 카트 아이디가. 카트스토어 카트리스트에 있다면, increase cart를 하고, create cart를 하지 않는다.
-  //   this.store.dispatch(new TryAddOrCreateToCart({
-  //     isPopUp : true,
-  //     productSlug: xProductSlug,
-  //     amount: xAmount,
-  //     packIndex: xPackIndex,
-  //     increaseOrCreate: xProductSlug in this.cartStore.cartList
-  //   }));
-  // }
-
-  subtractFromCart(xAmount, xProductSlug, xPackIndex) {
-    xAmount--;
-    this.store.dispatch(new TrySubtractOrDeleteFromCart({
-      isPopUp : true,
-      productSlug: xProductSlug,
-      amount: xAmount,
-      packIndex: xPackIndex,
-      subtractOrDelete: xAmount !== 0 ? true : false
-    }));
-  }
-  ngOnInit() {
-  }
-
   ngOnDestroy() {
     if ( this.cartStore$ !== undefined ) {
       this.cartStore$.unsubscribe();
@@ -90,7 +73,7 @@ export class TrendingReviewsComponent implements OnInit {
     }
   }
 
-  goBrandFilter(xBrand){
+  goBrandFilter(xBrand) {
     this.router.navigate(['/shops/search'], { queryParams: { page: 1, ordering: 'most_popular', brand: xBrand}, queryParamsHandling: 'merge'} );
   }
 

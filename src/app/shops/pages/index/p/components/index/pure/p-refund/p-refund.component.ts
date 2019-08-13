@@ -1,6 +1,12 @@
-import {AfterViewInit, ChangeDetectionStrategy, Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  Component,
+  OnDestroy,
+  ViewChild
+} from '@angular/core';
 import * as MenuActions from '../../../../store/p.actions';
-import {Store} from '@ngrx/store';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'p-refund',
@@ -10,16 +16,16 @@ import {Store} from '@ngrx/store';
 })
 
 export class PRefundComponent implements AfterViewInit, OnDestroy {
-
   @ViewChild('bottomLine') bottomLine;
-  constructor(
-    private store: Store<any>,
-  ) { }
 
   Interval_menuPosition;
   currentMenuPosition;
   previousMenuPosition;
   intervalCount = 0;
+
+  constructor(
+    private store: Store<any>,
+  ) { }
 
   ngOnDestroy() {
     clearInterval(this.Interval_menuPosition);
