@@ -2,7 +2,11 @@ import {
   Component,
   ChangeDetectionStrategy, Input, HostListener
 } from '@angular/core';
-import {DisplayAlertMessage, UpdateGlobalKakaoPlusFriendForDetailPage, UpdateGlobalKakaoPlusFriendForNormal, UpdateGlobalKakaoPlusFriendForPurchase} from '../../../../../../../../core/store/ui/ui.actions';
+import {
+  DisplayAlertMessage,
+  UpdateGlobalKakaoPlusFriendForDetailPage,
+  UpdateGlobalKakaoPlusFriendForPurchase
+} from '../../../../../../../../core/store/ui/ui.actions';
 import {select, Store} from '@ngrx/store';
 import {TryAddOrCreateToCart} from '../../../../../../../../core/store/cart/cart.actions';
 
@@ -32,7 +36,6 @@ export class PMobileMenuComponent {
 
   keyListForSlug = [];
   keyMapForSlug = {};
-
 
   currentSelectOption = {
     amount : 1,
@@ -69,7 +72,6 @@ export class PMobileMenuComponent {
     this.isExpendMobileMenu = false;
     this.store.dispatch(new UpdateGlobalKakaoPlusFriendForDetailPage());
   }
-
 
   amountSelect(xValue ) {
     this.currentSelectOption.amount = xValue.value;

@@ -1,11 +1,13 @@
 import {
-  ChangeDetectionStrategy,
+  ChangeDetectionStrategy, ChangeDetectorRef,
   Component,
   Inject,
-  LOCALE_ID
+  LOCALE_ID, OnDestroy
 } from '@angular/core';
 import {CURRENCY, REGION_ID} from '../../../../../core/global-constant/app.config';
 import {BehaviorSubject} from 'rxjs';
+import {select, Store} from '@ngrx/store';
+import {AppState} from '../../../../../core/store/app.reducer';
 
 @Component({
   selector: 'ui-footer',
@@ -15,13 +17,26 @@ import {BehaviorSubject} from 'rxjs';
 })
 
 
-export class FooterComponent {
+export class FooterComponent implements OnDestroy {
+  globalKakaoPosition = 'normal';
+  uiState$;
 
   constructor(
     @Inject(LOCALE_ID) public locale: string,
     @Inject(REGION_ID) public region: string,
-    @Inject(CURRENCY) public currency: BehaviorSubject<any>
-  ) { }
+    @Inject(CURRENCY) public currency: BehaviorSubject<any>,
+    private store: Store<any>,
+    private cd: ChangeDetectorRef
+  ) {
+    this.uiState$ = this.store.pipe(select( 'ui')).subscribe( val => {
+      this.globalKakaoPosition = val.globalKakaoPosition;
+      this.cd.markForCheck();
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.uiState$.unsubscribe();
+  }
 
   openBizCommPop(xWrkrNo) {
     window.open('http://www.ftc.go.kr/bizCommPop.do?wrkr_no=' + xWrkrNo, 'mark', 'scrollbars=no,resizable=no,width=700,height=750');

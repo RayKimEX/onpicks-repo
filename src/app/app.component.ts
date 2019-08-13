@@ -68,7 +68,6 @@ export class AppComponent implements OnInit, OnDestroy {
   isKakaoSpeachBubble = true;
   globalKakaoPosition = '3rem';
 
-  deltaHeight = 0;
   previousUrl = [];
   activeUrl;
 
