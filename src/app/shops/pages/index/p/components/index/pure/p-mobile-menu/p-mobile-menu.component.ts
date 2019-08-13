@@ -52,6 +52,14 @@ export class PMobileMenuComponent {
     });
   }
 
+  @HostListener('window:scroll', ['$event'])
+  private onScroll($event: Event): void {
+    if ( this.pUI.isShowCommunicateBox === true ) {
+      this.isShowMobileMenu = false;
+      return;
+    }
+  }
+
   expandMobileMenu() {
     this.isExpendMobileMenu = true;
     this.store.dispatch(new UpdateGlobalKakaoPlusFriendForPurchase());

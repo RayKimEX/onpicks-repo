@@ -15,6 +15,7 @@
   &__delivery-point {
     margin-top : 0.8rem;
     position:relative;
+
     @include respond(sb){
       margin-top : 0.4rem;
     }
@@ -42,12 +43,14 @@
 
     &--MSRP {
       margin-right: 0.2rem;
+
       @include respond(tb){
         display:none;
       }
 
       &-mobile {
         display:none;
+
         @include respond(tb){
           margin-right : 0.4rem;
           display:inline-block;
@@ -55,19 +58,19 @@
       }
 
       &-discount {
-
         vertical-align: text-top;;
         text-decoration: line-through;
+
         @include respond(tb){
           display: none;
         }
       }
 
       &-mobile-discount {
-
         margin-top : 0.4rem;
         display: none;
         text-decoration: line-through;
+
         @include respond(tb){
           display: inline-block;
         }
@@ -118,6 +121,7 @@
           margin-right: 0;
         }
       }
+
       @include respond(fb){
         width: 25%;
         margin-right : 0 !important;
@@ -134,7 +138,8 @@
 
   &__item {
     &--stock {
-      position:relative;
+      position:absolute;
+      z-index:5;
       top : 0;
       width: 9.4rem;
       height: 24px;
@@ -145,20 +150,18 @@
 
       @include respond(fb){
         margin-left:-1.6rem;
-        margin-top :-1.6rem;
-        //height: 1.6rem;
+        margin-top :0;
       }
 
       &--inner {
         @include subtitle-2-bold;
-
-
         @include absCenter;
       }
     }
 
     &--stock-empty {
-      position:relative;
+      position:absolute;
+      z-index:5;
       top : 0;
       width: 9.4rem;
       height: 24px;
@@ -169,7 +172,7 @@
 
       @include respond(fb){
         margin-left:-1.6rem;
-        margin-top :-1.6rem;
+        margin-top :0;
       }
     }
 
@@ -197,6 +200,7 @@
           display: -webkit-box;
           /* autoprefixer: off */
           -webkit-box-orient: vertical;
+          /* autoprefixer: on */
           overflow: hidden;
           -webkit-line-clamp: 2;
         }
@@ -204,7 +208,6 @@
     }
 
     &--image {
-
       height: 26.4rem;
       width: 100%;
       position: relative;
@@ -219,6 +222,7 @@
         right: 0;
         bottom: 0;
       }
+
       &-inner {
         width:100%;
         position: relative;
@@ -253,9 +257,9 @@
       }
 
       &-outer {
+        position:relative;
         width: 100%;
         height:100%;
-
         padding : 2.4rem;
 
         @include respond(fb){
@@ -267,11 +271,8 @@
           display:inline-block;
         }
       }
-
     }
   }
-
-
 }
 
 
@@ -279,13 +280,12 @@
 
 .ui-carousel-list-fullM {
 
-
   onpicks-circle-n-button {
-
     @include respond(tb){
       display:none;
     }
   }
+
   &__title {
     margin-bottom : 2.4rem;
   }
@@ -312,6 +312,7 @@
 
   &__price-info {
     margin-top: 0.8rem;
+
     @include respond(sb){
       margin-top : 0.4rem;
     }
@@ -330,6 +331,7 @@
       &-discount {
         vertical-align: text-top;;
         text-decoration: line-through;
+
         @include respond(tb){
           display: none;
         }
@@ -339,6 +341,7 @@
         display: none;
         margin-top:0.4rem;
         text-decoration: line-through;
+
         @include respond(tb){
           display: inline-block;
         }
@@ -355,9 +358,9 @@
   }
 
   &__item {
-
     &--stock {
-      position:relative;
+      position: absolute;
+      z-index:5;
       top : 0;
       width: 9.4rem;
       height: 24px;
@@ -368,7 +371,7 @@
 
       @include respond(fb){
         margin-left:-1.6rem;
-        margin-top :-1.6rem;
+        margin-top :0;
       }
 
       &--inner {
@@ -381,7 +384,8 @@
     }
 
     &--stock-empty {
-      position:relative;
+      position:absolute;
+      z-index:5;
       top : 0;
       width: 9.4rem;
       height: 24px;
@@ -392,9 +396,10 @@
 
       @include respond(fb){
         margin-left:-1.6rem;
-        margin-top :-1.6rem;
+        margin-top :0;
       }
     }
+
     ui-star-rating {
       margin-right : 0.4rem;
     }
@@ -471,17 +476,20 @@
       }
 
       &-outer {
+        position:relative;
         width: 100%;
         height:100%;
         padding : 2.4rem;
 
+        @include respond(fb){
+          padding : 1.6rem;
+        }
         a {
           width : 100%;
           height : 100%;
           display:inline-block;
         }
       }
-
     }
   }
 
