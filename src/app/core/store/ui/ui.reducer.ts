@@ -1,19 +1,25 @@
-
 import {
   ADD_CLASS_OPEN_MODAL,
   ADD_DELIVERY_INFO_SUCCESS,
+  CLOSE_CATEGORY_NAVIGATOR,
   DISPLAY_ALERT_MESSAGE,
   GET_CATEGORY_ALL_SUCCESS,
   GET_DELIVERY_INFO_SUCCESS,
+  OPEN_CATEGORY_NAVIGATOR,
   REMOVE_ALERT_MESSAGE,
   REMOVE_CLASS_OPEN_MODAL,
   REMOVE_DELIVERY_INFO_SUCCESS,
   UiActions,
-  UPDATE_CATEGORY, UPDATE_DELIVERY_DATA_TO_DEFAULT_SUCCESS, UPDATE_DELIVERY_INFO_SUCCESS, UPDATE_GLOBAL_KAKAO_PLUS_FRIEND_FOR_DETAIL_PAGE, UPDATE_GLOBAL_KAKAO_PLUS_FRIEND_FOR_NORMAL, UPDATE_GLOBAL_KAKAO_PLUS_FRIEND_FOR_PURCHASE,
+  UPDATE_CATEGORY,
+  UPDATE_DELIVERY_DATA_TO_DEFAULT_SUCCESS,
+  UPDATE_DELIVERY_INFO_SUCCESS,
+  UPDATE_GLOBAL_KAKAO_PLUS_FRIEND_FOR_DETAIL_PAGE,
+  UPDATE_GLOBAL_KAKAO_PLUS_FRIEND_FOR_NORMAL,
+  UPDATE_GLOBAL_KAKAO_PLUS_FRIEND_FOR_PURCHASE,
   UPDATE_URL_ACTIVE
 } from './ui.actions';
 
-import { normalize, schema } from 'normalizr';
+import {normalize, schema} from 'normalizr';
 
 export interface UiState {
   currentCategoryList: any;
@@ -23,6 +29,7 @@ export interface UiState {
   globalKakaoPosition: any;
   addClassOpenModal: any;
   deliveryAddress: any;
+  isOpenCategoryNavigator: any;
 }
 
 export const initialState: UiState = {
@@ -34,7 +41,8 @@ export const initialState: UiState = {
   globalKakaoPosition: 'normal',
   addClassOpenModal : false,
   deliveryAddress: [
-  ]
+  ],
+  isOpenCategoryNavigator: false,
 };
 
 
@@ -68,6 +76,18 @@ let notChangeThirdPrevious;
 export function UiReducer(state = initialState, action: UiActions): UiState {
 
   switch (action.type) {
+
+    case OPEN_CATEGORY_NAVIGATOR :
+      return {
+        ...state,
+        isOpenCategoryNavigator: true
+      }
+
+    case CLOSE_CATEGORY_NAVIGATOR :
+      return {
+        ...state,
+        isOpenCategoryNavigator: false
+      }
 
     case GET_DELIVERY_INFO_SUCCESS:
 

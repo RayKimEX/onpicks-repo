@@ -23,7 +23,7 @@ import {AuthService} from '../../../../../core/service/auth/auth.service';
 import {AuthState} from '../../../../../core/store/auth/auth.model';
 import {AppState} from '../../../../../core/store/app.reducer';
 import {CURRENCY, IMAGE_HOST, REGION_ID, RESPONSIVE_MAP} from '../../../../../core/global-constant/app.config';
-import {AddClassOpenModal, DisplayAlertMessage, RemoveAlertMessage, RemoveClassOpenModal} from '../../../../../core/store/ui/ui.actions';
+import {AddClassOpenModal, CloseCategoryNavigator, DisplayAlertMessage, OpenCategoryNavigator, RemoveAlertMessage, RemoveClassOpenModal} from '../../../../../core/store/ui/ui.actions';
 import {BreakpointObserver, BreakpointState} from '../../../../../../../node_modules/@angular/cdk/layout';
 import {TryLogout} from '../../../../../core/store/auth/auth.actions';
 import {DISPLAY_ALERT_MESSAGE_MAP, MENU_MAP} from '../../../../../core/global-constant/app.locale';
@@ -60,6 +60,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   uiStore$;
   uiCategoryStore$;
   uiActiveUrl$;
+  uiOpenCategoryNavigator$;
 
   /** mobileCategoryFilterZone**/
   categoryList;
@@ -127,6 +128,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
         }
       });
 
+    this.uiOpenCategoryNavigator$ = this.store.pipe(select( state => state.ui.isOpenCategoryNavigator ))
+      .subscribe( val => {
+        this.isOpenCategoryNavigator = val;
+      });
+
     this.uiActiveUrl$ =  this.store.pipe(select(state => state.ui.activeUrl))
       .subscribe(val => {
         this.currentUrl = val;
@@ -142,6 +148,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
           });
         }
       });
+
+
 
     this.uiCategoryStore$ = this.store.pipe(select(state => state.ui.currentCategoryList))
       .subscribe(val => {
@@ -234,10 +242,13 @@ export class HeaderComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.uiActiveUrl$.unsubscribe();
     this.cart$.unsubscribe();
+    this.uiStore$.unsubscribe();
+    this.uiOpenCategoryNavigator$.unsubscribe();
+    this.uiCategoryStore$.unsubscribe();
   }
 
   search(searchTerms) {
-    if (searchTerms === '') { return; };
+    if (searchTerms === '') { return; }
     // jet에서도 uri encode를 하지 않아서 했다가 다시 지움. 20181210 - ray
     this.router.navigate(   ['/shops/search'], { relativeTo: this.route, queryParams: { term : searchTerms, ordering : 'most_popular', page : 1 } } );
   }
@@ -257,8 +268,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   showMenuForMobile( xInputChecked ) {
     if ( xInputChecked.checked ) {
+      this.store.dispatch(new CloseCategoryNavigator());
       this.store.dispatch(new RemoveClassOpenModal());
     } else {
+      this.store.dispatch(new OpenCategoryNavigator());
       this.store.dispatch(new AddClassOpenModal());
     }
   }
@@ -304,10 +317,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   categoryNavigatorToggle() {
     if ( this.isOpenCategoryNavigator ) {
-      this.isOpenCategoryNavigator = false;
+      this.store.dispatch(new CloseCategoryNavigator());
       this.store.dispatch(new RemoveClassOpenModal());
     } else {
-      this.isOpenCategoryNavigator = true;
+      this.store.dispatch(new OpenCategoryNavigator());
       this.store.dispatch(new AddClassOpenModal());
     }
   }

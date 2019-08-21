@@ -1,5 +1,6 @@
 import {
-  ChangeDetectionStrategy, ChangeDetectorRef,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   Inject,
   LOCALE_ID, OnDestroy
@@ -7,7 +8,7 @@ import {
 import {CURRENCY, REGION_ID} from '../../../../../core/global-constant/app.config';
 import {BehaviorSubject} from 'rxjs';
 import {select, Store} from '@ngrx/store';
-import {AppState} from '../../../../../core/store/app.reducer';
+
 
 @Component({
   selector: 'ui-footer',
@@ -15,8 +16,6 @@ import {AppState} from '../../../../../core/store/app.reducer';
   styleUrls: ['./footer.component.scss'],
   changeDetection : ChangeDetectionStrategy.OnPush
 })
-
-
 export class FooterComponent implements OnDestroy {
   globalKakaoPosition = 'normal';
   uiState$;

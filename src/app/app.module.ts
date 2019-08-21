@@ -59,7 +59,7 @@ import {
   CATEGORY_REPORT_MAP,
   CATEGORY_REPORT_MAP_CONST
 } from './core/global-constant/app.category-database-long';
-import {CATEGORY_SECOND_MAP, CATEGORY_SECOND_MAP_CONST} from './core/global-constant/app.category-database-short';
+import {CATEGORY_SECOND_MAP, CATEGORY_SECOND_MAP_CONST, HEALTH_PRODUCT_CATEGORY_LIST, HEALTH_PRODUCT_CATEGORY_LIST_CONST} from './core/global-constant/app.category-database-short';
 import {STATE_LIST, STATE_LIST_CONST} from './core/global-constant/app.database';
 import {REVIEW_SORT_LIST, REVIEW_SORT_LIST_CONST, SORT_LIST, SORT_LIST_CONST} from './core/global-constant/item-component.locale';
 
@@ -272,6 +272,10 @@ export function getCurrency() {
     {
       provide : REVIEW_SORT_LIST,
       useValue : REVIEW_SORT_LIST_CONST
+    },
+    {
+      provide : HEALTH_PRODUCT_CATEGORY_LIST,
+      useValue : HEALTH_PRODUCT_CATEGORY_LIST_CONST
     }
   ],
   bootstrap: [ AppComponent ]

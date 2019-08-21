@@ -13,6 +13,9 @@ export const REMOVE_ALERT_MESSAGE = '[UI] REMOVE_ALERT_MESSAGE';
 export const ADD_CLASS_OPEN_MODAL = '[UI] ADD_CLASS_OPEN_MODAL';
 export const REMOVE_CLASS_OPEN_MODAL = '[UI] REMOVE_CLASS_OPEN_MODAL';
 
+export const OPEN_CATEGORY_NAVIGATOR = '[UI] OPEN_CATEGORY_NAVIGATOR';
+export const CLOSE_CATEGORY_NAVIGATOR = '[UI] CLOSE_CATEGORY_NAVIGATOR';
+
 export const UPDATE_GLOBAL_KAKAO_PLUS_FRIEND_FOR_DETAIL_PAGE = '[UI] UPDATE_GLOBAL_KAKAO_PLUS_FRIEND_FOR_DETAIL_PAGE';
 export const UPDATE_GLOBAL_KAKAO_PLUS_FRIEND_FOR_PURCHASE = '[UI] UPDATE_GLOBAL_KAKAO_PLUS_FRIEND_FOR_PURCHASE';
 export const UPDATE_GLOBAL_KAKAO_PLUS_FRIEND_FOR_NORMAL = '[UI] UPDATE_GLOBAL_KAKAO_PLUS_FRIEND_FOR_NORMAL';
@@ -33,6 +36,15 @@ export const TRY_ADD_DELIVERY_INFO = '[UI] TRY_ADD_DELIVERY_INFO';
 export const ADD_DELIVERY_INFO_SUCCESS = '[UI] ADD_DELIVERY_INFO_SUCCESS';
 export const TRY_REMOVE_DELIVERY_INFO = '[UI] TRY_REMOVE_DELIVERY_INFO';
 export const REMOVE_DELIVERY_INFO_SUCCESS = '[UI] REMOVE_DELIVERY_INFO_SUCCESS';
+
+
+export class OpenCategoryNavigator implements Action {
+  readonly type = OPEN_CATEGORY_NAVIGATOR;
+}
+
+export class CloseCategoryNavigator implements Action {
+  readonly type = CLOSE_CATEGORY_NAVIGATOR;
+}
 
 export class TryGetDeliveryInfo implements Action {
   readonly type = TRY_GET_DELIVERY_INFO;
@@ -228,6 +240,8 @@ export class RemoveAlertMessage implements Action {
 }
 
 export type UiActions =
+  OpenCategoryNavigator |
+  CloseCategoryNavigator |
   TryUpdateDeliveryDataToDefault |
   UpdateDeliveryDataToDefaultSuccess |
   TryUpdateDeliveryInfo |

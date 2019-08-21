@@ -23,10 +23,12 @@ onpicks-loading-icon {
   @include respond(desktop){
     margin-top : 0;
   }
+
   &__slash {
     padding: 0 2.4rem;
     color: $color-grey;
   }
+
   & hr {
     margin-top : 1.6rem;
     margin-bottom : 3rem;

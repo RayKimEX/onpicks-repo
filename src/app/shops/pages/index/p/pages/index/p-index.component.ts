@@ -32,6 +32,7 @@ import { CURRENCY, LOCATION_MAP, RESPONSIVE_MAP } from '../../../../../../core/g
 import { UpdateGlobalKakaoPlusFriendForDetailPage, UpdateGlobalKakaoPlusFriendForNormal } from '../../../../../../core/store/ui/ui.actions';
 import { BehaviorSubject } from 'rxjs';
 import { DISPLAY_ALERT_MESSAGE_MAP } from '../../../../../../core/global-constant/app.locale';
+import {HEALTH_PRODUCT_CATEGORY_LIST} from '../../../../../../core/global-constant/app.category-database-short';
 
 @Component({
   selector: 'onpicks-p',
@@ -68,6 +69,7 @@ export class PIndexComponent implements OnInit, OnDestroy {
     @Inject( RESPONSIVE_MAP ) public responsiveMap,
     @Inject( LOCALE_ID ) public locale: string,
     @Inject( DISPLAY_ALERT_MESSAGE_MAP ) public alertMap,
+    @Inject( HEALTH_PRODUCT_CATEGORY_LIST ) private healthList: [],
     private breakpointObserver:  BreakpointObserver,
     private cd: ChangeDetectorRef,
     private store: Store<any>,
@@ -105,9 +107,20 @@ export class PIndexComponent implements OnInit, OnDestroy {
         if ( v !== undefined && v !== null ) {
           this.discountPercent = 100 - Math.round((v.price / v.msrp * 100));
 
-          for ( var i = 1; i <= (v.stock_quantity <= 10 ? v.stock_quantity : 10); i ++ ) {
-            this.numberOptionList.list.push({ title : i, value : i });
+          const categories = v.category;
+          const healthyProductFound = categories.some( (category: {
+            code: never;
+          }) => this.healthList.includes(category.code));
+          if ( healthyProductFound) {
+            for ( var i = 1; i <= 6; i ++ ) {
+              this.numberOptionList.list.push({ title : i, value : i });
+            }
+          } else {
+            for ( var i = 1; i <= (v.stock_quantity <= 10 ? v.stock_quantity : 10); i ++ ) {
+              this.numberOptionList.list.push({ title : i, value : i });
+            }
           }
+
         }
       })
     );

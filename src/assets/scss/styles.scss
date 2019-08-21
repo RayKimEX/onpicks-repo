@@ -26,6 +26,7 @@ html {
   // This defines what 1rem is
   font-size: 62.5%; //1 rem = 10px; 10px/1.6rem = 62.5%
   color: $color-black;
+
   @include respond(sb){
     font-size : 58%;
   }
@@ -185,6 +186,35 @@ textarea {
   }
 }
 
+@keyframes fade-out {
+  0% {
+    opacity : 1;
+  }
+
+  100% {
+    opacity : 0;
+  }
+}
+
+@keyframes fade-in-out-80 {
+  0% {
+    opacity : 0;
+  }
+
+  10% {
+    opacity : 1;
+  }
+
+  90% {
+    opacity : 0;
+  }
+
+  100% {
+    opacity : 0;
+  }
+}
+
+
 .u-vertical-center {
   vertical-align: middle !important;
 }
@@ -222,6 +252,11 @@ textarea {
 
 .u-fade-in {
   animation-name : fade-in;
+  animation-duration: .5s;
+}
+
+.u-fade-out {
+  animation-name : fade-out;
   animation-duration: .5s;
 }
 

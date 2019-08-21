@@ -523,7 +523,8 @@
                     <ng-container
                       [ngSwitch]="item.attributes.length">
                       <onpicks-list-active-button
-                        [limitCount]="item.stock_quantity"
+                        [categories]="item.categories"
+                        [limitQuantity]="item.stock_quantity"
                         *ngIf="!(item.in_stock === false || item.in_stock === true && item.stock_quantity === 0)"
                         [amount]="cartStore.cartList[item.slug] === undefined ? 0 : cartStore.cartList[item.slug]?.quantity"
                         (addEvent)="addToCart($event, item, item.individual_shipping ? 'free' : locationMap[item.location.code].sequence)"
@@ -669,7 +670,8 @@
                     <ng-container
                       [ngSwitch]="item.attributes.length">
                       <onpicks-list-active-button
-                        [limitCount]="item.stock_quantity"
+                        [categories]="item.categories"
+                        [limitQuantity]="item.stock_quantity"
                         *ngIf="!(item.in_stock === false || item.in_stock === true && item.stock_quantity === 0)"
                         [amount]="cartStore.cartList[item.slug] === undefined ? 0 : cartStore.cartList[item.slug]?.quantity"
                         (addEvent)="addToCart($event, item, item.individual_shipping ? 'free' : locationMap[item.location.code].sequence)"

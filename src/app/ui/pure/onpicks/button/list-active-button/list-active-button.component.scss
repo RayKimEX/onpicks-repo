@@ -1,5 +1,10 @@
 @import '~src/assets/scss/abstracts/variables';
 
+@mixin transition-fade {
+  transition: opacity;
+  transition-duration: .3s;
+}
+
 .button-outer {
 
   display:table;
@@ -47,6 +52,7 @@
   }
 
   .extendUI {
+    position:relative;
     display:none;
     width:100%;
     vertical-align: middle;
@@ -61,15 +67,23 @@
       transform: translateY(-50%);
     }
 
-    &__number {
+    &--number {
+      @include absCenter;
+      @include transition-fade;
 
       display:inline-block;
       margin-bottom: 2px;
-      font-size : 1.4rem;
-      line-height : 1.43;
-      letter-spacing: 0.2px;
-      font-weight :700;
-      color : #292929;
+    }
+
+    &--is-max-quantity {
+      width:100%;
+      @include absCenter;
+      @include transition-fade;
     }
   }
+}
+
+
+ui-plus-minus-icon {
+  @include transition-fade;
 }

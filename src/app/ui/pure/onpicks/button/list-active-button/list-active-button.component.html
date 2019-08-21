@@ -11,26 +11,36 @@
     class="extendUI"
     [ngStyle]="{ display : isFixExtend || amount !== 0 ? 'table-cell' : 'none'}">
     <ui-plus-minus-icon
+      [ngStyle]="{ 'opacity' : isMaxQuantity ? 0 : 1}"
       [opacity]="minusOpacity"
       [borderColor]=" isFixExtend && (amount == 1) ? '#b3b3b3' : '#292929'"
       [size]="'14px'"
       #minusIcon
       [type]="'minus'">
     </ui-plus-minus-icon>
-    <span class="extendUI__number" *ngIf="amount !== 0">
+    <span
+      class="extendUI--number body-1-bold"
+      [ngStyle]="{ 'opacity' : isMaxQuantity ? 0 : 1}"
+      *ngIf="amount !== 0">
       {{amount}}
+    </span>
+    <span
+      class="extendUI--is-max-quantity button-bold u-color-orange"
+      [ngStyle]="{ 'opacity' : isMaxQuantity ? 1 : 0}"
+      *ngIf="amount !== 0">
+      최대 수량 {{limitQuantity}}
     </span>
   </span>
   <ui-plus-minus-icon
     #plusIcon
+    [ngStyle]="{
+      'opacity' : isMaxQuantity ? 0 : 1,
+      left : isFixExtend || this.amount !== 0  ? 'auto' : '',
+      right : isFixExtend || this.amount !== 0  ? '1.9rem' : ''
+    }"
     [opacity]="plusOpactiy"
-    [borderColor]="(mouseHover && (amount === 0)) ? '#FFFFFF' : amount == limitCount ? '#e5e5e5' : '#292929'"
+    [borderColor]="(mouseHover && (amount === 0)) ? '#FFFFFF' : amount >= limitQuantity ? '#e5e5e5' : '#292929'"
     [size]="'12px'"
-    [ngStyle]="
-     {
-        left : isFixExtend || this.amount !== 0  ? 'auto' : '',
-        right : isFixExtend || this.amount !== 0  ? '1.9rem' : ''
-     }"
     [type]="'plus'">
   </ui-plus-minus-icon>
   <span

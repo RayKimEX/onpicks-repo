@@ -18,7 +18,6 @@ import {CURRENCY, IMAGE_HOST} from '../../../core/global-constant/app.config';
 export class AccountIndexComponent {
 
   user$;
-
   constructor(
     @Inject(CURRENCY) public currency,
     @Inject(IMAGE_HOST) public imageHost: string,
