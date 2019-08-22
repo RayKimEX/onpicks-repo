@@ -27,7 +27,7 @@ import {AddClassOpenModal, CloseCategoryNavigator, DisplayAlertMessage, OpenCate
 import {BreakpointObserver, BreakpointState} from '../../../../../../../node_modules/@angular/cdk/layout';
 import {TryLogout} from '../../../../../core/store/auth/auth.actions';
 import {DISPLAY_ALERT_MESSAGE_MAP, MENU_MAP} from '../../../../../core/global-constant/app.locale';
-import {ShowCurrencyModal, ShowRegionModal} from '../../../../../core/store/modal/modal.actions';
+import {HideRegionModal, ShowCurrencyModal, ShowRegionModal} from '../../../../../core/store/modal/modal.actions';
 import {CATEGORY_CODE_MAP, CATEGORY_MAP} from '../../../../../core/global-constant/app.category-database-long';
 import {normalize, schema} from 'normalizr';
 
@@ -130,6 +130,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
     this.uiOpenCategoryNavigator$ = this.store.pipe(select( state => state.ui.isOpenCategoryNavigator ))
       .subscribe( val => {
+        console.log(val);
         this.isOpenCategoryNavigator = val;
       });
 
@@ -270,9 +271,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
     if ( xInputChecked.checked ) {
       this.store.dispatch(new CloseCategoryNavigator());
       this.store.dispatch(new RemoveClassOpenModal());
+      this.store.dispatch(new HideRegionModal());
     } else {
-      this.store.dispatch(new OpenCategoryNavigator());
+      this.store.dispatch(new CloseCategoryNavigator());
       this.store.dispatch(new AddClassOpenModal());
+      this.store.dispatch(new HideRegionModal());
     }
   }
 
@@ -366,12 +369,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
     }
   }
 
-  goToHome(xMenuToggle){
-
-    this.isOpenCategoryNavigator = false;
+  navigateTo(xMenuToggle, xRoute: string) {
     this.renderer.setProperty(xMenuToggle, 'checked', false);
+    this.store.dispatch(new CloseCategoryNavigator());
     this.store.dispatch(new RemoveClassOpenModal());
-    this.router.navigate(['/shops']);
+    this.router.navigate([xRoute]);
   }
 
   navigateFirstCategory(xSlug){

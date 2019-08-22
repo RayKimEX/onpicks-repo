@@ -158,7 +158,7 @@
           </onpicks-search-box>
 
           <div class="navigation__icon" #mobileIconOuter>
-            <a (click)="goToHome(inputCheckedForToggle)">
+            <a (click)="navigateTo(inputCheckedForToggle, '/shops')">
               <svg
                 #mobileLogo
                 class="header__mobile-menu--onpicks-icon"
@@ -200,7 +200,7 @@
                   {{cartLength}}
                 </span>
               </span>
-              <a routerLink="/order/cart">
+              <a (click)="navigateTo(inputCheckedForToggle, '/order/cart')">
 
                 <svg
                   class="header__mobile-menu--shopping-bag-icon"
