@@ -13,15 +13,17 @@ import { PipeModule } from '../core/pipe/pipe.module';
 // Component
 import { CheckoutComponent } from './pages/checkout/checkout.component';
 import { CartComponent } from './pages/cart/cart.component';
-import { OrderNavigatorComponent } from './components/order-navigator/order-navigator.component';
 import { CheckoutSuccessComponent } from './pages/checkout-success/checkout-success.component';
 import { CheckoutSuccessVirtualAccountComponent } from './pages/checkout-success-virtual-account/checkout-success-virtual-account.component';
-import { KrCheckoutComponent } from './components/kr/checkout/kr-checkout.component';
-import { UsCheckoutComponent } from './components/us/checkout/us-checkout.component';
 import { CheckoutFailureComponent } from './pages/checkout-failure/checkout-failure.component';
-import { KrCheckoutMenuComponent } from './components/kr/checkout/checkout-menu/kr-checkout-menu.component';
-import { UsCheckoutMenuComponent } from './components/us/checkout/checkout-menu/us-checkout-menu.component';
 import { HealthyProductWarningComponent } from './components/cart/healthy-product-warning/healthy-product-warning.component';
+import { OrderNavigatorComponent } from './components/shared/order-navigator/order-navigator.component';
+
+import { KrCheckoutComponent } from './components/checkout/kr-checkout/kr-checkout.component';
+import { KrCheckoutMenuComponent } from './components/checkout/kr-checkout/checkout-menu/kr-checkout-menu.component';
+
+import { UsCheckoutComponent } from './components/checkout/us-checkout/us-checkout.component';
+import { UsCheckoutMenuComponent } from './components/checkout/us-checkout/checkout-menu/us-checkout-menu.component';
 
 
 
