@@ -1,8 +1,8 @@
 import {Component, OnInit, ChangeDetectionStrategy, Inject, AfterViewInit, ViewChild, ElementRef, ChangeDetectorRef} from '@angular/core';
 import {DOMAIN_HOST, PAYPAL_API_KEY_TOKEN, REGION_ID, RESPONSIVE_MAP, STRIPE_API_KEY_TOKEN} from '../../../../core/global-constant/app.config';
 import {FormControl, FormGroup} from '@angular/forms';
-import {HttpClient} from '../../../../../../node_modules/@angular/common/http';
-import {BreakpointObserver, BreakpointState} from '../../../../../../node_modules/@angular/cdk/layout';
+import {HttpClient} from '@angular/common/http';
+import {BreakpointObserver, BreakpointState} from '@angular/cdk/layout';
 import {tap} from 'rxjs/operators';
 import {OrderDataService} from '../../../../core/service/data-pages/order/order-data.service';
 import {STATE_LIST} from '../../../../core/global-constant/app.database';

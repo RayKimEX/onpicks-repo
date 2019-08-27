@@ -11,7 +11,7 @@ import {
   Renderer2,
   ViewChild
 } from '@angular/core';
-import {fromEvent} from 'rxjs';
+import {fromEvent, interval} from 'rxjs';
 import {HEALTH_PRODUCT_CATEGORY_LIST} from '../../../../../core/global-constant/app.category-database-short';
 
 @Component({
@@ -29,13 +29,28 @@ export class ListActiveButtonComponent implements AfterViewInit, OnDestroy {
   @Output('subtractEvent') subtractEvent = new EventEmitter<number>();
   @Input('categories') categories: [];
   @Input('isFixExtend') isFixExtend = false;
+  @Input('limitQuantity') set _limitQuantity(xlimitQuantity) {
+    if ( xlimitQuantity === null ) { return; }
+
+    const healthyProductFound = this.categories.some( (category: {
+      code: never;
+    }) => this.healthList.includes(category.code) );
+
+    if ( healthyProductFound ) {
+      this.limitQuantity = 6;
+    } else {
+      this.limitQuantity = xlimitQuantity > 10 ? 10 : xlimitQuantity ;
+    }
+    this.cd.markForCheck();
+  }
   @Input('amount') set _amount(xAmount) {
     if ( xAmount === null ) { return; }
+    this.amount = xAmount;
 
-    if ( xAmount === this.limitQuantity ) {
-      if ( this.isFisrtLoad ) {
+    if ( xAmount >= this.limitQuantity - 1) {
+      if ( this.isFirstLoad ) {
         this.amount = xAmount;
-        this.isFisrtLoad = false;
+        this.isFirstLoad = false;
       } else {
         this.actionMaxQuantity();
         // fade-in, fade-out때문에 변화된 값이 순간적으로 보이는것을 조금 늦춰서 변화시킴
@@ -46,24 +61,12 @@ export class ListActiveButtonComponent implements AfterViewInit, OnDestroy {
     } else {
       this.amount = xAmount;
     }
+    this.isFirstLoad = false;
   }
-  @Input('limitQuantity') set _limitQuantity(xlimitQuantity) {
-    if ( xlimitQuantity === null ) { return; }
 
-    const healthyProductFound = this.categories.some( (category: {
-      code: never;
-    }) => this.healthList.includes(category.code) );
-
-    console.log(healthyProductFound);
-    if ( healthyProductFound ) {
-      this.limitQuantity = 6;
-    } else {
-      this.limitQuantity = xlimitQuantity > 10 ? 10 : xlimitQuantity ;
-    }
-  }
 
   amount = 0;
-  isFisrtLoad = true;
+  isFirstLoad = true;
   limitQuantity = 10;
   plusOpactiy = 1;
   minusOpacity = 1;
@@ -76,9 +79,14 @@ export class ListActiveButtonComponent implements AfterViewInit, OnDestroy {
     private renderer: Renderer2,
     @Inject(HEALTH_PRODUCT_CATEGORY_LIST) public healthList: [],
     private cd: ChangeDetectorRef
-  ) { }
+  ) {
+    console.log('constructor###')
+    console.log(this.isFirstLoad);
+  }
 
   ngAfterViewInit() {
+    console.log('ngAfterViewInit###')
+    console.log(this.isFirstLoad);
     this.tempEvent$ = fromEvent(this.outer.nativeElement, 'transitionend').subscribe( v => {
 
       // @ts-ignore

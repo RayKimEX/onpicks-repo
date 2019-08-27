@@ -21,6 +21,7 @@ import { UsCheckoutComponent } from './components/us/checkout/us-checkout.compon
 import { CheckoutFailureComponent } from './pages/checkout-failure/checkout-failure.component';
 import { KrCheckoutMenuComponent } from './components/kr/checkout/checkout-menu/kr-checkout-menu.component';
 import { UsCheckoutMenuComponent } from './components/us/checkout/checkout-menu/us-checkout-menu.component';
+import { HealthyProductWarningComponent } from './components/cart/healthy-product-warning/healthy-product-warning.component';
 
 
 
@@ -44,6 +45,7 @@ import { UsCheckoutMenuComponent } from './components/us/checkout/checkout-menu/
     CheckoutFailureComponent,
     KrCheckoutMenuComponent,
     UsCheckoutMenuComponent,
+    HealthyProductWarningComponent,
   ]
 })
 export class OrderModule { }

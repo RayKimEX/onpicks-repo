@@ -11,7 +11,7 @@ import {CURRENCY, DOMAIN_HOST, LOCATION_MAP} from '../../../core/global-constant
 import {
   TryAddOrCreateToCart,
   TryAddToWishList,
-  TryDeleteFromCart, TryDeleteWishList,
+  TryDeleteWishList,
   TrySubtractOrDeleteFromCart
 } from '../../../core/store/cart/cart.actions';
 import {Router} from '@angular/router';
@@ -20,6 +20,7 @@ import {UiService} from '../../../core/service/ui/ui.service';
 import {DisplayAlertMessage} from '../../../core/store/ui/ui.actions';
 import {BehaviorSubject} from 'rxjs';
 import {DISPLAY_ALERT_MESSAGE_MAP} from '../../../core/global-constant/app.locale';
+import {HEALTH_PRODUCT_CATEGORY_LIST} from '../../../core/global-constant/app.category-database-short';
 
 @Component({
   selector: 'onpicks-cart',
@@ -33,9 +34,7 @@ export class CartComponent {
   cartStore;
   lengthCheckForPack = 0;
   lengthCheckForFree = 0;
-
   objectKeys = Object.keys;
-
 
   /* Observable */
   weeklyBest$;
@@ -49,6 +48,7 @@ export class CartComponent {
     @Inject( LOCALE_ID ) public locale: string,
     @Inject( DISPLAY_ALERT_MESSAGE_MAP ) private alertMap,
     @Inject( DOMAIN_HOST ) private BASE_URL: string,
+    @Inject( HEALTH_PRODUCT_CATEGORY_LIST ) public healthyList: [],
     private renderer: Renderer2,
     private router: Router,
     private store: Store<any>,
@@ -63,6 +63,36 @@ export class CartComponent {
         this.lengthCheckForPack = 0;
         if ( v.cartInfo.free.items !== undefined) {
           this.lengthCheckForFree = v.cartInfo.free.items.length;
+
+          const includedLocationList = [];
+          const copyList = []
+
+
+          // 무료 배송상품 구매 시, 건강기능식품 표시
+          v.cartInfo.free.items.forEach( (item, index) => {
+            // 같은 배송지 끼리 묶어주는 작업
+              if ( includedLocationList.includes(item.location.name) ){
+                const locationIndex = includedLocationList.indexOf(item.location.name);
+                copyList[locationIndex].list.push(item);
+              } else {
+                const tempList = [];
+                tempList.push(item);
+                copyList.push({ isHealthy : false, list: tempList});
+                includedLocationList.push(item.location.name);
+              }
+
+              // 건강기능식품일경우, 가장 첫번째 로우에 isLocationListHeathy true로 설정
+              if ( item.isHealthyProduct === true ) {
+                const locationIndex = includedLocationList.indexOf(item.location.name);
+                if ( locationIndex >= 0 ) {
+                  // healthy product가 하나라도 있으면 첫번째 로우에 true로 설정
+                  copyList[locationIndex].isHealthy = true;
+                }
+              }
+            }
+          );
+
+          v.cartInfo.free.sortedByLocationList = copyList;
         }
 
         v.cartInfo.pack.forEach( pack => {

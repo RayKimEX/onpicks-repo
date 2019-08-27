@@ -158,157 +158,176 @@
           <div class="cart-mobile__table">
             <div
               class="cart-mobile__table--item"
-              *ngFor="let itemForFree of syncedData?.cartInfo?.free?.items; index as itemForFreeIndex">
-              <div class="cart-mobile__table--item--image-and-font-line-fixed">
+              *ngFor="let locationList of syncedData?.cartInfo?.free?.sortedByLocationList; index as itemForFreeIndex">
 
-                <div class="cart-mobile__table--item--image">
-                  <div class="cart-mobile__table--item--image-inner">
-                    <img drLazyLoad src="{{itemForFree.thumbnail}}" alt="{{itemForFree.title}}">
-                  </div>
-                </div>
+              <ng-container *ngFor="let item of locationList.list">
+                <div class="cart-mobile__table--item--image-and-font-line-fixed">
 
-                <div class="cart-mobile__table--item-info">
-                  <div class="cart-mobile__table--item-info--title subtitle-3-bold">
-                    {{itemForFree.brand.name}}
+                  <div class="cart-mobile__table--item--image">
+                    <div class="cart-mobile__table--item--image-inner">
+                      <img drLazyLoad src="{{item.thumbnail}}" alt="{{item.title}}">
+                    </div>
                   </div>
-                  <div class="cart-mobile__table--item-info--description body-3-regular">
-                    {{itemForFree.title}}
-                  </div>
-                  <div class="cart-mobile__table--item-info--price subtitle-2-bold">
-                    {{itemForFree.price | onpicksCurrency : syncedData.currencyInfo}}
-                  </div>
-                </div>
-              </div>
-              <div class="cart-mobile__table--item-option">
-                <div class="cart-mobile__table--item-option--vertical-center">
-                  <div
-                    i18n="@@sentence__wish-list"
-                    (click)="addToWishList(itemForFree.product, 'free')"
-                    class="cart-mobile__table--item-option--add-to-wish subtitle-2-regular u-color-grey">
-                    다음에 구매하기
-                  </div>
-                  <div
-                    i18n="@@word__remove"
-                    (click)="subtractFromCart(1, itemForFree.product, 'free' )"
-                    class="cart-mobile__table--item-option--delete subtitle-2-regular u-color-grey">
-                    삭제하기
-                  </div>
-                </div>
 
-                <div class="cart-mobile__table--item-option--manage-amount">
-                  <onpicks-list-active-button
-                    [categories]="syncedData?.cartList[itemForFree.product]?.categories"
-                    [limitQuantity]="syncedData?.cartList[itemForFree.product]?.stock_quantity"
-                    (addEvent)="addToCart(syncedData?.cartList[itemForFree.product]?.quantity, itemForFree, 'free')"
-                    (subtractEvent)="subtractFromCart(syncedData?.cartList[itemForFree.product]?.quantity, itemForFree.product, 'free')"
-                    [amount]="syncedData?.cartList[itemForFree.product]?.quantity"
-                    [isFixExtend]="true">
-                  </onpicks-list-active-button>
+                  <div class="cart-mobile__table--item-info">
+                    <div class="cart-mobile__table--item-info--title subtitle-3-bold">
+                      {{item.brand.name}}
+                    </div>
+                    <div class="cart-mobile__table--item-info--description body-3-regular">
+                      {{item.title}}
+                    </div>
+                    <div class="cart-mobile__table--item-info--price subtitle-2-bold">
+                      {{item.price | onpicksCurrency : syncedData.currencyInfo}}
+                    </div>
+                  </div>
                 </div>
-              </div>
+                <div class="cart-mobile__table--item-option">
+                  <div class="cart-mobile__table--item-option--vertical-center">
+                    <div
+                      i18n="@@sentence__wish-list"
+                      (click)="addToWishList(item.product, 'free')"
+                      class="cart-mobile__table--item-option--add-to-wish subtitle-2-regular u-color-grey">
+                      다음에 구매하기
+                    </div>
+                    <div
+                      i18n="@@word__remove"
+                      (click)="subtractFromCart(1, item.product, 'free' )"
+                      class="cart-mobile__table--item-option--delete subtitle-2-regular u-color-grey">
+                      삭제하기
+                    </div>
+                  </div>
+
+                  <div class="cart-mobile__table--item-option--manage-amount">
+                    <onpicks-list-active-button
+                      [categories]="syncedData?.cartList[item.product]?.categories"
+                      [limitQuantity]="syncedData?.cartList[item.product]?.stock_quantity"
+                      (addEvent)="addToCart(syncedData?.cartList[item.product]?.quantity, item, 'free')"
+                      (subtractEvent)="subtractFromCart(syncedData?.cartList[item.product]?.quantity, item.product, 'free')"
+                      [amount]="syncedData?.cartList[item.product]?.quantity"
+                      [isFixExtend]="true">
+                    </onpicks-list-active-button>
+                  </div>
+                </div>
+              </ng-container>
             </div>
           </div>
         </div>
 
         <table class="cart__free-table">
-          <tr  *ngFor="let itemForFree of syncedData?.cartInfo?.free?.items; index as itemForFreeIndex">
-            <td>
-              <div
-                class="cart__free-table--image u-button-effect"
-                [routerLink]="'/shops/p/' + itemForFree.product">
-                <img
-                  drLazyLoad
-                  src="{{ itemForFree.thumbnail }}"
-                  alt="">
-              </div>
+          <ng-container *ngFor="let locationList of syncedData?.cartInfo?.free?.sortedByLocationList; index as itemForFreeIndex">
+            <tr
+              *ngFor="let item of locationList.list; index as itemIndex">
 
-              <div class="cart__free-table--info">
-                <div class="cart__free-table--info-title subtitle-3-bold">{{itemForFree.brand.name}}</div>
-                <div class="cart__free-table--info-name body-3-regular">
-                  <a [routerLink]="'/shops/p/' + itemForFree.product">
-                    {{itemForFree.title}}
-                  </a>
-                </div>
-                <div class="cart__multi-table--info-option">
-                  <ng-container *ngFor="let option of objectKeys(itemForFree.attribute_values); index as optionIndex">
-                    <span class="subtitle-3-regular u-color-grey">
-                      {{option}} :
-                    </span>
-                    <span class="subtitle-3-regular u-color-grey">
-                      {{itemForFree.attribute_values[option]}}
-                    </span>
-                    <span
-                      *ngIf="objectKeys(itemForFree.attribute_values).length - 1 !== optionIndex"
-                      class="cart__multi-table--info-option--spliter-margin subtitle-3-regular u-color-grey">·</span>
-                  </ng-container>
-                </div>
-                <div
-                  class="cart__free-table--info-price subtitle-2-bold">
-                  {{itemForFree.price | onpicksCurrency : syncedData.currencyInfo }}
-                </div>
-              </div>
-            </td>
-            <td>
-              <div class="cart__free-table--amount">
-                <onpicks-list-active-button
-                  [categories]="syncedData?.cartList[itemForFree.product]?.categories"
-                  [limitQuantity]="syncedData?.cartList[itemForFree.product]?.stock_quantity"
-                  (addEvent)="addToCart(syncedData?.cartList[itemForFree.product]?.quantity, itemForFree, 'free')"
-                  (subtractEvent)="subtractFromCart(syncedData?.cartList[itemForFree.product]?.quantity, itemForFree.product, 'free')"
-                  [amount]="syncedData?.cartList[itemForFree.product]?.quantity"
-                  [isFixExtend]="true">
-                </onpicks-list-active-button>
-              </div>
+                <td class="cart__free-table--border-bottom">
+                  <div
+                    class="cart__free-table--image u-button-effect"
+                    [routerLink]="'/shops/p/' + item.product">
+                    <img
+                      drLazyLoad
+                      src="{{ item.thumbnail }}"
+                      alt="">
+                  </div>
 
-              <div class="cart__free-table--add-to-wish">
-                <a
-                  i18n="@@sentence__wish-list"
-                  (click)="addToWishList(itemForFree.product, 'free')"
-                  class="subtitle-2-regular u-color-grey">
-                  다음에 구매하기
-                </a>
-              </div>
-              <div class="cart__free-table--delete">
-                <a
-                  i18n="@@word__remove"
-                  (click)="subtractFromCart(1, itemForFree.product, 'free' )"
-                  class="subtitle-2-regular u-color-grey">
-                  삭제하기
-                </a>
-              </div>
-            </td>
-            <td>
-              <div class="cart__free-table--delivery-info">
-                <onpicks-flag-icon [_data]="itemForFree"></onpicks-flag-icon>
-                <ng-container [ngSwitch]="locale">
-                  <ng-container *ngSwitchCase="'ko'">
-                    <div
-                      class="cart__free-table--delivery-info-where subtitle-2-regular">
-                      <span class="u-bold">{{ itemForFree.location.name }}</span> 출고&nbsp;·&nbsp;
+                  <div class="cart__free-table--info">
+                    <div class="cart__free-table--info-title subtitle-3-bold">{{item.brand.name}}</div>
+                    <div class="cart__free-table--info-name body-3-regular">
+                      <a [routerLink]="'/shops/p/' + item.product">
+                        {{item.title}}
+                      </a>
+                    </div>
+                    <div class="cart__multi-table--info-option">
+                      <ng-container *ngFor="let option of objectKeys(item.attribute_values); index as optionIndex">
+                        <span class="subtitle-3-regular u-color-grey">
+                          {{option}} :
+                        </span>
+                        <span class="subtitle-3-regular u-color-grey">
+                          {{item.attribute_values[option]}}
+                        </span>
+                        <span
+                          *ngIf="objectKeys(item.attribute_values).length - 1 !== optionIndex"
+                          class="cart__multi-table--info-option--spliter-margin subtitle-3-regular u-color-grey">·</span>
+                      </ng-container>
                     </div>
                     <div
-                      class="cart__free-table--delivery-info-price subtitle-2-bold">
-                      무료배송
+                      *ngIf="item.isHealthyProduct"
+                      class="body-3-regular u-color-green">
+                      건강기능식품
                     </div>
                     <div
-                      class="cart__free-table--delivery-info-description subtitle-2-regular u-color-dark-grey">
-                      {{ itemForFree.location.name }} 단독배송 상품으로 무료로 배송 됩니다.
+                      class="cart__free-table--info-price subtitle-2-bold">
+                      {{item.price | onpicksCurrency : syncedData.currencyInfo }}
                     </div>
-                  </ng-container>
-                  <ng-container *ngSwitchCase="'en'">
-                    <div
-                      class="cart__free-table--delivery-info-where subtitle-2-regular">
-                      Shipping From&nbsp;<span class="u-bold">{{ itemForFree.location.name }}</span>
-                    </div>
-                    <div
-                      class="cart__free-table--delivery-info-price subtitle-2-bold u-color-green">
-                      Free shipping
-                    </div>
-                  </ng-container>
-                </ng-container>
-              </div>
-            </td>
-          </tr>
+                  </div>
+                </td>
+                <td class="cart__free-table--border-bottom">
+                  <div class="cart__free-table--amount">
+                    <onpicks-list-active-button
+                      [categories]="syncedData?.cartList[item.product]?.categories"
+                      [limitQuantity]="syncedData?.cartList[item.product]?.stock_quantity"
+                      (addEvent)="addToCart(syncedData?.cartList[item.product]?.quantity, item, 'free')"
+                      (subtractEvent)="subtractFromCart(syncedData?.cartList[item.product]?.quantity, item.product, 'free')"
+                      [amount]="syncedData?.cartList[item.product]?.quantity"
+                      [isFixExtend]="true">
+                    </onpicks-list-active-button>
+                  </div>
+
+                  <div class="cart__free-table--add-to-wish">
+                    <a
+                      i18n="@@sentence__wish-list"
+                      (click)="addToWishList(item.product, 'free')"
+                      class="subtitle-2-regular u-color-grey">
+                      다음에 구매하기
+                    </a>
+                  </div>
+                  <div class="cart__free-table--delete">
+                    <a
+                      i18n="@@word__remove"
+                      (click)="subtractFromCart(1, item.product, 'free' )"
+                      class="subtitle-2-regular u-color-grey">
+                      삭제하기
+                    </a>
+                  </div>
+                </td>
+                <td
+                  [ngClass]="itemIndex == locationList.list.length - 1 ? 'cart__free-table--border-bottom' : '' ">
+                  <div
+                    *ngIf="itemIndex === 0"
+                    class="cart__free-table--delivery-info">
+                    <onpicks-flag-icon [_data]="item"></onpicks-flag-icon>
+                    <ng-container [ngSwitch]="locale">
+                      <ng-container *ngSwitchCase="'ko'">
+                        <div
+                          class="cart__free-table--delivery-info-where subtitle-2-regular">
+                          <span class="u-bold">{{ item.location.name }}</span> 출고&nbsp;·&nbsp;
+                        </div>
+                        <div
+                          class="cart__free-table--delivery-info-price subtitle-2-bold">
+                          무료배송
+                        </div>
+                        <div
+                          class="cart__free-table--delivery-info-description subtitle-2-regular u-color-dark-grey">
+                          {{ item.location.name }} 단독배송 상품으로 무료로 배송 됩니다.
+                        </div>
+                      </ng-container>
+                      <ng-container *ngSwitchCase="'en'">
+                        <div
+                          class="cart__free-table--delivery-info-where subtitle-2-regular">
+                          Shipping From&nbsp;<span class="u-bold">{{ item.location.name }}</span>
+                        </div>
+                        <div
+                          class="cart__free-table--delivery-info-price subtitle-2-bold u-color-green">
+                          Free shipping
+                        </div>
+                      </ng-container>
+                    </ng-container>
+                    <healthy-product-warning *ngIf="locationList.isHealthy">
+
+                    </healthy-product-warning>
+                  </div>
+                </td>
+
+            </tr>
+          </ng-container>
         </table>
       </ng-container>
       <ng-container *ngIf="lengthCheckForPack !== 0" >
