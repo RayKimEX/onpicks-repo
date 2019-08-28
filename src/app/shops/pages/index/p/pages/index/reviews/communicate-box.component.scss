@@ -26,26 +26,6 @@ onpicks-loading-icon {
     opacity: 1;
   }
 }
-.modal {
-  &__title {
-    margin-bottom : 0.8rem;
-  }
-
-  &__item {
-    padding : 1.6rem 0;
-    border-bottom : 1px solid $color-light-grey;
-
-    &--check-box {
-      float : right;
-    }
-  }
-
-  &__btn {
-    display:inline-block;
-    margin-top : 2.4rem;
-  }
-
-}
 
 
 .communicate-box{
@@ -105,7 +85,7 @@ onpicks-loading-icon {
         border-top : 1px solid $color-light-grey;
         will-change: transform;
       }
-      
+
       &--inner{
         display:table-cell;
         vertical-align: middle;

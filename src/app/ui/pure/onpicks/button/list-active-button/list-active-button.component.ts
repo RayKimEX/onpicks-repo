@@ -47,21 +47,23 @@ export class ListActiveButtonComponent implements AfterViewInit, OnDestroy {
     if ( xAmount === null ) { return; }
     this.amount = xAmount;
 
-    if ( xAmount >= this.limitQuantity - 1) {
-      if ( this.isFirstLoad ) {
-        this.amount = xAmount;
-        this.isFirstLoad = false;
-      } else {
+    if ( xAmount >= this.limitQuantity ) {
+      // if ( this.isFirstLoad ) {
+      //
+      //   // this.isFirstLoad = false;
+      // } else {
         this.actionMaxQuantity();
         // fade-in, fade-out때문에 변화된 값이 순간적으로 보이는것을 조금 늦춰서 변화시킴
         setTimeout( () => {
           this.amount = xAmount;
         }, 300);
-      }
+      // }
     } else {
       this.amount = xAmount;
     }
-    this.isFirstLoad = false;
+
+
+    // this.isFirstLoad = false;
   }
 
 
@@ -79,16 +81,10 @@ export class ListActiveButtonComponent implements AfterViewInit, OnDestroy {
     private renderer: Renderer2,
     @Inject(HEALTH_PRODUCT_CATEGORY_LIST) public healthList: [],
     private cd: ChangeDetectorRef
-  ) {
-    console.log('constructor###')
-    console.log(this.isFirstLoad);
-  }
+  ) { }
 
   ngAfterViewInit() {
-    console.log('ngAfterViewInit###')
-    console.log(this.isFirstLoad);
     this.tempEvent$ = fromEvent(this.outer.nativeElement, 'transitionend').subscribe( v => {
-
       // @ts-ignore
       if (v.propertyName === 'width' ) { this.extendButtonPressed = false; }
     });

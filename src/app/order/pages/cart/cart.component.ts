@@ -40,6 +40,9 @@ export class CartComponent {
   weeklyBest$;
   cartStore$;
   isShowWishlist = false;
+  isShowModal = false;
+
+  firstSlugForExceedingHealthyProduct = '';
 
   constructor(
     // TODO: 나중에 locale정보는 모두 ngrx에 넣어서 처리하기
@@ -65,7 +68,7 @@ export class CartComponent {
           this.lengthCheckForFree = v.cartInfo.free.items.length;
 
           const includedLocationList = [];
-          const copyList = []
+          let copyList = []
 
 
           // 무료 배송상품 구매 시, 건강기능식품 표시
@@ -83,6 +86,10 @@ export class CartComponent {
 
               // 건강기능식품일경우, 가장 첫번째 로우에 isLocationListHeathy true로 설정
               if ( item.isHealthyProduct === true ) {
+                if ( this.firstSlugForExceedingHealthyProduct === '') {
+                  this.firstSlugForExceedingHealthyProduct = item.product;
+                }
+
                 const locationIndex = includedLocationList.indexOf(item.location.name);
                 if ( locationIndex >= 0 ) {
                   // healthy product가 하나라도 있으면 첫번째 로우에 true로 설정
@@ -95,8 +102,20 @@ export class CartComponent {
           v.cartInfo.free.sortedByLocationList = copyList;
         }
 
-        v.cartInfo.pack.forEach( pack => {
-          this.lengthCheckForPack += pack.items.length;
+        v.cartInfo.pack.forEach( locationList => {
+          this.lengthCheckForPack += locationList.items.length;
+          locationList.isHealthy = false;
+          locationList.items.forEach( (item, index) => {
+
+            // 건강기능식품일경우, 가장 첫번째 로우에 isLocationListHeathy true로 설정
+            if ( item.isHealthyProduct === true ) {
+              if ( this.firstSlugForExceedingHealthyProduct === '') {
+                this.firstSlugForExceedingHealthyProduct = item.product;
+              }
+              // healthy product가 하나라도 있으면 첫번째 로우에 true로 설정
+              locationList.isHealthy = true;
+            }
+          });
         });
         this.cd.markForCheck();
 
@@ -112,12 +131,25 @@ export class CartComponent {
   setCheckoutList(xCheckoutList) {
 
     const productArray = [];
+    let healthyProductQuantityCnt = 0;
+    
     xCheckoutList.forEach( item => {
       productArray.push(item.product);
+
+      if ( item.isHealthyProduct === true ) {
+        healthyProductQuantityCnt += item.quantity;
+      }
     });
 
+
     // 키트에 하나도 없으면 checkout으로 못가게
-    if ( productArray.length === 0 ) { return };
+    if ( productArray.length === 0 ) { return; }
+
+    if ( healthyProductQuantityCnt > 6 ) {
+      window.location.href = window.location.origin + window.location.pathname  + '#' + this.firstSlugForExceedingHealthyProduct;
+      this.isShowModal = true;
+      return;;
+    }
 
     this.httpClient.post<any>( this.BASE_URL + '/api/cart/checkout/', { products : productArray }).
     subscribe(

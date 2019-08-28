@@ -167,7 +167,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
         this.renderer.setStyle(this.deliveryBox.nativeElement, 'pointer-events', 'auto');
         this.renderer.setStyle(this.deliveryBox.nativeElement, 'opacity', '1');
-        if ( window.pageYOffset >= 108 ){
+        if ( window.pageYOffset >= 108 ) {
           this.renderer.setStyle(this.deliveryBox.nativeElement, 'position', 'fixed');
           this.renderer.setStyle(this.deliveryBox.nativeElement, 'top', this.isDesktopBreakPoint ? '7.6rem' : '1.6rem');
         } else {
@@ -187,7 +187,6 @@ export class AppComponent implements OnInit, OnDestroy {
         if ( this.scrollForDeliveryBox$ == null ) {
           this.scrollForDeliveryBox$ = fromEvent( window , 'scroll').subscribe(
             scrollValue => {
-              console.log(this.isDesktopBreakPoint);
               if ( window.pageYOffset >= 108 ) {
                 this.renderer.setStyle(this.deliveryBox.nativeElement, 'position', 'fixed');
                 this.renderer.setStyle(this.deliveryBox.nativeElement, 'top', this.isDesktopBreakPoint ? '7.6rem' : '1.6rem');

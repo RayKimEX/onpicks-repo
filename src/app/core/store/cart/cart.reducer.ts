@@ -75,6 +75,14 @@ export function CartReducer(state = initialState, action: CartActions.CartAction
 
       const cartObjectItems = [];
 
+      // 건강기능식품에 대한 로직 추가
+      action.payload.results.forEach( (locationList, locationIndex) => {
+        locationList.items.forEach( (item, index) => {
+          const checkHealthyProduct = item.categories.some( (category) => HELATH_LIST.includes(category.code));
+          item.isHealthyProduct = checkHealthyProduct;
+        });
+      });
+
       action.payload.results.forEach( (value, index) => {
 
          if ( value.items.length === 0 ) { return; };
@@ -85,10 +93,8 @@ export function CartReducer(state = initialState, action: CartActions.CartAction
          });
       })
 
-      action.payload.results[0].items.forEach( (item, index) => {
-        const checkHealthyProduct = item.categories.some( (category) => HELATH_LIST.includes(category.code));
-        item.isHealthyProduct = checkHealthyProduct;
-      });
+
+
 
       const tempForInfo = Object.assign({}, ...cartObjectItems.map( k => ({ [k.product] : k})));
       object = { ...object, ...tempForInfo };
@@ -110,18 +116,35 @@ export function CartReducer(state = initialState, action: CartActions.CartAction
 
     case CartActions.CREATE_TO_CART_SUCCESS :
 
+      console.log(action.payload.data);
       if ( action.payload.packIndex !== 'free' ) {
         const createTemp = state.cartInfo.pack[action.payload.packIndex];
         createTemp.subtotal = action.payload.cartInfo.results.slice(1, action.payload.cartInfo.results.length)[action.payload.packIndex].subtotal;
-        createTemp.shipping_fee =                action.payload.cartInfo.results.slice(1, action.payload.cartInfo.results.length)[action.payload.packIndex].shipping_fee;
+        createTemp.shipping_fee = action.payload.cartInfo.results.slice(1, action.payload.cartInfo.results.length)[action.payload.packIndex].shipping_fee;
+        // 건강기능식품에 대한 로직 추가
+        action.payload.cartInfo.results.slice(1, action.payload.cartInfo.results.length)[action.payload.packIndex].items.forEach( (item, index) => {
+          const checkHealthyProduct = item.categories.some( (category) => HELATH_LIST.includes(category.code));
+          item.isHealthyProduct = checkHealthyProduct;
+        });
         createTemp.items = action.payload.cartInfo.results.slice(1, action.payload.cartInfo.results.length)[action.payload.packIndex].items;
         state.cartInfo.pack[action.payload.packIndex] = createTemp;
       } else {
         const createForFreeTemp = state.cartInfo.free;
         createForFreeTemp.subtotal = action.payload.cartInfo.results.slice(0, 1)[0].subtotal;
+
+        // 건강기능식품에 대한 로직 추가
+        action.payload.cartInfo.results.slice(0, 1)[0].items.forEach( (item, index) => {
+          const checkHealthyProduct = item.categories.some( (category) => HELATH_LIST.includes(category.code));
+          item.isHealthyProduct = checkHealthyProduct;
+        });
         createForFreeTemp.items = action.payload.cartInfo.results.slice(0, 1)[0].items;
+
+
+
         state.cartInfo.free = createForFreeTemp;
       }
+
+
 
       return {
 
@@ -131,6 +154,7 @@ export function CartReducer(state = initialState, action: CartActions.CartAction
           [action.payload.data.slug]: {
             ...state.cartList[action.payload.data.slug],
             ...action.payload.data,
+            isHealthyProduct : action.payload.data.categories.some( (category) => HELATH_LIST.includes(category.code)),
             quantity : action.payload.amount,
           }
         },
@@ -231,6 +255,11 @@ export function CartReducer(state = initialState, action: CartActions.CartAction
 
         deleteTemp.subtotal = action.payload.cartInfo.results.slice(1, action.payload.cartInfo.results.length)[action.payload.packIndex].subtotal;
         deleteTemp.shipping_fee = action.payload.cartInfo.results.slice(1, action.payload.cartInfo.results.length)[action.payload.packIndex].shipping_fee;
+        // 건강기능식품에 대한 로직 추가
+        action.payload.cartInfo.results.slice(1, action.payload.cartInfo.results.length)[action.payload.packIndex].items.forEach( (item, index) => {
+          const checkHealthyProduct = item.categories.some( (category) => HELATH_LIST.includes(category.code));
+          item.isHealthyProduct = checkHealthyProduct;
+        });
         deleteTemp.items = action.payload.cartInfo.results.slice(1, action.payload.cartInfo.results.length)[action.payload.packIndex].items;
         state.cartInfo.pack[action.payload.packIndex] = deleteTemp;
 
@@ -238,6 +267,12 @@ export function CartReducer(state = initialState, action: CartActions.CartAction
         const deleteForFreeTemp = state.cartInfo.free;
         deleteForFreeTemp.subtotal = action.payload.cartInfo.results.slice(0, 1)[0].subtotal;
         deleteForFreeTemp.shipping_fee = action.payload.cartInfo.results.slice(0, 1)[0].shipping_fee;
+
+        // 건강기능식품에 대한 로직 추가
+        action.payload.cartInfo.results.slice(0, 1)[0].items.forEach( (item, index) => {
+          const checkHealthyProduct = item.categories.some( (category) => HELATH_LIST.includes(category.code));
+          item.isHealthyProduct = checkHealthyProduct;
+        });
         deleteForFreeTemp.items = action.payload.cartInfo.results.slice(0, 1)[0].items;
         state.cartInfo.free = deleteForFreeTemp;
       }

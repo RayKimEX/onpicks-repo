@@ -216,6 +216,7 @@
         <table class="cart__free-table">
           <ng-container *ngFor="let locationList of syncedData?.cartInfo?.free?.sortedByLocationList; index as itemForFreeIndex">
             <tr
+              [id]="item.product"
               *ngFor="let item of locationList.list; index as itemIndex">
 
                 <td class="cart__free-table--border-bottom">
@@ -480,7 +481,10 @@
             </div>
 
             <table class="cart__multi-table">
-              <tr *ngFor="let itemChild of item.items; index as itemIndex">
+              <tr
+
+                *ngFor="let itemChild of item.items; index as itemIndex"
+                [id]="itemChild.product">
                 <td>
                   <div class="cart__multi-table--image">
                     <a class="cart__multi-table--image" [routerLink]="'/shops/p/' + itemChild.product">
@@ -508,7 +512,14 @@
                       </ng-container>
                     </div>
                     <!-- 현재는 판매가에 할인액을 적용하여 표현한다. zepplin 디자인은 판매가 옆에 할인액을 별도 표시하도록 되어 있다.-->
-                    <div class="cart__multi-table--info-price subtitle-2-bold">{{itemChild.price + itemChild.discount | onpicksCurrency: syncedData.currencyInfo}}</div>
+                    <div
+                      *ngIf="itemChild.isHealthyProduct"
+                      class="body-3-regular u-color-green">
+                      건강기능식품
+                    </div>
+                    <div class="cart__multi-table--info-price subtitle-2-bold">
+                      {{itemChild.price + itemChild.discount | onpicksCurrency: syncedData.currencyInfo}}
+                    </div>
                   </div>
                 </td>
                 <td>
@@ -570,6 +581,9 @@
                       </div>
                     </ng-container>
                   </div>
+                  <healthy-product-warning *ngIf="item.isHealthy">
+
+                  </healthy-product-warning>
                 </td>
               </tr>
             </table>
@@ -838,8 +852,32 @@
     [mobileType]="'full'"
     [infoList]="weeklyBest$ | async"
     i18n-setTitle="@@recommand-products__title"
-    setTitle="추천상품"
-  >
+    setTitle="추천상품">
   </ui-carousel-list>
 </div>
 
+<onpicks-modal
+  class="modal"
+  (exit)="isShowModal = false;"
+  [isShow]="isShowModal">
+
+  <h1 class="modal__title h1-bold">건강기능식품 통관 수량제한</h1>
+
+  <div class="modal__line"></div>
+
+  <div class="body-2-regular">
+    건강기능식품 관세법상 통관 기준 <b>1인당 6개까지 구매</b>하실 수 있습니다.
+  </div>
+
+  <div class="modal__btn--outer">
+    <onpicks-button
+      (click)="isShowModal = false;"
+      [ngStyle]="{ marginTop : '8.8rem', marginBottom : '2.4rem'}"
+      class="modal__btn"
+      [width]="'16.8rem'"
+      [size]="'small'"
+      [type]="'black'">
+      확인
+    </onpicks-button>
+  </div>
+</onpicks-modal>

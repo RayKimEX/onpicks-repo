@@ -362,7 +362,7 @@ export class CommunicateBoxComponent implements OnInit, AfterViewChecked, AfterV
       this.router.navigateByUrl('/member/login?return=' + encodeURI(location.href.substring(this.BASE_DOMAIN_HOST.length + 3, location.href.length)));
     }
   }
-  shareReview( xUrl ) {
+  shareReview( ) {
 
     // console.log(location.href);
     const hello = location.href;
@@ -388,7 +388,7 @@ export class CommunicateBoxComponent implements OnInit, AfterViewChecked, AfterV
   }
 
 
-  exitShowModal(){
+  exitShowModal() {
     // 순간적으로 같이 체크가 되서 신고하기랑, communicate box가 나가지는걸 방지하기 위해 setTimeout을 줌.
     setTimeout( () => {
       this.isShowModal = false;

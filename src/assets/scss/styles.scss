@@ -125,8 +125,6 @@ textarea {
   &--small {
 
     border-radius : 2px;
-    font-size : 1.4rem;
-    font-weight : 400;
     height : 4rem;
   }
 
@@ -246,7 +244,6 @@ textarea {
 
 .u-open-modal {
   width:100%;
-  position: fixed !important;
   overflow : hidden !important;
 }
 
@@ -428,6 +425,37 @@ textarea {
   -moz-animation-duration: 0s !important;
   -o-animation-duration: 0s !important;
   animation-duration: 0s !important;
+}
+
+/*************modal*********/
+.modal {
+  &__title {
+    margin-bottom : 0.8rem;
+  }
+
+  &__item {
+    padding : 1.6rem 0;
+    border-bottom : 1px solid $color-light-grey;
+
+    &--check-box {
+      float : right;
+    }
+  }
+
+  &__btn {
+    display:inline-block;
+    margin-top : 2.4rem;
+
+    &--outer {
+      text-align:center;
+    }
+  }
+
+  &__line {
+    height: 0.3rem;
+    background-color: $color-orange;
+    margin: 2.4rem 0rem;
+  }
 }
 
 
