@@ -13,83 +13,7 @@
           class="cart__title h1-bold">
           쇼핑백
         </h1>
-        <div class="cart-mobile">
-          <div class="cart-mobile__price">
-            <div class="cart-mobile__price--description">
-              <div class="cart-mobile__price--all-product">
-                <span
-                  i18n="@@word__subtotal"
-                  class="subtitle-2-regular u-color-dark-grey">
-                  총 상품금액
-                </span>
-                <span
-                  class="subtitle-2-regular u-float-right">
-                  {{ syncedData?.cartInfo?.total?.total_items | onpicksCurrency: syncedData.currencyInfo }}
-                </span>
-              </div>
-              <div class="cart-mobile__price--delivery">
-                <span
-                  i18n="@@word__shipping-fee"
-                  class="subtitle-2-regular u-color-dark-grey">
-                  배송비
-                </span>
-                <span
-                  i18n="@@word__free-shipping"
-                  class="subtitle-2-regular u-float-right"
-                  *ngIf="syncedData?.cartInfo?.total?.total_shipping_costs === 0"
-                  [ngClass]="{ 'u-color-green' : syncedData?.cartInfo?.total?.total_shipping_costs == 0 }">
-                  무료
-                </span>
-                <span
-                  class="subtitle-2-regular u-float-right"
-                  *ngIf="syncedData?.cartInfo?.total?.total_shipping_costs !== 0"
-                  [ngClass]="{ 'u-color-green' : syncedData?.cartInfo?.total?.total_shipping_costs == 0 }">
-                  {{ (syncedData?.cartInfo?.total?.total_shipping_costs | onpicksCurrency: syncedData.currencyInfo) }}
-                </span>
-              </div>
-              <div class="cart-mobile__price--discount">
-                <span
-                  i18n="@@cart__payment-table--extra-savings"
-                  class="subtitle-2-regular u-color-dark-grey">
-                  할인금액
-                </span>
-                <span class="subtitle-2-regular u-float-right">
-                  {{ syncedData?.cartInfo?.total?.total_discounts | onpicksCurrency: syncedData.currencyInfo }}
-                </span>
-              </div>
-            </div>
-            <div class="cart-mobile__price--all">
-              <span
-                i18n="@@cart__delivery--total-count"
-                class="subtitle-2-regular u-color-dark-grey">
-                총 결제금액
-              </span>
-              <span
-                class="subtitle-2-bold u-float-right">
-                {{ syncedData?.cartInfo?.total?.total_items + syncedData?.cartInfo?.total?.total_shipping_costs | onpicksCurrency : syncedData.currencyInfo }}
-              </span>
-            </div>
-          </div>
-
-          <onpicks-button
-            class="cart__btn--shopping"
-            i18n="@@cart__btn--shopping"
-            routerLink="/shops"
-            [type]="'white'"
-            [padding]="false"
-            [size]="'big'">
-            계속 쇼핑하기
-          </onpicks-button>
-          <onpicks-button
-            i18n="@@cart__btn--buy-all"
-            (click)="setCheckoutList(denormalizr(cartStore.cartList))"
-            class="cart__btn--shopping"
-            [padding]="false"
-            [type]="'black'"
-            [size]="'big'">
-            전체 구매하기
-          </onpicks-button>
-        </div>
+        <h1 class="cart__title h1-bold">&nbsp;({{objectKeys(syncedData?.cartList).length }})</h1>
       </ng-container>
       <ng-container *ngIf="lengthCheckForFree === 0 && lengthCheckForPack === 0">
         <h1
@@ -110,7 +34,7 @@
           class="cart__section--title subtitle-1-bold">무료배송 상품</div>
 
         <div class="cart__delivery-free">
-          <div class="cart__delivery-free-middle">
+          <div class="cart__delivery-free-middle cart-section">
             <span class="cart__delivery-free-icon">
               <span class="cart__delivery-free-font u-bold u-color-white">F</span>
             </span>
@@ -128,6 +52,10 @@
                 i18n="@@cart__section--free-sub-title"
                 class="subtitle-1-bold u-color-green">
                 무료배송
+              </span>
+              <span
+                class="subtitle-1-bold u-color-green">
+                ({{syncedData?.cartInfo?.free?.items.length}})
               </span>
             </span>
             <span class="cart__delivery-free-total-count">
@@ -150,10 +78,12 @@
           class="cart__delivery-free-purchase"
           [type]="'white'"
           [size]="'big'"
-          [width]="'auto'">
+          [width]="'inherit'">
           무료배송 구매하기
         </onpicks-button>
 
+
+        <!--무료 배송-->
         <div class="cart-mobile">
           <div class="cart-mobile__table">
             <div
@@ -591,6 +521,83 @@
 
         </ng-container>
       </ng-container>
+      <div class="cart-mobile">
+        <div class="cart-mobile__price">
+          <div class="cart-mobile__price--description">
+            <div class="cart-mobile__price--all-product">
+                <span
+                  i18n="@@word__subtotal"
+                  class="subtitle-2-regular u-color-dark-grey">
+                  총 상품금액
+                </span>
+              <span
+                class="subtitle-2-regular u-float-right">
+                  {{ syncedData?.cartInfo?.total?.total_items | onpicksCurrency: syncedData.currencyInfo }}
+                </span>
+            </div>
+            <div class="cart-mobile__price--delivery">
+                <span
+                  i18n="@@word__shipping-fee"
+                  class="subtitle-2-regular u-color-dark-grey">
+                  배송비
+                </span>
+              <span
+                i18n="@@word__free-shipping"
+                class="subtitle-2-regular u-float-right"
+                *ngIf="syncedData?.cartInfo?.total?.total_shipping_costs === 0"
+                [ngClass]="{ 'u-color-green' : syncedData?.cartInfo?.total?.total_shipping_costs == 0 }">
+                  무료
+                </span>
+              <span
+                class="subtitle-2-regular u-float-right"
+                *ngIf="syncedData?.cartInfo?.total?.total_shipping_costs !== 0"
+                [ngClass]="{ 'u-color-green' : syncedData?.cartInfo?.total?.total_shipping_costs == 0 }">
+                  {{ (syncedData?.cartInfo?.total?.total_shipping_costs | onpicksCurrency: syncedData.currencyInfo) }}
+                </span>
+            </div>
+            <div class="cart-mobile__price--discount">
+                <span
+                  i18n="@@cart__payment-table--extra-savings"
+                  class="subtitle-2-regular u-color-dark-grey">
+                  할인금액
+                </span>
+              <span class="subtitle-2-regular u-float-right">
+                  {{ syncedData?.cartInfo?.total?.total_discounts | onpicksCurrency: syncedData.currencyInfo }}
+                </span>
+            </div>
+          </div>
+          <div class="cart-mobile__price--all">
+              <span
+                i18n="@@cart__delivery--total-count"
+                class="subtitle-2-regular u-color-dark-grey">
+                총 결제금액
+              </span>
+            <span
+              class="subtitle-2-bold u-float-right">
+                {{ syncedData?.cartInfo?.total?.total_items + syncedData?.cartInfo?.total?.total_shipping_costs | onpicksCurrency : syncedData.currencyInfo }}
+              </span>
+          </div>
+        </div>
+
+        <onpicks-button
+          class="cart__btn--shopping"
+          i18n="@@cart__btn--shopping"
+          routerLink="/shops"
+          [type]="'white'"
+          [padding]="false"
+          [size]="'big'">
+          계속 쇼핑하기
+        </onpicks-button>
+        <onpicks-button
+          i18n="@@cart__btn--buy-all"
+          (click)="setCheckoutList(denormalizr(cartStore.cartList))"
+          class="cart__btn--shopping"
+          [padding]="false"
+          [type]="'black'"
+          [size]="'big'">
+          전체 구매하기
+        </onpicks-button>
+      </div>
       <ng-container [ngSwitch]="isShowWishlist">
         <onpicks-sort-box *ngSwitchCase="false"
                           (click)="toggleWishList(f)"

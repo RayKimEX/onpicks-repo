@@ -1,5 +1,9 @@
 @import '~src/assets/scss/abstracts/variables';
 
+.cart-section {
+  border-top: 4px solid $color-black;
+}
+
 .cart-mobile{
   display:none;
   @include respond(tb){
@@ -525,8 +529,13 @@
   }
 
   &__title {
+    display:inline-block;
     padding-top : 3.2rem;
     padding-bottom : 2.4rem;
+
+    &--cart-count {
+
+    }
 
     &--empty-description {
       margin-bottom : 5.6rem;

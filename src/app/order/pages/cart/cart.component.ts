@@ -70,7 +70,6 @@ export class CartComponent {
           const includedLocationList = [];
           let copyList = []
 
-
           // 무료 배송상품 구매 시, 건강기능식품 표시
           v.cartInfo.free.items.forEach( (item, index) => {
             // 같은 배송지 끼리 묶어주는 작업
@@ -132,7 +131,7 @@ export class CartComponent {
 
     const productArray = [];
     let healthyProductQuantityCnt = 0;
-    
+
     xCheckoutList.forEach( item => {
       productArray.push(item.product);
 
@@ -226,7 +225,7 @@ export class CartComponent {
         amount : xAmount,
         packIndex : xPackIndex,
         increaseOrCreate : xData.slug in this.cartStore.cartList
-      }) );
+      }));
 
     this.store.dispatch( new TryDeleteWishList( { wishListSlug : xData.slug, index : xIndex}));
   }
